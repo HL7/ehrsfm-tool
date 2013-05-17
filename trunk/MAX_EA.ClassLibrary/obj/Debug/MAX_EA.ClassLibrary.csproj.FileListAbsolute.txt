@@ -1,9 +1,0 @@
-D:\VisualStudio Projects\EACC\MAX_EA.ClassLibrary\bin\Debug\MAX_EA.dll
-D:\VisualStudio Projects\EACC\MAX_EA.ClassLibrary\bin\Debug\MAX_EA.pdb
-D:\VisualStudio Projects\EACC\MAX_EA.ClassLibrary\bin\Debug\Interop.EA.dll
-D:\VisualStudio Projects\EACC\MAX_EA.ClassLibrary\obj\Debug\ResolveAssemblyReference.cache
-D:\VisualStudio Projects\EACC\MAX_EA.ClassLibrary\obj\Debug\MAX_EA.ProgressWindow.resources
-D:\VisualStudio Projects\EACC\MAX_EA.ClassLibrary\obj\Debug\GenerateResource-ResGen.read.1.tlog
-D:\VisualStudio Projects\EACC\MAX_EA.ClassLibrary\obj\Debug\GenerateResource-ResGen.write.1.tlog
-D:\VisualStudio Projects\EACC\MAX_EA.ClassLibrary\obj\Debug\MAX_EA.dll
-D:\VisualStudio Projects\EACC\MAX_EA.ClassLibrary\obj\Debug\MAX_EA.pdb
