@@ -1,0 +1,145 @@
+﻿TODO
+====
+- Document Namespace on chapters and why, usefull for searching
+- Include association for References?
+- _Implement Model Browser double click_
+- Add to Schematron: "Check if function has at least 1 SHALL"
+
+
+CHANGELOG
+=========
+[2013-may-07]
+CriteriaForm
+- Formatting of ID was wrong.
+
+[2013-may-06]
+Main
+- Process feedback from Helen
+- Select in Project Browser & Open Diagram after creating it
+- BgColor did not work for Header/Function/Criteria, fixed it
+
+[2013-apr-24]
+R2Validator
+- Report message without prepending SUCCESS or FAIL.
+- Only validate full FM.
+
+[2013-apr-18]
+{R2Validator} Updated to latest schematron. Also report SUCCESS reports and show message when done validating.
+
+[2013-mrt-30]
+{Main} Double click on Validation output brings you to the correct element in the project browser
+{R2Validator} Also works on sections
+
+[2013-mrt-29]
+{R2Importer} Work on ConsequenceLink, added SeeAlso, did some cleanup and added ProgressWindow.
+
+[2013-mrt-28]
+{R2Importer} Trim values.
+
+[2013-mrt-24]
+{R2Importer} Also set TPos for Functions and Headers to order in the import file
+{Validator} Updated Schematron and SVRL to EA Console
+
+[2013-mrt-21]
+{ModelBrowserControl} Added for colorized FM tree browser.
+{R2Importer/R2Config} Some cleanup.
+{R11Importer/R2Importer/Util/Main} Deleted Util class.
+{R2Importer} Rewritten to XElement! Sort Sections by ID was manual, now auto (through TreePos) after import.
+
+[2013-mrt-19]
+{Main/QuickAccessControl} Added Quick Access Tab View
+{Validator} Implemented call into MAX Class Library
+{R2Importer} Add missing Header/Function Row TaggedValue
+{R2Importer/QuickAccessControl} Use "VERSION_DATE" for name of Package and label3.
+
+[2013-mrt-10]
+{R2Importer/*Form} Notes separator $XY$. Fixed stereotype & alias issue. Package attributes are R/O, use Package.Element attributes which are R/W.
+
+[2013-mrt-04]
+{R2Importer} Renamed "Chapter" to "Section", form and stereotype
+
+[2013-feb-27]
+{R2Importer} Added stereotypes for root-package and Chapter
+
+[2013-feb-11]
+{EHRSFM*} Removed EHRSFM from names of classes and files.
+{Validator} Added generated max file and run schematron on that.
+
+[2013-feb-06]
+{EHRSFMCriteriaForm} Criteria ID parsing was not robust. Expected just "AS.1#01" without any trailing chars. Old format had chars.
+{EHRSFMChapterForm} Chapter Package also gets own Form.
+
+[2013-feb-04]
+{EHRSFMConfig} Added class for configuration, colors and titles. Later more.
+
+[2013-jan-27]
+{Main,EHRSFM*Forms} Added forms for editing Header/Function and Criteria.
+
+[2012-nov-23]
+{EHRSFMR2Importer}
+	Name of Element has a max length of 255. Criteria had long names. Now use ID for Criteria Name and put Criteria text in Notes.
+
+[2012-nov-09]
+{EHRSFMR2Importer}
+	Some cleanup and use the FileDialog to select an XML file.
+	Aligned the implementation of the mapping with the design of the mapping.
+	O.a. the root package name and attributes. Added Reference as TaggedValues for now.
+
+// Some descicions made:
+	- style stuff is not be in the XML but rather in the Template.
+	- use UTF-8 ipv UTF-16 for newly generated XML
+// Started work on EHR-S FM Tool with Andy
+
+[2012-may-16]
+{EHRSFMR2Importer}
+	Some errors in importer checks.
+	Composition to Chapter was reported but is not an error.
+	Detect: Functions without Criteria
+	(Detect: A.1 + criteria are expected to be Header)
+	Detect: Depth >= 2 expect Function (same as: A.1.1 + criteria are expected to be Function)
+	Warn: Function without SHALL
+
+[2012-may-15]
+{EHRSFMR2Importer}
+	Add ID as Alias for Function/Criteria
+
+[2012-may-04]
+{Main.CreateCriteriaDiagram}
+	Minor tweak on function size
+{EHRSFMR2Importer}
+	Now import EHRS_FM_R2_N1_C3_FunctionList_2012MAY.xml
+	Add a note to links, so you can see what criteria is the source of this link.
+
+[2012-mar-05]
+{EHRSFMR2Importer}
+	Make borders of SHALL criteria bold. As suggested by Steve Huffnagel from the FIM project.
+
+[2012-jan-23]
+{EHRS_FM_R2_C3_FunctionList_2011DEC;MZ.xml}
+	Repaired "header" issues from R2_ISSUES.txt
+{EHRSFMR2Importer}
+	Name criteria #01,#02 instead of just #1,#2. As suggested by Steve.
+
+[2011-dec-29]
+{Main}
+	Call R2 import.
+
+{EHRSFMR2Importer}
+	New.
+	ConsequenceLink > Link(R1.1)
+	Criteria > ConformanceCriteria(R1.1)
+	Criteria/Dependent & Criteria/Conditional > TaggedValues
+	Function/Example added to Notes
+
+[2011-nov-04] v3.1 NICTIZ
+	Add a Connector from Criteria to Function
+    This is a fix for NICTIZ, otherwise the Criteria are not visible under the Associations tabs in the HTML export.
+
+v3.0
+	Meta-model upgrade
+
+v2.0
+	First version
+
+v1.0
+	Alpha version

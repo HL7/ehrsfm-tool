@@ -1,0 +1,128 @@
+﻿NOTES
+=====
+MAXExporter - uses the EA API through COM
+MAXExporter2 - uses EA SQL XML calls (is somewhat faster)
+
+TODO
+====
+- MAXImporter: 
+	-!! switch to ElementValueXxx instead of XPathSelectElements!
+	-!! go through MAXModel when importing!
+
+	- figure out how to update relationships
+	- how to detect deletes of objects/relationships when updating
+	- check object.type & relationship.type in allowed valueset
+	- !! detect GUID or ID used as MAX.id
+
+	- !! figure out how to set ID/GUID in new models, they are assigned by EA, so they will change on clean import, move to MAX:ID tagged value, also take alias into account
+	!! Idea: Use ID/GUID if possible, otherwise use TaggedValue "MAX::ID"!
+
+- MAXExporter(2):
+	- Q: Multiple tagged values with the same name result in multiple elements with the samen name, how to handle that in a spreadsheet?
+	  A: Through an XSLT!
+- MAXExporter2:
+	- use GUID's as alternative to ID's
+	- also support Diagrams -> Diagram serves as a selection of the elements to export!
+	- add Tagged Values of selected package
+	- add attributes
+- MAXSchema:
+	- sync UML model of schema (in EAP)!
+- Excel binding document, figure out multi tagged value binding; <tag><value><notes>
+- MAXExporter
+	- delete if all functionality is in MAXExporter2
+
+CHANGELOG
+=========
+[2013-may-07]
+MAXExporter2:
+- Made it more robust by adding and using Extension Methods to XElement that check for null.
+
+[2013-apr-24]
+MAXExporter2:
+- Package_ID and Object_ID are 2 idspace. So there can be an Package with id=5 and an object with id=5.
+  In EA a Package has both ID's. MAX has only one idspace and therefore has to use Object_ID. Fixed.
+ProgressWindow:
+- on-top of parent instead of on-top of all.
+MAXImporter:
+- Also set Package TreePos!
+
+[2013-apr-18]
+MAXExporter2:
+- Repository.EnableCache to speedup export!
+
+[2013-apr-12]
+MAXExporter2:
+- join t_package and t_object reliable on ea_guid instead of unreliable Name
+  ea_guid is the same for the Package and its Element
+
+[2013-mrt-28]
+MAXImporter:
+- Replaced "\n" to "\r\n" == newline in EA notes!
+
+[2013-mrt-26]
+MAXImporter/MAXSchema.xsd:
+- Implemented attributes
+- Relationship type Composition -> Closed Aggregation
+- Keep order of objects and attributes in Project Browser (using Element.TreePos, Attribute.Pos)
+
+[2013-mrt-19]
+MAXImporter:
+- Also import Packages and new tag format
+MAXExporter2:
+- Stereotype of object can be NULL, check for that.
+- Changed the <tag> format to <tag name= value=>notes</tag>
+MAXExporter:
+- Changed the <tag> format to <tag name= value=>notes</tag>
+
+[2013-mrt-15/16/17]
+QuickAccessViewControl:
+- Added Quick Access Buttons View!
+MAXExporter2:
+- Reimplementation of the MAX Exporter using the SQLQuery interface to the UML Model.
+- Keep HTML formatting as unescaped XML in the Package and Element notes. Not for TaggedValues since no formatting is allowed there.
+- Add "exportDate" attribute to model element.
+- Added selected package
+
+[2013-mrt-13]
+MAXExporter/Importer:
+- Tagged values in repeating child "tag" element with name, value and notes childs. If you want to use in spreadsheet, use a transform.
+- MaxExporter: experimental add attribute child elements.
+- MAXExporter: export in background thread
+
+[2013-mrt-06]
+-- Separated MAX classes from UMCG_EA_AddIn.
+
+[2013-mrt-06]
+MAXExporter:
+- on export add/update MAX::LastExportDate tag to exported package
+MAXImporter:
+- on import add/update MAX::LastImportDate tag to imported package
+
+[2013-feb-27]
+MAXExporter/Importer/xsd:
+- added optional "Element.modified" property to object
+
+[2012-nov-21]
+MAXExporter:
+- For now replace ':' in Tagged Values with a '_'
+
+[2012-nov-19]
+MAXSchema.xsd:
+- added alias attribute of object
+MAXExporter:
+- Add support from Package (for all Elements) and Diagram to filter Elements
+- Include parentId for nested Elements
+- Include Package Element
+- Add parentID to child elements of package
+
+[2012-oct-11]
+MAXImporter:
+- object.type & relationship.type may not be empty; if the xml tag is empty, use default
+
+[2012-oct-09]
+MAXImporter: all child elements of an object that start with "tag." will be placed as taggedvalue of that object
+- in a single transaction; the Element.TaggedValues.GetByName doesnot work; so if there are multiple objects with the same id in one max.xml
+- solved by calling Refresh on Element.TaggedValues
+
+[2012-sep-12]
+MAXExporter: initial

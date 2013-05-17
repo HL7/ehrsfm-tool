@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                        xmlns:schold="http://www.ascc.net/xml/schematron"
+                        xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:max="http://www.umcg.nl/MAX"
+                        title=""
+                        schemaVersion=""><!--   
+		   
+		   
+		 --><svrl:ns-prefix-in-attribute-values uri="http://www.umcg.nl/MAX" prefix="max"/>
+   <svrl:active-pattern document="file:///D:/VisualStudio Projects/EACC/SchematronTrySaxon.ConsoleApplication/Test2.sch"/>
+   <svrl:active-pattern document="file:///D:/VisualStudio Projects/EACC/SchematronTrySaxon.ConsoleApplication/Test2.sch"/>
+   <svrl:active-pattern document="file:///D:/VisualStudio Projects/EACC/SchematronTrySaxon.ConsoleApplication/Test2.sch"/>
+   <svrl:active-pattern document="file:///D:/VisualStudio Projects/EACC/SchematronTrySaxon.ConsoleApplication/Test2.sch"/>
+   <svrl:active-pattern document="file:///D:/VisualStudio Projects/EACC/SchematronTrySaxon.ConsoleApplication/Test2.sch"/>
+</svrl:schematron-output>
