@@ -1,5 +1,0 @@
-D:\VisualStudio Projects\EACC\SchematronTry.ConsoleApplication\bin\Debug\SchematronTry.ConsoleApplication.exe
-D:\VisualStudio Projects\EACC\SchematronTry.ConsoleApplication\bin\Debug\SchematronTry.ConsoleApplication.pdb
-D:\VisualStudio Projects\EACC\SchematronTry.ConsoleApplication\obj\x86\Debug\ResolveAssemblyReference.cache
-D:\VisualStudio Projects\EACC\SchematronTry.ConsoleApplication\obj\x86\Debug\SchematronTry.ConsoleApplication.exe
-D:\VisualStudio Projects\EACC\SchematronTry.ConsoleApplication\obj\x86\Debug\SchematronTry.ConsoleApplication.pdb
