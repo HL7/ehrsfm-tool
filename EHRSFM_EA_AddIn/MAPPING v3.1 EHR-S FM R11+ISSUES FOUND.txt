@@ -1,0 +1,96 @@
+﻿
+Chapter
+-------
+Package per Chapter
+Package name = Chapter/Name
+Package alias = Chapter/Alias
+Package isNameSpace = true; handig bij "add references" beperken tot 1 chapter
+
+Use fill colors: DC 255,255,0; S 255,215,0; IN 0,204,255
+
+Function
+--------
+Feature per Function
+Feature stereotype = Function/Type "H" = Header, "F" = Function
+
+Feature name = Function/ID + Function/Name e.g. DC.1 Care Management
+Feature notes = "<b>Statement: </b>" + Function/Statement + "<b>Description: </b>" + Function/Description + 
+
+Conformance Criteria
+--------------------
+Requirement name = ConformanceCriteria/ID + '#' + ConformanceCriteria/Text e.g. DC.1.2#3
+Requirement tagged value "Optionality" = ConformanceCriteria/Optionality
+
+Link
+----
+Add the following links (This is required to make the "Add Related" function of EA to work)
+	Composition Aggregation for Function to Header
+	Composition Aggregation for Header to Chapter
+
+KEEP LINKS between functions.
+!! DETECT and REMOVE DUBBLES links & SeeAlso's
+
+Directed Dependency from the Function of the Criteria to another Function by ConformanceCriteria/Link/FunctionID
+?? Criteria to Function & Header makes EA function really slow, a lot of connections.
+?? This connector is actually not very usefull. The most interesting are the functions.
+
+SeeAlso
+-------
+Directed Association from this Function to another Function by Function/SeeAlso/FunctionID
+Directed Association stereotype "See Also"
+
+========================================
+Issues found
+------------
+See Also link from DC.1.1 to S.3.1.4 already there.	
+See Also link from DC.1.4 to S.2.2.2 already there.	
+See Also link from DC.1.4 to IN.2.4 already there.	
+See Also link from DC.1.4 to IN.2.5.1 already there.	
+See Also link from DC.1.4 to IN.2.5.2 already there.	
+See Also link from S.1.3 to IN.1.3 already there.	
+See Also link from S.1.3 to IN.4 already there.	
+See Also link from S.1.4 to DC.1.1.1 already there.	
+See Also link from S.1.4 to IN.1.4 already there.	
+See Also link from S.2.1 to DC.2.6.1 already there.	
+See Also link from S.2.2 to DC.2.6.3 already there.	
+See Also link from S.2.2 to S.1.5 already there.	
+See Also link from S.2.2 to S.3.6 already there.	
+See Also link from S.3.5 to S.1.4.1 already there.	
+See Also link from S.3.5 to IN.1.3 already there.	
+See Also link from S.3.5 to IN.1.5 already there.	
+See Also link from S.3.5 to IN.2.2 already there.	
+See Also link from S.3 to IN.1.9 already there.	
+See Also link from S.3 to IN.2.4 already there.	
+Function link from IN.6 to IN.2.2 already there.	
+Function link from IN.6 to IN.2.2 already there.	
+Function link from IN.6 to IN.2.2 already there.	
+Function link from IN.6 to IN.2.2 already there.	
+See Also link from DC.1.5 to DC.1.10.1, target not found.	
+See Also link from DC.1.7.2.4 to DC.1.9.3, target not found.	
+See Also link from DC.1.7.2.4 to S.1.3.1a, target not found.	
+See Also link from DC.1.8.2 to IN.3.1, target not found.	
+See Also link from DC.1.8.2 to IN.3.2, target not found.	
+See Also link from DC.2.1.1 to DC.3.7.1, target not found.	
+See Also link from DC.2.1.4 to DC.1.6.3, target not found.	
+See Also link from DC.2.1.4 to DC.1.11.1, target not found.	
+See Also link from DC.2.1.4 to DC.1.11.2, target not found.	
+See Also link from DC.2.2.1.2 to DC.1.6.3, target not found.	
+See Also link from DC.2.2.1.2 to DC.6, target not found.	
+See Also link from DC.2.2.4 to DC.1.11.1, target not found.	
+See Also link from DC.2.3.2 to DC.1.10.1, target not found.	
+See Also link from DC.2.4.1 to DC.1.9.3, target not found.	
+See Also link from DC.2.4.4.1 to S.1.3.1a, target not found.	
+See Also link from DC.2.4.5.1 to DC.1.10.2, target not found.	
+See Also link from DC.2.6.2 to IN.3.1, target not found.	
+See Also link from DC.2.6.2 to IN.3.2, target not found.	
+See Also link from DC.2.7.2 to DC.3.4.9, target not found.	
+See Also link from DC.3.1.1 to S.1.3.1a, target not found.	
+See Also link from DC.3.2.1 to DC.1.9.5, target not found.	
+See Also link from DC.3.2.1 to S.1.3.1a, target not found.	
+See Also link from DC.3.2.1 to IN.3.1, target not found.	
+See Also link from DC.3.2.2 to IN.3.1, target not found.	
+See Also link from DC.3.2.3 to DC.1.11.3, target not found.	
+See Also link from DC.3.2.4 to , target not found.	
+See Also link from S.1.5 to IN.6.1, target not found.	
+See Also link from S.2.1.1 to S.3.6.2, target not found.	
+See Also link from S.3.3.3 to DC.5.4, target not found.
