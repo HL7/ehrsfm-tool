@@ -52,6 +52,8 @@
             
             <assert test="count(../object[stereotype='Function' and parentId=$id]) > 0" diagnostics="FMHC009"><value-of select="$id"/></assert>
 
+            <assert test="count(../object[stereotype/text()='Criteria' and parentId=$id]) = 0" diagnostics="FMHC010"><value-of select="$id"/></assert>
+            
             <let name="start-string" value="concat(substring($statement, 1, 25), '...')"/>
             <assert test="contains($capital-letters, substring($statement,1,1))" diagnostics="FMTSR02"><value-of select="$id"/></assert>
             <let name="start-string2" value="concat(substring($description, 1, 25), '...')"/>
@@ -131,7 +133,7 @@
             <let name="text-with-ref" value="substring-after(notes/text(), 'conform to function ')"/>
             <let name="ref-id" value="substring-before($text-with-ref, ' ')"/>
             
-	    <report test="$has-reference and count(../object[alias/text()=$ref-id]) = 0" diagnostics="FMFLC16"><value-of select="id"/> <value-of select="$ref-id"/></report>
+            <report test="$has-reference and count(../object[alias/text()=$ref-id]) = 0" diagnostics="FMFLC16"><value-of select="id"/></report>
             
             <report test="not($has-reference) and contains(notes/text(), '#')" diagnostics="FMFLC20"><value-of select="$id"/></report>
             
@@ -178,6 +180,7 @@
         <diagnostic id="FMHC007" xml:lang="en">Header description must end in a period.</diagnostic>
         <diagnostic id="FMHC008" xml:lang="en">Conformance criteria must apply to all descendants.</diagnostic>
         <diagnostic id="FMHC009" xml:lang="en">A Header must have at least one descendant function.</diagnostic>
+        <diagnostic id="FMHC010" xml:lang="en">A Header must not have criteria.</diagnostic>
         <diagnostic id="FMFLC01" xml:lang="en">The Function misses one or more components.</diagnostic>
         <diagnostic id="FMFLC02" xml:lang="en">The Function should have a unique ID.</diagnostic>
         <diagnostic id="FMFLC03" xml:lang="en">The Function ID is not consistent with the section belongs to.</diagnostic>

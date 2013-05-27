@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelBrowserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,6 +109,7 @@
     <Content Include="EHRSFM_EA_AddIn_Files\iso-schematron-xslt1\iso_svrl_for_xslt1.xsl" />
     <Content Include="EHRSFM_EA_AddIn_Files\iso-schematron-xslt1\readme.txt" />
     <Content Include="EHRSFM_EA_AddIn_Files\iso-schematron-xslt1\schematron-skeleton-api.htm" />
+    <Content Include="EHRSFM_EA_AddIn_Files\EHRS_FM_R2-validation.sch" />
     <None Include="EHRSFM_EA_AddIn_Files\svrl_output.xml" />
     <Content Include="MAPPING v3.1 EHR-S FM R11+ISSUES FOUND.txt" />
     <None Include="EHRSFM\EHRS_FunctionalModel_Rel1.1.xml" />
@@ -110,9 +117,11 @@
     <Content Include="R2_DEC2011_ISSUES.txt" />
     <Content Include="R2_MAR2012_ISSUES.txt" />
     <Content Include="RELEASE_NOTES.EHRSFM_EA_AddIn.txt" />
-    <Content Include="EHRSFM_EA_AddIn_Files\EHRS_FM_R2-validation %282013-apr-18%29.sch" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModelBrowserControl.resx">
       <DependentUpon>ModelBrowserControl.cs</DependentUpon>
     </EmbeddedResource>

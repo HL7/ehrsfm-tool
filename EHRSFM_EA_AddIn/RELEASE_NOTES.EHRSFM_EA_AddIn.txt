@@ -1,13 +1,20 @@
 ﻿TODO
 ====
-- Document Namespace on chapters and why, usefull for searching
-- Include association for References?
+- Document Namespace on Sections and why, usefull for searching
+- Include association for References? Or make this an option.
 - _Implement Model Browser double click_
-- Add to Schematron: "Check if function has at least 1 SHALL"
-
+- AboutBox: use Setup parameters to populate fields.
 
 CHANGELOG
 =========
+[2013-may-27]
+Main,AboutBox
+- Initial
+R2Validator/EHRS_FM_R2-validation.sch
+- Updated; added "Check if function has at least 1 SHALL"
+Setup
+- Adjusted some properties
+
 [2013-may-07]
 CriteriaForm
 - Formatting of ID was wrong.
