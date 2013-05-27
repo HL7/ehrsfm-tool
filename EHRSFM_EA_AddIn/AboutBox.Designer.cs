@@ -55,8 +55,8 @@
             this.tableLayoutPanel.Controls.Add(this.okButton, 1, 6);
             this.tableLayoutPanel.Controls.Add(this.label1, 0, 4);
             this.tableLayoutPanel.Controls.Add(this.label2, 0, 5);
-            this.tableLayoutPanel.Controls.Add(this.linkLabel1, 1, 5);
             this.tableLayoutPanel.Controls.Add(this.textBox3, 1, 4);
+            this.tableLayoutPanel.Controls.Add(this.linkLabel1, 1, 5);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(9, 9);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
