@@ -124,9 +124,9 @@ namespace R4C_EHRSFM_EA_AddIn
                             Repository.ActivateTab("FM Browser");
                         }
                         break;
-                    case "About...":
-                        // AboutForm anAbout = new AboutForm();
-                        // anAbout.ShowDialog();
+                    case "About":
+                        AboutBox about = new AboutBox();
+                        about.ShowDialog();
                         break;
                 }
             }

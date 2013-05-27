@@ -25,7 +25,10 @@ namespace R4C_EHRSFM_EA_AddIn
         public void import(EA.Repository Repository, EA.Package rootPackage)
         {
             string xmlFileName = showFileDialog("Select EHR-S FM R2 XML File", "xml files (*.xml)|*.xml", @"D:\VisualStudio Projects\HL7\EHRSFM_EA_AddIn\EHRSFM\EHRS_FM_R2_N2_C3_FunctionList_2013MAY.xml", true);
-            import(Repository, rootPackage, xmlFileName);
+            if (!string.IsNullOrEmpty(xmlFileName))
+            {
+                import(Repository, rootPackage, xmlFileName);
+            }
         }
 
         public void import(EA.Repository Repository, EA.Package rootPackage, string xmlFileName)

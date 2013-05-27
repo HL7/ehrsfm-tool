@@ -17,7 +17,7 @@ namespace R4C_EHRSFM_EA_AddIn
         {
             if (!R2Const.ST_FM.Equals(rootPackage.StereotypeEx))
             {
-                MessageBox.Show("Select an <HL7-FM> Package.\nValidation works on full FM.");
+                MessageBox.Show("Select an <HL7-FM> Package.\nValidation works on full FM only.");
                 return;
             }
 
@@ -37,7 +37,7 @@ namespace R4C_EHRSFM_EA_AddIn
             // transform the Schematron to a XSL
             string iso_sch_xsl_filepath = getAppDataFullPath(@"iso-schematron-xslt1\iso_svrl_for_xslt1.xsl");
             transform.Load(iso_sch_xsl_filepath, settings, resolver);
-            string sch_filepath = getAppDataFullPath("EHRS_FM_R2-validation (2013-apr-18).sch");
+            string sch_filepath = getAppDataFullPath("EHRS_FM_R2-validation.sch");
             string sch_xsl_filepath = getAppDataFullPath("EHRS_FM_R2-validation.sch.xsl");
             transform.Transform(sch_filepath, sch_xsl_filepath);
 
