@@ -99,7 +99,9 @@
     <None Include="EHRSFM\EHRS_FM_R2_N1_C3_FunctionList_2012MAY.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="EHRSFM\EHRS_FM_R2_N2_C3_FunctionList_2013MAY.xml" />
+    <None Include="EHRSFM\EHRS_FM_R2_N2_C3_FunctionList_2013MAY.xml">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="EHRSFM_EA_AddIn_Files\iso-schematron-xslt1\ExtractSchFromRNG.xsl" />
     <Content Include="EHRSFM_EA_AddIn_Files\iso-schematron-xslt1\ExtractSchFromXSD.xsl" />
     <Content Include="EHRSFM_EA_AddIn_Files\iso-schematron-xslt1\iso_abstract_expand.xsl" />

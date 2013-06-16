@@ -10,11 +10,11 @@ TODO
 	-!! go through MAXModel when importing!
 
 	- figure out how to update relationships
+	- update of attributes gives "Action not supported" Exception
 	- how to detect deletes of objects/relationships when updating
 	- check object.type & relationship.type in allowed valueset
 	- !! detect GUID or ID used as MAX.id
-
-	- !! figure out how to set ID/GUID in new models, they are assigned by EA, so they will change on clean import, move to MAX:ID tagged value, also take alias into account
+	- !! figure out how to set ID/GUID in new models, they are assigned by EA, so they will change on clean import, move to MAX::ID tagged value, also take alias into account
 	!! Idea: Use ID/GUID if possible, otherwise use TaggedValue "MAX::ID"!
 
 - MAXExporter(2):
@@ -25,6 +25,7 @@ TODO
 	- also support Diagrams -> Diagram serves as a selection of the elements to export!
 	- add Tagged Values of selected package
 	- add attributes
+	- add object isAbstract
 - MAXSchema:
 	- sync UML model of schema (in EAP)!
 - Excel binding document, figure out multi tagged value binding; <tag><value><notes>
@@ -33,6 +34,20 @@ TODO
 
 CHANGELOG
 =========
+[2013-jun-14]
+MAXImporter,Input/MAXSchema.xsd:
+- object@isAbstract, attribute@isReadOnly, attribute@alias
+
+[2013-jun-13]
+Input/MAXSchema.xsd:
+- relationship/id is optional and not used at the moment
+- added optional attribute@minCard/@maxCard
+- added optional relationship@sourceLabel,@sourceCard,@destLabel,@destCard
+MAXImporter:
+- dont use XPathSelect, just use Element/Elements for minor speed improvement
+- added optional attribute cardinality and relationship labels and cardinality
+- BUG FIXED: parentId was case sensitive and should not be
+
 [2013-may-07]
 MAXExporter2:
 - Made it more robust by adding and using Extension Methods to XElement that check for null.

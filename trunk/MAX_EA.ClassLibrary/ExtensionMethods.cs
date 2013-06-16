@@ -9,9 +9,9 @@ namespace MAX_EA
     public static class XElementExtensionMethods
     {
         // Extend XElement with a method that gets the value or null of an element and checks if the element exists
-        public static string ElementValue(this XElement xElement, string name)
+        public static string ElementValue(this XElement xElement, string name, string defaultValue = null)
         {
-            string value = null;
+            string value = defaultValue;
             XElement xChildElement = xElement.Element(name);
             if (xChildElement != null)
             {

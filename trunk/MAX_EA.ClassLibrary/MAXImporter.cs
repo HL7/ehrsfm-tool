@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using System.Xml.XPath;
 using System.Text;
 using System.Xml;
 
@@ -32,8 +31,8 @@ namespace MAX_EA
                 XmlNamespaceManager nsmgr = new XmlNamespaceManager(xReader.NameTable);
                 nsmgr.AddNamespace("max", "http://www.umcg.nl/MAX");
 
-                IEnumerable<XElement> xObjectElements = xModel.XPathSelectElements("//objects/object", nsmgr);
-                IEnumerable<XElement> xRelationshipElements = xModel.XPathSelectElements("//relationships/relationship", nsmgr);
+                IEnumerable<XElement> xObjectElements = xModel.Element("objects").Elements("object");
+                IEnumerable<XElement> xRelationshipElements = xModel.Element("relationships").Elements("relationship");
 
                 window.setup(xObjectElements.Count() + xRelationshipElements.Count());
 
@@ -48,16 +47,16 @@ namespace MAX_EA
                 foreach (XElement xObject in xObjectElements)
                 {
                     string type = "Class";
-                    XElement xType = xObject.XPathSelectElement("type", nsmgr);
+                    XElement xType = xObject.Element("type");
                     if (xType != null && !string.IsNullOrEmpty(xType.Value))
                     {
                         type = xType.Value;
                     }
-                    string id = xObject.XPathSelectElement("id", nsmgr).Value.Trim().ToUpper();
+                    string id = xObject.Element("id").Value.Trim().ToUpper();
 
                     // first check if element already in package
                     // if not create otherwise use existing and update
-                    string name = xObject.XPathSelectElement("name", nsmgr).Value;
+                    string name = xObject.Element("name").Value;
                     EA.Element eaElement;
                     if (eaElementDict.ContainsKey(id))
                     {
@@ -67,14 +66,22 @@ namespace MAX_EA
                     }
                     else
                     {
-                        XElement xParentId = xObject.XPathSelectElement("parentId", nsmgr);
+                        XElement xParentId = xObject.Element("parentId");
                         if ("Package".Equals(type))
                         {
                             EA.Package eaPackage;
                             if (xParentId != null)
                             {
                                 string parentId = xParentId.Value.Trim();
-                                eaPackage = (EA.Package)eaPackageDict[parentId].Packages.AddNew(name, type);
+                                if (eaPackageDict.ContainsKey(parentId))
+                                {
+                                    eaPackage = (EA.Package)eaPackageDict[parentId].Packages.AddNew(name, type);
+                                }
+                                else
+                                {
+                                    Repository.WriteOutput("MAX", string.Format("Parent Package id={0} not created yet. To correct: adjust the order in the MAX XML file. Fallback to selected Package.", parentId), 0);
+                                    eaPackage = (EA.Package)selectedPackage.Packages.AddNew(name, type);
+                                }
                             }
                             else
                             {
@@ -89,8 +96,17 @@ namespace MAX_EA
                         {
                             if (xParentId != null)
                             {
-                                string parentId = xParentId.Value.Trim();
-                                EA.Element parentElement = eaElementDict[parentId];
+                                string parentId = xParentId.Value.Trim().ToUpper();
+                                EA.Element parentElement;
+                                if (eaElementDict.ContainsKey(parentId))
+                                {
+                                    parentElement = eaElementDict[parentId];
+                                }
+                                else
+                                {
+                                    Repository.WriteOutput("MAX", string.Format("Parent Element id={0} not created yet. To correct: adjust the order in the MAX XML file. Fallback to selected Package.", parentId), 0);
+                                    parentElement = selectedPackage.Element;
+                                }
                                 if ("Package".Equals(parentElement.Type))
                                 {
                                     EA.Package parentPackage = eaPackageDict[parentId];
@@ -111,26 +127,22 @@ namespace MAX_EA
                         eaElementDict[id] = eaElement;
                     }
 
-                    XElement xStereotype = xObject.XPathSelectElement("stereotype", nsmgr);
-                    if (xStereotype != null)
+                    eaElement.Stereotype = xObject.ElementValue("stereotype", eaElement.Stereotype);
+                    eaElement.Notes = xObject.ElementValue("notes", eaElement.Notes).Trim().Replace("\n", "\r\n");
+                    XAttribute xIsAbstract = xObject.Attribute("isAbstract");
+                    if (xIsAbstract != null)
                     {
-                        eaElement.Stereotype = xStereotype.Value.Trim();
-                    }
-
-                    XElement xNotes = xObject.XPathSelectElement("notes", nsmgr);
-                    if (xNotes != null)
-                    {
-                        eaElement.Notes = xNotes.Value.Trim().Replace("\n", "\r\n");
-                    }
+                        eaElement.Abstract = bool.Parse(xIsAbstract.Value) ? "1" : "0";
+                    }                    
                     eaElement.Update();
 
-                    XElement xModified = xObject.XPathSelectElement("modified", nsmgr);
+                    XElement xModified = xObject.Element("modified");
                     if (xModified != null)
                     {
                         eaElement.Modified = (DateTime)xModified; // explicit convertion of the value to a DateTime
                     }
 
-                    foreach (XElement xTag in xObject.XPathSelectElements("tag"))
+                    foreach (XElement xTag in xObject.Elements("tag"))
                     {
                         string tagName = xTag.Attribute("name").Value.Trim();
                         EA.TaggedValue tv = (EA.TaggedValue)eaElement.TaggedValues.GetByName(tagName);
@@ -150,7 +162,8 @@ namespace MAX_EA
                         tv.Update();
                     }
                     int attPos = 0;
-                    foreach (XElement xAtt in xObject.XPathSelectElements("attribute"))
+                    eaElement.Attributes.Refresh();
+                    foreach (XElement xAtt in xObject.Elements("attribute"))
                     {
                         string attName = xAtt.Attribute("name").Value.Trim();
                         EA.Attribute att = (EA.Attribute)eaElement.Attributes.GetByName(attName);
@@ -159,10 +172,26 @@ namespace MAX_EA
                             att = (EA.Attribute)eaElement.Attributes.AddNew(attName, "");
                         }
                         att.Pos = attPos++;
+                        XAttribute xAttAlias = xAtt.Attribute("alias");
+                        if (xAttAlias != null)
+                        {
+                            att.Alias = xAttAlias.Value;
+                        }
+
                         XAttribute xAttType = xAtt.Attribute("type");
                         if (xAttType != null)
                         {
                             att.Type = xAttType.Value;
+                        }
+                        XAttribute xMinCardType = xAtt.Attribute("minCard");
+                        if (xMinCardType != null)
+                        {
+                            att.LowerBound = xMinCardType.Value;
+                        }
+                        XAttribute xMaxCardType = xAtt.Attribute("maxCard");
+                        if (xMaxCardType != null)
+                        {
+                            att.UpperBound = xMaxCardType.Value;
                         }
                         XAttribute xAttValue = xAtt.Attribute("value");
                         if (xAttValue != null)
@@ -177,6 +206,11 @@ namespace MAX_EA
                         if (xAttStereotype != null)
                         {
                             att.Stereotype = xAttStereotype.Value;
+                        }
+                        XAttribute xIsReadOnly = xAtt.Attribute("isReadOnly");
+                        if (xIsReadOnly != null)
+                        {
+                            att.IsConst = bool.Parse(xIsReadOnly.Value);
                         }
                         att.Update();
                     }
@@ -205,7 +239,7 @@ namespace MAX_EA
 
                     foreach (XElement xRel in xRelationshipElements)
                     {
-                        string sourceId = xRel.XPathSelectElement("sourceId", nsmgr).Value.Trim().ToUpper();
+                        string sourceId = xRel.ElementValue("sourceId").Trim().ToUpper();
                         EA.Element eaSourceElement;
                         if (!eaElementDict.ContainsKey(sourceId))
                         {
@@ -221,7 +255,7 @@ namespace MAX_EA
                             eaSourceElement = eaElementDict[sourceId];
                         }
 
-                        string destId = xRel.XPathSelectElement("destId", nsmgr).Value.Trim().ToUpper();
+                        string destId = xRel.ElementValue("destId").Trim().ToUpper();
                         EA.Element eaDestElement;
                         if (!eaElementDict.ContainsKey(destId))
                         {
@@ -238,46 +272,55 @@ namespace MAX_EA
                         }
 
                         string type = "Association";
-                        XElement xType = xRel.XPathSelectElement("type", nsmgr);
+                        XElement xType = xRel.Element("type");
                         if (xType != null && !string.IsNullOrEmpty(xType.Value))
                         {
-                            if ("Composition".Equals(xType.Value))
+                            // Handle special types
+                            switch(xType.Value)
                             {
-                                type = "Aggregation";
+                                case "Composition":
+                                    type = "Aggregation";
+                                    break;
+                                case "DirectedAssociation":
+                                    type = "Association";
+                                    break;
+                                default:
+                                    type = xType.Value;
+                                    break;
                             }
-                            type = xType.Value;
                         }
-                        string id = "";
-                        XElement xId = xRel.XPathSelectElement("id", nsmgr);
-                        if (xId != null)
-                        {
-                            id = xId.Value.Trim();
-                        }
-                        string label = "";
-                        XElement xLabel = xRel.XPathSelectElement("label", nsmgr);
-                        if (xLabel != null)
-                        {
-                            label = xLabel.Value.Trim();
-                        }
+                        string id = xRel.ElementValue("id", "").Trim();
+                        string label = xRel.ElementValue("label", "").Trim();
                         EA.Connector eaCon = (EA.Connector)eaSourceElement.Connectors.AddNew(label, type);
                         eaCon.Alias = id;
                         eaCon.SupplierID = eaDestElement.ElementID;
-                        if ("Composition".Equals(xType.Value))
+                        if (xType != null)
                         {
-                            eaCon.SupplierEnd.Aggregation = 2;
+                            // Handle special types
+                            switch (xType.Value)
+                            {
+                                case "Composition":
+                                    eaCon.SupplierEnd.Aggregation = 2;
+                                    break;
+                                case "DirectedAssociation":
+                                    eaCon.Direction = "Source -> Destination";
+                                    eaCon.SupplierEnd.Navigable = "Non-Navigable";
+                                    break;
+                            }
                         }
 
-                        XElement xStereotype = xRel.XPathSelectElement("stereotype", nsmgr);
-                        if (xStereotype != null)
+                        // Generalization doesnot have label and card
+                        if (!"Generalization".Equals(type))
                         {
-                            eaCon.Stereotype = xStereotype.Value.Trim();
+                            eaCon.ClientEnd.Role = xRel.ElementValue("sourceLabel", "");
+                            eaCon.ClientEnd.Cardinality = xRel.ElementValue("sourceCard", "");
+                            eaCon.SupplierEnd.Role = xRel.ElementValue("destLabel", "");
+                            eaCon.SupplierEnd.Cardinality = xRel.ElementValue("destCard", "");
                         }
 
-                        XElement xNotes = xRel.XPathSelectElement("notes", nsmgr);
-                        if (xNotes != null)
-                        {
-                            eaCon.Notes = xNotes.Value.Trim().Replace("\n", "\r\n");
-                        }
+                        eaCon.Stereotype = xRel.ElementValue("stereotype", "").Trim();
+                        eaCon.Notes = xRel.ElementValue("notes", "").Trim().Replace("\n", "\r\n");
+
                         eaCon.Update();
                         window.step();
                     }
