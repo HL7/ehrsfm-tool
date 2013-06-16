@@ -68,9 +68,6 @@
     <Content Include="RELEASE_NOTES.MAX_EA.ClassLibrary.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Input\MAXSchema-EHRext.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Input\MAXSchema.xsd">
       <SubType>Designer</SubType>
     </None>
