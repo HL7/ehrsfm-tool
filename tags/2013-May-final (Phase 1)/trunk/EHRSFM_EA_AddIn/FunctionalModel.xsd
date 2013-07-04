@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Charles Farley (N/A) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="FunctionalModel">
+    <xs:annotation>
+      <xs:documentation>Comment describing your root element</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Name" type="xs:string" />
+        <xs:element name="Version" />
+        <xs:element name="Date" type="xs:date" />
+        <xs:element name="Chapter" type="ChapterType" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ChapterType">
+    <xs:sequence>
+      <xs:element name="Name" />
+      <xs:element name="Alias" />
+      <xs:element name="Description" />
+      <xs:element name="Example" />
+      <xs:element name="Actors" />
+      <xs:element name="Function" type="FunctionType" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FunctionType">
+    <xs:sequence>
+      <xs:element name="ID" />
+      <xs:element name="Type" />
+      <xs:element name="Name" />
+      <xs:element name="Statement" minOccurs="0" />
+      <xs:element name="Description" minOccurs="0" />
+      <xs:element name="ConformanceCriteria" type="ConformanceCriteriaType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="SeeAlso" type="LinkType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="Function" type="FunctionType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConformanceCriteriaType">
+    <xs:sequence>
+      <xs:element name="ID" />
+      <xs:element name="Text" />
+      <xs:element name="Optionality" />
+      <xs:element name="Type" minOccurs="0" />
+      <xs:element name="Link" type="LinkType" minOccurs="0" />
+      <xs:element name="Source" type="SourceLinkType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LinkType">
+    <xs:sequence>
+      <xs:element name="FunctionID" />
+      <xs:element name="CriteriaID" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SourceLinkType">
+    <xs:sequence>
+      <xs:element name="FunctionID" minOccurs="0"/>
+      <xs:element name="CriteriaID" minOccurs="0"/>
+      <xs:element name="Status"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

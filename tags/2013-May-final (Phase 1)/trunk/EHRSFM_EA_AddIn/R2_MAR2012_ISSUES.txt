@@ -1,0 +1,123 @@
+﻿Function OV.2 has no SHALL criteria	
+Function CP.3.4 links to AS.5.3, already there	
+Function CPS.1.6.2 has no SHALL criteria	
+Function CPS.1.6.3 has no SHALL criteria	
+Function CPS.1.6.4 has no SHALL criteria	
+Function CPS.1.7 has no SHALL criteria	
+Function CPS.2 has no SHALL criteria	
+Function CPS.2.3 has no SHALL criteria	
+Function CPS.2.4 has no SHALL criteria	
+Function CPS.3.7 has no SHALL criteria	
+Function CPS.4.4 has no SHALL criteria	
+Function CPS.4.5 has no SHALL criteria	
+Function CPS.8.2 has no SHALL criteria	
+Function CPS.8.3 has no SHALL criteria	
+Function CPS.9.1 has no SHALL criteria	
+Function CPS.9.2.2 has no SHALL criteria	
+Function CPS.9.4 has no SHALL criteria	
+Function CPS.9.6 has no SHALL criteria	
+Function POP.5 has no SHALL criteria	
+Function POP.7 has no SHALL criteria	
+Function AS.1.2 has no SHALL criteria	
+Function AS.1.3 has no SHALL criteria	
+Function AS.1.4 has no SHALL criteria	
+Function AS.2 has no SHALL criteria	
+Function AS.2.3 has no SHALL criteria	
+Function AS.2.4 has no SHALL criteria	
+Function AS.2.5 has no SHALL criteria	
+Function AS.2.6 has no SHALL criteria	
+Function AS.3.1 has no SHALL criteria	
+Function AS.3.2.1 has no SHALL criteria	
+Function AS.3.2.2 has no SHALL criteria	
+Function AS.4.1 has no SHALL criteria	
+Function AS.4.2 has no SHALL criteria	
+Function AS.4.3 has no SHALL criteria	
+Function AS.4.4 has no SHALL criteria	
+Function AS.6.2 has no SHALL criteria	
+Function AS.6.3 has no SHALL criteria	
+Function AS.6.6 has no SHALL criteria	
+Function AS.7.1 has no SHALL criteria	
+Function AS.7.2 has no SHALL criteria	
+Function AS.7.3 has no SHALL criteria	
+Function AS.7.4 has no SHALL criteria	
+Function AS.7.5 has no SHALL criteria	
+Function AS.8.3 has no SHALL criteria	
+Function AS.8.4 has no SHALL criteria	
+Function AS.8.5 has no SHALL criteria	
+Function AS.9.1 has no SHALL criteria	
+Function AS.9.3 has no SHALL criteria	
+Function RI.1.1.2 links to TI.2.1.1.2, already there	
+Function RI.1.1.3 links to TI.2.1.1.3, already there	
+Function RI.1.1.3 has no SHALL criteria	
+Function TI.1.9 has no SHALL criteria	
+Function TI.1.10 has no SHALL criteria	
+Function TI.1.11 has no SHALL criteria	
+Function TI.2 links to TI.1.3, already there	
+Function TI.2 links to TI.1.3, already there	
+Function TI.2.1 links to TI.2.1, already there	
+Function TI.2.1 links to TI.2.1, already there	
+Function TI.2.1.1.21 has no SHALL criteria	
+Function TI.2.1.1.22 has no SHALL criteria	
+Function TI.4 has no SHALL criteria	
+Function TI.9 has no SHALL criteria	
+Function CP.2 is not a Header, but is parent for a Function	
+Function CP.4 is not a Header, but is parent for a Function	
+Function CP.4.2 is not a Header, but is parent for a Function	
+Function CP.5 is not a Header, but is parent for a Function	
+Function CPS.1.7 is not a Header, but is parent for a Function	
+Function CPS.2 is not a Header, but is parent for a Function	
+Function CPS.4.2 is not a Header, but is parent for a Function	
+Function CPS.4.4 has no Criteria	
+Function CPS.4.5 has no Criteria	
+Function CPS.9.2 is not a Header, but is parent for a Function	
+Function POP.2 is not a Header, but is parent for a Function	
+Function AS.2 is not a Header, but is parent for a Function	
+Function RI.1.1 is not a Header, but is parent for a Function	
+Function TI.1.3 is not a Header, but is parent for a Function	
+Function TI.1.8 is not a Header, but is parent for a Function	
+Function TI.2 is not a Header, but is parent for a Function	
+Function TI.2.1 is not a Header, but is parent for a Function	
+Function TI.2.1.1 is not a Header, but is parent for a Function	
+Function TI.2.1.2 is not a Header, but is parent for a Function	
+Function TI.2.1.3 is not a Header, but is parent for a Function	
+Function TI.2.1.4 is not a Header, but is parent for a Function	
+Function TI.2.2 is not a Header, but is parent for a Function	
+Function TI.4 is not a Header, but is parent for a Function	
+
+
+
+------------------------
+Function CP.3.4 links to AS.5.3, already there	
+Function RI.1.1.2 links to TI.2.1.1.2, already there	
+Function RI.1.1.3 links to TI.2.1.1.3, already there	
+Function TI.2 links to TI.1.3, already there	
+Function TI.2.1 links to TI.2.1, already there	
+Function CP.2 is not a Header, but is parent for a Function	
+Function CP.4 is not a Header, but is parent for a Function	
+Function CP.4.2 is not a Header, but is parent for a Function	
+Function CP.5 is not a Header, but is parent for a Function	
+Function CPS.1.7 is not a Header, but is parent for a Function	
+Function CPS.2 is not a Header, but is parent for a Function	
+Function CPS.4.2 is not a Header, but is parent for a Function	
+Function CPS.9.2 is not a Header, but is parent for a Function	
+Function POP.2 is not a Header, but is parent for a Function	
+Function AS.2 is not a Header, but is parent for a Function	
+Function RI.1.1 is not a Header, but is parent for a Function	
+Function TI.1.3 is not a Header, but is parent for a Function	
+Function TI.1.8 is not a Header, but is parent for a Function	
+Function TI.2 is not a Header, but is parent for a Function	
+Function TI.2.1 is not a Header, but is parent for a Function	
+Function TI.2.1.1 is not a Header, but is parent for a Function	
+Function TI.2.1.2 is not a Header, but is parent for a Function	
+Function TI.2.1.3 is not a Header, but is parent for a Function	
+Function TI.2.1.4 is not a Header, but is parent for a Function	
+Function TI.2.2 is not a Header, but is parent for a Function	
+Function TI.4 is not a Header, but is parent for a Function
+
+<Known issue: placeholder functions>
+Function CPS.4.4 has no Criteria	
+Function CPS.4.5 has no Criteria	
+
+<Questionable>
+TI.4cc1 & 2 ? What is patient disposition status?
+

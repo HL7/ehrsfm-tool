@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<max:model xmlns:max="http://www.umcg.nl/MAX">
+  <objects>
+    <object>
+      <id>{8D189C7D-A563-477a-B5DD-501B6118595D}</id>
+      <name>Test Example</name>
+      <type>Package</type>
+    </object>
+    <object>
+      <id>{7BF23341-4900-4507-B5D2-B48E022F2BE0}</id>
+      <name>Class1</name>
+      <alias>Alias1</alias>
+      <stereotype>Stereotype1</stereotype>
+      <type>Class</type>
+      <parentId>{8D189C7D-A563-477a-B5DD-501B6118595D}</parentId>
+    </object>
+    <object isAttribute="true">
+      <id>{EB9A9FBA-E5DF-4d08-B677-6F9087A8B724}</id>
+      <name>Att1</name>
+      <stereotype>enum</stereotype>
+      <type>int</type>
+      <parentId>{7BF23341-4900-4507-B5D2-B48E022F2BE0}</parentId>
+    </object>
+  </objects>
+  <relationships />
+</max:model>

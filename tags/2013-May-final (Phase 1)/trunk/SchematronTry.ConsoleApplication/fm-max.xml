@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<max:model xmlns:max="http://www.umcg.nl/MAX">
+  <objects>
+    <object>
+      <id>{35D9DB6C-DA35-4f5f-AA6F-072AB22AAB0F}</id>
+      <name>CP.1#1 The system SHOULD ...</name>
+      <alias>CP.1#1</alias>
+      <stereotype>Criteria</stereotype>
+      <type>Requirement</type>
+      <tag.Optionality>SHOULD</tag.Optionality>
+    </object>
+    <object>
+      <id>{71AF40E5-A4C7-4956-ACDA-BE7AA9CCF2C1}</id>
+      <name>Care Provision</name>
+      <type>Package</type>
+    </object>
+    <object>
+      <id>{1539B46B-3BB6-4893-B7F8-1EF836932F9E}</id>
+      <name>CP.1.2#1 The system SHALL implement function CP.1.1</name>
+      <stereotype>Criteria</stereotype>
+      <type>Requirement</type>
+      <tag.Optionality>SHALL</tag.Optionality>
+      <tag.Optionality>SHALL</tag.Optionality>
+    </object>
+    <object>
+      <id>{D9AAE790-4455-45fa-8786-DB11516A9536}</id>
+      <alias>CP.1.2</alias>
+      <name>CP.1.2 Function or Header</name>
+      <stereotype>Function</stereotype>
+      <type>Feature</type>
+    </object>
+    <object>
+      <id>{EFD44599-A910-48a8-B696-7D9F8250784B}</id>
+      <name>CP.1.1#1</name>
+      <notes>The system SHALL requirement</notes>
+      <stereotype>Criteria</stereotype>
+      <type>Requirement</type>
+    </object>
+    <object>
+      <id>{3421E579-783C-4a67-B2B8-E8C4A5312572}</id>
+      <alias>CP.1.1</alias>
+      <name>CP.1.1 Function</name>
+      <stereotype>Function</stereotype>
+      <type>Feature</type>
+    </object>
+    <object>
+      <id>{EACAE391-C52B-4e61-AA26-3DD4F255BCBA}</id>
+      <alias>CP.1</alias>
+      <name>CP.1 Header</name>
+      <stereotype>Header</stereotype>
+      <type>Feature</type>
+    </object>
+    <object>
+      <id>{EACAE391-C52B-4e61-AA26-3DD4F255BCBA}</id>
+      <alias>CP.1.1</alias>
+      <name>CP.1 Header</name>
+      <stereotype>Header</stereotype>
+      <type>Feature</type>
+    </object>
+  </objects>
+  <relationships>
+    <relationship>
+      <id>{5E85FD1B-828C-4bb0-9F9A-4B8FC1069783}</id>
+      <sourceId>{35D9DB6C-DA35-4f5f-AA6F-072AB22AAB0F}</sourceId>
+      <destId>{EACAE391-C52B-4e61-AA26-3DD4F255BCBA}</destId>
+      <type>Association</type>
+    </relationship>
+    <relationship>
+      <id>{4B5699B0-8E5A-4bfe-A64D-F989865A1DF4}</id>
+      <sourceId>{1539B46B-3BB6-4893-B7F8-1EF836932F9E}</sourceId>
+      <destId>{D9AAE790-4455-45fa-8786-DB11516A9536}</destId>
+      <type>Association</type>
+    </relationship>
+    <relationship>
+      <id>{D2936C8E-59C5-4e44-87D0-866EA867B460}</id>
+      <label>consequenceLink to other function via criteria CP.1.2#1 (see note when hovering link!)</label>
+      <sourceId>{D9AAE790-4455-45fa-8786-DB11516A9536}</sourceId>
+      <destId>{3421E579-783C-4a67-B2B8-E8C4A5312572}</destId>
+      <type>Dependency</type>
+    </relationship>
+    <relationship>
+      <id>{D41495F4-6FD2-4e74-8239-2D0CBE49B8DC}</id>
+      <sourceId>{EFD44599-A910-48a8-B696-7D9F8250784B}</sourceId>
+      <destId>{3421E579-783C-4a67-B2B8-E8C4A5312572}</destId>
+      <type>Association</type>
+    </relationship>
+    <relationship>
+      <id>{0DC3AF8A-FB51-424c-97A3-775639B8D486}</id>
+      <label>function is owned by header</label>
+      <sourceId>{3421E579-783C-4a67-B2B8-E8C4A5312572}</sourceId>
+      <destId>{EACAE391-C52B-4e61-AA26-3DD4F255BCBA}</destId>
+      <type>Aggregation</type>
+    </relationship>
+  </relationships>
+</max:model>
