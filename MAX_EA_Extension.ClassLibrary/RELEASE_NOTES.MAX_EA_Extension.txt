@@ -1,0 +1,9 @@
+﻿CHANGELOG
+=========
+[2013-jun-30]
+References/Interop.EA.dll
+- set "Copy Local" to False. We expect EA to be installed.
+Main.cs
+- Only show console when there were any issues
+AboutBox.cs
+- Initial implementation

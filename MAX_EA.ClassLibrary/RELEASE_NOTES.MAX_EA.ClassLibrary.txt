@@ -6,34 +6,52 @@ MAXExporter2 - uses EA SQL XML calls (is somewhat faster)
 TODO
 ====
 - MAXImporter: 
-	-!! switch to ElementValueXxx instead of XPathSelectElements!
-	-!! go through MAXModel when importing!
-
-	- figure out how to update relationships
 	- update of attributes gives "Action not supported" Exception
 	- how to detect deletes of objects/relationships when updating
-	- check object.type & relationship.type in allowed valueset
-	- !! detect GUID or ID used as MAX.id
-	- !! figure out how to set ID/GUID in new models, they are assigned by EA, so they will change on clean import, move to MAX::ID tagged value, also take alias into account
-	!! Idea: Use ID/GUID if possible, otherwise use TaggedValue "MAX::ID"!
-
-- MAXExporter(2):
-	- Q: Multiple tagged values with the same name result in multiple elements with the samen name, how to handle that in a spreadsheet?
-	  A: Through an XSLT!
-- MAXExporter2:
-	- use GUID's as alternative to ID's
+- MAXExporter:
 	- also support Diagrams -> Diagram serves as a selection of the elements to export!
-	- add Tagged Values of selected package
-	- add attributes
-	- add object isAbstract
+	- cannot get "alias" of attributes in SQLXML?
+	- ?? add option to export Markedup notes with xhtml namespace or XML escaped
+	- Why is the <notes>-element always created?
+	- Why is the required <name>-element not always created?
 - MAXSchema:
 	- sync UML model of schema (in EAP)!
+	- fix namespace of all elements to "max:"
 - Excel binding document, figure out multi tagged value binding; <tag><value><notes>
-- MAXExporter
-	- delete if all functionality is in MAXExporter2
+	- Q: Multiple tagged values with the same name result in multiple elements with the samen name, how to handle that in a spreadsheet?
+	  A: Through an XSLT!
 
 CHANGELOG
 =========
+[2013-jul-01]
+MAXSchema.xsd
+- Added RelationshipType enum "Package" used for "<import>"
+MAXExporter3:
+- Forgot object@abstract & attribute@isReadOnly _Specified_
+- relationship@sourceLabel, @destLabel
+
+[2013-jun-30]
+MAXImporter3:
+- Return bool if there were any issues.
+
+[2013-jun-23]
+MAXImporter/MAXExporter/MAXExporter2
+- removed, really old now
+MAXImporter3/Exporter3/MAXSchema
+- create and use MAXSchema model using XSD.exe
+- also now import attribute tags!
+
+[2013-jun-21]
+MAXExporter2:
+- default filename based on package name + ".max.xml"
+- add export of package tagged values, attributes & attribute tagged values
+- add cardinalities & labels for relationships
+MAXModel:
+- add attributes + tagged values
+- add cardinalities & labels for relationships
+MAXSchema:
+- add tagged values for attributes
+
 [2013-jun-14]
 MAXImporter,Input/MAXSchema.xsd:
 - object@isAbstract, attribute@isReadOnly, attribute@alias
