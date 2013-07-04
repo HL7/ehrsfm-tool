@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHRSFM_EA_AddIn", "EHRSFM_EA_AddIn\EHRSFM_EA_AddIn.csproj", "{CD9712F8-EDAE-4836-96DE-A68F1E07A7A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HL7_FM_EA_Extension", "HL7_FM_EA_Extension\HL7_FM_EA_Extension.csproj", "{CD9712F8-EDAE-4836-96DE-A68F1E07A7A6}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EHRSFM_EA_AddIn.Setup", "EHRSFM_EA_AddIn.Setup\EHRSFM_EA_AddIn.Setup.vdproj", "{33FFC14D-8C33-470A-B351-921F2BED565F}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EHRSFM_EA_Extension.Setup", "HL7_FM_EA_Extension.Setup\HL7_FM_EA_Extension.Setup.vdproj", "{33FFC14D-8C33-470A-B351-921F2BED565F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAX_EA.ClassLibrary", "MAX_EA.ClassLibrary\MAX_EA.ClassLibrary.csproj", "{93340E95-4098-4B8A-A9AD-5056B735F3C6}"
 EndProject
@@ -11,7 +11,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchematronTry.ConsoleApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchematronTrySaxon.ConsoleApplication", "SchematronTrySaxon.ConsoleApplication\SchematronTrySaxon.ConsoleApplication.csproj", "{35A02B84-5722-41CB-8D8F-A23BBB33F951}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAX_EA_Extension.ClassLibrary", "MAX_EA_Extension.ClassLibrary\MAX_EA_Extension.ClassLibrary.csproj", "{D77F05ED-DB84-4971-9113-55970AF9422A}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MAX_EA_Extension.Setup", "MAX_EA_Extension.Setup\MAX_EA_Extension.Setup.vdproj", "{46B5EA91-174B-48C7-A4D9-CDA7A07E2C86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saxon.Tests", "Saxon.Tests\Saxon.Tests.csproj", "{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{36F315B7-CECF-48AE-A5D0-DDA1450DF51F}"
+	ProjectSection(SolutionItems) = preProject
+		HL7.vsmdi = HL7.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAX_EA.ClassLibrary.Tests", "MAX_EA.ClassLibrary.Tests\MAX_EA.ClassLibrary.Tests.csproj", "{0F69EB36-6401-48CF-AE92-CF95FC2831A3}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = HL7.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -73,6 +91,42 @@ Global
 		{35A02B84-5722-41CB-8D8F-A23BBB33F951}.Release|Mixed Platforms.Build.0 = Release|x86
 		{35A02B84-5722-41CB-8D8F-A23BBB33F951}.Release|x86.ActiveCfg = Release|x86
 		{35A02B84-5722-41CB-8D8F-A23BBB33F951}.Release|x86.Build.0 = Release|x86
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D77F05ED-DB84-4971-9113-55970AF9422A}.Release|x86.ActiveCfg = Release|Any CPU
+		{46B5EA91-174B-48C7-A4D9-CDA7A07E2C86}.Debug|Any CPU.ActiveCfg = Debug
+		{46B5EA91-174B-48C7-A4D9-CDA7A07E2C86}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{46B5EA91-174B-48C7-A4D9-CDA7A07E2C86}.Debug|x86.ActiveCfg = Debug
+		{46B5EA91-174B-48C7-A4D9-CDA7A07E2C86}.Release|Any CPU.ActiveCfg = Release
+		{46B5EA91-174B-48C7-A4D9-CDA7A07E2C86}.Release|Mixed Platforms.ActiveCfg = Release
+		{46B5EA91-174B-48C7-A4D9-CDA7A07E2C86}.Release|x86.ActiveCfg = Release
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D1245322-2CC3-45A7-9F85-FF2E9759C1A3}.Release|x86.ActiveCfg = Release|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0F69EB36-6401-48CF-AE92-CF95FC2831A3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

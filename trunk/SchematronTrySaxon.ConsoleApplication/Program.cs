@@ -11,6 +11,11 @@ namespace SchematronTrySaxon.ConsoleApplication
     {
         static void Main(string[] args)
         {
+            new Program().RunSchematron();
+        }
+
+        private void RunSchematron()
+        {
             Uri baseuri = new Uri(@"D:\VisualStudio Projects\HL7\SchematronTrySaxon.ConsoleApplication\");
             Uri baseuri2 = new Uri(@"D:\VisualStudio Projects\HL7\SchematronTry.ConsoleApplication\");
 
