@@ -20,8 +20,6 @@ namespace HL7_FM_EA_Extension
         private Dictionary<string, Link> consequenceLinks = new Dictionary<string, Link>();
         private Dictionary<string, Link> seeAlsoLinks = new Dictionary<string, Link>();
 
-        private const bool LOCK_ELEMENTS = false; // TODO: change to true when ballot done?
-
         public void import(EA.Repository Repository, EA.Package rootPackage)
         {
             string xmlFileName = showFileDialog("Select EHR-S FM R2 XML File", "xml files (*.xml)|*.xml", @"D:\VisualStudio Projects\HL7\EHRSFM_EA_AddIn\EHRSFM\EHRS_FM_R2_N2_C3_FunctionList_2013MAY.xml", true);
@@ -66,7 +64,7 @@ namespace HL7_FM_EA_Extension
             fmPackage.Element.Author = getXElementValue(xModel, "Author");
             fmPackage.Element.Phase = getXElementValue(xModel, "Type");
             fmPackage.Element.Update();
-            fmPackage.Element.Locked = LOCK_ELEMENTS;
+            fmPackage.Element.Locked = R2Const.LOCK_ELEMENTS;
 
             // Start with the chapters (section!) and iterate functions/headers and attach criteria
             foreach (XElement xChapter in xModel.Elements("Chapter"))
@@ -84,15 +82,11 @@ namespace HL7_FM_EA_Extension
                 sectionPackage.IsNamespace = true;
                 sectionPackage.TreePos = int.Parse(ID);
                 sectionPackage.Update();
-                int? sectionColor = config.getSectionColorInt(alias);
-                if (sectionColor != null)
-                {
-                    sectionPackage.Element.SetAppearance(1/*Base*/, 0/*BGCOLOR*/, (int)sectionColor);
-                }
                 sectionPackage.Element.Alias = alias;
                 sectionPackage.Element.Stereotype = R2Const.ST_SECTION;
+                config.updateStyle(sectionPackage.Element);
                 sectionPackage.Element.Update();
-                sectionPackage.Element.Locked = LOCK_ELEMENTS;
+                sectionPackage.Element.Locked = R2Const.LOCK_ELEMENTS;
 
                 // Create TaggedValues for extra notes
                 addTaggedValue(sectionPackage.Element, "ID", ID);
@@ -116,7 +110,7 @@ namespace HL7_FM_EA_Extension
                     importFunction(functionElement, xFunction);
                     functionElement.TreePos = TPos++; // Keep order from import file
                     functionElement.Update();
-                    functionElement.Locked = LOCK_ELEMENTS;
+                    functionElement.Locked = R2Const.LOCK_ELEMENTS;
                 }
             }
 
@@ -197,7 +191,7 @@ namespace HL7_FM_EA_Extension
             functionElement.Alias = functionID;
 
             // apply color
-            setBgColorFromFunctionID(functionID, functionElement);
+            config.updateStyle(functionElement);
 
             string functionStatement = getXElementValue(xFunction, "Statement");
             string functionDescription = getXElementValue(xFunction, "Description");
@@ -216,7 +210,7 @@ namespace HL7_FM_EA_Extension
                     break;
             }
             functionElement.Update();
-            functionElement.Locked = LOCK_ELEMENTS;
+            functionElement.Locked = R2Const.LOCK_ELEMENTS;
 
             addTaggedValue(functionElement, "Row", functionRow);
             addReferenceTags(functionElement, xFunction);
@@ -245,15 +239,10 @@ namespace HL7_FM_EA_Extension
                 EA.Element criteriaElement = (EA.Element)functionElement.Elements.AddNew(criteriaID, "Requirement");
                 elements.Add(criteriaID, criteriaElement);
                 criteriaElement.Notes = criteriaText;
-                criteriaElement.Stereotype = "Criteria";
-                setBgColorFromFunctionID(functionID, criteriaElement);
-                // apply border based on Optionality
-                if ("SHALL".Equals(criteriaOpt))
-                {
-                    criteriaElement.SetAppearance(1/*Base*/, 3/*Border width*/, 3);
-                }
+                criteriaElement.Stereotype = R2Const.ST_CRITERIA;
+                config.updateStyle(criteriaElement);
                 criteriaElement.Update();
-                criteriaElement.Locked = LOCK_ELEMENTS;
+                criteriaElement.Locked = R2Const.LOCK_ELEMENTS;
 
                 // Create TaggedValues for extra metadata
                 addTaggedValue(criteriaElement, "Row", criteriaRow);
@@ -368,19 +357,6 @@ namespace HL7_FM_EA_Extension
                 }
                 tv.Value = value;
                 tv.Update();
-            }
-        }
-
-        private void setBgColorFromFunctionID(string functionID, EA.Element element)
-        {
-            int? sectionColor = config.getSectionColorInt(functionID);
-            if (sectionColor != null)
-            {
-                element.SetAppearance(1/*Base*/, 0/*BGCOLOR*/, (int)sectionColor);
-            }
-            else
-            {
-                // Warning; unknown chapter
             }
         }
 

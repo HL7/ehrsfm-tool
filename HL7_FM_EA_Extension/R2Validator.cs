@@ -13,11 +13,14 @@ namespace HL7_FM_EA_Extension
 {
     class R2Validator
     {
+        // Tagged value used for externalized ID
+        private const string TV_MAX_ID = "MAX::ID";
+
         public void validate(EA.Repository Repository, EA.Package rootPackage)
         {
             if (!R2Const.ST_FM.Equals(rootPackage.StereotypeEx))
             {
-                MessageBox.Show("Select an <HL7-FM> Package.\nValidation works on full FM only.");
+                MessageBox.Show(string.Format("Select an <{0}> stereotyped package.\nValidation works on full FM only.", R2Const.ST_FM));
                 return;
             }
 
@@ -43,13 +46,17 @@ namespace HL7_FM_EA_Extension
 
             // export to temp max.xml file
             string fm_max_file = getAppDataFullPath("temp.max.xml");
-            new MAX_EA.MAXExporter3().export(Repository, fm_max_file);
+            new MAX_EA.MAXExporter3().exportPackage(Repository, rootPackage, fm_max_file);
 
             // now execute the Schematron XSL
             transform.Load(sch_xsl_filepath, settings, resolver);
             string svrl_filepath = getAppDataFullPath("svrl_output.xml");
             transform.Transform(fm_max_file, svrl_filepath);
 
+            // build element dictionary
+            Dictionary<string, EA.Element> eaElementDict = new Dictionary<string, EA.Element>();
+            recurseEaPackage(rootPackage, eaElementDict);
+
             XmlReader xReader = XmlReader.Create(svrl_filepath);
             // make sure file gets closed
             using (xReader)
@@ -58,95 +65,29 @@ namespace HL7_FM_EA_Extension
                 XmlNamespaceManager nsmgr = new XmlNamespaceManager(xReader.NameTable);
                 nsmgr.AddNamespace("svrl", "http://purl.oclc.org/dsdl/svrl");
 
-                IEnumerable<XElement> xSvrlSuccessEnum = svrl.XPathSelectElements("//svrl:successful-report", nsmgr);
-                foreach (XElement xSvrlSuccess in xSvrlSuccessEnum)
-                {
-                    string idtxt = xSvrlSuccess.XPathSelectElement("svrl:text", nsmgr).Value;
-                    int ID = int.Parse(idtxt);
-                    EA.Element element = Repository.GetElementByID(ID);
-                    XElement xSvrlDiag = xSvrlSuccess.XPathSelectElement("svrl:diagnostic-reference", nsmgr);
-                    string code = xSvrlDiag.Attribute("diagnostic").Value;
-                    string message = xSvrlDiag.Value.Trim();
-                    string issueName = string.Format("{0}:{1} - {2}", code, message, element.Name);
-                    Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, issueName, ID);
-
-                    //EA.ProjectIssues issue = (EA.ProjectIssues)Repository.Issues.AddNew(issueName, "ProjectIssues");
-                    //issue.Update();
-                }
-
-                IEnumerable<XElement> xSvrlFailEnum = svrl.XPathSelectElements("//svrl:failed-assert", nsmgr);
-                foreach (XElement xSvrlFail in xSvrlFailEnum)
-                {
-                    string idtxt = xSvrlFail.XPathSelectElement("svrl:text", nsmgr).Value;
-                    // BEGIN: workaround for 'Criteria'-issue
-                    if (idtxt.IndexOf('C') != -1)
-                    {
-                        idtxt = idtxt.Substring(0, idtxt.IndexOf('C'));
-                    }
-                    // END: workaround for 'Criteria'-issue
-                    int ID = int.Parse(idtxt);
-                    EA.Element element = Repository.GetElementByID(ID);
-                    XElement xSvrlDiag = xSvrlFail.XPathSelectElement("svrl:diagnostic-reference", nsmgr);
-                    string code = xSvrlDiag.Attribute("diagnostic").Value;
-                    string message = xSvrlDiag.Value.Trim();
-                    string issueName = string.Format("{0}:{1} - {2}", code, message, element.Name);
-                    Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, issueName, ID);
-
-                    //EA.ProjectIssues issue = (EA.ProjectIssues)Repository.Issues.AddNew(issueName, "ProjectIssues");
-                    //issue.Update();
-                }
+                appendSvrlMessagesToOutputTab(Repository, svrl.XPathSelectElements("//svrl:successful-report", nsmgr), eaElementDict, nsmgr);
+                appendSvrlMessagesToOutputTab(Repository, svrl.XPathSelectElements("//svrl:failed-assert", nsmgr), eaElementDict, nsmgr);
             }
             MessageBox.Show("Validation done.\nCheck \"Project Status/issues\" or output tab for issues.");
 
             Repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
         }
 
-        private void validateSvrlReportFile(EA.Repository Repository)
+        private void appendSvrlMessagesToOutputTab(EA.Repository Repository, IEnumerable<XElement> xSvrlMessages, Dictionary<string, EA.Element> eaElementDict, XmlNamespaceManager nsmgr)
         {
-            Repository.CreateOutputTab(Properties.Resources.OUTPUT_TAB_HL7_FM);
-            Repository.ClearOutput(Properties.Resources.OUTPUT_TAB_HL7_FM);
-            Repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
-
-            // TODO: show options screen
-            // TODO: convert UML model to MAX
-            // TODO: run schematron on MAX
-            string svrl_filepath = getAppDataFullPath("svrl-report.xml");
-
-            // put svrl-report in EA Console
-            XmlReader xReader = XmlReader.Create(svrl_filepath);
-            // make sure file gets closed
-            using (xReader)
+            foreach (XElement xSvrlMessage in xSvrlMessages)
             {
-                XElement svrl = XElement.Load(xReader);
-                XmlNamespaceManager nsmgr = new XmlNamespaceManager(xReader.NameTable);
-                nsmgr.AddNamespace("svrl", "http://purl.oclc.org/dsdl/svrl");
+                string idtxt = xSvrlMessage.XPathSelectElement("svrl:text", nsmgr).Value;
+                EA.Element element = eaElementDict[idtxt];
+                XElement xSvrlDiag = xSvrlMessage.XPathSelectElement("svrl:diagnostic-reference", nsmgr);
+                string code = xSvrlDiag.Attribute("diagnostic").Value;
+                string message = xSvrlDiag.Value.Trim();
+                string issueName = string.Format("{0}:{1} - {2}", code, message, element.Name);
+                Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, issueName, element.ElementID);
 
-                IEnumerable<XElement> xSvrlSuccessEnum = svrl.XPathSelectElements("//svrl:successful-report", nsmgr);
-                foreach (XElement xSvrlSuccess in xSvrlSuccessEnum)
-                {
-                    XElement xSvrlText = xSvrlSuccess.XPathSelectElement("svrl:text", nsmgr);
-                    Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, string.Format("SUCCESS: {0}", xSvrlText.Value.Trim()), -1);
-                }
-
-                IEnumerable<XElement> xSvrlFailEnum = svrl.XPathSelectElements("//svrl:failed-assert", nsmgr);
-                foreach (XElement xSvrlFail in xSvrlFailEnum)
-                {
-                    string flag = "FAIL";
-                    XAttribute xFlag = xSvrlFail.Attribute(XName.Get("flag"));
-                    if (xFlag != null)
-                    {
-                        switch (xFlag.Value)
-                        {
-                            case "warning": flag = "WARNING"; break;
-                            case "error": flag = "ERROR"; break;
-                        }
-                    }
-                    XElement xSvrlText = xSvrlFail.XPathSelectElement("svrl:text", nsmgr);
-                    Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, string.Format("{0}: {1}", flag, xSvrlText.Value.Trim()), -1);
-                }
+                //EA.ProjectIssues issue = (EA.ProjectIssues)Repository.Issues.AddNew(issueName, "ProjectIssues");
+                //issue.Update();
             }
-
-            Repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
         }
 
         private string getAppDataFullPath(string filename)
@@ -156,13 +97,60 @@ namespace HL7_FM_EA_Extension
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // Devel path
-                filepath = string.Format(@"D:\VisualStudio Projects\HL7\EHRSFM_EA_AddIn\EHRSFM_EA_AddIn_Files\{0}", filename);
+                filepath = string.Format(@"D:\Develop\ehrsfm_profile\trunk\HL7_FM_EA_Extension\Schematron\{0}", filename);
             }
             else
             {
-                filepath = string.Format(@"{0}\EHRSFM_EA_AddIn_Files\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
+                filepath = string.Format(@"{0}\HL7\HL7_FM_EA_Extension\Schematron\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
             }
             return filepath;
+        }
+
+        private void recurseEaPackage(EA.Package eaPackage, Dictionary<string, EA.Element> eaElementDict)
+        {
+            foreach (EA.Package eaSubPackage in eaPackage.Packages)
+            {
+                EA.TaggedValue tvSID = (EA.TaggedValue)eaSubPackage.Element.TaggedValues.GetByName(TV_MAX_ID);
+                if (tvSID != null)
+                {
+                    eaElementDict[tvSID.Value.ToUpper()] = eaSubPackage.Element;
+                }
+                else
+                {
+                    eaElementDict[eaSubPackage.PackageID.ToString()] = eaSubPackage.Element;
+                }
+                recurseEaPackage(eaSubPackage, eaElementDict);
+            }
+            foreach (EA.Element eaElement in eaPackage.Elements)
+            {
+                EA.TaggedValue tvEID = (EA.TaggedValue)eaElement.TaggedValues.GetByName(TV_MAX_ID);
+                if (tvEID != null)
+                {
+                    eaElementDict[tvEID.Value.ToUpper()] = eaElement;
+                }
+                else
+                {
+                    eaElementDict[eaElement.ElementID.ToString()] = eaElement;
+                }
+                recurseEaElements(eaElement, eaElementDict);
+            }
+        }
+
+        private void recurseEaElements(EA.Element eaElement, Dictionary<string, EA.Element> eaElementDict)
+        {
+            foreach (EA.Element eaChildElement in eaElement.Elements)
+            {
+                EA.TaggedValue tvID = (EA.TaggedValue)eaChildElement.TaggedValues.GetByName(TV_MAX_ID);
+                if (tvID != null)
+                {
+                    eaElementDict[tvID.Value.ToUpper()] = eaChildElement;
+                }
+                else
+                {
+                    eaElementDict[eaChildElement.ElementID.ToString()] = eaChildElement;
+                }
+                recurseEaElements(eaChildElement, eaElementDict);
+            }
         }
     }
 }

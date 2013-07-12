@@ -103,17 +103,17 @@
     <None Include="EHRSFM\EHRS_FM_R2_N2_C3_FunctionList_2013MAY.xml">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="HL7_FM_EA_Extension_Files\iso-schematron-xslt1\ExtractSchFromRNG.xsl" />
-    <Content Include="HL7_FM_EA_Extension_Files\iso-schematron-xslt1\ExtractSchFromXSD.xsl" />
-    <Content Include="HL7_FM_EA_Extension_Files\iso-schematron-xslt1\iso_abstract_expand.xsl" />
-    <Content Include="HL7_FM_EA_Extension_Files\iso-schematron-xslt1\iso_dsdl_include.xsl" />
-    <Content Include="HL7_FM_EA_Extension_Files\iso-schematron-xslt1\iso_schematron_message.xsl" />
-    <Content Include="HL7_FM_EA_Extension_Files\iso-schematron-xslt1\iso_schematron_skeleton_for_xslt1.xsl" />
-    <Content Include="HL7_FM_EA_Extension_Files\iso-schematron-xslt1\iso_svrl_for_xslt1.xsl" />
-    <Content Include="HL7_FM_EA_Extension_Files\iso-schematron-xslt1\readme.txt" />
-    <Content Include="HL7_FM_EA_Extension_Files\iso-schematron-xslt1\schematron-skeleton-api.htm" />
-    <Content Include="HL7_FM_EA_Extension_Files\EHRS_FM_R2-validation.sch" />
-    <None Include="HL7_FM_EA_Extension_Files\svrl_output.xml" />
+    <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromRNG.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromXSD.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_abstract_expand.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_dsdl_include.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_schematron_message.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_schematron_skeleton_for_xslt1.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_svrl_for_xslt1.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\readme.txt" />
+    <Content Include="Schematron\iso-schematron-xslt1\schematron-skeleton-api.htm" />
+    <Content Include="Schematron\EHRS_FM_R2-validation.sch" />
+    <None Include="Schematron\svrl_output.xml" />
     <Content Include="MAPPING v3.1 EHR-S FM R11+ISSUES FOUND.txt" />
     <None Include="EHRSFM\EHRS_FunctionalModel_Rel1.1.xml" />
     <Content Include="MAPPING v1 EHR-S FM R11+ISSUES FOUND.txt" />

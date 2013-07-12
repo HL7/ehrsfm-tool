@@ -14,6 +14,7 @@ TODO
 	- ?? add option to export Markedup notes with xhtml namespace or XML escaped
 	- Why is the <notes>-element always created?
 	- Why is the required <name>-element not always created?
+	- !! Handle Composition and DirectedAssociation RelationshipTypes!
 - MAXSchema:
 	- sync UML model of schema (in EAP)!
 	- fix namespace of all elements to "max:"
@@ -23,6 +24,16 @@ TODO
 
 CHANGELOG
 =========
+[2013-jul-13]
+MAXImporter3:
+- More robust import for Package with ParentID
+- eaPackageDict was not constructed with correct ID
+- MAX::ID overrules ElementID when constructing eaElementDict, not both!
+
+[2013-jul-11]
+MAXImporter3:
+- More robust count. Code expected at least the objects AND relationships tags.
+
 [2013-jul-01]
 MAXSchema.xsd
 - Added RelationshipType enum "Package" used for "<import>"

@@ -13,12 +13,36 @@ namespace MAX_EA.ClassLibrary.Tests
     public class UnitTests
     {
         EA.Repository Repos;
+        // Import Exported TestCase in Package with name "Temp (used in the UnitTests)"
+        const string GUID_TEMP_PACKAGE = "{1CC3E100-9474-4f2c-9FBD-75B7C4289FC6}";
 
         [TestInitialize]
         public void TestInit()
         {
             Repos = new EA.Repository();
             Repos.OpenFile(@"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\MAX-TestCases.eap");
+            // clean temp packages
+            EA.Package tempPackage = Repos.GetPackageByGuid(GUID_TEMP_PACKAGE);
+            for (short p = 0; p < tempPackage.Packages.Count; p++)
+            {
+                tempPackage.Packages.Delete(p);
+            }
+            tempPackage.Update();
+        }
+
+        [TestMethod]
+        public void TestMinimalImports()
+        {
+            EA.Package selectedPackage = (EA.Package)Repos.GetPackageByGuid(GUID_TEMP_PACKAGE).Packages.AddNew(Guid.NewGuid().ToString(), "Package");
+            selectedPackage.Update();
+            new MAXImporter3().import(Repos, selectedPackage, @"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\TestCases\minimal-nothing.max.xml");
+            Assert.IsTrue(selectedPackage.Elements.Count == 0 && selectedPackage.Packages.Count == 0);
+            new MAXImporter3().import(Repos, selectedPackage, @"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\TestCases\minimal-both-empty.max.xml");
+            Assert.IsTrue(selectedPackage.Elements.Count == 0 && selectedPackage.Packages.Count == 0);
+            new MAXImporter3().import(Repos, selectedPackage, @"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\TestCases\minimal-objects.max.xml");
+            Assert.IsTrue(selectedPackage.Elements.Count == 0 && selectedPackage.Packages.Count == 0);
+            new MAXImporter3().import(Repos, selectedPackage, @"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\TestCases\minimal-relationships.max.xml");
+            Assert.IsTrue(selectedPackage.Elements.Count == 0 && selectedPackage.Packages.Count == 0);
         }
 
         [TestMethod]
@@ -66,9 +90,7 @@ namespace MAX_EA.ClassLibrary.Tests
             MAXExporter3 exporter1 = new MAXExporter3();
             exporter1.exportPackage(Repos, Repos.GetPackageByGuid(guidPackageToTest), fileNameExport1);
 
-            // Import Exported TestCase in Package with name "Temp (used in the UnitTests)"
-            string guidView = "{1CC3E100-9474-4f2c-9FBD-75B7C4289FC6}";
-            EA.Package selectedPackage = (EA.Package)Repos.GetPackageByGuid(guidView).Packages.AddNew(Guid.NewGuid().ToString(), "Package");
+            EA.Package selectedPackage = (EA.Package)Repos.GetPackageByGuid(GUID_TEMP_PACKAGE).Packages.AddNew(Guid.NewGuid().ToString(), "Package");
             selectedPackage.Update();
             string guidExport2 = selectedPackage.PackageGUID;
             MAXImporter3 importer = new MAXImporter3();

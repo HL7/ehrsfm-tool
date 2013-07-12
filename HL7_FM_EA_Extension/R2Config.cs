@@ -26,13 +26,13 @@ namespace HL7_FM_EA_Extension
 
             // Categories and colors
             sectionColorsInt = new Dictionary<string, int>();
-            sectionColorsInt["OV"] = 0x99CCFF;
+            sectionColorsInt["OV"] = 0xFFCC99;
             sectionColorsInt["CP"] = 0x99FF99;
-            sectionColorsInt["CPS"] = 0xD0EBBF;
-            sectionColorsInt["POP"] = 0xFFE389;
-            sectionColorsInt["AS"] = 0xCDABE7;
-            sectionColorsInt["RI"] = 0xE2C4A6;
-            sectionColorsInt["TI"] = 0xFFA3A3;
+            sectionColorsInt["CPS"] = 0xBFEBD0;
+            sectionColorsInt["POP"] = 0x89E3FF;
+            sectionColorsInt["AS"] = 0xE7ABCD;
+            sectionColorsInt["RI"] = 0xA6C4E2;
+            sectionColorsInt["TI"] = 0xA3A3FF;
 
             sectionTitles = new Dictionary<string, string>();
             sectionTitles["OV"] = "Overarching";
@@ -81,6 +81,47 @@ namespace HL7_FM_EA_Extension
                 title = sectionTitles[sectionID];
             }
             return title;
+        }
+
+        // N.B. element.Update needed after this call!
+        public void updateStyle(EA.Element element)
+        {
+            // For Criteria: apply border based on Optionality
+            if (R2Const.ST_CRITERIA.Equals(element.Stereotype))
+            {
+                EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName("Optionality");
+                if (tv != null)
+                {
+                    string optionality = tv.Value;
+                    if ("SHALL".Equals(optionality))
+                    {
+                        element.SetAppearance(1/*Base*/, 3/*Border width*/, 3);
+                    }
+                    else
+                    {
+                        element.SetAppearance(1/*Base*/, 3/*Border width*/, 1);
+                    }
+                }
+            }
+            // Strip whitespaces from names
+            element.Name = element.Name.Trim();
+            // Update bgcolor based on Section
+            string ID;
+            switch (element.Stereotype)
+            {
+                case R2Const.ST_SECTION:
+                    ID = element.Alias;
+                    break;
+                default:
+                    ID = element.Name;
+                    break;
+            }
+            int? sectionColor = getSectionColorInt(ID);
+            if (sectionColor != null)
+            {
+                element.SetAppearance(1/*Base*/, 0/*BGCOLOR*/, (int)sectionColor);
+            }
+            // else: Warning; unknown Section
         }
     }
 }

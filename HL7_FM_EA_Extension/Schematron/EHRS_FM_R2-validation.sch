@@ -44,6 +44,10 @@
             <assert test="name" diagnostics="FMHC002"><value-of select="$id"/></assert>
             <let name="name" value="name"/>
             <assert test="count(../object/name[text()=$name])=1" diagnostics="FMHC003"><value-of select="$id"/></assert>
+
+            <assert test="starts-with($name,$thing-id)" diagnostics="MZ02">
+              <value-of select="$id"/>
+            </assert>
             
             <assert test="$stmt-lgth > 0" diagnostics="FMHC004"><value-of select="$id"/></assert>
             <assert test="substring($statement, $stmt-lgth, 1) = '.'" diagnostics="FMHC005"><value-of select="$id"/></assert>
@@ -86,8 +90,12 @@
             
             <let name="name" value="name"/>
             <let name="name-end" value="substring($name, string-length($name), 1)"/>
-            
-            <assert test="count(../object/name[text()=$name])=1" diagnostics="FMFLC06"><value-of select="$id"/></assert>
+
+          <assert test="starts-with($name,$thing-id)" diagnostics="MZ03">
+            <value-of select="$id"/>
+          </assert>
+
+          <assert test="count(../object/name[text()=$name])=1" diagnostics="FMFLC06"><value-of select="$id"/></assert>
             <assert test="starts-with(name/text(), $thing-id)" diagnostics="FMFLC07"><value-of select="$id"/></assert>
             <assert test="not($name-end='.')" diagnostics="FMFLC08"><value-of select="$id"/></assert>
             <assert test="$stmt-lgth > 0" diagnostics="FMFLC09"><value-of select="$id"/></assert>
@@ -121,6 +129,10 @@
             <let name="thing-id" value="name"/>
             <let name="parent-id" value="parentId"/>
             <let name="parent-alias" value="../object[id=$parent-id]/alias"/>
+          
+            <assert test="count(../object[name=$thing-id])=1" diagnostics="MZ01">
+              <value-of select="$id"/>
+            </assert>
             
             <assert test="notes" diagnostics="FMFLC15"><value-of select="$id"/></assert>
             <assert test="string-length(normalize-space(notes/text())) > 0" diagnostics="FMFLC15"><value-of select="$id"/></assert>
@@ -145,9 +157,11 @@
             
             <!-- Determine if the current Criteria is a dependent -->
             <let name="is-dependent" value="tag[@name='Dependent' and @value='Y']"/>
-            <report test="$is-dependent and not(contains(notes, 'according to scope of practice, organizational policy and/or jurisdictional law'))" diagnostics="FMDC001"><value-of select="$id"/></report>
-            <report test="not($is-dependent) and contains(notes, 'according to scope of practice, organizational policy and/or jurisdictional law')" diagnostics="FMDC002"><value-of select="$id"/></report>
-            <report test="$is-dependent and tag[@name='Optionality' and not(@value='SHALL')]" diagnostics="FMDC003"><value-of select="$id"/></report>
+            <report test="$is-dependent and not(contains(notes, 'according to scope of practice') or contains(notes, 'organizational policy') or contains(notes, 'jurisdictional law'))" diagnostics="FMDC001"><value-of select="$id"/></report>
+            <report test="not($is-dependent) and (contains(notes, 'according to scope of practice') or contains(notes, 'organizational policy') or contains(notes, 'jurisdictional law'))" diagnostics="FMDC002"><value-of select="$id"/></report>            
+            <!--<report test="$is-dependent and not(contains(notes, 'according to scope of practice, organizational policy and/or jurisdictional law'))" diagnostics="FMDC001"><value-of select="$id"/></report>-->
+            <!--<report test="not($is-dependent) and contains(notes, 'according to scope of practice, organizational policy and/or jurisdictional law')" diagnostics="FMDC002"><value-of select="$id"/></report>-->
+            <!--<report test="$is-dependent and tag[@name='Optionality' and not(@value='SHALL')]" diagnostics="FMDC003"><value-of select="$id"/></report>-->
             
             <let name="option-value" value="tag[@name='Optionality']/@value"/>
             <let name="text-without-optionality" value="concat(substring-before(notes/text(), $option-value), substring-after(notes/text(), $option-value))"/>
@@ -171,8 +185,8 @@
     <diagnostics>
         <diagnostic id="FMST001" xml:lang="en">Error wrong type, must be one of Package, Feature, or Requirement</diagnostic>
         <diagnostic id="FMST002" xml:lang="en">This item uses another title than allowed.</diagnostic>
-        <diagnostic id="FMHC001" xml:lang="en">The header should have a unique ID.</diagnostic>
-        <diagnostic id="FMHC002" xml:lang="en">The header should have a name.</diagnostic>
+        <diagnostic id="FMHC001" xml:lang="en">The Header should have a unique ID.</diagnostic>
+        <diagnostic id="FMHC002" xml:lang="en">The Header should have a name.</diagnostic>
         <diagnostic id="FMHC003" xml:lang="en">The name of the header <value-of select="$name"/> is not unique.</diagnostic>
         <diagnostic id="FMHC004" xml:lang="en">Header must have a statement about its purpose.</diagnostic>
         <diagnostic id="FMHC005" xml:lang="en">Header purpose statement must end in a period.</diagnostic>
@@ -249,5 +263,9 @@
         <diagnostic id="FMAN01" xml:lang="en">**</diagnostic>
         <diagnostic id="FMEA01" xml:lang="en">The field contains the maximum number of characters, check for truncation and text loss.</diagnostic>
         <diagnostic id="FMTS01" xml:lang="en">This header, function or conformance criteria cannot be traced.</diagnostic>
+
+        <diagnostic id="MZ01" xml:lang="en">The Criteria should have a unique ID.</diagnostic>
+        <diagnostic id="MZ02" xml:lang="en">Header ID in Name and Alias are different.</diagnostic>
+        <diagnostic id="MZ03" xml:lang="en">Function ID in Name and Alias are different.</diagnostic>
     </diagnostics>
 </schema>

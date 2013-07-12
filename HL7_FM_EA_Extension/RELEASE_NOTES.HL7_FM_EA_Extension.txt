@@ -4,15 +4,38 @@
 - Include association for References? Or make this an option.
 - _Implement Model Browser double click_
 - AboutBox: use Setup parameters to populate fields.
+- *Form should call R2Config.updateStyle, no Modified event is created, so call it ourselfs.
 
 CHANGELOG
 =========
+[2013-jul-13]
+Main
+- Added "Update Styles" to reapply Section colors and SHALL borders.
+- "Create Diagram" now also works for Packages
+R2Config
+- Fixed the int colors. Had the red and blue components mixed up.
+
+[2013-jul-12]
+R2Config,R2Importer,R2Const,Main
+- Moved LOCK_DIAGRAM to R2Const
+- Added ST_CRITERIA
+- Change style (BGCOLOR based on Section and BORDER based on Optionality and trim whitespaces from Name [FMFR007]) after changes to FM elements
+EHRS_FM_R2-validation.sch
+- Disabled FMDC003 as discussed with Helen 12-jul-2013, this is not a valid rule.
+- FMDC001 and FMDC002 were wrong, SHALL contain any combination of the 3 statements.
+- Added MZ01 to check for unique Criteria ID
+- Added MZ02, MZ03 to check for Alias in Name of Header / Function
+R2Validator
+- MAX::ID overrules ElementID to find elements in messages
+
 [2013-jul-04]
 Renamed Package, Folder, Registry to "HL7_FM_EA_Extension"
 
 [2013-jun-23]
 QuickAccessControl/R2Validator
 - Use MAXExporter3 now
+
+*** Phase 1 Deliverable ***
 
 [2013-may-27]
 Main,AboutBox

@@ -36,7 +36,7 @@ namespace HL7_FM_EA_Extension
                 case "":
                     return "-&HL7 FM";
                 case "-&HL7 FM":
-                    string[] ar = { "Import R1.1", "Import R2", "Validate", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "About" };
+                    string[] ar = { "Import R1.1", "Import R2", "Validate", "Update Style", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "About" };
                     return ar;
             }
             return "";
@@ -95,6 +95,9 @@ namespace HL7_FM_EA_Extension
                     case "Validate":
                         new R2Validator().validate(Repository, SelectedPackage);
                         break;
+                    case "Update Style":
+                        UpdateStyle_recurseEaPackage(SelectedPackage);
+                        break;
                     case "Create Diagram":
                         CreateDiagram(Repository);
                         break;
@@ -108,7 +111,7 @@ namespace HL7_FM_EA_Extension
                             }
                             view_ctrl = (QuickAccessControl)Repository.AddTab("HL7 FM", "HL7_FM_EA_Extension.QuickAccessControl");
                             view_ctrl.SetRepository(Repository);
-                            Repository.ActivateTab("EHR-S FM");
+                            Repository.ActivateTab("HL7 FM");
                         }
                         break;
                     case "FM Browser Tab":
@@ -173,11 +176,11 @@ namespace HL7_FM_EA_Extension
                 EA.Element el = Repository.GetElementByGuid(GUID);
                 switch (el.Stereotype)
                 {
-                    case "Function":
-                    case "Header":
+                    case R2Const.ST_FUNCTION:
+                    case R2Const.ST_HEADER:
                         new FunctionForm().Show(el, config);
                         return true;
-                    case "Criteria":
+                    case R2Const.ST_CRITERIA:
                         new CriteriaForm().Show(el, config);
                         return true;
                 }
@@ -187,7 +190,7 @@ namespace HL7_FM_EA_Extension
                 EA.Element el = Repository.GetPackageByGuid(GUID).Element;
                 switch (el.Stereotype)
                 {
-                    case "Section":
+                    case R2Const.ST_SECTION:
                         new SectionForm().Show(el, config);
                         return true;
                 }
@@ -204,11 +207,52 @@ namespace HL7_FM_EA_Extension
             }
         }
 
+        // On Change of an Item
+        public void EA_OnNotifyContextItemModified(EA.Repository Repository, String GUID, EA.ObjectType ot)
+        {
+            if (ot == EA.ObjectType.otElement)
+            {
+                R2Config config = new R2Config();
+                EA.Element el = Repository.GetElementByGuid(GUID);
+                switch (el.Stereotype)
+                {
+                    case R2Const.ST_FUNCTION:
+                    case R2Const.ST_HEADER:
+                    case R2Const.ST_CRITERIA:
+                        config.updateStyle(el);
+                        el.Update();
+                        break;
+                }
+            }
+            else if (ot == EA.ObjectType.otPackage)
+            {
+                EA.Element el = Repository.GetPackageByGuid(GUID).Element;
+                switch (el.Stereotype)
+                {
+                    case R2Const.ST_SECTION:
+                        config.updateStyle(el);
+                        el.Update();
+                        break;
+                }
+            }
+        }
+
 // --------------
 
         private void CreateDiagram(EA.Repository Repository)
         {
-            EA.Element selectedElement = (EA.Element)Repository.GetTreeSelectedObject();
+            EA.Element selectedElement = null;
+            switch (Repository.GetTreeSelectedItemType())
+            {
+                case EA.ObjectType.otPackage:
+                    selectedElement = Repository.GetTreeSelectedPackage().Element;
+                    break;
+                case EA.ObjectType.otElement:
+                    selectedElement = (EA.Element)Repository.GetTreeSelectedObject();
+                    break;
+                default:
+                    return;
+            }
             EA.Diagram diagram = CreateDiagram(selectedElement);
             Repository.RefreshModelView(Repository.GetTreeSelectedPackage().PackageID);
             Repository.ShowInProjectView(diagram);
@@ -217,7 +261,7 @@ namespace HL7_FM_EA_Extension
 
         private EA.Diagram CreateDiagram(EA.Element element)
         {
-            EA.Diagram diagram = (EA.Diagram)element.Diagrams.AddNew(element.Name + " Criteria", "Requirements");
+            EA.Diagram diagram = (EA.Diagram)element.Diagrams.AddNew(element.Name, "Requirements");
             diagram.Update();
 
             EA.DiagramObject fobj = (EA.DiagramObject)diagram.DiagramObjects.AddNew(string.Format("l={0};r={1};t={2};b={3}", 10, 630, 10, 110), "");
@@ -244,9 +288,36 @@ namespace HL7_FM_EA_Extension
                     top += height + padding;
                 }
             }
-            diagram.IsLocked = true;
+            diagram.IsLocked = R2Const.LOCK_ELEMENTS;
             diagram.Update();
             return diagram;
         }
+
+        // --------------
+
+        private void UpdateStyle_recurseEaPackage(EA.Package eaPackage)
+        {
+            foreach (EA.Package eaSubPackage in eaPackage.Packages)
+            {
+                UpdateStyle_recurseEaPackage(eaSubPackage);
+            }
+            foreach (EA.Element eaElement in eaPackage.Elements)
+            {
+                config.updateStyle(eaElement);
+                eaElement.Update();
+                UpdateStyle_recurseEaElements(eaElement);
+            }
+        }
+
+        private void UpdateStyle_recurseEaElements(EA.Element eaElement)
+        {
+            foreach (EA.Element eaChildElement in eaElement.Elements)
+            {
+                config.updateStyle(eaChildElement);
+                eaChildElement.Update();
+                UpdateStyle_recurseEaElements(eaChildElement);
+            }
+        }
+
     }
 }

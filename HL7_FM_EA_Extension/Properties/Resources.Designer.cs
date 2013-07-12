@@ -70,7 +70,7 @@ namespace HL7_FM_EA_Extension.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2013-mar-28.
+        ///   Looks up a localized string similar to 2013-jul-13.
         /// </summary>
         internal static string VERSION_DATE {
             get {
