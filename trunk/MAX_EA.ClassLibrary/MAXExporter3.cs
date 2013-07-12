@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using System.Xml;
 
 namespace MAX_EA
 {
@@ -74,10 +75,13 @@ namespace MAX_EA
             model.relationships = relationships.ToArray();
             progress.Close();
 
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.NewLineChars = "\n";
             XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
-            using (StreamWriter stream = new StreamWriter(fileName))
+            using (XmlWriter writer = XmlWriter.Create(fileName, settings))
             {
-                serializer.Serialize(stream, model);
+                serializer.Serialize(writer, model);
             }
         }
 
@@ -391,6 +395,17 @@ namespace MAX_EA
                 maxRel.notes = new MarkupType() { Text = new String[] { xRow.ElementValue("Notes") } };
                 maxRel.stereotype = xRow.ElementValue("Stereotype");
                 maxRel.type = (RelationshipTypeEnum)Enum.Parse(typeof(RelationshipTypeEnum), xRow.ElementValue("Connector_Type"), false);
+                // Special type adjustments
+                switch (maxRel.type)
+                {
+                    case RelationshipTypeEnum.Aggregation:
+                        // eaCon.SupplierEnd.Aggregation = 2;
+                        break;
+                    case RelationshipTypeEnum.Association:
+                        // eaCon.Direction = "Source -> Destination";
+                        // eaCon.SupplierEnd.Navigable = "Non-Navigable";
+                        break;
+                }
 
                 relationships.Add(maxRel);
                 progress.step();

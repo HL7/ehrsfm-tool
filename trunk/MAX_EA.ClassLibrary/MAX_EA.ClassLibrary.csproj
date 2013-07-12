@@ -70,6 +70,9 @@
     </None>
     <None Include="Examples\MAX-example2.xml" />
     <Content Include="RELEASE_NOTES.MAX_EA.ClassLibrary.txt" />
+    <None Include="XML Schema\MAXSchema_Excel.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="XML Schema\MAXSchema.xsd">

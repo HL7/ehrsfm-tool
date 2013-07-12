@@ -64,6 +64,12 @@
   <ItemGroup>
     <None Include="MAX-TestCases.eap" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestCases\minimal-nothing.max.xml" />
+    <Content Include="TestCases\minimal-relationships.max.xml" />
+    <Content Include="TestCases\minimal-objects.max.xml" />
+    <Content Include="TestCases\minimal-both-empty.max.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

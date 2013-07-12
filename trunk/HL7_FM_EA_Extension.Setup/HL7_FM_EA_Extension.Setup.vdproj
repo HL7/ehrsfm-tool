@@ -51,7 +51,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\EHRSFM_EA_AddIn.Setup.msi"
+        "OutputFilename" = "8:Debug\\HL7_FM_EA_Extension.Setup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -88,7 +88,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\EHRSFM_EA_AddIn.Setup.msi"
+        "OutputFilename" = "8:Release\\HL7_FM_EA_Extension.Setup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -248,6 +248,28 @@
             "Property" = "8:AppDataFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_1B0CA30196DF4E20AACD4EA2C972A15A"
+                    {
+                    "Name" = "8:HL7"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_AA95BB0EAEC54415AB6F110A12976212"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_AB4020B8AF42488EB4D2E58CD0CBF75B"
+                            {
+                            "Name" = "8:HL7_FM_EA_Extension"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_4B4D11C5F6B646E5897F6A2579A7990B"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -265,9 +287,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:HL7 EHR-S FM EA Extension"
+        "ProductName" = "8:HL7 FM EA Extension"
         "ProductCode" = "8:{50D6D088-CD93-457C-BBD5-07CC39BBB3FA}"
-        "PackageCode" = "8:{43512A9F-D4D3-484A-AF58-F509397DD1F3}"
+        "PackageCode" = "8:{79DEE307-DC17-4134-8245-BF6BAF74816D}"
         "UpgradeCode" = "8:{C34E59C2-750C-4865-857C-7CC8A3BF387C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -278,7 +300,7 @@
         "Manufacturer" = "8:Results4Care"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:mailto:tooling@lists.hl7.org"
-        "Title" = "8:HL7 EHR-S FM EA Extension"
+        "Title" = "8:HL7 FM EA Extension"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Results4Care"
         "Keywords" = "8:"
@@ -827,7 +849,7 @@
             "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_8F2BCE91578D48E5B2CB742E07E58F3F"
+            "Folder" = "8:_AB4020B8AF42488EB4D2E58CD0CBF75B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
