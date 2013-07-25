@@ -7,7 +7,7 @@
 			<xs:enumeration value="Interface" />
 			<xs:enumeration value="Class" />
 			<xs:enumeration value="Object" />
-			<xs:enumeration value="Feature" />
+      <xs:enumeration value="Feature" />
 			<xs:enumeration value="Requirement" />
 			<xs:enumeration value="Component" />
 			<xs:enumeration value="Package" />

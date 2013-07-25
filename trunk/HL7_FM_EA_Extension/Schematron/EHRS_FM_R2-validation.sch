@@ -45,9 +45,7 @@
             <let name="name" value="name"/>
             <assert test="count(../object/name[text()=$name])=1" diagnostics="FMHC003"><value-of select="$id"/></assert>
 
-            <assert test="starts-with($name,$thing-id)" diagnostics="MZ02">
-              <value-of select="$id"/>
-            </assert>
+            <assert test="starts-with($name,$thing-id)" diagnostics="FMUP01"><value-of select="$id"/></assert>
             
             <assert test="$stmt-lgth > 0" diagnostics="FMHC004"><value-of select="$id"/></assert>
             <assert test="substring($statement, $stmt-lgth, 1) = '.'" diagnostics="FMHC005"><value-of select="$id"/></assert>
@@ -91,9 +89,7 @@
             <let name="name" value="name"/>
             <let name="name-end" value="substring($name, string-length($name), 1)"/>
 
-          <assert test="starts-with($name,$thing-id)" diagnostics="MZ03">
-            <value-of select="$id"/>
-          </assert>
+          <assert test="starts-with($name,$thing-id)" diagnostics="FMUP02"><value-of select="$id"/></assert>
 
           <assert test="count(../object/name[text()=$name])=1" diagnostics="FMFLC06"><value-of select="$id"/></assert>
             <assert test="starts-with(name/text(), $thing-id)" diagnostics="FMFLC07"><value-of select="$id"/></assert>
@@ -130,9 +126,7 @@
             <let name="parent-id" value="parentId"/>
             <let name="parent-alias" value="../object[id=$parent-id]/alias"/>
           
-            <assert test="count(../object[name=$thing-id])=1" diagnostics="MZ01">
-              <value-of select="$id"/>
-            </assert>
+            <assert test="count(../object[name=$thing-id])=1" diagnostics="FMFLC22"><value-of select="$id"/></assert>
             
             <assert test="notes" diagnostics="FMFLC15"><value-of select="$id"/></assert>
             <assert test="string-length(normalize-space(notes/text())) > 0" diagnostics="FMFLC15"><value-of select="$id"/></assert>
@@ -264,8 +258,8 @@
         <diagnostic id="FMEA01" xml:lang="en">The field contains the maximum number of characters, check for truncation and text loss.</diagnostic>
         <diagnostic id="FMTS01" xml:lang="en">This header, function or conformance criteria cannot be traced.</diagnostic>
 
-        <diagnostic id="MZ01" xml:lang="en">The Criteria should have a unique ID.</diagnostic>
-        <diagnostic id="MZ02" xml:lang="en">Header ID in Name and Alias are different.</diagnostic>
-        <diagnostic id="MZ03" xml:lang="en">Function ID in Name and Alias are different.</diagnostic>
+        <diagnostic id="FMFLC22" xml:lang="en">The Criteria should have a unique ID.</diagnostic>
+        <diagnostic id="FMUP01" xml:lang="en">Header ID in Name and Alias are different.</diagnostic>
+        <diagnostic id="FMUP02" xml:lang="en">Function ID in Name and Alias are different.</diagnostic>
     </diagnostics>
 </schema>

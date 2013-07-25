@@ -8,12 +8,18 @@
 
 CHANGELOG
 =========
+[2013-jul-24]
+- Enabled "RemovePreviousVersions" in Setup
+
 [2013-jul-13]
 Main
-- Added "Update Styles" to reapply Section colors and SHALL borders.
+- Added "Update Styles" menu item to reapply Section colors and SHALL borders.
+- Automatically update style when editing
 - "Create Diagram" now also works for Packages
 R2Config
 - Fixed the int colors. Had the red and blue components mixed up.
+EHRS_FM_R2-validation.sch
+- Renamed MZ01,MZ02,MZ03 to FMFLC22,FMUP01,FMUP02
 
 [2013-jul-12]
 R2Config,R2Importer,R2Const,Main
