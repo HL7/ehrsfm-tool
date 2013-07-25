@@ -260,8 +260,17 @@ namespace MAX_EA
             progress.setup(progress_max);
             foreach (XElement xRow in xRows)
             {
-                ObjectType maxObj = new ObjectType();
                 int Object_ID = xRow.ElementValueInt("Object_ID");
+                string Object_Type = xRow.ElementValue("Object_Type");
+                // first check if we support the Object_Type
+                if (!Enum.IsDefined(typeof(ObjectTypeEnum), Object_Type))
+                {
+                    progress.step();
+                    Repository.WriteOutput("MAX", string.Format("Ignored Object {0} with not supported Object_Type {1}", Object_ID, Object_Type), -1);
+                    continue;
+                }
+
+                ObjectType maxObj = new ObjectType();
                 if (mapObjectID2MAXID.ContainsKey(Object_ID))
                 {
                     maxObj.id = mapObjectID2MAXID[Object_ID];
@@ -280,7 +289,7 @@ namespace MAX_EA
                 EA.Element el = Repository.GetElementByID(Object_ID); // <- Bummer. t_object.Note is not available through the EA SQL API???
                 maxObj.notes = new MarkupType() { Text = new String[] { el.Notes } };
                 maxObj.stereotype = xRow.ElementValue("Stereotype");
-                maxObj.type = (ObjectTypeEnum)Enum.Parse(typeof(ObjectTypeEnum), xRow.ElementValue("Object_Type"), false);
+                maxObj.type = (ObjectTypeEnum)Enum.Parse(typeof(ObjectTypeEnum), Object_Type, false);
                 int EA_ParentID = int.Parse(xRow.ElementValue("ParentID"));
                 // ParentID = 0 for direct childs of a Package, ParentID is only used within a Package
                 int maxParentID = EA_ParentID;
@@ -367,6 +376,15 @@ namespace MAX_EA
             progress.setup(progress_max);
             foreach (XElement xRow in xRows)
             {
+                // first check if we support the Relationship Connector_Type
+                string Connector_Type = xRow.ElementValue("Connector_Type");
+                if (!Enum.IsDefined(typeof(RelationshipTypeEnum), Connector_Type))
+                {
+                    progress.step();
+                    Repository.WriteOutput("MAX", string.Format("Ignored the not Connector_Type {0}", Connector_Type), -1);
+                    continue;
+                }
+
                 RelationshipType maxRel = new RelationshipType();
                 //maxRel.id = xRow.ElementValueInt("Connector_ID").ToString();
                 maxRel.label = xRow.ElementValue("Name");

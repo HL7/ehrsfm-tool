@@ -15,6 +15,7 @@ TODO
 	- Why is the <notes>-element always created?
 	- Why is the required <name>-element not always created?
 	- !! Handle Composition and DirectedAssociation RelationshipTypes!
+	- Ignored Object_Types are e.g. Boundary. Should we also ignore Text, Note? and NoteLink?
 - MAXSchema:
 	- sync UML model of schema (in EAP)!
 	- fix namespace of all elements to "max:"
@@ -24,6 +25,10 @@ TODO
 
 CHANGELOG
 =========
+[2013-jul-17]
+MAXExporter3:
+- Ignore ObjectType and RelationshipTypes that are not in the XSD
+
 [2013-jul-13]
 MAXImporter3:
 - More robust import for Package with ParentID
