@@ -23,8 +23,16 @@ TODO
 	- Q: Multiple tagged values with the same name result in multiple elements with the samen name, how to handle that in a spreadsheet?
 	  A: Through an XSLT!
 
+ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
+	Workaround: set system dateformat English (VS)
+
 CHANGELOG
 =========
+[2013-sep-23]
+- Moved some paths to "C:\Temp" instead of "D:\"
+MAXExporter3:
+- EA uses system configured dateformat. Try both CurrentCulture and CurrentUICulture via try/catch workaround
+
 [2013-jul-17]
 MAXExporter3:
 - Ignore ObjectType and RelationshipTypes that are not in the XSD

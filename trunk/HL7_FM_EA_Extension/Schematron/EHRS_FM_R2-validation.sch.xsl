@@ -95,9 +95,7 @@ The Header should have a name.</svrl:diagnostic-reference></svrl:failed-assert><
 The name of the header <xsl:text /><xsl:value-of select="$name" /><xsl:text /> is not unique.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose>
 
 		<!--ASSERT -->
-<xsl:choose><xsl:when test="starts-with($name,$thing-id)" /><xsl:otherwise><svrl:failed-assert test="starts-with($name,$thing-id)" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text>
-              <xsl:text /><xsl:value-of select="$id" /><xsl:text />
-            </svrl:text> <svrl:diagnostic-reference diagnostic="MZ02"><xsl:attribute name="xml:lang">en</xsl:attribute>
+<xsl:choose><xsl:when test="starts-with($name,$thing-id)" /><xsl:otherwise><svrl:failed-assert test="starts-with($name,$thing-id)" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text><xsl:text /><xsl:value-of select="$id" /><xsl:text /></svrl:text> <svrl:diagnostic-reference diagnostic="FMUP01"><xsl:attribute name="xml:lang">en</xsl:attribute>
 Header ID in Name and Alias are different.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose>
 
 		<!--ASSERT -->
@@ -163,9 +161,7 @@ The Function should have a unique ID.</svrl:diagnostic-reference></svrl:failed-a
 The Function ID is not consistent with the section belongs to.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose><xsl:variable name="name" select="name" /><xsl:variable name="name-end" select="substring($name, string-length($name), 1)" />
 
 		<!--ASSERT -->
-<xsl:choose><xsl:when test="starts-with($name,$thing-id)" /><xsl:otherwise><svrl:failed-assert test="starts-with($name,$thing-id)" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text>
-            <xsl:text /><xsl:value-of select="$id" /><xsl:text />
-          </svrl:text> <svrl:diagnostic-reference diagnostic="MZ03"><xsl:attribute name="xml:lang">en</xsl:attribute>
+<xsl:choose><xsl:when test="starts-with($name,$thing-id)" /><xsl:otherwise><svrl:failed-assert test="starts-with($name,$thing-id)" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text><xsl:text /><xsl:value-of select="$id" /><xsl:text /></svrl:text> <svrl:diagnostic-reference diagnostic="FMUP02"><xsl:attribute name="xml:lang">en</xsl:attribute>
 Function ID in Name and Alias are different.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose>
 
 		<!--ASSERT -->
@@ -235,9 +231,7 @@ The Function ID is the same as the visible ID.</svrl:diagnostic-reference></svrl
 <xsl:template match="object[stereotype/text()='Criteria']" priority="1000" mode="M11"><svrl:fired-rule context="object[stereotype/text()='Criteria']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron" /><xsl:variable name="id" select="id" /><xsl:variable name="thing-id" select="name" /><xsl:variable name="parent-id" select="parentId" /><xsl:variable name="parent-alias" select="../object[id=$parent-id]/alias" />
 
 		<!--ASSERT -->
-<xsl:choose><xsl:when test="count(../object[name=$thing-id])=1" /><xsl:otherwise><svrl:failed-assert test="count(../object[name=$thing-id])=1" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text>
-              <xsl:text /><xsl:value-of select="$id" /><xsl:text />
-            </svrl:text> <svrl:diagnostic-reference diagnostic="MZ01"><xsl:attribute name="xml:lang">en</xsl:attribute>
+<xsl:choose><xsl:when test="count(../object[name=$thing-id])=1" /><xsl:otherwise><svrl:failed-assert test="count(../object[name=$thing-id])=1" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text><xsl:text /><xsl:value-of select="$id" /><xsl:text /></svrl:text> <svrl:diagnostic-reference diagnostic="FMFLC22"><xsl:attribute name="xml:lang">en</xsl:attribute>
 The Criteria should have a unique ID.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose>
 
 		<!--ASSERT -->

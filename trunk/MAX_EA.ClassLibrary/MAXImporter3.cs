@@ -20,7 +20,7 @@ namespace MAX_EA
 
         public bool import(EA.Repository Repository, EA.Package selectedPackage)
         {
-            string fileName = showFileDialog("Select input MAX XML file", "xml files (*.xml)|*.xml", @"D:\VisualStudio Projects\HL7\MAX_EA.ClassLibrary\Input\MAX-example.xml", true);
+            string fileName = showFileDialog("Select input MAX XML file", "xml files (*.xml)|*.xml", @"C:\Temp\max.xml", true);
             if (fileName != String.Empty)
             {
                 return import(Repository, selectedPackage, fileName);
