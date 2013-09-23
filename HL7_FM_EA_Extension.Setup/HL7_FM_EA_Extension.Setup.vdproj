@@ -15,7 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_3A247EF78FBAB9DCBDA1EC7A203E5159"
+        "MsmKey" = "8:_18B835DEF62AD40DC85D3A32D64FB67B"
+        "OwnerKey" = "8:_8BD834C933354C78B73179A0C4B02AC5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6E795F967C5E7E740080B3647F5183BB"
         "OwnerKey" = "8:_8BD834C933354C78B73179A0C4B02AC5"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -27,12 +33,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D6A6F5363A9CB9C68B3ED18E69E67F4B"
-        "OwnerKey" = "8:_8BD834C933354C78B73179A0C4B02AC5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8BD834C933354C78B73179A0C4B02AC5"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,7 +40,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3A247EF78FBAB9DCBDA1EC7A203E5159"
+        "OwnerKey" = "8:_18B835DEF62AD40DC85D3A32D64FB67B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -148,14 +148,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3A247EF78FBAB9DCBDA1EC7A203E5159"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_18B835DEF62AD40DC85D3A32D64FB67B"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MAX_EA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3A247EF78FBAB9DCBDA1EC7A203E5159"
+                    "_18B835DEF62AD40DC85D3A32D64FB67B"
                     {
                     "Name" = "8:MAX_EA.dll"
                     "Attributes" = "3:512"
@@ -179,7 +179,7 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D6A6F5363A9CB9C68B3ED18E69E67F4B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6E795F967C5E7E740080B3647F5183BB"
             {
             "SourcePath" = "8:HL7_FM_EA_Extension.tlb"
             "TargetName" = "8:HL7_FM_EA_Extension.tlb"
@@ -289,7 +289,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HL7 FM EA Extension"
         "ProductCode" = "8:{50D6D088-CD93-457C-BBD5-07CC39BBB3FA}"
-        "PackageCode" = "8:{DF1F0655-4AEE-4F3F-9750-97AB56204C91}"
+        "PackageCode" = "8:{6B1772FE-B9B1-4F55-851D-A2D1266982CF}"
         "UpgradeCode" = "8:{C34E59C2-750C-4865-857C-7CC8A3BF387C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

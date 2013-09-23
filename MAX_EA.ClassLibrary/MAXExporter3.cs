@@ -30,7 +30,7 @@ namespace MAX_EA
             if (type == EA.ObjectType.otPackage)
             {
                 EA.Package package = Repository.GetTreeSelectedPackage();
-                string defaultFileName = string.Format(@"D:\tmp\{0}.max.xml", package.Name);
+                string defaultFileName = string.Format(@"C:\Temp\{0}.max.xml", package.Name);
                 string fileName = showFileDialog("Select output MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, false);
                 if (fileName != String.Empty)
                 {

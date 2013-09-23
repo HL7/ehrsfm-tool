@@ -97,7 +97,7 @@ namespace HL7_FM_EA_Extension
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // Devel path
-                filepath = string.Format(@"D:\Develop\ehrsfm_profile\trunk\HL7_FM_EA_Extension\Schematron\{0}", filename);
+                filepath = string.Format(@"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension\Schematron\{0}", filename);
             }
             else
             {

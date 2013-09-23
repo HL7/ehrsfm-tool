@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -27,7 +28,16 @@ namespace MAX_EA
 
         public static DateTime ElementValueDateTime(this XElement xElement, string name)
         {
-            return DateTime.Parse(ElementValue(xElement, name));
+            DateTime result;
+            try
+            {
+                result = DateTime.Parse(ElementValue(xElement, name), CultureInfo.CurrentCulture.DateTimeFormat);
+            }
+            catch (FormatException)
+            {
+                result = DateTime.Parse(ElementValue(xElement, name), CultureInfo.CurrentUICulture.DateTimeFormat);
+            }
+            return result;
         }
     }
 }

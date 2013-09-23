@@ -15,12 +15,14 @@ namespace MAX_EA.ClassLibrary.Tests
         EA.Repository Repos;
         // Import Exported TestCase in Package with name "Temp (used in the UnitTests)"
         const string GUID_TEMP_PACKAGE = "{1CC3E100-9474-4f2c-9FBD-75B7C4289FC6}";
+        const string TEMP_PATH = @"C:\Temp\";
+        const string PROJECT_PATH = @"C:\Eclipse Workspace\ehrsfm_profile\";
 
         [TestInitialize]
         public void TestInit()
         {
             Repos = new EA.Repository();
-            Repos.OpenFile(@"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\MAX-TestCases.eap");
+            Repos.OpenFile(PROJECT_PATH + "MAX-TestCases.eap");
             // clean temp packages
             EA.Package tempPackage = Repos.GetPackageByGuid(GUID_TEMP_PACKAGE);
             for (short p = 0; p < tempPackage.Packages.Count; p++)
@@ -35,13 +37,13 @@ namespace MAX_EA.ClassLibrary.Tests
         {
             EA.Package selectedPackage = (EA.Package)Repos.GetPackageByGuid(GUID_TEMP_PACKAGE).Packages.AddNew(Guid.NewGuid().ToString(), "Package");
             selectedPackage.Update();
-            new MAXImporter3().import(Repos, selectedPackage, @"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\TestCases\minimal-nothing.max.xml");
+            new MAXImporter3().import(Repos, selectedPackage, PROJECT_PATH + @"TestCases\minimal-nothing.max.xml");
             Assert.IsTrue(selectedPackage.Elements.Count == 0 && selectedPackage.Packages.Count == 0);
-            new MAXImporter3().import(Repos, selectedPackage, @"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\TestCases\minimal-both-empty.max.xml");
+            new MAXImporter3().import(Repos, selectedPackage, PROJECT_PATH + @"TestCases\minimal-both-empty.max.xml");
             Assert.IsTrue(selectedPackage.Elements.Count == 0 && selectedPackage.Packages.Count == 0);
-            new MAXImporter3().import(Repos, selectedPackage, @"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\TestCases\minimal-objects.max.xml");
+            new MAXImporter3().import(Repos, selectedPackage, PROJECT_PATH + @"TestCases\minimal-objects.max.xml");
             Assert.IsTrue(selectedPackage.Elements.Count == 0 && selectedPackage.Packages.Count == 0);
-            new MAXImporter3().import(Repos, selectedPackage, @"D:\Develop\ehrsfm_profile\trunk\MAX_EA.ClassLibrary.Tests\TestCases\minimal-relationships.max.xml");
+            new MAXImporter3().import(Repos, selectedPackage, PROJECT_PATH + @"TestCases\minimal-relationships.max.xml");
             Assert.IsTrue(selectedPackage.Elements.Count == 0 && selectedPackage.Packages.Count == 0);
         }
 
@@ -86,7 +88,7 @@ namespace MAX_EA.ClassLibrary.Tests
         private void TestRoundtrip(string guidPackageToTest)
         {
             // Export TestCase
-            string fileNameExport1 = @"d:\tmp\max-export1.xml";
+            string fileNameExport1 = TEMP_PATH + "max-export1.xml";
             MAXExporter3 exporter1 = new MAXExporter3();
             exporter1.exportPackage(Repos, Repos.GetPackageByGuid(guidPackageToTest), fileNameExport1);
 
@@ -99,7 +101,7 @@ namespace MAX_EA.ClassLibrary.Tests
 
             // Export Imported TestCase
             string guidImport2 = ((EA.Package)selectedPackage.Packages.GetAt(0)).PackageGUID;
-            string fileNameExport2 = @"d:\tmp\max-export2.xml";
+            string fileNameExport2 = TEMP_PATH + "max-export2.xml";
             MAXExporter3 exporter2 = new MAXExporter3();
             exporter2.exportPackage(Repos, Repos.GetPackageByGuid(guidImport2), fileNameExport2);
 
