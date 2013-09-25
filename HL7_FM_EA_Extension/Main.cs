@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using EA;
 
 namespace HL7_FM_EA_Extension
 {
@@ -319,5 +321,14 @@ namespace HL7_FM_EA_Extension
             }
         }
 
+        // --------------
+        // Add-In Search Methods
+        // --------------
+        public Boolean FindNonSHALL(EA.Repository Repository, string SearchText, out string XMLResults)
+        {
+            XElement xResults = new SearchMethods().FindNonSHALL(Repository, SearchText);
+            XMLResults = xResults.ToString();
+            return true;
+        }
     }
 }

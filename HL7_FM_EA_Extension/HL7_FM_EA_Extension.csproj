@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="R2Config.cs" />
     <Compile Include="R2Const.cs" />
+    <Compile Include="SearchMethods.cs" />
     <Compile Include="SectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
