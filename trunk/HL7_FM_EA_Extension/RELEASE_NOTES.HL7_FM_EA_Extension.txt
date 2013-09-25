@@ -8,6 +8,10 @@
 
 CHANGELOG
 =========
+[2013-sep-24]
+Mainm, SearchMethods
+- Added FindNonSHALL, returns all Header,Function,Criteria where Criteria != SHALL
+
 [2013-jul-24]
 - Enabled "RemovePreviousVersions" in Setup
 
