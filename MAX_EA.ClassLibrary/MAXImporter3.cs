@@ -14,9 +14,9 @@ namespace MAX_EA
         private const string TV_MAX_ID = "MAX::ID";
 
         private EA.Repository Repository;
-        private ProgressWindow window = new ProgressWindow();
-        private Dictionary<string, EA.Element> eaElementDict = new Dictionary<string, EA.Element>();
-        private Dictionary<string, EA.Package> eaPackageDict = new Dictionary<string, EA.Package>();
+        private readonly ProgressWindow progress = new ProgressWindow();
+        private readonly Dictionary<string, EA.Element> eaElementDict = new Dictionary<string, EA.Element>();
+        private readonly Dictionary<string, EA.Package> eaPackageDict = new Dictionary<string, EA.Package>();
 
         public bool import(EA.Repository Repository, EA.Package selectedPackage)
         {
@@ -34,8 +34,8 @@ namespace MAX_EA
         public bool import(EA.Repository Repository, EA.Package selectedPackage, string fileName)
         {
             this.Repository = Repository;
-            window.Show();
-            window.Refresh();
+            progress.Show();
+            progress.Refresh();
 
             bool issues = false;
 
@@ -52,27 +52,27 @@ namespace MAX_EA
                 int max = 0;
                 if (model.objects != null) max += model.objects.Count();
                 if (model.relationships != null) max += model.relationships.Count();
-                window.setup(max);
+                progress.setup(max);
 
                 // Don't use Linq constructs those are reeeeaaalllyyyy slow, create a helper dictionary for quick lookup
                 // This construct also makes sure there will be unique elements based on the ID|MAX::ID
                 eaElementDict.Clear();
                 eaPackageDict.Clear();
-                recurseEaPackage(selectedPackage, eaElementDict, eaPackageDict);
+                updateDicts(selectedPackage);
 
                 // do objects
-                if (model.objects != null && model.objects.Count() > 0)
+                if (model.objects != null && model.objects.Any())
                 {
                     issues |= importObjects(selectedPackage, model.objects);
                 }
 
                 // now do relationships
-                if (model.relationships != null && model.relationships.Count() > 0)
+                if (model.relationships != null && model.relationships.Any())
                 {
                     issues |= importRelationships(selectedPackage, model.relationships);
                 }
 
-                // Add/update export metadata to the model
+                // Add/update import metadata to the model
                 EA.TaggedValue tvImportDate = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::LastImportDate");
                 if (tvImportDate == null)
                 {
@@ -86,7 +86,7 @@ namespace MAX_EA
             Repository.BatchAppend = false;
             Repository.RefreshModelView(selectedPackage.PackageID);
 
-            window.Close();
+            progress.Close();
             return issues;
         }
 
@@ -100,7 +100,7 @@ namespace MAX_EA
                 string id = maxObj.id.Trim().ToUpper();
 
                 // first check if element already in package
-                // if not create otherwise use existing and update
+                // if not create, otherwise use existing and update
                 string name = maxObj.name;
                 EA.Element eaElement;
                 if (eaElementDict.ContainsKey(id))
@@ -202,14 +202,14 @@ namespace MAX_EA
                 EA.TaggedValue tvID = (EA.TaggedValue)eaElement.TaggedValues.GetByName(TV_MAX_ID);
                 if (tvID == null)
                 {
-                    tvID = ((EA.TaggedValue)eaElement.TaggedValues.AddNew(TV_MAX_ID, ""));
+                    tvID = (EA.TaggedValue)eaElement.TaggedValues.AddNew(TV_MAX_ID, "");
                 }
                 tvID.Value = id;
                 tvID.Update();
 
                 if (maxObj.modifiedSpecified)
                 {
-                    eaElement.Modified = (DateTime)maxObj.modified; // explicit convertion of the value to a DateTime
+                    eaElement.Modified = maxObj.modified;
                 }
                 if (maxObj.tag != null)
                 {
@@ -293,7 +293,7 @@ namespace MAX_EA
                         }
                     }
                 }
-                window.step();
+                progress.step();
             }
             return issues;
         }
@@ -326,7 +326,7 @@ namespace MAX_EA
                     eaSourceElement.Update();
                     if (eaSourceElement.TaggedValues.GetByName(TV_MAX_ID) == null)
                     {
-                        EA.TaggedValue tvID = ((EA.TaggedValue)eaSourceElement.TaggedValues.AddNew(TV_MAX_ID, ""));
+                        EA.TaggedValue tvID = (EA.TaggedValue)eaSourceElement.TaggedValues.AddNew(TV_MAX_ID, "");
                         tvID.Value = sourceId;
                         tvID.Update();
                     }
@@ -423,12 +423,12 @@ namespace MAX_EA
                     eaCon.Notes = maxRel.notes.Text[0].Trim().Replace("\n", "\r\n");
                 }
                 eaCon.Update();
-                window.step();
+                progress.step();
             }
             return issues;
         }
 
-        private void recurseEaPackage(EA.Package eaPackage, Dictionary<string, EA.Element> eaElementDict, Dictionary<string, EA.Package> eaPackageDict)
+        private void updateDicts(EA.Package eaPackage)
         {
             EA.TaggedValue tvID = (EA.TaggedValue)eaPackage.Element.TaggedValues.GetByName(TV_MAX_ID);
             if (tvID != null)
@@ -451,7 +451,7 @@ namespace MAX_EA
                 {
                     eaElementDict[eaSubPackage.PackageID.ToString()] = eaSubPackage.Element;
                 }
-                recurseEaPackage(eaSubPackage, eaElementDict, eaPackageDict);
+                updateDicts(eaSubPackage);
             }
             foreach (EA.Element eaElement in eaPackage.Elements)
             {
@@ -464,11 +464,11 @@ namespace MAX_EA
                 {
                     eaElementDict[eaElement.ElementID.ToString()] = eaElement;
                 }
-                recurseEaElements(eaElement, eaElementDict);
+                updateElementDict(eaElement);
             }
         }
 
-        private void recurseEaElements(EA.Element eaElement, Dictionary<string, EA.Element> eaElementDict)
+        private void updateElementDict(EA.Element eaElement)
         {
             foreach (EA.Element eaChildElement in eaElement.Elements)
             {
@@ -481,7 +481,7 @@ namespace MAX_EA
                 {
                     eaElementDict[eaChildElement.ElementID.ToString()] = eaChildElement;
                 }
-                recurseEaElements(eaChildElement, eaElementDict);
+                updateElementDict(eaChildElement);
             }
         }
     }

@@ -25,9 +25,17 @@ TODO
 
 ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 	Workaround: set system dateformat English (VS)
+	Combinations tried: 
+		Windows Language Dutch + Date Format: Dutch & English -> works
+		Windows Language English + Date Format: Dutch doesnot work, English -> works
 
 CHANGELOG
 =========
+[2013-sep-26]
+MAXImproter3/MAXExporter3: Applied some Resharper suggestions.
+MAXExporter3:
+- Added start of export from Diagram in Comments!
+
 [2013-sep-23]
 - Moved some paths to "C:\Temp" instead of "D:\"
 MAXExporter3:
