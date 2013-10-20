@@ -16,13 +16,13 @@ namespace MAX_EA
         // Temporary tagged value used for externalized ID
         private const string TV_MAX_ID = "MAX::ID";
 
-        ProgressWindow progress = new ProgressWindow();
-        int progress_max;
-        List<ObjectType> objects;
-        List<RelationshipType> relationships;
-        EA.Repository Repository;
-        Dictionary<int, int> mapPackageToObjectID = new Dictionary<int, int>();
-        Dictionary<int, string> mapObjectID2MAXID = new Dictionary<int, string>();
+        private readonly ProgressWindow progress = new ProgressWindow();
+        private int progress_max;
+        private List<ObjectType> objects;
+        private List<RelationshipType> relationships;
+        private EA.Repository Repository;
+        private readonly Dictionary<int, int> mapPackageToObjectID = new Dictionary<int, int>();
+        private readonly Dictionary<int, string> mapObjectID2MAXID = new Dictionary<int, string>();
 
         public void export(EA.Repository Repository)
         {
@@ -37,6 +37,16 @@ namespace MAX_EA
                     exportPackage(Repository, package, fileName);
                 }
             }
+/*            else if (type == EA.ObjectType.otDiagram)
+            {
+                EA.Diagram diagram = (EA.Diagram)Repository.GetTreeSelectedObject();
+                string defaultFileName = string.Format(@"C:\Temp\{0}.max.xml", diagram.Name);
+                string fileName = showFileDialog("Select output MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, false);
+                if (fileName != String.Empty)
+                {
+                    exportDiagram(Repository, diagram, fileName);
+                }
+            }*/
             else
             {
                 System.Windows.Forms.MessageBox.Show("Select a package");
@@ -51,6 +61,11 @@ namespace MAX_EA
                 EA.Package package = Repository.GetTreeSelectedPackage();
                 exportPackage(Repository, package, fileName);
             }
+/*            else if (type == EA.ObjectType.otDiagram)
+            {
+                EA.Diagram diagram = (EA.Diagram)Repository.GetTreeSelectedObject();
+                exportDiagram(Repository, diagram, fileName);
+            }*/
         }
 
         public void exportPackage(EA.Repository Repository, EA.Package package, string fileName)
@@ -84,6 +99,38 @@ namespace MAX_EA
                 serializer.Serialize(writer, model);
             }
         }
+
+/*        public void exportDiagram(EA.Repository Repository, EA.Diagram diagram, string fileName)
+        {
+            this.Repository = Repository;
+            progress_max = 1;
+            progress.setup(progress_max);
+            progress.Show();
+            progress.Refresh();
+
+            Repository.EnableCache = true;
+            // Add/update export metadata to the model
+            ModelType model = new ModelType();
+            model.exportDate = DateTime.Now.ToString();
+
+            // Now export selected package
+            objects = new List<ObjectType>();
+            relationships = new List<RelationshipType>();
+            //visitSelectedPackage(package.PackageID);
+
+            model.objects = objects.ToArray();
+            model.relationships = relationships.ToArray();
+            progress.Close();
+
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.NewLineChars = "\n";
+            XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
+            using (XmlWriter writer = XmlWriter.Create(fileName, settings))
+            {
+                serializer.Serialize(writer, model);
+            }
+        }*/
 
         private void visitSelectedPackage(int Package_ID)
         {
@@ -209,10 +256,12 @@ namespace MAX_EA
                     string tagName = xTV.ElementValue("Property");
                     if (!TV_MAX_ID.Equals(tagName))
                     {
-                        TagType maxTag = new TagType();
-                        maxTag.name = tagName;
-                        maxTag.value = xTV.ElementValue("Value");
-                        maxTag.Text = new String[] { xTV.ElementValue("Notes") };
+                        TagType maxTag = new TagType 
+                        {
+                            name = tagName,
+                            value = xTV.ElementValue("Value"),
+                            Text = new String[] {xTV.ElementValue("Notes")}
+                        };
                         tags.Add(maxTag);
                     }
                 }
@@ -313,10 +362,12 @@ namespace MAX_EA
                     string tagName = xTV.ElementValue("Property");
                     if (!TV_MAX_ID.Equals(tagName))
                     {
-                        TagType maxTag = new TagType();
-                        maxTag.name = tagName;
-                        maxTag.value = xTV.ElementValue("Value");
-                        maxTag.Text = new String[] { xTV.ElementValue("Notes") };
+                        TagType maxTag = new TagType
+                        {
+                            name = tagName,
+                            value = xTV.ElementValue("Value"),
+                            Text = new String[] {xTV.ElementValue("Notes")}
+                        };
                         tags.Add(maxTag);
                     }
                 }
@@ -351,10 +402,12 @@ namespace MAX_EA
                     List<TagType> attTags = new List<TagType>();
                     foreach (XElement xTV in xEADATA_att_tv.XPathSelectElements("//Data/Row"))
                     {
-                        TagType maxTag = new TagType();
-                        maxTag.name = xTV.ElementValue("Property");
-                        maxTag.value = xTV.ElementValue("VALUE");
-                        maxTag.Text = new String[] { xTV.ElementValue("NOTES") };
+                        TagType maxTag = new TagType
+                        {
+                            name = xTV.ElementValue("Property"),
+                            value = xTV.ElementValue("VALUE"),
+                            Text = new String[] { xTV.ElementValue("NOTES") }
+                        };
                         attTags.Add(maxTag);
                     }
                     maxAtt.tag = attTags.ToArray();
