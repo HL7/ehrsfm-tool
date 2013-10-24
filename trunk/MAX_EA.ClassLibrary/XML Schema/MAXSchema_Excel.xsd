@@ -46,7 +46,7 @@
       <xs:element name="alias" type="xs:string" minOccurs="0" maxOccurs="1" />
       <xs:element name="notes" type="xs:string" minOccurs="0" maxOccurs="1" />
       <xs:element name="stereotype" type="xs:string" minOccurs="0" maxOccurs="1" />
-      <xs:element name="type" type="ObjectTypeEnum" minOccurs="0" maxOccurs="1" default="Class" />
+      <xs:element name="type" type="ObjectTypeEnum" minOccurs="0" maxOccurs="1" />
       <xs:element name="parentId" type="xs:string" minOccurs="0" maxOccurs="1" />
       <xs:element name="modified" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
@@ -68,7 +68,7 @@
       <xs:element name="destCard" type="xs:token" minOccurs="0" maxOccurs="1" />
       <xs:element name="notes" type="xs:string" minOccurs="0" maxOccurs="1" />
       <xs:element name="stereotype" type="xs:token" minOccurs="0" maxOccurs="1" />
-      <xs:element name="type" type="RelationshipTypeEnum" minOccurs="0" maxOccurs="1" default="Association" />
+      <xs:element name="type" type="RelationshipTypeEnum" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

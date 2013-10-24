@@ -69,8 +69,11 @@ namespace MAX_EA.MAXSchema {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.ComponentModel.DefaultValueAttribute(ObjectTypeEnum.Class)]
         public ObjectTypeEnum type;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool typeSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -99,10 +102,6 @@ namespace MAX_EA.MAXSchema {
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool isAbstractSpecified;
-        
-        public ObjectType() {
-            this.type = ObjectTypeEnum.Class;
-        }
     }
     
     /// <remarks/>
@@ -168,16 +167,15 @@ namespace MAX_EA.MAXSchema {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.ComponentModel.DefaultValueAttribute(RelationshipTypeEnum.Association)]
         public RelationshipTypeEnum type;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool typeSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TagType[] tag;
-        
-        public RelationshipType() {
-            this.type = RelationshipTypeEnum.Association;
-        }
     }
     
     /// <remarks/>

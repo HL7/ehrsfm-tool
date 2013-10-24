@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="MAXDiff.cs" />
     <Compile Include="XML Schema\MAXSchema.cs">
       <DependentUpon>MAXSchema.xsd</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
