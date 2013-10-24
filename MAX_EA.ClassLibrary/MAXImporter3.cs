@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MAX_EA.MAXSchema;
 using System.Xml.Serialization;
 using System.IO;
@@ -96,7 +95,6 @@ namespace MAX_EA
             int objPos = 0, pkgPos = 0;
             foreach (ObjectType maxObj in objects)
             {
-                string type = Enum.GetName(typeof(ObjectTypeEnum), maxObj.type);
                 string id = maxObj.id.Trim().ToUpper();
 
                 // first check if element already in package
@@ -107,10 +105,21 @@ namespace MAX_EA
                 {
                     eaElement = eaElementDict[id];
                     eaElement.Name = name;
-                    eaElement.Type = type;
+                    // Only change if not Package type (cannot be changed) or given
+                    if (maxObj.typeSpecified && !"Package".Equals(eaElement.Type))
+                    {
+                        eaElement.Type = Enum.GetName(typeof(ObjectTypeEnum), maxObj.type);
+                    }
                 }
                 else
                 {
+                    // when object doesnot exist, then default to "Class"
+                    string type = "Class";
+                    if (maxObj.typeSpecified)
+                    {
+                        type = Enum.GetName(typeof (ObjectTypeEnum), maxObj.type);
+                    }
+
                     string parentId = maxObj.parentId;
                     if ("Package".Equals(type))
                     {
