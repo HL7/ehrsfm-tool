@@ -172,6 +172,7 @@ namespace MAX_EA
             }
             maxObj.stereotype = xRow.ElementValue("Stereotype");
             maxObj.type = ObjectTypeEnum.Package;
+            maxObj.typeSpecified = true;
             maxObj.modified = xRow.ElementValueDateTime("ModifiedDate");
             maxObj.modifiedSpecified = true;
             mapPackageToObjectID[Package_ID] = Object_ID;
@@ -237,9 +238,14 @@ namespace MAX_EA
                 int Sub_Package_ID = xRow.ElementValueInt("Package_ID");
                 maxObj.name = xRow.ElementValue("Name");
                 maxObj.alias = xRow.ElementValue("Alias");
-                maxObj.notes = new MarkupType() { Text = new String[] { xRow.ElementValue("Notes") } };
+                string notes = xRow.ElementValue("Notes");
+                if (!string.IsNullOrEmpty(notes))
+                {
+                    maxObj.notes = new MarkupType() { Text = new String[] { notes } };
+                }
                 maxObj.stereotype = xRow.ElementValue("Stereotype");
                 maxObj.type = ObjectTypeEnum.Package;
+                maxObj.typeSpecified = true;
                 if (mapObjectID2MAXID.ContainsKey(Package_Object_ID))
                 {
                     maxObj.parentId = mapObjectID2MAXID[Package_Object_ID];
@@ -339,6 +345,7 @@ namespace MAX_EA
                 maxObj.notes = new MarkupType() { Text = new String[] { el.Notes } };
                 maxObj.stereotype = xRow.ElementValue("Stereotype");
                 maxObj.type = (ObjectTypeEnum)Enum.Parse(typeof(ObjectTypeEnum), Object_Type, false);
+                maxObj.typeSpecified = true;
                 int EA_ParentID = int.Parse(xRow.ElementValue("ParentID"));
                 // ParentID = 0 for direct childs of a Package, ParentID is only used within a Package
                 int maxParentID = EA_ParentID;
@@ -434,7 +441,7 @@ namespace MAX_EA
                 if (!Enum.IsDefined(typeof(RelationshipTypeEnum), Connector_Type))
                 {
                     progress.step();
-                    Repository.WriteOutput("MAX", string.Format("Ignored the not Connector_Type {0}", Connector_Type), -1);
+                    Repository.WriteOutput("MAX", string.Format("Ignored the (not supported) relationship type {0}", Connector_Type), -1);
                     continue;
                 }
 

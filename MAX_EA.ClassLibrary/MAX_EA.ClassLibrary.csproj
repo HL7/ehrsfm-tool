@@ -65,6 +65,7 @@
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="XML Transforms\flatten-max-for-excel.xslt" />
     <None Include="XML Schema\MAX XML Schema.png" />
     <None Include="Examples\MAX-example.xml">
       <SubType>Designer</SubType>
