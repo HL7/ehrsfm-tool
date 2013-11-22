@@ -10,6 +10,7 @@ TODO
 	- update of attributes gives "Action not supported" Exception
 	- how to detect deletes of objects/relationships when updating?
 	-- Suggestion from the CIC WG (sept-2013) is to add a column for this!
+    - Known issue: Deeper than 1 nesting still could give problems.
 - MAXExporter:
 	- also support Diagrams -> Diagram serves as a selection of the elements to export!
 	- cannot get "alias" of attributes in SQLXML?
@@ -32,6 +33,27 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2013-nov-22]
+MAXSchema.xsd:
+- Added "Realization" and "InformationFlow" releationship types
+
+[2013-nov-20]
+MAXImporter3:
+- Ignore empty object.parentId
+
+[2013-nov-06]
+MAXImporter3:
+- Made more robust, e.g. skip maxObj where id=null and maxRel where sourceId=null || destId=null <- should be checked by the XSD!
+- First import objects that have no parentId and then the ones that do. 
+  This makes the import less reliant on the order of the objects when nesting is used.
+
+[2013-oct-25]
+XML Transforms/flatten-max-for-excel.xslt:
+- Added XML Transform to flatten deep attributes & tags for easy import in Excel.
+MAXExporter3:
+- If object notes is empty then don't include empty notes element
+- object type was missing in export because forgot to set typeSpecified
+
 [2013-oct-21]
 MAXDiff:
 - Initial version

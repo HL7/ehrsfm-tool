@@ -7,6 +7,14 @@ using System.IO;
 
 namespace MAX_EA
 {
+    class MAXImporterWorkingMemory
+    {
+        public EA.Package eaPackage;
+        public int objPos = 0;
+        public int pkgPos = 0;
+        public bool issues = false;
+    }
+
     public class MAXImporter3 : Util
     {
         // Tagged value used for externalized ID
@@ -62,7 +70,9 @@ namespace MAX_EA
                 // do objects
                 if (model.objects != null && model.objects.Any())
                 {
-                    issues |= importObjects(selectedPackage, model.objects);
+                    MAXImporterWorkingMemory wm = new MAXImporterWorkingMemory();
+                    wm.eaPackage = selectedPackage;
+                    issues |= importObjects(model.objects, wm);
                 }
 
                 // now do relationships
@@ -89,222 +99,236 @@ namespace MAX_EA
             return issues;
         }
 
-        private bool importObjects(EA.Package selectedPackage, ObjectType[] objects)
+        private bool importObjects(ObjectType[] objects, MAXImporterWorkingMemory wm)
         {
-            bool issues = false;
-            int objPos = 0, pkgPos = 0;
-            foreach (ObjectType maxObj in objects)
+            // first do objects without a parent
+            foreach (ObjectType maxObj in objects.Where(maxObj => string.IsNullOrEmpty(maxObj.parentId)))
             {
-                string id = maxObj.id.Trim().ToUpper();
+                importObject(maxObj, wm);
+            }
+            foreach (ObjectType maxObj in objects.Where(maxObj => !string.IsNullOrEmpty(maxObj.parentId)))
+            {
+                importObject(maxObj, wm);
+            }
+            return wm.issues;
+        }
 
-                // first check if element already in package
-                // if not create, otherwise use existing and update
-                string name = maxObj.name;
-                EA.Element eaElement;
-                if (eaElementDict.ContainsKey(id))
+        private void importObject(ObjectType maxObj, MAXImporterWorkingMemory wm)
+        {
+            if (maxObj.id == null)
+            {
+                Repository.WriteOutput("MAX", string.Format("Skipped {0} because id missing.", maxObj.name), 0);
+                wm.issues = true;
+                return;
+            }
+            string id = maxObj.id.Trim().ToUpper();
+
+            // first check if element already in package
+            // if not create, otherwise use existing and update
+            string name = maxObj.name;
+            EA.Element eaElement;
+            if (eaElementDict.ContainsKey(id))
+            {
+                eaElement = eaElementDict[id];
+                eaElement.Name = name;
+                // Only change if not Package type (cannot be changed) or given
+                if (maxObj.typeSpecified && !"Package".Equals(eaElement.Type))
                 {
-                    eaElement = eaElementDict[id];
-                    eaElement.Name = name;
-                    // Only change if not Package type (cannot be changed) or given
-                    if (maxObj.typeSpecified && !"Package".Equals(eaElement.Type))
-                    {
-                        eaElement.Type = Enum.GetName(typeof(ObjectTypeEnum), maxObj.type);
-                    }
+                    eaElement.Type = Enum.GetName(typeof(ObjectTypeEnum), maxObj.type);
                 }
-                else
+            }
+            else
+            {
+                // when object doesnot exist, then default to "Class"
+                string type = "Class";
+                if (maxObj.typeSpecified)
                 {
-                    // when object doesnot exist, then default to "Class"
-                    string type = "Class";
-                    if (maxObj.typeSpecified)
-                    {
-                        type = Enum.GetName(typeof (ObjectTypeEnum), maxObj.type);
-                    }
+                    type = Enum.GetName(typeof(ObjectTypeEnum), maxObj.type);
+                }
 
-                    string parentId = maxObj.parentId;
-                    if ("Package".Equals(type))
+                string parentId = maxObj.parentId;
+                if ("Package".Equals(type))
+                {
+                    EA.Package eaPackage;
+                    if (!string.IsNullOrEmpty(parentId))
                     {
-                        EA.Package eaPackage;
-                        if (parentId != null)
+                        parentId = parentId.Trim().ToUpper();
+                        if (eaPackageDict.ContainsKey(parentId))
                         {
-                            parentId = parentId.Trim().ToUpper();
-                            if (eaPackageDict.ContainsKey(parentId))
-                            {
-                                eaPackage = (EA.Package)eaPackageDict[parentId].Packages.AddNew(name, type);
-                            }
-                            else
-                            {
-                                Repository.WriteOutput("MAX", string.Format("Parent Package(id={0}) for Package(id={1}) not created yet. To correct: adjust the order in the MAX XML file. Fallback to selected Package.", parentId, id), 0);
-                                issues = true;
-                                eaPackage = (EA.Package)selectedPackage.Packages.AddNew(name, type);
-                            }
+                            eaPackage = (EA.Package)eaPackageDict[parentId].Packages.AddNew(name, type);
                         }
                         else
                         {
-                            eaPackage = (EA.Package)selectedPackage.Packages.AddNew(name, type);
+                            Repository.WriteOutput("MAX", string.Format("Parent Package(id={0}) for Package(id={1}) not created yet. To correct: adjust the order in the MAX XML file. Fallback to selected Package.", parentId, id), 0);
+                            wm.issues = true;
+                            eaPackage = (EA.Package)wm.eaPackage.Packages.AddNew(name, type);
                         }
-                        eaPackage.TreePos = pkgPos++;
-                        eaPackage.Update();
-                        eaPackageDict[id] = eaPackage;
-                        eaElement = eaPackage.Element;
                     }
                     else
                     {
-                        if (parentId != null)
+                        eaPackage = (EA.Package)wm.eaPackage.Packages.AddNew(name, type);
+                    }
+                    eaPackage.TreePos = wm.pkgPos++;
+                    eaPackage.Update();
+                    eaPackageDict[id] = eaPackage;
+                    eaElement = eaPackage.Element;
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(parentId))
+                    {
+                        parentId = parentId.Trim().ToUpper();
+                        EA.Element parentElement;
+                        if (eaElementDict.ContainsKey(parentId))
                         {
-                            parentId = parentId.Trim().ToUpper();
-                            EA.Element parentElement;
-                            if (eaElementDict.ContainsKey(parentId))
-                            {
-                                parentElement = eaElementDict[parentId];
-                            }
-                            else
-                            {
-                                Repository.WriteOutput("MAX", string.Format("Parent Element(id={0}) for Element(id={1}) not created yet. To correct: adjust the order in the MAX XML file. Fallback to selected Package.", parentId, id), 0);
-                                issues = true;
-                                parentElement = selectedPackage.Element;
-                            }
-                            if ("Package".Equals(parentElement.Type))
-                            {
-                                EA.Package parentPackage;
-                                if (eaPackageDict.ContainsKey(parentId))
-                                {
-                                    parentPackage = eaPackageDict[parentId];
-                                }
-                                else
-                                {
-                                    Repository.WriteOutput("MAX", string.Format("Parent Package(id={0}) for Element(id={1}) not created yet. To correct: adjust the order in the MAX XML file. Fallback to selected Package.", parentId, id), 0);
-                                    issues = true;
-                                    parentPackage = selectedPackage;
-                                }
-                                eaElement = (EA.Element)parentPackage.Elements.AddNew(name, type);
-                            }
-                            else
-                            {
-                                eaElement = (EA.Element)parentElement.Elements.AddNew(name, type);
-                            }
+                            parentElement = eaElementDict[parentId];
                         }
                         else
                         {
-                            eaElement = (EA.Element)selectedPackage.Elements.AddNew(name, type);
+                            Repository.WriteOutput("MAX", string.Format("Parent Element(id={0}) for Element(id={1}) not created yet. To correct: adjust the order in the MAX XML file. Fallback to selected Package.", parentId, id), 0);
+                            wm.issues = true;
+                            parentElement = wm.eaPackage.Element;
                         }
-                    }
-                    eaElement.TreePos = objPos++;
-                    eaElementDict[id] = eaElement;
-                }
-                if (maxObj.alias != null)
-                {
-                    eaElement.Alias = maxObj.alias;
-                }
-                if (maxObj.stereotype != null)
-                {
-                    eaElement.Stereotype = maxObj.stereotype;
-                }
-                if (maxObj.notes != null && maxObj.notes.Text != null && maxObj.notes.Text.Length > 0)
-                {
-                    eaElement.Notes = maxObj.notes.Text[0].Trim().Replace("\n", "\r\n");
-                }
-                if (maxObj.isAbstractSpecified)
-                {
-                    eaElement.Abstract = maxObj.isAbstract ? "1" : "0";
-                }
-                eaElement.Update();
-                EA.TaggedValue tvID = (EA.TaggedValue)eaElement.TaggedValues.GetByName(TV_MAX_ID);
-                if (tvID == null)
-                {
-                    tvID = (EA.TaggedValue)eaElement.TaggedValues.AddNew(TV_MAX_ID, "");
-                }
-                tvID.Value = id;
-                tvID.Update();
-
-                if (maxObj.modifiedSpecified)
-                {
-                    eaElement.Modified = maxObj.modified;
-                }
-                if (maxObj.tag != null)
-                {
-                    foreach (TagType maxTag in maxObj.tag)
-                    {
-                        string tagName = maxTag.name.Trim();
-                        EA.TaggedValue tv = (EA.TaggedValue)eaElement.TaggedValues.GetByName(tagName);
-                        if (tv == null)
+                        if ("Package".Equals(parentElement.Type))
                         {
-                            tv = (EA.TaggedValue)eaElement.TaggedValues.AddNew(tagName, "TaggedValue");
-                        }
-                        if (maxTag.value != null)
-                        {
-                            tv.Value = maxTag.value;
-                        }
-                        if (maxTag.Text != null && maxTag.Text.Length > 0)
-                        {
-                            tv.Notes = maxTag.Text[0].Trim().Replace("\n", "\r\n");
-                        }
-                        tv.Update();
-                    }
-                }
-                if (maxObj.attribute != null)
-                {
-                    int attPos = 0;
-                    eaElement.Attributes.Refresh();
-                    foreach (AttributeType maxAtt in maxObj.attribute)
-                    {
-                        string attName = maxAtt.name.Trim();
-                        EA.Attribute att = (EA.Attribute)eaElement.Attributes.GetByName(attName);
-                        if (att == null)
-                        {
-                            att = (EA.Attribute)eaElement.Attributes.AddNew(attName, "");
-                        }
-                        att.Pos = attPos++;
-                        if (maxAtt.alias != null)
-                        {
-                            att.Alias = maxAtt.alias;
-                        }
-                        if (maxAtt.type != null)
-                        {
-                            att.Type = maxAtt.type;
-                        }
-                        if (maxAtt.minCard != null)
-                        {
-                            att.LowerBound = maxAtt.minCard;
-                        }
-                        if (maxAtt.maxCard != null)
-                        {
-                            att.UpperBound = maxAtt.maxCard;
-                        }
-                        if (maxAtt.value != null)
-                        {
-                            att.Default = maxAtt.value;
-                        }
-                        if (maxAtt.Text != null && maxAtt.Text.Length > 0)
-                        {
-                            att.Notes = maxAtt.Text[0].Trim().Replace("\n", "\r\n");
-                        }
-                        if (maxAtt.stereotype != null)
-                        {
-                            att.Stereotype = maxAtt.stereotype;
-                        }
-                        if (maxAtt.isReadOnlySpecified)
-                        {
-                            att.IsConst = maxAtt.isReadOnly;
-                        }
-                        att.Update();
-                        if (maxAtt.tag != null)
-                        {
-                            foreach (TagType maxTag in maxAtt.tag)
+                            EA.Package parentPackage;
+                            if (eaPackageDict.ContainsKey(parentId))
                             {
-                                EA.AttributeTag attTag = (EA.AttributeTag)att.TaggedValues.AddNew(maxTag.name, "");
-                                attTag.Value = maxTag.value;
-                                if (maxTag.Text != null && maxTag.Text.Length > 0)
-                                {
-                                    attTag.Notes = maxTag.Text[0].Trim().Replace("\n", "\r\n");
-                                }
-                                attTag.Update();
+                                parentPackage = eaPackageDict[parentId];
                             }
+                            else
+                            {
+                                Repository.WriteOutput("MAX", string.Format("Parent Package(id={0}) for Element(id={1}) not created yet. To correct: adjust the order in the MAX XML file. Fallback to selected Package.", parentId, id), 0);
+                                wm.issues = true;
+                                parentPackage = wm.eaPackage;
+                            }
+                            eaElement = (EA.Element)parentPackage.Elements.AddNew(name, type);
+                        }
+                        else
+                        {
+                            eaElement = (EA.Element)parentElement.Elements.AddNew(name, type);
+                        }
+                    }
+                    else
+                    {
+                        eaElement = (EA.Element)wm.eaPackage.Elements.AddNew(name, type);
+                    }
+                }
+                eaElement.TreePos = wm.objPos++;
+                eaElementDict[id] = eaElement;
+            }
+            if (maxObj.alias != null)
+            {
+                eaElement.Alias = maxObj.alias;
+            }
+            if (maxObj.stereotype != null)
+            {
+                eaElement.Stereotype = maxObj.stereotype;
+            }
+            if (maxObj.notes != null && maxObj.notes.Text != null && maxObj.notes.Text.Length > 0)
+            {
+                eaElement.Notes = maxObj.notes.Text[0].Trim().Replace("\n", "\r\n");
+            }
+            if (maxObj.isAbstractSpecified)
+            {
+                eaElement.Abstract = maxObj.isAbstract ? "1" : "0";
+            }
+            eaElement.Update();
+            EA.TaggedValue tvID = (EA.TaggedValue)eaElement.TaggedValues.GetByName(TV_MAX_ID);
+            if (tvID == null)
+            {
+                tvID = (EA.TaggedValue)eaElement.TaggedValues.AddNew(TV_MAX_ID, "");
+            }
+            tvID.Value = id;
+            tvID.Update();
+
+            if (maxObj.modifiedSpecified)
+            {
+                eaElement.Modified = maxObj.modified;
+            }
+            if (maxObj.tag != null)
+            {
+                foreach (TagType maxTag in maxObj.tag)
+                {
+                    string tagName = maxTag.name.Trim();
+                    EA.TaggedValue tv = (EA.TaggedValue)eaElement.TaggedValues.GetByName(tagName);
+                    if (tv == null)
+                    {
+                        tv = (EA.TaggedValue)eaElement.TaggedValues.AddNew(tagName, "TaggedValue");
+                    }
+                    if (maxTag.value != null)
+                    {
+                        tv.Value = maxTag.value;
+                    }
+                    if (maxTag.Text != null && maxTag.Text.Length > 0)
+                    {
+                        tv.Notes = maxTag.Text[0].Trim().Replace("\n", "\r\n");
+                    }
+                    tv.Update();
+                }
+            }
+            if (maxObj.attribute != null)
+            {
+                int attPos = 0;
+                eaElement.Attributes.Refresh();
+                foreach (AttributeType maxAtt in maxObj.attribute)
+                {
+                    string attName = maxAtt.name.Trim();
+                    EA.Attribute att = (EA.Attribute)eaElement.Attributes.GetByName(attName);
+                    if (att == null)
+                    {
+                        att = (EA.Attribute)eaElement.Attributes.AddNew(attName, "");
+                    }
+                    att.Pos = attPos++;
+                    if (maxAtt.alias != null)
+                    {
+                        att.Alias = maxAtt.alias;
+                    }
+                    if (maxAtt.type != null)
+                    {
+                        att.Type = maxAtt.type;
+                    }
+                    if (maxAtt.minCard != null)
+                    {
+                        att.LowerBound = maxAtt.minCard;
+                    }
+                    if (maxAtt.maxCard != null)
+                    {
+                        att.UpperBound = maxAtt.maxCard;
+                    }
+                    if (maxAtt.value != null)
+                    {
+                        att.Default = maxAtt.value;
+                    }
+                    if (maxAtt.Text != null && maxAtt.Text.Length > 0)
+                    {
+                        att.Notes = maxAtt.Text[0].Trim().Replace("\n", "\r\n");
+                    }
+                    if (maxAtt.stereotype != null)
+                    {
+                        att.Stereotype = maxAtt.stereotype;
+                    }
+                    if (maxAtt.isReadOnlySpecified)
+                    {
+                        att.IsConst = maxAtt.isReadOnly;
+                    }
+                    att.Update();
+                    if (maxAtt.tag != null)
+                    {
+                        foreach (TagType maxTag in maxAtt.tag)
+                        {
+                            EA.AttributeTag attTag = (EA.AttributeTag)att.TaggedValues.AddNew(maxTag.name, "");
+                            attTag.Value = maxTag.value;
+                            if (maxTag.Text != null && maxTag.Text.Length > 0)
+                            {
+                                attTag.Notes = maxTag.Text[0].Trim().Replace("\n", "\r\n");
+                            }
+                            attTag.Update();
                         }
                     }
                 }
-                progress.step();
             }
-            return issues;
+            progress.step();
         }
 
         private bool importRelationships(EA.Package selectedPackage, RelationshipType[] relationships)
@@ -323,12 +347,30 @@ namespace MAX_EA
 
             foreach (RelationshipType maxRel in relationships)
             {
+                if (maxRel.sourceId == null || maxRel.destId == null)
+                {
+                    Repository.WriteOutput("MAX", "Skipped relationship missing sourceId and destId", 0);
+                    issues = true;
+                    continue;
+                }
+                else if (maxRel.sourceId == null)
+                {
+                    Repository.WriteOutput("MAX", string.Format("Skipped relationship dest {0}, missing sourceId", maxRel.destId), 0);
+                    issues = true;
+                    continue;
+                }
+                else if (maxRel.destId == null)
+                {
+                    Repository.WriteOutput("MAX", string.Format("Skipped relationship source {0}, missing destId", maxRel.id), 0);
+                    issues = true;
+                    continue;
+                }
                 string sourceId = maxRel.sourceId.Trim().ToUpper();
                 EA.Element eaSourceElement;
                 if (!eaElementDict.ContainsKey(sourceId))
                 {
-                    // create placeholder object; missing in objects list??
-                    Repository.WriteOutput("MAX", string.Format("Abstract placeholder created for missing Source id={0}", sourceId), 0);
+                    // create abstract placeholder object; missing in objects list??
+                    Repository.WriteOutput("MAX", string.Format("Placeholder created for missing source {0}", sourceId), 0);
                     issues = true;
                     eaSourceElement = (EA.Element)selectedPackage.Elements.AddNew(string.Format("_{0}", sourceId), "Class");
                     eaSourceElement.Abstract = "1";
@@ -351,7 +393,7 @@ namespace MAX_EA
                 if (!eaElementDict.ContainsKey(destId))
                 {
                     // create placeholder object; missing in objects list??
-                    Repository.WriteOutput("MAX", string.Format("Abstract placeholder created for missing Dest id={0}", sourceId), 0);
+                    Repository.WriteOutput("MAX", string.Format("Placeholder created for missing dest {0}", destId), 0);
                     issues = true;
                     eaDestElement = (EA.Element)selectedPackage.Elements.AddNew(string.Format("_{0}", destId), "Class");
                     eaDestElement.Abstract = "1";
@@ -369,16 +411,20 @@ namespace MAX_EA
                     eaDestElement = eaElementDict[destId];
                 }
 
-                string type = Enum.GetName(typeof(RelationshipTypeEnum), maxRel.type);
-                // Handle special types
-                switch (maxRel.type)
+                string type = "Association";
+                if (maxRel.typeSpecified)
                 {
-                    case RelationshipTypeEnum.Composition:
-                        type = "Aggregation";
-                        break;
-                    case RelationshipTypeEnum.DirectedAssociation:
-                        type = "Association";
-                        break;
+                    type = Enum.GetName(typeof(RelationshipTypeEnum), maxRel.type);
+                    // Handle special types
+                    switch (maxRel.type)
+                    {
+                        case RelationshipTypeEnum.Composition:
+                            type = "Aggregation";
+                            break;
+                        case RelationshipTypeEnum.DirectedAssociation:
+                            type = "Association";
+                            break;
+                    }
                 }
                 string label = maxRel.label;
                 if (label != null)
