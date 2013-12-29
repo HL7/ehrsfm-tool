@@ -48,10 +48,9 @@ namespace HL7_FM_EA_Extension
             XElement xModel = XElement.Load(xmlFileName);
 
             // setup progress window
+            progress.Show();
             int functionCount = int.Parse(xModel.XPathEvaluate("count(//Function)").ToString());
             progress.setup(functionCount);
-            progress.Show();
-            progress.Refresh();
 
             // Create the main package
             string fmName = string.Format("{0} (import v{1})", getXElementValue(xModel, "Alias"), Properties.Resources.VERSION_DATE);

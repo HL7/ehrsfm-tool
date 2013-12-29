@@ -21,8 +21,8 @@ namespace MAX_EA
         private List<ObjectType> objects;
         private List<RelationshipType> relationships;
         private EA.Repository Repository;
-        private readonly Dictionary<int, int> mapPackageToObjectID = new Dictionary<int, int>();
-        private readonly Dictionary<int, string> mapObjectID2MAXID = new Dictionary<int, string>();
+        private readonly Dictionary<int, int> packageToObjectIDDict = new Dictionary<int, int>();
+        private readonly Dictionary<int, string> _objectID2MAXIDDict = new Dictionary<int, string>();
 
         public void export(EA.Repository Repository)
         {
@@ -74,7 +74,6 @@ namespace MAX_EA
             progress_max = 1;
             progress.setup(progress_max);
             progress.Show();
-            progress.Refresh();
 
             Repository.EnableCache = true;
             // Add/update export metadata to the model
@@ -100,37 +99,36 @@ namespace MAX_EA
             }
         }
 
-/*        public void exportDiagram(EA.Repository Repository, EA.Diagram diagram, string fileName)
-        {
-            this.Repository = Repository;
-            progress_max = 1;
-            progress.setup(progress_max);
-            progress.Show();
-            progress.Refresh();
+        /*        public void exportDiagram(EA.Repository Repository, EA.Diagram diagram, string fileName)
+                {
+                    this.Repository = Repository;
+                    progress_max = 1;
+                    progress.Show();
+                    progress.setup(progress_max);
 
-            Repository.EnableCache = true;
-            // Add/update export metadata to the model
-            ModelType model = new ModelType();
-            model.exportDate = DateTime.Now.ToString();
+                    Repository.EnableCache = true;
+                    // Add/update export metadata to the model
+                    ModelType model = new ModelType();
+                    model.exportDate = DateTime.Now.ToString();
 
-            // Now export selected package
-            objects = new List<ObjectType>();
-            relationships = new List<RelationshipType>();
-            //visitSelectedPackage(package.PackageID);
+                    // Now export selected package
+                    objects = new List<ObjectType>();
+                    relationships = new List<RelationshipType>();
+                    //visitSelectedPackage(package.PackageID);
 
-            model.objects = objects.ToArray();
-            model.relationships = relationships.ToArray();
-            progress.Close();
+                    model.objects = objects.ToArray();
+                    model.relationships = relationships.ToArray();
+                    progress.Close();
 
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = true;
-            settings.NewLineChars = "\n";
-            XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
-            using (XmlWriter writer = XmlWriter.Create(fileName, settings))
-            {
-                serializer.Serialize(writer, model);
-            }
-        }*/
+                    XmlWriterSettings settings = new XmlWriterSettings();
+                    settings.Indent = true;
+                    settings.NewLineChars = "\n";
+                    XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
+                    using (XmlWriter writer = XmlWriter.Create(fileName, settings))
+                    {
+                        serializer.Serialize(writer, model);
+                    }
+                }*/
 
         private void visitSelectedPackage(int Package_ID)
         {
@@ -151,18 +149,11 @@ namespace MAX_EA
             foreach (XElement xTV in xEADATA_tv.XPathSelectElements(string.Format("//Data/Row[Property='{0}']", TV_MAX_ID)))
             {
                 string MAX_ID = xTV.ElementValue("Value");
-                mapObjectID2MAXID[Object_ID] = MAX_ID;
+                _objectID2MAXIDDict[Object_ID] = MAX_ID;
             }
 
             ObjectType maxObj = new ObjectType();
-            if (mapObjectID2MAXID.ContainsKey(Object_ID))
-            {
-                maxObj.id = mapObjectID2MAXID[Object_ID];
-            }
-            else
-            {
-                maxObj.id = Object_ID.ToString();
-            }
+            maxObj.id = mapObjectID2MAXID(Object_ID);
             maxObj.name = xRow.ElementValue("Name");
             maxObj.alias = xRow.ElementValue("Alias");
             string notes = xRow.ElementValue("Notes");
@@ -175,7 +166,7 @@ namespace MAX_EA
             maxObj.typeSpecified = true;
             maxObj.modified = xRow.ElementValueDateTime("ModifiedDate");
             maxObj.modifiedSpecified = true;
-            mapPackageToObjectID[Package_ID] = Object_ID;
+            packageToObjectIDDict[Package_ID] = Object_ID;
 
             // Package Tagged Values
             IEnumerable<XElement> xRows = xEADATA_tv.XPathSelectElements("//Data/Row");
@@ -200,7 +191,7 @@ namespace MAX_EA
 
         private void visitPackage(int Package_ID)
         {
-            int Package_Object_ID = mapPackageToObjectID[Package_ID];
+            int Package_Object_ID = packageToObjectIDDict[Package_ID];
 
             // select sub packages of selected package
             string sql = string.Format("SELECT p.Package_ID, p.ea_guid, p.Name, o.Alias, p.ModifiedDate, o.Stereotype, p.Notes, o.Object_ID FROM t_package p, t_object o WHERE p.Parent_ID={0} AND o.Package_ID={1} AND p.ea_guid=o.ea_guid", Package_ID, Package_ID);
@@ -217,7 +208,7 @@ namespace MAX_EA
             {
                 int Object_ID = xTV.ElementValueInt("Object_ID");
                 string MAX_ID = xTV.ElementValue("Value");
-                mapObjectID2MAXID[Object_ID] = MAX_ID;
+                _objectID2MAXIDDict[Object_ID] = MAX_ID;
             }
 
             IEnumerable<XElement> xRows = xEADATA.XPathSelectElements("//Data/Row");
@@ -227,14 +218,7 @@ namespace MAX_EA
             {
                 ObjectType maxObj = new ObjectType();
                 int Object_ID = xRow.ElementValueInt("Object_ID");
-                if (mapObjectID2MAXID.ContainsKey(Object_ID))
-                {
-                    maxObj.id = mapObjectID2MAXID[Object_ID];
-                }
-                else
-                {
-                    maxObj.id = Object_ID.ToString();
-                }
+                maxObj.id = mapObjectID2MAXID(Object_ID);
                 int Sub_Package_ID = xRow.ElementValueInt("Package_ID");
                 maxObj.name = xRow.ElementValue("Name");
                 maxObj.alias = xRow.ElementValue("Alias");
@@ -246,14 +230,7 @@ namespace MAX_EA
                 maxObj.stereotype = xRow.ElementValue("Stereotype");
                 maxObj.type = ObjectTypeEnum.Package;
                 maxObj.typeSpecified = true;
-                if (mapObjectID2MAXID.ContainsKey(Package_Object_ID))
-                {
-                    maxObj.parentId = mapObjectID2MAXID[Package_Object_ID];
-                }
-                else
-                {
-                    maxObj.parentId = Package_Object_ID.ToString();
-                }
+                maxObj.parentId = mapObjectID2MAXID(Package_Object_ID);
                 maxObj.modified = xRow.ElementValueDateTime("ModifiedDate");
                 maxObj.modifiedSpecified = true;
                 List<TagType> tags = new List<TagType>();
@@ -271,7 +248,7 @@ namespace MAX_EA
                         tags.Add(maxTag);
                     }
                 }
-                mapPackageToObjectID[Sub_Package_ID] = Object_ID;
+                packageToObjectIDDict[Sub_Package_ID] = Object_ID;
                 maxObj.tag = tags.ToArray();
                 objects.Add(maxObj);
                 progress.step();
@@ -289,7 +266,7 @@ namespace MAX_EA
         // Use Object_ID for sort initial order
         private void visitObjects(int Package_ID)
         {
-            int Package_Object_ID = mapPackageToObjectID[Package_ID];
+            int Package_Object_ID = packageToObjectIDDict[Package_ID];
 
             // get objects in selected package
             string sql = string.Format("SELECT Object_ID, ea_guid, Object_Type, Name, Alias, Package_ID, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object WHERE Package_ID={0} AND Object_Type<>'Package' ORDER BY Object_ID", Package_ID);
@@ -306,7 +283,7 @@ namespace MAX_EA
             {
                 int Object_ID = xTV.ElementValueInt("Object_ID");
                 string MAX_ID = xTV.ElementValue("Value");
-                mapObjectID2MAXID[Object_ID] = MAX_ID;
+                _objectID2MAXIDDict[Object_ID] = MAX_ID;
             }
 
             // create MAX object elements
@@ -326,14 +303,7 @@ namespace MAX_EA
                 }
 
                 ObjectType maxObj = new ObjectType();
-                if (mapObjectID2MAXID.ContainsKey(Object_ID))
-                {
-                    maxObj.id = mapObjectID2MAXID[Object_ID];
-                }
-                else
-                {
-                    maxObj.id = Object_ID.ToString();
-                }
+                maxObj.id = mapObjectID2MAXID(Object_ID);
                 if (xRow.ElementValueInt("Abstract") == 1)
                 {
                     maxObj.isAbstract = true;
@@ -353,14 +323,7 @@ namespace MAX_EA
                 {
                     maxParentID = Package_Object_ID;
                 }
-                if (mapObjectID2MAXID.ContainsKey(maxParentID))
-                {
-                    maxObj.parentId = mapObjectID2MAXID[maxParentID];
-                }
-                else
-                {
-                    maxObj.parentId = maxParentID.ToString();
-                }
+                maxObj.parentId = mapObjectID2MAXID(maxParentID);
                 maxObj.modified = xRow.ElementValueDateTime("ModifiedDate");
                 maxObj.modifiedSpecified = true;
                 List<TagType> tags = new List<TagType>();
@@ -448,31 +411,16 @@ namespace MAX_EA
                 RelationshipType maxRel = new RelationshipType();
                 //maxRel.id = xRow.ElementValueInt("Connector_ID").ToString();
                 maxRel.label = xRow.ElementValue("Name");
-                int sourceId = xRow.ElementValueInt("Start_Object_ID");
-                if (mapObjectID2MAXID.ContainsKey(sourceId))
-                {
-                    maxRel.sourceId = mapObjectID2MAXID[sourceId];
-                }
-                else
-                {
-                    maxRel.sourceId = sourceId.ToString();
-                }
+                maxRel.sourceId = mapObjectID2MAXID(xRow.ElementValueInt("Start_Object_ID"));
                 maxRel.sourceCard = xRow.ElementValue("SourceCard");
                 maxRel.sourceLabel = xRow.ElementValue("SourceRole");
-                int destId = xRow.ElementValueInt("End_Object_ID");
-                if (mapObjectID2MAXID.ContainsKey(destId))
-                {
-                    maxRel.destId = mapObjectID2MAXID[destId];
-                }
-                else
-                {
-                    maxRel.destId = destId.ToString();
-                }
+                maxRel.destId = mapObjectID2MAXID(xRow.ElementValueInt("End_Object_ID"));
                 maxRel.destCard = xRow.ElementValue("DestCard");
                 maxRel.destLabel = xRow.ElementValue("DestRole");
                 maxRel.notes = new MarkupType() { Text = new String[] { xRow.ElementValue("Notes") } };
                 maxRel.stereotype = xRow.ElementValue("Stereotype");
                 maxRel.type = (RelationshipTypeEnum)Enum.Parse(typeof(RelationshipTypeEnum), xRow.ElementValue("Connector_Type"), false);
+                maxRel.typeSpecified = true;
                 // Special type adjustments
                 switch (maxRel.type)
                 {
@@ -488,6 +436,31 @@ namespace MAX_EA
                 relationships.Add(maxRel);
                 progress.step();
             }
+        }
+
+        private String mapObjectID2MAXID(int objectId)
+        {
+            String maxId;
+            if (_objectID2MAXIDDict.ContainsKey(objectId))
+            {
+                maxId = _objectID2MAXIDDict[objectId];
+            }
+            else
+            {
+                // Probably an element outside selected package, try to get MAX_ID tagged value
+                EA.Element eaElement = Repository.GetElementByID(objectId);
+                EA.TaggedValue tvID = (EA.TaggedValue)eaElement.TaggedValues.GetByName(TV_MAX_ID);
+                if (tvID != null)
+                {
+                    maxId = tvID.Value;
+                    _objectID2MAXIDDict[objectId] = maxId;
+                }
+                else
+                {
+                    maxId = objectId.ToString();
+                }
+            }
+            return maxId;
         }
     }
 }

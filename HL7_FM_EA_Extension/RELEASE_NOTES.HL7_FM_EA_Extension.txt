@@ -8,6 +8,23 @@
 
 CHANGELOG
 =========
+[2013-dec-29]
+R2ProfileCompiler
+- Implemented renaming
+- Implemented Delete and Deprecate
+- Also import children for Header and Function with Compiler Instructions
+- Moved TreeNode methods to MAXTreeNode
+MAXTreeNode(Tests)
+- from TreeNode methods and created unit tests for it
+
+[2013-dec-14]
+R2ProfileCompiler
+- Also include consequenceLinks of included elements
+
+[2013-dec-13]
+R2ProfileCompiler
+- Initial implementation, only include elements (and parents) and do tags Reference/Priority/ChangeIndicator
+
 [2013-sep-24]
 Main, SearchMethods
 - Added FindNonSHALL, returns all Header,Function,Criteria where Criteria != SHALL

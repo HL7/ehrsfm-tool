@@ -33,6 +33,32 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2013-dec-20]
+simplify-max-for-excel.xslt
+- Simplify attributes and tags
+- Also do tags for relationships
+
+[2013-dec-19]
+MAXImporter3:
+- Forgot to handle tagged values for relationships. Fixed.
+simplify-max-for-excel.xslt
+- Renamed and added relationships
+excel-to-full-max.xslt
+- Initial, only do tag name and notes as <memo>
+
+[2013-dec-13]
+MAXExporter3:
+- Forgot to set typeSpecified to true
+- Elements outside selected package did not use MAX::ID, now they do
+
+[2013-dec-01]
+ProgressWindow:
+- Refresh after setup and step, so progress gets updated
+
+[2013-nov-29]
+MAXImporter3:
+- Split importing in 3 parts. First objects without parents, then objects with parents and check if the parent exists, then the leftover
+
 [2013-nov-22]
 MAXSchema.xsd:
 - Added "Realization" and "InformationFlow" releationship types
