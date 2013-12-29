@@ -53,12 +53,14 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="MAXTreeNode.cs" />
     <Compile Include="ModelBrowserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ModelBrowserControl.Designer.cs">
       <DependentUpon>ModelBrowserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="R2ProfileCompiler.cs" />
     <Compile Include="QuickAccessControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

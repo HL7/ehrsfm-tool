@@ -26,12 +26,14 @@
             progressBar1.Maximum = max;
             progressBar1.Step = 1;
             progress.Text = string.Format("{0} / {1}", progressBar1.Value, progressBar1.Maximum);
+            Refresh();
         }
 
         public void step()
         {
             progressBar1.PerformStep();
             progress.Text = string.Format("{0} / {1}", progressBar1.Value, progressBar1.Maximum);
+            Refresh();
         }
 
         #region Windows Form Designer generated code

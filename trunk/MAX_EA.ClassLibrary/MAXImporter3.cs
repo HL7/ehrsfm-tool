@@ -42,10 +42,8 @@ namespace MAX_EA
         {
             this.Repository = Repository;
             progress.Show();
-            progress.Refresh();
 
             bool issues = false;
-
             Repository.EnableUIUpdates = false;
             Repository.BatchAppend = true;
             Repository.EnableCache = true;
@@ -106,7 +104,19 @@ namespace MAX_EA
             {
                 importObject(maxObj, wm);
             }
+            List<ObjectType> leftOver = new List<ObjectType>();
             foreach (ObjectType maxObj in objects.Where(maxObj => !string.IsNullOrEmpty(maxObj.parentId)))
+            {
+                if (eaElementDict.ContainsKey(maxObj.parentId))
+                {
+                    importObject(maxObj, wm);
+                }
+                else
+                {
+                    leftOver.Add(maxObj);
+                }
+            }
+            foreach (ObjectType maxObj in leftOver)
             {
                 importObject(maxObj, wm);
             }
@@ -478,6 +488,27 @@ namespace MAX_EA
                     eaCon.Notes = maxRel.notes.Text[0].Trim().Replace("\n", "\r\n");
                 }
                 eaCon.Update();
+                if (maxRel.tag != null)
+                {
+                    foreach (TagType maxTag in maxRel.tag)
+                    {
+                        string tagName = maxTag.name.Trim();
+                        EA.ConnectorTag tv = (EA.ConnectorTag)eaCon.TaggedValues.GetByName(tagName);
+                        if (tv == null)
+                        {
+                            tv = (EA.ConnectorTag)eaCon.TaggedValues.AddNew(tagName, "ConnectorTag");
+                        }
+                        if (maxTag.value != null)
+                        {
+                            tv.Value = maxTag.value;
+                        }
+                        if (maxTag.Text != null && maxTag.Text.Length > 0)
+                        {
+                            tv.Notes = maxTag.Text[0].Trim().Replace("\n", "\r\n");
+                        }
+                        tv.Update();
+                    }
+                }
                 progress.step();
             }
             return issues;

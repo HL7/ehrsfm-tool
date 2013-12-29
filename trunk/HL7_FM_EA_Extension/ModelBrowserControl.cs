@@ -35,7 +35,7 @@ namespace HL7_FM_EA_Extension
                 // update contents treeView1
                 treeView1.Nodes.Clear();
 
-                TreeNode topNode = createTreeNode(SelectedPackage.Element.Stereotype, SelectedPackage.Name, SelectedPackage.Alias);
+                System.Windows.Forms.TreeNode topNode = createTreeNode(SelectedPackage.Element.Stereotype, SelectedPackage.Name, SelectedPackage.Alias);
                 treeView1.Nodes.Add(topNode);
                 visitPackage(SelectedPackage, topNode);
                 treeView1.ExpandAll();
@@ -47,25 +47,25 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void visitPackage(EA.Package package, TreeNode treeNode)
+        private void visitPackage(EA.Package package, System.Windows.Forms.TreeNode treeNode)
         {
             foreach (EA.Package childPackage in package.Packages)
             {
-                TreeNode childTreeNode = createTreeNode(childPackage.Element.Stereotype, childPackage.Name, childPackage.Alias);
+                System.Windows.Forms.TreeNode childTreeNode = createTreeNode(childPackage.Element.Stereotype, childPackage.Name, childPackage.Alias);
                 treeNode.Nodes.Add(childTreeNode);
                 visitPackage(childPackage, childTreeNode);
             }
             visitObjects(package.PackageID, treeNode);
         }
 
-        private void visitObjects(int Selected_Package_ID, TreeNode treeNode)
+        private void visitObjects(int Selected_Package_ID, System.Windows.Forms.TreeNode treeNode)
         {
             // get objects in selected package
             string sql = string.Format("SELECT Object_ID, Object_Type, Stereotype, Name, Alias, ParentID FROM t_object WHERE Package_ID={0} AND Object_Type<>'Package' ORDER BY Object_ID", Selected_Package_ID);
             string xml = Repository.SQLQuery(sql);
             XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
 
-            Dictionary<int, TreeNode> nodes = new Dictionary<int, TreeNode>();
+            Dictionary<int, System.Windows.Forms.TreeNode> nodes = new Dictionary<int, System.Windows.Forms.TreeNode>();
             IEnumerable<XElement> xRows = xEADATA.XPathSelectElements("//Data/Row");
             foreach (XElement xRow in xRows)
             {
@@ -93,7 +93,7 @@ namespace HL7_FM_EA_Extension
                         alias = xAlias.Value;
                     }
                     int EA_ParentID = int.Parse(xRow.Element("ParentID").Value);
-                    TreeNode childTreeNode = createTreeNode(stereotype, name, alias);
+                    System.Windows.Forms.TreeNode childTreeNode = createTreeNode(stereotype, name, alias);
                     nodes[EA_Object_ID] = childTreeNode;
                     if (nodes.ContainsKey(EA_ParentID))
                     {
@@ -107,16 +107,16 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private TreeNode createTreeNode(string stereotype, string name, string alias)
+        private System.Windows.Forms.TreeNode createTreeNode(string stereotype, string name, string alias)
         {
-            TreeNode treeNode;
+            System.Windows.Forms.TreeNode treeNode;
             if (string.IsNullOrEmpty(stereotype))
             {
-                treeNode = new TreeNode(name);
+                treeNode = new System.Windows.Forms.TreeNode(name);
             }
             else
             {
-                treeNode = new TreeNode(string.Format("«{0}» {1}", stereotype, name));
+                treeNode = new System.Windows.Forms.TreeNode(string.Format("«{0}» {1}", stereotype, name));
             }
             string ID = alias;
             if (string.IsNullOrEmpty(alias))

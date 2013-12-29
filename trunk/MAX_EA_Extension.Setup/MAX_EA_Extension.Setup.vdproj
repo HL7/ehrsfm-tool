@@ -39,14 +39,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_850CC94B61777EEDE7E4469A93DAB735"
-        "OwnerKey" = "8:_45673C46DD63F9531C0668F39EE9F19B"
+        "MsmKey" = "8:_E2631313F8478F79C130C26D25F61C51"
+        "OwnerKey" = "8:_6766A725ECE24596A072AE3495BC51ED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E2631313F8478F79C130C26D25F61C51"
-        "OwnerKey" = "8:_6766A725ECE24596A072AE3495BC51ED"
+        "MsmKey" = "8:_F3600B097190510D6D5E8ACD7FF06526"
+        "OwnerKey" = "8:_45673C46DD63F9531C0668F39EE9F19B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -234,26 +234,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_850CC94B61777EEDE7E4469A93DAB735"
-            {
-            "SourcePath" = "8:EA.TLB"
-            "TargetName" = "8:EA.TLB"
-            "Tag" = "8:"
-            "Folder" = "8:_7EDD7DFFC75D4056831978833B054AF0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:2"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E2631313F8478F79C130C26D25F61C51"
             {
             "SourcePath" = "8:MAX_EA_Extension.tlb"
@@ -271,6 +251,26 @@
             "PackageAs" = "3:1"
             "Register" = "3:2"
             "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F3600B097190510D6D5E8ACD7FF06526"
+            {
+            "SourcePath" = "8:EA.TLB"
+            "TargetName" = "8:EA.TLB"
+            "Tag" = "8:"
+            "Folder" = "8:_7EDD7DFFC75D4056831978833B054AF0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:2"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -331,7 +331,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MAX_EA_Extension"
         "ProductCode" = "8:{9D8C597B-21F4-474B-BB0C-3DB0AD656877}"
-        "PackageCode" = "8:{FF5F2BD2-41C6-4533-9F8F-A5989B9F8B7C}"
+        "PackageCode" = "8:{0CC24805-644C-4B4D-BEF9-E2B02E9112CC}"
         "UpgradeCode" = "8:{88D5AB14-7864-425E-BEA1-5D599036D021}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
