@@ -106,6 +106,7 @@
     <None Include="EHRSFM\EHRS_FM_R2_N2_C3_FunctionList_2013MAY.xml">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="MAPPING R2.txt" />
     <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromRNG.xsl" />
     <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromXSD.xsl" />
     <Content Include="Schematron\iso-schematron-xslt1\iso_abstract_expand.xsl" />
@@ -119,7 +120,6 @@
     <None Include="Schematron\svrl_output.xml" />
     <Content Include="MAPPING v3.1 EHR-S FM R11+ISSUES FOUND.txt" />
     <None Include="EHRSFM\EHRS_FunctionalModel_Rel1.1.xml" />
-    <Content Include="MAPPING v1 EHR-S FM R11+ISSUES FOUND.txt" />
     <Content Include="R2_DEC2011_ISSUES.txt" />
     <Content Include="R2_MAR2012_ISSUES.txt" />
     <Content Include="RELEASE_NOTES.HL7_FM_EA_Extension.txt" />

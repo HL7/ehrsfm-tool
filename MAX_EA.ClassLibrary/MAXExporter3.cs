@@ -176,10 +176,12 @@ namespace MAX_EA
                 string tagName = xTV.ElementValue("Property");
                 if (!TV_MAX_ID.Equals(tagName))
                 {
-                    TagType maxTag = new TagType();
-                    maxTag.name = tagName;
-                    maxTag.value = xTV.ElementValue("Value");
-                    maxTag.Text = new String[] { xTV.ElementValue("Notes") };
+                    TagType maxTag = new TagType
+                    {
+                        name = tagName,
+                        value = xTV.ElementValue("Value"),
+                        Text = new String[] { xTV.ElementValue("Notes") }
+                    };
                     tags.Add(maxTag);
                 }
             }

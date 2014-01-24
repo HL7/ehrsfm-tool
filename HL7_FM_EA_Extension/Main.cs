@@ -175,15 +175,16 @@ namespace HL7_FM_EA_Extension
         {
             if (ot == EA.ObjectType.otElement)
             {
-                EA.Element el = Repository.GetElementByGuid(GUID);
-                switch (el.Stereotype)
+                EA.Element element = Repository.GetElementByGuid(GUID);
+                string path = getFMElementPath(Repository, element);
+                switch (element.Stereotype)
                 {
                     case R2Const.ST_FUNCTION:
                     case R2Const.ST_HEADER:
-                        new FunctionForm().Show(el, config);
+                        new FunctionForm().Show(element, path, config);
                         return true;
                     case R2Const.ST_CRITERIA:
-                        new CriteriaForm().Show(el, config);
+                        new CriteriaForm().Show(element, path, config);
                         return true;
                 }
             }
@@ -319,6 +320,27 @@ namespace HL7_FM_EA_Extension
                 eaChildElement.Update();
                 UpdateStyle_recurseEaElements(eaChildElement);
             }
+        }
+
+        private string getFMElementPath(EA.Repository Repository, EA.Element element)
+        {
+            List<string> path = new List<string>();
+            EA.Element el = element;
+            while (el != null && !R2Const.ST_FM.Equals(el.Stereotype))
+            {
+                path.Insert(0, el.Name);
+                if (el.ParentID == 0)
+                {
+                    // Don't include package name, that is obvious from the Header/Function Code.
+                    // el = Repository.GetPackageByID(el.PackageID).Element;
+                    break;
+                }
+                else
+                {
+                    el = Repository.GetElementByID(el.ParentID);
+                }
+            }
+            return string.Join(" / ", path.ToArray());
         }
 
         // --------------

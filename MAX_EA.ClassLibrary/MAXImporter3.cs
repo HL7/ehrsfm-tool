@@ -155,10 +155,16 @@ namespace MAX_EA
                 {
                     type = Enum.GetName(typeof(ObjectTypeEnum), maxObj.type);
                 }
-
                 string parentId = maxObj.parentId;
                 if ("Package".Equals(type))
                 {
+                    // Name cannot be empty when creating a new Package
+                    bool emptyPackageNameWorkaround = false;
+                    if (string.IsNullOrEmpty(name))
+                    {
+                        emptyPackageNameWorkaround = true;
+                        name = "_";
+                    }
                     EA.Package eaPackage;
                     if (!string.IsNullOrEmpty(parentId))
                     {
@@ -180,6 +186,11 @@ namespace MAX_EA
                     }
                     eaPackage.TreePos = wm.pkgPos++;
                     eaPackage.Update();
+                    if (emptyPackageNameWorkaround)
+                    {
+                        eaPackage.Name = String.Empty;
+                        eaPackage.Update();
+                    }
                     eaPackageDict[id] = eaPackage;
                     eaElement = eaPackage.Element;
                 }
@@ -348,11 +359,22 @@ namespace MAX_EA
             // don't know how to update this, just clear connectors and recreate if the import file has relationships otherwise ignore relationships
             foreach (EA.Element eaElement in eaElementDict.Values)
             {
-                for (int c = eaElement.Connectors.Count - 1; c >= 0; c--)
+                bool updateElement = false;
+                int conCount = eaElement.Connectors.Count;
+                for (short c = (short)(conCount - 1); c >= 0; c--)
                 {
-                    eaElement.Connectors.Delete((short)c);
+                    EA.Connector con = (EA.Connector)eaElement.Connectors.GetAt(c);
+                    EA.Element eaElementTarget = Repository.GetElementByID(con.SupplierID);
+                    if (eaElementDict.ContainsValue(eaElementTarget))
+                    {
+                        eaElement.Connectors.Delete(c);
+                        updateElement = true;
+                    }
                 }
-                eaElement.Update();
+                if (updateElement)
+                {
+                    eaElement.Update();
+                }
             }
 
             foreach (RelationshipType maxRel in relationships)
@@ -520,53 +542,36 @@ namespace MAX_EA
             if (tvID != null)
             {
                 eaPackageDict[tvID.Value.ToUpper()] = eaPackage;
+                eaElementDict[tvID.Value.ToUpper()] = eaPackage.Element;
             }
             else
             {
                 eaPackageDict[eaPackage.PackageID.ToString()] = eaPackage;
+                eaElementDict[eaPackage.PackageID.ToString()] = eaPackage.Element;
             }
-
             foreach (EA.Package eaSubPackage in eaPackage.Packages)
             {
-                EA.TaggedValue tvSID = (EA.TaggedValue)eaSubPackage.Element.TaggedValues.GetByName(TV_MAX_ID);
-                if (tvSID != null)
-                {
-                    eaElementDict[tvSID.Value.ToUpper()] = eaSubPackage.Element;
-                }
-                else
-                {
-                    eaElementDict[eaSubPackage.PackageID.ToString()] = eaSubPackage.Element;
-                }
                 updateDicts(eaSubPackage);
             }
             foreach (EA.Element eaElement in eaPackage.Elements)
             {
-                EA.TaggedValue tvEID = (EA.TaggedValue)eaElement.TaggedValues.GetByName(TV_MAX_ID);
-                if (tvEID != null)
-                {
-                    eaElementDict[tvEID.Value.ToUpper()] = eaElement;
-                }
-                else
-                {
-                    eaElementDict[eaElement.ElementID.ToString()] = eaElement;
-                }
                 updateElementDict(eaElement);
             }
         }
 
         private void updateElementDict(EA.Element eaElement)
         {
+            EA.TaggedValue tvEID = (EA.TaggedValue)eaElement.TaggedValues.GetByName(TV_MAX_ID);
+            if (tvEID != null)
+            {
+                eaElementDict[tvEID.Value.ToUpper()] = eaElement;
+            }
+            else
+            {
+                eaElementDict[eaElement.ElementID.ToString()] = eaElement;
+            }
             foreach (EA.Element eaChildElement in eaElement.Elements)
             {
-                EA.TaggedValue tvID = (EA.TaggedValue)eaChildElement.TaggedValues.GetByName(TV_MAX_ID);
-                if (tvID != null)
-                {
-                    eaElementDict[tvID.Value.ToUpper()] = eaChildElement;
-                }
-                else
-                {
-                    eaElementDict[eaChildElement.ElementID.ToString()] = eaChildElement;
-                }
                 updateElementDict(eaChildElement);
             }
         }

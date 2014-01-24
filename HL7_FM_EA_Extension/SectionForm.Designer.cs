@@ -44,7 +44,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(506, 370);
+            this.okButton.Location = new System.Drawing.Point(516, 370);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 38;
@@ -54,7 +54,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(425, 370);
+            this.cancelButton.Location = new System.Drawing.Point(435, 370);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 37;
@@ -64,16 +64,17 @@
             // 
             // actorsTextBox
             // 
-            this.actorsTextBox.Location = new System.Drawing.Point(96, 263);
+            this.actorsTextBox.Location = new System.Drawing.Point(96, 313);
             this.actorsTextBox.Multiline = true;
             this.actorsTextBox.Name = "actorsTextBox";
-            this.actorsTextBox.Size = new System.Drawing.Size(485, 80);
+            this.actorsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.actorsTextBox.Size = new System.Drawing.Size(495, 51);
             this.actorsTextBox.TabIndex = 36;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 263);
+            this.label5.Location = new System.Drawing.Point(12, 313);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 35;
@@ -81,16 +82,17 @@
             // 
             // exampleTextBox
             // 
-            this.exampleTextBox.Location = new System.Drawing.Point(96, 165);
+            this.exampleTextBox.Location = new System.Drawing.Point(96, 236);
             this.exampleTextBox.Multiline = true;
             this.exampleTextBox.Name = "exampleTextBox";
-            this.exampleTextBox.Size = new System.Drawing.Size(485, 92);
+            this.exampleTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.exampleTextBox.Size = new System.Drawing.Size(495, 71);
             this.exampleTextBox.TabIndex = 34;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 165);
+            this.label4.Location = new System.Drawing.Point(12, 236);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 33;
@@ -118,7 +120,8 @@
             this.overviewTextBox.Location = new System.Drawing.Point(96, 64);
             this.overviewTextBox.Multiline = true;
             this.overviewTextBox.Name = "overviewTextBox";
-            this.overviewTextBox.Size = new System.Drawing.Size(485, 95);
+            this.overviewTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.overviewTextBox.Size = new System.Drawing.Size(495, 166);
             this.overviewTextBox.TabIndex = 28;
             // 
             // label2
@@ -134,7 +137,7 @@
             // 
             this.nameTextBox.Location = new System.Drawing.Point(96, 12);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(485, 20);
+            this.nameTextBox.Size = new System.Drawing.Size(495, 20);
             this.nameTextBox.TabIndex = 32;
             // 
             // label3
@@ -163,7 +166,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.overviewTextBox);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SectionForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "EHR-S FM Section";
             this.ResumeLayout(false);
             this.PerformLayout();

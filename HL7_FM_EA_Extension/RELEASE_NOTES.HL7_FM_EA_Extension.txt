@@ -8,12 +8,25 @@
 
 CHANGELOG
 =========
+[2014-jan-22]
+Main,SectionForm,FunctionForm,CriteriaForm
+- Add path of element to Forms
+- Added scrollbars to textboxes, made textboxes larger
+- Escape now does Cancel
+- Update Criteria Optionality in the Text
+
+[2014-jan-21]
+CriteriaForm
+- CriterionID can now be between 1 and 99, RowNumber can now be between 1 and 1000.
+
 [2013-dec-29]
 R2ProfileCompiler
 - Implemented renaming
-- Implemented Delete and Deprecate
+- Implemented Delete and Deprecate (partly)
 - Also import children for Header and Function with Compiler Instructions
 - Moved TreeNode methods to MAXTreeNode
+- FIXED: An Header/Function can have multiple consequenceLinks
+- Added relationships back in
 MAXTreeNode(Tests)
 - from TreeNode methods and created unit tests for it
 

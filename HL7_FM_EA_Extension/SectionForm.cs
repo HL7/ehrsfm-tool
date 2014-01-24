@@ -21,8 +21,8 @@ namespace HL7_FM_EA_Extension
         public void Show(EA.Element el, R2Config config)
         {
             element = el;
-            Text = "EHR-S FM " + el.Stereotype;
 
+            Text = string.Format("EHR-S FM {0}: {1}", el.Stereotype, el.Name);
             BackColor = config.getSectionColor(el.Alias, DefaultBackColor);
 
             // Other properties
@@ -82,6 +82,16 @@ namespace HL7_FM_EA_Extension
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
