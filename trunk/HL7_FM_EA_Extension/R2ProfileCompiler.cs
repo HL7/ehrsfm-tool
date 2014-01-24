@@ -16,6 +16,16 @@ namespace HL7_FM_EA_Extension
         // This will contain a lookup map
         private Dictionary<string, TreeNode> treeNodes = new Dictionary<string, TreeNode>();
 
+        private const string CHANGEINDICATOR_NOTCHANGED = "NC";
+        private const string CHANGEINDICATOR_MODIFIED = "M";
+        private const string CHANGEINDICATOR_DELETED = "D";
+        private const string CHANGEINDICATOR_DEPRECATED = "DEP";
+
+        private const string QUALIFIER_DELETE = "D";
+        private const string QUALIFIER_DEPRECATE = "DEP";
+
+        private const string PRIORITY_ESSENTIALNOW = "EN";
+
         public void Compile(string fileNameBase, string fileNameInstructions, string fileNameOutput)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
@@ -26,15 +36,6 @@ namespace HL7_FM_EA_Extension
                 var modelBM = (ModelType)serializer.Deserialize(streamBase);
                 TreeNode root = MAXTreeNodeUtils.ToTree(modelBM, treeNodes);
                 baseName = root.metadata.name;
-
-                // Add ConsequenceLinks
-                foreach (RelationshipType maxRel in modelBM.relationships)
-                {
-                    if ("ConsequenceLink".Equals(maxRel.stereotype))
-                    {
-                        treeNodes[maxRel.sourceId].consequenceLink = maxRel;
-                    }
-                }
 
                 // Add compiler instructions to the nodes
                 using (streamInstr)
@@ -69,13 +70,10 @@ namespace HL7_FM_EA_Extension
 
                 // Convert consequenceLinks to imports
                 // This will mark all linked nodes to import=true if a compiler instruction references a node with a consequenceLink
-                processConsequenceLinks(root, false);
+                followConsequenceLinks(root, false);
 
                 // Compile aka execute compiler instructions
-                executeInstructions(root, false, "EN");
-
-                // Print tree to Console
-                //displayTree(root);
+                executeInstructions(root, false, PRIORITY_ESSENTIALNOW);
 
                 // Give profile elements new unique ids
                 // Only what is still in the Tree!
@@ -104,10 +102,36 @@ namespace HL7_FM_EA_Extension
                         }
                     }
                 }
+                List<RelationshipType> relationships = root.ToRelationshipList();
+                foreach (RelationshipType maxRel in relationships)
+                {
+                    if (idOrg2idNew.ContainsKey(maxRel.sourceId))
+                    {
+                        maxRel.sourceId = idOrg2idNew[maxRel.sourceId];
+                    }
+                    if (idOrg2idNew.ContainsKey(maxRel.destId))
+                    {
+                        maxRel.destId = idOrg2idNew[maxRel.destId];
+                    }
+                }
 
                 // save compiled profile as MAX XML
                 ModelType model = new ModelType();
                 model.objects = objects.ToArray();
+                model.relationships = relationships.ToArray();
+                foreach (RelationshipType maxRel in model.relationships)
+                {
+                    if (!objects.Any(t => t.id == maxRel.sourceId))
+                    {
+                        string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
+                        Console.WriteLine("relationship from not included object orgSourceId={0} destId={1} stereotype={2}", sourceId, maxRel.destId, maxRel.stereotype);
+                    }
+                    if (!objects.Any(t => t.id == maxRel.destId))
+                    {
+                        string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
+                        Console.WriteLine("relationship to not included object orgSourceId={0} destId={1} stereotype={2}", sourceId, maxRel.destId, maxRel.stereotype);
+                    }
+                }
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Indent = true;
                 settings.NewLineChars = "\n";
@@ -140,7 +164,7 @@ namespace HL7_FM_EA_Extension
         private bool executeInstructions(TreeNode node, bool overrideImport, string priority)
         {
             overrideImport |= node.import;
-            bool hasInstruction = (node.instruction != null);
+
             List<TagType> tags = new List<TagType>();
             if (node.metadata.tag != null)
             {
@@ -176,10 +200,11 @@ namespace HL7_FM_EA_Extension
             }
 
             // default set ChangeIndicator to "NC"; changed when executing instruction
-            TagType tagChangeIndicator = new TagType() {name = "Reference.ChangeIndicator", value = "NC"};
+            TagType tagChangeIndicator = new TagType() { name = "Reference.ChangeIndicator", value = CHANGEINDICATOR_NOTCHANGED};
             tags.Add(tagChangeIndicator);
             node.metadata.tag = tags.ToArray();
 
+            bool hasInstruction = node.hasInstruction;
             if (hasInstruction)
             {
                 // update Optionality for Criterion
@@ -189,7 +214,7 @@ namespace HL7_FM_EA_Extension
                     TagType tagOptionalityNew = node.instruction.tag.SingleOrDefault(t => t.name == "Optionality");
                     if (tagOptionalityNew != null && !tagOptionalityNew.value.Equals(tagOptionality.value))
                     {
-                        tagChangeIndicator.value = "M";
+                        tagChangeIndicator.value = CHANGEINDICATOR_MODIFIED;
                         tagOptionality.value = tagOptionalityNew.value;
                     }
                 }
@@ -197,7 +222,7 @@ namespace HL7_FM_EA_Extension
                 // update name if changed
                 if (!node.metadata.name.Equals(node.instruction.name))
                 {
-                    tagChangeIndicator.value = "M";
+                    tagChangeIndicator.value = CHANGEINDICATOR_MODIFIED;
                     node.metadata.name = node.instruction.name;
                 }
 
@@ -213,16 +238,16 @@ namespace HL7_FM_EA_Extension
                 TagType tagQualifier = node.instruction.tag.SingleOrDefault(t => t.name == "Qualifier");
                 if (tagQualifier != null)
                 {
-                    if ("D".Equals(tagQualifier.value))
+                    if (QUALIFIER_DELETE.Equals(tagQualifier.value))
                     {
-                        tagChangeIndicator.value = "D";
+                        tagChangeIndicator.value = CHANGEINDICATOR_DELETED;
                         // Make sure children are not included in profile and stop processing
                         node.children.Clear();
                         return true;
                     }
-                    else if ("DEP".Equals(tagQualifier.value))
+                    else if (QUALIFIER_DEPRECATE.Equals(tagQualifier.value))
                     {
-                        tagChangeIndicator.value = "DEP";
+                        tagChangeIndicator.value = CHANGEINDICATOR_DEPRECATED;
                     }
                 }
 
@@ -249,7 +274,10 @@ namespace HL7_FM_EA_Extension
             return hasInstruction;
         }
 
-        private void processConsequenceLinks(TreeNode node, bool overrideImport)
+        /** 
+         * This method will follow all ConsequenceLinks and set import to true
+         */
+        private void followConsequenceLinks(TreeNode node, bool overrideImport)
         {
             if (overrideImport)
             {
@@ -257,14 +285,17 @@ namespace HL7_FM_EA_Extension
             }
             foreach(TreeNode child in node.children)
             {
-                if (child.consequenceLink != null)
+                if (child.hasConsequenceLinks)
                 {
-                    TreeNode linkedNode = treeNodes[child.consequenceLink.destId];
-                    processConsequenceLinks(linkedNode, true);
+                    foreach (RelationshipType consequenceLink in child.consequenceLinks)
+                    {
+                        TreeNode linkedNode = treeNodes[consequenceLink.destId];
+                        followConsequenceLinks(linkedNode, true);
+                    }
                 }
                 else
                 {
-                    processConsequenceLinks(child, overrideImport);
+                    followConsequenceLinks(child, overrideImport);
                 }
             }
         }

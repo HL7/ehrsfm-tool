@@ -34,7 +34,7 @@ namespace MAX_EA_Extension
                 case "":
                     return "-&MAX";
                 case "-&MAX":
-                    string[] ar = { "Import MAX", "Export MAX", "-", "About..." };
+                    string[] ar = { "Import/Update", "Export", "-", "About..." };
                     return ar;
             }
             return "";
@@ -84,7 +84,7 @@ namespace MAX_EA_Extension
                 EA.Package selectedPackage = Repository.GetTreeSelectedPackage();
                 switch (ItemName)
                 {
-                    case "Import MAX":
+                    case "Import/Update":
                         Repository.CreateOutputTab("MAX");
                         Repository.ClearOutput("MAX");
                         if (new MAX_EA.MAXImporter3().import(Repository, selectedPackage))
@@ -93,7 +93,7 @@ namespace MAX_EA_Extension
                             Repository.EnsureOutputVisible("MAX");
                         }
                         break;
-                    case "Export MAX":
+                    case "Export":
                         new MAX_EA.MAXExporter3().export(Repository);
                         break;
                     case "Quick Access Tab":

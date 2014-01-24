@@ -67,5 +67,107 @@ namespace MAX_EA
                 }
             }
         }
+
+        public void diff_FM(string fileName1, string fileName2)
+        {
+            // Add parameter to ignore modified or order?
+
+            XmlSerializer serializer = new XmlSerializer(typeof (ModelType));
+            StreamReader stream1 = new StreamReader(fileName1);
+            StreamReader stream2 = new StreamReader(fileName2);
+            // make sure file gets closed
+            using (stream1)
+            {
+                using (stream2)
+                {
+                    ModelType model1 = (ModelType) serializer.Deserialize(stream1);
+                    ModelType model2 = (ModelType) serializer.Deserialize(stream2);
+
+                    List<string> changes = new List<string>(); ;
+                    var objects1 = model1.objects.ToDictionary(t => t.id, t => t);
+                    foreach (ObjectType maxObj2 in model2.objects)
+                    {
+                        changes.Clear();
+                        string id = maxObj2.id;
+                        if (!objects1.ContainsKey(id))
+                        {
+                            changes.Add("NEW");
+                            displayObject(maxObj2, changes);
+                        }
+                        else
+                        {
+                            ObjectType maxObj1 = objects1[maxObj2.id];
+                            objects1.Remove(id);
+
+                            if (maxObj1.name != maxObj2.name)
+                            {
+                                changes.Add("name");
+                            }
+                            if (maxObj1.notes.Text[0] != maxObj2.notes.Text[0])
+                            {
+                                changes.Add("notes");
+                            }
+                            // tag Optionality, Dependent, Conditional
+                            if (!tagIsEqual("Optionality", maxObj1, maxObj2))
+                            {
+                                changes.Add("Optionality");
+                            }
+                            if (!tagIsEqual("Dependent", maxObj1, maxObj2))
+                            {
+                                changes.Add("Dependent");
+                            }
+                            if (!tagIsEqual("Conditional", maxObj1, maxObj2))
+                            {
+                                changes.Add("Conditional");
+                            }
+                            
+                            // split notes
+
+                            if (changes.Count > 0)
+                            {
+                                displayObject(maxObj2, changes);
+                            }
+                        }
+                    }
+                    // all objects that are left in objects1 were deleted in objects2
+                    changes.Clear();
+                    changes.Add("DELETED");
+                    foreach (ObjectType maxObj in objects1.Values)
+                    {
+                        displayObject(maxObj, changes);
+                    }
+                }
+            }
+        }
+
+        private bool tagIsEqual(string tagName, ObjectType maxObj1, ObjectType maxObj2)
+        {
+            string value1 = string.Empty;
+            if (maxObj1.tag != null)
+            {
+                TagType tag1 = maxObj1.tag.FirstOrDefault(t => tagName.Equals(t.name));
+                if (tag1 != null)
+                {
+                    value1 = tag1.value;
+                }
+            }
+            string value2 = string.Empty;
+            if (maxObj2.tag != null)
+            {
+                TagType tag2 = maxObj2.tag.FirstOrDefault(t => tagName.Equals(t.name));
+                if (tag2 != null)
+                {
+                    value2 = tag2.value;
+                }
+            }
+            return value1.Equals(value2);
+        }
+
+        private void displayObject(ObjectType maxObj, List<string> changes)
+        {
+            Console.WriteLine("<<{0}>> {1} ({2})", maxObj.stereotype, maxObj.name, string.Join(",", changes.ToArray()));
+            Console.WriteLine(maxObj.notes.Text[0]);
+            Console.WriteLine();
+        }
     }
 }

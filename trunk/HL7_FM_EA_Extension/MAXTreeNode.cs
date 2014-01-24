@@ -14,6 +14,7 @@ namespace HL7_FM_EA_Extension
          */
         public static TreeNode ToTree(ModelType model, Dictionary<string, TreeNode> treeNodes)
         {
+            // Create TreeNodes lookup map
             foreach (ObjectType maxObj in model.objects)
             {
                 treeNodes[maxObj.id] = new TreeNode();
@@ -42,23 +43,37 @@ namespace HL7_FM_EA_Extension
                     Console.WriteLine("Warning: parent not found");
                 }
             }
+
+            // Add Relationships
+            foreach (RelationshipType maxRel in model.relationships)
+            {
+                treeNodes[maxRel.sourceId].relationships.Add(maxRel);
+            }
             return root;
         }
     }
 
     public class TreeNode
     {
-        public ObjectType metadata;
         public TreeNode parent;
+        public ObjectType metadata;
         public ObjectType instruction;
-        public RelationshipType consequenceLink;
+        public bool hasInstruction
+        {
+            get { return instruction != null;  }
+        }
+        public List<RelationshipType> relationships = new List<RelationshipType>();
+        public bool hasConsequenceLinks
+        {
+            get { return relationships.Any(t => "ConsequenceLink".Equals(t.stereotype)); }
+        }
+        public IEnumerable<RelationshipType> consequenceLinks
+        {
+            get { return relationships.Where(t => "ConsequenceLink".Equals(t.stereotype)); }
+        }
         public bool import = false;
         public List<TreeNode> children = new List<TreeNode>();
 
-        /*
-         * Convert a tree back to a list of MAX Objects starting with some node
-         * and following its children recursively.
-         */
         private void ToObjectList(TreeNode node, List<ObjectType> objects)
         {
             if (node.metadata != null)
@@ -71,11 +86,35 @@ namespace HL7_FM_EA_Extension
             }
         }
 
+        /*
+         * Convert a tree back to a list of MAX Objects starting with some node
+         * and following its children recursively.
+         */
         public List<ObjectType> ToObjectList()
         {
             List<ObjectType> objects = new List<ObjectType>();
             ToObjectList(this, objects);
             return objects;
+        }
+
+        private void ToRelationshipList(TreeNode node, List<RelationshipType> relationships)
+        {
+            relationships.AddRange(node.relationships);
+            foreach (TreeNode child in node.children)
+            {
+                ToRelationshipList(child, relationships);
+            }
+        }
+
+        /*
+         * Convert a tree back to a list of MAX Relationships starting with some node
+         * and following its children recursively.
+         */
+        public List<RelationshipType> ToRelationshipList()
+        {
+            List<RelationshipType> relationships = new List<RelationshipType>();
+            ToRelationshipList(this, relationships);
+            return relationships;
         }
     }
 }

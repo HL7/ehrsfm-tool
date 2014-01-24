@@ -33,6 +33,19 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2014-jan-21]
+MAXImporter3:
+- Importing relationships now keeps relationships to objects outside the max file.
+- Fixed: Before this you had to select a parent package for Update now works on selected package.
+-- Import will create all objects below the selected package
+-- Update will update all objects inclusive the selected package
+-- Export will export all objects inclusive the selected package
+
+[2014-jan-07]
+MAXImporter3:
+- The name of a Package cannot be empty on create.
+  Workaround in code by creating with "_" as name and then change it back to empty string.
+
 [2013-dec-20]
 simplify-max-for-excel.xslt
 - Simplify attributes and tags

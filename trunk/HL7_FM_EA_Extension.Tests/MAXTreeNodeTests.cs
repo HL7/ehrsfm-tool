@@ -180,5 +180,33 @@ namespace HL7_FM_EA_Extension.Tests
             List<ObjectType> objects = node1.ToObjectList();
             Assert.AreEqual(2, objects.Count);
         }
+
+        [TestMethod]
+        public void TestConsequenceLink0()
+        {
+            TreeNode node1 = new TreeNode();
+            node1.metadata = new ObjectType();
+
+            Assert.AreEqual(0, node1.consequenceLinks.Count());
+        }
+
+
+        [TestMethod]
+        public void TestConsequenceLink1()
+        {
+            TreeNode node1 = new TreeNode();
+            node1.metadata = new ObjectType();
+
+            RelationshipType maxRel = new RelationshipType() {
+                stereotype = "ConsequenceLink" };
+
+            node1.relationships.Add(new RelationshipType());
+            node1.relationships.Add(maxRel);
+            node1.relationships.Add(new RelationshipType());
+            node1.relationships.Add(new RelationshipType());
+
+            Assert.AreEqual(1, node1.consequenceLinks.Count());
+            Assert.AreEqual(maxRel, node1.consequenceLinks.First());
+        }
     }
 }
