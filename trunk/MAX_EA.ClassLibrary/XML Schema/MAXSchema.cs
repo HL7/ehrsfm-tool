@@ -203,7 +203,7 @@ namespace MAX_EA.MAXSchema {
         Generalization,
         
         /// <remarks/>
-        Realization,
+        Realisation,
         
         /// <remarks/>
         InformationFlow,

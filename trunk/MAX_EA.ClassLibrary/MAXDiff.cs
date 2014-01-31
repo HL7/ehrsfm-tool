@@ -56,11 +56,18 @@ namespace MAX_EA
                             {
                                 Console.WriteLine("[{0}] stereotype changed \"{1}\" > \"{2}\"", id, maxObj1.stereotype, maxObj2.stereotype);
                             }
-                            if (maxObj1.notes.Text[0] != maxObj2.notes.Text[0])
+                            if (!notesIsEqual(maxObj1, maxObj2))
                             {
                                 string notes1 = maxObj1.notes.Text[0].Replace("\n", "\\n");
                                 string notes2 = maxObj2.notes.Text[0].Replace("\n", "\\n");
                                 Console.WriteLine("[{0}] notes changed\n\t< \"{1}\"\n\t> \"{2}\"", id, notes1, notes2);
+                            }
+                            foreach(TagType tag in maxObj2.tag)
+                            {
+                                if (!tagIsEqual(tag.name, maxObj1, maxObj2))
+                                {
+                                    Console.WriteLine("[{0}] tag {1} changed\n\t> \"{2}\"", id, tag.name, tag.value);
+                                }
                             }
                         }
                     }
@@ -103,7 +110,7 @@ namespace MAX_EA
                             {
                                 changes.Add("name");
                             }
-                            if (maxObj1.notes.Text[0] != maxObj2.notes.Text[0])
+                            if (!notesIsEqual(maxObj1, maxObj2))
                             {
                                 changes.Add("notes");
                             }
@@ -158,6 +165,27 @@ namespace MAX_EA
                 if (tag2 != null)
                 {
                     value2 = tag2.value;
+                }
+            }
+            return value1.Equals(value2);
+        }
+
+        private bool notesIsEqual(ObjectType maxObj1, ObjectType maxObj2)
+        {
+            string value1 = string.Empty;
+            if (maxObj1.notes != null)
+            {
+                if (maxObj1.notes.Text != null)
+                {
+                    value1 = maxObj1.notes.Text[0];
+                }
+            }
+            string value2 = string.Empty;
+            if (maxObj2.notes != null)
+            {
+                if (maxObj2.notes.Text != null)
+                {
+                    value2 = maxObj2.notes.Text[0];
                 }
             }
             return value1.Equals(value2);

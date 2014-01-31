@@ -20,6 +20,16 @@ namespace MAX_EA.ClassLibrary.Tests
         }
 
         [TestMethod]
+        public void TestDiffPriRiSta()
+        {
+            string fileName1 = @"C:\Eclipse Workspace\NieuwEPD\PriRiSta\PriRiSta.max.out.out.xml";
+            string fileName2 = @"C:\Eclipse Workspace\NieuwEPD\PriRiSta\PriRiSta Sonja.max.xml";
+
+            MAXDiff diff = new MAXDiff();
+            diff.diff(fileName1, fileName2);
+        }
+
+        [TestMethod]
         public void TestDiff_FM()
         {
             string fileName1 = @"c:\temp\EHRS_FM_R2_N2.max.xml";

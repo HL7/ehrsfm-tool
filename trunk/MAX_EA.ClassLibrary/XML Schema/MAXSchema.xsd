@@ -23,7 +23,7 @@
 			<xs:enumeration value="Aggregation" />
 			<xs:enumeration value="Composition" />
 			<xs:enumeration value="Generalization" />
-      <xs:enumeration value="Realization" />
+      <xs:enumeration value="Realisation" />
       <xs:enumeration value="InformationFlow" />
       <xs:enumeration value="Package" /><!-- EA type -->
       <xs:enumeration value="NoteLink" /><!-- EA type -->
