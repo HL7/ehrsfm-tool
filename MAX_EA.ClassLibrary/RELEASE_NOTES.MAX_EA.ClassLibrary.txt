@@ -33,6 +33,13 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2014-jan-29]
+MAXSchema:
+- MAJOR type in Realisation type 'z' :-( fixed
+MAXImporter3:
+- Use StereotypeEx instead of without Ex. Now multiple stereotypes can be passed comma separated.
+- On import/update the connectors were not deleted when using custom id's
+
 [2014-jan-21]
 MAXImporter3:
 - Importing relationships now keeps relationships to objects outside the max file.
