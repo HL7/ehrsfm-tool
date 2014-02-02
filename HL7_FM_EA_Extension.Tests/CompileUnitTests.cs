@@ -23,7 +23,7 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestCompile()
         {
             string fileNameBase = @"c:\temp\EHRS_FM_R2_N2.max.xml";
-            string fileNameInstructions = @"c:\temp\Compiler Instructions.max.xml";
+            string fileNameInstructions = @"c:\Temp\Compiler Instructions.max.xml";
             string fileNameOutput = @"c:\temp\Compiled Profile.max.xml";
             new R2ProfileCompiler().Compile(fileNameBase, fileNameInstructions, fileNameOutput);
         }
