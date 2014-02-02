@@ -24,6 +24,7 @@ namespace MAX_EA
         private readonly ProgressWindow progress = new ProgressWindow();
         private readonly Dictionary<string, EA.Element> eaElementDict = new Dictionary<string, EA.Element>();
         private readonly Dictionary<string, EA.Package> eaPackageDict = new Dictionary<string, EA.Package>();
+        private readonly Dictionary<string, int> idMappings = new Dictionary<string, int>();
 
         public bool import(EA.Repository Repository, EA.Package selectedPackage)
         {
@@ -244,7 +245,7 @@ namespace MAX_EA
             }
             if (maxObj.stereotype != null)
             {
-                eaElement.Stereotype = maxObj.stereotype;
+                eaElement.StereotypeEx = maxObj.stereotype;
             }
             if (maxObj.notes != null && maxObj.notes.Text != null && maxObj.notes.Text.Length > 0)
             {
@@ -327,7 +328,7 @@ namespace MAX_EA
                     }
                     if (maxAtt.stereotype != null)
                     {
-                        att.Stereotype = maxAtt.stereotype;
+                        att.StereotypeEx = maxAtt.stereotype;
                     }
                     if (maxAtt.isReadOnlySpecified)
                     {
@@ -364,8 +365,7 @@ namespace MAX_EA
                 for (short c = (short)(conCount - 1); c >= 0; c--)
                 {
                     EA.Connector con = (EA.Connector)eaElement.Connectors.GetAt(c);
-                    EA.Element eaElementTarget = Repository.GetElementByID(con.SupplierID);
-                    if (eaElementDict.ContainsValue(eaElementTarget))
+                    if(idMappings.ContainsValue(con.SupplierID))
                     {
                         eaElement.Connectors.Delete(c);
                         updateElement = true;
@@ -503,7 +503,7 @@ namespace MAX_EA
                 }
                 if (maxRel.stereotype != null)
                 {
-                    eaCon.Stereotype = maxRel.stereotype.Trim();
+                    eaCon.StereotypeEx = maxRel.stereotype.Trim();
                 }
                 if (maxRel.notes != null && maxRel.notes.Text != null && maxRel.notes.Text.Length > 0)
                 {
@@ -565,6 +565,7 @@ namespace MAX_EA
             if (tvEID != null)
             {
                 eaElementDict[tvEID.Value.ToUpper()] = eaElement;
+                idMappings[tvEID.Value.ToUpper()] = eaElement.ElementID;
             }
             else
             {

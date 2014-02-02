@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" exportDate="12/29/2013 12:03:27" xmlns="http://www.umcg.nl/MAX">
+  <objects xmlns="">
+    <object>
+      <id>2695</id>
+      <name>Compiler Instructions</name>
+      <type>Package</type>
+      <modified>2013-11-29T00:00:00</modified>
+    </object>
+    <object>
+      <id>5431</id>
+      <name>OV.1</name>
+      <stereotype>SectionCI</stereotype>
+      <type>Package</type>
+      <parentId>2695</parentId>
+      <modified>2013-12-13T00:00:00</modified>
+      <tag name="Priority" value="EN" />
+    </object>
+    <object>
+      <id>2702</id>
+      <name>OV.1#31</name>
+      <notes></notes>
+      <stereotype>CriterionCI</stereotype>
+      <type>Class</type>
+      <parentId>2695</parentId>
+      <modified>2013-12-13T00:00:00</modified>
+      <tag name="Priority" value="EN" />
+      <tag name="Optionality" value="SHOULD" />
+    </object>
+    <object>
+      <id>2741</id>
+      <name>CPS.3.1#09</name>
+      <notes></notes>
+      <stereotype>CriterionCI</stereotype>
+      <type>Class</type>
+      <parentId>2695</parentId>
+      <modified>2013-12-13T00:00:00</modified>
+      <tag name="Priority" value="EF" />
+    </object>
+    <object>
+      <id>8018</id>
+      <name>Deprecate POP.1</name>
+      <notes></notes>
+      <stereotype>HeaderCI</stereotype>
+      <type>Class</type>
+      <parentId>2695</parentId>
+      <modified>2013-12-29T00:00:00</modified>
+      <tag name="Qualifier" value="DEP" />
+    </object>
+    <object>
+      <id>8019</id>
+      <name>Delete POP.2</name>
+      <notes></notes>
+      <stereotype>HeaderCI</stereotype>
+      <type>Class</type>
+      <parentId>2695</parentId>
+      <modified>2013-12-29T00:00:00</modified>
+      <tag name="Qualifier" value="D" />
+    </object>
+  </objects>
+  <relationships xmlns="">
+    <relationship>
+      <sourceId>5431</sourceId>
+      <destId>5</destId>
+      <notes />
+      <stereotype>import</stereotype>
+      <type>Package</type>
+    </relationship>
+    <relationship>
+      <sourceId>2702</sourceId>
+      <destId>8</destId>
+      <notes />
+      <type>Generalization</type>
+    </relationship>
+    <relationship>
+      <sourceId>2741</sourceId>
+      <destId>200</destId>
+      <notes />
+      <type>Generalization</type>
+    </relationship>
+    <relationship>
+      <sourceId>8018</sourceId>
+      <destId>1262</destId>
+      <notes />
+      <type>Generalization</type>
+    </relationship>
+    <relationship>
+      <sourceId>8019</sourceId>
+      <destId>1285</destId>
+      <notes />
+      <type>Generalization</type>
+    </relationship>
+  </relationships>
+</model>
