@@ -181,7 +181,7 @@ namespace HL7_FM_EA_Extension
                 {
                     case R2Const.ST_FUNCTION:
                     case R2Const.ST_HEADER:
-                        new FunctionForm().Show(element, path, config);
+                        new FunctionForm().Show(element, path, config, Repository);
                         return true;
                     case R2Const.ST_CRITERIA:
                         new CriteriaForm().Show(element, path, config);

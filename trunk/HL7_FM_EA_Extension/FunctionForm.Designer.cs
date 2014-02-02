@@ -30,7 +30,6 @@
         {
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.statementTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,6 +40,7 @@
             this.pathLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.statementTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -59,15 +59,6 @@
             this.label6.Size = new System.Drawing.Size(18, 13);
             this.label6.TabIndex = 15;
             this.label6.Text = "ID";
-            // 
-            // statementTextBox
-            // 
-            this.statementTextBox.Location = new System.Drawing.Point(99, 94);
-            this.statementTextBox.Multiline = true;
-            this.statementTextBox.Name = "statementTextBox";
-            this.statementTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.statementTextBox.Size = new System.Drawing.Size(661, 69);
-            this.statementTextBox.TabIndex = 14;
             // 
             // label2
             // 
@@ -161,11 +152,21 @@
             this.label1.TabIndex = 28;
             this.label1.Text = "Name";
             // 
+            // statementTextBox
+            // 
+            this.statementTextBox.Location = new System.Drawing.Point(99, 94);
+            this.statementTextBox.Name = "statementTextBox";
+            this.statementTextBox.Size = new System.Drawing.Size(661, 69);
+            this.statementTextBox.TabIndex = 29;
+            this.statementTextBox.Text = "";
+            this.statementTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.statementTextBox_KeyUp);
+            // 
             // FunctionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 555);
+            this.Controls.Add(this.statementTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.pathLabel);
@@ -177,7 +178,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.statementTextBox);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -197,7 +197,6 @@
 
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox statementTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Label label4;
@@ -208,5 +207,6 @@
         private System.Windows.Forms.Label pathLabel;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox statementTextBox;
     }
 }

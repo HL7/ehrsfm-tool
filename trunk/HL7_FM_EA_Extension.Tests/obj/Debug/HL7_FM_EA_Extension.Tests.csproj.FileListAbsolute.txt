@@ -1,0 +1,15 @@
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\XML Schema\MAXSchema.xsd
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\XML Schema\MAXSchema.cs
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\HL7_FM_EA_Extension.Tests.dll
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\HL7_FM_EA_Extension.Tests.pdb
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\HL7_FM_EA_Extension.dll
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\MAX_EA.dll
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\HL7_FM_EA_Extension.pdb
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\MAX_EA.pdb
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\obj\Debug\HL7_FM_EA_Extension.Tests.dll
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\obj\Debug\HL7_FM_EA_Extension.Tests.pdb
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\XML Transforms\excel-to-full-max.xslt
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\XML Schema\MAXSchema_Excel+PriRiSta.xsd
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\XML Schema\MAXSchema_Excel.xsd
+C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\bin\Debug\XML Transforms\simplify-max-for-excel.xslt
