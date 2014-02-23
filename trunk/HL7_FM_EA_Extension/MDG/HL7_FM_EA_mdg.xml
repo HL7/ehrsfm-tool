@@ -1,0 +1,73 @@
+<MDG.Technology version="1.0"><Documentation id="1" name="EHR-S FM Tool" version="0.1" notes="The EHR-S FM Tool Learning Center"/><UITaskpanes><UMLProfile profiletype="uml2">
+			<Documentation id="E3990698-7" name="Test Learning Center" version="1.0" notes="Test Learning Center"/>
+			<Content>
+				<Stereotypes>
+					<Stereotype name="Conformance clause" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+						<AppliesTo>
+							<Apply type="ToolboxPage"/>
+						</AppliesTo>
+						<TaggedValues>
+							<Tag name="EASystem::ShowURL(1)" type="" description="" unit="" values="" default="Introduction"/>
+							<Tag name="EASystem::ShowURL(2)" type="" description="" unit="" values="" default="Concepts"/>
+							<Tag name="EASystem::ShowURL(3)" type="" description="" unit="" values="" default="Normative language"/>
+							<Tag name="EASystem::ShowURL(4)" type="" description="" unit="" values="" default="Conformance criteria"/>
+							<Tag name="EASystem::ShowURL(5)" type="" description="" unit="" values="" default="Functional Model Structure and Extensibility"/>
+						</TaggedValues>
+					</Stereotype>
+					<Stereotype name="Overview" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+						<AppliesTo>
+							<Apply type="ToolboxPage"/>
+						</AppliesTo>
+						<TaggedValues>
+							<Tag name="EASystem::ShowURL(file:///C:/Eclipse%20Workspace/ehrsfm_profile/LearningCenterContent/Preface.pdf)" type="" description="" unit="" values="" default="Preface"/>
+							<Tag name="EASystem::ShowURL(2)" type="" description="" unit="" values="" default="Introduction and Overview"/>
+						</TaggedValues>
+					</Stereotype>
+					<Stereotype name="Overview and Definitions of the Functional Model (normative)" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+						<AppliesTo>
+							<Apply type="ToolboxPage"/>
+						</AppliesTo>
+						<TaggedValues>
+							<Tag name="EASystem::ShowURL(1)" type="" description="" unit="" values="" default="The sections in the Functional Model"/>
+							<Tag name="EASystem::ShowURL(2)" type="" description="" unit="" values="" default="Functional Profiles"/>
+							<Tag name="EASystem::ShowURL(3)" type="" description="" unit="" values="" default="Functional list components"/>
+						</TaggedValues>
+					</Stereotype>
+					<Stereotype name="Working with a Functional Model" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+						<AppliesTo>
+							<Apply type="ToolboxPage"/>
+						</AppliesTo>
+						<TaggedValues>
+							<Tag name="EASystem::MenuCmd(Build)" type="" description="" unit="" values="" default="Build a Package"/>
+							<Tag name="EASystem::ShowURL(http://www.google.com)" type="" description="" unit="" values="" default="Google!"/>
+						</TaggedValues>
+					</Stereotype>
+					<Stereotype name="Editing a Functional Model" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+						<AppliesTo>
+							<Apply type="ToolboxPage"/>
+						</AppliesTo>
+						<TaggedValues>
+							<Tag name="EASystem::ShowURL(http://www.results4care.nl)" type="" description="" unit="" values="" default="Results4Care"/>
+							<Tag name="EASystem::ShowURL(2)" type="" description="The conformance clause provides the answer to the important question: what is required to claim conformance? It provides communication between the profile creators, EHR system developers, certification and testing organizations, users, and the community as to what is required and gives meaning to the phrase, “conforming system” or “conforming functional profile”. Moreover, it facilitates the consistent application of conformance within a profile and across related profiles. " unit="" values="" default="Creating the conformance clause"/>
+						</TaggedValues>
+					</Stereotype>
+					<Stereotype name="Creating a Functional Profile" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+						<AppliesTo>
+							<Apply type="ToolboxPage"/>
+						</AppliesTo>
+						<TaggedValues>
+							<Tag name="EASystem::ShowURL(1)" type="" description="" unit="" values="" default="Create New Profile Project"/>
+							<Tag name="EASystem::ShowURL(2)" type="" description="In the Profiling tool this is called metadata. In this step you need to enter Metadata about the Functional Profile. " unit="" values="" default="Providing General Profile Information"/>
+							<Tag name="EASystem::ShowURL(3)" type="" description="" unit="" values="" default="Load Base Model"/>
+							<Tag name="EASystem::ShowURL(4)" type="" description="" unit="" values="" default="Edit Compiler Instructions"/>
+							<Tag name="EASystem::ShowURL(5)" type="" description="" unit="" values="" default="Validate Profile Compiler Instructions"/>
+							<Tag name="EASystem::ShowURL(6)" type="" description="" unit="" values="" default="Compile Profile"/>
+							<Tag name="EASystem::ShowURL(7)" type="" description="" unit="" values="" default="Validate Profile"/>
+						</TaggedValues>
+					</Stereotype>
+				</Stereotypes>
+				<TaggedValueTypes/>
+			</Content>
+		</UMLProfile>
+	</UITaskpanes><RTFTemplates><RefData version="1.0" exporter="EA.25">
+		</RefData></RTFTemplates></MDG.Technology>

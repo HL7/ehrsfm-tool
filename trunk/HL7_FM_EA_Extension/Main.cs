@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -38,7 +39,7 @@ namespace HL7_FM_EA_Extension
                 case "":
                     return "-&HL7 FM";
                 case "-&HL7 FM":
-                    string[] ar = { "Import R1.1", "Import R2", "Validate", "Update Style", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "About" };
+                    string[] ar = { "Import R1.1", "Import R2", "Validate", "Update Style", "Profiling", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "About" };
                     return ar;
             }
             return "";
@@ -93,6 +94,10 @@ namespace HL7_FM_EA_Extension
                         break;
                     case "Import R2":
                         new R2Importer().import(Repository, SelectedPackage);
+                        break;
+                    case "Profiling":
+                        ProfilingForm profilingForm = new ProfilingForm();
+                        profilingForm.Show(Repository);
                         break;
                     case "Validate":
                         new R2Validator().validate(Repository, SelectedPackage);
@@ -351,6 +356,32 @@ namespace HL7_FM_EA_Extension
             XElement xResults = new SearchMethods().FindNonSHALL(Repository, SearchText);
             XMLResults = xResults.ToString();
             return true;
+        }
+
+        // --------------
+        // Install MDG
+        // --------------
+        public string EA_OnInitializeTechnologies(EA.Repository Repository)
+        {
+            StreamReader reader = new StreamReader(getAppDataFullPath(@"MDG\HL7_FM_EA_mdg.xml"));
+            string mdg_xml = reader.ReadToEnd();
+            return mdg_xml;
+        }
+
+        public static string getAppDataFullPath(string filename)
+        {
+            string filepath;
+            // Check if in developer mode
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                // Devel path
+                filepath = string.Format(@"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension\{0}", filename);
+            }
+            else
+            {
+                filepath = string.Format(@"{0}\HL7\HL7_FM_EA_Extension\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
+            }
+            return filepath;
         }
     }
 }

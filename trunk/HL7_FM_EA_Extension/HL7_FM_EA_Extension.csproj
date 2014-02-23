@@ -60,6 +60,12 @@
     <Compile Include="ModelBrowserControl.Designer.cs">
       <DependentUpon>ModelBrowserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProfilingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfilingForm.Designer.cs">
+      <DependentUpon>ProfilingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="R2ProfileCompiler.cs" />
     <Compile Include="QuickAccessControl.cs">
       <SubType>UserControl</SubType>
@@ -107,6 +113,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="MAPPING R2.txt" />
+    <Content Include="MDG\HL7_FM_EA_mdg.xml" />
     <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromRNG.xsl" />
     <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromXSD.xsl" />
     <Content Include="Schematron\iso-schematron-xslt1\iso_abstract_expand.xsl" />
@@ -130,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModelBrowserControl.resx">
       <DependentUpon>ModelBrowserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfilingForm.resx">
+      <DependentUpon>ProfilingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuickAccessControl.resx">
       <DependentUpon>QuickAccessControl.cs</DependentUpon>

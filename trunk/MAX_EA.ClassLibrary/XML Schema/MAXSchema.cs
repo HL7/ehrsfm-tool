@@ -207,7 +207,13 @@ namespace MAX_EA.MAXSchema {
         
         /// <remarks/>
         InformationFlow,
-        
+
+        /// <remarks/>
+        Abstraction,
+
+        /// <remarks/>
+        Usage,
+
         /// <remarks/>
         Package,
         
@@ -315,7 +321,19 @@ namespace MAX_EA.MAXSchema {
         
         /// <remarks/>
         Package,
-        
+
+        /// <remarks/>
+        Activity,
+
+        /// <remarks/>
+        Issue,
+
+        /// <remarks/>
+        Change,
+
+        /// <remarks/>
+        Artifact,
+
         /// <remarks/>
         Note,
         

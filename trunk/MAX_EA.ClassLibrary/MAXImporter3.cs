@@ -77,7 +77,7 @@ namespace MAX_EA
                 // now do relationships
                 if (model.relationships != null && model.relationships.Any())
                 {
-                    issues |= importRelationships(selectedPackage, model.relationships);
+                    issues |= importRelationships(selectedPackage, model.relationships, true);
                 }
 
                 // Add/update import metadata to the model
@@ -353,27 +353,30 @@ namespace MAX_EA
             progress.step();
         }
 
-        private bool importRelationships(EA.Package selectedPackage, RelationshipType[] relationships)
+        private bool importRelationships(EA.Package selectedPackage, RelationshipType[] relationships, bool deleteExisting)
         {
             bool issues = false;
 
             // don't know how to update this, just clear connectors and recreate if the import file has relationships otherwise ignore relationships
-            foreach (EA.Element eaElement in eaElementDict.Values)
+            if (deleteExisting)
             {
-                bool updateElement = false;
-                int conCount = eaElement.Connectors.Count;
-                for (short c = (short)(conCount - 1); c >= 0; c--)
+                foreach (EA.Element eaElement in eaElementDict.Values)
                 {
-                    EA.Connector con = (EA.Connector)eaElement.Connectors.GetAt(c);
-                    if(idMappings.ContainsValue(con.SupplierID))
+                    bool updateElement = false;
+                    int conCount = eaElement.Connectors.Count;
+                    for (short c = (short) (conCount - 1); c >= 0; c--)
                     {
-                        eaElement.Connectors.Delete(c);
-                        updateElement = true;
+                        EA.Connector con = (EA.Connector) eaElement.Connectors.GetAt(c);
+                        if (idMappings.ContainsValue(con.SupplierID))
+                        {
+                            eaElement.Connectors.Delete(c);
+                            updateElement = true;
+                        }
                     }
-                }
-                if (updateElement)
-                {
-                    eaElement.Update();
+                    if (updateElement)
+                    {
+                        eaElement.Update();
+                    }
                 }
             }
 

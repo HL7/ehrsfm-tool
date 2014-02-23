@@ -15,16 +15,18 @@ namespace MAX_EA
     {
         // Temporary tagged value used for externalized ID
         private const string TV_MAX_ID = "MAX::ID";
+        private const string OUTPUT_TAB_MAX = "MAX";
 
         private readonly ProgressWindow progress = new ProgressWindow();
         private int progress_max;
+        private bool issues = false;
         private List<ObjectType> objects;
         private List<RelationshipType> relationships;
         private EA.Repository Repository;
         private readonly Dictionary<int, int> packageToObjectIDDict = new Dictionary<int, int>();
         private readonly Dictionary<int, string> _objectID2MAXIDDict = new Dictionary<int, string>();
 
-        public void export(EA.Repository Repository)
+        public bool export(EA.Repository Repository)
         {
             EA.ObjectType type = Repository.GetTreeSelectedItemType();
             if (type == EA.ObjectType.otPackage)
@@ -37,7 +39,7 @@ namespace MAX_EA
                     exportPackage(Repository, package, fileName);
                 }
             }
-/*            else if (type == EA.ObjectType.otDiagram)
+            else if (type == EA.ObjectType.otDiagram)
             {
                 EA.Diagram diagram = (EA.Diagram)Repository.GetTreeSelectedObject();
                 string defaultFileName = string.Format(@"C:\Temp\{0}.max.xml", diagram.Name);
@@ -46,14 +48,15 @@ namespace MAX_EA
                 {
                     exportDiagram(Repository, diagram, fileName);
                 }
-            }*/
+            }
             else
             {
                 System.Windows.Forms.MessageBox.Show("Select a package");
             }
+            return issues;
         }
 
-        public void export(EA.Repository Repository, string fileName)
+        public bool export(EA.Repository Repository, string fileName)
         {
             EA.ObjectType type = Repository.GetTreeSelectedItemType();
             if (type == EA.ObjectType.otPackage)
@@ -61,16 +64,18 @@ namespace MAX_EA
                 EA.Package package = Repository.GetTreeSelectedPackage();
                 exportPackage(Repository, package, fileName);
             }
-/*            else if (type == EA.ObjectType.otDiagram)
+            else if (type == EA.ObjectType.otDiagram)
             {
                 EA.Diagram diagram = (EA.Diagram)Repository.GetTreeSelectedObject();
                 exportDiagram(Repository, diagram, fileName);
-            }*/
+            }
+            return issues;
         }
 
         public void exportPackage(EA.Repository Repository, EA.Package package, string fileName)
         {
             this.Repository = Repository;
+
             progress_max = 1;
             progress.setup(progress_max);
             progress.Show();
@@ -83,7 +88,10 @@ namespace MAX_EA
             // Now export selected package
             objects = new List<ObjectType>();
             relationships = new List<RelationshipType>();
+            Repository.CreateOutputTab(OUTPUT_TAB_MAX);
+            Repository.ClearOutput(OUTPUT_TAB_MAX);
             visitSelectedPackage(package.PackageID);
+            Repository.EnsureOutputVisible(OUTPUT_TAB_MAX);
 
             model.objects = objects.ToArray();
             model.relationships = relationships.ToArray();
@@ -99,36 +107,36 @@ namespace MAX_EA
             }
         }
 
-        /*        public void exportDiagram(EA.Repository Repository, EA.Diagram diagram, string fileName)
-                {
-                    this.Repository = Repository;
-                    progress_max = 1;
-                    progress.Show();
-                    progress.setup(progress_max);
+        public void exportDiagram(EA.Repository Repository, EA.Diagram diagram, string fileName)
+        {
+            this.Repository = Repository;
+            progress_max = 1;
+            progress.Show();
+            progress.setup(progress_max);
 
-                    Repository.EnableCache = true;
-                    // Add/update export metadata to the model
-                    ModelType model = new ModelType();
-                    model.exportDate = DateTime.Now.ToString();
+            Repository.EnableCache = true;
+            // Add/update export metadata to the model
+            ModelType model = new ModelType();
+            model.exportDate = DateTime.Now.ToString();
 
-                    // Now export selected package
-                    objects = new List<ObjectType>();
-                    relationships = new List<RelationshipType>();
-                    //visitSelectedPackage(package.PackageID);
+            // Now export selected package
+            objects = new List<ObjectType>();
+            relationships = new List<RelationshipType>();
+            visitDiagramObjects(diagram.DiagramID);
 
-                    model.objects = objects.ToArray();
-                    model.relationships = relationships.ToArray();
-                    progress.Close();
+            model.objects = objects.ToArray();
+            model.relationships = relationships.ToArray();
+            progress.Close();
 
-                    XmlWriterSettings settings = new XmlWriterSettings();
-                    settings.Indent = true;
-                    settings.NewLineChars = "\n";
-                    XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
-                    using (XmlWriter writer = XmlWriter.Create(fileName, settings))
-                    {
-                        serializer.Serialize(writer, model);
-                    }
-                }*/
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.NewLineChars = "\n";
+            XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
+            using (XmlWriter writer = XmlWriter.Create(fileName, settings))
+            {
+                serializer.Serialize(writer, model);
+            }
+        }
 
         private void visitSelectedPackage(int Package_ID)
         {
@@ -196,7 +204,7 @@ namespace MAX_EA
             int Package_Object_ID = packageToObjectIDDict[Package_ID];
 
             // select sub packages of selected package
-            string sql = string.Format("SELECT p.Package_ID, p.ea_guid, p.Name, o.Alias, p.ModifiedDate, o.Stereotype, p.Notes, o.Object_ID FROM t_package p, t_object o WHERE p.Parent_ID={0} AND o.Package_ID={1} AND p.ea_guid=o.ea_guid", Package_ID, Package_ID);
+            string sql = string.Format("SELECT p.Package_ID, p.ea_guid, p.Name, o.Alias, p.ModifiedDate, o.Stereotype, p.Notes, o.Object_ID FROM t_package p, t_object o WHERE p.Parent_ID={0} AND o.Package_ID={1} AND p.ea_guid=o.ea_guid ORDER BY p.TPos", Package_ID, Package_ID);
             string xml = Repository.SQLQuery(sql);
             XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
 
@@ -259,19 +267,19 @@ namespace MAX_EA
             }
 
             // visit objects of this package
-            visitObjects(Package_ID);
+            visitPackageObjects(Package_ID);
         }
 
         // select objects with EA.Package.PackageID as ParentID and recurse on Object_Type = 'Package'
         // "ORDER BY TPos" returns in the order that the elements are in the Package Browser
         // TPos is only set if sort order is changed manually in the Package Browser
         // Use Object_ID for sort initial order
-        private void visitObjects(int Package_ID)
+        private void visitPackageObjects(int Package_ID)
         {
             int Package_Object_ID = packageToObjectIDDict[Package_ID];
 
             // get objects in selected package
-            string sql = string.Format("SELECT Object_ID, ea_guid, Object_Type, Name, Alias, Package_ID, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object WHERE Package_ID={0} AND Object_Type<>'Package' ORDER BY Object_ID", Package_ID);
+            string sql = string.Format("SELECT Object_ID, ea_guid, Object_Type, Name, Alias, Package_ID, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object WHERE Package_ID={0} AND Object_Type<>'Package' ORDER BY TPos,Object_ID", Package_ID);
             string xml = Repository.SQLQuery(sql);
             XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
 
@@ -280,6 +288,36 @@ namespace MAX_EA
             string xml_tv = Repository.SQLQuery(sql_tv);
             XElement xEADATA_tv = XElement.Parse(xml_tv, LoadOptions.None);
 
+            // get relationships in objects in selected package
+            string sql_con = string.Format("SELECT c.Connector_ID, c.Connector_Type, c.Name, c.Notes, c.Start_Object_ID, c.SourceCard, c.SourceRole, c.End_Object_ID, c.DestCard, c.DestRole, c.Stereotype FROM t_connector c, t_object WHERE Start_Object_ID=Object_ID AND Package_ID={0}", Package_ID);
+            string xml_con = Repository.SQLQuery(sql_con);
+            XElement xEADATA_con = XElement.Parse(xml_con, LoadOptions.None);
+
+            doit(xEADATA, xEADATA_tv, xEADATA_con, Package_Object_ID);
+        }
+
+        private void visitDiagramObjects(int Diagram_ID)
+        {
+            // get objects in selected diagram
+            string sql = string.Format("SELECT o.Object_ID, ea_guid, Object_Type, Name, Alias, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object o, t_diagramobjects d WHERE d.Diagram_ID = {0} AND o.Object_ID = d.Object_ID", Diagram_ID);
+            string xml = Repository.SQLQuery(sql);
+            XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
+
+            // get tagged values in objects in selected diagram
+            string sql_tv = string.Format("SELECT op.Object_ID, op.Property, op.Value, op.Notes FROM t_diagramobjects d, t_object o, t_objectproperties op WHERE d.Diagram_ID = {0} AND o.Object_ID=op.Object_ID AND d.Object_ID=o.Object_ID", Diagram_ID);
+            string xml_tv = Repository.SQLQuery(sql_tv);
+            XElement xEADATA_tv = XElement.Parse(xml_tv, LoadOptions.None);
+
+            // get relationships for connectors in the diagram
+            string sql_con = string.Format("SELECT c.Connector_ID, c.Connector_Type, c.Name, c.Notes, c.Start_Object_ID, c.SourceCard, c.SourceRole, c.End_Object_ID, c.DestCard, c.DestRole, c.Stereotype FROM t_diagramlinks dl, t_connector c WHERE dl.DiagramID={0} AND dl.ConnectorID = c.Connector_ID", Diagram_ID);
+            string xml_con = Repository.SQLQuery(sql_con);
+            XElement xEADATA_con = XElement.Parse(xml_con, LoadOptions.None);
+
+            doit(xEADATA, xEADATA_tv, xEADATA_con, null);
+        }
+
+        private void doit(XElement xEADATA, XElement xEADATA_tv, XElement xEADATA_con, int? Package_Object_ID)
+        {
             // update map from internal id to MAX::ID
             foreach (XElement xTV in xEADATA_tv.XPathSelectElements(string.Format("//Data/Row[Property='{0}']", TV_MAX_ID)))
             {
@@ -301,6 +339,7 @@ namespace MAX_EA
                 {
                     progress.step();
                     Repository.WriteOutput("MAX", string.Format("Ignored Object {0} with not supported Object_Type {1}", Object_ID, Object_Type), -1);
+                    issues = true;
                     continue;
                 }
 
@@ -320,12 +359,15 @@ namespace MAX_EA
                 maxObj.typeSpecified = true;
                 int EA_ParentID = int.Parse(xRow.ElementValue("ParentID"));
                 // ParentID = 0 for direct childs of a Package, ParentID is only used within a Package
-                int maxParentID = EA_ParentID;
-                if (EA_ParentID == 0)
+                if (EA_ParentID != 0)
                 {
-                    maxParentID = Package_Object_ID;
+                    maxObj.parentId = mapObjectID2MAXID(EA_ParentID);
                 }
-                maxObj.parentId = mapObjectID2MAXID(maxParentID);
+                // Package_Object_ID = null when exporting a Diagram
+                else if (EA_ParentID == 0 && Package_Object_ID != null)
+                {
+                    maxObj.parentId = mapObjectID2MAXID((int)Package_Object_ID);
+                }
                 maxObj.modified = xRow.ElementValueDateTime("ModifiedDate");
                 maxObj.modifiedSpecified = true;
                 List<TagType> tags = new List<TagType>();
@@ -390,11 +432,6 @@ namespace MAX_EA
                 progress.step();
             }
 
-            // get relationships in objects in selected package
-            string sql_con = string.Format("SELECT c.Connector_ID, c.Connector_Type, c.Name, c.Notes, c.Start_Object_ID, c.SourceCard, c.SourceRole, c.End_Object_ID, c.DestCard, c.DestRole, c.Stereotype FROM t_connector c, t_object WHERE Start_Object_ID=Object_ID AND Package_ID={0}", Package_ID);
-            string xml_con = Repository.SQLQuery(sql_con);
-            XElement xEADATA_con = XElement.Parse(xml_con, LoadOptions.None);
-
             // create MAX relationship elements
             xRows = xEADATA_con.XPathSelectElements("//Data/Row");
             progress_max += xRows.Count<XElement>();
@@ -407,6 +444,7 @@ namespace MAX_EA
                 {
                     progress.step();
                     Repository.WriteOutput("MAX", string.Format("Ignored the (not supported) relationship type {0}", Connector_Type), -1);
+                    issues = true;
                     continue;
                 }
 

@@ -38,19 +38,19 @@ namespace HL7_FM_EA_Extension
             XmlUrlResolver resolver = new XmlUrlResolver();
 
             // transform the Schematron to a XSL
-            string iso_sch_xsl_filepath = getAppDataFullPath(@"iso-schematron-xslt1\iso_svrl_for_xslt1.xsl");
+            string iso_sch_xsl_filepath = Main.getAppDataFullPath(@"Schematron\iso-schematron-xslt1\iso_svrl_for_xslt1.xsl");
             transform.Load(iso_sch_xsl_filepath, settings, resolver);
-            string sch_filepath = getAppDataFullPath("EHRS_FM_R2-validation.sch");
-            string sch_xsl_filepath = getAppDataFullPath("EHRS_FM_R2-validation.sch.xsl");
+            string sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-validation.sch");
+            string sch_xsl_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-validation.sch.xsl");
             transform.Transform(sch_filepath, sch_xsl_filepath);
 
             // export to temp max.xml file
-            string fm_max_file = getAppDataFullPath("temp.max.xml");
+            string fm_max_file = Main.getAppDataFullPath(@"Schematron\temp.max.xml");
             new MAX_EA.MAXExporter3().exportPackage(Repository, rootPackage, fm_max_file);
 
             // now execute the Schematron XSL
             transform.Load(sch_xsl_filepath, settings, resolver);
-            string svrl_filepath = getAppDataFullPath("svrl_output.xml");
+            string svrl_filepath = Main.getAppDataFullPath(@"Schematron\svrl_output.xml");
             transform.Transform(fm_max_file, svrl_filepath);
 
             // build element dictionary
@@ -88,22 +88,6 @@ namespace HL7_FM_EA_Extension
                 //EA.ProjectIssues issue = (EA.ProjectIssues)Repository.Issues.AddNew(issueName, "ProjectIssues");
                 //issue.Update();
             }
-        }
-
-        private string getAppDataFullPath(string filename)
-        {
-            string filepath;
-            // Check if in developer mode
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                // Devel path
-                filepath = string.Format(@"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension\Schematron\{0}", filename);
-            }
-            else
-            {
-                filepath = string.Format(@"{0}\HL7\HL7_FM_EA_Extension\Schematron\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
-            }
-            return filepath;
         }
 
         private void recurseEaPackage(EA.Package eaPackage, Dictionary<string, EA.Element> eaElementDict)
