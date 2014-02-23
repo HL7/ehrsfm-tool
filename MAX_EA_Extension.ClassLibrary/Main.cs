@@ -94,7 +94,13 @@ namespace MAX_EA_Extension
                         }
                         break;
                     case "Export":
-                        new MAX_EA.MAXExporter3().export(Repository);
+                        Repository.CreateOutputTab("MAX");
+                        Repository.ClearOutput("MAX");
+                        if (new MAX_EA.MAXExporter3().export(Repository))
+                        {
+                            // only popup when there were any issues
+                            Repository.EnsureOutputVisible("MAX");
+                        }
                         break;
                     case "Quick Access Tab":
                         if (view_ctrl == null || !view_ctrl.Visible)

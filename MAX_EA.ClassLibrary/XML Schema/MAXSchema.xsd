@@ -11,8 +11,13 @@
 			<xs:enumeration value="Requirement" />
 			<xs:enumeration value="Component" />
 			<xs:enumeration value="Package" />
-			<xs:enumeration value="Note" /><!-- EA type -->
-			<xs:enumeration value="Text" /><!-- EA type -->
+      <xs:enumeration value="Activity" />
+      <xs:enumeration value="Issue" />
+      <xs:enumeration value="Change" />
+      <xs:enumeration value="Artifact" />
+      <xs:enumeration value="Note" /><!-- EA Diagram type -->
+			<xs:enumeration value="Text" /><!-- EA Diagram type -->
+      <!-- Constraint, UMLDiagram -->
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="RelationshipTypeEnum">
@@ -25,8 +30,10 @@
 			<xs:enumeration value="Generalization" />
       <xs:enumeration value="Realisation" />
       <xs:enumeration value="InformationFlow" />
-      <xs:enumeration value="Package" /><!-- EA type -->
-      <xs:enumeration value="NoteLink" /><!-- EA type -->
+      <xs:enumeration value="Abstraction" />
+      <xs:enumeration value="Usage" />
+      <xs:enumeration value="Package" />
+      <xs:enumeration value="NoteLink" /><!-- EA Diagram type -->
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:element name="model" type="ModelType"/>

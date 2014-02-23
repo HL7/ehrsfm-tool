@@ -33,9 +33,30 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2014-feb-22]
+MAXExporter3:
+- Order of Packages and Objects in the MAX export is now sorted by the position they have in the Project Browser (TPos)
+
+[2014-feb-19]
+Main,MAXExporter3:
+- Show output tab when there are issues
+MAXSchema.xsd:
+- Added "Issue", "Change", "Artifact" ObjectType
+- Added "Usage" RelationshipType
+
+[2014-feb-11]
+MAXExporter3:
+- Implemented export of objects in selected Diagram
+MAXSchema.xsd:
+- Added "Abstraction" RelationshipType
+
+[2014-feb-05]
+MAXSchema:
+- Added "Activity" ObjectType
+
 [2014-jan-29]
 MAXSchema:
-- MAJOR type in Realisation type 'z' :-( fixed
+- MAJOR typo in "Realisation" Relationship 'z' :-( fixed. N.B. EA Uses 'z' in UI, but 's' in models.
 MAXImporter3:
 - Use StereotypeEx instead of without Ex. Now multiple stereotypes can be passed comma separated.
 - On import/update the connectors were not deleted when using custom id's

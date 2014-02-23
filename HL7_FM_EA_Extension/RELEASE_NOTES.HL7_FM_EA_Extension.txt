@@ -8,6 +8,18 @@
 
 CHANGELOG
 =========
+[2014-feb-21]
+ProfilingForm:
+- Also use/create/update ProfileDefinitions
+
+[2014-feb-14]
+ProfilingForm:
+- Initial implementation
+
+[2014-feb-07]
+Main:
+- Install the MDG from the Extension file "MDG\HL7_FM_EA_mdg.xml"
+
 [2014-jan-22]
 Main,SectionForm,FunctionForm,CriteriaForm
 - Add path of element to Forms
