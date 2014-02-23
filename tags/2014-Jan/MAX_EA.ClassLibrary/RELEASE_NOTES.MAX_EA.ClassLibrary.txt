@@ -1,0 +1,271 @@
+﻿HISTORY
+=======
+MAXExporter1 - uses the EA API through COM
+MAXExporter2 - uses EA SQL XML calls (is somewhat faster)
+MAXExporter3 - used xsd.exe to create a Class from the xsd
+
+TODO
+====
+- MAXImporter: 
+	- update of attributes gives "Action not supported" Exception
+	- how to detect deletes of objects/relationships when updating?
+	-- Suggestion from the CIC WG (sept-2013) is to add a column for this!
+    - Known issue: Deeper than 1 nesting still could give problems.
+- MAXExporter:
+	- also support Diagrams -> Diagram serves as a selection of the elements to export!
+	- cannot get "alias" of attributes in SQLXML?
+	- ?? add option to export Markedup notes with xhtml namespace or XML escaped
+	- Why is the required <name>-element not always created?
+	- !! Handle special Composition and DirectedAssociation RelationshipTypes!
+	- Ignored Object_Types are e.g. Boundary. Should we also ignore Text, Note? and NoteLink?
+- MAXSchema:
+	- sync UML model of schema (in EAP)!
+	- fix namespace of all elements to "max:"
+- Excel binding document, figure out multi tagged value binding; <tag><value><notes>
+	- Q: Multiple tagged values with the same name result in multiple elements with the samen name, how to handle that in a spreadsheet?
+	  A: Through an XSLT! <- see mail thread with Lorraine (23-oct-2013) for example
+
+ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
+	Workaround: set system dateformat English (VS)
+	Combinations tried: 
+		Windows Language Dutch + Date Format: Dutch & English -> works
+		Windows Language English + Date Format: Dutch doesnot work, English -> works
+
+CHANGELOG
+=========
+[2014-jan-29]
+MAXSchema:
+- MAJOR type in Realisation type 'z' :-( fixed
+MAXImporter3:
+- Use StereotypeEx instead of without Ex. Now multiple stereotypes can be passed comma separated.
+- On import/update the connectors were not deleted when using custom id's
+
+[2014-jan-21]
+MAXImporter3:
+- Importing relationships now keeps relationships to objects outside the max file.
+- Fixed: Before this you had to select a parent package for Update now works on selected package.
+-- Import will create all objects below the selected package
+-- Update will update all objects inclusive the selected package
+-- Export will export all objects inclusive the selected package
+
+[2014-jan-07]
+MAXImporter3:
+- The name of a Package cannot be empty on create.
+  Workaround in code by creating with "_" as name and then change it back to empty string.
+
+[2013-dec-20]
+simplify-max-for-excel.xslt
+- Simplify attributes and tags
+- Also do tags for relationships
+
+[2013-dec-19]
+MAXImporter3:
+- Forgot to handle tagged values for relationships. Fixed.
+simplify-max-for-excel.xslt
+- Renamed and added relationships
+excel-to-full-max.xslt
+- Initial, only do tag name and notes as <memo>
+
+[2013-dec-13]
+MAXExporter3:
+- Forgot to set typeSpecified to true
+- Elements outside selected package did not use MAX::ID, now they do
+
+[2013-dec-01]
+ProgressWindow:
+- Refresh after setup and step, so progress gets updated
+
+[2013-nov-29]
+MAXImporter3:
+- Split importing in 3 parts. First objects without parents, then objects with parents and check if the parent exists, then the leftover
+
+[2013-nov-22]
+MAXSchema.xsd:
+- Added "Realization" and "InformationFlow" releationship types
+
+[2013-nov-20]
+MAXImporter3:
+- Ignore empty object.parentId
+
+[2013-nov-06]
+MAXImporter3:
+- Made more robust, e.g. skip maxObj where id=null and maxRel where sourceId=null || destId=null <- should be checked by the XSD!
+- First import objects that have no parentId and then the ones that do. 
+  This makes the import less reliant on the order of the objects when nesting is used.
+
+[2013-oct-25]
+XML Transforms/flatten-max-for-excel.xslt:
+- Added XML Transform to flatten deep attributes & tags for easy import in Excel.
+MAXExporter3:
+- If object notes is empty then don't include empty notes element
+- object type was missing in export because forgot to set typeSpecified
+
+[2013-oct-21]
+MAXDiff:
+- Initial version
+MAXSchema:
+- Removed default value for type. Now we can recognize absent element.
+MAXImporter3:
+- Handle default Object Type (=Class) in code. We can now differentiate between absent element.
+  Not setting type in an update means "dont change".
+
+[2013-sep-26]
+MAXImproter3/MAXExporter3: Applied some Resharper suggestions.
+MAXExporter3:
+- Added start of export from Diagram in Comments!
+
+[2013-sep-23]
+- Moved some paths to "C:\Temp" instead of "D:\"
+MAXExporter3:
+- EA uses system configured dateformat. Try both CurrentCulture and CurrentUICulture via try/catch workaround
+
+[2013-jul-17]
+MAXExporter3:
+- Ignore ObjectType and RelationshipTypes that are not in the XSD
+
+[2013-jul-13]
+MAXImporter3:
+- More robust import for Package with ParentID
+- eaPackageDict was not constructed with correct ID
+- MAX::ID overrules ElementID when constructing eaElementDict, not both!
+
+[2013-jul-11]
+MAXImporter3:
+- More robust count. Code expected at least the objects AND relationships tags.
+
+[2013-jul-01]
+MAXSchema.xsd
+- Added RelationshipType enum "Package" used for "<import>"
+MAXExporter3:
+- Forgot object@abstract & attribute@isReadOnly _Specified_
+- relationship@sourceLabel, @destLabel
+
+[2013-jun-30]
+MAXImporter3:
+- Return bool if there were any issues.
+
+[2013-jun-23]
+MAXImporter/MAXExporter/MAXExporter2
+- removed, really old now
+MAXImporter3/Exporter3/MAXSchema
+- create and use MAXSchema model using XSD.exe
+- also now import attribute tags!
+
+[2013-jun-21]
+MAXExporter2:
+- default filename based on package name + ".max.xml"
+- add export of package tagged values, attributes & attribute tagged values
+- add cardinalities & labels for relationships
+MAXModel:
+- add attributes + tagged values
+- add cardinalities & labels for relationships
+MAXSchema:
+- add tagged values for attributes
+
+[2013-jun-14]
+MAXImporter,Input/MAXSchema.xsd:
+- object@isAbstract, attribute@isReadOnly, attribute@alias
+
+[2013-jun-13]
+Input/MAXSchema.xsd:
+- relationship/id is optional and not used at the moment
+- added optional attribute@minCard/@maxCard
+- added optional relationship@sourceLabel,@sourceCard,@destLabel,@destCard
+MAXImporter:
+- dont use XPathSelect, just use Element/Elements for minor speed improvement
+- added optional attribute cardinality and relationship labels and cardinality
+- BUG FIXED: parentId was case sensitive and should not be
+
+[2013-may-07]
+MAXExporter2:
+- Made it more robust by adding and using Extension Methods to XElement that check for null.
+
+[2013-apr-24]
+MAXExporter2:
+- Package_ID and Object_ID are 2 idspace. So there can be an Package with id=5 and an object with id=5.
+  In EA a Package has both ID's. MAX has only one idspace and therefore has to use Object_ID. Fixed.
+ProgressWindow:
+- on-top of parent instead of on-top of all.
+MAXImporter:
+- Also set Package TreePos!
+
+[2013-apr-18]
+MAXExporter2:
+- Repository.EnableCache to speedup export!
+
+[2013-apr-12]
+MAXExporter2:
+- join t_package and t_object reliable on ea_guid instead of unreliable Name
+  ea_guid is the same for the Package and its Element
+
+[2013-mrt-28]
+MAXImporter:
+- Replaced "\n" to "\r\n" == newline in EA notes!
+
+[2013-mrt-26]
+MAXImporter/MAXSchema.xsd:
+- Implemented attributes
+- Relationship type Composition -> Closed Aggregation
+- Keep order of objects and attributes in Project Browser (using Element.TreePos, Attribute.Pos)
+
+[2013-mrt-19]
+MAXImporter:
+- Also import Packages and new tag format
+MAXExporter2:
+- Stereotype of object can be NULL, check for that.
+- Changed the <tag> format to <tag name= value=>notes</tag>
+MAXExporter:
+- Changed the <tag> format to <tag name= value=>notes</tag>
+
+[2013-mrt-15/16/17]
+QuickAccessViewControl:
+- Added Quick Access Buttons View!
+MAXExporter2:
+- Reimplementation of the MAX Exporter using the SQLQuery interface to the UML Model.
+- Keep HTML formatting as unescaped XML in the Package and Element notes. Not for TaggedValues since no formatting is allowed there.
+- Add "exportDate" attribute to model element.
+- Added selected package
+
+[2013-mrt-13]
+MAXExporter/Importer:
+- Tagged values in repeating child "tag" element with name, value and notes childs. If you want to use in spreadsheet, use a transform.
+- MaxExporter: experimental add attribute child elements.
+- MAXExporter: export in background thread
+
+[2013-mrt-06]
+-- Separated MAX classes from UMCG_EA_AddIn.
+
+[2013-mrt-06]
+MAXExporter:
+- on export add/update MAX::LastExportDate tag to exported package
+MAXImporter:
+- on import add/update MAX::LastImportDate tag to imported package
+
+[2013-feb-27]
+MAXExporter/Importer/xsd:
+- added optional "Element.modified" property to object
+
+[2012-nov-21]
+MAXExporter:
+- For now replace ':' in Tagged Values with a '_'
+
+[2012-nov-19]
+MAXSchema.xsd:
+- added alias attribute of object
+MAXExporter:
+- Add support from Package (for all Elements) and Diagram to filter Elements
+- Include parentId for nested Elements
+- Include Package Element
+- Add parentID to child elements of package
+
+[2012-oct-11]
+MAXImporter:
+- object.type & relationship.type may not be empty; if the xml tag is empty, use default
+
+[2012-oct-09]
+MAXImporter: all child elements of an object that start with "tag." will be placed as taggedvalue of that object
+- in a single transaction; the Element.TaggedValues.GetByName doesnot work; so if there are multiple objects with the same id in one max.xml
+- solved by calling Refresh on Element.TaggedValues
+
+[2012-sep-12]
+MAXExporter: initial

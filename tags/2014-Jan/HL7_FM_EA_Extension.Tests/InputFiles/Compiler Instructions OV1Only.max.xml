@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" exportDate="12/13/2013 15:37:53" xmlns="http://www.umcg.nl/MAX">
+  <objects xmlns="">
+    <object>
+      <id>2695</id>
+      <name>Compiler Instructions</name>
+      <type>Package</type>
+      <modified>2013-11-29T00:00:00</modified>
+    </object>
+    <object>
+      <id>5431</id>
+      <name>OV.1</name>
+      <stereotype>SectionCI</stereotype>
+      <type>Package</type>
+      <parentId>2695</parentId>
+      <modified>2013-12-13T00:00:00</modified>
+      <tag name="Priority" value="EN" />
+    </object>
+  </objects>
+  <relationships xmlns="">
+    <relationship>
+      <sourceId>5431</sourceId>
+      <destId>5</destId>
+      <notes />
+      <stereotype>import</stereotype>
+      <type>Package</type>
+    </relationship>
+  </relationships>
+</model>
