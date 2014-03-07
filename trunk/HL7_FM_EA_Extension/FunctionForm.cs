@@ -33,8 +33,7 @@ namespace HL7_FM_EA_Extension
             int stmtIdx = notes.IndexOf("$ST$");
             int descIdx = notes.IndexOf("$DE$", stmtIdx + 4);
             int examIdx = notes.IndexOf("$EX$", descIdx + 4);
-            statementTextBox.Rtf = repository.GetFormatFromField("RTF", notes.Substring(stmtIdx + 4, descIdx - stmtIdx - 4));
-            //statementTextBox.Text = notes.Substring(stmtIdx + 4, descIdx - stmtIdx - 4);
+            statementTextBox.Text = notes.Substring(stmtIdx + 4, descIdx - stmtIdx - 4);
             descriptionTextBox.Text = notes.Substring(descIdx + 4, examIdx - descIdx - 4);
             exampleTextBox.Text = notes.Substring(examIdx + 4);
 
@@ -93,41 +92,6 @@ namespace HL7_FM_EA_Extension
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-
-        /* Statement RichtText
-         */
-        private void statementTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.B)
-            {
-                ToggleBold();
-            }
-        }
-
-        private void ToggleBold()
-        {
-            if (statementTextBox.SelectionFont != null)
-            {
-                Font currentFont = statementTextBox.SelectionFont;
-                FontStyle newFontStyle;
-
-                if (statementTextBox.SelectionFont.Bold == true)
-                {
-                    newFontStyle = FontStyle.Regular;
-                }
-                else
-                {
-                    newFontStyle = FontStyle.Bold;
-                }
-
-                statementTextBox.SelectionFont = new Font(
-                   currentFont.FontFamily,
-                   currentFont.Size,
-                   newFontStyle
-                );
-            }
         }
     }
 }

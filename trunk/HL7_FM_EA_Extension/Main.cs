@@ -39,7 +39,7 @@ namespace HL7_FM_EA_Extension
                 case "":
                     return "-&HL7 FM";
                 case "-&HL7 FM":
-                    string[] ar = { "Import R1.1", "Import R2", "Validate", "Update Style", "Profiling", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "About" };
+                    string[] ar = { "Import R1.1", "Import R2", "Update Style", "Validate", "-", "Edit Profile", "Compile Profile", "Generate Publication", "-", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "About" };
                     return ar;
             }
             return "";
@@ -95,9 +95,12 @@ namespace HL7_FM_EA_Extension
                     case "Import R2":
                         new R2Importer().import(Repository, SelectedPackage);
                         break;
-                    case "Profiling":
+                    case "Edit Profile":
                         ProfilingForm profilingForm = new ProfilingForm();
                         profilingForm.Show(Repository);
+                        break;
+                    case "Compile Profile":
+                        CompileProfile(Repository, SelectedPackage);
                         break;
                     case "Validate":
                         new R2Validator().validate(Repository, SelectedPackage);
@@ -245,8 +248,7 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-// --------------
-
+        #region create-diagram
         private void CreateDiagram(EA.Repository Repository)
         {
             EA.Element selectedElement = null;
@@ -300,9 +302,139 @@ namespace HL7_FM_EA_Extension
             diagram.Update();
             return diagram;
         }
+        #endregion
 
-        // --------------
+        #region compile-profile
+        /**
+         * Compile Profile will take a profile definition and create a profile based on that.
+         * 1. Export profile definitions to MAX file (filename is in MAX::ExportFile) of ProfileDefinition Package
+         * 2. Find Base Model MAX File (filename is in MAX::ImportFile) of <use> Dependency target from ProfileDefinition Package
+         * 3. Compile profile to MAX File (filename is in MAX::ExportFile) of <create> Dependency target from ProfileDefinition Package
+         * 4. (optionally) import the compiled profile
+         */
+        private void CompileProfile(EA.Repository repository, EA.Package package)
+        {
+            // Only on a "HL7-Profile-Definition" stereotypes package
+            if (R2Const.ST_FM_PROFILEDEFINITION.Equals(package.StereotypeEx))
+            {
+                repository.CreateOutputTab(Properties.Resources.OUTPUT_TAB_HL7_FM);
+                repository.ClearOutput(Properties.Resources.OUTPUT_TAB_HL7_FM);
+                repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
 
+                // !! Use tagged value "MAX:ExportFile" as fileNames!
+                // Export it to MAX. 
+                EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
+                if (tvExportFile == null)
+                {
+                    MessageBox.Show("First setup Profile Definition Package.");
+                    return;
+                }
+                string profileDefinitionFileName = tvExportFile.Value;
+                EAHelper.LogMessage(repository, string.Format("[INFO] Profile Definition MAX file: {0}", profileDefinitionFileName));
+                EAHelper.LogMessage(repository, "[BEGIN] Export Profile Definition to MAX file");
+                new MAX_EA.MAXExporter3().exportPackage(repository, package, profileDefinitionFileName);
+                EAHelper.LogMessage(repository, "[END] Export Profile Definition to MAX file");
+
+                // Find associated Base
+                EA.Package baseModelPackage = findAssociatedBaseModel(repository, package);
+                if (baseModelPackage == null)
+                {
+                    MessageBox.Show("First setup Profile Definition Package.");
+                    return;
+                }
+                EAHelper.LogMessage(repository, string.Format("[INFO] Base Model Package name: {0}", baseModelPackage.Name));
+                EA.TaggedValue tvImportFile = (EA.TaggedValue)baseModelPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
+                if (tvImportFile == null)
+                {
+                    MessageBox.Show("First setup Profile Definition Package.");
+                    return;
+                }
+                string baseModelFileName = tvImportFile.Value;
+                EAHelper.LogMessage(repository, string.Format("[INFO] Base Model MAX file: {0}", baseModelFileName));
+
+                // Find associated Target Profile Package
+                EA.Package compiledProfilePackage = findAssociatedCompiledProfile(repository, package);
+                if (compiledProfilePackage == null)
+                {
+                    MessageBox.Show("First setup Profile Definition Package.");
+                    return;
+                }
+                EAHelper.LogMessage(repository, string.Format("[INFO] Compiled Profile Package name: {0}", compiledProfilePackage.Name));
+                EA.TaggedValue tvExportFile2 = (EA.TaggedValue)compiledProfilePackage.Element.TaggedValues.GetByName("MAX::ExportFile");
+                if (tvExportFile2 == null)
+                {
+                    MessageBox.Show("First setup Profile Definition Package.");
+                    return;
+                }
+                string profileFileName = tvExportFile2.Value;
+
+                // Call R2ProfileCompiler
+                EAHelper.LogMessage(repository, string.Format("[INFO] Compiled Profile MAX file: {0}", profileFileName));
+                EAHelper.LogMessage(repository, "[BEGIN] Compile Profile");
+                R2ProfileCompiler compiler = new R2ProfileCompiler();
+                compiler.Compile(baseModelFileName, profileDefinitionFileName, profileFileName);
+                EAHelper.LogMessage(repository, "[END] Compile Profile");
+
+                // Import compiled profile from MAX file
+                //new MAX_EA.MAXImporter3().import(repository, profilePackage, profileFileName);
+                MessageBox.Show("Manually import compiled profile now...");
+            }
+            else
+            {
+                MessageBox.Show("Please select a Profile Definition Package to Compile.");
+            }
+        }
+
+        private EA.Package findAssociatedBaseModel(EA.Repository Repository, EA.Package package)
+        {
+            EA.Connector con = package.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype));
+            if (con != null)
+            {
+                EA.Element packageElement = Repository.GetElementByID(con.SupplierID);
+                // Check if base is a HL7-FM
+                // TODO: Also allow HL7-FM-Profile in the future
+                if (R2Const.ST_FM.Equals(packageElement.Stereotype))
+                {
+                    return Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private EA.Package findAssociatedCompiledProfile(EA.Repository Repository, EA.Package package)
+        {
+            EA.Connector con = package.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_TARGETPROFILE.Equals(t.Stereotype));
+            if (con != null)
+            {
+                EA.Element packageElement = Repository.GetElementByID(con.SupplierID);
+                // Check if target profile is HL7-FM-Profile
+                if (R2Const.ST_FM_PROFILE.Equals(packageElement.Stereotype))
+                {
+                    return Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        #region update-style
+        /**
+         * Update the visual style (colors) of Section/Header/Function/Criteria elements.
+         */
         private void UpdateStyle_recurseEaPackage(EA.Package eaPackage)
         {
             foreach (EA.Package eaSubPackage in eaPackage.Packages)
@@ -326,7 +458,12 @@ namespace HL7_FM_EA_Extension
                 UpdateStyle_recurseEaElements(eaChildElement);
             }
         }
+        #endregion
 
+        /**
+         * Create a string containing the element path joined with '/' up to the <HL7-FM> stereotyped package.
+         * This is used for as title for Section/Header/Function/Criteria Forms.
+         */
         private string getFMElementPath(EA.Repository Repository, EA.Element element)
         {
             List<string> path = new List<string>();
@@ -348,15 +485,14 @@ namespace HL7_FM_EA_Extension
             return string.Join(" / ", path.ToArray());
         }
 
-        // --------------
-        // Add-In Search Methods
-        // --------------
+        #region add-in search methods
         public Boolean FindNonSHALL(EA.Repository Repository, string SearchText, out string XMLResults)
         {
             XElement xResults = new SearchMethods().FindNonSHALL(Repository, SearchText);
             XMLResults = xResults.ToString();
             return true;
         }
+        #endregion
 
         // --------------
         // Install MDG

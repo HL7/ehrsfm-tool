@@ -91,7 +91,7 @@ namespace MAX_EA
             Repository.CreateOutputTab(OUTPUT_TAB_MAX);
             Repository.ClearOutput(OUTPUT_TAB_MAX);
             visitSelectedPackage(package.PackageID);
-            Repository.EnsureOutputVisible(OUTPUT_TAB_MAX);
+            //Repository.EnsureOutputVisible(OUTPUT_TAB_MAX);
 
             model.objects = objects.ToArray();
             model.relationships = relationships.ToArray();
@@ -105,6 +105,22 @@ namespace MAX_EA
             {
                 serializer.Serialize(writer, model);
             }
+
+            // Add/update export metadata to the package
+            EA.TaggedValue tvExportDate = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportDate");
+            if (tvExportDate == null)
+            {
+                tvExportDate = (EA.TaggedValue)package.Element.TaggedValues.AddNew("MAX::ExportDate", "");
+            }
+            tvExportDate.Value = DateTime.Now.ToString();
+            tvExportDate.Update();
+            EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
+            if (tvExportFile == null)
+            {
+                tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.AddNew("MAX::ExportFile", "");
+            }
+            tvExportFile.Value = fileName;
+            tvExportFile.Update();
         }
 
         public void exportDiagram(EA.Repository Repository, EA.Diagram diagram, string fileName)

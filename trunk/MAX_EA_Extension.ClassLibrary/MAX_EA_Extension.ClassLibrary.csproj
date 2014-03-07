@@ -38,6 +38,10 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>False</Private>
     </Reference>
+    <Reference Include="saxon9he-api, Version=9.5.1.1, Culture=neutral, PublicKeyToken=e1fdd002d5083fe6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Saxonica\SaxonHE9.5N\bin\saxon9he-api.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -67,6 +71,12 @@
     <Compile Include="QuickAccessControl.Designer.cs">
       <DependentUpon>QuickAccessControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="TransformParamsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransformParamsForm.Designer.cs">
+      <DependentUpon>TransformParamsForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MAX_EA.ClassLibrary\MAX_EA.ClassLibrary.csproj">
@@ -88,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuickAccessControl.resx">
       <DependentUpon>QuickAccessControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransformParamsForm.resx">
+      <DependentUpon>TransformParamsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

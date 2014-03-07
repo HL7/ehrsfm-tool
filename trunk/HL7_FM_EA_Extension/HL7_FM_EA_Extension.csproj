@@ -53,6 +53,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="EAHelper.cs" />
     <Compile Include="MAXTreeNode.cs" />
     <Compile Include="ModelBrowserControl.cs">
       <SubType>UserControl</SubType>

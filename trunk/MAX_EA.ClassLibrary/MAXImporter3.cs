@@ -80,15 +80,21 @@ namespace MAX_EA
                     issues |= importRelationships(selectedPackage, model.relationships, true);
                 }
 
-                // Add/update import metadata to the model
-                EA.TaggedValue tvImportDate = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::LastImportDate");
+                // Add/update import metadata to the package
+                EA.TaggedValue tvImportDate = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::ImportDate");
                 if (tvImportDate == null)
                 {
-                    tvImportDate = (EA.TaggedValue)selectedPackage.Element.TaggedValues.AddNew("MAX::LastImportDate", "");
+                    tvImportDate = (EA.TaggedValue)selectedPackage.Element.TaggedValues.AddNew("MAX::ImportDate", "");
                 }
                 tvImportDate.Value = DateTime.Now.ToString();
                 tvImportDate.Update();
-                selectedPackage.Element.TaggedValues.Refresh();
+                EA.TaggedValue tvImportFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
+                if (tvImportFile == null)
+                {
+                    tvImportFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.AddNew("MAX::ImportFile", "");
+                }
+                tvImportFile.Value = fileName;
+                tvImportFile.Update();
             }
             Repository.EnableUIUpdates = true;
             Repository.BatchAppend = false;

@@ -33,6 +33,16 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2014-mrt-06]
+Util:
+- Split FileName into Directory and FileName in Open File Dialog
+
+[2014-feb-28]
+MAXExporter3:
+- Add ExportDate and ExportFile tagged values for exported package
+MAXImporter3:
+- Add ImportDate and ImportFile tagged values for imported package
+
 [2014-feb-22]
 MAXExporter3:
 - Order of Packages and Objects in the MAX export is now sorted by the position they have in the Project Browser (TPos)

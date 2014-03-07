@@ -40,7 +40,7 @@
             this.pathLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.statementTextBox = new System.Windows.Forms.RichTextBox();
+            this.statementTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -154,12 +154,12 @@
             // 
             // statementTextBox
             // 
-            this.statementTextBox.Location = new System.Drawing.Point(99, 94);
+            this.statementTextBox.Location = new System.Drawing.Point(99, 97);
+            this.statementTextBox.Multiline = true;
             this.statementTextBox.Name = "statementTextBox";
-            this.statementTextBox.Size = new System.Drawing.Size(661, 69);
+            this.statementTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.statementTextBox.Size = new System.Drawing.Size(661, 66);
             this.statementTextBox.TabIndex = 29;
-            this.statementTextBox.Text = "";
-            this.statementTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.statementTextBox_KeyUp);
             // 
             // FunctionForm
             // 
@@ -207,6 +207,6 @@
         private System.Windows.Forms.Label pathLabel;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox statementTextBox;
+        private System.Windows.Forms.TextBox statementTextBox;
     }
 }

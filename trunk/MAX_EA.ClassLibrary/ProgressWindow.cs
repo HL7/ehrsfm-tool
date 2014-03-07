@@ -15,5 +15,21 @@ namespace MAX_EA
         {
             InitializeComponent();
         }
+
+        public void setup(int max)
+        {
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = max;
+            progressBar1.Step = 1;
+            progress.Text = string.Format("{0} / {1}", progressBar1.Value, progressBar1.Maximum);
+            Refresh();
+        }
+
+        public void step()
+        {
+            progressBar1.PerformStep();
+            progress.Text = string.Format("{0} / {1}", progressBar1.Value, progressBar1.Maximum);
+            Refresh();
+        }
     }
 }

@@ -1,13 +1,16 @@
 ﻿TODO
 ====
-- Document Namespace on Sections and why, usefull for searching
-- Include association for References? Or make this an option.
-- _Implement Model Browser double click_
 - AboutBox: use Setup parameters to populate fields.
 - *Form should call R2Config.updateStyle, no Modified event is created, so call it ourselfs.
 
 CHANGELOG
 =========
+[2014-feb-28]
+ProfilingForm:
+- Added "Change note" on CompilerInstruction
+Main:
+- Initial implementation of calling into CompileProfile (utilizing MAX::Import/Export tagged values!)
+
 [2014-feb-21]
 ProfilingForm:
 - Also use/create/update ProfileDefinitions

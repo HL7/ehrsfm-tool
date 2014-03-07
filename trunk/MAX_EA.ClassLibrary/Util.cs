@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -20,7 +21,8 @@ namespace MAX_EA
             }
             dialog.Filter = filter;
             dialog.Title = title;
-            dialog.FileName = fileName;
+            dialog.InitialDirectory = Path.GetDirectoryName(fileName);
+            dialog.FileName = Path.GetFileName(fileName);
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {

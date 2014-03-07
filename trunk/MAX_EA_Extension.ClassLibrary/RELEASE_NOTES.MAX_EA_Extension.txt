@@ -1,5 +1,19 @@
 ﻿CHANGELOG
 =========
+[2014-mrt-06]
+TransformParamsForm:
+- Use standard tempfolder and store selected XSLT Filename as tagged value with the first view in the project
+- Added Open File Dialogs
+
+[2014-mrt-05]
+TransformParamsForm:
+- Moved transform here and added form
+
+[2014-mrt-04]
+Main.cs
+- Added merge diagrams utility
+- Initial work on calling into Saxon Transforms
+
 [2013-jun-30]
 References/Interop.EA.dll
 - set "Copy Local" to False. We expect EA to be installed.
