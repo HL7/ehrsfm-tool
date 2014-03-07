@@ -128,7 +128,7 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, String.Format("ConsequenceLink from {0} to {1}, target Function not found.", clink.sourceID, clink.targetID), -1);
+                    EAHelper.LogMessage(Repository, String.Format("ConsequenceLink from {0} to {1}, target Function not found.", clink.sourceID, clink.targetID));
                 }
             }
 
@@ -146,7 +146,7 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, String.Format("SeeAlso link from {0} to {1}, target Function not found.", slink.sourceID, slink.targetID), -1);
+                    EAHelper.LogMessage(Repository, String.Format("SeeAlso link from {0} to {1}, target Function not found.", slink.sourceID, slink.targetID));
                 }
             }
 
@@ -168,7 +168,7 @@ namespace HL7_FM_EA_Extension
                     int? sectionColor = config.getSectionColorInt(composition.targetID);
                     if (sectionColor == null)
                     {
-                        Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, String.Format("Function composition from {0} to {1}, target not found.", composition.sourceID, composition.targetID), -1);
+                        EAHelper.LogMessage(Repository, String.Format("Function composition from {0} to {1}, target not found.", composition.sourceID, composition.targetID));
                     }
                 }
             }
@@ -303,7 +303,7 @@ namespace HL7_FM_EA_Extension
             string key = string.Format("{0}-{1}", sourceID, targetID);
             if (compositions.ContainsKey(key))
             {
-                Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, String.Format("Function {0} composition to {1}, already there", sourceID, targetID), -1);
+                EAHelper.LogMessage(Repository, String.Format("Function {0} composition to {1}, already there", sourceID, targetID));
                 return false;
             }
             else
@@ -319,7 +319,7 @@ namespace HL7_FM_EA_Extension
             string key = string.Format("{0}-{1}", sourceID, targetID);
             if (consequenceLinks.ContainsKey(key))
             {
-                Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, String.Format("Function {0} link to {1}, already there", sourceID, targetID), -1);
+                EAHelper.LogMessage(Repository, String.Format("Function {0} link to {1}, already there", sourceID, targetID));
                 return false;
             }
             else
@@ -335,7 +335,7 @@ namespace HL7_FM_EA_Extension
             string key = string.Format("{0}-{1}", sourceID, targetID);
             if (seeAlsoLinks.ContainsKey(key))
             {
-                Repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, String.Format("Function {0} see-also to {1}, already there", sourceID, targetID), -1);
+                EAHelper.LogMessage(Repository, String.Format("Function {0} see-also to {1}, already there", sourceID, targetID));
                 return false;
             }
             else

@@ -107,8 +107,9 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(412, 41);
             this.textBox1.TabIndex = 28;
-            this.textBox1.Text = "The MAX EA Extension was initially developed for easy exchanging and co-authoring" +
-    " of (parts of) models between modeling tools and spreadsheets.";
+            this.textBox1.Text = "The MAX EA Extension is developed for easy exchanging, co-authoring of (parts of)" +
+    " models between modeling tools and spreadsheet-like datasources and for generati" +
+    "ng reports.";
             // 
             // textBox2
             // 

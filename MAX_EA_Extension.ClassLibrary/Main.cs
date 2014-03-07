@@ -34,7 +34,7 @@ namespace MAX_EA_Extension
                 case "":
                     return "-&MAX";
                 case "-&MAX":
-                    string[] ar = { "Import/Update", "Export", "-", "About..." };
+                    string[] ar = { "Import/Update", "Export", "-", "Transform", "Merge Diagrams", "-", "About..." };
                     return ar;
             }
             return "";
@@ -102,6 +102,12 @@ namespace MAX_EA_Extension
                             Repository.EnsureOutputVisible("MAX");
                         }
                         break;
+                    case "Transform":
+                        new TransformParamsForm().Show(Repository);
+                        break;
+                    case "Merge Diagrams":
+                        mergeDiagrams(Repository, selectedPackage);
+                        break;
                     case "Quick Access Tab":
                         if (view_ctrl == null || !view_ctrl.Visible)
                         {
@@ -127,6 +133,65 @@ namespace MAX_EA_Extension
             }
         }
 
+        private void mergeDiagrams(EA.Repository repository, EA.Package package)
+        {
+            Dictionary<int, EA.DiagramObject> dobjects = new Dictionary<int, EA.DiagramObject>();
+            Dictionary<int, EA.DiagramLink> dlinks = new Dictionary<int, EA.DiagramLink>();
+            foreach (EA.Diagram diagram in package.Diagrams)
+            {
+                foreach (EA.DiagramObject dobject in diagram.DiagramObjects)
+                {
+                    dobjects[dobject.ElementID] = dobject;
+                }
+                foreach (EA.DiagramLink dlink in diagram.DiagramLinks)
+                {
+                    dlinks[dlink.ConnectorID] = dlink;
+                }
+            }
+
+            EA.Diagram mdiagram = (EA.Diagram)package.Diagrams.AddNew(string.Format("{0} (Merged)", package.Name), "Custom");
+            mdiagram.Update();
+
+            // copy objects
+            int left = 10;
+            int top = 10;
+            const int width = 100;
+            const int height = 80;
+            const int padding = 10;
+            foreach (EA.DiagramObject dobject in dobjects.Values)
+            {
+                EA.Element element = repository.GetElementByID(dobject.ElementID);
+                if ("Boundary".Equals(element.Type))
+                {
+                    continue;
+                }
+
+                string dimensions = string.Format("l={0};r={1};t={2};b={3};", left, left + width, top, top + height);
+                left += padding + width;
+                EA.DiagramObject mobject = (EA.DiagramObject)mdiagram.DiagramObjects.AddNew(dimensions, "");
+                mobject.ElementID = element.ElementID;
+                mobject.Update();
+
+                if (left == 1000)
+                {
+                    left = 10;
+                    top += height;
+                }
+            }
+            mdiagram.Update();
+
+            // copy links (o.a. NoteLinks)
+            foreach (EA.DiagramLink dlink in dlinks.Values)
+            {
+                EA.DiagramLink mlink = (EA.DiagramLink)mdiagram.DiagramLinks.AddNew("", "");
+                mlink.ConnectorID = dlink.ConnectorID;
+                mlink.Update();
+            }
+
+            package.Update();
+            repository.OpenDiagram(mdiagram.DiagramID);
+        }
+
         public bool EA_OnContextItemChanged(EA.Repository Repository, string GUID, EA.ObjectType ot)
         {
             if (ot == EA.ObjectType.otPackage)
@@ -145,7 +210,5 @@ namespace MAX_EA_Extension
             }
             return false;
         }
-
- 
     }
 }
