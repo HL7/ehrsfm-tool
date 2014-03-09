@@ -326,6 +326,9 @@ namespace MAX_EA.MAXSchema {
         Activity,
 
         /// <remarks/>
+        Action,
+
+        /// <remarks/>
         Issue,
 
         /// <remarks/>

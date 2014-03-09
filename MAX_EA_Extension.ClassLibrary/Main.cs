@@ -45,7 +45,7 @@ namespace MAX_EA_Extension
         {
             try
             {
-                EA.Collection c = Repository.Models;
+                EA.Collection c = Repository.Models; // triggers an Exception if no project is open
                 return true;
             }
             catch
@@ -103,7 +103,13 @@ namespace MAX_EA_Extension
                         }
                         break;
                     case "Transform":
-                        new TransformParamsForm().Show(Repository);
+                        Repository.CreateOutputTab("MAX");
+                        Repository.ClearOutput("MAX");
+                        if (new TransformParamsForm().Show(Repository))
+                        {
+                            // only popup when there were any issues
+                            Repository.EnsureOutputVisible("MAX");
+                        }
                         break;
                     case "Merge Diagrams":
                         mergeDiagrams(Repository, selectedPackage);

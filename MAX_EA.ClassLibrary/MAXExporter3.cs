@@ -88,10 +88,7 @@ namespace MAX_EA
             // Now export selected package
             objects = new List<ObjectType>();
             relationships = new List<RelationshipType>();
-            Repository.CreateOutputTab(OUTPUT_TAB_MAX);
-            Repository.ClearOutput(OUTPUT_TAB_MAX);
             visitSelectedPackage(package.PackageID);
-            //Repository.EnsureOutputVisible(OUTPUT_TAB_MAX);
 
             model.objects = objects.ToArray();
             model.relationships = relationships.ToArray();

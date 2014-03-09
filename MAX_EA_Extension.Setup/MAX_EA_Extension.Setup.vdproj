@@ -795,7 +795,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MAX_EA_Extension"
         "ProductCode" = "8:{9D8C597B-21F4-474B-BB0C-3DB0AD656877}"
-        "PackageCode" = "8:{FB567838-25D9-4184-A109-7075644166A7}"
+        "PackageCode" = "8:{DC2B0BE1-8417-495E-A6FF-2B5B08DFB5BE}"
         "UpgradeCode" = "8:{88D5AB14-7864-425E-BEA1-5D599036D021}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

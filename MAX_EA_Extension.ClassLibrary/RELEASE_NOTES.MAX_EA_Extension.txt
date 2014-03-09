@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2014-mrt-09]
+TransformParamsForm:
+- Show output console on errors
+
 [2014-mrt-06]
 TransformParamsForm:
 - Use standard tempfolder and store selected XSLT Filename as tagged value with the first view in the project
