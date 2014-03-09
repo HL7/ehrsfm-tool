@@ -22,9 +22,10 @@ namespace MAX_EA_Extension
         // TODO: outputFormat = html or xml or txt, get from xslt
         private string outputFormat = "html";
         private string defaultXsltFile = @"C:\Eclipse Workspace\NieuwEPD\9.01\901-report.xslt";
+        private bool issues = false;
 
         private EA.Repository Repository;
-        public void Show(EA.Repository Repository)
+        public bool Show(EA.Repository Repository)
         {
             this.Repository = Repository;
             string maxFile = "";
@@ -49,6 +50,7 @@ namespace MAX_EA_Extension
             textBox3.Text = outputFile;
 
             ShowDialog();
+            return issues;
         }
 
         private bool transform(EA.Repository Repository, string maxFile, string xsltFile, string outputFile)
@@ -81,6 +83,7 @@ namespace MAX_EA_Extension
             }
             catch (Exception ex)
             {
+                Repository.WriteOutput("MAX", ex.Message, 0);
                 StringBuilder sb = new StringBuilder();
                 foreach (var error in compiler.ErrorList)
                 {
@@ -146,7 +149,7 @@ namespace MAX_EA_Extension
             }
             else
             {
-                MessageBox.Show("Check output console for errors");
+                issues = true;
             }
         }
 

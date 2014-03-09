@@ -12,6 +12,7 @@
 			<xs:enumeration value="Component" />
 			<xs:enumeration value="Package" />
       <xs:enumeration value="Activity" />
+      <xs:enumeration value="Action" />
       <xs:enumeration value="Issue" />
       <xs:enumeration value="Change" />
       <xs:enumeration value="Artifact" />
