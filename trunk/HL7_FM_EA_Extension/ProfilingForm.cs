@@ -303,6 +303,7 @@ namespace HL7_FM_EA_Extension
             if (dl.compilerInstructionElement == null)
             {
                 dl.compilerInstructionElement = (EA.Element)ProfileDefinition.Elements.AddNew(dl.baseModelElement.Name, "Class");
+                dl.compilerInstructionElement.Stereotype = R2Const.ST_COMPILERINSTRUCTION;
                 dl.compilerInstructionElement.Update();
                 EA.Connector con = (EA.Connector)dl.compilerInstructionElement.Connectors.AddNew("", "Generalization");
                 con.SupplierID = dl.baseModelElement.ElementID;
