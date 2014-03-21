@@ -33,9 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Interop.EA">
-      <HintPath>C:\Program Files\Sparx Systems\EA\Interop.EA.dll</HintPath>
+      <HintPath>..\..\..\Program Files\Sparx Systems\EA\Interop.EA.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,12 +60,19 @@
     <Compile Include="ModelBrowserControl.Designer.cs">
       <DependentUpon>ModelBrowserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProfileMetadataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfileMetadataForm.Designer.cs">
+      <DependentUpon>ProfileMetadataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProfilingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProfilingForm.Designer.cs">
       <DependentUpon>ProfilingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="R2Model.cs" />
     <Compile Include="R2ProfileCompiler.cs" />
     <Compile Include="QuickAccessControl.cs">
       <SubType>UserControl</SubType>
@@ -75,7 +81,6 @@
       <DependentUpon>QuickAccessControl.cs</DependentUpon>
     </Compile>
     <Compile Include="R2Config.cs" />
-    <Compile Include="R2Const.cs" />
     <Compile Include="SearchMethods.cs" />
     <Compile Include="SectionForm.cs">
       <SubType>Form</SubType>
@@ -83,11 +88,11 @@
     <Compile Include="SectionForm.Designer.cs">
       <DependentUpon>SectionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CriteriaForm.cs">
+    <Compile Include="CriterionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CriteriaForm.Designer.cs">
-      <DependentUpon>CriteriaForm.cs</DependentUpon>
+    <Compile Include="CriterionForm.Designer.cs">
+      <DependentUpon>CriterionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FunctionForm.cs">
       <SubType>Form</SubType>
@@ -139,6 +144,9 @@
     <EmbeddedResource Include="ModelBrowserControl.resx">
       <DependentUpon>ModelBrowserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProfileMetadataForm.resx">
+      <DependentUpon>ProfileMetadataForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProfilingForm.resx">
       <DependentUpon>ProfilingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,8 +156,8 @@
     <EmbeddedResource Include="SectionForm.resx">
       <DependentUpon>SectionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CriteriaForm.resx">
-      <DependentUpon>CriteriaForm.cs</DependentUpon>
+    <EmbeddedResource Include="CriterionForm.resx">
+      <DependentUpon>CriterionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FunctionForm.resx">
       <DependentUpon>FunctionForm.cs</DependentUpon>

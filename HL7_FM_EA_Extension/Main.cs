@@ -145,6 +145,7 @@ namespace HL7_FM_EA_Extension
             }
             catch (Exception e)
             {
+                EAHelper.LogMessage(Repository, e.ToString());
                 MessageBox.Show(e.ToString());
             }
         }
@@ -179,30 +180,41 @@ namespace HL7_FM_EA_Extension
         //This event occurs when a user has double-clicked (or pressed [Enter]) 
         //on the item in context, either in a diagram or in the Project Browser.
         private R2Config config = new R2Config();
-        public bool EA_OnContextItemDoubleClicked(EA.Repository Repository, string GUID, EA.ObjectType ot)
+        public bool EA_OnContextItemDoubleClicked(EA.Repository repository, string GUID, EA.ObjectType ot)
         {
             if (ot == EA.ObjectType.otElement)
             {
-                EA.Element element = Repository.GetElementByGuid(GUID);
-                string path = getFMElementPath(Repository, element);
-                switch (element.Stereotype)
+                EA.Element element = repository.GetElementByGuid(GUID);
+                R2ModelElement modelElement = R2Model.Create(repository, element);
+                if (modelElement != null)
                 {
-                    case R2Const.ST_FUNCTION:
-                    case R2Const.ST_HEADER:
-                        new FunctionForm().Show(element, path, config, Repository);
-                        return true;
-                    case R2Const.ST_CRITERIA:
-                        new CriteriaForm().Show(element, path, config);
-                        return true;
+                    string path = getFMElementPath(repository, element);
+                    switch (modelElement.Stereotype)
+                    {
+                        case R2Const.ST_FUNCTION:
+                        case R2Const.ST_HEADER:
+                            R2Function function = (R2Function) R2Model.Create(repository, element);
+                            new FunctionForm().Show(function, path, config);
+                            return true;
+                        case R2Const.ST_CRITERION:
+                            R2Criterion criterion = (R2Criterion) R2Model.Create(repository, element);
+                            new CriterionForm().Show(criterion, path, config);
+                            return true;
+                    }
                 }
             }
             else if (ot == EA.ObjectType.otPackage)
             {
-                EA.Element el = Repository.GetPackageByGuid(GUID).Element;
-                switch (el.Stereotype)
+                EA.Element element = repository.GetPackageByGuid(GUID).Element;
+                switch (element.Stereotype)
                 {
+                    case R2Const.ST_FM_PROFILE:
+                    case R2Const.ST_FM_PROFILEDEFINITION:
+                        new ProfileMetadataForm().Show(repository, repository.GetPackageByGuid(GUID));
+                        return true;
                     case R2Const.ST_SECTION:
-                        new SectionForm().Show(el, config);
+                        R2Section section = (R2Section)R2Model.Create(repository, element);
+                        new SectionForm().Show(section, config);
                         return true;
                 }
             }
@@ -229,7 +241,7 @@ namespace HL7_FM_EA_Extension
                 {
                     case R2Const.ST_FUNCTION:
                     case R2Const.ST_HEADER:
-                    case R2Const.ST_CRITERIA:
+                    case R2Const.ST_CRITERION:
                         config.updateStyle(el);
                         el.Update();
                         break;
@@ -298,7 +310,6 @@ namespace HL7_FM_EA_Extension
                     top += height + padding;
                 }
             }
-            diagram.IsLocked = R2Const.LOCK_ELEMENTS;
             diagram.Update();
             return diagram;
         }

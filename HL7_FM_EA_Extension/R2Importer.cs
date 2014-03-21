@@ -11,6 +11,7 @@ namespace HL7_FM_EA_Extension
 {
     class R2Importer
     {
+        private const bool LOCK_ELEMENTS = false;
         private EA.Repository Repository;
         private R2Config config = new R2Config();
         private MAX_EA.ProgressWindow progress = new MAX_EA.ProgressWindow();
@@ -63,7 +64,7 @@ namespace HL7_FM_EA_Extension
             fmPackage.Element.Author = getXElementValue(xModel, "Author");
             fmPackage.Element.Phase = getXElementValue(xModel, "Type");
             fmPackage.Element.Update();
-            fmPackage.Element.Locked = R2Const.LOCK_ELEMENTS;
+            fmPackage.Element.Locked = LOCK_ELEMENTS;
 
             // Start with the chapters (section!) and iterate functions/headers and attach criteria
             foreach (XElement xChapter in xModel.Elements("Chapter"))
@@ -85,7 +86,7 @@ namespace HL7_FM_EA_Extension
                 sectionPackage.Element.Stereotype = R2Const.ST_SECTION;
                 config.updateStyle(sectionPackage.Element);
                 sectionPackage.Element.Update();
-                sectionPackage.Element.Locked = R2Const.LOCK_ELEMENTS;
+                sectionPackage.Element.Locked = LOCK_ELEMENTS;
 
                 // Create TaggedValues for extra notes
                 addTaggedValue(sectionPackage.Element, "ID", ID);
@@ -109,7 +110,7 @@ namespace HL7_FM_EA_Extension
                     importFunction(functionElement, xFunction);
                     functionElement.TreePos = TPos++; // Keep order from import file
                     functionElement.Update();
-                    functionElement.Locked = R2Const.LOCK_ELEMENTS;
+                    functionElement.Locked = LOCK_ELEMENTS;
                 }
             }
 
@@ -209,7 +210,7 @@ namespace HL7_FM_EA_Extension
                     break;
             }
             functionElement.Update();
-            functionElement.Locked = R2Const.LOCK_ELEMENTS;
+            functionElement.Locked = LOCK_ELEMENTS;
 
             addTaggedValue(functionElement, "Row", functionRow);
             addReferenceTags(functionElement, xFunction);
@@ -238,10 +239,10 @@ namespace HL7_FM_EA_Extension
                 EA.Element criteriaElement = (EA.Element)functionElement.Elements.AddNew(criteriaID, "Requirement");
                 elements.Add(criteriaID, criteriaElement);
                 criteriaElement.Notes = criteriaText;
-                criteriaElement.Stereotype = R2Const.ST_CRITERIA;
+                criteriaElement.Stereotype = R2Const.ST_CRITERION;
                 config.updateStyle(criteriaElement);
                 criteriaElement.Update();
-                criteriaElement.Locked = R2Const.LOCK_ELEMENTS;
+                criteriaElement.Locked = LOCK_ELEMENTS;
 
                 // Create TaggedValues for extra metadata
                 addTaggedValue(criteriaElement, "Row", criteriaRow);

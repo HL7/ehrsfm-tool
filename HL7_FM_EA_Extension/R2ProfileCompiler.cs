@@ -68,9 +68,19 @@ namespace HL7_FM_EA_Extension
                                       type = ObjectTypeEnum.Package,
                                       typeSpecified = true };
 
-                // Convert consequenceLinks to imports
+                // Create imports from consequenceLinks
                 // This will mark all linked nodes to import=true if a compiler instruction references a node with a consequenceLink
-                followConsequenceLinks(root, false);
+                // Only do this for ProfileType != Companion
+                bool doFollowConsequenceLinks = true;
+                TagType typeTag = root.metadata.tag.SingleOrDefault(t => "Type".Equals(t.name));
+                if (typeTag != null)
+                {
+                    doFollowConsequenceLinks = !"Companion".Equals(typeTag.value);
+                }
+                if (doFollowConsequenceLinks)
+                {
+                    followConsequenceLinks(root, false);
+                }
 
                 // Compile aka execute compiler instructions
                 executeInstructions(root, false, PRIORITY_ESSENTIALNOW);

@@ -16,67 +16,43 @@ namespace HL7_FM_EA_Extension
             InitializeComponent();
         }
 
-        private EA.Element element;
+        private R2Function _function;
 
-        public void Show(EA.Element el, string path, R2Config config, EA.Repository repository)
+        public void Show(R2Function function, string path, R2Config config)
         {
-            element = el;
-            Text = string.Format("EHR-S FM {0}: {1}", el.Stereotype, el.Name);
-            BackColor = config.getSectionColor(el.Name, DefaultBackColor);
+            _function = function;
+
+            Text = string.Format("EHR-S FM {0}: {1}", _function.Stereotype, _function.Name);
+            BackColor = config.getSectionColor(_function.Name, DefaultBackColor);
             pathLabel.Text = path;
 
             // Other properties
-            nameTextBox.Text = el.Name;
-            idTextBox.Text = el.Alias;
+            nameTextBox.Text = _function.Name;
+            idTextBox.Text = _function.FunctionID;
+            statementTextBox.Text = _function.Statement;
+            descriptionTextBox.Text = _function.Description;
+            exampleTextBox.Text = _function.Example;
 
-            string notes = el.Notes;
-            int stmtIdx = notes.IndexOf("$ST$");
-            int descIdx = notes.IndexOf("$DE$", stmtIdx + 4);
-            int examIdx = notes.IndexOf("$EX$", descIdx + 4);
-            statementTextBox.Text = notes.Substring(stmtIdx + 4, descIdx - stmtIdx - 4);
-            descriptionTextBox.Text = notes.Substring(descIdx + 4, examIdx - descIdx - 4);
-            exampleTextBox.Text = notes.Substring(examIdx + 4);
+            // TODO: Add ConsequenceLinks (& See Also?) "depends on" and "needed by" compartments
 
-            // TODO: Add "depends on" and "needed by" compartments
-
+            bool enable = !(function is CompilerInstruction);
+            nameTextBox.Enabled = enable;
+            idTextBox.Enabled = enable;
+            statementTextBox.Enabled = enable;
+            descriptionTextBox.Enabled = enable;
+            exampleTextBox.Enabled = enable;
             ShowDialog();
-        }
-
-        private void updateTaggedValue(string name, string value)
-        {
-            if (!string.IsNullOrEmpty(value))
-            {
-                EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(name);
-                if (tv == null)
-                {
-                    tv = (EA.TaggedValue)element.TaggedValues.AddNew(name, "TaggedValue");
-                }
-                tv.Value = value;
-                tv.Update();
-            }
-        }
-
-        private string getTaggedValue(string name)
-        {
-            EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(name);
-            if (tv != null)
-            {
-                return tv.Value;
-            }
-            else
-            {
-                return "";
-            }
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
             Close();
-            element.Name = nameTextBox.Text;
-            element.Alias = idTextBox.Text;
-            string notes = string.Format("$ST${0}$DE${1}$EX${2}", statementTextBox.Text, descriptionTextBox.Text, exampleTextBox.Text);
-            element.Notes = notes;
-            element.Update();
+            _function.Name = nameTextBox.Text;
+            _function.FunctionID = idTextBox.Text;
+            _function.Statement = statementTextBox.Text;
+            _function.Description = descriptionTextBox.Text;
+            _function.Example = exampleTextBox.Text;
+            _function.Update();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

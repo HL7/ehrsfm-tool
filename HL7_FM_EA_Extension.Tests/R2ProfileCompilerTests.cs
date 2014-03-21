@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HL7_FM_EA_Extension.Tests
 {
     [TestClass]
-    public class CompileUnitTests
+    public class R2ProfileCompilerTests
     {
         [TestMethod]
         public void TestCompileOV1Only()

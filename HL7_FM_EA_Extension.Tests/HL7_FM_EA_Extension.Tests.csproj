@@ -46,8 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MAXTreeNodeTests.cs" />
+    <Compile Include="NoteSplitterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CompileUnitTests.cs" />
+    <Compile Include="R2ProfileCompilerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HL7_FM_EA_Extension\HL7_FM_EA_Extension.csproj">

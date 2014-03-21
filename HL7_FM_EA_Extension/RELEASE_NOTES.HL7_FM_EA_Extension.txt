@@ -5,6 +5,21 @@
 
 CHANGELOG
 =========
+[2014-mrt-21]
+*Form
+- Added HL7 icon!
+Main
+- Open the correct edit form when double clicking on a Compiler Instruction.
+R2Model
+- Major cleanup of code. Added R2Model as a Facade/Wrapper to the EA classes
+- Made note "$XY$" splitting robust and tolerant
+
+[2014-mrt-18]
+ProfileMetadataForm
+- initial implementation
+R2ProfileCompiler
+- dont process ConsequenceLinks when profile-type = companion
+
 [2014-feb-28]
 ProfilingForm:
 - Added "Change note" on CompilerInstruction

@@ -1,6 +1,6 @@
 ﻿namespace HL7_FM_EA_Extension
 {
-    partial class CriteriaForm
+    partial class CriterionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CriterionForm));
             this.pathLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.criteriaTextTextBox = new System.Windows.Forms.TextBox();
+            this.textTextBox = new System.Windows.Forms.TextBox();
             this.conditionalCheckBox = new System.Windows.Forms.CheckBox();
             this.dependentCheckBox = new System.Windows.Forms.CheckBox();
             this.optionalityComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.criteriaIDNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.rowNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.criteriaIDNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,14 +68,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Criteria Text";
             // 
-            // criteriaTextTextBox
+            // textTextBox
             // 
-            this.criteriaTextTextBox.Location = new System.Drawing.Point(85, 72);
-            this.criteriaTextTextBox.Multiline = true;
-            this.criteriaTextTextBox.Name = "criteriaTextTextBox";
-            this.criteriaTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.criteriaTextTextBox.Size = new System.Drawing.Size(579, 159);
-            this.criteriaTextTextBox.TabIndex = 2;
+            this.textTextBox.Location = new System.Drawing.Point(85, 72);
+            this.textTextBox.Multiline = true;
+            this.textTextBox.Name = "textTextBox";
+            this.textTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textTextBox.Size = new System.Drawing.Size(579, 159);
+            this.textTextBox.TabIndex = 2;
             // 
             // conditionalCheckBox
             // 
@@ -141,12 +142,12 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Row";
             // 
-            // criteriaIDNumericUpDown
+            // idNumericUpDown
             // 
-            this.criteriaIDNumericUpDown.Location = new System.Drawing.Point(85, 46);
-            this.criteriaIDNumericUpDown.Name = "criteriaIDNumericUpDown";
-            this.criteriaIDNumericUpDown.Size = new System.Drawing.Size(42, 20);
-            this.criteriaIDNumericUpDown.TabIndex = 13;
+            this.idNumericUpDown.Location = new System.Drawing.Point(85, 46);
+            this.idNumericUpDown.Name = "idNumericUpDown";
+            this.idNumericUpDown.Size = new System.Drawing.Size(42, 20);
+            this.idNumericUpDown.TabIndex = 13;
             // 
             // rowNumericUpDown
             // 
@@ -175,7 +176,7 @@
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
-            // CriteriaForm
+            // CriterionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -183,26 +184,26 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.rowNumericUpDown);
-            this.Controls.Add(this.criteriaIDNumericUpDown);
+            this.Controls.Add(this.idNumericUpDown);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.optionalityComboBox);
             this.Controls.Add(this.dependentCheckBox);
             this.Controls.Add(this.conditionalCheckBox);
-            this.Controls.Add(this.criteriaTextTextBox);
+            this.Controls.Add(this.textTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pathLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CriteriaForm";
-            this.ShowIcon = false;
+            this.Name = "CriterionForm";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EHR-S FM Criteria";
-            ((System.ComponentModel.ISupportInitialize)(this.criteriaIDNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -213,7 +214,7 @@
 
         private System.Windows.Forms.Label pathLabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox criteriaTextTextBox;
+        private System.Windows.Forms.TextBox textTextBox;
         private System.Windows.Forms.CheckBox conditionalCheckBox;
         private System.Windows.Forms.CheckBox dependentCheckBox;
         private System.Windows.Forms.ComboBox optionalityComboBox;
@@ -221,7 +222,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.NumericUpDown criteriaIDNumericUpDown;
+        private System.Windows.Forms.NumericUpDown idNumericUpDown;
         private System.Windows.Forms.NumericUpDown rowNumericUpDown;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;
