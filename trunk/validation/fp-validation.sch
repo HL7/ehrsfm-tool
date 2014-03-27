@@ -30,6 +30,23 @@
             <assert test="text()='ef' and ../tag[@name='Timeframe']" diagnostics="FMPR02"/>
         </rule>
     </pattern>
+    
+    <pattern id="funciton-content">
+        <rule context="object[stereotype/text()='Function']">
+            <let name="statement" value="substring-before(substring-after(notes,'$ST$'), '$DE$')"/>
+            <let name="stmt-lgth" value="string-length($statement)"/>
+            <let name="description" value="substring-before(substring-after(notes,'$DE$'), '$EX$')"/>
+            <let name="desc-lgth" value="string-length($description)"/>
+
+            <assert test="id" diagnostics="FMST17"/>
+            <assert test="name" diagnostics="FMST26"/>
+
+            <assert test="$stmt-lgth > 0" diagnostics="FMST27"/>
+            <assert test="$desc-lgth > 0" diagnostics="FMST28"/>
+            
+            <assert test="count(../object/alias[text()=$thing-id])=1" diagnostics="FMST29"><value-of select="$id"/></assert>
+        </rule>
+    </pattern>
         
     <diagnostics>
         <diagnostic id="FPID01" xml:lang="en">You have not included a description of the Functional Profile.</diagnostic>
