@@ -42,8 +42,11 @@
             this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.rowNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.switchLinkLabel = new System.Windows.Forms.LinkLabel();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
+            this.applyButton = new System.Windows.Forms.Button();
+            this.helpButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -156,11 +159,23 @@
             this.rowNumericUpDown.Size = new System.Drawing.Size(67, 20);
             this.rowNumericUpDown.TabIndex = 14;
             // 
+            // switchLinkLabel
+            // 
+            this.switchLinkLabel.AutoSize = true;
+            this.switchLinkLabel.Location = new System.Drawing.Point(10, 268);
+            this.switchLinkLabel.Name = "switchLinkLabel";
+            this.switchLinkLabel.Size = new System.Drawing.Size(80, 13);
+            this.switchLinkLabel.TabIndex = 18;
+            this.switchLinkLabel.TabStop = true;
+            this.switchLinkLabel.Text = "Switch Element";
+            this.toolTip1.SetToolTip(this.switchLinkLabel, "If you switch edits will be lost. Press Apply to keep changes.");
+            this.switchLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.baseLinkLabel_LinkClicked);
+            // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(508, 263);
+            this.cancelButton.Location = new System.Drawing.Point(472, 264);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(60, 23);
             this.cancelButton.TabIndex = 15;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -168,19 +183,42 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(589, 263);
+            this.okButton.Location = new System.Drawing.Point(406, 264);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.Size = new System.Drawing.Size(60, 23);
             this.okButton.TabIndex = 16;
             this.okButton.Text = "Ok";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
+            // applyButton
+            // 
+            this.applyButton.Location = new System.Drawing.Point(538, 264);
+            this.applyButton.Name = "applyButton";
+            this.applyButton.Size = new System.Drawing.Size(60, 23);
+            this.applyButton.TabIndex = 19;
+            this.applyButton.Text = "Apply";
+            this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
+            // 
+            // helpButton
+            // 
+            this.helpButton.Enabled = false;
+            this.helpButton.Location = new System.Drawing.Point(604, 264);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(60, 23);
+            this.helpButton.TabIndex = 20;
+            this.helpButton.Text = "Help";
+            this.helpButton.UseVisualStyleBackColor = true;
             // 
             // CriterionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 295);
+            this.Controls.Add(this.helpButton);
+            this.Controls.Add(this.applyButton);
+            this.Controls.Add(this.switchLinkLabel);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.rowNumericUpDown);
@@ -202,7 +240,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "EHR-S FM Criteria";
+            this.Text = "EHR-S FM Criterion";
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).EndInit();
             this.ResumeLayout(false);
@@ -226,5 +264,8 @@
         private System.Windows.Forms.NumericUpDown rowNumericUpDown;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.LinkLabel switchLinkLabel;
+        private System.Windows.Forms.Button applyButton;
+        private System.Windows.Forms.Button helpButton;
     }
 }

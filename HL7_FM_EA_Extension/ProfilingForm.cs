@@ -23,7 +23,7 @@ namespace HL7_FM_EA_Extension
         private readonly Color BACKCOLOR_DEPRECATED = Color.Orange;
         private readonly Color BACKCOLOR_DELETED = Color.Red;
 
-        private bool ignoreCheckChanged = false;
+        private bool codeChangedValue = false;
         private EA.Repository Repository;
         private EA.Package SectionPackage;
         private EA.Package ProfileDefinition;
@@ -37,6 +37,8 @@ namespace HL7_FM_EA_Extension
             {
                 if (findAssociatedProfileDefinition())
                 {
+                    Text = string.Format("Profile Definition for Section: {0}", SectionPackage.Name);
+
                     mainListView.Items.Clear();
                     mainListView.Groups.Clear();
                     mainGroup = new ListViewGroup("");
@@ -177,10 +179,11 @@ namespace HL7_FM_EA_Extension
             // to an Element in the ProfileDefinition Package
             foreach (EA.Connector con in dl.baseModelElement.Connectors.Cast<EA.Connector>().Where(c => "Generalization".Equals(c.Type)))
             {
-                EA.Element _element = (EA.Element)Repository.GetElementByID(con.ClientID);
+                EA.Element _element = Repository.GetElementByID(con.ClientID);
                 if (_element.PackageID == ProfileDefinition.PackageID)
                 {
                     dl.compilerInstructionElement = _element;
+                    item.Text = string.Format("{0} {1}", _element.Name, _element.Notes);
                     updateListViewItem(item);
                     break;
                 }
@@ -202,7 +205,7 @@ namespace HL7_FM_EA_Extension
                 Repository.ShowInProjectView(element);
 
                 // Update checkbox states
-                ignoreCheckChanged = true;
+                codeChangedValue = true;
                 if (selected.BackColor == BACKCOLOR_INCLUDED)
                 {
                     radioButton1.Checked = true;
@@ -219,7 +222,7 @@ namespace HL7_FM_EA_Extension
                 {
                     radioButton4.Checked = true;
                 }
-                ignoreCheckChanged = false;
+                codeChangedValue = false;
 
                 // Update listBox with Criteria of selected
                 criteriaListView.Items.Clear();
@@ -236,7 +239,7 @@ namespace HL7_FM_EA_Extension
 
         private void updateSelectedListViewItem()
         {
-            if (!ignoreCheckChanged && mainListView.SelectedItems.Count > 0)
+            if (!codeChangedValue && mainListView.SelectedItems.Count > 0)
             {
                 ListViewItem selected = mainListView.SelectedItems[0];
                 updateCompilerInstruction(selected);
@@ -250,17 +253,17 @@ namespace HL7_FM_EA_Extension
             // Include
             if (radioButton1.Checked)
             {
-                setCompilerInstruction(dl, "");
+                setCompilerInstruction(dl, R2Const.Qualifier.None);
             }
             // Deprecate
             else if (radioButton2.Checked)
             {
-                setCompilerInstruction(dl, "DEP");
+                setCompilerInstruction(dl, R2Const.Qualifier.Deprecate);
             }
             // Delete
             else if (radioButton3.Checked)
             {
-                setCompilerInstruction(dl, "D");
+                setCompilerInstruction(dl, R2Const.Qualifier.Delete);
             }
             // Exclude
             else if (radioButton4.Checked)
@@ -289,6 +292,10 @@ namespace HL7_FM_EA_Extension
                         item.ForeColor = Color.White;
                         item.BackColor = BACKCOLOR_DELETED;
                         break;
+                    case "EXCLUDE": // special for excluded criteria
+                        item.ForeColor = Color.LightGray;
+                        item.BackColor = BACKCOLOR_EXCLUDED;
+                        break;
                 }
             }
             else
@@ -298,7 +305,7 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void setCompilerInstruction(DefinitionLink dl, string qualifier, string optionality = null, string change_note = null)
+        private void setCompilerInstruction(DefinitionLink dl, R2Const.Qualifier qualifier, string optionality = null, string change_note = null)
         {
             if (dl.compilerInstructionElement == null)
             {
@@ -317,7 +324,21 @@ namespace HL7_FM_EA_Extension
             {
                 tvQualifier = (EA.TaggedValue)dl.compilerInstructionElement.TaggedValues.AddNew("Qualifier", "");
             }
-            tvQualifier.Value = qualifier;
+            switch(qualifier)
+            {
+                case R2Const.Qualifier.Deprecate:
+                    tvQualifier.Value = "DEP";
+                    break;
+                case R2Const.Qualifier.Delete:
+                    tvQualifier.Value = "D";
+                    break;
+                case R2Const.Qualifier.Exclude:
+                    tvQualifier.Value = "EXCLUDE";
+                    break;
+                default:
+                    tvQualifier.Value = "";
+                    break;
+            }
             tvQualifier.Update();
 
             // TODO: remove optionality if null or empty
@@ -396,15 +417,32 @@ namespace HL7_FM_EA_Extension
                 }
                 if (tvChangeNote != null)
                 {
-                    ignoreCheckChanged = true;
+                    codeChangedValue = true;
                     textBox1.Text = tvChangeNote.Notes;
-                    ignoreCheckChanged = false;
+                    codeChangedValue = false;
                 }
                 else
                 {
-                    ignoreCheckChanged = true;
+                    codeChangedValue = true;
                     textBox1.Text = "";
-                    ignoreCheckChanged = false;
+                    codeChangedValue = false;
+                }
+                EA.TaggedValue tvQualifier = null;
+                if (ciElement != null)
+                {
+                    tvQualifier = (EA.TaggedValue)ciElement.TaggedValues.GetByName("Qualifier");
+                }
+                if (tvQualifier != null)
+                {
+                    codeChangedValue = true;
+                    checkBox1.Checked = "EXCLUDE".Equals(tvQualifier.Value);
+                    codeChangedValue = false;
+                }
+                else
+                {
+                    codeChangedValue = true;
+                    checkBox1.Checked = false;
+                    codeChangedValue = false;
                 }
 
                 groupBox3.Show();
@@ -417,27 +455,11 @@ namespace HL7_FM_EA_Extension
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (!ignoreCheckChanged)
+            if (!codeChangedValue)
             {
                 ListViewItem selected = criteriaListView.SelectedItems[0];
                 DefinitionLink dl = (DefinitionLink) selected.Tag;
-                setCompilerInstruction(dl, "", null, textBox1.Text);
-            }
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            string id = textBox2.Text;
-            foreach (ListViewItem item in mainListView.Items)
-            {
-                DefinitionLink dl = (DefinitionLink)item.Tag;
-                if (dl.baseModelElement.Name.StartsWith(id))
-                {
-                    mainListView.SelectedItems.Clear();
-                    item.Selected = true;
-                    mainListView.EnsureVisible(item.Index);
-                    return;
-                }
+                setCompilerInstruction(dl, R2Const.Qualifier.None, null, textBox1.Text);
             }
         }
 
@@ -446,10 +468,13 @@ namespace HL7_FM_EA_Extension
             ListViewItem selected = criteriaListView.SelectedItems[0];
             DefinitionLink dl = (DefinitionLink)selected.Tag;
             // make sure CI is created first
-            setCompilerInstruction(dl, "", null, textBox1.Text);
+            setCompilerInstruction(dl, R2Const.Qualifier.None, null, textBox1.Text);
 
             R2Criterion criterion = (R2Criterion)R2Model.Create(Repository, dl.compilerInstructionElement);
             new CriterionForm().Show(criterion);
+
+            // Update Criterion Text in Critaria List
+            selected.Text = string.Format("{0} {1}", criterion.Name, criterion.Text);
         }
 
         private void mainListView_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -458,6 +483,41 @@ namespace HL7_FM_EA_Extension
             EA.Element element = ((DefinitionLink)selected.Tag).baseModelElement;
             R2Function function = (R2Function)R2Model.Create(Repository, element);
             new FunctionForm().Show(function);
+        }
+
+        private void findButton_Click(object sender, EventArgs e)
+        {
+            string id = textBox2.Text.ToUpper();
+            foreach (ListViewItem item in mainListView.Items)
+            {
+                DefinitionLink dl = (DefinitionLink)item.Tag;
+                if (dl.baseModelElement.Name.ToUpper().StartsWith(id))
+                {
+                    mainListView.SelectedItems.Clear();
+                    item.Selected = true;
+                    mainListView.EnsureVisible(item.Index);
+                    mainListView.Select();
+                    return;
+                }
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!codeChangedValue)
+            {
+                ListViewItem selected = criteriaListView.SelectedItems[0];
+                DefinitionLink dl = (DefinitionLink) selected.Tag;
+                if (checkBox1.Checked)
+                {
+                    setCompilerInstruction(dl, R2Const.Qualifier.Exclude);
+                }
+                else
+                {
+                    setCompilerInstruction(dl, R2Const.Qualifier.None);
+                }
+                updateListViewItem(selected);
+            }
         }
     }
 

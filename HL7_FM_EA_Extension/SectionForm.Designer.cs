@@ -41,13 +41,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.helpButton = new System.Windows.Forms.Button();
+            this.applyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(516, 370);
+            this.okButton.Location = new System.Drawing.Point(333, 370);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.Size = new System.Drawing.Size(60, 23);
             this.okButton.TabIndex = 38;
             this.okButton.Text = "Ok";
             this.okButton.UseVisualStyleBackColor = true;
@@ -55,9 +57,9 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(435, 370);
+            this.cancelButton.Location = new System.Drawing.Point(399, 370);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(60, 23);
             this.cancelButton.TabIndex = 37;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -150,11 +152,33 @@
             this.label3.TabIndex = 31;
             this.label3.Text = "Name";
             // 
+            // helpButton
+            // 
+            this.helpButton.Enabled = false;
+            this.helpButton.Location = new System.Drawing.Point(531, 370);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(60, 23);
+            this.helpButton.TabIndex = 40;
+            this.helpButton.Text = "Help";
+            this.helpButton.UseVisualStyleBackColor = true;
+            // 
+            // applyButton
+            // 
+            this.applyButton.Location = new System.Drawing.Point(465, 370);
+            this.applyButton.Name = "applyButton";
+            this.applyButton.Size = new System.Drawing.Size(60, 23);
+            this.applyButton.TabIndex = 39;
+            this.applyButton.Text = "Apply";
+            this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
+            // 
             // SectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 405);
+            this.Controls.Add(this.helpButton);
+            this.Controls.Add(this.applyButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.actorsTextBox);
@@ -191,5 +215,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button helpButton;
+        private System.Windows.Forms.Button applyButton;
     }
 }

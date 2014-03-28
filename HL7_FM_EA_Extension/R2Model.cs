@@ -12,35 +12,64 @@ namespace HL7_FM_EA_Extension
      */
     public class R2Model
     {
-        // add factory method to create correct model class based on the EA.Element
+        /**
+         * Factory method to create correct model class based on the EA.Element
+         */
         public static R2ModelElement Create(EA.Repository repository, EA.Element element)
         {
+            R2ModelElement modelElement = null;
             switch (element.Stereotype)
             {
                 case R2Const.ST_SECTION:
-                    return new R2Section(getModelElementPath(repository, element), element);
+                    modelElement = new R2Section(element);
+                    break;
                 case R2Const.ST_HEADER:
                 case R2Const.ST_FUNCTION:
-                    return new R2Function(getModelElementPath(repository, element), element);
+                    modelElement = new R2Function(element);
+                    break;
                 case R2Const.ST_CRITERION:
-                    return new R2Criterion(getModelElementPath(repository, element), element);
+                    modelElement = new R2Criterion(element);
+                    break;
                 case R2Const.ST_COMPILERINSTRUCTION:
                     EA.Connector generalization = element.Connectors.Cast<EA.Connector>().SingleOrDefault(t => "Generalization".Equals(t.Type));
                     EA.Element baseElement = repository.GetElementByID(generalization.SupplierID);
                     switch(baseElement.Stereotype)
                     {
                         case R2Const.ST_SECTION:
-                            return new R2SectionCI(getModelElementPath(repository, baseElement), element, baseElement);
+                            modelElement = new R2SectionCI(element, baseElement);
+                            break;
                         case R2Const.ST_HEADER:
                         case R2Const.ST_FUNCTION:
-                            return new R2FunctionCI(getModelElementPath(repository, baseElement), element, baseElement);
+                            modelElement = new R2FunctionCI(element, baseElement);
+                            break;
                         case R2Const.ST_CRITERION:
-                            return new R2CriterionCI(getModelElementPath(repository, baseElement), element, baseElement);
-                        default:
-                            return null;
+                            modelElement = new R2CriterionCI(element, baseElement);
+                            break;
                     }
-                default:
-                    return null;
+                    break;
+            }
+            if (modelElement != null && repository != null)
+            {
+                modelElement.Path = getModelElementPath(repository, element);
+            }
+            return modelElement;
+        }
+
+        /**
+         * Return the (normal) Model Element from a Compiler Instruction
+         */
+        public static R2ModelElement GetBase(R2ModelElement ci)
+        {
+            if (ci is CompilerInstruction)
+            {
+                // Repository is not used here
+                R2ModelElement baseElement = Create(null, ci._element);
+                baseElement.Path = ci.Path;
+                return baseElement;
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -108,8 +137,10 @@ namespace HL7_FM_EA_Extension
 
         public enum Qualifier
         {
-            DEP,    // Deprecate
-            D       // Delete
+            None,
+            Deprecate,    // DEP
+            Delete,       // D
+            Exclude       // Special qualifier to explicitely exclude a Criterion
         };
 
         public enum Priority
@@ -131,15 +162,15 @@ namespace HL7_FM_EA_Extension
         internal string _path;
         internal EA.Element _element;
 
-        public R2ModelElement(string path, EA.Element element)
+        public R2ModelElement(EA.Element element)
         {
-            _path = path;
             _element = element;
         }
 
         public string Path
         {
             get { return _path; }
+            set { _path = value; }
         }
 
         public string Stereotype
@@ -155,7 +186,7 @@ namespace HL7_FM_EA_Extension
 
     public class R2Section : R2ModelElement
     {
-        public R2Section(string path, EA.Element element) : base(path, element)
+        public R2Section(EA.Element element) : base(element)
         {
             string notes = element.Notes;
             Dictionary<string, string> noteParts = R2Model.splitNotes(notes);
@@ -207,7 +238,7 @@ namespace HL7_FM_EA_Extension
 
     public class R2Function : R2ModelElement
     {
-        public R2Function(string path, EA.Element element) : base(path, element)
+        public R2Function(EA.Element element) : base(element)
         {
             string notes = element.Notes;
             Dictionary<string, string> noteParts = R2Model.splitNotes(notes);
@@ -264,7 +295,7 @@ namespace HL7_FM_EA_Extension
         public const string TV_CONDITIONAL = "Conditional";
         public const string TV_OPTIONALITY = "Optionality";
 
-        public R2Criterion(string path, EA.Element element) : base(path, element)
+        public R2Criterion(EA.Element element) : base(element)
         {
         }
 
@@ -339,7 +370,7 @@ namespace HL7_FM_EA_Extension
     {
         private EA.Element _ciElement;
 
-        public R2CriterionCI(string path, EA.Element ciElement, EA.Element element) : base(path, element)
+        public R2CriterionCI(EA.Element ciElement, EA.Element element) : base(element)
         {
             _ciElement = ciElement;
         }
@@ -499,7 +530,7 @@ namespace HL7_FM_EA_Extension
     {
         private EA.Element _ciElement;
 
-        public R2FunctionCI(string path, EA.Element ciElement, EA.Element element) : base(path, element)
+        public R2FunctionCI(EA.Element ciElement, EA.Element element) : base(element)
         {
             _ciElement = ciElement;
         }
@@ -512,7 +543,7 @@ namespace HL7_FM_EA_Extension
     {
         private EA.Element _ciElement;
 
-        public R2SectionCI(string path, EA.Element ciElement, EA.Element element): base(path, element)
+        public R2SectionCI(EA.Element ciElement, EA.Element element): base(element)
         {
             _ciElement = ciElement;
         }

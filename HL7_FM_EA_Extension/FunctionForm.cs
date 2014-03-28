@@ -22,7 +22,15 @@ namespace HL7_FM_EA_Extension
         {
             _function = function;
 
-            Text = string.Format("EHR-S FM {0}: {1}", _function.Stereotype, _function.Name);
+            if (function is CompilerInstruction)
+            {
+                Text = string.Format("EHR-S FM {0}: {1} (Profile Definition)", _function.Stereotype, _function.Name);
+            }
+            else
+            {
+                Text = string.Format("EHR-S FM {0}: {1}", _function.Stereotype, _function.Name);
+            }
+
             BackColor = R2Config.config.getSectionColor(_function.Name, DefaultBackColor);
             pathLabel.Text = function.Path;
 
@@ -44,15 +52,25 @@ namespace HL7_FM_EA_Extension
             ShowDialog();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void applyChanges()
         {
-            Close();
             _function.Name = nameTextBox.Text;
             _function.FunctionID = idTextBox.Text;
             _function.Statement = statementTextBox.Text;
             _function.Description = descriptionTextBox.Text;
             _function.Example = exampleTextBox.Text;
             _function.Update();
+        }
+
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+            applyChanges();
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            applyChanges();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
