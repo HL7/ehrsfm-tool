@@ -18,12 +18,12 @@ namespace HL7_FM_EA_Extension
 
         private R2Section _section;
 
-        public void Show(R2Section section, R2Config config)
+        public void Show(R2Section section)
         {
             _section = section;
 
             Text = string.Format("EHR-S FM Section: {0}", _section.Name);
-            BackColor = config.getSectionColor(_section.SectionID, DefaultBackColor);
+            BackColor = R2Config.config.getSectionColor(_section.SectionID, DefaultBackColor);
 
             // Other properties
             nameTextBox.Text = _section.Name;

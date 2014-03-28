@@ -18,13 +18,13 @@ namespace HL7_FM_EA_Extension
 
         private R2Function _function;
 
-        public void Show(R2Function function, string path, R2Config config)
+        public void Show(R2Function function)
         {
             _function = function;
 
             Text = string.Format("EHR-S FM {0}: {1}", _function.Stereotype, _function.Name);
-            BackColor = config.getSectionColor(_function.Name, DefaultBackColor);
-            pathLabel.Text = path;
+            BackColor = R2Config.config.getSectionColor(_function.Name, DefaultBackColor);
+            pathLabel.Text = function.Path;
 
             // Other properties
             nameTextBox.Text = _function.Name;

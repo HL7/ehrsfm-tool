@@ -37,8 +37,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.optionalityComboBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.criteriaListView = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -69,6 +67,7 @@
             this.mainListView.UseCompatibleStateImageBehavior = false;
             this.mainListView.View = System.Windows.Forms.View.Tile;
             this.mainListView.SelectedIndexChanged += new System.EventHandler(this.mainListView_SelectedIndexChanged);
+            this.mainListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mainListView_MouseDoubleClick);
             // 
             // splitContainer1
             // 
@@ -121,20 +120,18 @@
             // 
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.optionalityComboBox);
-            this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox3.Location = new System.Drawing.Point(0, 357);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(473, 126);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Options for selected Criterion";
+            this.groupBox3.Text = "Double click criterion for full options";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 43);
+            this.label2.Location = new System.Drawing.Point(6, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 12;
@@ -142,35 +139,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 40);
+            this.textBox1.Location = new System.Drawing.Point(80, 23);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(376, 74);
             this.textBox1.TabIndex = 11;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // optionalityComboBox
-            // 
-            this.optionalityComboBox.FormattingEnabled = true;
-            this.optionalityComboBox.Items.AddRange(new object[] {
-            "",
-            "SHALL",
-            "SHOULD",
-            "MAY"});
-            this.optionalityComboBox.Location = new System.Drawing.Point(80, 19);
-            this.optionalityComboBox.Name = "optionalityComboBox";
-            this.optionalityComboBox.Size = new System.Drawing.Size(89, 21);
-            this.optionalityComboBox.TabIndex = 10;
-            this.optionalityComboBox.SelectedIndexChanged += new System.EventHandler(this.optionalityComboBox_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Optionality";
             // 
             // groupBox2
             // 
@@ -195,6 +169,7 @@
             this.criteriaListView.UseCompatibleStateImageBehavior = false;
             this.criteriaListView.View = System.Windows.Forms.View.List;
             this.criteriaListView.SelectedIndexChanged += new System.EventHandler(this.criteriaListBox_SelectedIndexChanged);
+            this.criteriaListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.criteriaListView_MouseDoubleClick);
             // 
             // groupBox1
             // 
@@ -319,9 +294,7 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox optionalityComboBox;
         private System.Windows.Forms.ListView criteriaListView;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;

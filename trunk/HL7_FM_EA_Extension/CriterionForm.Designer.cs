@@ -62,11 +62,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 75);
+            this.label2.Location = new System.Drawing.Point(10, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Criteria Text";
+            this.label2.Text = "Criterion Text";
             // 
             // textTextBox
             // 
@@ -127,11 +127,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 49);
+            this.label4.Location = new System.Drawing.Point(10, 49);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Criteria ID";
+            this.label4.Text = "Criterion ID";
             // 
             // label5
             // 

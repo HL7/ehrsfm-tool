@@ -308,6 +308,7 @@ namespace HL7_FM_EA_Extension
                 EA.Connector con = (EA.Connector)dl.compilerInstructionElement.Connectors.AddNew("", "Generalization");
                 con.SupplierID = dl.baseModelElement.ElementID;
                 con.Update();
+                dl.compilerInstructionElement.Connectors.Refresh();
             }
 
             // TODO: remove qualifier if null or empty
@@ -388,30 +389,6 @@ namespace HL7_FM_EA_Extension
             {
                 ListViewItem selected = criteriaListView.SelectedItems[0];
                 EA.Element ciElement = ((DefinitionLink)selected.Tag).compilerInstructionElement;
-
-                EA.TaggedValue tvOptionality = null;
-                if (ciElement != null)
-                {
-                    tvOptionality = (EA.TaggedValue)ciElement.TaggedValues.GetByName("Optionality");
-                }
-                if (tvOptionality == null)
-                {
-                    EA.Element element = ((DefinitionLink)selected.Tag).baseModelElement;
-                    tvOptionality = (EA.TaggedValue)element.TaggedValues.GetByName("Optionality");
-                }
-                if (tvOptionality != null)
-                {
-                    ignoreCheckChanged = true;
-                    optionalityComboBox.SelectedItem = tvOptionality.Value;
-                    ignoreCheckChanged = false;
-                }
-                else
-                {
-                    ignoreCheckChanged = true;
-                    optionalityComboBox.SelectedItem = "";
-                    ignoreCheckChanged = false;
-                }
-
                 EA.TaggedValue tvChangeNote = null;
                 if (ciElement != null)
                 {
@@ -435,18 +412,6 @@ namespace HL7_FM_EA_Extension
             else
             {
                 groupBox3.Hide();
-            }
-        }
-
-        private void optionalityComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!ignoreCheckChanged && criteriaListView.SelectedItems.Count > 0)
-            {
-                ListViewItem selected = criteriaListView.SelectedItems[0];
-                DefinitionLink dl = (DefinitionLink) selected.Tag;
-                string newOptionality = (string)optionalityComboBox.SelectedItem;
-                setCompilerInstruction(dl, "", newOptionality);
-                updateListViewItem(selected);
             }
         }
 
@@ -474,6 +439,25 @@ namespace HL7_FM_EA_Extension
                     return;
                 }
             }
+        }
+
+        private void criteriaListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem selected = criteriaListView.SelectedItems[0];
+            DefinitionLink dl = (DefinitionLink)selected.Tag;
+            // make sure CI is created first
+            setCompilerInstruction(dl, "", null, textBox1.Text);
+
+            R2Criterion criterion = (R2Criterion)R2Model.Create(Repository, dl.compilerInstructionElement);
+            new CriterionForm().Show(criterion);
+        }
+
+        private void mainListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem selected = mainListView.SelectedItems[0];
+            EA.Element element = ((DefinitionLink)selected.Tag).baseModelElement;
+            R2Function function = (R2Function)R2Model.Create(Repository, element);
+            new FunctionForm().Show(function);
         }
     }
 

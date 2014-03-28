@@ -13,7 +13,6 @@ namespace HL7_FM_EA_Extension
     {
         private const bool LOCK_ELEMENTS = false;
         private EA.Repository Repository;
-        private R2Config config = new R2Config();
         private MAX_EA.ProgressWindow progress = new MAX_EA.ProgressWindow();
 
         private Dictionary<string, EA.Element> elements = new Dictionary<string, EA.Element>();
@@ -84,7 +83,7 @@ namespace HL7_FM_EA_Extension
                 sectionPackage.Update();
                 sectionPackage.Element.Alias = alias;
                 sectionPackage.Element.Stereotype = R2Const.ST_SECTION;
-                config.updateStyle(sectionPackage.Element);
+                R2Config.config.updateStyle(sectionPackage.Element);
                 sectionPackage.Element.Update();
                 sectionPackage.Element.Locked = LOCK_ELEMENTS;
 
@@ -166,7 +165,7 @@ namespace HL7_FM_EA_Extension
                 else
                 {
                     // If the target is the section package then ignore the link
-                    int? sectionColor = config.getSectionColorInt(composition.targetID);
+                    int? sectionColor = R2Config.config.getSectionColorInt(composition.targetID);
                     if (sectionColor == null)
                     {
                         EAHelper.LogMessage(Repository, String.Format("Function composition from {0} to {1}, target not found.", composition.sourceID, composition.targetID));
@@ -191,7 +190,7 @@ namespace HL7_FM_EA_Extension
             functionElement.Alias = functionID;
 
             // apply color
-            config.updateStyle(functionElement);
+            R2Config.config.updateStyle(functionElement);
 
             string functionStatement = getXElementValue(xFunction, "Statement");
             string functionDescription = getXElementValue(xFunction, "Description");
@@ -240,7 +239,7 @@ namespace HL7_FM_EA_Extension
                 elements.Add(criteriaID, criteriaElement);
                 criteriaElement.Notes = criteriaText;
                 criteriaElement.Stereotype = R2Const.ST_CRITERION;
-                config.updateStyle(criteriaElement);
+                R2Config.config.updateStyle(criteriaElement);
                 criteriaElement.Update();
                 criteriaElement.Locked = LOCK_ELEMENTS;
 

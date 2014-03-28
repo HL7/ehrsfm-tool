@@ -13,7 +13,6 @@ namespace HL7_FM_EA_Extension
 {
     public partial class ModelBrowserControl : UserControl
     {
-        R2Config config = new R2Config();
         public ModelBrowserControl()
         {
             InitializeComponent();
@@ -123,7 +122,7 @@ namespace HL7_FM_EA_Extension
             {
                 ID = name;
             }
-            treeNode.BackColor = config.getSectionColor(ID, DefaultBackColor);
+            treeNode.BackColor = R2Config.config.getSectionColor(ID, DefaultBackColor);
             return treeNode;
         }
     }

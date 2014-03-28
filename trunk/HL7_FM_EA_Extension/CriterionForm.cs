@@ -18,13 +18,13 @@ namespace HL7_FM_EA_Extension
 
         private R2Criterion _criterion;
 
-        public void Show(R2Criterion criterion, string path, R2Config config)
+        public void Show(R2Criterion criterion)
         {
             _criterion = criterion;
 
-            BackColor = config.getSectionColor(_criterion.Name, DefaultBackColor);
+            BackColor = R2Config.config.getSectionColor(_criterion.Name, DefaultBackColor);
             Text = string.Format("EHR-S FM Criterion: {0}", _criterion.Name);
-            pathLabel.Text = path;
+            pathLabel.Text = criterion.Path;
 
             idNumericUpDown.Minimum = 1;
             idNumericUpDown.Maximum = 99;
