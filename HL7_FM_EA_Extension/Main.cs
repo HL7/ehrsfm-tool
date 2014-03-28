@@ -179,7 +179,6 @@ namespace HL7_FM_EA_Extension
 
         //This event occurs when a user has double-clicked (or pressed [Enter]) 
         //on the item in context, either in a diagram or in the Project Browser.
-        private R2Config config = new R2Config();
         public bool EA_OnContextItemDoubleClicked(EA.Repository repository, string GUID, EA.ObjectType ot)
         {
             if (ot == EA.ObjectType.otElement)
@@ -188,17 +187,16 @@ namespace HL7_FM_EA_Extension
                 R2ModelElement modelElement = R2Model.Create(repository, element);
                 if (modelElement != null)
                 {
-                    string path = getFMElementPath(repository, element);
                     switch (modelElement.Stereotype)
                     {
                         case R2Const.ST_FUNCTION:
                         case R2Const.ST_HEADER:
                             R2Function function = (R2Function) R2Model.Create(repository, element);
-                            new FunctionForm().Show(function, path, config);
+                            new FunctionForm().Show(function);
                             return true;
                         case R2Const.ST_CRITERION:
                             R2Criterion criterion = (R2Criterion) R2Model.Create(repository, element);
-                            new CriterionForm().Show(criterion, path, config);
+                            new CriterionForm().Show(criterion);
                             return true;
                     }
                 }
@@ -214,7 +212,7 @@ namespace HL7_FM_EA_Extension
                         return true;
                     case R2Const.ST_SECTION:
                         R2Section section = (R2Section)R2Model.Create(repository, element);
-                        new SectionForm().Show(section, config);
+                        new SectionForm().Show(section);
                         return true;
                 }
             }
@@ -235,14 +233,13 @@ namespace HL7_FM_EA_Extension
         {
             if (ot == EA.ObjectType.otElement)
             {
-                R2Config config = new R2Config();
                 EA.Element el = Repository.GetElementByGuid(GUID);
                 switch (el.Stereotype)
                 {
                     case R2Const.ST_FUNCTION:
                     case R2Const.ST_HEADER:
                     case R2Const.ST_CRITERION:
-                        config.updateStyle(el);
+                        R2Config.config.updateStyle(el);
                         el.Update();
                         break;
                 }
@@ -253,7 +250,7 @@ namespace HL7_FM_EA_Extension
                 switch (el.Stereotype)
                 {
                     case R2Const.ST_SECTION:
-                        config.updateStyle(el);
+                        R2Config.config.updateStyle(el);
                         el.Update();
                         break;
                 }
@@ -454,7 +451,7 @@ namespace HL7_FM_EA_Extension
             }
             foreach (EA.Element eaElement in eaPackage.Elements)
             {
-                config.updateStyle(eaElement);
+                R2Config.config.updateStyle(eaElement);
                 eaElement.Update();
                 UpdateStyle_recurseEaElements(eaElement);
             }
@@ -464,37 +461,12 @@ namespace HL7_FM_EA_Extension
         {
             foreach (EA.Element eaChildElement in eaElement.Elements)
             {
-                config.updateStyle(eaChildElement);
+                R2Config.config.updateStyle(eaChildElement);
                 eaChildElement.Update();
                 UpdateStyle_recurseEaElements(eaChildElement);
             }
         }
         #endregion
-
-        /**
-         * Create a string containing the element path joined with '/' up to the <HL7-FM> stereotyped package.
-         * This is used for as title for Section/Header/Function/Criteria Forms.
-         */
-        private string getFMElementPath(EA.Repository Repository, EA.Element element)
-        {
-            List<string> path = new List<string>();
-            EA.Element el = element;
-            while (el != null && !R2Const.ST_FM.Equals(el.Stereotype))
-            {
-                path.Insert(0, el.Name);
-                if (el.ParentID == 0)
-                {
-                    // Don't include package name, that is obvious from the Header/Function Code.
-                    // el = Repository.GetPackageByID(el.PackageID).Element;
-                    break;
-                }
-                else
-                {
-                    el = Repository.GetElementByID(el.ParentID);
-                }
-            }
-            return string.Join(" / ", path.ToArray());
-        }
 
         #region add-in search methods
         public Boolean FindNonSHALL(EA.Repository Repository, string SearchText, out string XMLResults)

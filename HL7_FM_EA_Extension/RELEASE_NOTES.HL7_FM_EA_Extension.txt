@@ -5,6 +5,18 @@
 
 CHANGELOG
 =========
+[2014-mrt-28]
+ProfileForm
+- Double click on item popsup associated Form
+
+[2014-mrt-25]
+R2CriteriaCI
+- Notes were not updated.
+CriteriaForm
+- Still containt "Criteria" instead of "Criterion"
+R2ProfileCompiler
+- Required a tagged value for Profile Type. Now check if the tagged value is there first.
+
 [2014-mrt-21]
 *Form
 - Added HL7 icon!

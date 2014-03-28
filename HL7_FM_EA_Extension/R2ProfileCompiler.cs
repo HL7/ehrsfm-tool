@@ -26,11 +26,11 @@ namespace HL7_FM_EA_Extension
 
         private const string PRIORITY_ESSENTIALNOW = "EN";
 
-        public void Compile(string fileNameBase, string fileNameInstructions, string fileNameOutput)
+        public void Compile(string fileNameBase, string fileNameDefinition, string fileNameOutput)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
             StreamReader streamBase = new StreamReader(fileNameBase);
-            StreamReader streamInstr = new StreamReader(fileNameInstructions);
+            StreamReader streamDef = new StreamReader(fileNameDefinition);
             using (streamBase)
             {
                 var modelBM = (ModelType)serializer.Deserialize(streamBase);
@@ -38,15 +38,15 @@ namespace HL7_FM_EA_Extension
                 baseName = root.metadata.name;
 
                 // Add compiler instructions to the nodes
-                using (streamInstr)
+                using (streamDef)
                 {
-                    ModelType modelCI = (ModelType) serializer.Deserialize(streamInstr);
+                    ModelType modelCI = (ModelType) serializer.Deserialize(streamDef);
                     var objectsCI = new Dictionary<string, ObjectType>();
                     foreach (ObjectType maxObj in modelCI.objects)
                     {
                         objectsCI[maxObj.id] = maxObj;
                     }
-                    
+
                     // Bind CI to related elements in the base tree
                     foreach (RelationshipType rel in modelCI.relationships)
                     {
@@ -57,24 +57,28 @@ namespace HL7_FM_EA_Extension
                             node.import = true;
                         }
                     }
-                }
 
-                // TODO: Put Profile Metadata in the empty root
-                string rootid = root.metadata.id;
-                root.metadata = new ObjectType() {
-                                      id = rootid, 
-                                      name = "Compiled Profile", 
-                                      stereotype = "HL7-FM-Profile", 
-                                      type = ObjectTypeEnum.Package,
-                                      typeSpecified = true };
+                    ObjectType profileDefinition = objectsCI.Values.Single(o => R2Const.ST_FM_PROFILEDEFINITION.Equals(o.stereotype));
+                    // TODO: Copy Profile Metadata from the Definition in the empty root
+                    string rootid = root.metadata.id;
+                    root.metadata = new ObjectType()
+                    {
+                        id = rootid,
+                        name = profileDefinition.name,
+                        stereotype = R2Const.ST_FM_PROFILE,
+                        type = ObjectTypeEnum.Package,
+                        tag = profileDefinition.tag,
+                        typeSpecified = true
+                    };
+                }
 
                 // Create imports from consequenceLinks
                 // This will mark all linked nodes to import=true if a compiler instruction references a node with a consequenceLink
                 // Only do this for ProfileType != Companion
                 bool doFollowConsequenceLinks = true;
-                TagType typeTag = root.metadata.tag.SingleOrDefault(t => "Type".Equals(t.name));
-                if (typeTag != null)
+                if (root.metadata.tag.Any(t => "Type".Equals(t.name)))
                 {
+                    TagType typeTag = root.metadata.tag.Single(t => "Type".Equals(t.name));
                     doFollowConsequenceLinks = !"Companion".Equals(typeTag.value);
                 }
                 if (doFollowConsequenceLinks)

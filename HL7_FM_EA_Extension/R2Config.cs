@@ -12,7 +12,20 @@ namespace HL7_FM_EA_Extension
         private Dictionary<string, int> sectionColorsInt;
         private Dictionary<string, string> sectionTitles;
 
-        public R2Config()
+        private static R2Config _config;
+        public static R2Config config
+        {
+            get
+            {
+                if (_config == null)
+                {
+                    _config = new R2Config();
+                }
+                return _config;
+            }
+        }
+
+        private R2Config()
         {
             // Categories and colors
             sectionColors = new Dictionary<string, Color>();
