@@ -130,6 +130,7 @@
     <Content Include="Schematron\iso-schematron-xslt1\readme.txt" />
     <Content Include="Schematron\iso-schematron-xslt1\schematron-skeleton-api.htm" />
     <Content Include="Schematron\EHRS_FM_R2-validation.sch" />
+    <Content Include="Schematron\fp-validation.sch" />
     <None Include="Schematron\svrl_output.xml" />
     <Content Include="MAPPING v3.1 EHR-S FM R11+ISSUES FOUND.txt" />
     <None Include="EHRSFM\EHRS_FunctionalModel_Rel1.1.xml" />

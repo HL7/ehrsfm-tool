@@ -8,6 +8,14 @@ CHANGELOG
 [2014-mrt-28]
 ProfileForm
 - Double click on item popsup associated Form
+- Titel update
+- Added checkbox to explicitely exclude a Criterion, also show excluded by graying them out in the Criterion list
+- Use CompilerInstruction Text in CriterionList and update list item when altered via the CriterionForm
+CriterionForm
+- Added link label to switch back and forth between Compiler Instruction and Base Element
+- Row# is sometimes '0', just allow that now, e.g. for new Criteria
+*Form
+- Added Apply and Help buttons. Help is disabled for now. Apply saves changes without closing.
 
 [2014-mrt-25]
 R2CriteriaCI

@@ -43,15 +43,25 @@ namespace HL7_FM_EA_Extension
             ShowDialog();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void applyChanges()
         {
-            Close();
             _section.Name = nameTextBox.Text;
             _section.SectionID = idTextBox.Text;
             _section.Overview = overviewTextBox.Text;
             _section.Example = exampleTextBox.Text;
             _section.Actors = actorsTextBox.Text;
             _section.Update();
+        }
+
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+            applyChanges();
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            applyChanges();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
