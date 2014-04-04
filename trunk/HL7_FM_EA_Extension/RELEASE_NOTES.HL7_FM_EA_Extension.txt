@@ -5,6 +5,24 @@
 
 CHANGELOG
 =========
+[2014-apr-04]
+MDG
+- Now include the UML Profile
+ProfilingForm
+- Criterion Text was empty initially for a Compiler Instruction, fixed
+R2ProfileCompiler
+- Made code more robust.
+  The compiler expects a correct Base Model and a correct Profile Definition.
+  e.g. Optionality shall be present in Base Model and in a Compiler Instruction 0 or 1 times.
+R2Validator
+- Call different schematron based on stereotype
+R2Model/Criterion(CI)
+- Empty Row (also ignore spaces) is now handled
+
+[2014-mrt-29]
+- Moved ST and TV string const to R2Const
+- Some more cleanip
+
 [2014-mrt-28]
 ProfileForm
 - Double click on item popsup associated Form

@@ -71,7 +71,7 @@ namespace HL7_FM_EA_Extension
         {
             get { return relationships.Where(t => "ConsequenceLink".Equals(t.stereotype)); }
         }
-        public bool import = false;
+        public bool include = false;
         public List<TreeNode> children = new List<TreeNode>();
 
         private void ToObjectList(TreeNode node, List<ObjectType> objects)

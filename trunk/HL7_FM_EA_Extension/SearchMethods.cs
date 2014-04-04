@@ -57,7 +57,7 @@ namespace HL7_FM_EA_Extension
         private List<XElement> visitElement(EA.Element element)
         {
             List<XElement> xRows = new List<XElement>();
-            EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName("Optionality");
+            EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(R2Const.TV_OPTIONALITY);
             if (tv != null)
             {
                 if (!"SHALL".Equals(tv.Value))
@@ -65,8 +65,8 @@ namespace HL7_FM_EA_Extension
                     string valName = string.Format("{0} {1}", element.Name, element.Notes);
                     string valType = element.Stereotype;
                     string valOptionality = tv.Value;
-                    string valDependent = ((EA.TaggedValue)element.TaggedValues.GetByName("Dependent")).Value;
-                    string valConditional = ((EA.TaggedValue)element.TaggedValues.GetByName("Conditional")).Value;
+                    string valDependent = ((EA.TaggedValue)element.TaggedValues.GetByName(R2Const.TV_DEPENDENT)).Value;
+                    string valConditional = ((EA.TaggedValue)element.TaggedValues.GetByName(R2Const.TV_CONDITIONAL)).Value;
 
                     xRows.Add(new XElement("Row",
                         new XElement("Field", new XAttribute("name", "CLASSGUID"), new XAttribute("value", element.ElementGUID)),

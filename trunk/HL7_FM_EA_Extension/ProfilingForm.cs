@@ -23,32 +23,30 @@ namespace HL7_FM_EA_Extension
         private readonly Color BACKCOLOR_DEPRECATED = Color.Orange;
         private readonly Color BACKCOLOR_DELETED = Color.Red;
 
-        private bool codeChangedValue = false;
-        private EA.Repository Repository;
-        private EA.Package SectionPackage;
-        private EA.Package ProfileDefinition;
+        private bool ignoreEvent = false;
+        private EA.Repository repository;
+        private EA.Package profileDefinitionPackage;
         private ListViewGroup mainGroup;
 
-        public void Show(EA.Repository Repository)
+        public void Show(EA.Repository repository)
         {
-            this.Repository = Repository;
-            SectionPackage = Repository.GetTreeSelectedPackage();
-            if (SectionPackage != null && R2Const.ST_SECTION.Equals(SectionPackage.StereotypeEx))
+            this.repository = repository;
+            EA.Package selectedSectionPackage = repository.GetTreeSelectedPackage();
+            if (selectedSectionPackage != null && R2Const.ST_SECTION.Equals(selectedSectionPackage.StereotypeEx))
             {
-                if (findAssociatedProfileDefinition())
+                if (findAssociatedProfileDefinition(selectedSectionPackage))
                 {
-                    Text = string.Format("Profile Definition for Section: {0}", SectionPackage.Name);
+                    Text = string.Format("Profile Definition for Section: {0}", selectedSectionPackage.Name);
 
                     mainListView.Items.Clear();
                     mainListView.Groups.Clear();
                     mainGroup = new ListViewGroup("");
                     mainListView.Groups.Add(mainGroup);
-                    mainListView.Columns.Add("stereotype");
 
-                    ListViewItem item = createListViewItem(SectionPackage);
+                    ListViewItem item = createListViewItem(selectedSectionPackage);
                     item.Group = mainGroup;
                     mainListView.Items.Add(item);
-                    visitPackage(SectionPackage);
+                    visitPackage(selectedSectionPackage);
                     Show();
                 }
             }
@@ -58,19 +56,19 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private bool findAssociatedProfileDefinition()
+        private bool findAssociatedProfileDefinition(EA.Package selectedSectionPackage)
         {
-            EA.Package BaseModel = Repository.GetPackageByID(SectionPackage.ParentID);
-            EA.Connector con = BaseModel.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype));
+            EA.Package baseModel = repository.GetPackageByID(selectedSectionPackage.ParentID);
+            EA.Connector con = baseModel.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype));
             if (con != null)
             {
-                EA.Element packageElement = Repository.GetElementByID(con.ClientID);
+                EA.Element packageElement = repository.GetElementByID(con.ClientID);
                 if (R2Const.ST_FM_PROFILEDEFINITION.Equals(packageElement.Stereotype))
                 {
                     // con.ClientID is the ElementID of the PackageElement
                     // Find the Package with the PackageElement by selecting the child Package in the parent Package where
                     // the ElementID is con.ClientID
-                    ProfileDefinition = Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.ClientID);
+                    profileDefinitionPackage = repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.ClientID);
                     return true;
                 }
                 else
@@ -90,8 +88,8 @@ namespace HL7_FM_EA_Extension
         {
             foreach (EA.Package childPackage in package.Packages)
             {
-                ListViewItem subItem = createListViewItem(childPackage);
-                mainListView.Items.Add(subItem);
+                ListViewItem item = createListViewItem(childPackage);
+                mainListView.Items.Add(item);
                 visitPackage(childPackage);
             }
             createElementGroup(string.Format("«{0}» {1}", package.StereotypeEx, package.Name), package.Elements);
@@ -107,18 +105,17 @@ namespace HL7_FM_EA_Extension
                 string stereotype = element.Stereotype;
                 switch (stereotype)
                 {
-                    case "Section":
-                    case "Header":
-                    case "Function":
+                    case R2Const.ST_SECTION:
+                    case R2Const.ST_HEADER:
+                    case R2Const.ST_FUNCTION:
                         ListViewItem item = createListViewItem(element);
                         item.Group = group;
                         mainListView.Items.Add(item);
                         break;
                 }
 
-                // if (element.Elements.Count > 0)
                 // Only create group if there is anything else than Criteria in here
-                if (element.Elements.Cast<EA.Element>().Any(t => !t.Stereotype.Equals("Criteria")))
+                if (element.Elements.Cast<EA.Element>().Any(t => !t.Stereotype.Equals(R2Const.ST_CRITERION)))
                 {
                     createElementGroup(string.Format("«{0}» {1}", element.Stereotype, element.Name), element.Elements);
                 }
@@ -128,66 +125,28 @@ namespace HL7_FM_EA_Extension
         private ListViewItem createListViewItem(EA.Package package)
         {
             ListViewItem item = new ListViewItem(package.Name);
-            DefinitionLink dl = new DefinitionLink();
-            dl.baseModelElement = package.Element;
+            DefinitionLink dl = new DefinitionLink(repository, package.Element);
             item.Tag = dl;
-            if (!string.IsNullOrEmpty(package.Element.Stereotype))
-            {
-                ListViewItem.ListViewSubItem subItem = new ListViewItem.ListViewSubItem();
-                subItem.Name = "stereotype";
-                subItem.Text = package.Element.Stereotype;
-                item.SubItems.Add(subItem);
-            }
             return item;
         }
 
         private ListViewItem createListViewItem(EA.Element element)
         {
             ListViewItem item = new ListViewItem(element.Name);
-            DefinitionLink dl = new DefinitionLink();
+            DefinitionLink dl = new DefinitionLink(repository, element);
             item.Tag = dl;
-            dl.baseModelElement = element;
-            // Find compilerinstruction by looking for the generalization connector that points
-            // to an Element in the ProfileDefinition Package
-            foreach (EA.Connector con in dl.baseModelElement.Connectors.Cast<EA.Connector>().Where(c => "Generalization".Equals(c.Type)))
-            {
-                EA.Element _element = (EA.Element)Repository.GetElementByID(con.ClientID);
-                if (_element.PackageID == ProfileDefinition.PackageID)
-                {
-                    dl.compilerInstructionElement = _element;
-                    updateListViewItem(item);
-                    break;
-                }
-            }
-            if (!string.IsNullOrEmpty(element.Stereotype))
-            {
-                ListViewItem.ListViewSubItem subItem = new ListViewItem.ListViewSubItem();
-                subItem.Name = "stereotype";
-                subItem.Text = element.Stereotype;
-                item.SubItems.Add(subItem);
-            }
+            updateListViewItem(item);
             return item;
         }
 
         private ListViewItem createCriteriaListViewItem(EA.Element element)
         {
-            ListViewItem item = new ListViewItem(string.Format("{0} {1}", element.Name, element.Notes));
-            DefinitionLink dl = new DefinitionLink();
+            ListViewItem item = new ListViewItem();
+            DefinitionLink dl = new DefinitionLink(repository, element);
+            R2Criterion criterion = (R2Criterion) dl.modelElement;
             item.Tag = dl;
-            dl.baseModelElement = element;
-            // Find compilerinstruction by looking for the generalization connector that points
-            // to an Element in the ProfileDefinition Package
-            foreach (EA.Connector con in dl.baseModelElement.Connectors.Cast<EA.Connector>().Where(c => "Generalization".Equals(c.Type)))
-            {
-                EA.Element _element = Repository.GetElementByID(con.ClientID);
-                if (_element.PackageID == ProfileDefinition.PackageID)
-                {
-                    dl.compilerInstructionElement = _element;
-                    item.Text = string.Format("{0} {1}", _element.Name, _element.Notes);
-                    updateListViewItem(item);
-                    break;
-                }
-            }
+            item.Text = string.Format("{0} {1}", criterion.Name, criterion.Text);
+            updateListViewItem(item);
             return item;
         }
 
@@ -202,33 +161,33 @@ namespace HL7_FM_EA_Extension
                 EA.Element element = ((DefinitionLink) selected.Tag).baseModelElement;
 
                 // Also select in Project Browser
-                Repository.ShowInProjectView(element);
+                repository.ShowInProjectView(element);
 
                 // Update checkbox states
-                codeChangedValue = true;
+                ignoreEvent = true;
                 if (selected.BackColor == BACKCOLOR_INCLUDED)
                 {
-                    radioButton1.Checked = true;
+                    includeRadioButton.Checked = true;
                 }
                 else if (selected.BackColor == BACKCOLOR_DEPRECATED)
                 {
-                    radioButton2.Checked = true;
+                    deprecateRadioButton.Checked = true;
                 }
                 else if (selected.BackColor == BACKCOLOR_DELETED)
                 {
-                    radioButton3.Checked = true;
+                    deleteRadioButton.Checked = true;
                 }
                 else
                 {
-                    radioButton4.Checked = true;
+                    excludeRadioButton.Checked = true;
                 }
-                codeChangedValue = false;
+                ignoreEvent = false;
 
                 // Update listBox with Criteria of selected
                 criteriaListView.Items.Clear();
                 foreach (EA.Element child in element.Elements)
                 {
-                    if ("Criteria".Equals(child.Stereotype))
+                    if (R2Const.ST_CRITERION.Equals(child.Stereotype))
                     {
                         criteriaListView.Items.Add(createCriteriaListViewItem(child));
                     }
@@ -239,7 +198,7 @@ namespace HL7_FM_EA_Extension
 
         private void updateSelectedListViewItem()
         {
-            if (!codeChangedValue && mainListView.SelectedItems.Count > 0)
+            if (!ignoreEvent && mainListView.SelectedItems.Count > 0)
             {
                 ListViewItem selected = mainListView.SelectedItems[0];
                 updateCompilerInstruction(selected);
@@ -251,22 +210,22 @@ namespace HL7_FM_EA_Extension
         {
             DefinitionLink dl = (DefinitionLink)item.Tag;
             // Include
-            if (radioButton1.Checked)
+            if (includeRadioButton.Checked)
             {
                 setCompilerInstruction(dl, R2Const.Qualifier.None);
             }
             // Deprecate
-            else if (radioButton2.Checked)
+            else if (deprecateRadioButton.Checked)
             {
                 setCompilerInstruction(dl, R2Const.Qualifier.Deprecate);
             }
             // Delete
-            else if (radioButton3.Checked)
+            else if (deleteRadioButton.Checked)
             {
                 setCompilerInstruction(dl, R2Const.Qualifier.Delete);
             }
             // Exclude
-            else if (radioButton4.Checked)
+            else if (excludeRadioButton.Checked)
             {
                 deleteCompilerInstruction(dl);
             }
@@ -274,16 +233,11 @@ namespace HL7_FM_EA_Extension
 
         private void updateListViewItem(ListViewItem item)
         {
-            DefinitionLink ci = (DefinitionLink)item.Tag;
-            if (ci.compilerInstructionElement != null)
+            DefinitionLink dl = (DefinitionLink)item.Tag;
+            if (dl.compilerInstructionElement != null)
             {
-                EA.TaggedValue tvQualifier = (EA.TaggedValue) ci.compilerInstructionElement.TaggedValues.GetByName("Qualifier");
-                switch(tvQualifier.Value)
+                switch (EAHelper.getTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, ""))
                 {
-                    case "":
-                        item.ForeColor = Color.White;
-                        item.BackColor = BACKCOLOR_INCLUDED;
-                        break;
                     case "DEP":
                         item.ForeColor = Color.White;
                         item.BackColor = BACKCOLOR_DEPRECATED;
@@ -296,6 +250,11 @@ namespace HL7_FM_EA_Extension
                         item.ForeColor = Color.LightGray;
                         item.BackColor = BACKCOLOR_EXCLUDED;
                         break;
+                    case "":
+                    default:
+                        item.ForeColor = Color.White;
+                        item.BackColor = BACKCOLOR_INCLUDED;
+                        break;
                 }
             }
             else
@@ -305,101 +264,87 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void setCompilerInstruction(DefinitionLink dl, R2Const.Qualifier qualifier, string optionality = null, string change_note = null)
+        private void setCompilerInstruction(DefinitionLink dl, R2Const.Qualifier qualifier, string change_note = null)
         {
+            // If there is no Compiler Instruction, create one
             if (dl.compilerInstructionElement == null)
             {
-                dl.compilerInstructionElement = (EA.Element)ProfileDefinition.Elements.AddNew(dl.baseModelElement.Name, "Class");
+                dl.compilerInstructionElement = (EA.Element)profileDefinitionPackage.Elements.AddNew(dl.baseModelElement.Name, "Class");
                 dl.compilerInstructionElement.Stereotype = R2Const.ST_COMPILERINSTRUCTION;
                 dl.compilerInstructionElement.Update();
                 EA.Connector con = (EA.Connector)dl.compilerInstructionElement.Connectors.AddNew("", "Generalization");
                 con.SupplierID = dl.baseModelElement.ElementID;
                 con.Update();
                 dl.compilerInstructionElement.Connectors.Refresh();
+                dl.modelElement = R2Model.Create(repository, dl.compilerInstructionElement);
             }
 
-            // TODO: remove qualifier if null or empty
-            EA.TaggedValue tvQualifier = (EA.TaggedValue)dl.compilerInstructionElement.TaggedValues.GetByName("Qualifier");
-            if (tvQualifier == null)
-            {
-                tvQualifier = (EA.TaggedValue)dl.compilerInstructionElement.TaggedValues.AddNew("Qualifier", "");
-            }
-            switch(qualifier)
+            switch (qualifier)
             {
                 case R2Const.Qualifier.Deprecate:
-                    tvQualifier.Value = "DEP";
+                    EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "DEP");
                     break;
                 case R2Const.Qualifier.Delete:
-                    tvQualifier.Value = "D";
+                    EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "D");
                     break;
                 case R2Const.Qualifier.Exclude:
-                    tvQualifier.Value = "EXCLUDE";
+                    EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "EXCLUDE");
                     break;
+                case R2Const.Qualifier.None:
                 default:
-                    tvQualifier.Value = "";
+                    EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "");
                     break;
-            }
-            tvQualifier.Update();
-
-            // TODO: remove optionality if null or empty
-            if (!string.IsNullOrEmpty(optionality))
-            {
-                EA.TaggedValue tvOptionality = (EA.TaggedValue)dl.compilerInstructionElement.TaggedValues.GetByName("Optionality");
-                if (tvOptionality == null)
-                {
-                    tvOptionality = (EA.TaggedValue)dl.compilerInstructionElement.TaggedValues.AddNew("Optionality", "");
-                }
-                tvOptionality.Value = optionality;
-                tvOptionality.Update();
             }
 
             if (!string.IsNullOrEmpty(change_note))
             {
-                EA.TaggedValue tvChangeNote = (EA.TaggedValue)dl.compilerInstructionElement.TaggedValues.GetByName("ChangeNote");
-                if (tvChangeNote == null)
-                {
-                    tvChangeNote = (EA.TaggedValue)dl.compilerInstructionElement.TaggedValues.AddNew("ChangeNote", "");
-                    tvChangeNote.Value = "<memo>";
-                }
-                tvChangeNote.Notes = change_note;
-                tvChangeNote.Update();
+                EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_CHANGENOTE, "<memo>", change_note);
+            }
+            else
+            {
+                EAHelper.deleteTaggedValue(dl.compilerInstructionElement, R2Const.TV_CHANGENOTE);
             }
 
             dl.compilerInstructionElement.TaggedValues.Refresh();
             dl.compilerInstructionElement.Refresh();
         }
 
-        private void deleteCompilerInstruction(DefinitionLink ci)
+        private void deleteCompilerInstruction(DefinitionLink dl)
         {
-            for (short index = 0; index < ProfileDefinition.Elements.Count; index++)
+            // Only delete if there is a Compiler Instruction
+            if (dl.compilerInstructionElement != null)
             {
-                EA.Element _element = (EA.Element)ProfileDefinition.Elements.GetAt(index);
-                if (_element.ElementID == ci.compilerInstructionElement.ElementID)
+                for (short index = 0; index < profileDefinitionPackage.Elements.Count; index++)
                 {
-                    ProfileDefinition.Elements.Delete(index);
-                    break;
+                    EA.Element _element = (EA.Element) profileDefinitionPackage.Elements.GetAt(index);
+                    if (_element.ElementID == dl.compilerInstructionElement.ElementID)
+                    {
+                        profileDefinitionPackage.Elements.Delete(index);
+                        break;
+                    }
                 }
+                profileDefinitionPackage.Elements.Refresh();
+                dl.compilerInstructionElement = null;
+                dl.modelElement = R2Model.Create(repository, dl.baseModelElement);
             }
-            ProfileDefinition.Elements.Refresh();
-            ci.compilerInstructionElement = null;
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void includeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             updateSelectedListViewItem();
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void deprecateRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             updateSelectedListViewItem();
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        private void deleteRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             updateSelectedListViewItem();
         }
 
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        private void excludeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             updateSelectedListViewItem();
         }
@@ -413,36 +358,36 @@ namespace HL7_FM_EA_Extension
                 EA.TaggedValue tvChangeNote = null;
                 if (ciElement != null)
                 {
-                    tvChangeNote = (EA.TaggedValue)ciElement.TaggedValues.GetByName("ChangeNote");
+                    tvChangeNote = (EA.TaggedValue)ciElement.TaggedValues.GetByName(R2Const.TV_CHANGENOTE);
                 }
                 if (tvChangeNote != null)
                 {
-                    codeChangedValue = true;
+                    ignoreEvent = true;
                     textBox1.Text = tvChangeNote.Notes;
-                    codeChangedValue = false;
+                    ignoreEvent = false;
                 }
                 else
                 {
-                    codeChangedValue = true;
+                    ignoreEvent = true;
                     textBox1.Text = "";
-                    codeChangedValue = false;
+                    ignoreEvent = false;
                 }
                 EA.TaggedValue tvQualifier = null;
                 if (ciElement != null)
                 {
-                    tvQualifier = (EA.TaggedValue)ciElement.TaggedValues.GetByName("Qualifier");
+                    tvQualifier = (EA.TaggedValue)ciElement.TaggedValues.GetByName(R2Const.TV_QUALIFIER);
                 }
                 if (tvQualifier != null)
                 {
-                    codeChangedValue = true;
-                    checkBox1.Checked = "EXCLUDE".Equals(tvQualifier.Value);
-                    codeChangedValue = false;
+                    ignoreEvent = true;
+                    excludeCriterionCheckBox.Checked = "EXCLUDE".Equals(tvQualifier.Value);
+                    ignoreEvent = false;
                 }
                 else
                 {
-                    codeChangedValue = true;
-                    checkBox1.Checked = false;
-                    codeChangedValue = false;
+                    ignoreEvent = true;
+                    excludeCriterionCheckBox.Checked = false;
+                    ignoreEvent = false;
                 }
 
                 groupBox3.Show();
@@ -455,11 +400,11 @@ namespace HL7_FM_EA_Extension
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (!codeChangedValue)
+            if (!ignoreEvent)
             {
                 ListViewItem selected = criteriaListView.SelectedItems[0];
                 DefinitionLink dl = (DefinitionLink) selected.Tag;
-                setCompilerInstruction(dl, R2Const.Qualifier.None, null, textBox1.Text);
+                setCompilerInstruction(dl, R2Const.Qualifier.None, textBox1.Text);
             }
         }
 
@@ -468,9 +413,9 @@ namespace HL7_FM_EA_Extension
             ListViewItem selected = criteriaListView.SelectedItems[0];
             DefinitionLink dl = (DefinitionLink)selected.Tag;
             // make sure CI is created first
-            setCompilerInstruction(dl, R2Const.Qualifier.None, null, textBox1.Text);
+            setCompilerInstruction(dl, R2Const.Qualifier.None, textBox1.Text);
 
-            R2Criterion criterion = (R2Criterion)R2Model.Create(Repository, dl.compilerInstructionElement);
+            R2Criterion criterion = (R2Criterion)dl.modelElement;
             new CriterionForm().Show(criterion);
 
             // Update Criterion Text in Critaria List
@@ -480,14 +425,13 @@ namespace HL7_FM_EA_Extension
         private void mainListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ListViewItem selected = mainListView.SelectedItems[0];
-            EA.Element element = ((DefinitionLink)selected.Tag).baseModelElement;
-            R2Function function = (R2Function)R2Model.Create(Repository, element);
-            new FunctionForm().Show(function);
+            DefinitionLink dl = (DefinitionLink) selected.Tag;
+            new FunctionForm().Show((R2Function)dl.modelElement);
         }
 
         private void findButton_Click(object sender, EventArgs e)
         {
-            string id = textBox2.Text.ToUpper();
+            string id = findTextBox.Text.ToUpper();
             foreach (ListViewItem item in mainListView.Items)
             {
                 DefinitionLink dl = (DefinitionLink)item.Tag;
@@ -504,11 +448,11 @@ namespace HL7_FM_EA_Extension
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (!codeChangedValue)
+            if (!ignoreEvent)
             {
                 ListViewItem selected = criteriaListView.SelectedItems[0];
                 DefinitionLink dl = (DefinitionLink) selected.Tag;
-                if (checkBox1.Checked)
+                if (excludeCriterionCheckBox.Checked)
                 {
                     setCompilerInstruction(dl, R2Const.Qualifier.Exclude);
                 }
@@ -523,7 +467,15 @@ namespace HL7_FM_EA_Extension
 
     public class DefinitionLink
     {
+        public DefinitionLink(EA.Repository repository, EA.Element element)
+        {
+            baseModelElement = element;
+            compilerInstructionElement = R2Model.findCompilerInstruction(repository, element);
+            modelElement = R2Model.Create(repository, element);
+        }
+
         public EA.Element baseModelElement;
         public EA.Element compilerInstructionElement;
+        public R2ModelElement modelElement;
     }
 }

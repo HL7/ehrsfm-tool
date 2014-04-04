@@ -15,20 +15,17 @@ namespace HL7_FM_EA_Extension
 
         public static void updateTaggedValue(EA.Element element, string name, string value, string notes=null)
         {
-            if (!string.IsNullOrEmpty(value))
+            EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(name);
+            if (tv == null)
             {
-                EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(name);
-                if (tv == null)
-                {
-                    tv = (EA.TaggedValue)element.TaggedValues.AddNew(name, "TaggedValue");
-                }
-                tv.Value = value;
-                if (notes != null)
-                {
-                    tv.Notes = notes;
-                }
-                tv.Update();
+                tv = (EA.TaggedValue)element.TaggedValues.AddNew(name, "TaggedValue");
             }
+            tv.Value = value;
+            if (notes != null)
+            {
+                tv.Notes = notes;
+            }
+            tv.Update();
         }
 
         public static string getTaggedValue(EA.Element element, string name, string defaultValue = "")
@@ -57,7 +54,10 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        public static void removeTaggedValue(EA.Element element, string name)
+        /*
+         * Delete all tagged values with <name>.
+         */
+        public static void deleteTaggedValue(EA.Element element, string name)
         {
             for (short index = 0; index < element.TaggedValues.Count; index++)
             {
@@ -66,7 +66,6 @@ namespace HL7_FM_EA_Extension
                 {
                     element.TaggedValues.Delete(index);
                     element.TaggedValues.Refresh();
-                    return;
                 }
             }
         }

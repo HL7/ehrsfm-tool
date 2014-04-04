@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using EA;
 
 namespace HL7_FM_EA_Extension
@@ -32,6 +33,11 @@ namespace HL7_FM_EA_Extension
                     break;
                 case R2Const.ST_COMPILERINSTRUCTION:
                     EA.Connector generalization = element.Connectors.Cast<EA.Connector>().SingleOrDefault(t => "Generalization".Equals(t.Type));
+                    if (generalization == null)
+                    {
+                        MessageBox.Show("Generalization to Base Element missing");
+                        return null;
+                    }
                     EA.Element baseElement = repository.GetElementByID(generalization.SupplierID);
                     switch(baseElement.Stereotype)
                     {
@@ -53,6 +59,21 @@ namespace HL7_FM_EA_Extension
                 modelElement.Path = getModelElementPath(repository, element);
             }
             return modelElement;
+        }
+
+        public static EA.Element findCompilerInstruction(EA.Repository repository, EA.Element element)
+        {
+            // Find compilerinstruction by looking for the generalization connector that points
+            // to an Element with stereotype Compiler Instruction
+            foreach (EA.Connector con in element.Connectors.Cast<EA.Connector>().Where(c => "Generalization".Equals(c.Type)))
+            {
+                EA.Element _element = (EA.Element)repository.GetElementByID(con.ClientID);
+                if (R2Const.ST_COMPILERINSTRUCTION.Equals(_element.Stereotype))
+                {
+                    return _element;
+                }
+            }
+            return null;
         }
 
         /**
@@ -97,18 +118,6 @@ namespace HL7_FM_EA_Extension
             }
             return string.Join(" / ", path.ToArray());
         }
-
-        public static Dictionary<string,string> splitNotes(string notes)
-        {
-            System.Text.RegularExpressions.Regex regex2 = new System.Text.RegularExpressions.Regex(@"\$([A-Z]{2})\$");
-            string[] parts = regex2.Split(notes, 10);
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            for (int i = 1; i < parts.Length; i += 2)
-            {
-                dict[parts[i]] = (parts.Length > i + 1) ? parts[i + 1] : "";
-            }
-            return dict;
-        }
     }
 
     public class R2Const
@@ -122,9 +131,18 @@ namespace HL7_FM_EA_Extension
         public const string ST_SECTION = "Section";
         public const string ST_HEADER = "Header";
         public const string ST_FUNCTION = "Function";
-        public const string ST_CRITERION = "Criteria"; // TODO!
         public const string ST_CONSEQUENCELINK = "ConsequenceLink";
         public const string ST_SEEALSO = "SeeAlso";
+
+        public const string TV_PRIORITY = "Priority";
+        public const string TV_CHANGENOTE = "ChangeNote";
+        public const string TV_QUALIFIER = "Qualifier";
+        public const string TV_ROW = "Row";
+
+        public const string ST_CRITERION = "Criteria";
+        public const string TV_OPTIONALITY = "Optionality";
+        public const string TV_DEPENDENT = "Dependent";
+        public const string TV_CONDITIONAL = "Conditional";
 
         public enum ProfileTypes
         {
@@ -182,6 +200,18 @@ namespace HL7_FM_EA_Extension
         {
             _element.Update();
         }
+
+        internal Dictionary<string, string> splitNotes(string notes)
+        {
+            System.Text.RegularExpressions.Regex regex2 = new System.Text.RegularExpressions.Regex(@"\$([A-Z]{2})\$");
+            string[] parts = regex2.Split(notes, 10);
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            for (int i = 1; i < parts.Length; i += 2)
+            {
+                dict[parts[i]] = (parts.Length > i + 1) ? parts[i + 1] : "";
+            }
+            return dict;
+        }
     }
 
     public class R2Section : R2ModelElement
@@ -189,7 +219,7 @@ namespace HL7_FM_EA_Extension
         public R2Section(EA.Element element) : base(element)
         {
             string notes = element.Notes;
-            Dictionary<string, string> noteParts = R2Model.splitNotes(notes);
+            Dictionary<string, string> noteParts = splitNotes(notes);
             _overview = noteParts.ContainsKey("OV") ? noteParts["OV"] : "";
             _example = noteParts.ContainsKey("EX") ? noteParts["EX"] : "";
             _actors = noteParts.ContainsKey("AC") ? noteParts["AC"] : "";
@@ -241,7 +271,7 @@ namespace HL7_FM_EA_Extension
         public R2Function(EA.Element element) : base(element)
         {
             string notes = element.Notes;
-            Dictionary<string, string> noteParts = R2Model.splitNotes(notes);
+            Dictionary<string, string> noteParts = splitNotes(notes);
             _statement = noteParts.ContainsKey("ST") ? noteParts["ST"] : "";
             _description = noteParts.ContainsKey("DE") ? noteParts["DE"] : "";
             _example = noteParts.ContainsKey("EX") ? noteParts["EX"] : "";
@@ -290,11 +320,6 @@ namespace HL7_FM_EA_Extension
 
     public class R2Criterion : R2ModelElement
     {
-        public const string TV_ROW = "Row";
-        public const string TV_DEPENDENT = "Dependent";
-        public const string TV_CONDITIONAL = "Conditional";
-        public const string TV_OPTIONALITY = "Optionality";
-
         public R2Criterion(EA.Element element) : base(element)
         {
         }
@@ -338,28 +363,36 @@ namespace HL7_FM_EA_Extension
 
         public virtual decimal Row
         {
-            get { return decimal.Parse(EAHelper.getTaggedValue(_element, TV_ROW, "0")); }
-            set { EAHelper.updateTaggedValue(_element, TV_ROW, value.ToString()); }
+            get
+            {
+                string value = EAHelper.getTaggedValue(_element, R2Const.TV_ROW).Trim();
+                if (string.IsNullOrEmpty(value))
+                {
+                    value = "0";
+                }
+                return decimal.Parse(value);
+            }
+            set { EAHelper.updateTaggedValue(_element, R2Const.TV_ROW, value.ToString()); }
         }
 
         public virtual bool Conditional
         {
-            get { return "Y".Equals(EAHelper.getTaggedValue(_element, TV_CONDITIONAL, "N")); }
-            set { EAHelper.updateTaggedValue(_element, TV_CONDITIONAL, value ? "Y" : "N"); }
+            get { return "Y".Equals(EAHelper.getTaggedValue(_element, R2Const.TV_CONDITIONAL, "N")); }
+            set { EAHelper.updateTaggedValue(_element, R2Const.TV_CONDITIONAL, value ? "Y" : "N"); }
         }
 
         public virtual bool Dependent
         {
-            get { return "Y".Equals(EAHelper.getTaggedValue(_element, TV_DEPENDENT, "N")); }
-            set { EAHelper.updateTaggedValue(_element, TV_DEPENDENT, value ? "Y" : "N"); }
+            get { return "Y".Equals(EAHelper.getTaggedValue(_element, R2Const.TV_DEPENDENT, "N")); }
+            set { EAHelper.updateTaggedValue(_element, R2Const.TV_DEPENDENT, value ? "Y" : "N"); }
         }            
 
         // Don't use Enum
         // We know Optionality can be extended in profiles
         public virtual string Optionality
         {
-            get { return EAHelper.getTaggedValue(_element, TV_OPTIONALITY, ""); }
-            set { EAHelper.updateTaggedValue(_element, TV_OPTIONALITY, value); }
+            get { return EAHelper.getTaggedValue(_element, R2Const.TV_OPTIONALITY, ""); }
+            set { EAHelper.updateTaggedValue(_element, R2Const.TV_OPTIONALITY, value); }
         }
     }
 
@@ -435,16 +468,24 @@ namespace HL7_FM_EA_Extension
 
         public override decimal Row
         {
-            get { return decimal.Parse(EAHelper.getTaggedValue(_ciElement, TV_ROW, base.Row.ToString())); }
+            get
+            {
+                string value = EAHelper.getTaggedValue(_ciElement, R2Const.TV_ROW).Trim();
+                if (string.IsNullOrEmpty(value))
+                {
+                    value = base.Row.ToString();
+                }
+                return decimal.Parse(value);
+            }
             set
             {
                 if (value.Equals(base.Row))
                 {
-                    EAHelper.removeTaggedValue(_ciElement, TV_ROW);
+                    EAHelper.deleteTaggedValue(_ciElement, R2Const.TV_ROW);
                 }
                 else
                 {
-                    EAHelper.updateTaggedValue(_ciElement, TV_ROW, value.ToString());
+                    EAHelper.updateTaggedValue(_ciElement, R2Const.TV_ROW, value.ToString());
                 }
             }
         }
@@ -453,7 +494,7 @@ namespace HL7_FM_EA_Extension
         {
             get
             {
-                string conditionalValue = EAHelper.getTaggedValue(_ciElement, TV_CONDITIONAL, null);
+                string conditionalValue = EAHelper.getTaggedValue(_ciElement, R2Const.TV_CONDITIONAL, null);
                 if (conditionalValue == null)
                 {
                     return base.Conditional;
@@ -467,11 +508,11 @@ namespace HL7_FM_EA_Extension
             {
                 if (value.Equals(base.Conditional))
                 {
-                    EAHelper.removeTaggedValue(_ciElement, TV_CONDITIONAL);
+                    EAHelper.deleteTaggedValue(_ciElement, R2Const.TV_CONDITIONAL);
                 }
                 else
                 {
-                    EAHelper.updateTaggedValue(_ciElement, TV_CONDITIONAL, value ? "Y" : "N");
+                    EAHelper.updateTaggedValue(_ciElement, R2Const.TV_CONDITIONAL, value ? "Y" : "N");
                 }
             }
         }
@@ -480,7 +521,7 @@ namespace HL7_FM_EA_Extension
         {
             get
             {
-                string dependentValue = EAHelper.getTaggedValue(_ciElement, TV_DEPENDENT, null);
+                string dependentValue = EAHelper.getTaggedValue(_ciElement, R2Const.TV_DEPENDENT, null);
                 if (dependentValue == null)
                 {
                     return base.Dependent;
@@ -494,11 +535,11 @@ namespace HL7_FM_EA_Extension
             {
                 if (value.Equals(base.Dependent))
                 {
-                    EAHelper.removeTaggedValue(_ciElement, TV_DEPENDENT);
+                    EAHelper.deleteTaggedValue(_ciElement, R2Const.TV_DEPENDENT);
                 }
                 else
                 {
-                    EAHelper.updateTaggedValue(_ciElement, TV_DEPENDENT, value ? "Y" : "N");
+                    EAHelper.updateTaggedValue(_ciElement, R2Const.TV_DEPENDENT, value ? "Y" : "N");
                 }
             }
         }
@@ -507,17 +548,17 @@ namespace HL7_FM_EA_Extension
         {
             get
             {
-                return EAHelper.getTaggedValue(_ciElement, TV_OPTIONALITY, base.Optionality);
+                return EAHelper.getTaggedValue(_ciElement, R2Const.TV_OPTIONALITY, base.Optionality);
             }
             set
             {
                 if (value.Equals(base.Optionality))
                 {
-                    EAHelper.removeTaggedValue(_ciElement, TV_OPTIONALITY);
+                    EAHelper.deleteTaggedValue(_ciElement, R2Const.TV_OPTIONALITY);
                 }
                 else
                 {
-                    EAHelper.updateTaggedValue(_ciElement, TV_OPTIONALITY, value);
+                    EAHelper.updateTaggedValue(_ciElement, R2Const.TV_OPTIONALITY, value);
                 }
             }
         }
