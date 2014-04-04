@@ -33,20 +33,20 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.findTextBox = new System.Windows.Forms.TextBox();
             this.findButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.excludeCriterionCheckBox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.criteriaListView = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.excludeRadioButton = new System.Windows.Forms.RadioButton();
+            this.includeRadioButton = new System.Windows.Forms.RadioButton();
+            this.deprecateRadioButton = new System.Windows.Forms.RadioButton();
+            this.deleteRadioButton = new System.Windows.Forms.RadioButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -94,7 +94,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.findTextBox);
             this.panel1.Controls.Add(this.findButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -111,12 +111,12 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Select by ID";
             // 
-            // textBox2
+            // findTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(74, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
+            this.findTextBox.Location = new System.Drawing.Point(74, 4);
+            this.findTextBox.Name = "findTextBox";
+            this.findTextBox.Size = new System.Drawing.Size(100, 20);
+            this.findTextBox.TabIndex = 1;
             // 
             // findButton
             // 
@@ -130,7 +130,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.checkBox1);
+            this.groupBox3.Controls.Add(this.excludeCriterionCheckBox);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -139,18 +139,18 @@
             this.groupBox3.Size = new System.Drawing.Size(473, 126);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Double click Criterion for full options";
+            this.groupBox3.Text = "TIP: Double click Section, Header, Function or Criterion for full options";
             // 
-            // checkBox1
+            // excludeCriterionCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(11, 102);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(160, 17);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "Exclude Criterion from Profile";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.excludeCriterionCheckBox.AutoSize = true;
+            this.excludeCriterionCheckBox.Location = new System.Drawing.Point(11, 102);
+            this.excludeCriterionCheckBox.Name = "excludeCriterionCheckBox";
+            this.excludeCriterionCheckBox.Size = new System.Drawing.Size(160, 17);
+            this.excludeCriterionCheckBox.TabIndex = 13;
+            this.excludeCriterionCheckBox.Text = "Exclude Criterion from Profile";
+            this.excludeCriterionCheckBox.UseVisualStyleBackColor = true;
+            this.excludeCriterionCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label2
             // 
@@ -179,7 +179,7 @@
             this.groupBox2.Size = new System.Drawing.Size(473, 286);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Criteria for selected item";
+            this.groupBox2.Text = "Criteria for selected Header or Function";
             // 
             // criteriaListView
             // 
@@ -204,84 +204,84 @@
             this.groupBox1.Size = new System.Drawing.Size(473, 68);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Actions for selected item";
+            this.groupBox1.Text = "<< Actions for selected Section, Header or Function";
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.radioButton4);
-            this.flowLayoutPanel1.Controls.Add(this.radioButton1);
-            this.flowLayoutPanel1.Controls.Add(this.radioButton2);
-            this.flowLayoutPanel1.Controls.Add(this.radioButton3);
+            this.flowLayoutPanel1.Controls.Add(this.excludeRadioButton);
+            this.flowLayoutPanel1.Controls.Add(this.includeRadioButton);
+            this.flowLayoutPanel1.Controls.Add(this.deprecateRadioButton);
+            this.flowLayoutPanel1.Controls.Add(this.deleteRadioButton);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(467, 49);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
-            // radioButton4
+            // excludeRadioButton
             // 
-            this.radioButton4.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.BackColor = System.Drawing.SystemColors.Control;
-            this.radioButton4.Checked = true;
-            this.radioButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton4.ForeColor = System.Drawing.Color.Black;
-            this.radioButton4.Location = new System.Drawing.Point(3, 3);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(57, 25);
-            this.radioButton4.TabIndex = 5;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Exclude";
-            this.radioButton4.UseVisualStyleBackColor = false;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            this.excludeRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.excludeRadioButton.AutoSize = true;
+            this.excludeRadioButton.BackColor = System.Drawing.SystemColors.Control;
+            this.excludeRadioButton.Checked = true;
+            this.excludeRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.excludeRadioButton.ForeColor = System.Drawing.Color.Black;
+            this.excludeRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.excludeRadioButton.Name = "excludeRadioButton";
+            this.excludeRadioButton.Size = new System.Drawing.Size(57, 25);
+            this.excludeRadioButton.TabIndex = 5;
+            this.excludeRadioButton.TabStop = true;
+            this.excludeRadioButton.Text = "Exclude";
+            this.excludeRadioButton.UseVisualStyleBackColor = false;
+            this.excludeRadioButton.CheckedChanged += new System.EventHandler(this.excludeRadioButton_CheckedChanged);
             // 
-            // radioButton1
+            // includeRadioButton
             // 
-            this.radioButton1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.BackColor = System.Drawing.Color.DarkGreen;
-            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.ForeColor = System.Drawing.Color.White;
-            this.radioButton1.Location = new System.Drawing.Point(66, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(54, 25);
-            this.radioButton1.TabIndex = 5;
-            this.radioButton1.Text = "Include";
-            this.radioButton1.UseVisualStyleBackColor = false;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.includeRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.includeRadioButton.AutoSize = true;
+            this.includeRadioButton.BackColor = System.Drawing.Color.DarkGreen;
+            this.includeRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.includeRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.includeRadioButton.ForeColor = System.Drawing.Color.White;
+            this.includeRadioButton.Location = new System.Drawing.Point(66, 3);
+            this.includeRadioButton.Name = "includeRadioButton";
+            this.includeRadioButton.Size = new System.Drawing.Size(54, 25);
+            this.includeRadioButton.TabIndex = 5;
+            this.includeRadioButton.Text = "Include";
+            this.includeRadioButton.UseVisualStyleBackColor = false;
+            this.includeRadioButton.CheckedChanged += new System.EventHandler(this.includeRadioButton_CheckedChanged);
             // 
-            // radioButton2
+            // deprecateRadioButton
             // 
-            this.radioButton2.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.BackColor = System.Drawing.Color.Orange;
-            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.ForeColor = System.Drawing.Color.White;
-            this.radioButton2.Location = new System.Drawing.Point(126, 3);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(69, 25);
-            this.radioButton2.TabIndex = 5;
-            this.radioButton2.Text = "Deprecate";
-            this.radioButton2.UseVisualStyleBackColor = false;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.deprecateRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.deprecateRadioButton.AutoSize = true;
+            this.deprecateRadioButton.BackColor = System.Drawing.Color.Orange;
+            this.deprecateRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deprecateRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deprecateRadioButton.ForeColor = System.Drawing.Color.White;
+            this.deprecateRadioButton.Location = new System.Drawing.Point(126, 3);
+            this.deprecateRadioButton.Name = "deprecateRadioButton";
+            this.deprecateRadioButton.Size = new System.Drawing.Size(69, 25);
+            this.deprecateRadioButton.TabIndex = 5;
+            this.deprecateRadioButton.Text = "Deprecate";
+            this.deprecateRadioButton.UseVisualStyleBackColor = false;
+            this.deprecateRadioButton.CheckedChanged += new System.EventHandler(this.deprecateRadioButton_CheckedChanged);
             // 
-            // radioButton3
+            // deleteRadioButton
             // 
-            this.radioButton3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.BackColor = System.Drawing.Color.Red;
-            this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton3.ForeColor = System.Drawing.Color.White;
-            this.radioButton3.Location = new System.Drawing.Point(201, 3);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(50, 25);
-            this.radioButton3.TabIndex = 5;
-            this.radioButton3.Text = "Delete";
-            this.radioButton3.UseVisualStyleBackColor = false;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.deleteRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.deleteRadioButton.AutoSize = true;
+            this.deleteRadioButton.BackColor = System.Drawing.Color.Red;
+            this.deleteRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteRadioButton.ForeColor = System.Drawing.Color.White;
+            this.deleteRadioButton.Location = new System.Drawing.Point(201, 3);
+            this.deleteRadioButton.Name = "deleteRadioButton";
+            this.deleteRadioButton.Size = new System.Drawing.Size(50, 25);
+            this.deleteRadioButton.TabIndex = 5;
+            this.deleteRadioButton.Text = "Delete";
+            this.deleteRadioButton.UseVisualStyleBackColor = false;
+            this.deleteRadioButton.CheckedChanged += new System.EventHandler(this.deleteRadioButton_CheckedChanged);
             // 
             // ProfilingForm
             // 
@@ -312,10 +312,10 @@
         private System.Windows.Forms.ListView mainListView;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton deleteRadioButton;
+        private System.Windows.Forms.RadioButton deprecateRadioButton;
+        private System.Windows.Forms.RadioButton includeRadioButton;
+        private System.Windows.Forms.RadioButton excludeRadioButton;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -324,9 +324,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox findTextBox;
         private System.Windows.Forms.Button findButton;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox excludeCriterionCheckBox;
 
     }
 }

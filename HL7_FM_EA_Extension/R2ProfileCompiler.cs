@@ -23,6 +23,7 @@ namespace HL7_FM_EA_Extension
 
         private const string QUALIFIER_DELETE = "D";
         private const string QUALIFIER_DEPRECATE = "DEP";
+        private const string QUALIFIER_EXCLUDE = "EXCLUDE";
 
         private const string PRIORITY_ESSENTIALNOW = "EN";
 
@@ -52,14 +53,13 @@ namespace HL7_FM_EA_Extension
                     {
                         TreeNode node = treeNodes[rel.destId];
                         node.instruction = objectsCI[rel.sourceId];
-                        if ("import".Equals(rel.stereotype))
+                        if ("Generalization".Equals(rel.type))
                         {
-                            node.import = true;
+                            node.include = true;
                         }
                     }
 
                     ObjectType profileDefinition = objectsCI.Values.Single(o => R2Const.ST_FM_PROFILEDEFINITION.Equals(o.stereotype));
-                    // TODO: Copy Profile Metadata from the Definition in the empty root
                     string rootid = root.metadata.id;
                     root.metadata = new ObjectType()
                     {
@@ -67,27 +67,24 @@ namespace HL7_FM_EA_Extension
                         name = profileDefinition.name,
                         stereotype = R2Const.ST_FM_PROFILE,
                         type = ObjectTypeEnum.Package,
-                        tag = profileDefinition.tag,
-                        typeSpecified = true
+                        typeSpecified = true,
+                        tag = profileDefinition.tag
                     };
                 }
 
-                // Create imports from consequenceLinks
-                // This will mark all linked nodes to import=true if a compiler instruction references a node with a consequenceLink
-                // Only do this for ProfileType != Companion
-                bool doFollowConsequenceLinks = true;
+                // Only follow ConsequenceLinks for ProfileType != Companion
+                bool followConsequenceLinks = true;
                 if (root.metadata.tag.Any(t => "Type".Equals(t.name)))
                 {
                     TagType typeTag = root.metadata.tag.Single(t => "Type".Equals(t.name));
-                    doFollowConsequenceLinks = !"Companion".Equals(typeTag.value);
-                }
-                if (doFollowConsequenceLinks)
-                {
-                    followConsequenceLinks(root, false);
+                    followConsequenceLinks = !"Companion".Equals(typeTag.value);
                 }
 
+                // Now auto include parents and criterions and included consequenceLinks
+                autoInclude(root, followConsequenceLinks);
+
                 // Compile aka execute compiler instructions
-                executeInstructions(root, false, PRIORITY_ESSENTIALNOW);
+                executeInstructions(root, PRIORITY_ESSENTIALNOW);
 
                 // Give profile elements new unique ids
                 // Only what is still in the Tree!
@@ -99,9 +96,11 @@ namespace HL7_FM_EA_Extension
                     string idNew = Guid.NewGuid().ToString();
                     idOrg2idNew[idOrg] = idNew;
                     maxObj.id = idNew;
-                    // Also remove modified
+                    // Also remove modified date
                     maxObj.modifiedSpecified = false;
                 }
+
+                // assign new id's in objects parentId
                 foreach (ObjectType maxObj in objects)
                 {
                     if (!string.IsNullOrEmpty(maxObj.parentId))
@@ -116,6 +115,8 @@ namespace HL7_FM_EA_Extension
                         }
                     }
                 }
+
+                // assign new id's for relationships
                 List<RelationshipType> relationships = root.ToRelationshipList();
                 foreach (RelationshipType maxRel in relationships)
                 {
@@ -133,25 +134,29 @@ namespace HL7_FM_EA_Extension
                 ModelType model = new ModelType();
                 model.objects = objects.ToArray();
                 model.relationships = relationships.ToArray();
-                foreach (RelationshipType maxRel in model.relationships)
-                {
-                    if (!objects.Any(t => t.id == maxRel.sourceId))
-                    {
-                        string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
-                        Console.WriteLine("relationship from not included object orgSourceId={0} destId={1} stereotype={2}", sourceId, maxRel.destId, maxRel.stereotype);
-                    }
-                    if (!objects.Any(t => t.id == maxRel.destId))
-                    {
-                        string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
-                        Console.WriteLine("relationship to not included object orgSourceId={0} destId={1} stereotype={2}", sourceId, maxRel.destId, maxRel.stereotype);
-                    }
-                }
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Indent = true;
                 settings.NewLineChars = "\n";
                 using (XmlWriter writer = XmlWriter.Create(fileNameOutput, settings))
                 {
                     serializer.Serialize(writer, model);
+                }
+
+                // Check if all objects are included
+                foreach (RelationshipType maxRel in model.relationships)
+                {
+                    if (!objects.Any(t => t.id == maxRel.sourceId))
+                    {
+                        string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
+                        string destName = model.objects.Single(t => t.id == maxRel.destId).name;
+                        Console.WriteLine("relationship from not included object sourceId={0} destId={1} stereotype={2} destName={3}", sourceId, maxRel.destId, maxRel.stereotype, destName);
+                    }
+                    if (!objects.Any(t => t.id == maxRel.destId))
+                    {
+                        string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
+                        string sourceName = model.objects.Single(t => t.id == maxRel.sourceId).name;
+                        Console.WriteLine("relationship to not included object sourceId={0} destId={1} stereotype={2} sourceName={3}", sourceId, maxRel.destId, maxRel.stereotype, sourceName);
+                    }
                 }
             }
         }
@@ -175,26 +180,83 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private bool executeInstructions(TreeNode node, bool overrideImport, string priority)
+        /**
+         * This will include the path to elements that have a Compiler Instruction or that are autoIncluded because of a ConsequenceLink.
+         * E.g. when a Criterion has a Compiler Instruction than its parent Function/Headers get included
+         * Also include Criterion when function is included, except for Criterion with QUALIFIER_EXCLUDE.
+         * 
+         * returns bool includeParent
+         */
+        private bool autoInclude(TreeNode node, bool followConsequenceLinks)
         {
-            overrideImport |= node.import;
+            node.include |= node.hasInstruction;
+            if (node.include)
+            {
+                if (followConsequenceLinks && node.hasConsequenceLinks)
+                {
+                    foreach (RelationshipType consequenceLink in node.consequenceLinks)
+                    {
+                        TreeNode linkedNode = treeNodes[consequenceLink.destId];
+                        linkedNode.include = true;
+                        //autoInclude(linkedNode, true);
+                    }
+                }
 
+                List<TreeNode> newChildren = new List<TreeNode>();
+                foreach (TreeNode child in node.children)
+                {
+                    if (R2Const.ST_CRITERION.Equals(child.metadata.stereotype))
+                    {
+                        if (child.instruction != null && child.instruction.tag != null)
+                        {
+                            TagType tagQualifier = child.instruction.tag.SingleOrDefault(t => t.name == R2Const.TV_QUALIFIER);
+                            if (tagQualifier != null && QUALIFIER_EXCLUDE.Equals(tagQualifier.value))
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            child.include = true;
+                            node.include = true;
+                        }
+                    }
+                    else
+                    {
+                        node.include |= autoInclude(child, followConsequenceLinks);
+                    }
+                    newChildren.Add(child);
+                }
+                node.children = newChildren;
+            }
+            else
+            {
+                foreach (TreeNode child in node.children)
+                {
+                    node.include |= autoInclude(child, followConsequenceLinks);
+                }
+            }
+            return node.include;
+        }
+
+        private void executeInstructions(TreeNode node, string priority)
+        {
             List<TagType> tags = new List<TagType>();
             if (node.metadata.tag != null)
             {
                 tags.AddRange(node.metadata.tag);
             }
             // remove deprecated row tag
-            tags.RemoveAll(t => t.name.Equals("Row"));
+            tags.RemoveAll(t => t.name.Equals(R2Const.TV_ROW));
 
             // set Priority
-            TagType tagPriority = new TagType() { name = "Priority", value = priority };
+            TagType tagPriority = new TagType() { name = R2Const.TV_PRIORITY, value = priority };
             tags.Add(tagPriority);
 
             // remove old Reference
             tags.RemoveAll(t => t.name.StartsWith("Reference."));
             // update Reference
-            if ("Criteria".Equals(node.metadata.stereotype))
+            if (R2Const.ST_CRITERION.Equals(node.metadata.stereotype))
             {
                 tags.Add(new TagType() { name = "Reference.Alias", value = baseName });
                 string functionId = node.metadata.name.Substring(0, node.metadata.name.IndexOf('#'));
@@ -202,12 +264,12 @@ namespace HL7_FM_EA_Extension
                 int criterionId = int.Parse(node.metadata.name.Substring(node.metadata.name.IndexOf('#') + 1));
                 tags.Add(new TagType() { name = "Reference.CriterionID", value = criterionId.ToString() });
             }
-            else if ("Header".Equals(node.metadata.stereotype) || "Function".Equals(node.metadata.stereotype))
+            else if (R2Const.ST_HEADER.Equals(node.metadata.stereotype) || "Function".Equals(node.metadata.stereotype))
             {
                 tags.Add(new TagType() { name = "Reference.Alias", value = baseName });
                 tags.Add(new TagType() { name = "Reference.FunctionID", value = node.metadata.alias });
             }
-            else if ("Section".Equals(node.metadata.stereotype))
+            else if (R2Const.ST_SECTION.Equals(node.metadata.stereotype))
             {
                 tags.Add(new TagType() { name = "Reference.Alias", value = baseName });
                 tags.Add(new TagType() { name = "Reference.SectionID", value = node.metadata.alias });
@@ -222,10 +284,21 @@ namespace HL7_FM_EA_Extension
             if (hasInstruction)
             {
                 // update Optionality for Criterion
-                if ("Criteria".Equals(node.metadata.stereotype))
+                if (R2Const.ST_CRITERION.Equals(node.metadata.stereotype))
                 {
-                    TagType tagOptionality = node.metadata.tag.Single(t => t.name == "Optionality");
-                    TagType tagOptionalityNew = node.instruction.tag.SingleOrDefault(t => t.name == "Optionality");
+                    int optionalityCount = node.metadata.tag.Count(t => t.name == R2Const.TV_OPTIONALITY);
+                    if (optionalityCount != 1)
+                    {
+                        Console.WriteLine("{0} expected 1 Optionality tag but got {1}", node.metadata.name, optionalityCount);
+                    }
+                    TagType tagOptionality = node.metadata.tag.Single(t => t.name == R2Const.TV_OPTIONALITY);
+
+                    int newOptionalityCount = node.instruction.tag.Count(t => t.name == R2Const.TV_OPTIONALITY);
+                    if (newOptionalityCount > 1)
+                    {
+                        Console.WriteLine("{0} expected 0..1 Optionality tag but got {1}", node.metadata.name, newOptionalityCount);
+                    }
+                    TagType tagOptionalityNew = node.instruction.tag.FirstOrDefault(t => t.name == R2Const.TV_OPTIONALITY);
                     if (tagOptionalityNew != null && !tagOptionalityNew.value.Equals(tagOptionality.value))
                     {
                         tagChangeIndicator.value = CHANGEINDICATOR_MODIFIED;
@@ -241,7 +314,7 @@ namespace HL7_FM_EA_Extension
                 }
 
                 // override Priority
-                TagType tagPriorityNew = node.instruction.tag.SingleOrDefault(t => t.name == "Priority");
+                TagType tagPriorityNew = node.instruction.tag.SingleOrDefault(t => t.name == R2Const.TV_PRIORITY);
                 if (tagPriorityNew != null)
                 {
                     priority = tagPriorityNew.value;
@@ -249,7 +322,7 @@ namespace HL7_FM_EA_Extension
                 tagPriority.value = priority;
 
                 // do Qualifier stuff. Delete or Deprecate
-                TagType tagQualifier = node.instruction.tag.SingleOrDefault(t => t.name == "Qualifier");
+                TagType tagQualifier = node.instruction.tag.SingleOrDefault(t => t.name == R2Const.TV_QUALIFIER);
                 if (tagQualifier != null)
                 {
                     if (QUALIFIER_DELETE.Equals(tagQualifier.value))
@@ -257,61 +330,24 @@ namespace HL7_FM_EA_Extension
                         tagChangeIndicator.value = CHANGEINDICATOR_DELETED;
                         // Make sure children are not included in profile and stop processing
                         node.children.Clear();
-                        return true;
                     }
                     else if (QUALIFIER_DEPRECATE.Equals(tagQualifier.value))
                     {
                         tagChangeIndicator.value = CHANGEINDICATOR_DEPRECATED;
                     }
                 }
-
-                // Also import children when this CompilerInstruction pertains a Header or Function
-                if ("Header".Equals(node.metadata.stereotype) ||
-                    "Function".Equals(node.metadata.stereotype))
-                {
-                    overrideImport = true;
-                    // TODO: overrideChangeIndicator to DEP or D
-                }
             }
 
             List<TreeNode> newChildren = new List<TreeNode>();
             foreach(TreeNode child in node.children)
             {
-                bool childHasInstruction = executeInstructions(child, overrideImport, priority);
-                if (overrideImport || childHasInstruction)
+                executeInstructions(child, priority);
+                if (child.include)
                 {
                     newChildren.Add(child);
-                    hasInstruction = true;
                 }
             }
             node.children = newChildren;
-            return hasInstruction;
-        }
-
-        /** 
-         * This method will follow all ConsequenceLinks and set import to true
-         */
-        private void followConsequenceLinks(TreeNode node, bool overrideImport)
-        {
-            if (overrideImport)
-            {
-                node.import = true;
-            }
-            foreach(TreeNode child in node.children)
-            {
-                if (child.hasConsequenceLinks)
-                {
-                    foreach (RelationshipType consequenceLink in child.consequenceLinks)
-                    {
-                        TreeNode linkedNode = treeNodes[consequenceLink.destId];
-                        followConsequenceLinks(linkedNode, true);
-                    }
-                }
-                else
-                {
-                    followConsequenceLinks(child, overrideImport);
-                }
-            }
         }
     }
 }

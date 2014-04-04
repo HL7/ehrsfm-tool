@@ -18,10 +18,19 @@ namespace HL7_FM_EA_Extension
 
         public void validate(EA.Repository Repository, EA.Package rootPackage)
         {
-            if (!R2Const.ST_FM.Equals(rootPackage.StereotypeEx))
+            string sch_filepath = null;
+            switch (rootPackage.StereotypeEx)
             {
-                MessageBox.Show(string.Format("Select an <{0}> stereotyped package.\nValidation works on full FM only.", R2Const.ST_FM));
-                return;
+                case R2Const.ST_FM:
+                    sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-validation.sch");
+                    break;
+                case R2Const.ST_FM_PROFILE:
+                case R2Const.ST_FM_PROFILEDEFINITION:
+                    sch_filepath = Main.getAppDataFullPath(@"Schematron\fp-validation.sch");
+                    break;
+                default:
+                    MessageBox.Show(string.Format("Select an <{0}> stereotyped package.\nValidation works on full FM only.", R2Const.ST_FM));
+                    return;
             }
 
             Repository.CreateOutputTab(Properties.Resources.OUTPUT_TAB_HL7_FM);
@@ -40,7 +49,6 @@ namespace HL7_FM_EA_Extension
             // transform the Schematron to a XSL
             string iso_sch_xsl_filepath = Main.getAppDataFullPath(@"Schematron\iso-schematron-xslt1\iso_svrl_for_xslt1.xsl");
             transform.Load(iso_sch_xsl_filepath, settings, resolver);
-            string sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-validation.sch");
             string sch_xsl_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-validation.sch.xsl");
             transform.Transform(sch_filepath, sch_xsl_filepath);
 
@@ -73,7 +81,7 @@ namespace HL7_FM_EA_Extension
             Repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
         }
 
-        private void appendSvrlMessagesToOutputTab(EA.Repository Repository, IEnumerable<XElement> xSvrlMessages, Dictionary<string, EA.Element> eaElementDict, XmlNamespaceManager nsmgr)
+        private void appendSvrlMessagesToOutputTab(EA.Repository repository, IEnumerable<XElement> xSvrlMessages, Dictionary<string, EA.Element> eaElementDict, XmlNamespaceManager nsmgr)
         {
             foreach (XElement xSvrlMessage in xSvrlMessages)
             {
@@ -83,7 +91,7 @@ namespace HL7_FM_EA_Extension
                 string code = xSvrlDiag.Attribute("diagnostic").Value;
                 string message = xSvrlDiag.Value.Trim();
                 string issueName = string.Format("{0}:{1} - {2}", code, message, element.Name);
-                EAHelper.LogMessage(Repository, issueName, element.ElementID);
+                EAHelper.LogMessage(repository, issueName, element.ElementID);
 
                 //EA.ProjectIssues issue = (EA.ProjectIssues)Repository.Issues.AddNew(issueName, "ProjectIssues");
                 //issue.Update();

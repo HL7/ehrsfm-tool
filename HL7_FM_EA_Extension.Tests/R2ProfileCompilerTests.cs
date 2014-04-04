@@ -14,8 +14,8 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestCompileOV1Only()
         {
             string fileNameBase = @"c:\temp\EHRS_FM_R2_N2.max.xml";
-            string fileNameDefinition = @"c:\temp\Compiler Instructions OV1Only.max.xml";
-            string fileNameOutput = @"c:\temp\Compiled Profile OV1Only.max.xml";
+            string fileNameDefinition = @"c:\temp\OV1 Only FP.max.xml";
+            string fileNameOutput = @"c:\temp\OV1 Only FP Compiled.max.xml";
             new R2ProfileCompiler().Compile(fileNameBase, fileNameDefinition, fileNameOutput);
         }
 

@@ -102,7 +102,7 @@ namespace HL7_FM_EA_Extension
             // For Criteria: apply border based on Optionality
             if (R2Const.ST_CRITERION.Equals(element.Stereotype))
             {
-                EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName("Optionality");
+                EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(R2Const.TV_OPTIONALITY);
                 if (tv != null)
                 {
                     string optionality = tv.Value;
