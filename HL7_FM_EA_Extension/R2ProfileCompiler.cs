@@ -73,15 +73,15 @@ namespace HL7_FM_EA_Extension
                 }
 
                 // Only follow ConsequenceLinks for ProfileType != Companion
-                bool followConsequenceLinks = true;
+                bool doFollowConsequenceLinks = true;
                 if (root.metadata.tag.Any(t => "Type".Equals(t.name)))
                 {
                     TagType typeTag = root.metadata.tag.Single(t => "Type".Equals(t.name));
-                    followConsequenceLinks = !"Companion".Equals(typeTag.value);
+                    doFollowConsequenceLinks = !"Companion".Equals(typeTag.value);
                 }
 
                 // Now auto include parents and criterions and included consequenceLinks
-                autoInclude(root, followConsequenceLinks);
+                autoInclude(root, doFollowConsequenceLinks);
 
                 // Compile aka execute compiler instructions
                 executeInstructions(root, PRIORITY_ESSENTIALNOW);
@@ -187,21 +187,15 @@ namespace HL7_FM_EA_Extension
          * 
          * returns bool includeParent
          */
-        private bool autoInclude(TreeNode node, bool followConsequenceLinks)
+        private bool autoInclude(TreeNode node, bool doFollowConsequenceLinks)
         {
             node.include |= node.hasInstruction;
             if (node.include)
             {
-                if (followConsequenceLinks && node.hasConsequenceLinks)
+                if (doFollowConsequenceLinks)
                 {
-                    foreach (RelationshipType consequenceLink in node.consequenceLinks)
-                    {
-                        TreeNode linkedNode = treeNodes[consequenceLink.destId];
-                        linkedNode.include = true;
-                        //autoInclude(linkedNode, true);
-                    }
+                    followConsequenceLinks(node);
                 }
-
                 List<TreeNode> newChildren = new List<TreeNode>();
                 foreach (TreeNode child in node.children)
                 {
@@ -223,7 +217,7 @@ namespace HL7_FM_EA_Extension
                     }
                     else
                     {
-                        node.include |= autoInclude(child, followConsequenceLinks);
+                        node.include |= autoInclude(child, doFollowConsequenceLinks);
                     }
                     newChildren.Add(child);
                 }
@@ -233,10 +227,33 @@ namespace HL7_FM_EA_Extension
             {
                 foreach (TreeNode child in node.children)
                 {
-                    node.include |= autoInclude(child, followConsequenceLinks);
+                    node.include |= autoInclude(child, doFollowConsequenceLinks);
                 }
             }
             return node.include;
+        }
+
+        /**
+         * Just follow consequenceLinks and detect circular references.
+         */
+        private void followConsequenceLinks(TreeNode node)
+        {
+            if (node.hasConsequenceLinks)
+            {
+                foreach (RelationshipType consequenceLink in node.consequenceLinks)
+                {
+                    TreeNode linkedNode = treeNodes[consequenceLink.destId];
+                    if (!linkedNode.include)
+                    {
+                        linkedNode.include = true;
+                        followConsequenceLinks(linkedNode);
+                    }
+                    else
+                    {
+                        Console.WriteLine("consequenceLink from {0} to {1} object already included", node.metadata.alias, linkedNode.metadata.alias);
+                    }
+                }
+            }
         }
 
         private void executeInstructions(TreeNode node, string priority)
@@ -322,7 +339,12 @@ namespace HL7_FM_EA_Extension
                 tagPriority.value = priority;
 
                 // do Qualifier stuff. Delete or Deprecate
-                TagType tagQualifier = node.instruction.tag.SingleOrDefault(t => t.name == R2Const.TV_QUALIFIER);
+                int newQualifierCount = node.instruction.tag.Count(t => t.name == R2Const.TV_QUALIFIER);
+                if (newQualifierCount > 1)
+                {
+                    Console.WriteLine("{0} expected 0..1 Qualifier tag but got {1}", node.metadata.name, newQualifierCount);
+                }
+                TagType tagQualifier = node.instruction.tag.FirstOrDefault(t => t.name == R2Const.TV_QUALIFIER);
                 if (tagQualifier != null)
                 {
                     if (QUALIFIER_DELETE.Equals(tagQualifier.value))

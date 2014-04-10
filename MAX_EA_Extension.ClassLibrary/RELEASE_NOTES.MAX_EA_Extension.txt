@@ -1,5 +1,11 @@
 ﻿CHANGELOG
 =========
+[2014-apr-09]
+ValidateParamsForm,MAXValidator:
+- Initial implementation
+- Show results in EA Output Console
+- TODO: Make double click on item focus item
+
 [2014-mrt-09]
 TransformParamsForm:
 - Show output console on errors

@@ -5,6 +5,22 @@
 
 CHANGELOG
 =========
+[2014-apr-10]
+ProfileMetadataForm
+- Type accepts whatever is typed or selected.
+
+[2014-apr-08]
+MDG
+- Updated UML Profile
+CriterionForm
+- Handle new Criterion. Use 1 as default CriterionID.
+R2ProfileCompiler
+- Made code more robust. Also check for multiple Qualifier tagged values.
+
+[2014-apr-05]
+R2ProfileCompiler
+- Detect circular reference in consequenceLinks. Fixed.
+
 [2014-apr-04]
 MDG
 - Now include the UML Profile

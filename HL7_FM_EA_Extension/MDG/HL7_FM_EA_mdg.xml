@@ -1,5 +1,5 @@
 <MDG.Technology version="1.0">
-  <Documentation id="1" name="EHR-S FM Tool" version="0.2" notes="The EHR-S FM Tool&#xA;Containing:&#xA;- Learning Center&#xA;- UML Profile"/>
+  <Documentation id="1" name="EHR-S FM Tool" version="0.3" notes="The EHR-S FM Tool&#xA;Containing:&#xA;- Learning Center&#xA;- UML Profile"/>
   <UMLProfiles>
     <UMLProfile profiletype="uml2">
       <Documentation id="F2D4FBFF-F" name="HL7-FM" version="1.0" notes="HL7-FM"/>
@@ -44,12 +44,12 @@
               </Apply>
             </AppliesTo>
             <TaggedValues>
-              <Tag name="Priority" type="enumeration" description="" unit="" values="EN,EF" default=""/>
+              <Tag name="Priority" type="enumeration" description="" unit="" values="EN,EF,OPT" default=""/>
               <Tag name="ChangeNote" type="Type=Memo;" description=" capture reason for change / institutional memory" unit="" values="" default=""/>
               <Tag name="Qualifier" type="enumeration" description="" unit="" values="D,DEP,EXCLUDE" default=""/>
             </TaggedValues>
           </Stereotype>
-          <Stereotype name="Criterion" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
+          <Stereotype name="Criteria" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
             <AppliesTo>
               <Apply type="Requirement"/>
             </AppliesTo>

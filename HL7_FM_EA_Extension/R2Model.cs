@@ -139,6 +139,7 @@ namespace HL7_FM_EA_Extension
         public const string TV_QUALIFIER = "Qualifier";
         public const string TV_ROW = "Row";
 
+        public const string ST_CRITERIA__OBSOLETE = "Criteria";
         public const string ST_CRITERION = "Criteria";
         public const string TV_OPTIONALITY = "Optionality";
         public const string TV_DEPENDENT = "Dependent";
@@ -343,13 +344,22 @@ namespace HL7_FM_EA_Extension
             get
             {
                 int sepIdx = _element.Name.IndexOf('#');
-                int sepIdx2 = _element.Name.IndexOf(' ', sepIdx);
-                if (sepIdx2 == -1) sepIdx2 = _element.Name.Length;
-                return decimal.Parse(_element.Name.Substring(sepIdx + 1, sepIdx2 - sepIdx - 1));
+                // If the name doesnot contain a '#' yet, assume 1
+                if (sepIdx == -1)
+                {
+                    return 1;
+                }
+                else
+                {
+                    int sepIdx2 = _element.Name.IndexOf(' ', sepIdx);
+                    if (sepIdx2 == -1) sepIdx2 = _element.Name.Length;
+                    return decimal.Parse(_element.Name.Substring(sepIdx + 1, sepIdx2 - sepIdx - 1));
+                }
             }
             set
             {
                 int sepIdx = _element.Name.IndexOf('#');
+                if (sepIdx == -1) sepIdx = _element.Name.Length;
                 string functionID = _element.Name.Substring(0, sepIdx);
                 _element.Name = string.Format("{0}#{1:00}", functionID, value);
             }

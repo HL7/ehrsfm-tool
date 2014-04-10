@@ -24,23 +24,23 @@ namespace MAX_EA_Extension
         private string defaultXsltFile = @"C:\Eclipse Workspace\NieuwEPD\9.01\901-report.xslt";
         private bool issues = false;
 
-        private EA.Repository Repository;
-        public bool Show(EA.Repository Repository)
+        private EA.Repository repository;
+        public bool Show(EA.Repository repository)
         {
-            this.Repository = Repository;
+            this.repository = repository;
             string maxFile = "";
-            string xsltFile = GetXsltTaggedValue(Repository).Value;
+            string xsltFile = GetXsltTaggedValue(repository).Value;
             string outputFile = "";
-            EA.ObjectType type = Repository.GetTreeSelectedItemType();
+            EA.ObjectType type = repository.GetTreeSelectedItemType();
             if (type == EA.ObjectType.otPackage)
             {
-                EA.Package package = Repository.GetTreeSelectedPackage();
+                EA.Package package = repository.GetTreeSelectedPackage();
                 maxFile = Path.Combine(defaultFolder, string.Format("{0}.max.xml", package.Name));
                 outputFile = Path.Combine(defaultFolder, string.Format("{0}.{1}", package.Name, outputFormat));
             }
             else if (type == EA.ObjectType.otDiagram)
             {
-                EA.Diagram diagram = (EA.Diagram)Repository.GetTreeSelectedObject();
+                EA.Diagram diagram = (EA.Diagram)repository.GetTreeSelectedObject();
                 maxFile = Path.Combine(defaultFolder, string.Format("{0}.max.xml", diagram.Name));
                 outputFile = Path.Combine(defaultFolder, string.Format("{0}.{1}", diagram.Name, outputFormat));
             }
@@ -60,7 +60,6 @@ namespace MAX_EA_Extension
             XsltCompiler compiler = processor.NewXsltCompiler();
             compiler.ErrorList = new List<StaticError>();
             DocumentBuilder builder = processor.NewDocumentBuilder();
-            //builder.XmlResolver = new UserXmlResolver();
 
             try
             {
@@ -83,11 +82,11 @@ namespace MAX_EA_Extension
             }
             catch (Exception ex)
             {
-                Repository.WriteOutput("MAX", ex.Message, 0);
+                Main.LogMessage(Repository, ex.Message, 0);
                 StringBuilder sb = new StringBuilder();
                 foreach (var error in compiler.ErrorList)
                 {
-                    Repository.WriteOutput("MAX", error.ToString(), 0);
+                    Main.LogMessage(Repository, error.ToString(), 0);
                 }
                 return false;
             }
@@ -119,27 +118,27 @@ namespace MAX_EA_Extension
             string outputFile = textBox3.Text;
 
             // Update project XSLTFile
-            EA.TaggedValue tvXsltFile = GetXsltTaggedValue(Repository);
+            EA.TaggedValue tvXsltFile = GetXsltTaggedValue(repository);
             tvXsltFile.Value = xsltFile;
             tvXsltFile.Update();
 
             // Create MAX file
             MAX_EA.MAXExporter3 exporter = new MAX_EA.MAXExporter3();
-            EA.ObjectType type = Repository.GetTreeSelectedItemType();
+            EA.ObjectType type = repository.GetTreeSelectedItemType();
             if (type == EA.ObjectType.otPackage)
             {
-                EA.Package package = Repository.GetTreeSelectedPackage();
-                exporter.exportPackage(Repository, package, maxFile);
+                EA.Package package = repository.GetTreeSelectedPackage();
+                exporter.exportPackage(repository, package, maxFile);
             }
             else if (type == EA.ObjectType.otDiagram)
             {
-                EA.Diagram diagram = (EA.Diagram)Repository.GetTreeSelectedObject();
-                exporter.exportDiagram(Repository, diagram, maxFile);
+                EA.Diagram diagram = (EA.Diagram)repository.GetTreeSelectedObject();
+                exporter.exportDiagram(repository, diagram, maxFile);
             }
 
             // Execute Transform
             // TODO: Show feedback about the transform steps
-            if (transform(Repository, maxFile, xsltFile, outputFile))
+            if (transform(repository, maxFile, xsltFile, outputFile))
             {
                 if (checkBox1.Checked)
                 {
@@ -159,6 +158,7 @@ namespace MAX_EA_Extension
             openFileDialog1.Title = "Select Transformation file";
             openFileDialog1.InitialDirectory = Path.GetDirectoryName(textBox2.Text);
             openFileDialog1.FileName = Path.GetFileName(textBox2.Text);
+            openFileDialog1.CheckFileExists = true;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox2.Text = openFileDialog1.FileName;
@@ -171,6 +171,7 @@ namespace MAX_EA_Extension
             openFileDialog1.Title = "Select Input file";
             openFileDialog1.InitialDirectory = Path.GetDirectoryName(textBox1.Text);
             openFileDialog1.FileName = Path.GetFileName(textBox1.Text);
+            openFileDialog1.CheckFileExists = false;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox1.Text = openFileDialog1.FileName;
@@ -179,10 +180,11 @@ namespace MAX_EA_Extension
 
         private void button4_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = string.Format("{0} files|*.{0}", outputFormat.ToUpper(), outputFormat);
+            openFileDialog1.Filter = string.Format("{0} files|*.{1}", outputFormat.ToUpper(), outputFormat);
             openFileDialog1.Title = "Select Output file";
             openFileDialog1.InitialDirectory = Path.GetDirectoryName(textBox3.Text);
             openFileDialog1.FileName = Path.GetFileName(textBox3.Text);
+            openFileDialog1.CheckFileExists = false;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox3.Text = openFileDialog1.FileName;
