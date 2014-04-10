@@ -87,7 +87,7 @@ namespace HL7_FM_EA_Extension
             element.Modified = dateTimePicker1.Value;
             element.Update();
 
-            EAHelper.updateTaggedValue(element, "Type", comboBox1.SelectedItem.ToString());
+            EAHelper.updateTaggedValue(element, "Type", comboBox1.Text);
             EAHelper.updateTaggedValue(element, "Rationale", "<memo>", rationaleTextBox.Text);
             EAHelper.updateTaggedValue(element, "Scope", "<memo>", scopeTextBox.Text);
             EAHelper.updateTaggedValue(element, "PrioritiesDefinition", "<memo>", prioDescTextBox.Text);

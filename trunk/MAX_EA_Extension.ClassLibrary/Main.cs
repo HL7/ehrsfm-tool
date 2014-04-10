@@ -34,7 +34,7 @@ namespace MAX_EA_Extension
                 case "":
                     return "-&MAX";
                 case "-&MAX":
-                    string[] ar = { "Import/Update", "Export", "-", "Transform", "Merge Diagrams", "-", "About..." };
+                    string[] ar = { "Import/Update", "Export", "-", "Transform", "Validate", "Merge Diagrams", "-", "About..." };
                     return ar;
             }
             return "";
@@ -85,30 +85,39 @@ namespace MAX_EA_Extension
                 switch (ItemName)
                 {
                     case "Import/Update":
-                        Repository.CreateOutputTab("MAX");
-                        Repository.ClearOutput("MAX");
+                        Repository.CreateOutputTab(MAX_TABNAME);
+                        Repository.ClearOutput(MAX_TABNAME);
                         if (new MAX_EA.MAXImporter3().import(Repository, selectedPackage))
                         {
                             // only popup when there were any issues
-                            Repository.EnsureOutputVisible("MAX");
+                            Repository.EnsureOutputVisible(MAX_TABNAME);
                         }
                         break;
                     case "Export":
-                        Repository.CreateOutputTab("MAX");
-                        Repository.ClearOutput("MAX");
+                        Repository.CreateOutputTab(MAX_TABNAME);
+                        Repository.ClearOutput(MAX_TABNAME);
                         if (new MAX_EA.MAXExporter3().export(Repository))
                         {
                             // only popup when there were any issues
-                            Repository.EnsureOutputVisible("MAX");
+                            Repository.EnsureOutputVisible(MAX_TABNAME);
                         }
                         break;
                     case "Transform":
-                        Repository.CreateOutputTab("MAX");
-                        Repository.ClearOutput("MAX");
+                        Repository.CreateOutputTab(MAX_TABNAME);
+                        Repository.ClearOutput(MAX_TABNAME);
                         if (new TransformParamsForm().Show(Repository))
                         {
                             // only popup when there were any issues
-                            Repository.EnsureOutputVisible("MAX");
+                            Repository.EnsureOutputVisible(MAX_TABNAME);
+                        }
+                        break;
+                    case "Validate":
+                        Repository.CreateOutputTab(MAX_TABNAME);
+                        Repository.ClearOutput(MAX_TABNAME);
+                        if (new ValidateParamsForm().Show(Repository))
+                        {
+                            // only popup when there were any issues
+                            Repository.EnsureOutputVisible(MAX_TABNAME);
                         }
                         break;
                     case "Merge Diagrams":
@@ -122,9 +131,9 @@ namespace MAX_EA_Extension
                                 // if control removed dispose old instance
                                 view_ctrl.Dispose();
                             }
-                            view_ctrl = (QuickAccessControl)Repository.AddTab("MAX", "MAX_EA_Extension.QuickAccessControl");
+                            view_ctrl = (QuickAccessControl)Repository.AddTab(MAX_TABNAME, "MAX_EA_Extension.QuickAccessControl");
                             view_ctrl.SetRepository(Repository);
-                            Repository.ActivateTab("MAX");
+                            Repository.ActivateTab(MAX_TABNAME);
                         }
                         break;
                     case "About...":
@@ -215,6 +224,29 @@ namespace MAX_EA_Extension
                 }
             }
             return false;
+        }
+
+        public static string getAppDataFullPath(string filename)
+        {
+            string filepath;
+            // Check if in developer mode
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                // Devel path
+                filepath = string.Format(@"C:\Eclipse Workspace\ehrsfm_profile\MAX_EA_Extension.ClassLibrary\{0}", filename);
+            }
+            else
+            {
+                filepath = string.Format(@"{0}\HL7\MAX_EA_Extension\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
+            }
+            return filepath;
+        }
+
+        public const string MAX_TABNAME = "MAX";
+        public static void LogMessage(EA.Repository repository, string message, int id = 0)
+        {
+            string timestamp = DateTime.Now.ToString();
+            repository.WriteOutput(MAX_TABNAME, string.Format("@{0} {1}", timestamp, message), id);
         }
     }
 }
