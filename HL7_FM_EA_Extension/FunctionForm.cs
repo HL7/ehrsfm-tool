@@ -25,10 +25,16 @@ namespace HL7_FM_EA_Extension
             if (function is CompilerInstruction)
             {
                 Text = string.Format("EHR-S FM {0}: {1} (Profile Definition)", _function.Stereotype, _function.Name);
+                label3.Visible = true;
+                priorityComboBox.SelectedItem = ((R2FunctionCI)function).Priority;
+                priorityComboBox.Visible = true;
             }
             else
             {
                 Text = string.Format("EHR-S FM {0}: {1}", _function.Stereotype, _function.Name);
+                label3.Visible = false;
+                priorityComboBox.SelectedItem = R2FunctionCI.EmptyPriority;
+                priorityComboBox.Visible = false;
             }
 
             BackColor = R2Config.config.getSectionColor(_function.Name, DefaultBackColor);
@@ -41,8 +47,6 @@ namespace HL7_FM_EA_Extension
             descriptionTextBox.Text = _function.Description;
             exampleTextBox.Text = _function.Example;
 
-            // TODO: Add ConsequenceLinks (& See Also?) "depends on" and "needed by" compartments
-
             bool enable = !(function is CompilerInstruction);
             nameTextBox.Enabled = enable;
             idTextBox.Enabled = enable;
@@ -54,12 +58,17 @@ namespace HL7_FM_EA_Extension
 
         private void applyChanges()
         {
-            _function.Name = nameTextBox.Text;
             _function.FunctionID = idTextBox.Text;
+            _function.Name = nameTextBox.Text;
             _function.Statement = statementTextBox.Text;
             _function.Description = descriptionTextBox.Text;
             _function.Example = exampleTextBox.Text;
             _function.Update();
+
+            if (_function is CompilerInstruction)
+            {
+                ((R2FunctionCI)_function).Priority = priorityComboBox.Text;
+            }
         }
 
         private void applyButton_Click(object sender, EventArgs e)
@@ -82,10 +91,21 @@ namespace HL7_FM_EA_Extension
         {
             if (keyData == Keys.Escape)
             {
-                this.Close();
+                Close();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string id = "";
+            int spidx = nameTextBox.Text.IndexOf(' ');
+            if (spidx != -1)
+            {
+                id = nameTextBox.Text.Substring(0, spidx);
+            }
+            idTextBox.Text = id;
         }
     }
 }

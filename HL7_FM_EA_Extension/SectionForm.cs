@@ -73,10 +73,21 @@ namespace HL7_FM_EA_Extension
         {
             if (keyData == Keys.Escape)
             {
-                this.Close();
+                Close();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string id = "";
+            int spidx = nameTextBox.Text.IndexOf(' ');
+            if (spidx != -1)
+            {
+                id = nameTextBox.Text.Substring(0, spidx);
+            }
+            idTextBox.Text = id;
         }
     }
 }

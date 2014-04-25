@@ -59,7 +59,27 @@ namespace MAX_EA_Extension
         {
             if (IsProjectOpen(Repository))
             {
-                IsEnabled = true;
+                switch (ItemName)
+                {
+                    case "Import/Update":
+                    case "Merge Diagrams":
+                        IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage);
+                        break;
+                    case "Export":
+                        IsEnabled = (Repository.GetContextItemType() == EA.ObjectType.otPackage || Repository.GetContextItemType() == EA.ObjectType.otDiagram);
+                        break;
+                    case "Transform":
+                    case "Validate":
+                        IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage || Repository.GetTreeSelectedItemType() == EA.ObjectType.otDiagram);
+                        break;
+                    case "Quick Access Tab":
+                    case "About...":
+                        IsEnabled = true;
+                        break;
+                    default:
+                        IsEnabled = false;
+                        break;
+                }
             }
             else
             {
@@ -237,7 +257,7 @@ namespace MAX_EA_Extension
             }
             else
             {
-                filepath = string.Format(@"{0}\HL7\MAX_EA_Extension\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
+                filepath = string.Format(@"{0}\UMCG\MAX_EA_Extension\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
             }
             return filepath;
         }

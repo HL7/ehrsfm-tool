@@ -24,9 +24,11 @@ namespace HL7_FM_EA_Extension
                 case R2Const.ST_FM:
                     sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-validation.sch");
                     break;
-                case R2Const.ST_FM_PROFILE:
                 case R2Const.ST_FM_PROFILEDEFINITION:
-                    sch_filepath = Main.getAppDataFullPath(@"Schematron\fp-validation.sch");
+                    sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-FPDEF-validation.sch");
+                    break;
+                case R2Const.ST_FM_PROFILE:
+                    sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-FP-validation.sch");
                     break;
                 default:
                     MessageBox.Show(string.Format("Select an <{0}> stereotyped package.\nValidation works on full FM only.", R2Const.ST_FM));

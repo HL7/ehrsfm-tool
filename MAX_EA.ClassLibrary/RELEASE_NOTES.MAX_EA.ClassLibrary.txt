@@ -33,6 +33,18 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2014-apr-25]
+MAXExporter3:
+- 2x performance improvement!
+  Notes for Objects now through SQL instead of via API. The column name was wrong, it is "Note" instead of "Notes"!!
+  Export of 5500 items was 46s is now 27s.
+
+[2014-apr-12]
+MAXImporter3/Exporter3:
+- Use MAX::ImportFile and MAX::ExportFile as defaults if present.
+- Use Repository.GetContextXxx instead of Repository.GetTree*
+ -- Now you can select a Package in a Diagram and export it.
+
 [2014-mrt-06]
 Util:
 - Split FileName into Directory and FileName in Open File Dialog

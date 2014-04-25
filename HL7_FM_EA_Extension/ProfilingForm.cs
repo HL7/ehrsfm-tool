@@ -28,26 +28,27 @@ namespace HL7_FM_EA_Extension
         private EA.Package profileDefinitionPackage;
         private ListViewGroup mainGroup;
 
-        public void Show(EA.Repository repository)
+        public void Show(EA.Repository repository, EA.Package selectedPackage)
         {
             this.repository = repository;
-            EA.Package selectedSectionPackage = repository.GetTreeSelectedPackage();
-            if (selectedSectionPackage != null && R2Const.ST_SECTION.Equals(selectedSectionPackage.StereotypeEx))
+            if (selectedPackage != null && R2Const.ST_SECTION.Equals(selectedPackage.StereotypeEx))
             {
-                if (findAssociatedProfileDefinition(selectedSectionPackage))
+                if (findAssociatedProfileDefinition(selectedPackage))
                 {
-                    Text = string.Format("Profile Definition for Section: {0}", selectedSectionPackage.Name);
+                    Text = string.Format("Profile Definition for Section: {0}", selectedPackage.Name);
+                    Show();
+                    Refresh();
 
                     mainListView.Items.Clear();
                     mainListView.Groups.Clear();
                     mainGroup = new ListViewGroup("");
                     mainListView.Groups.Add(mainGroup);
 
-                    ListViewItem item = createListViewItem(selectedSectionPackage);
+                    ListViewItem item = createListViewItem(selectedPackage);
                     item.Group = mainGroup;
                     mainListView.Items.Add(item);
-                    visitPackage(selectedSectionPackage);
-                    Show();
+
+                    visitPackage(selectedPackage);
                 }
             }
             else
@@ -59,7 +60,7 @@ namespace HL7_FM_EA_Extension
         private bool findAssociatedProfileDefinition(EA.Package selectedSectionPackage)
         {
             EA.Package baseModel = repository.GetPackageByID(selectedSectionPackage.ParentID);
-            EA.Connector con = baseModel.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype));
+            EA.Connector con = baseModel.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype) || "Usage".Equals(t.Type));
             if (con != null)
             {
                 EA.Element packageElement = repository.GetElementByID(con.ClientID);
@@ -471,7 +472,14 @@ namespace HL7_FM_EA_Extension
         {
             baseModelElement = element;
             compilerInstructionElement = R2Model.findCompilerInstruction(repository, element);
-            modelElement = R2Model.Create(repository, element);
+            if (compilerInstructionElement == null)
+            {
+                modelElement = R2Model.Create(repository, element);
+            }
+            else
+            {
+                modelElement = R2Model.Create(repository, compilerInstructionElement);
+            }
         }
 
         public EA.Element baseModelElement;

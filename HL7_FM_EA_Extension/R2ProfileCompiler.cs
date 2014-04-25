@@ -16,10 +16,11 @@ namespace HL7_FM_EA_Extension
         // This will contain a lookup map
         private Dictionary<string, TreeNode> treeNodes = new Dictionary<string, TreeNode>();
 
-        private const string CHANGEINDICATOR_NOTCHANGED = "NC";
-        private const string CHANGEINDICATOR_MODIFIED = "M";
+        private const string CHANGEINDICATOR_NOCHANGE = "NC";
+        private const string CHANGEINDICATOR_CHANGED = "C";
         private const string CHANGEINDICATOR_DELETED = "D";
         private const string CHANGEINDICATOR_DEPRECATED = "DEP";
+        private const string CHANGEINDICATOR_NEW = "N";
 
         private const string QUALIFIER_DELETE = "D";
         private const string QUALIFIER_DEPRECATE = "DEP";
@@ -51,11 +52,37 @@ namespace HL7_FM_EA_Extension
                     // Bind CI to related elements in the base tree
                     foreach (RelationshipType rel in modelCI.relationships)
                     {
-                        TreeNode node = treeNodes[rel.destId];
-                        node.instruction = objectsCI[rel.sourceId];
-                        if ("Generalization".Equals(rel.type))
+                        if (treeNodes.ContainsKey(rel.destId))
                         {
-                            node.include = true;
+                            TreeNode node = treeNodes[rel.destId];
+                            // Changed element
+                            if (rel.type == RelationshipTypeEnum.Generalization)
+                            {
+                                node.instruction = objectsCI[rel.sourceId];
+                                node.includeInProfile = true;
+                            }
+                            // New child element
+                            else if (rel.type == RelationshipTypeEnum.Aggregation)
+                            {
+                                // Set new parentId for the new element
+                                TreeNode newNode = new TreeNode();
+                                newNode.metadata = objectsCI[rel.sourceId];
+                                newNode.metadata.parentId = node.metadata.id;
+                                newNode.parent = node;
+                                newNode.isNew = true;
+                                newNode.includeInProfile = true;
+                                node.children.Add(newNode);
+                                node.includeInProfile = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ignored relationship type: {0}", rel.type);
+                            }
+                        }
+                        else
+                        {
+                            // E.g. for ExternalReferences
+                            Console.WriteLine("Destination not in model: {0}", rel.destId);
                         }
                     }
 
@@ -189,8 +216,8 @@ namespace HL7_FM_EA_Extension
          */
         private bool autoInclude(TreeNode node, bool doFollowConsequenceLinks)
         {
-            node.include |= node.hasInstruction;
-            if (node.include)
+            node.includeInProfile |= node.hasInstruction;
+            if (node.includeInProfile)
             {
                 if (doFollowConsequenceLinks)
                 {
@@ -211,13 +238,13 @@ namespace HL7_FM_EA_Extension
                         }
                         else
                         {
-                            child.include = true;
-                            node.include = true;
+                            child.includeInProfile = true;
+                            node.includeInProfile = true;
                         }
                     }
                     else
                     {
-                        node.include |= autoInclude(child, doFollowConsequenceLinks);
+                        node.includeInProfile |= autoInclude(child, doFollowConsequenceLinks);
                     }
                     newChildren.Add(child);
                 }
@@ -227,10 +254,10 @@ namespace HL7_FM_EA_Extension
             {
                 foreach (TreeNode child in node.children)
                 {
-                    node.include |= autoInclude(child, doFollowConsequenceLinks);
+                    node.includeInProfile |= autoInclude(child, doFollowConsequenceLinks);
                 }
             }
-            return node.include;
+            return node.includeInProfile;
         }
 
         /**
@@ -243,9 +270,9 @@ namespace HL7_FM_EA_Extension
                 foreach (RelationshipType consequenceLink in node.consequenceLinks)
                 {
                     TreeNode linkedNode = treeNodes[consequenceLink.destId];
-                    if (!linkedNode.include)
+                    if (!linkedNode.includeInProfile)
                     {
-                        linkedNode.include = true;
+                        linkedNode.includeInProfile = true;
                         followConsequenceLinks(linkedNode);
                     }
                     else
@@ -265,41 +292,52 @@ namespace HL7_FM_EA_Extension
             }
             // remove deprecated row tag
             tags.RemoveAll(t => t.name.Equals(R2Const.TV_ROW));
-
-            // set Priority
-            TagType tagPriority = new TagType() { name = R2Const.TV_PRIORITY, value = priority };
-            tags.Add(tagPriority);
-
-            // remove old Reference
-            tags.RemoveAll(t => t.name.StartsWith("Reference."));
-            // update Reference
-            if (R2Const.ST_CRITERION.Equals(node.metadata.stereotype))
+            // remove empty value tags (cleans up)
+            tags.RemoveAll(t => string.IsNullOrEmpty(t.value));
+            
+            if (!node.isNew)
             {
-                tags.Add(new TagType() { name = "Reference.Alias", value = baseName });
-                string functionId = node.metadata.name.Substring(0, node.metadata.name.IndexOf('#'));
-                tags.Add(new TagType() { name = "Reference.FunctionID", value = functionId });
-                int criterionId = int.Parse(node.metadata.name.Substring(node.metadata.name.IndexOf('#') + 1));
-                tags.Add(new TagType() { name = "Reference.CriterionID", value = criterionId.ToString() });
+                // remove old Reference and set new Reference to base
+                tags.RemoveAll(t => t.name.StartsWith("Reference."));
+                switch (node.metadata.stereotype)
+                {
+                    case R2Const.ST_CRITERION:
+                        tags.Add(new TagType() {name = "Reference.Alias", value = baseName});
+                        string functionId = node.metadata.name.Substring(0, node.metadata.name.IndexOf('#'));
+                        tags.Add(new TagType() {name = "Reference.FunctionID", value = functionId});
+                        int criterionId = int.Parse(node.metadata.name.Substring(node.metadata.name.IndexOf('#') + 1));
+                        tags.Add(new TagType() {name = "Reference.CriterionID", value = criterionId.ToString()});
+                        break;
+                    case R2Const.ST_HEADER:
+                    case R2Const.ST_FUNCTION:
+                        tags.Add(new TagType() {name = "Reference.Alias", value = baseName});
+                        tags.Add(new TagType() {name = "Reference.FunctionID", value = node.metadata.alias});
+                        break;
+                    case R2Const.ST_SECTION:
+                        tags.Add(new TagType() {name = "Reference.Alias", value = baseName});
+                        tags.Add(new TagType() {name = "Reference.SectionID", value = node.metadata.alias});
+                        break;
+                }
             }
-            else if (R2Const.ST_HEADER.Equals(node.metadata.stereotype) || "Function".Equals(node.metadata.stereotype))
+            // set Priority & set ChangeIndicator to default "NC"; changed when executing instruction
+            switch (node.metadata.stereotype)
             {
-                tags.Add(new TagType() { name = "Reference.Alias", value = baseName });
-                tags.Add(new TagType() { name = "Reference.FunctionID", value = node.metadata.alias });
+                case R2Const.ST_SECTION:
+                case R2Const.ST_HEADER:
+                case R2Const.ST_FUNCTION:
+                case R2Const.ST_CRITERION:
+                    tags.Add(new TagType() { name = "Reference.ChangeIndicator", 
+                        value = node.isNew?CHANGEINDICATOR_NEW:CHANGEINDICATOR_NOCHANGE });
+                    tags.Add(new TagType() { name = R2Const.TV_PRIORITY, value = priority });
+                    break;
             }
-            else if (R2Const.ST_SECTION.Equals(node.metadata.stereotype))
-            {
-                tags.Add(new TagType() { name = "Reference.Alias", value = baseName });
-                tags.Add(new TagType() { name = "Reference.SectionID", value = node.metadata.alias });
-            }
-
-            // default set ChangeIndicator to "NC"; changed when executing instruction
-            TagType tagChangeIndicator = new TagType() { name = "Reference.ChangeIndicator", value = CHANGEINDICATOR_NOTCHANGED};
-            tags.Add(tagChangeIndicator);
             node.metadata.tag = tags.ToArray();
 
             bool hasInstruction = node.hasInstruction;
             if (hasInstruction)
             {
+                TagType tagChangeIndicator = node.metadata.tag.Single(t => t.name.Equals("Reference.ChangeIndicator"));
+
                 // update Optionality for Criterion
                 if (R2Const.ST_CRITERION.Equals(node.metadata.stereotype))
                 {
@@ -318,7 +356,7 @@ namespace HL7_FM_EA_Extension
                     TagType tagOptionalityNew = node.instruction.tag.FirstOrDefault(t => t.name == R2Const.TV_OPTIONALITY);
                     if (tagOptionalityNew != null && !tagOptionalityNew.value.Equals(tagOptionality.value))
                     {
-                        tagChangeIndicator.value = CHANGEINDICATOR_MODIFIED;
+                        tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
                         tagOptionality.value = tagOptionalityNew.value;
                     }
                 }
@@ -326,7 +364,7 @@ namespace HL7_FM_EA_Extension
                 // update name if changed
                 if (!node.metadata.name.Equals(node.instruction.name))
                 {
-                    tagChangeIndicator.value = CHANGEINDICATOR_MODIFIED;
+                    tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
                     node.metadata.name = node.instruction.name;
                 }
 
@@ -334,9 +372,9 @@ namespace HL7_FM_EA_Extension
                 TagType tagPriorityNew = node.instruction.tag.SingleOrDefault(t => t.name == R2Const.TV_PRIORITY);
                 if (tagPriorityNew != null)
                 {
-                    priority = tagPriorityNew.value;
+                    TagType tagPriority = node.metadata.tag.Single(t => t.name == R2Const.TV_PRIORITY);
+                    tagPriority.value = tagPriorityNew.value;
                 }
-                tagPriority.value = priority;
 
                 // do Qualifier stuff. Delete or Deprecate
                 int newQualifierCount = node.instruction.tag.Count(t => t.name == R2Const.TV_QUALIFIER);
@@ -364,12 +402,25 @@ namespace HL7_FM_EA_Extension
             foreach(TreeNode child in node.children)
             {
                 executeInstructions(child, priority);
-                if (child.include)
+                if (child.includeInProfile)
                 {
                     newChildren.Add(child);
                 }
             }
-            node.children = newChildren;
+            switch (node.metadata.stereotype)
+            {
+                case R2Const.ST_SECTION:
+                case R2Const.ST_HEADER:
+                case R2Const.ST_FUNCTION:
+                case R2Const.ST_CRITERION:
+                    // sort the items based on their name
+                    node.children = newChildren.OrderBy(o => o.metadata.name).ToList();
+                    break;
+                default:
+                    // sort root childs == sections on ID tagged value
+                    node.children = newChildren.OrderBy(o => o.metadata.tag.FirstOrDefault(t=>"ID".Equals(t.name)).value).ToList();
+                    break;
+            }
         }
     }
 }
