@@ -44,6 +44,8 @@
             this.statementTextBox = new System.Windows.Forms.TextBox();
             this.helpButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
+            this.priorityComboBox = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -145,6 +147,7 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(485, 20);
             this.nameTextBox.TabIndex = 27;
+            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // label1
             // 
@@ -184,11 +187,35 @@
             this.applyButton.UseVisualStyleBackColor = true;
             this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
             // 
+            // priorityComboBox
+            // 
+            this.priorityComboBox.FormattingEnabled = true;
+            this.priorityComboBox.Items.AddRange(new object[] {
+            "",
+            "EN",
+            "EF",
+            "OPT"});
+            this.priorityComboBox.Location = new System.Drawing.Point(293, 42);
+            this.priorityComboBox.Name = "priorityComboBox";
+            this.priorityComboBox.Size = new System.Drawing.Size(89, 21);
+            this.priorityComboBox.TabIndex = 33;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(249, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Priority";
+            // 
             // FunctionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 555);
+            this.Controls.Add(this.priorityComboBox);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.helpButton);
             this.Controls.Add(this.applyButton);
             this.Controls.Add(this.statementTextBox);
@@ -235,5 +262,7 @@
         private System.Windows.Forms.TextBox statementTextBox;
         private System.Windows.Forms.Button helpButton;
         private System.Windows.Forms.Button applyButton;
+        private System.Windows.Forms.ComboBox priorityComboBox;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -1,10 +1,16 @@
 ﻿CHANGELOG
 =========
-[2014-apr-09]
+[2014-apr-12]
+Main
+- Only enable menu's when some relevant object is selected.
+
+[2014-apr-10]
 ValidateParamsForm,MAXValidator:
 - Initial implementation
 - Show results in EA Output Console
 - TODO: Make double click on item focus item
+*Form
+- Added the HL7 icon
 
 [2014-mrt-09]
 TransformParamsForm:

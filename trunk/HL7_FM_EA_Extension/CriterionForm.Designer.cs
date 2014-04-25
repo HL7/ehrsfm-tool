@@ -47,6 +47,8 @@
             this.okButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
             this.helpButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.priorityComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -141,9 +143,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(151, 49);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Row";
+            this.label5.Text = "Row#";
             // 
             // idNumericUpDown
             // 
@@ -154,7 +156,7 @@
             // 
             // rowNumericUpDown
             // 
-            this.rowNumericUpDown.Location = new System.Drawing.Point(186, 46);
+            this.rowNumericUpDown.Location = new System.Drawing.Point(193, 46);
             this.rowNumericUpDown.Name = "rowNumericUpDown";
             this.rowNumericUpDown.Size = new System.Drawing.Size(67, 20);
             this.rowNumericUpDown.TabIndex = 14;
@@ -211,11 +213,34 @@
             this.helpButton.Text = "Help";
             this.helpButton.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(294, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Priority";
+            // 
+            // priorityComboBox
+            // 
+            this.priorityComboBox.FormattingEnabled = true;
+            this.priorityComboBox.Items.AddRange(new object[] {
+            "",
+            "EN",
+            "EF",
+            "OPT"});
+            this.priorityComboBox.Location = new System.Drawing.Point(338, 46);
+            this.priorityComboBox.Name = "priorityComboBox";
+            this.priorityComboBox.Size = new System.Drawing.Size(89, 21);
+            this.priorityComboBox.TabIndex = 21;
+            // 
             // CriterionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 295);
+            this.Controls.Add(this.priorityComboBox);
             this.Controls.Add(this.helpButton);
             this.Controls.Add(this.applyButton);
             this.Controls.Add(this.switchLinkLabel);
@@ -225,6 +250,7 @@
             this.Controls.Add(this.idNumericUpDown);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.optionalityComboBox);
             this.Controls.Add(this.dependentCheckBox);
@@ -267,5 +293,7 @@
         private System.Windows.Forms.LinkLabel switchLinkLabel;
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.Button helpButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox priorityComboBox;
     }
 }

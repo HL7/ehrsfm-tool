@@ -46,6 +46,10 @@
             this.prioDescTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.baseModelTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.confClauseTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -86,7 +90,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(510, 399);
+            this.okButton.Location = new System.Drawing.Point(820, 375);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 4;
@@ -144,7 +148,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(5, 203);
+            this.label6.Location = new System.Drawing.Point(452, 48);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 10;
@@ -153,7 +157,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 312);
+            this.label7.Location = new System.Drawing.Point(5, 203);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(102, 13);
             this.label7.TabIndex = 11;
@@ -165,49 +169,97 @@
             this.rationaleTextBox.Multiline = true;
             this.rationaleTextBox.Name = "rationaleTextBox";
             this.rationaleTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.rationaleTextBox.Size = new System.Drawing.Size(577, 136);
+            this.rationaleTextBox.Size = new System.Drawing.Size(441, 136);
             this.rationaleTextBox.TabIndex = 12;
             // 
             // scopeTextBox
             // 
-            this.scopeTextBox.Location = new System.Drawing.Point(8, 219);
+            this.scopeTextBox.Location = new System.Drawing.Point(455, 64);
             this.scopeTextBox.Multiline = true;
             this.scopeTextBox.Name = "scopeTextBox";
             this.scopeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.scopeTextBox.Size = new System.Drawing.Size(577, 90);
+            this.scopeTextBox.Size = new System.Drawing.Size(441, 136);
             this.scopeTextBox.TabIndex = 13;
             // 
             // prioDescTextBox
             // 
-            this.prioDescTextBox.Location = new System.Drawing.Point(8, 328);
+            this.prioDescTextBox.Location = new System.Drawing.Point(8, 219);
             this.prioDescTextBox.Multiline = true;
             this.prioDescTextBox.Name = "prioDescTextBox";
             this.prioDescTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.prioDescTextBox.Size = new System.Drawing.Size(473, 94);
+            this.prioDescTextBox.Size = new System.Drawing.Size(441, 136);
             this.prioDescTextBox.TabIndex = 14;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 442);
+            this.label8.Location = new System.Drawing.Point(5, 378);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.Size = new System.Drawing.Size(126, 13);
             this.label8.TabIndex = 15;
-            this.label8.Text = "Base Model";
+            this.label8.Text = "Base Model Identification";
             // 
             // baseModelTextBox
             // 
-            this.baseModelTextBox.Location = new System.Drawing.Point(74, 439);
+            this.baseModelTextBox.Location = new System.Drawing.Point(137, 375);
             this.baseModelTextBox.Name = "baseModelTextBox";
             this.baseModelTextBox.ReadOnly = true;
             this.baseModelTextBox.Size = new System.Drawing.Size(290, 20);
             this.baseModelTextBox.TabIndex = 16;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(591, 9);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Language Tag";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "",
+            "en",
+            "en-UK",
+            "en-US",
+            "es",
+            "it",
+            "ja",
+            "nl-BE",
+            "nl-NL"});
+            this.comboBox2.Location = new System.Drawing.Point(594, 25);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(98, 21);
+            this.comboBox2.Sorted = true;
+            this.comboBox2.TabIndex = 8;
+            // 
+            // confClauseTextBox
+            // 
+            this.confClauseTextBox.Location = new System.Drawing.Point(454, 219);
+            this.confClauseTextBox.Multiline = true;
+            this.confClauseTextBox.Name = "confClauseTextBox";
+            this.confClauseTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.confClauseTextBox.Size = new System.Drawing.Size(441, 136);
+            this.confClauseTextBox.TabIndex = 18;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(451, 203);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(105, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Conformance Clause";
+            // 
             // ProfileMetadataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 473);
+            this.ClientSize = new System.Drawing.Size(907, 410);
+            this.Controls.Add(this.confClauseTextBox);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.baseModelTextBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.prioDescTextBox);
@@ -216,11 +268,13 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.versionTextBox);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.okButton);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -256,5 +310,9 @@
         private System.Windows.Forms.TextBox prioDescTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox baseModelTextBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox confClauseTextBox;
+        private System.Windows.Forms.Label label10;
     }
 }

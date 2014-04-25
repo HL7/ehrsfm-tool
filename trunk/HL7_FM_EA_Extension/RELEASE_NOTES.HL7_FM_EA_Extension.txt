@@ -5,6 +5,47 @@
 
 CHANGELOG
 =========
+[2014-apr-25]
+MDG
+- Updated learning center profile and added RMES RTF Template
+R2ProfileCompiler
+- Sort Header/Function/Criteria based on the name (CP.1, CP.2, CP.1#10, CP.1#12, ...)
+
+[2014-apr-21]
+R2ProfileCompiler
+- Now also handles new functions/criteria
+- ChangeInfo values were wrong
+
+[2014-apr-18]
+ProfileMetadataForm
+- Now opens when no base model is defined. So also for <HL7-FM-Profile> and <Definition> as it should.
+ProfileForm
+- Show before recursing tree
+
+[2014-apr-12]
+Main
+- Only enable menu's when some relevant object is selected in the ProjectBrowserTree.
+
+[2014-apr-11]
+R2Validator
+- Select schematron per stereotype FM, FP, FPDEF.
+ProfileMetadataForm
+- Added LanguageTag Choice
+- Added Conformance Clause TextBox
+Main, R2Config
+- UpdateStyle ook CompilerInstruction
+SectionForm,FunctionForm
+- Overwrite ID (Alias) from first part of Name (e.g. "OV.1 Overarching" -> ID = "OV.1")
+R2ProfileCompiler
+- Don't set Priority and ChangeIndicator on root
+ProfileMetadataForm,ProfilingForm
+- Accept both <use> and Usage for relation to base model.
+MDG
+- HL7-FM add "MAX::ImportFile" tagged value
+- HL7-FM-Profile & ProfileDefinition add "MAX::ExportFile" tagged value
+FunctionForm,CriterionForm
+- Added Priority for CompilerInstruction versions
+
 [2014-apr-10]
 ProfileMetadataForm
 - Type accepts whatever is typed or selected.

@@ -54,7 +54,7 @@ namespace MAX_EA_Extension
         private const string TV_MAX_SchematronFile = "MAX::SchematronFile";
         private EA.TaggedValue GetSchematronTaggedValue(EA.Repository Repository)
         {
-            EA.Package selectedPackage = (EA.Package) Repository.GetTreeSelectedPackage();
+            EA.Package selectedPackage = Repository.GetTreeSelectedPackage();
             EA.TaggedValue tvSchematronFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName(TV_MAX_SchematronFile);
             if (tvSchematronFile == null)
             {

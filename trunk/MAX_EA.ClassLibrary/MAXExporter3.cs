@@ -28,11 +28,16 @@ namespace MAX_EA
 
         public bool export(EA.Repository Repository)
         {
-            EA.ObjectType type = Repository.GetTreeSelectedItemType();
+            EA.ObjectType type = Repository.GetContextItemType();
             if (type == EA.ObjectType.otPackage)
             {
-                EA.Package package = Repository.GetTreeSelectedPackage();
-                string defaultFileName = string.Format(@"C:\Temp\{0}.max.xml", package.Name);
+                EA.Package package = (EA.Package)Repository.GetContextObject();
+                string defaultFileName = Path.Combine(Path.GetTempPath(), string.Format(@"{0}.max.xml", package.Name));
+                EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
+                if (tvExportFile != null)
+                {
+                    defaultFileName = tvExportFile.Value;
+                }
                 string fileName = showFileDialog("Select output MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, false);
                 if (fileName != String.Empty)
                 {
@@ -41,8 +46,8 @@ namespace MAX_EA
             }
             else if (type == EA.ObjectType.otDiagram)
             {
-                EA.Diagram diagram = (EA.Diagram)Repository.GetTreeSelectedObject();
-                string defaultFileName = string.Format(@"C:\Temp\{0}.max.xml", diagram.Name);
+                EA.Diagram diagram = (EA.Diagram)Repository.GetContextObject();
+                string defaultFileName = Path.Combine(Path.GetTempPath(), string.Format(@"{0}.max.xml", diagram.Name));
                 string fileName = showFileDialog("Select output MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, false);
                 if (fileName != String.Empty)
                 {
@@ -51,7 +56,7 @@ namespace MAX_EA
             }
             else
             {
-                System.Windows.Forms.MessageBox.Show("Select a package");
+                System.Windows.Forms.MessageBox.Show("Select a Package or Diagram");
             }
             return issues;
         }
@@ -292,7 +297,7 @@ namespace MAX_EA
             int Package_Object_ID = packageToObjectIDDict[Package_ID];
 
             // get objects in selected package
-            string sql = string.Format("SELECT Object_ID, ea_guid, Object_Type, Name, Alias, Package_ID, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object WHERE Package_ID={0} AND Object_Type<>'Package' ORDER BY TPos,Object_ID", Package_ID);
+            string sql = string.Format("SELECT Object_ID, ea_guid, Object_Type, Name, Alias, Note, Package_ID, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object WHERE Package_ID={0} AND Object_Type<>'Package' ORDER BY TPos,Object_ID", Package_ID);
             string xml = Repository.SQLQuery(sql);
             XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
 
@@ -312,7 +317,7 @@ namespace MAX_EA
         private void visitDiagramObjects(int Diagram_ID)
         {
             // get objects in selected diagram
-            string sql = string.Format("SELECT o.Object_ID, ea_guid, Object_Type, Name, Alias, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object o, t_diagramobjects d WHERE d.Diagram_ID = {0} AND o.Object_ID = d.Object_ID", Diagram_ID);
+            string sql = string.Format("SELECT o.Object_ID, ea_guid, Object_Type, Name, Alias, Note, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object o, t_diagramobjects d WHERE d.Diagram_ID = {0} AND o.Object_ID = d.Object_ID", Diagram_ID);
             string xml = Repository.SQLQuery(sql);
             XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
 
@@ -365,8 +370,11 @@ namespace MAX_EA
                 }
                 maxObj.name = xRow.ElementValue("Name");
                 maxObj.alias = xRow.ElementValue("Alias");
-                EA.Element el = Repository.GetElementByID(Object_ID); // <- Bummer. t_object.Note is not available through the EA SQL API???
-                maxObj.notes = new MarkupType() { Text = new String[] { el.Notes } };
+                string notes = xRow.ElementValue("Note");
+                if (!string.IsNullOrEmpty(notes))
+                {
+                    maxObj.notes = new MarkupType() { Text = new String[] { notes } };
+                }
                 maxObj.stereotype = xRow.ElementValue("Stereotype");
                 maxObj.type = (ObjectTypeEnum)Enum.Parse(typeof(ObjectTypeEnum), Object_Type, false);
                 maxObj.typeSpecified = true;

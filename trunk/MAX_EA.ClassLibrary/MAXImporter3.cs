@@ -28,7 +28,13 @@ namespace MAX_EA
 
         public bool import(EA.Repository Repository, EA.Package selectedPackage)
         {
-            string fileName = showFileDialog("Select input MAX XML file", "xml files (*.xml)|*.xml", @"C:\Temp\max.xml", true);
+            string defaultFileName = @"C:\Temp\max.xml";
+            EA.TaggedValue tvImportFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
+            if (tvImportFile != null)
+            {
+                defaultFileName = tvImportFile.Value;
+            }
+            string fileName = showFileDialog("Select input MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, true);
             if (fileName != String.Empty)
             {
                 return import(Repository, selectedPackage, fileName);

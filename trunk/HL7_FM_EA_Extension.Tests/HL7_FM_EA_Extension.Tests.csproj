@@ -61,9 +61,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="InputFiles\Compiler Instructions OV1Only.max.xml" />
     <Content Include="InputFiles\Compiler Instructions.max.xml" />
     <Content Include="InputFiles\EHRS_FM_R2_N2.max.xml" />
+    <Content Include="InputFiles\MU Profile Definition.max.xml" />
+    <Content Include="InputFiles\OV1 Only FP.max.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using EA;
 
 namespace HL7_FM_EA_Extension
 {
@@ -33,7 +32,6 @@ namespace HL7_FM_EA_Extension
         //Populates the Menu with our desired selections.
         public object EA_GetMenuItems(EA.Repository Repository, string Location, string MenuName)
         {
-            EA.Package aPackage = Repository.GetTreeSelectedPackage();
             switch (MenuName)
             {
                 case "":
@@ -64,7 +62,28 @@ namespace HL7_FM_EA_Extension
         {
             if (IsProjectOpen(Repository))
             {
-                IsEnabled = true;
+                switch (ItemName)
+                {
+                    case "Import R1.1":
+                    case "Import R2":
+                    case "Edit Profile":
+                    case "Compile Profile":
+                    case "Validate":
+                    case "Update Style":
+                        IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage);
+                        break;
+                    case "Create Diagram":
+                        IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage || Repository.GetTreeSelectedItemType() == EA.ObjectType.otElement);
+                        break;
+                    case "Quick Access Tab":
+                    case "FM Browser Tab":
+                    case "About":
+                        IsEnabled = true;
+                        break;
+                    default:
+                        IsEnabled = false;
+                        break;
+                } 
             }
             else
             {
@@ -96,8 +115,7 @@ namespace HL7_FM_EA_Extension
                         new R2Importer().import(Repository, SelectedPackage);
                         break;
                     case "Edit Profile":
-                        ProfilingForm profilingForm = new ProfilingForm();
-                        profilingForm.Show(Repository);
+                        new ProfilingForm().Show(Repository, SelectedPackage);
                         break;
                     case "Compile Profile":
                         CompileProfile(Repository, SelectedPackage);
@@ -239,6 +257,7 @@ namespace HL7_FM_EA_Extension
                     case R2Const.ST_FUNCTION:
                     case R2Const.ST_HEADER:
                     case R2Const.ST_CRITERION:
+                    case R2Const.ST_COMPILERINSTRUCTION:
                         R2Config.config.updateStyle(el);
                         el.Update();
                         break;
@@ -261,24 +280,24 @@ namespace HL7_FM_EA_Extension
         private void CreateDiagram(EA.Repository Repository)
         {
             EA.Element selectedElement = null;
-            switch (Repository.GetTreeSelectedItemType())
+            switch (Repository.GetContextItemType())
             {
                 case EA.ObjectType.otPackage:
-                    selectedElement = Repository.GetTreeSelectedPackage().Element;
+                    selectedElement = ((EA.Package)Repository.GetContextObject()).Element;
                     break;
                 case EA.ObjectType.otElement:
-                    selectedElement = (EA.Element)Repository.GetTreeSelectedObject();
+                    selectedElement = (EA.Element)Repository.GetContextObject();
                     break;
                 default:
                     return;
             }
-            EA.Diagram diagram = CreateDiagram(selectedElement);
+            EA.Diagram diagram = CreateDiagramFromElement(selectedElement);
             Repository.RefreshModelView(Repository.GetTreeSelectedPackage().PackageID);
             Repository.ShowInProjectView(diagram);
             Repository.OpenDiagram(diagram.DiagramID);
         }
 
-        private EA.Diagram CreateDiagram(EA.Element element)
+        private EA.Diagram CreateDiagramFromElement(EA.Element element)
         {
             EA.Diagram diagram = (EA.Diagram)element.Diagrams.AddNew(element.Name, "Requirements");
             diagram.Update();

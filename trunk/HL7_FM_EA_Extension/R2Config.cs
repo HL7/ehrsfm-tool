@@ -100,20 +100,17 @@ namespace HL7_FM_EA_Extension
         public void updateStyle(EA.Element element)
         {
             // For Criteria: apply border based on Optionality
-            if (R2Const.ST_CRITERION.Equals(element.Stereotype))
+            EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(R2Const.TV_OPTIONALITY);
+            if (tv != null)
             {
-                EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(R2Const.TV_OPTIONALITY);
-                if (tv != null)
+                string optionality = tv.Value;
+                if ("SHALL".Equals(optionality))
                 {
-                    string optionality = tv.Value;
-                    if ("SHALL".Equals(optionality))
-                    {
-                        element.SetAppearance(1/*Base*/, 3/*Border width*/, 3);
-                    }
-                    else
-                    {
-                        element.SetAppearance(1/*Base*/, 3/*Border width*/, 1);
-                    }
+                    element.SetAppearance(1/*Base*/, 3/*Border width*/, 3);
+                }
+                else
+                {
+                    element.SetAppearance(1/*Base*/, 3/*Border width*/, 1);
                 }
             }
             // Strip whitespaces from names

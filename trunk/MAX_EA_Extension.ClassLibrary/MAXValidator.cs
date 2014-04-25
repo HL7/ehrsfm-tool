@@ -59,7 +59,6 @@ namespace MAX_EA_Extension
                 else
                 {
                     Main.LogMessage(Repository, ex.Message, 0);
-                    StringBuilder sb = new StringBuilder();
                     foreach (var error in compiler.ErrorList)
                     {
                         Main.LogMessage(Repository, error.ToString(), 0);
@@ -115,7 +114,6 @@ namespace MAX_EA_Extension
                 else
                 {
                     Main.LogMessage(Repository, ex.Message, 0);
-                    StringBuilder sb = new StringBuilder();
                     foreach (var error in compiler.ErrorList)
                     {
                         Main.LogMessage(Repository, error.ToString(), 0);

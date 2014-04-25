@@ -17,7 +17,6 @@ namespace HL7_FM_EA_Extension
         }
 
         private EA.Package ProfileDefinitionPackage;
-        private EA.Package BaseModelPackage;
 
         public void Show(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
         {
@@ -28,21 +27,20 @@ namespace HL7_FM_EA_Extension
             versionTextBox.Text = element.Version;
             dateTimePicker1.Value = element.Modified;
             comboBox1.SelectedItem = EAHelper.getTaggedValue(element, "Type");
+            comboBox2.SelectedItem = EAHelper.getTaggedValue(element, "LanguageTag");
             rationaleTextBox.Text = EAHelper.getTaggedValueNotes(element, "Rationale");
             scopeTextBox.Text = EAHelper.getTaggedValueNotes(element, "Scope");
             prioDescTextBox.Text = EAHelper.getTaggedValueNotes(element, "PrioritiesDescription");
+            confClauseTextBox.Text = EAHelper.getTaggedValueNotes(element, "ConformanceClause");
 
-            if (findAssociatedBaseModel(Repository, ProfileDefinitionPackage))
-            {
-                // TODO: If basemodel is profile, then use tagged values to construct name
-                baseModelTextBox.Text = BaseModelPackage.Name;
-                ShowDialog();
-            }
+            // TODO: If basemodel is profile, then use tagged values to construct name
+            baseModelTextBox.Text = getAssociatedBaseModelName(Repository, ProfileDefinitionPackage);
+            ShowDialog();
         }
 
-        private bool findAssociatedBaseModel(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
+        private string getAssociatedBaseModelName(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
         {
-            EA.Connector con = ProfileDefinitionPackage.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype));
+            EA.Connector con = ProfileDefinitionPackage.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype) || "Usage".Equals(t.Type));
             if (con != null)
             {
                 EA.Element packageElement = Repository.GetElementByID(con.SupplierID);
@@ -51,20 +49,11 @@ namespace HL7_FM_EA_Extension
                     // con.SupplierID is the ElementID of the PackageElement
                     // Find the Package with the PackageElement by selecting the child Package in the parent Package where
                     // the ElementID is con.SupplierID
-                    BaseModelPackage = Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show("First setup Profile Definition Package.");
-                    return false;
+                    EA.Package BaseModelPackage = Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
+                    return BaseModelPackage.Name;
                 }
             }
-            else
-            {
-                MessageBox.Show("First setup Profile Definition Package.");
-                return false;
-            }
+            return "No base model defined or linked...";
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -88,9 +77,11 @@ namespace HL7_FM_EA_Extension
             element.Update();
 
             EAHelper.updateTaggedValue(element, "Type", comboBox1.Text);
+            EAHelper.updateTaggedValue(element, "LanguageTag", comboBox2.Text);
             EAHelper.updateTaggedValue(element, "Rationale", "<memo>", rationaleTextBox.Text);
             EAHelper.updateTaggedValue(element, "Scope", "<memo>", scopeTextBox.Text);
             EAHelper.updateTaggedValue(element, "PrioritiesDefinition", "<memo>", prioDescTextBox.Text);
+            EAHelper.updateTaggedValue(element, "ConformanceClause", "<memo>", confClauseTextBox.Text);
         }
     }
 }

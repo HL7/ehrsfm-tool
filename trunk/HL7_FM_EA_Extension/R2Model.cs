@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using EA;
 
 namespace HL7_FM_EA_Extension
 {
@@ -21,6 +20,9 @@ namespace HL7_FM_EA_Extension
             R2ModelElement modelElement = null;
             switch (element.Stereotype)
             {
+                case R2Const.ST_FM_PROFILEDEFINITION:
+                    modelElement = new R2ProfileDefinition(element);
+                    break;
                 case R2Const.ST_SECTION:
                     modelElement = new R2Section(element);
                     break;
@@ -123,8 +125,6 @@ namespace HL7_FM_EA_Extension
     public class R2Const
     {
         public const string ST_FM = "HL7-FM";
-        public const string ST_FM_PROFILEDEFINITION = "HL7-FM-ProfileDefinition";
-        public const string ST_COMPILERINSTRUCTION = "CI";
         public const string ST_BASEMODEL = "use";
         public const string ST_TARGETPROFILE = "create";
         public const string ST_FM_PROFILE = "HL7-FM-Profile";
@@ -134,12 +134,14 @@ namespace HL7_FM_EA_Extension
         public const string ST_CONSEQUENCELINK = "ConsequenceLink";
         public const string ST_SEEALSO = "SeeAlso";
 
+        public const string ST_FM_PROFILEDEFINITION = "HL7-FM-ProfileDefinition";
+
+        public const string ST_COMPILERINSTRUCTION = "CI";
         public const string TV_PRIORITY = "Priority";
         public const string TV_CHANGENOTE = "ChangeNote";
         public const string TV_QUALIFIER = "Qualifier";
         public const string TV_ROW = "Row";
 
-        public const string ST_CRITERIA__OBSOLETE = "Criteria";
         public const string ST_CRITERION = "Criteria";
         public const string TV_OPTIONALITY = "Optionality";
         public const string TV_DEPENDENT = "Dependent";
@@ -165,7 +167,8 @@ namespace HL7_FM_EA_Extension
         public enum Priority
         {
             EN,     // Essential Now
-            EF      // Essential Future
+            EF,     // Essential Future
+            OPT     // Optional
         };
     }
 
@@ -215,6 +218,73 @@ namespace HL7_FM_EA_Extension
         }
     }
 
+    public class R2ProfileDefinition : R2ModelElement
+    {
+        public R2ProfileDefinition(EA.Element element) : base(element)
+        {
+        }
+
+        public string Name
+        {
+            get { return _element.Name; }
+            set { _element.Name = value; }
+        }
+
+        public string Version
+        {
+            get { return _element.Version; }
+            set { _element.Version = value; }
+        }
+
+        public DateTime Date
+        {
+            get { return _element.Modified; }
+            set { _element.Modified = value; }
+        }
+
+        public virtual string Optionality
+        {
+            get { return EAHelper.getTaggedValue(_element, R2Const.TV_OPTIONALITY, ""); }
+            set { EAHelper.updateTaggedValue(_element, R2Const.TV_OPTIONALITY, value); }
+        }
+
+        public virtual string Type
+        {
+            get { return EAHelper.getTaggedValue(_element, "Type", ""); }
+            set { EAHelper.updateTaggedValue(_element, "Type", value); }
+        }
+
+        public virtual string LanguageTag
+        {
+            get { return EAHelper.getTaggedValue(_element, "LanguageTag", ""); }
+            set { EAHelper.updateTaggedValue(_element, "LanguageTag", value); }
+        }
+
+        public virtual string Rationale
+        {
+            get { return EAHelper.getTaggedValueNotes(_element, "Rationale", ""); }
+            set { EAHelper.updateTaggedValue(_element, "Rationale", "<memo>", value); }
+        }
+
+        public virtual string Scope
+        {
+            get { return EAHelper.getTaggedValueNotes(_element, "Scope", ""); }
+            set { EAHelper.updateTaggedValue(_element, "Scope", "<memo>", value); }
+        }
+
+        public virtual string PrioritiesDefinition
+        {
+            get { return EAHelper.getTaggedValueNotes(_element, "PrioritiesDefinition", ""); }
+            set { EAHelper.updateTaggedValue(_element, "PrioritiesDefinition", "<memo>", value); }
+        }
+
+        public virtual string ConformanceClause
+        {
+            get { return EAHelper.getTaggedValueNotes(_element, "ConformanceClause", ""); }
+            set { EAHelper.updateTaggedValue(_element, "ConformanceClause", "<memo>", value); }
+        }
+    }
+
     public class R2Section : R2ModelElement
     {
         public R2Section(EA.Element element) : base(element)
@@ -236,16 +306,16 @@ namespace HL7_FM_EA_Extension
         private string _example;
         private string _actors;
 
-        public string Name
-        {
-            get { return _element.Name; }
-            set { _element.Name = value; }
-        }
-
         public string SectionID
         {
             get { return _element.Alias; }
             set { _element.Alias = value; }
+        }
+
+        public string Name
+        {
+            get { return _element.Name; }
+            set { _element.Name = value; }
         }
 
         public string Overview
@@ -288,16 +358,16 @@ namespace HL7_FM_EA_Extension
         private string _description;
         private string _example;
 
-        public string Name
-        {
-            get { return _element.Name; }
-            set { _element.Name = value; }
-        }
-
         public string FunctionID
         {
             get { return _element.Alias; }
             set { _element.Alias = value; }
+        }
+
+        public string Name
+        {
+            get { return _element.Name; }
+            set { _element.Name = value; }
         }
 
         public string Statement
@@ -416,6 +486,26 @@ namespace HL7_FM_EA_Extension
         public R2CriterionCI(EA.Element ciElement, EA.Element element) : base(element)
         {
             _ciElement = ciElement;
+        }
+
+        public const string EmptyPriority = "";
+        public string Priority
+        {
+            get
+            {
+                return EAHelper.getTaggedValue(_ciElement, R2Const.TV_PRIORITY, EmptyPriority);
+            }
+            set
+            {
+                if (EmptyPriority.Equals(value))
+                {
+                    EAHelper.deleteTaggedValue(_ciElement, R2Const.TV_PRIORITY);
+                }
+                else
+                {
+                    EAHelper.updateTaggedValue(_ciElement, R2Const.TV_PRIORITY, value);
+                }
+            }
         }
 
         public override string Name
@@ -584,6 +674,26 @@ namespace HL7_FM_EA_Extension
         public R2FunctionCI(EA.Element ciElement, EA.Element element) : base(element)
         {
             _ciElement = ciElement;
+        }
+
+        public const string EmptyPriority = "";
+        public string Priority
+        {
+            get
+            {
+                return EAHelper.getTaggedValue(_ciElement, R2Const.TV_PRIORITY, EmptyPriority);
+            }
+            set
+            {
+                if (EmptyPriority.Equals(value))
+                {
+                    EAHelper.deleteTaggedValue(_ciElement, R2Const.TV_PRIORITY);
+                }
+                else
+                {
+                    EAHelper.updateTaggedValue(_ciElement, R2Const.TV_PRIORITY, value);
+                }
+            }
         }
     }
 

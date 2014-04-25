@@ -21,8 +21,8 @@ namespace HL7_FM_EA_Extension
         public void Show(R2Criterion criterion)
         {
             _criterion = criterion;
-            switchLinkLabel.Visible = (criterion is CompilerInstruction);
             setShowingCriterion(criterion, true);
+            switchLinkLabel.Visible = (criterion is CompilerInstruction);
             ShowDialog();
         }
 
@@ -43,11 +43,17 @@ namespace HL7_FM_EA_Extension
             {
                 Text = string.Format("EHR-S FM Criterion: {0} (Profile Definition)", criterion.Name);
                 switchLinkLabel.Text = "Switch to base Element";
+                label1.Visible = true;
+                priorityComboBox.Visible = true;
+                priorityComboBox.SelectedItem = ((R2CriterionCI)criterion).Priority;
             }
             else
             {
                 Text = string.Format("EHR-S FM Criterion: {0}", criterion.Name);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
+                label1.Visible = false;
+                priorityComboBox.Visible = false;
+                priorityComboBox.SelectedItem = R2CriterionCI.EmptyPriority;
             }
 
             BackColor = R2Config.config.getSectionColor(criterion.Name, DefaultBackColor);
@@ -77,6 +83,11 @@ namespace HL7_FM_EA_Extension
             _criterion.Conditional = conditionalCheckBox.Checked;
             _criterion.Dependent = dependentCheckBox.Checked;
             _criterion.Optionality = optionalityComboBox.SelectedItem.ToString();
+
+            if (_criterion is CompilerInstruction)
+            {
+                ((R2CriterionCI)_criterion).Priority = priorityComboBox.Text;
+            }
         }
 
         private void applyButton_Click(object sender, EventArgs e)
@@ -99,7 +110,7 @@ namespace HL7_FM_EA_Extension
         {
             if (keyData == Keys.Escape)
             {
-                this.Close();
+                Close();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
