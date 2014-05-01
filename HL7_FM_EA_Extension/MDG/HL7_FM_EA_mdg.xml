@@ -1,443 +1,506 @@
-<MDG.Technology version="1.0"><Documentation id="1" name="HL7-FM" version="0.14" notes="The EHR-S FM Tool&#xA;Containing:&#xA;- Learning Center&#xA;- UML Profile&#xA;- RTF Templates&#xA;- Tagged Value Types&#xA;- Searches"/><UMLProfiles><UMLProfile profiletype="uml2">
-			<Documentation id="F2D4FBFF-F" name="HL7-FM" version="1.0" notes="HL7-FM"/>
-			<Content>
-				<Stereotypes>
-					<Stereotype name="Base" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" isAbstract="true">
-						<Image type="EAShapeScript 1.0" xmlns:dt="urn:schemas-microsoft-com:datatypes" dt:dt="bin.base64">UEsDBBQAAAAIABp3hEQNh3ZO0wAAANYCAAAHABEAc3RyLmRhdFVUDQAHLcg+Uy3IPlMtyD5T
-1VDLCsIwEJxrBP+h9NSCiAqePFoPgojoF5Q+tKCtNEUR6b872VgVKoIHDxKym+zOTCarsUOI
-IxI4OPCUIUcXHVwlKgQoWT1jyVixeyJy8+B48DG5IzXvlVRz1kcYc/UwkP1EZUjZNXxNdIgt
-by7WZKXcpbAjxj6mgsqJSDBnjsmNxEVBnEtdhzHADCtmn8u+0DhX9GkcLeRPxnWFC/bi2qWa
-cbATZuNNcQKF/NC84bW8K7Ktlu0P2TUYmz/rtDHvtV4x9c9m9v28NBWM4/gPJlbjBlBLAQIX
-CxQAAAAIABp3hEQNh3ZO0wAAANYCAAAHAAkAAAAAAAAAAAAAgAAAAABzdHIuZGF0VVQFAAct
-yD5TUEsFBgAAAAABAAEAPgAAAAkBAAAAAA==</Image>
-						<TaggedValues>
-							<Tag name="Row" type="int" description="" unit="" values="" default=""/>
-							<Tag name="Reference.ChangeIndicator" type="enumeration" description="" unit="" values="NC,A,M,D,DEP" default=""/>
-							<Tag name="Reference.Alias" type="String" description="" unit="" values="" default=""/>
-							<Tag name="Reference.FunctionID" type="String" description="" unit="" values="" default=""/>
-							<Tag name="Reference.CriteriaID" type="String" description="" unit="" values="" default=""/>
-							<Tag name="ExternalReference" type="structured" description="" unit="" values="" default="">
-								<Property name="Title" type="String" description="" unit="" values="" default=""/>
-								<Property name="URL" type="URL" description="" unit="" values="" default=""/>
-								<Property name="Note" type="String" description="" unit="" values="" default=""/>
-							</Tag>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="CI" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
-						<Image type="EAShapeScript 1.0" xmlns:dt="urn:schemas-microsoft-com:datatypes" dt:dt="bin.base64">UEsDBBQAAAAIACR3hEQaLMVvwgAAAJYCAAAHABEAc3RyLmRhdFVUDQAHTsg+U07IPlNOyD5T
-1VBBCsIwEJxrBP8gPbXQgwqevOpNRPEFhaotaCtNVET6d2c3VoWKoDcJySY7s7OTtciQ4IA1
-etjzlqNAFx1c9TSYoGL2jDlPR/RE5upREyLC+M60fDvNFswPMeKK0df9ZOXYEJV6S3aCLV8B
-ljjyvlM0p0LFXExHAftPsWCMuLxC48zQh3ScqWdx5XChhrgKkGqHTCub3oY/LPUHjjFseTPq
-QLQ8PiAqHB8/67Q577VeOfXPM/l+HpYuRCv9g4nUuAFQSwECFwsUAAAACAAkd4REGizFb8IA
-AACWAgAABwAJAAAAAAAAAAAAAIAAAAAAc3RyLmRhdFVUBQAHTsg+U1BLBQYAAAAAAQABAD4A
-AAD4AAAAAAA=</Image>
-						<AppliesTo>
-							<Apply type="Class">
-								<Property name="isActive" value=""/>
-							</Apply>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="Priority" type="enumeration" description="" unit="" values="EN,EF,OPT" default=""/>
-							<Tag name="ChangeNote" type="" description="capture reason for change / institutional memory" unit="" values="" default=""/>
-							<Tag name="Qualifier" type="enumeration" description="" unit="" values="D,DEP,EXCLUDE" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="Criteria" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
-						<AppliesTo>
-							<Apply type="Requirement"/>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="Conditional" type="enumeration" description="" unit="" values="Y,N" default=""/>
-							<Tag name="Dependent" type="enumeration" description="" unit="" values="Y,N" default=""/>
-							<Tag name="Optionality" type="enumeration" description="" unit="" values="SHALL,SHOULD,MAY" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="Function" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
-						<AppliesTo>
-							<Apply type="Feature">
-								<Property name="isStatic" value="false"/>
-							</Apply>
-						</AppliesTo>
-					</Stereotype>
-					<Stereotype name="GlossaryItem" notes="The Glossary based on this stereotype can be loaded into the EA Glossary using the Extension function to be developed.&#xA;&#xA;N.B. Edits to the Glossary go via the model, edits in the EA Glossary will be ignored." cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<TaggedValues>
-							<Tag name="Term" type="Type=String;" description="" unit="" values="" default=""/>
-							<Tag name="Definition" type="Type=Memo;" description="" unit="" values="" default=""/>
-							<Tag name="Reference" type="Type=Memo;" description="" unit="" values="" default=""/>
-							<Tag name="Deprecated" type="Type=Boolean;" description="" unit="" values="" default=""/>
-							<Tag name="SeeOtherTerm" type="Type=String;" description="" unit="" values="" default=""/>
-							<Tag name="Scope" type="Type=String;" description="" unit="" values="" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="HL7-FM" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="Package">
-								<Property name="URI" value=""/>
-							</Apply>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="MAX::ImportFile" type="" description="" unit="" values="" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="HL7-FM-Base" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" isAbstract="true">
-						<TaggedValues>
-							<Tag name="Type" type="enumeration" description="" unit="" values="Companion,Domain,Realm,Derived,Combined" default=""/>
-							<Tag name="Rationale" type="" description="" unit="" values="" default=""/>
-							<Tag name="Scope" type="" description="" unit="" values="" default=""/>
-							<Tag name="PrioritiesDescription" type="" description="" unit="" values="" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="HL7-FM-Profile" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="HL7-FM-Base" baseStereotypes="HL7-FM-Base">
-						<AppliesTo>
-							<Apply type="Package">
-								<Property name="URI" value=""/>
-							</Apply>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="MAX::ExportFile" type="" description="" unit="" values="" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="HL7-FM-ProfileDefinition" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="HL7-FM-Base" baseStereotypes="HL7-FM-Base">
-						<AppliesTo>
-							<Apply type="Package">
-								<Property name="URI" value=""/>
-							</Apply>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="MAX::ExportFile" type="" description="" unit="" values="" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="Header" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
-						<AppliesTo>
-							<Apply type="Feature">
-								<Property name="isStatic" value="false"/>
-							</Apply>
-						</AppliesTo>
-					</Stereotype>
-					<Stereotype name="Section" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="Package">
-								<Property name="URI" value=""/>
-							</Apply>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="ID" type="int" description="" unit="" values="" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="create" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="Dependency">
-								<Property name="direction" value="Source -&gt; Destination"/>
-							</Apply>
-						</AppliesTo>
-					</Stereotype>
-					<Stereotype name="use" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="Usage">
-								<Property name="direction" value="Source -&gt; Destination"/>
-							</Apply>
-						</AppliesTo>
-					</Stereotype>
-				</Stereotypes>
-				<TaggedValueTypes/>
-			</Content>
-		</UMLProfile>
-	</UMLProfiles><TaggedValueTypes><RefData version="1.0" exporter="EA.25">
-			<DataSet name="Property Types" table="t_propertytypes" filter="Property='#Property#'"><DataRow><Column name="Property" value="MAX::ImportFile"/><Column name="Description" value="MAX"/><Column name="Notes" value="Type=File;"/></DataRow><DataRow><Column name="Property" value="MAX::ExportFile"/><Column name="Description" value="MAX"/><Column name="Notes" value="Type=File;"/></DataRow><DataRow><Column name="Property" value="MAX::ImportDate"/><Column name="Description" value="MAX"/><Column name="Notes" value="Type=DateTime;"/></DataRow><DataRow><Column name="Property" value="MAX::ExportDate"/><Column name="Description" value="MAX"/><Column name="Notes" value="Type=DateTime;"/></DataRow><DataRow><Column name="Property" value="Rationale"/><Column name="Notes" value="Type=Memo;"/></DataRow></DataSet></RefData></TaggedValueTypes><UITaskpanes><UMLProfile profiletype="uml2">
-			<Documentation id="E3990698-7" name="Test Learning Center" version="1.0" notes="Test Learning Center"/>
-			<Content>
-				<Stereotypes>
-					<Stereotype name="Browse in the EHR-S FM" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="ToolboxPage"/>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Browse/ReadEHRSFM.pdf" type="" description="" unit="" values="" default="Read the EHR-S FM"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Browse/BrowseEHRSFM.pdf" type="" description="" unit="" values="" default="Browse the EHR-S FM"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Browse/SearchEHRSFM.pdf" type="" description="" unit="" values="" default="Search the EHR-S FM"/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="Export (part) Base model or Functional Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<TaggedValues>
-							<Tag name="http:://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Export/Export a section of the EHRSFM.pdf" type="" description="" unit="" values="" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="FAQ and Lessons Learned" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="ToolboxPage"/>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="EASystem::showURL(1)" type="" description="" unit="" values="" default="FAQ and lessons learned"/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="Functional Profile Registration and Balloting " notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="ToolboxPage"/>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="EASystem::ShowURL(1)" type="" description="" unit="" values="" default="WHAT is it?"/>
-							<Tag name="EASystem::ShowURL(2)" type="" description="" unit="" values="" default="WHY Bother?"/>
-							<Tag name="EASystem::ShowURL(3)" type="" description="" unit="" values="" default="WHO can do it?"/>
-							<Tag name="EASystem::ShowURL(4)" type="" description="" unit="" values="" default="WHEN can it happen?"/>
-							<Tag name="EASystem::ShowURL(5)" type="" description="" unit="" values="" default="HOW to register a functional profile?"/>
-							<Tag name="EASystem::ShowURL(6)" type="" description="" unit="" values="" default="HOW to ballot a functional profile?"/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="Instructions to develop a Functional Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="ToolboxPage"/>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/Instructions Getting Started.pdf)" type="" description="" unit="" values="" default="Getting started"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/Instructions General FP Information.pdf)" type="" description="" unit="" values="" default="Providing General Profile Information"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/Instructions Creating Conformance Clause.pdf)" type="" description="" unit="" values="" default="Creating the Conformance Clause "/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/Instructions Selecting Functions.pdf)" type="" description="" unit="" values="" default="Selecting Functions "/>
-							<Tag name="EASystem::ShowURL(6)" type="" description="" unit="" values="" default="Principles"/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="Overview and Definitions of the Functional Model (normative)" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="ToolboxPage"/>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Overview &amp; Definitions/1 Preface.pdf)" type="" description="" unit="" values="" default="Preface"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Overview &amp; Definitions/2 Introduction and Overview.pdf)" type="" description="" unit="" values="" default="Introduction and Overview"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Overview &amp; Definitions/3 The sections in the Functional Modell.pdf)" type="" description="" unit="" values="" default="The sections in the Functional Model"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Overview &amp; Definitions/4 Functional Profiles.pdf)" type="" description="" unit="" values="" default="Functional Profiles"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Overview &amp; Definitions/5 EHR S FM Components.pdf)" type="" description="" unit="" values="" default="Functional list components"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Overview &amp; Definitions/6 ConformanceClauseIntroduction.pdf" type="" description="" unit="" values="" default="Conformance Clause, an Introduction"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfpresults4care.eu/EHRSFMFP/LearningCenter/Overview &amp; Definitions/7 ConformanceClausConcepts.pdf" type="" description="" unit="" values="" default="Conformance Claus, Concepts"/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="Edit the Functional Model/ Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="ToolboxPage"/>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Edit FM_FP/Adding EHR_S_FM FP components.pdf)" type="" description="" unit="" values="" default="Adding EHR-S FM FP components"/>
-							<Tag name="EASystem::ShowURL(2)" type="" description="" unit="" values="" default=""/>
-						</TaggedValues>
-					</Stereotype>
-					<Stereotype name="Create a Functional Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
-						<AppliesTo>
-							<Apply type="ToolboxPage"/>
-						</AppliesTo>
-						<TaggedValues>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Creation/0 Introduction.pdf)" type="" description="" unit="" values="" default=""/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Creation/1 CreateNewProfile.pdf)" type="" description="" unit="" values="" default="Create a new functional profile"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Creation/2 LoadBaseModel.pdf)" type="" description="" unit="" values="" default="Load the Base Model"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Creation/3 Create package for FP.pdf)" type="" description="" unit="" values="" default="Create a package in EA for the new functional profile"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Creation/4 Provide General Information.pdf)" type="" description="" unit="" values="" default="Provide General Information"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Creation/5 Create UMLmodel NewFP.pdf)" type="" description="" unit="" values="" default="Create an UML model for the new functional profile"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Creation/7 CreateProfileDefinition.pdf)" type="" description="" unit="" values="" default="Create the Profile Definition for the new functional profile"/>
-							<Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Creation/8 ?)" type="" description="" unit="" values="" default="Validate the Profile Definition"/>
-						</TaggedValues>
-					</Stereotype>
-				</Stereotypes>
-				<TaggedValueTypes/>
-			</Content>
-		</UMLProfile>
-	</UITaskpanes><ModelSearches><Search Name="Find Non SHALL" GUID="{E9F023E7-912B-4f60-825D-F640AB550B69}" PkgGUID="-1" Type="0" LnksToObj="0" CustomSearch="0" AddinAndMethodName="HL7_FM_EA_Extension.FindNonSHALL"><SrchOn/><LnksTo/></Search></ModelSearches><RTFTemplates><RefData version="1.0" exporter="EA.25">
-			<DataSet name="Templates - RTF Document" table="t_document where DocType='SSDOCSTYLE'" filter="DocName='#DocName#'" stoplist=";DocID;"><DataRow><Column name="DocID" value="{79B948E5-B0ED-4aaa-BB96-57FEFEECDE89}"/><Column name="DocName" value="Basic FM Export Table Template"/><Column name="Style" value="Zip=1;"/><Column name="ElementID" value="SSDOCSTYLE"/><Column name="ElementType" value="SSDOCSTYLE"/><Column name="BinContent" xmlns:dt="urn:schemas-microsoft-com:datatypes" dt:dt="bin.base64">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
-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</Column><Column name="DocType" value="SSDOCSTYLE"/><Column name="Author" value="HL7-FM"/><Column name="IsActive" value="1"/></DataRow></DataSet></RefData></RTFTemplates></MDG.Technology>
+<MDG.Technology version="1.0">
+  <Documentation id="1" name="HL7-FM" version="0.15" notes="The EHR-S FM Tool&#xA;Containing:&#xA;- Learning Center&#xA;- UML Profile&#xA;- RTF Templates&#xA;- Tagged Value Types&#xA;- Searches"/>
+  <UMLProfiles>
+    <UMLProfile profiletype="uml2">
+      <Documentation id="F2D4FBFF-F" name="HL7-FM" version="1.0" notes="HL7-FM"/>
+      <Content>
+        <Stereotypes>
+          <Stereotype name="Base" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" isAbstract="true">
+            <Image type="EAShapeScript 1.0" xmlns:dt="urn:schemas-microsoft-com:datatypes" dt:dt="bin.base64">
+              UEsDBBQAAAAIABp3hEQNh3ZO0wAAANYCAAAHABEAc3RyLmRhdFVUDQAHLcg+Uy3IPlMtyD5T
+              1VDLCsIwEJxrBP+h9NSCiAqePFoPgojoF5Q+tKCtNEUR6b872VgVKoIHDxKym+zOTCarsUOI
+              IxI4OPCUIUcXHVwlKgQoWT1jyVixeyJy8+B48DG5IzXvlVRz1kcYc/UwkP1EZUjZNXxNdIgt
+              by7WZKXcpbAjxj6mgsqJSDBnjsmNxEVBnEtdhzHADCtmn8u+0DhX9GkcLeRPxnWFC/bi2qWa
+              cbATZuNNcQKF/NC84bW8K7Ktlu0P2TUYmz/rtDHvtV4x9c9m9v28NBWM4/gPJlbjBlBLAQIX
+              CxQAAAAIABp3hEQNh3ZO0wAAANYCAAAHAAkAAAAAAAAAAAAAgAAAAABzdHIuZGF0VVQFAAct
+              yD5TUEsFBgAAAAABAAEAPgAAAAkBAAAAAA==
+            </Image>
+            <TaggedValues>
+              <Tag name="Row" type="int" description="" unit="" values="" default=""/>
+              <Tag name="Reference.ChangeIndicator" type="enumeration" description="" unit="" values="NC,A,M,D,DEP" default=""/>
+              <Tag name="Reference.Alias" type="String" description="" unit="" values="" default=""/>
+              <Tag name="Reference.FunctionID" type="String" description="" unit="" values="" default=""/>
+              <Tag name="Reference.CriteriaID" type="String" description="" unit="" values="" default=""/>
+              <Tag name="ExternalReference" type="structured" description="" unit="" values="" default="">
+                <Property name="Title" type="String" description="" unit="" values="" default=""/>
+                <Property name="URL" type="URL" description="" unit="" values="" default=""/>
+                <Property name="Note" type="String" description="" unit="" values="" default=""/>
+              </Tag>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="CI" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
+            <Image type="EAShapeScript 1.0" xmlns:dt="urn:schemas-microsoft-com:datatypes" dt:dt="bin.base64">
+              UEsDBBQAAAAIACR3hEQaLMVvwgAAAJYCAAAHABEAc3RyLmRhdFVUDQAHTsg+U07IPlNOyD5T
+              1VBBCsIwEJxrBP8gPbXQgwqevOpNRPEFhaotaCtNVET6d2c3VoWKoDcJySY7s7OTtciQ4IA1
+              etjzlqNAFx1c9TSYoGL2jDlPR/RE5upREyLC+M60fDvNFswPMeKK0df9ZOXYEJV6S3aCLV8B
+              ljjyvlM0p0LFXExHAftPsWCMuLxC48zQh3ScqWdx5XChhrgKkGqHTCub3oY/LPUHjjFseTPq
+              QLQ8PiAqHB8/67Q577VeOfXPM/l+HpYuRCv9g4nUuAFQSwECFwsUAAAACAAkd4REGizFb8IA
+              AACWAgAABwAJAAAAAAAAAAAAAIAAAAAAc3RyLmRhdFVUBQAHTsg+U1BLBQYAAAAAAQABAD4A
+              AAD4AAAAAAA=
+            </Image>
+            <AppliesTo>
+              <Apply type="Class">
+                <Property name="isActive" value=""/>
+              </Apply>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="Priority" type="enumeration" description="" unit="" values="EN,EF,OPT" default=""/>
+              <Tag name="ChangeNote" type="" description="capture reason for change / institutional memory" unit="" values="" default=""/>
+              <Tag name="Qualifier" type="enumeration" description="" unit="" values="D,DEP,EXCLUDE" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="Criteria" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
+            <AppliesTo>
+              <Apply type="Requirement"/>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="Conditional" type="enumeration" description="" unit="" values="Y,N" default=""/>
+              <Tag name="Dependent" type="enumeration" description="" unit="" values="Y,N" default=""/>
+              <Tag name="Optionality" type="enumeration" description="" unit="" values="SHALL,SHOULD,MAY" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="Function" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
+            <AppliesTo>
+              <Apply type="Feature">
+                <Property name="isStatic" value="false"/>
+              </Apply>
+            </AppliesTo>
+          </Stereotype>
+          <Stereotype name="GlossaryItem" notes="The Glossary based on this stereotype can be loaded into the EA Glossary using the Extension function to be developed.&#xA;&#xA;N.B. Edits to the Glossary go via the model, edits in the EA Glossary will be ignored." cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <TaggedValues>
+              <Tag name="Term" type="Type=String;" description="" unit="" values="" default=""/>
+              <Tag name="Definition" type="Type=Memo;" description="" unit="" values="" default=""/>
+              <Tag name="Reference" type="Type=Memo;" description="" unit="" values="" default=""/>
+              <Tag name="Deprecated" type="Type=Boolean;" description="" unit="" values="" default=""/>
+              <Tag name="SeeOtherTerm" type="Type=String;" description="" unit="" values="" default=""/>
+              <Tag name="Scope" type="Type=String;" description="" unit="" values="" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="HL7-FM" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="Package">
+                <Property name="URI" value=""/>
+              </Apply>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="MAX::ImportFile" type="" description="" unit="" values="" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="HL7-FM-Base" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" isAbstract="true">
+            <TaggedValues>
+              <Tag name="Type" type="enumeration" description="" unit="" values="Companion,Domain,Realm,Derived,Combined" default=""/>
+              <Tag name="Rationale" type="" description="" unit="" values="" default=""/>
+              <Tag name="Scope" type="" description="" unit="" values="" default=""/>
+              <Tag name="PrioritiesDescription" type="" description="" unit="" values="" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="HL7-FM-Profile" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="HL7-FM-Base" baseStereotypes="HL7-FM-Base">
+            <AppliesTo>
+              <Apply type="Package">
+                <Property name="URI" value=""/>
+              </Apply>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="MAX::ExportFile" type="" description="" unit="" values="" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="HL7-FM-ProfileDefinition" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="HL7-FM-Base" baseStereotypes="HL7-FM-Base">
+            <AppliesTo>
+              <Apply type="Package">
+                <Property name="URI" value=""/>
+              </Apply>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="MAX::ExportFile" type="" description="" unit="" values="" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="Header" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">
+            <AppliesTo>
+              <Apply type="Feature">
+                <Property name="isStatic" value="false"/>
+              </Apply>
+            </AppliesTo>
+          </Stereotype>
+          <Stereotype name="Section" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="Package">
+                <Property name="URI" value=""/>
+              </Apply>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="ID" type="int" description="" unit="" values="" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="create" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="Dependency">
+                <Property name="direction" value="Source -&gt; Destination"/>
+              </Apply>
+            </AppliesTo>
+          </Stereotype>
+          <Stereotype name="use" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="Usage">
+                <Property name="direction" value="Source -&gt; Destination"/>
+              </Apply>
+            </AppliesTo>
+          </Stereotype>
+        </Stereotypes>
+        <TaggedValueTypes/>
+      </Content>
+    </UMLProfile>
+  </UMLProfiles>
+  <TaggedValueTypes>
+    <RefData version="1.0" exporter="EA.25">
+      <DataSet name="Property Types" table="t_propertytypes" filter="Property='#Property#'">
+        <DataRow>
+          <Column name="Property" value="MAX::ImportFile"/>
+          <Column name="Description" value="MAX"/>
+          <Column name="Notes" value="Type=File;"/>
+        </DataRow>
+        <DataRow>
+          <Column name="Property" value="MAX::ExportFile"/>
+          <Column name="Description" value="MAX"/>
+          <Column name="Notes" value="Type=File;"/>
+        </DataRow>
+        <DataRow>
+          <Column name="Property" value="MAX::ImportDate"/>
+          <Column name="Description" value="MAX"/>
+          <Column name="Notes" value="Type=DateTime;"/>
+        </DataRow>
+        <DataRow>
+          <Column name="Property" value="MAX::ExportDate"/>
+          <Column name="Description" value="MAX"/>
+          <Column name="Notes" value="Type=DateTime;"/>
+        </DataRow>
+        <DataRow>
+          <Column name="Property" value="Rationale"/>
+          <Column name="Notes" value="Type=Memo;"/>
+        </DataRow>
+      </DataSet>
+    </RefData>
+  </TaggedValueTypes>
+  <UITaskpanes>
+    <UMLProfile profiletype="uml2">
+      <Documentation id="E3990698-7" name="Test Learning Center" version="1.0" notes="Test Learning Center"/>
+      <Content>
+        <Stereotypes>
+          <Stereotype name="Browse in the EHR-S FM" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="ToolboxPage"/>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Browse/ReadEHRSFM.pdf" type="" description="" unit="" values="" default="Read the EHR-S FM"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Browse/BrowseEHRSFM.pdf" type="" description="" unit="" values="" default="Browse the EHR-S FM"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Browse/SearchEHRSFM.pdf" type="" description="" unit="" values="" default="Search the EHR-S FM"/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="Export (part) Base model or Functional Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <TaggedValues>
+              <Tag name="http:://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Export/Export a section of the EHRSFM.pdf" type="" description="" unit="" values="" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="FAQ and Lessons Learned" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="ToolboxPage"/>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="EASystem::showURL(1)" type="" description="" unit="" values="" default="FAQ and lessons learned"/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="Functional Profile Registration and Balloting " notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="ToolboxPage"/>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="EASystem::ShowURL(1)" type="" description="" unit="" values="" default="WHAT is it?"/>
+              <Tag name="EASystem::ShowURL(2)" type="" description="" unit="" values="" default="WHY Bother?"/>
+              <Tag name="EASystem::ShowURL(3)" type="" description="" unit="" values="" default="WHO can do it?"/>
+              <Tag name="EASystem::ShowURL(4)" type="" description="" unit="" values="" default="WHEN can it happen?"/>
+              <Tag name="EASystem::ShowURL(5)" type="" description="" unit="" values="" default="HOW to register a functional profile?"/>
+              <Tag name="EASystem::ShowURL(6)" type="" description="" unit="" values="" default="HOW to ballot a functional profile?"/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="Instructions to develop a Functional Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="ToolboxPage"/>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsGettingStarted.pdf)" type="" description="" unit="" values="" default="Getting started"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsGeneralFPInformation.pdf)" type="" description="" unit="" values="" default="Providing General Profile Information"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsCreatingConformanceClause.pdf)" type="" description="" unit="" values="" default="Creating the Conformance Clause "/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsSelectingFunctions.pdf)" type="" description="" unit="" values="" default="Selecting Functions "/>
+              <Tag name="EASystem::ShowURL(6)" type="" description="" unit="" values="" default="Principles"/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="Overview and Definitions of the Functional Model (normative)" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="ToolboxPage"/>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/1Preface.pdf)" type="" description="" unit="" values="" default="Preface"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/2IntroductionandOverview.pdf)" type="" description="" unit="" values="" default="Introduction and Overview"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/3TheSectionsFunctionalModell.pdf)" type="" description="" unit="" values="" default="The sections in the Functional Model"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/4FunctionalProfiles.pdf)" type="" description="" unit="" values="" default="Functional Profiles"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/5EHRSFMComponents.pdf)" type="" description="" unit="" values="" default="Functional list components"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/6ConformanceClauseIntroduction.pdf" type="" description="" unit="" values="" default="Conformance Clause, an Introduction"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfpresults4care.eu/LearningCenter/Overview&amp;Definitions/7ConformanceClausConcepts.pdf" type="" description="" unit="" values="" default="Conformance Claus, Concepts"/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="Edit the Functional Model/ Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="ToolboxPage"/>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Edit_FM_FP/AddingEHR_S_FMFPcomponents.pdf)" type="" description="" unit="" values="" default="Adding EHR-S FM FP components"/>
+              <Tag name="EASystem::ShowURL(2)" type="" description="" unit="" values="" default=""/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="Create a Functional Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="ToolboxPage"/>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/0Introduction.pdf)" type="" description="" unit="" values="" default=""/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/1CreateNewProfile.pdf)" type="" description="" unit="" values="" default="Create a new functional profile"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/2LoadBaseModel.pdf)" type="" description="" unit="" values="" default="Load the Base Model"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/3CreatePackageforFP.pdf)" type="" description="" unit="" values="" default="Create a package in EA for the new functional profile"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/4ProvideGeneralInformation.pdf)" type="" description="" unit="" values="" default="Provide General Information"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/5CreateUMLmodelNewFP.pdf)" type="" description="" unit="" values="" default="Create an UML model for the new functional profile"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/7CreateProfileDefinition.pdf)" type="" description="" unit="" values="" default="Create the Profile Definition for the new functional profile"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/8 ?)" type="" description="" unit="" values="" default="Validate the Profile Definition"/>
+            </TaggedValues>
+          </Stereotype>
+        </Stereotypes>
+        <TaggedValueTypes/>
+      </Content>
+    </UMLProfile>
+  </UITaskpanes>
+  <ModelSearches>
+    <Search Name="Find Non SHALL" GUID="{E9F023E7-912B-4f60-825D-F640AB550B69}" PkgGUID="-1" Type="0" LnksToObj="0" CustomSearch="0" AddinAndMethodName="HL7_FM_EA_Extension.FindNonSHALL">
+      <SrchOn/>
+      <LnksTo/>
+    </Search>
+  </ModelSearches>
+  <RTFTemplates>
+    <RefData version="1.0" exporter="EA.25">
+      <DataSet name="Templates - RTF Document" table="t_document where DocType='SSDOCSTYLE'" filter="DocName='#DocName#'" stoplist=";DocID;">
+        <DataRow>
+          <Column name="DocID" value="{79B948E5-B0ED-4aaa-BB96-57FEFEECDE89}"/>
+          <Column name="DocName" value="Basic FM Export Table Template"/>
+          <Column name="Style" value="Zip=1;"/>
+          <Column name="ElementID" value="SSDOCSTYLE"/>
+          <Column name="ElementType" value="SSDOCSTYLE"/>
+          <Column name="BinContent" xmlns:dt="urn:schemas-microsoft-com:datatypes" dt:dt="bin.base64">
+            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
+          </Column>
+          <Column name="DocType" value="SSDOCSTYLE"/>
+          <Column name="Author" value="HL7-FM"/>
+          <Column name="IsActive" value="1"/>
+        </DataRow>
+      </DataSet>
+    </RefData>
+  </RTFTemplates>
+</MDG.Technology>
