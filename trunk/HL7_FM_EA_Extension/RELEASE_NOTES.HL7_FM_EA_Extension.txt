@@ -5,6 +5,10 @@
 
 CHANGELOG
 =========
+[2014-apr-29]
+MDG
+- Updated learning center profile; typo in URLs
+
 [2014-apr-25]
 MDG
 - Updated learning center profile and added RMES RTF Template

@@ -423,7 +423,8 @@ namespace MAX_EA
                     maxAtt.value = xAtt.ElementValue("Default");
                     maxAtt.type = xAtt.ElementValue("Type");
                     maxAtt.stereotype = xAtt.ElementValue("Stereotype");
-                    if (xAtt.ElementValueInt("Const") == 1)
+                    int constValue = xAtt.ElementValueInt("Const", -1);
+                    if (constValue == 1)
                     {
                         maxAtt.isReadOnly = true;
                         maxAtt.isReadOnlySpecified = true;

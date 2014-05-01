@@ -21,9 +21,17 @@ namespace MAX_EA
             return value;
         }
 
-        public static int ElementValueInt(this XElement xElement, string name)
+        public static int ElementValueInt(this XElement xElement, string name, int defaultValue = -1)
         {
-            return int.Parse(ElementValue(xElement, name));
+            string value = ElementValue(xElement, name);
+            if (string.IsNullOrEmpty(value))
+            {
+                return defaultValue;
+            }
+            else
+            {
+                return int.Parse(value);
+            }
         }
 
         public static DateTime ElementValueDateTime(this XElement xElement, string name)
