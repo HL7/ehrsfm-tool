@@ -59,6 +59,17 @@ namespace HL7_FM_EA_Extension
             if (modelElement != null && repository != null)
             {
                 modelElement.Path = getModelElementPath(repository, element);
+
+                // The ProfileType is needed for R2FunctionCI's in the FunctionForm
+                if (modelElement is R2FunctionCI)
+                {
+                    R2FunctionCI function = (R2FunctionCI) modelElement;
+                    EA.Package ProfileDefinitionPackage = repository.GetPackageByID(function._ciElement.PackageID);
+                    if (R2Const.ST_FM_PROFILEDEFINITION.Equals(ProfileDefinitionPackage.StereotypeEx))
+                    {
+                        function.ProfileType = EAHelper.getTaggedValue(ProfileDefinitionPackage.Element, "Type");
+                    }
+                }
             }
             return modelElement;
         }
@@ -100,7 +111,7 @@ namespace HL7_FM_EA_Extension
          * Create a string containing the element path joined with '/' up to the <HL7-FM> stereotyped package.
          * This is used for as title for Section/Header/Function/Criteria Forms.
          */
-        public static string getModelElementPath(EA.Repository repository, EA.Element element)
+        private static string getModelElementPath(EA.Repository repository, EA.Element element)
         {
             List<string> path = new List<string>();
             EA.Element el = element;
@@ -147,7 +158,7 @@ namespace HL7_FM_EA_Extension
         public const string TV_DEPENDENT = "Dependent";
         public const string TV_CONDITIONAL = "Conditional";
 
-        public enum ProfileTypes
+        public enum ProfileType
         {
             Companion,
             Domain,
@@ -181,7 +192,7 @@ namespace HL7_FM_EA_Extension
 
     public abstract class R2ModelElement
     {
-        internal string _path;
+        private string _path;
         internal EA.Element _element;
 
         public R2ModelElement(EA.Element element)
@@ -200,9 +211,19 @@ namespace HL7_FM_EA_Extension
             get { return _element.Stereotype; }
         }
 
-        public void Update()
+        public virtual void Update()
         {
             _element.Update();
+        }
+
+        internal string FormatLastModified(DateTime dateTime)
+        {
+            return dateTime.ToString();
+        }
+
+        public virtual string LastModified
+        {
+            get { return FormatLastModified(_element.Modified); }
         }
 
         internal Dictionary<string, string> splitNotes(string notes)
@@ -364,25 +385,25 @@ namespace HL7_FM_EA_Extension
             set { _element.Alias = value; }
         }
 
-        public string Name
+        public virtual string Name
         {
             get { return _element.Name; }
             set { _element.Name = value; }
         }
 
-        public string Statement
+        public virtual string Statement
         {
             get { return _statement; }
             set { _statement = value; updateElementNotes(); }
         }
 
-        public string Description
+        public virtual string Description
         {
             get { return _description; }
             set { _description = value; updateElementNotes(); }
         }
 
-        public string Example
+        public virtual string Example
         {
             get { return _example; }
             set { _example = value; updateElementNotes(); }
@@ -417,7 +438,7 @@ namespace HL7_FM_EA_Extension
                 // If the name doesnot contain a '#' yet, assume 1
                 if (sepIdx == -1)
                 {
-                    return 1;
+                    return 0;
                 }
                 else
                 {
@@ -481,11 +502,21 @@ namespace HL7_FM_EA_Extension
      */
     public class R2CriterionCI : R2Criterion, CompilerInstruction
     {
-        private EA.Element _ciElement;
+        internal EA.Element _ciElement;
 
         public R2CriterionCI(EA.Element ciElement, EA.Element element) : base(element)
         {
             _ciElement = ciElement;
+        }
+
+        public override void Update()
+        {
+            _ciElement.Update();
+        }
+
+        public override string LastModified
+        {
+            get { return FormatLastModified(_ciElement.Modified); }
         }
 
         public const string EmptyPriority = "";
@@ -562,7 +593,6 @@ namespace HL7_FM_EA_Extension
                 {
                     _ciElement.Notes = value;
                 }
-                _ciElement.Update();
             }
         }
 
@@ -669,11 +699,44 @@ namespace HL7_FM_EA_Extension
      */
     public class R2FunctionCI : R2Function, CompilerInstruction
     {
-        private EA.Element _ciElement;
+        internal EA.Element _ciElement;
+        private string _profileType;
 
         public R2FunctionCI(EA.Element ciElement, EA.Element element) : base(element)
         {
             _ciElement = ciElement;
+
+            string notes = ciElement.Notes;
+            Dictionary<string, string> noteParts = splitNotes(notes);
+            _statement = noteParts.ContainsKey("ST") ? noteParts["ST"] : "";
+            _description = noteParts.ContainsKey("DE") ? noteParts["DE"] : "";
+            _example = noteParts.ContainsKey("EX") ? noteParts["EX"] : "";
+        }
+
+        private void updateElementNotes()
+        {
+            string notes = string.Format("$ST${0}$DE${1}$EX${2}", _statement, _description, _example);
+            _ciElement.Notes = notes;
+        }
+
+        public override void Update()
+        {
+            _ciElement.Update();
+        }
+
+        public override string LastModified
+        {
+            get { return FormatLastModified(_ciElement.Modified); }
+        }
+
+        private string _statement;
+        private string _description;
+        private string _example;
+
+        public string ProfileType
+        {
+            get { return _profileType;  }
+            set { _profileType = value; }
         }
 
         public const string EmptyPriority = "";
@@ -693,6 +756,114 @@ namespace HL7_FM_EA_Extension
                 {
                     EAHelper.updateTaggedValue(_ciElement, R2Const.TV_PRIORITY, value);
                 }
+            }
+        }
+
+        public override string Name
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_ciElement.Name))
+                {
+                    return base.Name;
+                }
+                else
+                {
+                    return _ciElement.Name;
+                }
+            }
+            set
+            {
+                if (value.Equals(base.Name) || string.IsNullOrEmpty(value))
+                {
+                    _ciElement.Name = base.Name;
+                }
+                else
+                {
+                    _ciElement.Name = value;
+                }
+                _ciElement.Update();
+            }
+        }
+
+        public override string Statement
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_statement))
+                {
+                    return base.Statement;
+                }
+                else
+                {
+                    return _statement;
+                }
+            }
+            set
+            {
+                if (value.Equals(base.Statement))
+                {
+                    _statement = "";
+                }
+                else
+                {
+                    _statement = value;
+                }
+                updateElementNotes();
+            }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_description))
+                {
+                    return base.Description;
+                }
+                else
+                {
+                    return _description;
+                }
+            }
+            set
+            {
+                if (value.Equals(base.Description))
+                {
+                    _description = "";
+                }
+                else
+                {
+                    _description = value;
+                }
+                updateElementNotes();
+            }
+        }
+
+        public override string Example
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_example))
+                {
+                    return base.Example;
+                }
+                else
+                {
+                    return _example;
+                }
+            }
+            set
+            {
+                if (value.Equals(base.Example))
+                {
+                    _example = "";
+                }
+                else
+                {
+                    _example = value;
+                }
+                updateElementNotes();
             }
         }
     }

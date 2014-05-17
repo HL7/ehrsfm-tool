@@ -16,6 +16,13 @@ namespace HL7_FM_EA_Extension
             InitializeComponent();
         }
 
+        public const string TV_TYPE = "Type";
+        public const string TV_LANGUAGETAG = "LanguageTag";
+        public const string TV_RATIONALE = "Rationale";
+        public const string TV_SCOPE = "Scope";
+        public const string TV_PRIODESC = "PrioritiesDefinition";
+        public const string TV_CONFCLAUSE = "ConformanceClause";
+
         private EA.Package ProfileDefinitionPackage;
 
         public void Show(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
@@ -26,12 +33,12 @@ namespace HL7_FM_EA_Extension
             nameTextBox.Text = element.Name;
             versionTextBox.Text = element.Version;
             dateTimePicker1.Value = element.Modified;
-            comboBox1.SelectedItem = EAHelper.getTaggedValue(element, "Type");
-            comboBox2.SelectedItem = EAHelper.getTaggedValue(element, "LanguageTag");
-            rationaleTextBox.Text = EAHelper.getTaggedValueNotes(element, "Rationale");
-            scopeTextBox.Text = EAHelper.getTaggedValueNotes(element, "Scope");
-            prioDescTextBox.Text = EAHelper.getTaggedValueNotes(element, "PrioritiesDescription");
-            confClauseTextBox.Text = EAHelper.getTaggedValueNotes(element, "ConformanceClause");
+            comboBox1.SelectedItem = EAHelper.getTaggedValue(element, TV_TYPE);
+            comboBox2.SelectedItem = EAHelper.getTaggedValue(element, TV_LANGUAGETAG);
+            rationaleTextBox.Text = EAHelper.getTaggedValueNotes(element, TV_RATIONALE);
+            scopeTextBox.Text = EAHelper.getTaggedValueNotes(element, TV_SCOPE);
+            prioDescTextBox.Text = EAHelper.getTaggedValueNotes(element, TV_PRIODESC);
+            confClauseTextBox.Text = EAHelper.getTaggedValueNotes(element, TV_CONFCLAUSE);
 
             // TODO: If basemodel is profile, then use tagged values to construct name
             baseModelTextBox.Text = getAssociatedBaseModelName(Repository, ProfileDefinitionPackage);
@@ -76,12 +83,12 @@ namespace HL7_FM_EA_Extension
             element.Modified = dateTimePicker1.Value;
             element.Update();
 
-            EAHelper.updateTaggedValue(element, "Type", comboBox1.Text);
-            EAHelper.updateTaggedValue(element, "LanguageTag", comboBox2.Text);
-            EAHelper.updateTaggedValue(element, "Rationale", "<memo>", rationaleTextBox.Text);
-            EAHelper.updateTaggedValue(element, "Scope", "<memo>", scopeTextBox.Text);
-            EAHelper.updateTaggedValue(element, "PrioritiesDefinition", "<memo>", prioDescTextBox.Text);
-            EAHelper.updateTaggedValue(element, "ConformanceClause", "<memo>", confClauseTextBox.Text);
+            EAHelper.updateTaggedValue(element, TV_TYPE, comboBox1.Text);
+            EAHelper.updateTaggedValue(element, TV_LANGUAGETAG, comboBox2.Text);
+            EAHelper.updateTaggedValue(element, TV_RATIONALE, "<memo>", rationaleTextBox.Text);
+            EAHelper.updateTaggedValue(element, TV_SCOPE, "<memo>", scopeTextBox.Text);
+            EAHelper.updateTaggedValue(element, TV_PRIODESC, "<memo>", prioDescTextBox.Text);
+            EAHelper.updateTaggedValue(element, TV_CONFCLAUSE, "<memo>", confClauseTextBox.Text);
         }
     }
 }

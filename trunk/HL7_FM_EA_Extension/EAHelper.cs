@@ -15,11 +15,8 @@ namespace HL7_FM_EA_Extension
 
         public static void updateTaggedValue(EA.Element element, string name, string value, string notes=null)
         {
-            EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(name);
-            if (tv == null)
-            {
-                tv = (EA.TaggedValue)element.TaggedValues.AddNew(name, "TaggedValue");
-            }
+            deleteTaggedValue(element, name);
+            EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.AddNew(name, "TaggedValue");
             tv.Value = value;
             if (notes != null)
             {

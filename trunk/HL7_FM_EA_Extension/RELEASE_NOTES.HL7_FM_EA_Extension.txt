@@ -5,6 +5,21 @@
 
 CHANGELOG
 =========
+[2014-may-17]
+R2Model,FunctionForm
+- Enable editing of Description/Example always and Function/Statement only when type = Realm
+- Added switch to base for comparison
+R2Model,SectionForm,FunctionForm,CriterionForm
+- Added lastmodified timestamp in title
+
+[2014-may-07]
+EAHelper
+- Somehow double tagged values exist, for now first delete and then set Tagged Value on update. This will remove any doubles.
+
+[2014-may-01]
+Criterion
+- Defaults to 0, form now accepts 0.
+
 [2014-apr-29]
 MDG
 - Updated learning center profile; typo in URLs

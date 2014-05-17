@@ -41,7 +41,7 @@ namespace HL7_FM_EA_Extension
 
             if (criterion is CompilerInstruction)
             {
-                Text = string.Format("EHR-S FM Criterion: {0} (Profile Definition)", criterion.Name);
+                Text = string.Format("EHR-S FM Criterion: {0} (Profile Definition) @{1}", criterion.Name, criterion.LastModified);
                 switchLinkLabel.Text = "Switch to base Element";
                 label1.Visible = true;
                 priorityComboBox.Visible = true;
@@ -49,7 +49,7 @@ namespace HL7_FM_EA_Extension
             }
             else
             {
-                Text = string.Format("EHR-S FM Criterion: {0}", criterion.Name);
+                Text = string.Format("EHR-S FM Criterion: {0} @{1}", criterion.Name, criterion.LastModified);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
                 label1.Visible = false;
                 priorityComboBox.Visible = false;
@@ -59,7 +59,7 @@ namespace HL7_FM_EA_Extension
             BackColor = R2Config.config.getSectionColor(criterion.Name, DefaultBackColor);
             pathLabel.Text = criterion.Path;
 
-            idNumericUpDown.Minimum = 1;
+            idNumericUpDown.Minimum = 0;
             idNumericUpDown.Maximum = 99;
             idNumericUpDown.Value = criterion.CriterionID;
             textTextBox.Text = criterion.Text;
@@ -129,7 +129,7 @@ namespace HL7_FM_EA_Extension
         }
 
         private bool switched = false;
-        private void baseLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void switchLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (!switched)
             {
