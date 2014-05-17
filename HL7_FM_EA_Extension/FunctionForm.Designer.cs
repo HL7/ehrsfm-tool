@@ -46,6 +46,7 @@
             this.applyButton = new System.Windows.Forms.Button();
             this.priorityComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.switchLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -209,11 +210,23 @@
             this.label3.TabIndex = 32;
             this.label3.Text = "Priority";
             // 
+            // switchLinkLabel
+            // 
+            this.switchLinkLabel.AutoSize = true;
+            this.switchLinkLabel.Location = new System.Drawing.Point(15, 525);
+            this.switchLinkLabel.Name = "switchLinkLabel";
+            this.switchLinkLabel.Size = new System.Drawing.Size(80, 13);
+            this.switchLinkLabel.TabIndex = 34;
+            this.switchLinkLabel.TabStop = true;
+            this.switchLinkLabel.Text = "Switch Element";
+            this.switchLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.switchLinkLabel_LinkClicked);
+            // 
             // FunctionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 555);
+            this.Controls.Add(this.switchLinkLabel);
             this.Controls.Add(this.priorityComboBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.helpButton);
@@ -264,5 +277,6 @@
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.ComboBox priorityComboBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel switchLinkLabel;
     }
 }

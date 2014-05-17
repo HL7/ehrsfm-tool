@@ -22,7 +22,7 @@ namespace HL7_FM_EA_Extension
         {
             _section = section;
 
-            Text = string.Format("EHR-S FM Section: {0}", _section.Name);
+            Text = string.Format("EHR-S FM Section: {0} @{1}", _section.Name, _section.LastModified);
             BackColor = R2Config.config.getSectionColor(_section.SectionID, DefaultBackColor);
 
             // Other properties

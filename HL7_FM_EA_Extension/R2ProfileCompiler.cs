@@ -230,7 +230,7 @@ namespace HL7_FM_EA_Extension
                     {
                         if (child.instruction != null && child.instruction.tag != null)
                         {
-                            TagType tagQualifier = child.instruction.tag.SingleOrDefault(t => t.name == R2Const.TV_QUALIFIER);
+                            TagType tagQualifier = child.instruction.tag.FirstOrDefault(t => t.name == R2Const.TV_QUALIFIER);
                             if (tagQualifier != null && QUALIFIER_EXCLUDE.Equals(tagQualifier.value))
                             {
                                 continue;
@@ -369,7 +369,7 @@ namespace HL7_FM_EA_Extension
                 }
 
                 // override Priority
-                TagType tagPriorityNew = node.instruction.tag.SingleOrDefault(t => t.name == R2Const.TV_PRIORITY);
+                TagType tagPriorityNew = node.instruction.tag.FirstOrDefault(t => t.name == R2Const.TV_PRIORITY);
                 if (tagPriorityNew != null)
                 {
                     TagType tagPriority = node.metadata.tag.Single(t => t.name == R2Const.TV_PRIORITY);

@@ -21,17 +21,25 @@ namespace HL7_FM_EA_Extension
         public void Show(R2Function function)
         {
             _function = function;
+            setShowingFunction(function, true);
+            switchLinkLabel.Visible = (function is CompilerInstruction);
+            ShowDialog();
+        }
 
+        private void setShowingFunction(R2Function function, bool enableEdit)
+        {
             if (function is CompilerInstruction)
             {
-                Text = string.Format("EHR-S FM {0}: {1} (Profile Definition)", _function.Stereotype, _function.Name);
+                Text = string.Format("EHR-S FM {0}: {1} (Profile Definition) @{2}", function.Stereotype, function.Name, function.LastModified);
+                switchLinkLabel.Text = "Switch to base Element";
                 label3.Visible = true;
                 priorityComboBox.SelectedItem = ((R2FunctionCI)function).Priority;
                 priorityComboBox.Visible = true;
             }
             else
             {
-                Text = string.Format("EHR-S FM {0}: {1}", _function.Stereotype, _function.Name);
+                Text = string.Format("EHR-S FM {0}: {1} @{2}", _function.Stereotype, function.Name, function.LastModified);
+                switchLinkLabel.Text = "Back to Profile Definition Element";
                 label3.Visible = false;
                 priorityComboBox.SelectedItem = R2FunctionCI.EmptyPriority;
                 priorityComboBox.Visible = false;
@@ -47,13 +55,34 @@ namespace HL7_FM_EA_Extension
             descriptionTextBox.Text = _function.Description;
             exampleTextBox.Text = _function.Example;
 
-            bool enable = !(function is CompilerInstruction);
-            nameTextBox.Enabled = enable;
-            idTextBox.Enabled = enable;
-            statementTextBox.Enabled = enable;
-            descriptionTextBox.Enabled = enable;
-            exampleTextBox.Enabled = enable;
-            ShowDialog();
+            if (enableEdit)
+            {
+                if (function is CompilerInstruction)
+                {
+                    idTextBox.Enabled = false;
+                    bool isRealm = "Realm".Equals(((R2FunctionCI) function).ProfileType);
+                    nameTextBox.Enabled = isRealm;
+                    statementTextBox.Enabled = isRealm;
+                    descriptionTextBox.Enabled = true;
+                    exampleTextBox.Enabled = true;
+                }
+                else
+                {
+                    nameTextBox.Enabled = true;
+                    idTextBox.Enabled = true;
+                    statementTextBox.Enabled = true;
+                    descriptionTextBox.Enabled = true;
+                    exampleTextBox.Enabled = true;
+                }
+            }
+            else
+            {
+                nameTextBox.Enabled = false;
+                idTextBox.Enabled = false;
+                statementTextBox.Enabled = false;
+                descriptionTextBox.Enabled = false;
+                exampleTextBox.Enabled = false;
+            }
         }
 
         private void applyChanges()
@@ -106,6 +135,23 @@ namespace HL7_FM_EA_Extension
                 id = nameTextBox.Text.Substring(0, spidx);
             }
             idTextBox.Text = id;
+        }
+
+        private bool switched = false;
+        private void switchLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!switched)
+            {
+                switched = true;
+                R2Function baseFunction = (R2Function)R2Model.GetBase(_function);
+                // Disable edit of base to prevent accidental changes
+                setShowingFunction(baseFunction, false);
+            }
+            else
+            {
+                switched = false;
+                setShowingFunction(_function, true);
+            }
         }
     }
 }

@@ -171,7 +171,7 @@
             this.switchLinkLabel.TabStop = true;
             this.switchLinkLabel.Text = "Switch Element";
             this.toolTip1.SetToolTip(this.switchLinkLabel, "If you switch edits will be lost. Press Apply to keep changes.");
-            this.switchLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.baseLinkLabel_LinkClicked);
+            this.switchLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.switchLinkLabel_LinkClicked);
             // 
             // cancelButton
             // 
