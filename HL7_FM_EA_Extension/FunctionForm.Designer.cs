@@ -34,8 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.exampleTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.pathLabel = new System.Windows.Forms.Label();
@@ -93,27 +91,9 @@
             this.label4.TabIndex = 20;
             this.label4.Text = "Description";
             // 
-            // exampleTextBox
-            // 
-            this.exampleTextBox.Location = new System.Drawing.Point(99, 372);
-            this.exampleTextBox.Multiline = true;
-            this.exampleTextBox.Name = "exampleTextBox";
-            this.exampleTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.exampleTextBox.Size = new System.Drawing.Size(661, 142);
-            this.exampleTextBox.TabIndex = 23;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 375);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Example";
-            // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(502, 520);
+            this.okButton.Location = new System.Drawing.Point(502, 376);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(60, 23);
             this.okButton.TabIndex = 25;
@@ -123,7 +103,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(568, 520);
+            this.cancelButton.Location = new System.Drawing.Point(568, 376);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(60, 23);
             this.cancelButton.TabIndex = 24;
@@ -171,7 +151,7 @@
             // helpButton
             // 
             this.helpButton.Enabled = false;
-            this.helpButton.Location = new System.Drawing.Point(700, 520);
+            this.helpButton.Location = new System.Drawing.Point(700, 376);
             this.helpButton.Name = "helpButton";
             this.helpButton.Size = new System.Drawing.Size(60, 23);
             this.helpButton.TabIndex = 31;
@@ -180,7 +160,7 @@
             // 
             // applyButton
             // 
-            this.applyButton.Location = new System.Drawing.Point(634, 520);
+            this.applyButton.Location = new System.Drawing.Point(634, 376);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(60, 23);
             this.applyButton.TabIndex = 30;
@@ -213,7 +193,7 @@
             // switchLinkLabel
             // 
             this.switchLinkLabel.AutoSize = true;
-            this.switchLinkLabel.Location = new System.Drawing.Point(15, 525);
+            this.switchLinkLabel.Location = new System.Drawing.Point(15, 381);
             this.switchLinkLabel.Name = "switchLinkLabel";
             this.switchLinkLabel.Size = new System.Drawing.Size(80, 13);
             this.switchLinkLabel.TabIndex = 34;
@@ -225,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 555);
+            this.ClientSize = new System.Drawing.Size(772, 411);
             this.Controls.Add(this.switchLinkLabel);
             this.Controls.Add(this.priorityComboBox);
             this.Controls.Add(this.label3);
@@ -237,8 +217,6 @@
             this.Controls.Add(this.pathLabel);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.exampleTextBox);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.idTextBox);
@@ -265,8 +243,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox exampleTextBox;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label pathLabel;

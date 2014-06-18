@@ -38,7 +38,7 @@ namespace HL7_FM_EA_Extension
             }
             else
             {
-                Text = string.Format("EHR-S FM {0}: {1} @{2}", _function.Stereotype, function.Name, function.LastModified);
+                Text = string.Format("EHR-S FM {0}: {1} @{2}", function.Stereotype, function.Name, function.LastModified);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
                 label3.Visible = false;
                 priorityComboBox.SelectedItem = R2FunctionCI.EmptyPriority;
@@ -49,11 +49,10 @@ namespace HL7_FM_EA_Extension
             pathLabel.Text = function.Path;
 
             // Other properties
-            nameTextBox.Text = _function.Name;
-            idTextBox.Text = _function.FunctionID;
-            statementTextBox.Text = _function.Statement;
-            descriptionTextBox.Text = _function.Description;
-            exampleTextBox.Text = _function.Example;
+            nameTextBox.Text = function.Name;
+            idTextBox.Text = function.FunctionID;
+            statementTextBox.Text = function.Statement;
+            descriptionTextBox.Text = function.Description;
 
             if (enableEdit)
             {
@@ -64,7 +63,6 @@ namespace HL7_FM_EA_Extension
                     nameTextBox.Enabled = isRealm;
                     statementTextBox.Enabled = isRealm;
                     descriptionTextBox.Enabled = true;
-                    exampleTextBox.Enabled = true;
                 }
                 else
                 {
@@ -72,7 +70,6 @@ namespace HL7_FM_EA_Extension
                     idTextBox.Enabled = true;
                     statementTextBox.Enabled = true;
                     descriptionTextBox.Enabled = true;
-                    exampleTextBox.Enabled = true;
                 }
             }
             else
@@ -81,7 +78,6 @@ namespace HL7_FM_EA_Extension
                 idTextBox.Enabled = false;
                 statementTextBox.Enabled = false;
                 descriptionTextBox.Enabled = false;
-                exampleTextBox.Enabled = false;
             }
         }
 
@@ -91,7 +87,6 @@ namespace HL7_FM_EA_Extension
             _function.Name = nameTextBox.Text;
             _function.Statement = statementTextBox.Text;
             _function.Description = descriptionTextBox.Text;
-            _function.Example = exampleTextBox.Text;
             _function.Update();
 
             if (_function is CompilerInstruction)

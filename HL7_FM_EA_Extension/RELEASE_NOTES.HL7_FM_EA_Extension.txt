@@ -5,6 +5,18 @@
 
 CHANGELOG
 =========
+[2014-jun-05]
+FunctionForm
+- Reported by Giorgio Italy. 'Switch to baseelement' did not work. Fixed.
+
+[2014-jun-04]
+R2Model
+- Made name parsing into FunctionID/CriterionID more robust.
+
+[2014-may-21]
+R2Model,FunctionForm
+- GForge3285: Removed Example field. Was never supposed to be there.
+
 [2014-may-17]
 R2Model,FunctionForm
 - Enable editing of Description/Example always and Function/Statement only when type = Realm
