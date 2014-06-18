@@ -356,7 +356,7 @@ namespace MAX_EA
                 if (!Enum.IsDefined(typeof(ObjectTypeEnum), Object_Type))
                 {
                     progress.step();
-                    Repository.WriteOutput("MAX", string.Format("Ignored Object {0} with not supported Object_Type {1}", Object_ID, Object_Type), -1);
+                    Repository.WriteOutput("MAX", string.Format("Ignored Object \"{0}\" not supported type \"{1}\"", Object_ID, Object_Type), -1);
                     issues = true;
                     continue;
                 }
@@ -465,7 +465,7 @@ namespace MAX_EA
                 if (!Enum.IsDefined(typeof(RelationshipTypeEnum), Connector_Type))
                 {
                     progress.step();
-                    Repository.WriteOutput("MAX", string.Format("Ignored the (not supported) relationship type {0}", Connector_Type), -1);
+                    Repository.WriteOutput("MAX", string.Format("Ignored Relationship with not supported type \"{0}\"", Connector_Type), -1);
                     issues = true;
                     continue;
                 }
@@ -500,26 +500,37 @@ namespace MAX_EA
             }
         }
 
-        private String mapObjectID2MAXID(int objectId)
+        private string mapObjectID2MAXID(int objectId)
         {
-            String maxId;
+            string maxId;
             if (_objectID2MAXIDDict.ContainsKey(objectId))
             {
                 maxId = _objectID2MAXIDDict[objectId];
             }
             else
             {
-                // Probably an element outside selected package, try to get MAX_ID tagged value
-                EA.Element eaElement = Repository.GetElementByID(objectId);
-                EA.TaggedValue tvID = (EA.TaggedValue)eaElement.TaggedValues.GetByName(TV_MAX_ID);
-                if (tvID != null)
+                try
                 {
-                    maxId = tvID.Value;
-                    _objectID2MAXIDDict[objectId] = maxId;
+                    // Probably an element outside selected package, try to get MAX_ID tagged value
+                    EA.Element eaElement = Repository.GetElementByID(objectId);
+                    EA.TaggedValue tvID = (EA.TaggedValue)eaElement.TaggedValues.GetByName(TV_MAX_ID);
+                    if (tvID != null)
+                    {
+                        maxId = tvID.Value;
+                        _objectID2MAXIDDict[objectId] = maxId;
+                    }
+                    else
+                    {
+                        maxId = objectId.ToString();
+                    }
                 }
-                else
+                catch (Exception guru)
                 {
+                    // Problem getting the element with this ID
+                    // TODO: Log this message; figure out how this can happen
                     maxId = objectId.ToString();
+                    Repository.WriteOutput("MAX", string.Format("Problem getting Object \"{0}\" from Repository: {1}", objectId, guru.Message), -1);
+                    issues = true;
                 }
             }
             return maxId;

@@ -366,18 +366,16 @@ namespace HL7_FM_EA_Extension
             Dictionary<string, string> noteParts = splitNotes(notes);
             _statement = noteParts.ContainsKey("ST") ? noteParts["ST"] : "";
             _description = noteParts.ContainsKey("DE") ? noteParts["DE"] : "";
-            _example = noteParts.ContainsKey("EX") ? noteParts["EX"] : "";
         }
 
         private void updateElementNotes()
         {
-            string notes = string.Format("$ST${0}$DE${1}$EX${2}", _statement, _description, _example);
+            string notes = string.Format("$ST${0}$DE${1}", _statement, _description);
             _element.Notes = notes;
         }
 
         private string _statement;
         private string _description;
-        private string _example;
 
         public string FunctionID
         {
@@ -402,12 +400,6 @@ namespace HL7_FM_EA_Extension
             get { return _description; }
             set { _description = value; updateElementNotes(); }
         }
-
-        public virtual string Example
-        {
-            get { return _example; }
-            set { _example = value; updateElementNotes(); }
-        }
     }
 
     public class R2Criterion : R2ModelElement
@@ -426,7 +418,14 @@ namespace HL7_FM_EA_Extension
             get
             {
                 int sepIdx = _element.Name.IndexOf('#');
-                return _element.Name.Substring(0, sepIdx);
+                if (sepIdx == -1)
+                {
+                    return _element.Name;
+                }
+                else
+                {
+                    return _element.Name.Substring(0, sepIdx);
+                }
             }
         }
 
@@ -435,7 +434,7 @@ namespace HL7_FM_EA_Extension
             get
             {
                 int sepIdx = _element.Name.IndexOf('#');
-                // If the name doesnot contain a '#' yet, assume 1
+                // If the name doesnot contain a '#' yet, assume 0
                 if (sepIdx == -1)
                 {
                     return 0;
@@ -449,10 +448,7 @@ namespace HL7_FM_EA_Extension
             }
             set
             {
-                int sepIdx = _element.Name.IndexOf('#');
-                if (sepIdx == -1) sepIdx = _element.Name.Length;
-                string functionID = _element.Name.Substring(0, sepIdx);
-                _element.Name = string.Format("{0}#{1:00}", functionID, value);
+                _element.Name = string.Format("{0}#{1:00}", FunctionID, value);
             }
         }
 
@@ -549,6 +545,10 @@ namespace HL7_FM_EA_Extension
             get
             {
                 int sepIdx = _ciElement.Name.IndexOf('#');
+                if (sepIdx == -1)
+                {
+                    return _ciElement.Name;
+                }
                 return _ciElement.Name.Substring(0, sepIdx);
             }
         }
@@ -558,15 +558,18 @@ namespace HL7_FM_EA_Extension
             get
             {
                 int sepIdx = _ciElement.Name.IndexOf('#');
+                // If the name doesnot contain a '#' yet, assume 0
+                if (sepIdx == -1)
+                {
+                    return 0;
+                }
                 int sepIdx2 = _ciElement.Name.IndexOf(' ', sepIdx);
                 if (sepIdx2 == -1) sepIdx2 = _ciElement.Name.Length;
                 return decimal.Parse(_ciElement.Name.Substring(sepIdx + 1, sepIdx2 - sepIdx - 1));
             }
             set
             {
-                int sepIdx = _ciElement.Name.IndexOf('#');
-                string functionID = _ciElement.Name.Substring(0, sepIdx);
-                _ciElement.Name = string.Format("{0}#{1:00}", functionID, value);
+                _ciElement.Name = string.Format("{0}#{1:00}", FunctionID, value);
             }
         }
 
@@ -578,10 +581,7 @@ namespace HL7_FM_EA_Extension
                 {
                     return base.Text;
                 }
-                else
-                {
-                    return _ciElement.Notes;
-                }
+                return _ciElement.Notes;
             }
             set
             {
@@ -710,12 +710,11 @@ namespace HL7_FM_EA_Extension
             Dictionary<string, string> noteParts = splitNotes(notes);
             _statement = noteParts.ContainsKey("ST") ? noteParts["ST"] : "";
             _description = noteParts.ContainsKey("DE") ? noteParts["DE"] : "";
-            _example = noteParts.ContainsKey("EX") ? noteParts["EX"] : "";
         }
 
         private void updateElementNotes()
         {
-            string notes = string.Format("$ST${0}$DE${1}$EX${2}", _statement, _description, _example);
+            string notes = string.Format("$ST${0}$DE${1}", _statement, _description);
             _ciElement.Notes = notes;
         }
 
@@ -731,7 +730,6 @@ namespace HL7_FM_EA_Extension
 
         private string _statement;
         private string _description;
-        private string _example;
 
         public string ProfileType
         {
@@ -835,33 +833,6 @@ namespace HL7_FM_EA_Extension
                 else
                 {
                     _description = value;
-                }
-                updateElementNotes();
-            }
-        }
-
-        public override string Example
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_example))
-                {
-                    return base.Example;
-                }
-                else
-                {
-                    return _example;
-                }
-            }
-            set
-            {
-                if (value.Equals(base.Example))
-                {
-                    _example = "";
-                }
-                else
-                {
-                    _example = value;
                 }
                 updateElementNotes();
             }

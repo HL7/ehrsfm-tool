@@ -33,6 +33,10 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2014-jun-13]
+MAXExporter3
+- BUG: Sometimes an objectId is reported that cannot be accessed with Repository.GetElementById. Workaround by catching the Exception.
+
 [2014-apr-29]
 MAXExporter3,ExtensionMethods
 - Gave ElementValueInt a defaultValue. EA VirtualDocuments attributes are of type Package which don't have a Const column.
