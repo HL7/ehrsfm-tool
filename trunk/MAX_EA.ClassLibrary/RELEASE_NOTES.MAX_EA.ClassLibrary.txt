@@ -33,6 +33,10 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2014-jun-20]
+MAXExporter3
+- Forgot to export tagged values for relationships.
+
 [2014-jun-13]
 MAXExporter3
 - BUG: Sometimes an objectId is reported that cannot be accessed with Repository.GetElementById. Workaround by catching the Exception.
