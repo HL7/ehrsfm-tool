@@ -297,44 +297,44 @@ namespace MAX_EA
             int Package_Object_ID = packageToObjectIDDict[Package_ID];
 
             // get objects in selected package
-            string sql = string.Format("SELECT Object_ID, ea_guid, Object_Type, Name, Alias, Note, Package_ID, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object WHERE Package_ID={0} AND Object_Type<>'Package' ORDER BY TPos,Object_ID", Package_ID);
-            string xml = Repository.SQLQuery(sql);
-            XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
+            XElement xEADATA = executeQuery(string.Format("SELECT Object_ID, ea_guid, Object_Type, Name, Alias, Note, Package_ID, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object WHERE Package_ID={0} AND Object_Type<>'Package' ORDER BY TPos,Object_ID", Package_ID));
 
-            // get tagged values in objects in selected package
-            string sql_tv = string.Format("SELECT op.Object_ID, op.Property, op.Value, op.Notes FROM t_object o, t_objectproperties op WHERE Package_ID={0} AND o.Object_ID=op.Object_ID", Package_ID);
-            string xml_tv = Repository.SQLQuery(sql_tv);
-            XElement xEADATA_tv = XElement.Parse(xml_tv, LoadOptions.None);
+            // get tagged values for objects in selected package
+            XElement xEADATA_tv = executeQuery(string.Format("SELECT op.Object_ID, op.Property, op.Value, op.Notes FROM t_object o, t_objectproperties op WHERE Package_ID={0} AND o.Object_ID=op.Object_ID", Package_ID));
 
-            // get relationships in objects in selected package
-            string sql_con = string.Format("SELECT c.Connector_ID, c.Connector_Type, c.Name, c.Notes, c.Start_Object_ID, c.SourceCard, c.SourceRole, c.End_Object_ID, c.DestCard, c.DestRole, c.Stereotype FROM t_connector c, t_object WHERE Start_Object_ID=Object_ID AND Package_ID={0}", Package_ID);
-            string xml_con = Repository.SQLQuery(sql_con);
-            XElement xEADATA_con = XElement.Parse(xml_con, LoadOptions.None);
+            // get relationships for objects in selected package
+            XElement xEADATA_con = executeQuery(string.Format("SELECT c.Connector_ID, c.Connector_Type, c.Name, c.Notes, c.Start_Object_ID, c.SourceCard, c.SourceRole, c.End_Object_ID, c.DestCard, c.DestRole, c.Stereotype FROM t_connector c, t_object WHERE Start_Object_ID=Object_ID AND Package_ID={0}", Package_ID));
 
-            doit(xEADATA, xEADATA_tv, xEADATA_con, Package_Object_ID);
+            // get ALL tagged values for relationships for objects in selected package
+            XElement xEADATA_con_tv = executeQuery("SELECT ct.ElementID, ct.Property, ct.Value, ct.Notes FROM t_connectortag ct");
+
+            doit(xEADATA, xEADATA_tv, xEADATA_con, xEADATA_con_tv, Package_Object_ID);
         }
 
         private void visitDiagramObjects(int Diagram_ID)
         {
             // get objects in selected diagram
-            string sql = string.Format("SELECT o.Object_ID, ea_guid, Object_Type, Name, Alias, Note, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object o, t_diagramobjects d WHERE d.Diagram_ID = {0} AND o.Object_ID = d.Object_ID", Diagram_ID);
-            string xml = Repository.SQLQuery(sql);
-            XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
+            XElement xEADATA = executeQuery(string.Format("SELECT o.Object_ID, ea_guid, Object_Type, Name, Alias, Note, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object o, t_diagramobjects d WHERE d.Diagram_ID = {0} AND o.Object_ID = d.Object_ID", Diagram_ID));
 
             // get tagged values in objects in selected diagram
-            string sql_tv = string.Format("SELECT op.Object_ID, op.Property, op.Value, op.Notes FROM t_diagramobjects d, t_object o, t_objectproperties op WHERE d.Diagram_ID = {0} AND o.Object_ID=op.Object_ID AND d.Object_ID=o.Object_ID", Diagram_ID);
-            string xml_tv = Repository.SQLQuery(sql_tv);
-            XElement xEADATA_tv = XElement.Parse(xml_tv, LoadOptions.None);
+            XElement xEADATA_tv = executeQuery(string.Format("SELECT op.Object_ID, op.Property, op.Value, op.Notes FROM t_diagramobjects d, t_object o, t_objectproperties op WHERE d.Diagram_ID = {0} AND o.Object_ID=op.Object_ID AND d.Object_ID=o.Object_ID", Diagram_ID));
 
             // get relationships for connectors in the diagram
-            string sql_con = string.Format("SELECT c.Connector_ID, c.Connector_Type, c.Name, c.Notes, c.Start_Object_ID, c.SourceCard, c.SourceRole, c.End_Object_ID, c.DestCard, c.DestRole, c.Stereotype FROM t_diagramlinks dl, t_connector c WHERE dl.DiagramID={0} AND dl.ConnectorID = c.Connector_ID", Diagram_ID);
-            string xml_con = Repository.SQLQuery(sql_con);
-            XElement xEADATA_con = XElement.Parse(xml_con, LoadOptions.None);
+            XElement xEADATA_con = executeQuery(string.Format("SELECT c.Connector_ID, c.Connector_Type, c.Name, c.Notes, c.Start_Object_ID, c.SourceCard, c.SourceRole, c.End_Object_ID, c.DestCard, c.DestRole, c.Stereotype FROM t_diagramlinks dl, t_connector c WHERE dl.DiagramID={0} AND dl.ConnectorID = c.Connector_ID", Diagram_ID));
 
-            doit(xEADATA, xEADATA_tv, xEADATA_con, null);
+            // get ALL tagged values for relationships for objects in selected package
+            XElement xEADATA_con_tv = executeQuery("SELECT ct.ElementID, ct.Property, ct.Value, ct.Notes FROM t_connectortag ct");
+
+            doit(xEADATA, xEADATA_tv, xEADATA_con, xEADATA_con_tv, null);
         }
 
-        private void doit(XElement xEADATA, XElement xEADATA_tv, XElement xEADATA_con, int? Package_Object_ID)
+        private XElement executeQuery(string sql)
+        {
+            string xml = Repository.SQLQuery(sql);
+            return XElement.Parse(xml, LoadOptions.None);
+        }
+
+        private void doit(XElement xEADATA, XElement xEADATA_tv, XElement xEADATA_con, XElement xEADATA_con_tv, int? Package_Object_ID)
         {
             // update map from internal id to MAX::ID
             foreach (XElement xTV in xEADATA_tv.XPathSelectElements(string.Format("//Data/Row[Property='{0}']", TV_MAX_ID)))
@@ -472,6 +472,7 @@ namespace MAX_EA
 
                 RelationshipType maxRel = new RelationshipType();
                 //maxRel.id = xRow.ElementValueInt("Connector_ID").ToString();
+                int Connector_ID = xRow.ElementValueInt("Connector_ID");
                 maxRel.label = xRow.ElementValue("Name");
                 maxRel.sourceId = mapObjectID2MAXID(xRow.ElementValueInt("Start_Object_ID"));
                 maxRel.sourceCard = xRow.ElementValue("SourceCard");
@@ -481,6 +482,24 @@ namespace MAX_EA
                 maxRel.destLabel = xRow.ElementValue("DestRole");
                 maxRel.notes = new MarkupType() { Text = new String[] { xRow.ElementValue("Notes") } };
                 maxRel.stereotype = xRow.ElementValue("Stereotype");
+
+                List<TagType> tags = new List<TagType>();
+                foreach (XElement xTV in xEADATA_con_tv.XPathSelectElements(string.Format("//Data/Row[ElementID={0}]", Connector_ID)))
+                {
+                    string tagName = xTV.ElementValue("Property");
+                    if (!TV_MAX_ID.Equals(tagName))
+                    {
+                        TagType maxTag = new TagType
+                        {
+                            name = tagName,
+                            value = xTV.ElementValue("Value"),
+                            Text = new String[] { xTV.ElementValue("Notes") }
+                        };
+                        tags.Add(maxTag);
+                    }
+                }
+                maxRel.tag = tags.ToArray();
+
                 maxRel.type = (RelationshipTypeEnum)Enum.Parse(typeof(RelationshipTypeEnum), xRow.ElementValue("Connector_Type"), false);
                 maxRel.typeSpecified = true;
                 // Special type adjustments
