@@ -31,14 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CriterionForm));
             this.pathLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.textTextBox = new System.Windows.Forms.TextBox();
             this.conditionalCheckBox = new System.Windows.Forms.CheckBox();
             this.dependentCheckBox = new System.Windows.Forms.CheckBox();
             this.optionalityComboBox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.optionalityLabel = new System.Windows.Forms.Label();
+            this.idLabel = new System.Windows.Forms.Label();
+            this.rowLabel = new System.Windows.Forms.Label();
             this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.rowNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -47,8 +46,12 @@
             this.okButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
             this.helpButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.priorityLabel = new System.Windows.Forms.Label();
             this.priorityComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.changeNoteLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.textLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.changeNoteTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -64,15 +67,6 @@
             this.pathLabel.TabIndex = 0;
             this.pathLabel.Text = "Path";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Criterion Text";
-            // 
             // textTextBox
             // 
             this.textTextBox.Location = new System.Drawing.Point(85, 72);
@@ -81,6 +75,7 @@
             this.textTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textTextBox.Size = new System.Drawing.Size(579, 159);
             this.textTextBox.TabIndex = 2;
+            this.textTextBox.TextChanged += new System.EventHandler(this.textTextBox_TextChanged);
             // 
             // conditionalCheckBox
             // 
@@ -93,6 +88,7 @@
             this.toolTip1.SetToolTip(this.conditionalCheckBox, "If Conditional is checked then we expect \r\n\"IF ... THEN ...\" construct in the Cri" +
         "teria Text.");
             this.conditionalCheckBox.UseVisualStyleBackColor = true;
+            this.conditionalCheckBox.CheckedChanged += new System.EventHandler(this.conditionalCheckBox_CheckedChanged);
             // 
             // dependentCheckBox
             // 
@@ -103,6 +99,7 @@
             this.dependentCheckBox.TabIndex = 4;
             this.dependentCheckBox.Text = "Dependent";
             this.dependentCheckBox.UseVisualStyleBackColor = true;
+            this.dependentCheckBox.CheckedChanged += new System.EventHandler(this.dependentCheckBox_CheckedChanged);
             // 
             // optionalityComboBox
             // 
@@ -112,7 +109,7 @@
             "SHALL",
             "SHOULD",
             "MAY"});
-            this.optionalityComboBox.Location = new System.Drawing.Point(325, 237);
+            this.optionalityComboBox.Location = new System.Drawing.Point(335, 237);
             this.optionalityComboBox.Name = "optionalityComboBox";
             this.optionalityComboBox.Size = new System.Drawing.Size(89, 21);
             this.optionalityComboBox.TabIndex = 5;
@@ -120,32 +117,32 @@
         "ionality> ...\"");
             this.optionalityComboBox.SelectedIndexChanged += new System.EventHandler(this.optionalityComboBox_SelectedIndexChanged);
             // 
-            // label3
+            // optionalityLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(263, 241);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Optionality";
+            this.optionalityLabel.AutoSize = true;
+            this.optionalityLabel.Location = new System.Drawing.Point(263, 241);
+            this.optionalityLabel.Name = "optionalityLabel";
+            this.optionalityLabel.Size = new System.Drawing.Size(56, 13);
+            this.optionalityLabel.TabIndex = 6;
+            this.optionalityLabel.Text = "Optionality";
             // 
-            // label4
+            // idLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Criterion ID";
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(10, 49);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(18, 13);
+            this.idLabel.TabIndex = 7;
+            this.idLabel.Text = "ID";
             // 
-            // label5
+            // rowLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(151, 49);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Row#";
+            this.rowLabel.AutoSize = true;
+            this.rowLabel.Location = new System.Drawing.Point(151, 49);
+            this.rowLabel.Name = "rowLabel";
+            this.rowLabel.Size = new System.Drawing.Size(36, 13);
+            this.rowLabel.TabIndex = 8;
+            this.rowLabel.Text = "Row#";
             // 
             // idNumericUpDown
             // 
@@ -153,6 +150,7 @@
             this.idNumericUpDown.Name = "idNumericUpDown";
             this.idNumericUpDown.Size = new System.Drawing.Size(42, 20);
             this.idNumericUpDown.TabIndex = 13;
+            this.idNumericUpDown.ValueChanged += new System.EventHandler(this.idNumericUpDown_ValueChanged);
             // 
             // rowNumericUpDown
             // 
@@ -160,6 +158,7 @@
             this.rowNumericUpDown.Name = "rowNumericUpDown";
             this.rowNumericUpDown.Size = new System.Drawing.Size(67, 20);
             this.rowNumericUpDown.TabIndex = 14;
+            this.rowNumericUpDown.ValueChanged += new System.EventHandler(this.rowNumericUpDown_ValueChanged);
             // 
             // switchLinkLabel
             // 
@@ -213,14 +212,14 @@
             this.helpButton.Text = "Help";
             this.helpButton.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // priorityLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(294, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Priority";
+            this.priorityLabel.AutoSize = true;
+            this.priorityLabel.Location = new System.Drawing.Point(294, 49);
+            this.priorityLabel.Name = "priorityLabel";
+            this.priorityLabel.Size = new System.Drawing.Size(38, 13);
+            this.priorityLabel.TabIndex = 6;
+            this.priorityLabel.Text = "Priority";
             // 
             // priorityComboBox
             // 
@@ -230,33 +229,76 @@
             "EN",
             "EF",
             "OPT"});
-            this.priorityComboBox.Location = new System.Drawing.Point(338, 46);
+            this.priorityComboBox.Location = new System.Drawing.Point(354, 45);
             this.priorityComboBox.Name = "priorityComboBox";
             this.priorityComboBox.Size = new System.Drawing.Size(89, 21);
             this.priorityComboBox.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(342, 269);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "* = Profiled";
+            // 
+            // changeNoteLinkLabel
+            // 
+            this.changeNoteLinkLabel.AutoSize = true;
+            this.changeNoteLinkLabel.Location = new System.Drawing.Point(10, 97);
+            this.changeNoteLinkLabel.Name = "changeNoteLinkLabel";
+            this.changeNoteLinkLabel.Size = new System.Drawing.Size(70, 13);
+            this.changeNoteLinkLabel.TabIndex = 18;
+            this.changeNoteLinkLabel.TabStop = true;
+            this.changeNoteLinkLabel.Text = "Change Note";
+            this.changeNoteLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.changeNoteLinkLabel_LinkClicked);
+            // 
+            // textLinkLabel
+            // 
+            this.textLinkLabel.AutoSize = true;
+            this.textLinkLabel.Location = new System.Drawing.Point(10, 75);
+            this.textLinkLabel.Name = "textLinkLabel";
+            this.textLinkLabel.Size = new System.Drawing.Size(28, 13);
+            this.textLinkLabel.TabIndex = 18;
+            this.textLinkLabel.TabStop = true;
+            this.textLinkLabel.Text = "Text";
+            this.textLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.textLinkLabel_LinkClicked);
+            // 
+            // changeNoteTextBox
+            // 
+            this.changeNoteTextBox.Location = new System.Drawing.Point(86, 72);
+            this.changeNoteTextBox.Multiline = true;
+            this.changeNoteTextBox.Name = "changeNoteTextBox";
+            this.changeNoteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.changeNoteTextBox.Size = new System.Drawing.Size(579, 159);
+            this.changeNoteTextBox.TabIndex = 2;
             // 
             // CriterionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 295);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.priorityComboBox);
             this.Controls.Add(this.helpButton);
             this.Controls.Add(this.applyButton);
+            this.Controls.Add(this.textLinkLabel);
+            this.Controls.Add(this.changeNoteLinkLabel);
             this.Controls.Add(this.switchLinkLabel);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.rowNumericUpDown);
             this.Controls.Add(this.idNumericUpDown);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.rowLabel);
+            this.Controls.Add(this.idLabel);
+            this.Controls.Add(this.priorityLabel);
+            this.Controls.Add(this.optionalityLabel);
             this.Controls.Add(this.optionalityComboBox);
             this.Controls.Add(this.dependentCheckBox);
             this.Controls.Add(this.conditionalCheckBox);
+            this.Controls.Add(this.changeNoteTextBox);
             this.Controls.Add(this.textTextBox);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.pathLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -277,14 +319,13 @@
         #endregion
 
         private System.Windows.Forms.Label pathLabel;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textTextBox;
         private System.Windows.Forms.CheckBox conditionalCheckBox;
         private System.Windows.Forms.CheckBox dependentCheckBox;
         private System.Windows.Forms.ComboBox optionalityComboBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label optionalityLabel;
+        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.Label rowLabel;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.NumericUpDown idNumericUpDown;
         private System.Windows.Forms.NumericUpDown rowNumericUpDown;
@@ -293,7 +334,11 @@
         private System.Windows.Forms.LinkLabel switchLinkLabel;
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.Button helpButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label priorityLabel;
         private System.Windows.Forms.ComboBox priorityComboBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel changeNoteLinkLabel;
+        private System.Windows.Forms.LinkLabel textLinkLabel;
+        private System.Windows.Forms.TextBox changeNoteTextBox;
     }
 }

@@ -2,9 +2,40 @@
 ====
 - AboutBox: use Setup parameters to populate fields.
 - *Form should call R2Config.updateStyle, no Modified event is created, so call it ourselfs.
+- Repository.AdviseElementChange
 
 CHANGELOG
 =========
+[2014-jul-11]
+Function/CriterionForm/R2ModelV2Base+EA
+- Added ChangeNote
+R2ModelV2.MAX
+- Started work on this from the UnitTest, for now just LoadFromSource
+Main
+- On startup MDG is installed and message is shows when this fails (e.g. file not found)
+
+[2014-jul-05]
+R2ModelV2EA
+- Conditional/Dependent LoadFromSource not handled correctly
+
+[2014-jul-04]
+R2ModelV2*,FunctionForm
+- "Realm"-type profiles can edit Function name/statement
+FunctionForm,CriterionForm
+- Added '*' to field if the field is profiled (has different value than the base)
+
+[2014-jun-27]
+R2ModelV2*
+- Major refactor. Separate R2Model from implementation and implement in EA_API and MAX.
+
+[2014-jun-20]
+Setup
+- Product Version Property now reflects date.
+	1.0.0 was Phase 1
+	2.yy.mmdd is Phase 2 -> This version is 2.14.0620
+MergeForm
+- Initial work
+
 [2014-jun-05]
 FunctionForm
 - Reported by Giorgio Italy. 'Switch to baseelement' did not work. Fixed.

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HL7_FM_EA_Extension.R2ModelV2.Base;
 
 namespace HL7_FM_EA_Extension
 {
@@ -23,18 +24,18 @@ namespace HL7_FM_EA_Extension
             _section = section;
 
             Text = string.Format("EHR-S FM Section: {0} @{1}", _section.Name, _section.LastModified);
-            BackColor = R2Config.config.getSectionColor(_section.SectionID, DefaultBackColor);
+            BackColor = R2Config.config.getSectionColor(_section.SectionId, DefaultBackColor);
 
             // Other properties
             nameTextBox.Text = _section.Name;
-            idTextBox.Text = _section.SectionID;
+            idTextBox.Text = _section.SectionId;
             overviewTextBox.Text = _section.Overview;
             exampleTextBox.Text = _section.Example;
             actorsTextBox.Text = _section.Actors;
 
             // TODO: Add "depends on" and "needed by" compartments
 
-            bool enable = !(section is CompilerInstruction);
+            bool enable = !section.IsCompilerInstruction;
             nameTextBox.Enabled = enable;
             idTextBox.Enabled = enable;
             overviewTextBox.Enabled = enable;
@@ -46,11 +47,11 @@ namespace HL7_FM_EA_Extension
         private void applyChanges()
         {
             _section.Name = nameTextBox.Text;
-            _section.SectionID = idTextBox.Text;
+            _section.SectionId = idTextBox.Text;
             _section.Overview = overviewTextBox.Text;
             _section.Example = exampleTextBox.Text;
             _section.Actors = actorsTextBox.Text;
-            _section.Update();
+            _section.SaveToSource();
         }
 
         private void applyButton_Click(object sender, EventArgs e)

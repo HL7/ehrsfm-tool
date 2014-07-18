@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HL7_FM_EA_Extension.R2ModelV2.Base;
 
 namespace HL7_FM_EA_Extension
 {
@@ -16,13 +17,15 @@ namespace HL7_FM_EA_Extension
             InitializeComponent();
         }
 
+        private bool ignoreEvents = false;
         private R2Criterion _criterion;
 
         public void Show(R2Criterion criterion)
         {
             _criterion = criterion;
+            BackColor = R2Config.config.getSectionColor(_criterion.Name, DefaultBackColor);
             setShowingCriterion(criterion, true);
-            switchLinkLabel.Visible = (criterion is CompilerInstruction);
+            switchLinkLabel.Visible = criterion.IsCompilerInstruction;
             ShowDialog();
         }
 
@@ -32,6 +35,8 @@ namespace HL7_FM_EA_Extension
          */
         private void setShowingCriterion(R2Criterion criterion, bool enableEdit)
         {
+            ignoreEvents = true;
+
             idNumericUpDown.Enabled = enableEdit;
             rowNumericUpDown.Enabled = enableEdit;
             textTextBox.Enabled = enableEdit;
@@ -39,60 +44,129 @@ namespace HL7_FM_EA_Extension
             conditionalCheckBox.Enabled = enableEdit;
             dependentCheckBox.Enabled = enableEdit;
 
-            if (criterion is CompilerInstruction)
+            if (criterion.IsCompilerInstruction)
             {
+                changeNoteLinkLabel.Visible = true;
+                changeNoteLinkLabel.Enabled = true;
+                changeNoteTextBox.Visible = false;
+                changeNoteTextBox.Text = criterion.ChangeNote;
+                textLinkLabel.Enabled = false;
+                textTextBox.Visible = true;
+
                 Text = string.Format("EHR-S FM Criterion: {0} (Profile Definition) @{1}", criterion.Name, criterion.LastModified);
                 switchLinkLabel.Text = "Switch to base Element";
-                label1.Visible = true;
+                priorityLabel.Visible = true;
                 priorityComboBox.Visible = true;
-                priorityComboBox.SelectedItem = ((R2CriterionCI)criterion).Priority;
+                priorityComboBox.SelectedItem = criterion.Priority;
+
+                updateLabels();
             }
             else
             {
+                changeNoteLinkLabel.Visible = false;
+                changeNoteTextBox.Visible = false;
+                changeNoteTextBox.Text = "";
+                textTextBox.Visible = true;
+                textLinkLabel.Enabled = false;
+
                 Text = string.Format("EHR-S FM Criterion: {0} @{1}", criterion.Name, criterion.LastModified);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
-                label1.Visible = false;
+                priorityLabel.Visible = false;
                 priorityComboBox.Visible = false;
-                priorityComboBox.SelectedItem = R2CriterionCI.EmptyPriority;
-            }
+                priorityComboBox.SelectedItem = R2Const.EmptyPriority;
 
-            BackColor = R2Config.config.getSectionColor(criterion.Name, DefaultBackColor);
+                updateLabels(false);
+            }
             pathLabel.Text = criterion.Path;
 
             idNumericUpDown.Minimum = 0;
             idNumericUpDown.Maximum = 99;
-            idNumericUpDown.Value = criterion.CriterionID;
-            textTextBox.Text = criterion.Text;
-
             rowNumericUpDown.Minimum = 0;
             rowNumericUpDown.Maximum = 10000;
-            rowNumericUpDown.Value = criterion.Row;
 
+            idNumericUpDown.Value = criterion.CriterionId;
+            textTextBox.Text = criterion.Text;
+            rowNumericUpDown.Value = criterion.Row;
             conditionalCheckBox.Checked = criterion.Conditional;
             dependentCheckBox.Checked = criterion.Dependent;
             optionalityComboBox.SelectedItem = criterion.Optionality;
+
+            ignoreEvents = false;
+        }
+
+        /**
+         * Append star(*) after label of Label is value is different from Default
+         */ 
+        private void updateLabel(R2ModelElement.PropertyName key, string labelText, Label label, bool? star)
+        {
+            if (star == null)
+            {
+                if (!_criterion.isDefault(key)) labelText = string.Format("{0}*", labelText);
+            }
+            else
+            {
+                if (star == true) labelText = string.Format("{0}*", labelText);
+            }
+            label.Text = labelText;
+        }
+
+        /**
+         * Append star(*) after label of Label is value is different from Default
+         */
+        private void updateLabel(R2ModelElement.PropertyName key, string labelText, CheckBox checkBox, bool? star)
+        {
+            if (star == null)
+            {
+                if (!_criterion.isDefault(key)) labelText = string.Format("{0}*", labelText);
+            }
+            else
+            {
+                if (star == true) labelText = string.Format("{0}*", labelText);
+            }
+            checkBox.Text = labelText;
+        }
+
+        /**
+         * Update labels for all editable elements
+         */
+        private void updateLabels(bool? star = null)
+        {
+            updateLabel(R2ModelElement.PropertyName.CriterionId, "ID", idLabel, star);
+            updateLabel(R2ModelElement.PropertyName.Row, "Row#", rowLabel, star);
+            updateLabel(R2ModelElement.PropertyName.Text, "Text", textLinkLabel, star);
+            updateLabel(R2ModelElement.PropertyName.Conditional, "Conditional", conditionalCheckBox, star);
+            updateLabel(R2ModelElement.PropertyName.Dependent, "Dependent", dependentCheckBox, star);
+            updateLabel(R2ModelElement.PropertyName.Optionality, "Optionality", optionalityLabel, star);
+            updateLabel(R2ModelElement.PropertyName.Priority, "Priority", priorityLabel, star);
         }
 
         private void applyChanges()
         {
-            _criterion.CriterionID = idNumericUpDown.Value;
+            _criterion.CriterionId = idNumericUpDown.Value;
             _criterion.Text = textTextBox.Text;
-            _criterion.Update();
-
             _criterion.Row = rowNumericUpDown.Value;
             _criterion.Conditional = conditionalCheckBox.Checked;
             _criterion.Dependent = dependentCheckBox.Checked;
             _criterion.Optionality = optionalityComboBox.SelectedItem.ToString();
-
-            if (_criterion is CompilerInstruction)
+            if (_criterion.IsCompilerInstruction)
             {
-                ((R2CriterionCI)_criterion).Priority = priorityComboBox.Text;
+                _criterion.Priority = priorityComboBox.Text;
+                _criterion.ChangeNote = changeNoteTextBox.Text;
             }
+            _criterion.SaveToSource();
+
+            idNumericUpDown.Value = _criterion.CriterionId;
+            textTextBox.Text = _criterion.Text;
+            rowNumericUpDown.Value = _criterion.Row;
+            conditionalCheckBox.Checked = _criterion.Conditional;
+            dependentCheckBox.Checked = _criterion.Dependent;
+            optionalityComboBox.SelectedItem = _criterion.Optionality;
         }
 
         private void applyButton_Click(object sender, EventArgs e)
         {
             applyChanges();
+            updateLabels();
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -126,6 +200,11 @@ namespace HL7_FM_EA_Extension
                 newText = newText.Replace("MAY", newOptionality);
                 textTextBox.Text = newText;
             }
+            if (!ignoreEvents)
+            {
+                updateLabel(R2ModelElement.PropertyName.Text, "Text", textLinkLabel, true);
+                updateLabel(R2ModelElement.PropertyName.Optionality, "Optionality", optionalityLabel, true);
+            }
         }
 
         private bool switched = false;
@@ -134,7 +213,7 @@ namespace HL7_FM_EA_Extension
             if (!switched)
             {
                 switched = true;
-                R2Criterion baseCriterion = (R2Criterion) R2Model.GetBase(_criterion);
+                R2Criterion baseCriterion = (R2Criterion) _criterion.Defaults;
                 // Disable edit of base to prevent accidental changes
                 setShowingCriterion(baseCriterion, false);
             }
@@ -143,6 +222,47 @@ namespace HL7_FM_EA_Extension
                 switched = false;
                 setShowingCriterion(_criterion, true);
             }
+        }
+
+        private void textTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Text, "Text", textLinkLabel, true);
+        }
+
+        private void conditionalCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Conditional, "Conditional", conditionalCheckBox, true);
+        }
+
+        private void dependentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Dependent, "Dependent", dependentCheckBox, true);
+        }
+
+        private void rowNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Row, "Row#", rowLabel, true);
+        }
+
+        private void idNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.CriterionId, "ID", idLabel, true);
+        }
+
+        private void textLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textLinkLabel.Enabled = false;
+            textTextBox.Visible = true;
+            changeNoteLinkLabel.Enabled = true;
+            changeNoteTextBox.Visible = false;
+        }
+
+        private void changeNoteLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textLinkLabel.Enabled = true;
+            textTextBox.Visible = false;
+            changeNoteLinkLabel.Enabled = false;
+            changeNoteTextBox.Visible = true;
         }
     }
 }

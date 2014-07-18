@@ -53,7 +53,14 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="EAHelper.cs" />
+    <Compile Include="MAXExtensionMethods.cs" />
     <Compile Include="MAXTreeNode.cs" />
+    <Compile Include="MergeProfilesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MergeProfilesForm.Designer.cs">
+      <DependentUpon>MergeProfilesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelBrowserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -72,7 +79,9 @@
     <Compile Include="ProfilingForm.Designer.cs">
       <DependentUpon>ProfilingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="R2Model.cs" />
+    <Compile Include="R2ModelV2.cs" />
+    <Compile Include="R2ModelV2EA.cs" />
+    <Compile Include="R2ModelV2MAX.cs" />
     <Compile Include="R2ProfileCompiler.cs" />
     <Compile Include="QuickAccessControl.cs">
       <SubType>UserControl</SubType>
@@ -143,6 +152,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MergeProfilesForm.resx">
+      <DependentUpon>MergeProfilesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelBrowserControl.resx">
       <DependentUpon>ModelBrowserControl.cs</DependentUpon>

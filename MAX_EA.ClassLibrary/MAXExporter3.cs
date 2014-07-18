@@ -314,7 +314,7 @@ namespace MAX_EA
         private void visitDiagramObjects(int Diagram_ID)
         {
             // get objects in selected diagram
-            XElement xEADATA = executeQuery(string.Format("SELECT o.Object_ID, ea_guid, Object_Type, Name, Alias, Note, Stereotype, ModifiedDate, Abstract, Tagged, ea_guid, ParentID FROM t_object o, t_diagramobjects d WHERE d.Diagram_ID = {0} AND o.Object_ID = d.Object_ID", Diagram_ID));
+            XElement xEADATA = executeQuery(string.Format("SELECT o.Object_ID, ea_guid, Object_Type, Name, Alias, Note, Stereotype, ModifiedDate, Abstract, Tagged, ParentID FROM t_object o, t_diagramobjects d WHERE d.Diagram_ID = {0} AND o.Object_ID = d.Object_ID", Diagram_ID));
 
             // get tagged values in objects in selected diagram
             XElement xEADATA_tv = executeQuery(string.Format("SELECT op.Object_ID, op.Property, op.Value, op.Notes FROM t_diagramobjects d, t_object o, t_objectproperties op WHERE d.Diagram_ID = {0} AND o.Object_ID=op.Object_ID AND d.Object_ID=o.Object_ID", Diagram_ID));
@@ -346,7 +346,7 @@ namespace MAX_EA
 
             // create MAX object elements
             IEnumerable<XElement> xRows = xEADATA.XPathSelectElements("//Data/Row");
-            progress_max += xRows.Count<XElement>();
+            progress_max += xRows.Count();
             progress.setup(progress_max);
             foreach (XElement xRow in xRows)
             {

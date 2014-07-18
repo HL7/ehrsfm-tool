@@ -8,6 +8,7 @@ using System.Xml.XPath;
 using System.IO;
 using System.Xml.Xsl;
 using System.Windows.Forms;
+using HL7_FM_EA_Extension.R2ModelV2.Base;
 
 namespace HL7_FM_EA_Extension
 {
@@ -16,7 +17,7 @@ namespace HL7_FM_EA_Extension
         // Tagged value used for externalized ID
         private const string TV_MAX_ID = "MAX::ID";
 
-        public void validate(EA.Repository Repository, EA.Package rootPackage)
+        public void validate(EA.Repository repository, EA.Package rootPackage)
         {
             string sch_filepath = null;
             switch (rootPackage.StereotypeEx)
@@ -35,17 +36,16 @@ namespace HL7_FM_EA_Extension
                     return;
             }
 
-            Repository.CreateOutputTab(Properties.Resources.OUTPUT_TAB_HL7_FM);
-            Repository.ClearOutput(Properties.Resources.OUTPUT_TAB_HL7_FM);
-            Repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
+            repository.CreateOutputTab(Properties.Resources.OUTPUT_TAB_HL7_FM);
+            repository.ClearOutput(Properties.Resources.OUTPUT_TAB_HL7_FM);
+            repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
 
             // TODO: Change to memorybased!!
             // TODO: Transform once to XSL, only if the xsl is older or not existing
 
             // Create and load the transform with script execution enabled.
             XslCompiledTransform transform = new XslCompiledTransform();
-            XsltSettings settings = new XsltSettings();
-            settings.EnableScript = true;
+            XsltSettings settings = new XsltSettings {EnableScript = true};
             XmlUrlResolver resolver = new XmlUrlResolver();
 
             // transform the Schematron to a XSL
@@ -56,7 +56,7 @@ namespace HL7_FM_EA_Extension
 
             // export to temp max.xml file
             string fm_max_file = Main.getAppDataFullPath(@"Schematron\temp.max.xml");
-            new MAX_EA.MAXExporter3().exportPackage(Repository, rootPackage, fm_max_file);
+            new MAX_EA.MAXExporter3().exportPackage(repository, rootPackage, fm_max_file);
 
             // now execute the Schematron XSL
             transform.Load(sch_xsl_filepath, settings, resolver);
@@ -75,12 +75,12 @@ namespace HL7_FM_EA_Extension
                 XmlNamespaceManager nsmgr = new XmlNamespaceManager(xReader.NameTable);
                 nsmgr.AddNamespace("svrl", "http://purl.oclc.org/dsdl/svrl");
 
-                appendSvrlMessagesToOutputTab(Repository, svrl.XPathSelectElements("//svrl:successful-report", nsmgr), eaElementDict, nsmgr);
-                appendSvrlMessagesToOutputTab(Repository, svrl.XPathSelectElements("//svrl:failed-assert", nsmgr), eaElementDict, nsmgr);
+                appendSvrlMessagesToOutputTab(repository, svrl.XPathSelectElements("//svrl:successful-report", nsmgr), eaElementDict, nsmgr);
+                appendSvrlMessagesToOutputTab(repository, svrl.XPathSelectElements("//svrl:failed-assert", nsmgr), eaElementDict, nsmgr);
             }
             MessageBox.Show("Validation done.\nCheck \"Project Status/issues\" or output tab for issues.");
 
-            Repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
+            repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
         }
 
         private void appendSvrlMessagesToOutputTab(EA.Repository repository, IEnumerable<XElement> xSvrlMessages, Dictionary<string, EA.Element> eaElementDict, XmlNamespaceManager nsmgr)

@@ -38,6 +38,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -48,6 +49,8 @@
     <Compile Include="MAXTreeNodeTests.cs" />
     <Compile Include="NoteSplitterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="R2ModelV2BaseTest.cs" />
+    <Compile Include="R2ModelV2MAXTests.cs" />
     <Compile Include="R2ProfileCompilerTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="InputFiles\Compiler Instructions.max.xml" />
-    <Content Include="InputFiles\EHRS_FM_R2_N2.max.xml" />
+    <Content Include="InputFiles\EHRS_FM_R2_N2.max.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="InputFiles\MU Profile Definition.max.xml" />
     <Content Include="InputFiles\OV1 Only FP.max.xml" />
   </ItemGroup>

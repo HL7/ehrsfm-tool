@@ -34,7 +34,8 @@ namespace MAX_EA_Extension
                 case "":
                     return "-&MAX";
                 case "-&MAX":
-                    string[] ar = { "Import/Update", "Export", "-", "Transform", "Validate", "Merge Diagrams", "-", "About..." };
+                    // 1) MAX "native" Functions, 2) EA Helper Functions
+                    string[] ar = { "Import/Update", "Export", "Transform", "Validate", "-", "Lock", "Unlock", "Merge Diagrams", "-", "About..." };
                     return ar;
             }
             return "";
@@ -61,6 +62,8 @@ namespace MAX_EA_Extension
             {
                 switch (ItemName)
                 {
+                    case "Lock":
+                    case "Unlock":
                     case "Import/Update":
                     case "Merge Diagrams":
                         IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage);
@@ -142,6 +145,12 @@ namespace MAX_EA_Extension
                         break;
                     case "Merge Diagrams":
                         mergeDiagrams(Repository, selectedPackage);
+                        break;
+                    case "Lock":
+                        setLocked(selectedPackage, true);
+                        break;
+                    case "Unlock":
+                        setLocked(selectedPackage, false);
                         break;
                     case "Quick Access Tab":
                         if (view_ctrl == null || !view_ctrl.Visible)
@@ -225,6 +234,28 @@ namespace MAX_EA_Extension
 
             package.Update();
             repository.OpenDiagram(mdiagram.DiagramID);
+        }
+
+        private void setLocked(EA.Package package, bool locked)
+        {
+            package.Element.Locked = locked;
+            foreach (EA.Package subPackage in package.Packages)
+            {
+                setLocked(subPackage, locked);
+            }
+            foreach (EA.Element element in package.Elements)
+            {
+                setLocked(element, locked);
+            }
+        }
+
+        private void setLocked(EA.Element element, bool locked)
+        {
+            element.Locked = locked;
+            foreach (EA.Element subElement in element.Elements)
+            {
+                setLocked(subElement, locked);
+            }
         }
 
         public bool EA_OnContextItemChanged(EA.Repository Repository, string GUID, EA.ObjectType ot)
