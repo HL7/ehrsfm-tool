@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using HL7_FM_EA_Extension.R2ModelV2.Base;
 
 namespace HL7_FM_EA_Extension
 {
@@ -37,7 +38,7 @@ namespace HL7_FM_EA_Extension
                 case "":
                     return "-&HL7 FM";
                 case "-&HL7 FM":
-                    string[] ar = { "Import R1.1", "Import R2", "Update Style", "Validate", "-", "Edit Profile", "Compile Profile", "Generate Publication", "-", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "About" };
+                    string[] ar = { "Import R1.1", "Import R2", "Update Style", "Validate", "-", "Edit Profile", "Compile Profile", "Generate Publication", "Merge Profiles", "-", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "About" };
                     return ar;
             }
             return "";
@@ -66,10 +67,11 @@ namespace HL7_FM_EA_Extension
                 {
                     case "Import R1.1":
                     case "Import R2":
+                    case "Update Style":
+                    case "Validate":
                     case "Edit Profile":
                     case "Compile Profile":
-                    case "Validate":
-                    case "Update Style":
+                    case "Merge Profiles":
                         IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage);
                         break;
                     case "Create Diagram":
@@ -114,17 +116,20 @@ namespace HL7_FM_EA_Extension
                     case "Import R2":
                         new R2Importer().import(Repository, SelectedPackage);
                         break;
+                    case "Validate":
+                        new R2Validator().validate(Repository, SelectedPackage);
+                        break;
+                    case "Update Style":
+                        UpdateStyle_recurseEaPackage(SelectedPackage);
+                        break;
                     case "Edit Profile":
                         new ProfilingForm().Show(Repository, SelectedPackage);
                         break;
                     case "Compile Profile":
                         CompileProfile(Repository, SelectedPackage);
                         break;
-                    case "Validate":
-                        new R2Validator().validate(Repository, SelectedPackage);
-                        break;
-                    case "Update Style":
-                        UpdateStyle_recurseEaPackage(SelectedPackage);
+                    case "Merge Profiles":
+                        new MergeProfilesForm().Show(Repository, SelectedPackage);
                         break;
                     case "Create Diagram":
                         CreateDiagram(Repository);
@@ -202,19 +207,17 @@ namespace HL7_FM_EA_Extension
             if (ot == EA.ObjectType.otElement)
             {
                 EA.Element element = repository.GetElementByGuid(GUID);
-                R2ModelElement modelElement = R2Model.Create(repository, element);
+                R2ModelElement modelElement = R2ModelV2.EA_API.Factory.Create(repository, element);
                 if (modelElement != null)
                 {
                     switch (modelElement.Stereotype)
                     {
-                        case R2Const.ST_FUNCTION:
                         case R2Const.ST_HEADER:
-                            R2Function function = (R2Function) R2Model.Create(repository, element);
-                            new FunctionForm().Show(function);
+                        case R2Const.ST_FUNCTION:
+                            new FunctionForm().Show((R2Function)modelElement);
                             return true;
                         case R2Const.ST_CRITERION:
-                            R2Criterion criterion = (R2Criterion) R2Model.Create(repository, element);
-                            new CriterionForm().Show(criterion);
+                            new CriterionForm().Show((R2Criterion)modelElement);
                             return true;
                     }
                 }
@@ -229,8 +232,7 @@ namespace HL7_FM_EA_Extension
                         new ProfileMetadataForm().Show(repository, repository.GetPackageByGuid(GUID));
                         return true;
                     case R2Const.ST_SECTION:
-                        R2Section section = (R2Section)R2Model.Create(repository, element);
-                        new SectionForm().Show(section);
+                        new SectionForm().Show((R2ModelV2.Base.R2Section)R2ModelV2.EA_API.Factory.Create(repository, element));
                         return true;
                 }
             }
@@ -501,8 +503,17 @@ namespace HL7_FM_EA_Extension
         // --------------
         public string EA_OnInitializeTechnologies(EA.Repository Repository)
         {
-            StreamReader reader = new StreamReader(getAppDataFullPath(@"MDG\HL7_FM_EA_mdg.xml"));
-            string mdg_xml = reader.ReadToEnd();
+            string mdg_xml = "";
+            string path = getAppDataFullPath(@"MDG\HL7_FM_EA_mdg.xml");
+            if (!File.Exists(path))
+            {
+                MessageBox.Show(string.Format("MDG File not found. Please report this message.\n{0}", path));
+            }
+            else
+            {
+                StreamReader reader = new StreamReader(path);
+                mdg_xml = reader.ReadToEnd();
+            }
             return mdg_xml;
         }
 

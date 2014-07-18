@@ -62,9 +62,9 @@ namespace HL7_FM_EA_Extension
                 if (name.Equals(tv.Name))
                 {
                     element.TaggedValues.Delete(index);
-                    element.TaggedValues.Refresh();
                 }
             }
+            element.TaggedValues.Refresh();
         }
     }
 }

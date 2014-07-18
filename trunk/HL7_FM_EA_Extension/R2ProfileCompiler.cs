@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using HL7_FM_EA_Extension.R2ModelV2.Base;
 using MAX_EA.MAXSchema;
 
 namespace HL7_FM_EA_Extension

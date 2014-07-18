@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using HL7_FM_EA_Extension.R2ModelV2.Base;
 
 namespace HL7_FM_EA_Extension
 {
@@ -144,7 +145,7 @@ namespace HL7_FM_EA_Extension
         {
             ListViewItem item = new ListViewItem();
             DefinitionLink dl = new DefinitionLink(repository, element);
-            R2Criterion criterion = (R2Criterion) dl.modelElement;
+            R2Criterion criterion = (R2Criterion)dl.modelElement;
             item.Tag = dl;
             item.Text = string.Format("{0} {1}", criterion.Name, criterion.Text);
             updateListViewItem(item);
@@ -277,7 +278,7 @@ namespace HL7_FM_EA_Extension
                 con.SupplierID = dl.baseModelElement.ElementID;
                 con.Update();
                 dl.compilerInstructionElement.Connectors.Refresh();
-                dl.modelElement = R2Model.Create(repository, dl.compilerInstructionElement);
+                dl.modelElement = R2ModelV2.EA_API.Factory.Create(repository, dl.compilerInstructionElement);
             }
 
             switch (qualifier)
@@ -326,7 +327,7 @@ namespace HL7_FM_EA_Extension
                 }
                 profileDefinitionPackage.Elements.Refresh();
                 dl.compilerInstructionElement = null;
-                dl.modelElement = R2Model.Create(repository, dl.baseModelElement);
+                dl.modelElement = R2ModelV2.EA_API.Factory.Create(repository, dl.baseModelElement);
             }
         }
 
@@ -427,7 +428,7 @@ namespace HL7_FM_EA_Extension
         {
             ListViewItem selected = mainListView.SelectedItems[0];
             DefinitionLink dl = (DefinitionLink) selected.Tag;
-            new FunctionForm().Show((R2Function)dl.modelElement);
+            new FunctionForm().Show((R2ModelV2.Base.R2Function)dl.modelElement);
         }
 
         private void findButton_Click(object sender, EventArgs e)
@@ -471,19 +472,34 @@ namespace HL7_FM_EA_Extension
         public DefinitionLink(EA.Repository repository, EA.Element element)
         {
             baseModelElement = element;
-            compilerInstructionElement = R2Model.findCompilerInstruction(repository, element);
+            compilerInstructionElement = findCompilerInstruction(repository, element);
             if (compilerInstructionElement == null)
             {
-                modelElement = R2Model.Create(repository, element);
+                modelElement = R2ModelV2.EA_API.Factory.Create(repository, element);
             }
             else
             {
-                modelElement = R2Model.Create(repository, compilerInstructionElement);
+                modelElement = R2ModelV2.EA_API.Factory.Create(repository, compilerInstructionElement);
             }
+        }
+
+        EA.Element findCompilerInstruction(EA.Repository repository, EA.Element element)
+        {
+            // Find compilerinstruction by looking for the generalization connector that points
+            // to an Element with stereotype Compiler Instruction
+            foreach (EA.Connector con in element.Connectors.Cast<EA.Connector>().Where(c => "Generalization".Equals(c.Type)))
+            {
+                EA.Element _element = (EA.Element)repository.GetElementByID(con.ClientID);
+                if (R2Const.ST_COMPILERINSTRUCTION.Equals(_element.Stereotype))
+                {
+                    return _element;
+                }
+            }
+            return null;
         }
 
         public EA.Element baseModelElement;
         public EA.Element compilerInstructionElement;
-        public R2ModelElement modelElement;
+        public R2ModelV2.Base.R2ModelElement modelElement;
     }
 }

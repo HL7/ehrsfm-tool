@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" exportDate="4/4/2014 12:45:40" xmlns="http://www.umcg.nl/MAX">
+  <objects xmlns="">
+    <object>
+      <id>2</id>
+      <name>OV1 Only FP</name>
+      <stereotype>HL7-FM-ProfileDefinition</stereotype>
+      <type>Package</type>
+      <modified>2014-04-04T00:00:00</modified>
+      <tag name="MAX::ExportFile" value="C:\Temp\OV1 Only FP.max.xml" />
+      <tag name="MAX::ExportDate" value="4/4/2014 12:23:53" />
+      <tag name="PrioritiesDefinition" value="&lt;memo&gt;" />
+      <tag name="Rationale" value="&lt;memo&gt;">Test profile to test ConsequenceLinks from OV.1 only</tag>
+      <tag name="Scope" value="&lt;memo&gt;" />
+      <tag name="Type" value="Realm" />
+    </object>
+    <object>
+      <id>6675</id>
+      <name>OV.1 Overarching Criteria</name>
+      <notes></notes>
+      <stereotype>CI</stereotype>
+      <type>Class</type>
+      <parentId>2</parentId>
+      <modified>2014-04-04T00:00:00</modified>
+      <tag name="Qualifier" />
+    </object>
+    <object>
+      <id>6676</id>
+      <name>OV.1#01</name>
+      <notes></notes>
+      <stereotype>CI</stereotype>
+      <type>Class</type>
+      <parentId>2</parentId>
+      <modified>2014-04-04T00:00:00</modified>
+      <tag name="Qualifier" value="EXCLUDE" />
+    </object>
+  </objects>
+  <relationships xmlns="">
+    <relationship>
+      <sourceId>6675</sourceId>
+      <destId>6</destId>
+      <notes />
+      <type>Generalization</type>
+    </relationship>
+    <relationship>
+      <sourceId>6676</sourceId>
+      <destId>7</destId>
+      <notes />
+      <type>Generalization</type>
+    </relationship>
+  </relationships>
+</model>

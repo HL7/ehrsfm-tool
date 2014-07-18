@@ -524,7 +524,15 @@ namespace MAX_EA
                 {
                     eaCon.Notes = maxRel.notes.Text[0].Trim().Replace("\n", "\r\n");
                 }
-                eaCon.Update();
+                try
+                {
+                    eaCon.Update();
+                }
+                catch (Exception)
+                {
+                    Repository.WriteOutput("MAX", string.Format("Illegal relationship type '{0}' between {1} and {2}", type, sourceId, destId), 0);
+                    issues = true;
+                }
                 if (maxRel.tag != null)
                 {
                     foreach (TagType maxTag in maxRel.tag)
@@ -556,13 +564,15 @@ namespace MAX_EA
             EA.TaggedValue tvID = (EA.TaggedValue)eaPackage.Element.TaggedValues.GetByName(TV_MAX_ID);
             if (tvID != null)
             {
-                eaPackageDict[tvID.Value.ToUpper()] = eaPackage;
-                eaElementDict[tvID.Value.ToUpper()] = eaPackage.Element;
+                string maxId = tvID.Value.ToUpper();
+                eaPackageDict[maxId] = eaPackage;
+                eaElementDict[maxId] = eaPackage.Element;
             }
             else
             {
-                eaPackageDict[eaPackage.PackageID.ToString()] = eaPackage;
-                eaElementDict[eaPackage.PackageID.ToString()] = eaPackage.Element;
+                string pkgElId = eaPackage.Element.ElementID.ToString();
+                eaPackageDict[pkgElId] = eaPackage;
+                eaElementDict[pkgElId] = eaPackage.Element;
             }
             foreach (EA.Package eaSubPackage in eaPackage.Packages)
             {

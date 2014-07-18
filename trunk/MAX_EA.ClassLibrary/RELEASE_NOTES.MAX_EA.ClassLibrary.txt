@@ -33,6 +33,10 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2014-jul-14]
+MAXImporter3
+- Used wrong id for packages, now use Package.Element.ElementID instead of PackageID
+
 [2014-jun-20]
 MAXExporter3
 - Forgot to export tagged values for relationships.

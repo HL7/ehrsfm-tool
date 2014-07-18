@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HL7_FM_EA_Extension.R2ModelV2.Base;
 
 namespace HL7_FM_EA_Extension
 {
@@ -16,58 +17,76 @@ namespace HL7_FM_EA_Extension
             InitializeComponent();
         }
 
+        private bool ignoreEvents = false;
         private R2Function _function;
 
         public void Show(R2Function function)
         {
             _function = function;
+            BackColor = R2Config.config.getSectionColor(_function.FunctionId, DefaultBackColor);
             setShowingFunction(function, true);
-            switchLinkLabel.Visible = (function is CompilerInstruction);
+            switchLinkLabel.Visible = function.IsCompilerInstruction;
             ShowDialog();
         }
 
         private void setShowingFunction(R2Function function, bool enableEdit)
         {
-            if (function is CompilerInstruction)
+            ignoreEvents = true;
+            if (function.IsCompilerInstruction)
             {
+                changeNoteLinkLabel.Visible = true;
+                changeNoteLinkLabel.Enabled = true;
+                changeNoteTextBox.Visible = false;
+                changeNoteTextBox.Text = function.ChangeNote;
+                descriptionLinkLabel.Enabled = false;
+                descriptionTextBox.Visible = true;
+
                 Text = string.Format("EHR-S FM {0}: {1} (Profile Definition) @{2}", function.Stereotype, function.Name, function.LastModified);
                 switchLinkLabel.Text = "Switch to base Element";
-                label3.Visible = true;
-                priorityComboBox.SelectedItem = ((R2FunctionCI)function).Priority;
+                priorityLabel.Visible = true;
+                priorityComboBox.SelectedItem = function.Priority;
                 priorityComboBox.Visible = true;
+
+                updateLabels();
             }
             else
             {
+                changeNoteLinkLabel.Visible = false;
+                changeNoteTextBox.Visible = false;
+                changeNoteTextBox.Text = "";
+                descriptionTextBox.Visible = true;
+                descriptionLinkLabel.Enabled = false;
+
                 Text = string.Format("EHR-S FM {0}: {1} @{2}", function.Stereotype, function.Name, function.LastModified);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
-                label3.Visible = false;
-                priorityComboBox.SelectedItem = R2FunctionCI.EmptyPriority;
+                priorityLabel.Visible = false;
+                priorityComboBox.SelectedItem = R2Const.EmptyPriority;
                 priorityComboBox.Visible = false;
-            }
 
-            BackColor = R2Config.config.getSectionColor(_function.Name, DefaultBackColor);
+                updateLabels(false);
+            }
             pathLabel.Text = function.Path;
 
             // Other properties
+            idTextBox.Text = function.FunctionId;
             nameTextBox.Text = function.Name;
-            idTextBox.Text = function.FunctionID;
             statementTextBox.Text = function.Statement;
             descriptionTextBox.Text = function.Description;
 
             if (enableEdit)
             {
-                if (function is CompilerInstruction)
+                if (function.IsCompilerInstruction)
                 {
                     idTextBox.Enabled = false;
-                    bool isRealm = "Realm".Equals(((R2FunctionCI) function).ProfileType);
+                    bool isRealm = "Realm".Equals(function.ProfileType);
                     nameTextBox.Enabled = isRealm;
                     statementTextBox.Enabled = isRealm;
                     descriptionTextBox.Enabled = true;
                 }
                 else
                 {
-                    nameTextBox.Enabled = true;
                     idTextBox.Enabled = true;
+                    nameTextBox.Enabled = true;
                     statementTextBox.Enabled = true;
                     descriptionTextBox.Enabled = true;
                 }
@@ -79,25 +98,59 @@ namespace HL7_FM_EA_Extension
                 statementTextBox.Enabled = false;
                 descriptionTextBox.Enabled = false;
             }
+            ignoreEvents = false;
+        }
+
+        /**
+         * Append star(*) after label of Label is value is different from Default
+         */ 
+        private void updateLabel(R2ModelElement.PropertyName key, string labelText, Label label, bool? star)
+        {
+            if (star == null)
+            {
+                if (!_function.isDefault(key)) labelText = string.Format("{0}*", labelText);
+            }
+            else
+            {
+                if (star == true) labelText = string.Format("{0}*", labelText);
+            }
+            label.Text = labelText;
+        }
+
+        /**
+         * Update labels for all editable elements
+         */
+        private void updateLabels(bool? star = null)
+        {
+            updateLabel(R2ModelElement.PropertyName.Name, "Name", nameLabel, star);
+            updateLabel(R2ModelElement.PropertyName.Statement, "Statement", statementLabel, star);
+            updateLabel(R2ModelElement.PropertyName.Description, "Description", descriptionLinkLabel, star);
+            updateLabel(R2ModelElement.PropertyName.Priority, "Priority", priorityLabel, star);
         }
 
         private void applyChanges()
         {
-            _function.FunctionID = idTextBox.Text;
+            _function.FunctionId = idTextBox.Text;
             _function.Name = nameTextBox.Text;
             _function.Statement = statementTextBox.Text;
             _function.Description = descriptionTextBox.Text;
-            _function.Update();
-
-            if (_function is CompilerInstruction)
+            if (_function.IsCompilerInstruction)
             {
-                ((R2FunctionCI)_function).Priority = priorityComboBox.Text;
+                _function.Priority = priorityComboBox.Text;
+                _function.ChangeNote = changeNoteTextBox.Text;
             }
+            _function.SaveToSource();
+
+            idTextBox.Text = _function.FunctionId;
+            nameTextBox.Text = _function.Name;
+            statementTextBox.Text = _function.Statement;
+            descriptionTextBox.Text = _function.Description;
         }
 
         private void applyButton_Click(object sender, EventArgs e)
         {
             applyChanges();
+            updateLabels();
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -130,6 +183,7 @@ namespace HL7_FM_EA_Extension
                 id = nameTextBox.Text.Substring(0, spidx);
             }
             idTextBox.Text = id;
+            updateLabel(R2ModelElement.PropertyName.Name, "Name", nameLabel, true);
         }
 
         private bool switched = false;
@@ -138,7 +192,7 @@ namespace HL7_FM_EA_Extension
             if (!switched)
             {
                 switched = true;
-                R2Function baseFunction = (R2Function)R2Model.GetBase(_function);
+                R2Function baseFunction = (R2Function)_function.Defaults;
                 // Disable edit of base to prevent accidental changes
                 setShowingFunction(baseFunction, false);
             }
@@ -147,6 +201,37 @@ namespace HL7_FM_EA_Extension
                 switched = false;
                 setShowingFunction(_function, true);
             }
+        }
+
+        private void statementTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Statement, "Statement", statementLabel, true);
+        }
+
+        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Description, "Description", descriptionLinkLabel, true);
+        }
+
+        private void priorityComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Priority, "Priority", priorityLabel, true);
+        }
+
+        private void descriptionLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            descriptionLinkLabel.Enabled = false;
+            descriptionTextBox.Visible = true;
+            changeNoteLinkLabel.Enabled = true;
+            changeNoteTextBox.Visible = false;
+        }
+
+        private void changeNoteLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            descriptionLinkLabel.Enabled = true;
+            descriptionTextBox.Visible = false;
+            changeNoteLinkLabel.Enabled = false;
+            changeNoteTextBox.Visible = true;
         }
     }
 }
