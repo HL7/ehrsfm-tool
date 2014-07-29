@@ -31,8 +31,9 @@ namespace HL7_FM_EA_Extension.Tests
         [TestMethod]
         public void TestCompileMUFP()
         {
-            string fileNameBase = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\\EHRS_FM_R2_N2.max.xml";
-            string fileNameDefinition = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\\MU Profile Definition.max.xml";
+            string fileNameBase = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\\EHRS_FM_R2 January 2014_Final.max.xml";
+            //string fileNameDefinition = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\\MU Profile Definition.max.xml";
+            string fileNameDefinition = @"c:\temp\MU Profile Definition 7162014.max.xml";
             string fileNameOutput = @"c:\temp\MU FP Compiled.max.xml";
             new R2ProfileCompiler().Compile(fileNameBase, fileNameDefinition, fileNameOutput);
         }

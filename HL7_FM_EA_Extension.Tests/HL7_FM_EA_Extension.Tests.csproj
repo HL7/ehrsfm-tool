@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="InputFiles\Compiler Instructions.max.xml" />
+    <Content Include="InputFiles\EHRS_FM_R2 January 2014_Final.max.xml" />
     <Content Include="InputFiles\EHRS_FM_R2_N2.max.xml">
       <SubType>Designer</SubType>
     </Content>
