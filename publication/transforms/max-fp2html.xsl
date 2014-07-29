@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:mif="urn:hl7-org:v3/mif2" version="2.0">
+    xmlns:mif="urn:hl7-org:v3/mif2" version="2.0"
+    exclude-result-prefixes="mif">
     
     <xsl:output doctype-system="html"/>
-    <xsl:param name="ballot-info-file" select="'ehr-s-fm-ballot.mif'"/>
+    <xsl:param name="ballot-info-file" select="'fp-ballot.mif'"/>
     <xsl:variable name="ballot-info" select="document($ballot-info-file)/mif:package"/>
     
-    <xsl:template match="objects/object[stereotype/text()='HL7-FM']">
+    <xsl:template match="objects/object[stereotype/text()='HL7-FM-Profile']">
         <html>
             <head>
                 <title>
@@ -21,6 +22,13 @@
                         <div id="extract-date">
                             <xsl:value-of select="modified"/>
                         </div>
+                        <xsl:if test="$ballot-info/mif:historyItem/mif:description/mif:text">
+                            <div class="sub-title">
+                                <xsl:for-each select="$ballot-info/mif:historyItem/mif:description/mif:text/mif:p">
+                                    <h3><xsl:value-of select="."/></h3>
+                                </xsl:for-each>
+                            </div>
+                        </xsl:if>
                         <div class="authors">
                             <xsl:for-each select="$ballot-info//mif:contributor">
                                 <xsl:call-template name="author-item"/>
@@ -32,6 +40,14 @@
                             </xsl:for-each>
                         </div>
                     </div>
+                    <xsl:if test="$ballot-info/mif:annotations/mif:documentation/mif:description">
+                        <div id="">
+                            <h2>Notes to Balloters</h2>
+                            <xsl:for-each select="$ballot-info/mif:annotations/mif:documentation/mif:description/mif:text/mif:p">
+                                <p><xsl:value-of select="."/></p>
+                            </xsl:for-each>
+                        </div>
+                    </xsl:if>
                     <div id="toc">
                         <h2>Table of Contents</h2>
                         <ul id="toc-list" class="function-list-toc">
@@ -46,7 +62,7 @@
                 </header>
                 <div class="content">
                     <section id="fm-component-description">
-                        <h2>EHR-S Function List Components</h2>
+                        <h2>EHR-S Functional Profile Components</h2>
                         <xsl:call-template name="component-description"/>
                     </section>
                     <xsl:for-each select="following-sibling::object[stereotype/text()='Section']">
@@ -103,13 +119,16 @@
                     <tr>
                         <th class="function-col">
                            Section/ID#:<br/>
-                            Type:<br/>
-                            Name:
+                            Type:
                         </th>
-                        <th class="criteria-col">Conformance Criteria</th>
+                        <th class="criteria-col">
+                            <p>Header/Function Name</p>
+                            <p>Description</p>
+                            <p>Conformance Criteria</p>
+                        </th>
                         <th class="reference-col">Reference</th>
                         <th class="change-col">Chg Ind</th>
-                        <th class="row-col">R2 Row#</th>
+                        <th class="row-col">Priority</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -137,15 +156,17 @@
                 <xsl:attribute name="id" select="alias"/>
                 <xsl:value-of select="alias"></xsl:value-of>
             </td>
-            <td rowspan="3"/>
-            <td rowspan="3" class="value-column">
+            <td rowspan="2" class="function-title">
+                <xsl:value-of select="$plain-name"/>
+            </td>
+            <td rowspan="2" class="value-column">
                 <xsl:call-template name="get-reference"/>
             </td>
-            <td rowspan="3" class="value-column">
+            <td rowspan="2" class="value-column">
                 <xsl:call-template name="get-change-indicator"/>
             </td>
-            <td rowspan="3" class="value-column">
-                <xsl:value-of select="tag[@name='Row']/@value"/>
+            <td rowspan="2" class="value-column">
+                <xsl:value-of select="tag[@name='Priority']/@value"/>
             </td>
         </tr>
         <tr>
@@ -154,35 +175,43 @@
                 <xsl:value-of select="stereotype"/>
             </td>
         </tr>
-        <tr>
+<!--        <tr>
             <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-main')"/>
             <td>
-                <xsl:value-of select="$plain-name"/>
             </td>
-        </tr>
+        </tr> -->
         <tr>
             <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-sub')"/>
-            <td class="function-description">
-                <p class="lhs-text">
+            <td class="function-description" colspan="5">
+                <p class="summary-text">
                     <strong>Statement: </strong>
                     <xsl:value-of select="$statement"/>
                 </p>
-                <p class="lhs-text">
+                <p class="summary-text">
                     <strong>Description: </strong>
                     <xsl:value-of select="$description"/>
                 </p>
-            </td>
-            <td colspan="4">
-                <xsl:if test="count(following-sibling::object[parentId/text()=$object-id and stereotype/text()='Criteria'])">
-                    <ol class="criteria-list">
-                        <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and stereotype/text()='Criteria']">
-                            <xsl:call-template name="criteria-output"/>
-                        </xsl:for-each>
-                    </ol>
+                <xsl:if test="tag/@name='ExternalReference'">
+                    <dl class="fn-references">
+                        <dt>External References:</dt>
+                        <dd>
+                            <ul>
+                                <xsl:for-each select="tag[@name='ExternalReference']">
+                                    <xsl:call-template name="format-external-reference"/>
+                                </xsl:for-each>
+                            </ul>
+                        </dd>
+                    </dl>
                 </xsl:if>
             </td>
         </tr>
-        <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and stereotype/text()='Function']">
+        <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and stereotype/text()='Criteria']">
+            <xsl:call-template name="criteria-output">
+                <xsl:with-param name="sect-no" select="$sect-no"/>
+                <xsl:with-param name="level-no" select="$level-no"/>
+            </xsl:call-template>
+        </xsl:for-each>
+        <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and (stereotype/text()='Function' or stereotype/text()='Header')]">
             <xsl:call-template name="function-output">
                 <xsl:with-param name="sect-no" select="$sect-no"/>
                 <xsl:with-param name="level-no" select="$level-no + 1"/>
@@ -191,20 +220,24 @@
     </xsl:template>
     
     <xsl:template name="criteria-output">
-        <li>
-            <div class="criteria-row">
-                <xsl:call-template name="get-criteria-row"/>
-            </div>
-            <div class="criteria-change">
-                <xsl:call-template name="get-change-indicator"/>
-            </div>
-            <div class="criteria-reference">
-                <xsl:call-template name="get-functional-reference"/>
-            </div>
-            <div class="criteria-text">
+        <xsl:param name="sect-no"/>
+        <xsl:param name="level-no"/>
+
+        <tr>
+            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-sub')"/>
+            <td class="criteria-description" colspan="2">
                 <xsl:call-template name="get-criteria-text"/>
-            </div>
-        </li>
+            </td>
+            <td class="fp-criteria-reference">
+                <xsl:call-template name="get-functional-reference"/>
+            </td>
+            <td class="fp-criteria-change">
+                <xsl:call-template name="get-change-indicator"/>
+            </td>
+            <td class="fp-criteria-priority">
+                <xsl:call-template name="get-criteria-priority"/>
+            </td>
+        </tr>
     </xsl:template>
 
     <xsl:template name="get-reference">
@@ -215,20 +248,23 @@
     
     <xsl:template name="get-change-indicator">
         <xsl:choose>
-            <xsl:when test="tag[@name='Reference.ChangeInfo' and @value='Modified']">C</xsl:when>
-            <xsl:when test="tag[@name='Reference.ChangeInfo' and @value='New']">N</xsl:when>
+            <xsl:when test="tag/@name='Reference.ChangeIndicator'">
+                <xsl:value-of select="tag[@name='Reference.ChangeIndicator']/@value"/>
+            </xsl:when>
             <xsl:otherwise>NC</xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     
     <xsl:template name="get-criteria-text">
+        <xsl:variable name="criteria-num" select="substring-after(name, '#')"/>
         <xsl:choose>
             <xsl:when test="contains(notes,' conform to function ')">
                 <xsl:variable name="pre-text" select="substring-before(notes, ' conform to function ')"/>
                 <xsl:variable name="working-text" select="substring-after(notes, ' conform to function ')"/>
                 <xsl:variable name="function-ref" select="substring-before($working-text, ' ')"/>
                 <xsl:variable name="post-text" select="substring-after($working-text, ' ')"/>
-                <xsl:value-of select="concat($pre-text, ' conform to function ')"/>
+                <strong><xsl:value-of select="$criteria-num"/></strong>
+                <xsl:value-of select="concat('. ', $pre-text, ' conform to function ')"/>
                 <a>
                     <xsl:attribute name="href" select="concat('#', $function-ref)"/>
                     <xsl:value-of select="$function-ref"/>
@@ -236,7 +272,8 @@
                 <xsl:value-of select="concat(' ', $post-text)"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="notes"/>
+                <strong><xsl:value-of select="$criteria-num"/></strong>
+                <xsl:value-of select="concat('. ', notes)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -253,18 +290,38 @@
             </xsl:choose>
         </xsl:param>
         <xsl:param name="crit-ref">
-            <xsl:if test="tag/@name='Reference.CriteriaID'">
-                <xsl:value-of select="concat('#', tag[@name='Reference.CriteriaID']/@value)"/>
+            <xsl:if test="tag/@name='Reference.CriterionID'">
+                <xsl:value-of select="concat('#', tag[@name='Reference.CriterionID']/@value)"/>
             </xsl:if>
         </xsl:param>
         
         <xsl:value-of select="concat($func-ref, $crit-ref)"/>
     </xsl:template>
     
-    <xsl:template name="get-criteria-row">
-        <xsl:if test="tag/@name='Row'">
-            <xsl:value-of select="tag[@name='Row']/@value"/>
+    <xsl:template name="get-criteria-priority">
+        <xsl:if test="tag/@name='Priority'">
+            <xsl:value-of select="tag[@name='Priority']/@value"/>
         </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="format-external-reference">
+        <xsl:param name="text-area" select="substring-before(@value, '$$URL$$')"/>
+        <xsl:param name="text-value" select="substring-after($text-area, 'TEXT$$')"/>
+        <xsl:param name="url-value" select="substring-after(@value, '$$URL$$')"/>
+        
+        <xsl:choose>
+            <xsl:when test="string-length($url-value) > 0">
+                <li>
+                    <a>
+                        <xsl:attribute name="href" select="$url-value"/>
+                        <xsl:value-of select="$text-value" disable-output-escaping="yes"/>
+                    </a>
+                </li>
+            </xsl:when>
+            <xsl:otherwise>
+                <li><xsl:value-of select="$text-value" disable-output-escaping="yes"/></li>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template name="section-nav">
@@ -330,19 +387,22 @@
             <dd>This is a more detailed description of the function, including examples if needed.  <br>Example: Medication lists are managed over time, whether over the course of a visit or stay, or the lifetime of a patient. All pertinent dates, including medication start, modification, and end dates are stored. The entire medication history for any medication, including alternative supplements and herbal medications, is viewable. Medication lists are not limited to medication orders recorded by providers, but may include, for example, pharmacy dispense/supply records, patient-reported medications and additional information such as age specific dosage.</br></dd>
             <dt>Conformance Criteria (Normative) </dt>
             <dd>Each function in the Function List includes one or more Conformance Criteria.  A Conformance Criteria, which exists as normative language in this standard, defines the requirements for conforming to the function.  The language used to express a conformance criterion is highly structured with standardized components with set meanings.  The structured language used to define conformance clauses in the Function List are defined in the Glossary (Chapter 4).</dd>
-            <dt>R1.1 Reference (Reference)</dt>
-            <dd>Reference to the previous version of the Functional Model is included to support transition from one version to the next.   The first 2 digits indicate the source document;  FM = Functional Model, LM = Lifecycle Model.  The remainder of the reference is to the function and, if applicable, conformance criteria.</dd>
+            <dt>Reference</dt>
+            <dd>Reference to the Functional Model or Functional Profile the current Functional Profile was developed against. </dd>
+            <dt>External Reference</dt>
+            <dd>Reference to additional documentation that is relevant to the item. This documentation may include national standards or requirements that the profile was created to fulfill.</dd>
             <dt>Change Indicator</dt>
             <dd>The change indicator shows the change from previous versions.  This will be valued as follows:
                 <ul>
-                    <li>C - Changed</li>
-                    <li>D - Deleted</li>
-                    <li>N - New</li>
-                    <li>NC - No Change</li>
+                    <li>C   - Changed</li>
+                    <li>D   - Deleted</li>
+                    <li>N   - New</li>
+                    <li>NC  - No Change</li>
+                    <li>DEP - Deprecated</li>
                 </ul>
             </dd>
-            <dt>R2 Row #</dt>
-            <dd>A unique number for the row within the section.</dd>
+            <dt>Priority</dt>
+            <dd class="need-review">Provide text for this definition.</dd>
         </dl>
     </xsl:template>
     
