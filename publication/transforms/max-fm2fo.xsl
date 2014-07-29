@@ -18,7 +18,7 @@
             <xsl:otherwise>35</xsl:otherwise>
         </xsl:choose>
     </xsl:param>
-    <xsl:param name="ballot-info-file" select="'../ehr-s-fm-ballot.mif'"/>
+    <xsl:param name="ballot-info-file" select="'ehrs-fm-ballot.mif'"/>
     <xsl:variable name="ballot-info" select="document($ballot-info-file)/mif:package"/>
     
     <xsl:template match="objects/object[stereotype/text()='HL7-FM']">
