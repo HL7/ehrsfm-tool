@@ -155,11 +155,6 @@
             "AssemblyAsmDisplayName" = "8:MAX_EA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_18B835DEF62AD40DC85D3A32D64FB67B"
-                    {
-                    "Name" = "8:MAX_EA.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MAX_EA.dll"
             "TargetName" = "8:"
@@ -296,7 +291,7 @@
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.14.0711"
+        "ProductVersion" = "8:2.14.0725"
         "Manufacturer" = "8:Results4Care"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:mailto:tooling@lists.hl7.org"

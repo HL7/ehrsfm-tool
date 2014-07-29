@@ -18,7 +18,7 @@ namespace HL7_FM_EA_Extension
             foreach (ObjectType maxObj in model.objects)
             {
                 treeNodes[maxObj.id] = new TreeNode();
-                treeNodes[maxObj.id].metadata = maxObj;
+                treeNodes[maxObj.id].baseModelObject = maxObj;
             }
 
             // Now create tree
@@ -56,11 +56,11 @@ namespace HL7_FM_EA_Extension
     public class TreeNode
     {
         public TreeNode parent;
-        public ObjectType metadata;
-        public ObjectType instruction;
+        public ObjectType baseModelObject;
+        public ObjectType instructionObject;
         public bool hasInstruction
         {
-            get { return instruction != null;  }
+            get { return instructionObject != null;  }
         }
         public List<RelationshipType> relationships = new List<RelationshipType>();
         public bool hasConsequenceLinks
@@ -77,9 +77,9 @@ namespace HL7_FM_EA_Extension
 
         private void ToObjectList(TreeNode node, List<ObjectType> objects)
         {
-            if (node.metadata != null)
+            if (node.baseModelObject != null)
             {
-                objects.Add(node.metadata);
+                objects.Add(node.baseModelObject);
             }
             foreach (TreeNode child in node.children)
             {

@@ -22,7 +22,7 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestMethod2()
         {
             TreeNode node = new TreeNode();
-            node.metadata = new ObjectType();
+            node.baseModelObject = new ObjectType();
             List<ObjectType> objects = node.ToObjectList();
             Assert.AreEqual(1, objects.Count);
         }
@@ -31,10 +31,10 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestMethod3Parent()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             TreeNode node2 = new TreeNode();
-            node2.metadata = new ObjectType();
+            node2.baseModelObject = new ObjectType();
             node2.parent = node1;
 
             List<ObjectType> objects = node1.ToObjectList();
@@ -47,7 +47,7 @@ namespace HL7_FM_EA_Extension.Tests
             TreeNode node1 = new TreeNode();
 
             TreeNode node2 = new TreeNode();
-            node2.metadata = new ObjectType();
+            node2.baseModelObject = new ObjectType();
             node2.parent = node1;
 
             List<ObjectType> objects = node1.ToObjectList();
@@ -58,7 +58,7 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestMethod5Parent()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             TreeNode node2 = new TreeNode();
             node2.parent = node1;
@@ -71,14 +71,14 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestMethod6Parent()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             TreeNode node2 = new TreeNode();
-            node2.metadata = new ObjectType();
+            node2.baseModelObject = new ObjectType();
             node2.parent = node1;
 
             TreeNode node3 = new TreeNode();
-            node3.metadata = new ObjectType();
+            node3.baseModelObject = new ObjectType();
             node3.parent = node2;
 
             List<ObjectType> objects = node1.ToObjectList();
@@ -89,10 +89,10 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestMethod3Children()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             TreeNode node2 = new TreeNode();
-            node2.metadata = new ObjectType();
+            node2.baseModelObject = new ObjectType();
             node1.children.Add(node2);
 
             List<ObjectType> objects = node1.ToObjectList();
@@ -105,7 +105,7 @@ namespace HL7_FM_EA_Extension.Tests
             TreeNode node1 = new TreeNode();
 
             TreeNode node2 = new TreeNode();
-            node2.metadata = new ObjectType();
+            node2.baseModelObject = new ObjectType();
             node1.children.Add(node2);
 
             List<ObjectType> objects = node1.ToObjectList();
@@ -116,7 +116,7 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestMethod5Children()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             TreeNode node2 = new TreeNode();
             node1.children.Add(node2);
@@ -129,14 +129,14 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestMethod6Children()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             TreeNode node2 = new TreeNode();
-            node2.metadata = new ObjectType();
+            node2.baseModelObject = new ObjectType();
             node1.children.Add(node2);
 
             TreeNode node3 = new TreeNode();
-            node3.metadata = new ObjectType();
+            node3.baseModelObject = new ObjectType();
             node2.children.Add(node3);
 
             List<ObjectType> objects = node1.ToObjectList();
@@ -147,13 +147,13 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestMoveNodeUsingParent()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             TreeNode node2 = new TreeNode();
-            node2.metadata = new ObjectType();
+            node2.baseModelObject = new ObjectType();
 
             TreeNode node3 = new TreeNode();
-            node3.metadata = new ObjectType();
+            node3.baseModelObject = new ObjectType();
             node3.parent = node1;
             node3.parent = node2;
 
@@ -167,10 +167,10 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestMultipleParent()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             TreeNode node2 = new TreeNode();
-            node2.metadata = new ObjectType();
+            node2.baseModelObject = new ObjectType();
             node1.children.Add(node2);
             node2.parent = node1;
             node2.parent = node1;
@@ -185,7 +185,7 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestConsequenceLink0()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             Assert.AreEqual(0, node1.consequenceLinks.Count());
         }
@@ -195,7 +195,7 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestConsequenceLink1()
         {
             TreeNode node1 = new TreeNode();
-            node1.metadata = new ObjectType();
+            node1.baseModelObject = new ObjectType();
 
             RelationshipType maxRel = new RelationshipType() {
                 stereotype = "ConsequenceLink" };

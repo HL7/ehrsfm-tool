@@ -6,6 +6,14 @@
 
 CHANGELOG
 =========
+[2014-jul-25]
+R2ProfileCompiler
+- Forgot to set notes when instruction (ProfileDefinition) changed it
+
+[2014-jul-24]
+R2ProfileCompiler
+- Reference.ChangeIndicator was not replaced correctly for New items
+
 [2014-jul-11]
 Function/CriterionForm/R2ModelV2Base+EA
 - Added ChangeNote
