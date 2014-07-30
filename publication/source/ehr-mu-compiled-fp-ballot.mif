@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="HL7 EHR-System Meaningful Use Functional Profile, Release 1 - US Realm" xsi:schemaLocation="urn:hl7-org:v3/mif2" xmlns="urn:hl7-org:v3/mif2" schemaVersion="2.2.0" isComplete="">
+    <historyItem dateTime="2014-07-25T19:00:00">
+        <description>
+            <text>
+                <p>Based on HL7 EHR System Functional Model and Standard, Release 2.0</p>
+                <p>Based on ONC/NIST Test Procedures for EHR System Certification, 2014 Edition</p>
+            </text>
+        </description>
+    </historyItem>
+    <packageLocation root="BAL" realmNamespace="US" name="uv"/>
+    <header>
+        <legalese>
+            <notation>
+                <text>ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher.</text>
+                <text>HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc. Reg. U.S. Pat &amp; TM Off</text>
+            </notation>
+        </legalese>
+        <responsibleGroup groupName="EHR Work Group" organizationName="HL7"/>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Gary Dickinson"/>
+            <affiliation>CentriHealth</affiliation>
+            <email>mailto:gary.dickinson@ehr-standards.com</email>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Mark Janczewski MD MPH"/>
+            <affiliation>Medical Networks, LLC</affiliation>
+            <email>mailto:mark.janczewski@verizon.net</email>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="John Ritter"/>
+            <affiliation>National Center for Health Statistics</affiliation>
+            <email>mailto:johnritter1@verizon.net</email>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Patricia van Dyke"/>
+            <affiliation>Moda Health, Delta Dental Plans Association, The ODS Companies</affiliation>
+            <email>mailto:patricia.vandyke@modahealth.com</email>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Diana Warner"/>
+            <affiliation>American Health Information Management Association</affiliation>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Reed Gelzer, MD"/>
+            <affiliation>Provider Resources, Inc.</affiliation>
+        </contributor>
+        <contributor>
+            <role>Author and Editor</role>
+            <name name="Hetty Kahn"/>
+            <affiliation>US Centers for Disease Control and Prevention</affiliation>
+        </contributor>
+    </header>
+    <annotations>
+        <documentation>
+            <description>
+                <text>
+                    <p>Criteria that have high digit numbers (numbered in the range 80-99) are newly added for the purposes of the Meaningful Use Functional Profile and do not exist in base EHR-System functional Model release 2.</p>
+                </text>
+            </description>
+        </documentation>
+    </annotations>
+</package>
