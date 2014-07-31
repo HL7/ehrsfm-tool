@@ -6,6 +6,7 @@
     <xsl:output doctype-system="html"/>
     <xsl:param name="ballot-info-file" select="'fp-ballot.mif'"/>
     <xsl:variable name="ballot-info" select="document($ballot-info-file)/mif:package"/>
+    <xsl:variable name="max-sub-levels" select="number(4)"/>
     
     <xsl:template match="objects/object[stereotype/text()='HL7-FM-Profile']">
         <html>
@@ -98,9 +99,10 @@
         <xsl:param name="object-id" select="id"/>
         <xsl:param name="overview" select="substring-before(substring-after(notes, '$OV$'), '$EX$')"/>
         <section class="fm-section">
-            <xsl:attribute name="id" select="alias/text()"/>
             <h2>
-                <xsl:attribute name="id" select="alias"/>
+                <xsl:attribute name="id">
+                    <xsl:value-of select="alias"/>
+                </xsl:attribute>
                 <xsl:value-of select="name/text()"/> Section
             </h2>
             <h3>Section Overview</h3>
@@ -114,7 +116,9 @@
             </ul>
 
             <table>
-                <xsl:attribute name="class" select="concat('function-list ','section', $order, '-background')"/>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="concat('function-list ','section', $order, '-background')"/>
+                </xsl:attribute>
                 <thead>
                     <tr>
                         <th class="function-col">
@@ -150,10 +154,28 @@
         <xsl:param name="statement" select="substring-before(substring-after(notes, '$ST$'), '$DE$')"/>
         <xsl:param name="description" select="substring-before(substring-after(notes, '$DE$'), '$EX$')"/>
         <xsl:param name="plain-name" select="substring-after(name, alias)"/>
+        <xsl:param name="next-level-no">
+            <xsl:choose>
+                <xsl:when test="($level-no + 1) > $max-sub-levels">
+                    <xsl:value-of select="$level-no"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$level-no + 1"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:param>
+        
+        <xsl:variable name="main-class" select="concat('section', $sect-no, '-lev', $level-no, '-main')"/>
+        <xsl:variable name="sub-class" select="concat('section', $sect-no, '-lev', $level-no, '-sub')"/>
+
         <tr>
-            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-main')"/>
+            <xsl:attribute name="class">
+                <xsl:value-of select="$main-class"/>
+            </xsl:attribute>
             <td>
-                <xsl:attribute name="id" select="alias"/>
+                <xsl:attribute name="id">
+                    <xsl:value-of select="alias"/>
+                </xsl:attribute>
                 <xsl:value-of select="alias"></xsl:value-of>
             </td>
             <td rowspan="2" class="function-title">
@@ -170,18 +192,17 @@
             </td>
         </tr>
         <tr>
-            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-main')"/>
+            <xsl:attribute name="class">
+                <xsl:value-of select="$main-class"/>
+            </xsl:attribute>
             <td>
                 <xsl:value-of select="stereotype"/>
             </td>
         </tr>
-<!--        <tr>
-            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-main')"/>
-            <td>
-            </td>
-        </tr> -->
         <tr>
-            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-sub')"/>
+            <xsl:attribute name="class">
+                <xsl:value-of select="$sub-class"/>
+            </xsl:attribute>
             <td class="function-description" colspan="5">
                 <p class="summary-text">
                     <strong>Statement: </strong>
@@ -214,7 +235,7 @@
         <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and (stereotype/text()='Function' or stereotype/text()='Header')]">
             <xsl:call-template name="function-output">
                 <xsl:with-param name="sect-no" select="$sect-no"/>
-                <xsl:with-param name="level-no" select="$level-no + 1"/>
+                <xsl:with-param name="level-no" select="$next-level-no"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
@@ -224,7 +245,9 @@
         <xsl:param name="level-no"/>
 
         <tr>
-            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-sub')"/>
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat('section', $sect-no, '-lev', $level-no, '-sub')"/>
+            </xsl:attribute>
             <td class="criteria-description" colspan="2">
                 <xsl:call-template name="get-criteria-text"/>
             </td>
@@ -266,7 +289,9 @@
                 <strong><xsl:value-of select="$criteria-num"/></strong>
                 <xsl:value-of select="concat('. ', $pre-text, ' conform to function ')"/>
                 <a>
-                    <xsl:attribute name="href" select="concat('#', $function-ref)"/>
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="concat('#', $function-ref)"/>
+                    </xsl:attribute>
                     <xsl:value-of select="$function-ref"/>
                 </a>
                 <xsl:value-of select="concat(' ', $post-text)"/>
@@ -313,7 +338,9 @@
             <xsl:when test="string-length($url-value) > 0">
                 <li>
                     <a>
-                        <xsl:attribute name="href" select="$url-value"/>
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="$url-value"/>
+                        </xsl:attribute>
                         <xsl:value-of select="$text-value" disable-output-escaping="yes"/>
                     </a>
                 </li>
@@ -339,7 +366,9 @@
             </xsl:choose>
         </xsl:param>
         <li>
-            <xsl:attribute name="class" select="concat('section', $order, '-lev1-main')"/>
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat('section', $order, '-lev1-main')"/>
+            </xsl:attribute>
             <xsl:value-of select="$section-title"/>
             <ul class="bottom-function-nav">
                 <xsl:if test="$is-top = 'f'">
@@ -364,9 +393,13 @@
         <xsl:param name="nav-text" select="substring-after(name, alias)"/>
         <xsl:param name="background-qualifier" select="'-lev1-sub'"/>
         <li>
-            <xsl:attribute name="class" select="concat('section', $order, $background-qualifier)"/>
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat('section', $order, $background-qualifier)"/>
+            </xsl:attribute>
             <a>
-                <xsl:attribute name="href" select="concat('#',alias)"/>
+                <xsl:attribute name="href">
+                    <xsl:value-of select="concat('#',alias)"/>
+                </xsl:attribute>
                 <xsl:value-of select="concat(alias, '    ', $nav-text)"/>
             </a>
         </li>
@@ -402,7 +435,13 @@
                 </ul>
             </dd>
             <dt>Priority</dt>
-            <dd class="need-review">Provide text for this definition.</dd>
+            <dd>The priority for the implementation of the item. This will be valued as follows:
+                <ul>
+                    <li>EN  - Essential Now</li>
+                    <li>EF  - Essential Future</li>
+                    <li>O   - Optional</li>
+                </ul>
+            </dd>
         </dl>
     </xsl:template>
     
