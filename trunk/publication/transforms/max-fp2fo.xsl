@@ -18,10 +18,10 @@
             <xsl:otherwise>35</xsl:otherwise>
         </xsl:choose>
     </xsl:param>
-    <xsl:param name="ballot-info-file" select="'../ehr-s-fm-ballot.mif'"/>
+    <xsl:param name="ballot-info-file" select="'ehrs-fm-ballot.mif'"/>
     <xsl:variable name="ballot-info" select="document($ballot-info-file)/mif:package"/>
     
-    <xsl:template match="objects/object[stereotype/text()='HL7-FM']">
+    <xsl:template match="objects/object[stereotype/text()='HL7-FM-Profile']">
         <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
             <fo:layout-master-set>
                 <fo:simple-page-master page-height="11.0in" page-width="8.5in" margin-top="0.25in" margin-bottom=".2in" margin-left="0.5in" margin-right="0.5in" master-name="FM-TitlePage">
@@ -30,25 +30,16 @@
                     <fo:region-after region-name="doc-footer" extent="0.25in"/>
                 </fo:simple-page-master>
                 <fo:simple-page-master page-height="11.0in" page-width="8.5in" margin-top="0.25in" margin-bottom=".2in" margin-left="0.5in" margin-right="0.5in" master-name="FM-Body">
-                    <fo:region-body margin-top="0.25in" margin-bottom="0in"/>
+                    <fo:region-body margin-top="0.25in" margin-bottom="0.15in"/>
                     <fo:region-before region-name="right-heading" extent="0.25in"/>
                     <fo:region-after extent="0.1in"/>
                 </fo:simple-page-master>
-                <!--
-                <fo:page-sequence-master master-name="FM-page-alt">
-                    
-                    <fo:repeatable-page-master-alternatives>
-                        <fo:conditional-page-master-reference master-reference="rest" page-position="rest"/>
-                        <fo:conditional-page-master-reference master-reference="rest" page-position="last"/>
-                    </fo:repeatable-page-master-alternatives>
-                </fo:page-sequence-master>
-                -->
             </fo:layout-master-set>
             <fo:bookmark-tree>
                 <fo:bookmark internal-destination="toc">
                     <fo:bookmark-title>Table of Contents</fo:bookmark-title>
                     <fo:bookmark internal-destination="fn-list-components">
-                        <fo:bookmark-title>Function List Component Descriptions</fo:bookmark-title>
+                        <fo:bookmark-title>Functional Profile Components</fo:bookmark-title>
                     </fo:bookmark>
                     <xsl:for-each select="following-sibling::object[stereotype/text()='Section']">
                         <xsl:call-template name="section-bookmark">
@@ -66,6 +57,13 @@
                     <xsl:if test="not($iso-format)">
                         <fo:block font-size="1.1em" text-align="right" >
                             <fo:block><xsl:value-of select="modified"/></fo:block>
+                        </fo:block>
+                    </xsl:if>
+                    <xsl:if test="$ballot-info/mif:historyItem/mif:description/mif:text">
+                        <fo:block font-size="0.85em" text-align="right" >
+                            <xsl:for-each select="$ballot-info/mif:historyItem/mif:description/mif:text/mif:p">
+                                <fo:block><xsl:value-of select="."/></fo:block>
+                            </xsl:for-each>
                         </fo:block>
                     </xsl:if>
                 </fo:static-content>
@@ -100,9 +98,20 @@
                     <fo:block font-family="Arial">
                         <fo:block border-style="inset" border-width="thin" border-color="black" background-color="#EEEEEE" padding="1em">
                             <fo:block id="toc" font-size="20pt" font-weight="bold" space-before="14pt" space-after="5pt" keep-with-next.within-page="always">Table of Contents</fo:block>
+                            <xsl:if test="$ballot-info/mif:annotations/mif:documentation/mif:description">
+                                <fo:block text-align-last="justify" margin-left="0em" space-before="5pt" font-size="1em" font-weight="700">
+                                    <fo:basic-link internal-destination="notes-to-balloters">
+                                        <fo:inline font-style="italic">Notes to Balloters</fo:inline>
+                                    </fo:basic-link>
+                                    <fo:leader leader-pattern="dots"/>
+                                    <fo:inline font-style="italic">
+                                        <fo:page-number-citation ref-id="notes-to-balloters"/>
+                                    </fo:inline>
+                                </fo:block>
+                            </xsl:if>
                             <fo:block text-align-last="justify" margin-left="0em" space-before="5pt" font-size="1em" font-weight="700">
                                 <fo:basic-link internal-destination="fn-list-components">
-                                    <fo:inline font-style="italic">Function List Component Descriptions</fo:inline>
+                                    <fo:inline font-style="italic">Functional Profile Components</fo:inline>
                                 </fo:basic-link>
                                 <fo:leader leader-pattern="dots"/>
                                 <fo:inline font-style="italic">
@@ -118,8 +127,16 @@
                             </xsl:for-each>
                         </fo:block>
                     </fo:block>
+                    <xsl:if test="$ballot-info/mif:annotations/mif:documentation/mif:description">
+                        <fo:block break-before="page">
+                            <fo:block font-size="1.1em" font-weight="bold" id="notes-to-balloters" space-after=".6em">Notes to Balloters</fo:block>
+                            <xsl:for-each select="$ballot-info/mif:annotations/mif:documentation/mif:description/mif:text/mif:p">
+                                <fo:block><xsl:value-of select="."/></fo:block>
+                            </xsl:for-each>
+                        </fo:block>                    
+                    </xsl:if>
                     <fo:block break-before="page">
-                        <fo:block font-size="1.1em" font-weight="bold" id="fn-list-components">Function List Component Descriptions</fo:block>
+                        <fo:block font-size="1.1em" font-weight="bold" id="fn-list-components">Functional Profile Components</fo:block>
                         <fo:block>
                             <xsl:call-template name="component-description"/>
                         </fo:block>
@@ -162,7 +179,9 @@
         <xsl:param name="object-id" select="id"/>
         <xsl:param name="overview" select="substring-before(substring-after(notes, '$OV$'), '$EX$')"/>
         <fo:block>
-            <xsl:attribute name="id" select="alias/text()"/>
+            <xsl:attribute name="id">
+                <xsl:value-of select="alias/text()"/>
+            </xsl:attribute>
             <xsl:attribute name="break-before">
                 <xsl:choose>
                     <xsl:when test="$order=1">auto</xsl:when>
@@ -177,7 +196,9 @@
             <fo:table font-size=".8em" border-collapse="collapse">
                 <fo:table-column column-number="1" column-width="15em"/>
                 <fo:table-column column-number="2">
-                    <xsl:attribute name="column-width" select="concat($description-column-width,'em')"/>
+                    <xsl:attribute name="column-width">
+                        <xsl:value-of select="concat($description-column-width,'em')"/>
+                    </xsl:attribute>
                 </fo:table-column>
                 <xsl:choose>
                     <xsl:when test="$iso-format">
@@ -192,23 +213,23 @@
                 <fo:table-header>
                     <fo:table-row border="solid 0.5pt black" display-align="center" font-weight="600" background-color="#a151e7">
                         <fo:table-cell padding-left=".5em" border-right="solid 0.5pt white">
-                            <fo:block>Section/Id#:</fo:block>
-                            <fo:block>Type:</fo:block>
-                            <fo:block>Name:</fo:block>
+                            <fo:block font-size="0.8em">Section/Id#:</fo:block>
+                            <fo:block font-size="0.8em">Type:</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell padding-left=".5em" border-right="solid 0.5pt white">
-                            <fo:block>Conformance Criteria</fo:block>
+                        <fo:table-cell padding-left="1.2em" border-right="solid 0.5pt white">
+                            <fo:block font-size="1.2em">Header/Function Name</fo:block>
+                            <fo:block font-size="0.8em">Conformance Criteria</fo:block>
                         </fo:table-cell>
                         <xsl:if test="not($iso-format)">
                             <fo:table-cell text-align="center" border-right="solid 0.5pt white">
-                                <fo:block>Reference</fo:block>
+                                <fo:block font-size="0.8em">Reference</fo:block>
                             </fo:table-cell>
                             <fo:table-cell text-align="center" border-right="solid 0.5pt white">
-                                <fo:block>Chg Ind</fo:block>
+                                <fo:block font-size="0.8em">Chg Ind</fo:block>
                             </fo:table-cell>
                         </xsl:if>
                         <fo:table-cell text-align="center">
-                            <fo:block>Row#</fo:block>
+                            <fo:block font-size="0.8em">Priority</fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                 </fo:table-header>
@@ -232,21 +253,21 @@
         <xsl:param name="description" select="substring-before(substring-after(notes, '$DE$'), '$EX$')"/>
         <xsl:param name="plain-name" select="substring-after(name, alias)"/>
 
-        <fo:table-row border="solid 0.5pt black" padding-left=".5em">
-            <fo:table-cell border-right="solid 0.5pt black">
-                <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em">
-                    <xsl:attribute name="id" select="alias"/>
+        <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
+            <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
+                <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="alias"/>
+                    </xsl:attribute>
                     <xsl:value-of select="alias"/>
                 </fo:block>
-                <fo:block border-bottom="solid 0.2 black" margin-left=".5em">
+                <fo:block margin-left=".5em">
                     <xsl:value-of select="stereotype"/>
                 </fo:block>
-                <fo:block margin-left=".5em">
-                    <xsl:value-of select="$plain-name"/>
-                </fo:block>
             </fo:table-cell>
-            <fo:table-cell border-right="solid 0.5pt black">
-                <fo:block>
+            <fo:table-cell border-right="solid 0.5pt black" display-align="center">
+                <fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder">
+                    <xsl:value-of select="$plain-name"/>
                 </fo:block>
             </fo:table-cell>
             <xsl:if test="not($iso-format)">
@@ -263,15 +284,17 @@
             </xsl:if>
             <fo:table-cell border-right="solid 0.5pt black" display-align="center">
                 <fo:block display-align="center" text-align="center">
-                    <xsl:value-of select="tag[@name='Row']/@value"/>
+                    <xsl:value-of select="tag[@name='Priority']/@value"/>
                 </fo:block>
             </fo:table-cell>
         </fo:table-row>
         
         <fo:table-row border="solid 0.5pt black">
             <fo:table-cell>
-                <xsl:attribute name="number-columns-spanned" select="$fill-columns + 1"/>
-                <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em">
+                <xsl:attribute name="number-columns-spanned">
+                    <xsl:value-of select="$fill-columns + 1"/>
+                </xsl:attribute>
+                <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
                     <fo:block space-after=".7em" margin-top=".5em">
                         <fo:inline font-weight="bold">Statement: </fo:inline>
                         <xsl:value-of select="$statement"/>
@@ -282,43 +305,16 @@
                             <xsl:with-param name="full-text" select="$description"></xsl:with-param>
                         </xsl:call-template>
                     </fo:block>
-                </fo:block>
-            </fo:table-cell>
-        </fo:table-row>
-        
-        <fo:table-row border="solid 0.5pt black">
-            <fo:table-cell border-right="solid 0.5pt black" padding-left=".6em" padding-right=".6em">
-                <fo:block padding-left=".5em" space-before=".7em" text-align="justify">
-                </fo:block>
-            </fo:table-cell>
-            <fo:table-cell>
-                <xsl:attribute name="number-columns-spanned" select="$fill-columns"/>
-                <fo:block padding-left=".5em">
-                    <xsl:if test="count(following-sibling::object[parentId/text()=$object-id and stereotype/text()='Criteria'])">
-                        <fo:table>
-                            <fo:table-column column-number="1" column-width="35em">
-                                <xsl:attribute name="column-width" select="concat($description-column-width,'em')"/>
-                            </fo:table-column>
-                            <xsl:choose>
-                                <xsl:when test="$iso-format">
-                                    <fo:table-column column-number="2" column-width="6em"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <fo:table-column column-number="2" column-width="6em"/>
-                                    <fo:table-column column-number="3" column-width="6em"/>
-                                    <fo:table-column column-number="4" column-width="6em"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                            <fo:table-body>
-                                <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and stereotype/text()='Criteria']">
-                                    <xsl:call-template name="criteria-output"/>
-                                </xsl:for-each>
-                            </fo:table-body>
-                        </fo:table>
+                    <xsl:if test="tag/@name='ExternalReference'">
+                        <xsl:call-template name="produce-external-references"/>
                     </xsl:if>
                 </fo:block>
             </fo:table-cell>
         </fo:table-row>
+        
+        <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and stereotype/text()='Criteria']">
+            <xsl:call-template name="criteria-output"/>
+        </xsl:for-each>
         
         <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and not(stereotype/text()='Criteria')]">
             <xsl:call-template name="function-output">
@@ -326,23 +322,6 @@
                 <xsl:with-param name="level-no" select="$level-no + 1"/>
             </xsl:call-template>
         </xsl:for-each>
-        
-        <!--
-        <tr>
-            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-main')"/>
-        </tr>
-        <tr>
-            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-main')"/>
-        </tr>
-        <tr>
-            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-main')"/>
-        </tr>
-        <tr>
-            <xsl:attribute name="class" select="concat('section', $sect-no, '-lev', $level-no, '-sub')"/>
-            <td colspan="4">
-            </td>
-        </tr>
-        -->
     </xsl:template>
     
     <xsl:template name="description-output">
@@ -379,8 +358,8 @@
     
     <xsl:template name="criteria-output">
         <fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-            <fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify">
-                <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em">            
+            <fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+                <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">            
                     <fo:list-item space-after=".7em" margin-top=".3em">
                         <fo:list-item-label end-indent="label-end()">
                             <fo:block font-weight="bold" text-align="right">
@@ -409,12 +388,49 @@
             </xsl:if>
             <fo:table-cell display-align="center">
                 <fo:block text-align="center">
-                    <xsl:call-template name="get-criteria-row"/>
+                    <xsl:value-of select="tag[@name='Priority']/@value"/>
                 </fo:block>
             </fo:table-cell>
         </fo:table-row>
     </xsl:template>
+    
+    <xsl:template name="produce-external-references">
+        <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">            
+            <fo:list-item space-after=".7em">
+                <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">External References:</fo:block></fo:list-item-label>
+                <fo:list-item-body start-indent="body-start()">
+                    <xsl:for-each select="tag[@name='ExternalReference']">
+                        <xsl:call-template name="format-external-reference"/>
+                    </xsl:for-each>
+                </fo:list-item-body>
+            </fo:list-item>
+        </fo:list-block>
+    </xsl:template>
 
+    <xsl:template name="format-external-reference">
+        <xsl:param name="text-area" select="substring-before(@value, '$$URL$$')"/>
+        <xsl:param name="text-value" select="substring-after($text-area, 'TEXT$$')"/>
+        <xsl:param name="url-value" select="substring-after(@value, '$$URL$$')"/>
+        
+        <xsl:variable name="quote">'</xsl:variable>
+        
+        <xsl:choose>
+            <xsl:when test="string-length($url-value) > 0">
+                <fo:block>
+                    <fo:basic-link color="blue" text-decoration="underline">
+                        <xsl:attribute name="external-destination">
+                            <xsl:value-of select="concat('url(', $quote, $url-value, $quote, ')')"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="$text-value" disable-output-escaping="yes"/>
+                    </fo:basic-link>
+                </fo:block>
+            </xsl:when>
+            <xsl:otherwise>                
+                <fo:block><xsl:value-of select="$text-value" disable-output-escaping="yes"/></fo:block>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
     <xsl:template name="get-reference">
         <xsl:if test="tag/@name='Reference.Alias'">
             <xsl:value-of select="tag[@name='Reference.FunctionID']/@value"/>
@@ -438,7 +454,9 @@
                 <xsl:variable name="post-text" select="substring-after($working-text, ' ')"/>
                 <xsl:value-of select="concat($pre-text, ' conform to function ')"/>
                 <fo:basic-link>
-                    <xsl:attribute name="internal-destination" select="$function-ref"/>
+                    <xsl:attribute name="internal-destination">
+                        <xsl:value-of select="$function-ref"/>
+                    </xsl:attribute>
                     <fo:inline  text-decoration="underline" color="blue">
                         <xsl:value-of select="$function-ref"/>
                     </fo:inline>
@@ -495,7 +513,9 @@
 
         <fo:block text-align-last="justify" margin-left="0em" space-before="5pt" font-size="1em" font-weight="700">
             <fo:basic-link>
-                <xsl:attribute name="internal-destination" select="alias"/>
+                <xsl:attribute name="internal-destination">
+                    <xsl:value-of select="alias"/>
+                </xsl:attribute>
                 <xsl:choose>
                     <xsl:when test="$is-top = 't'">
                         <xsl:value-of select="concat($order, '. ', $section-title, ' (', alias, ')')"/>
@@ -507,7 +527,9 @@
             </fo:basic-link>
             <fo:leader leader-pattern="dots"/>
             <fo:page-number-citation>
-                <xsl:attribute name="ref-id" select="alias"/>
+                <xsl:attribute name="ref-id">
+                    <xsl:value-of select="alias"/>
+                </xsl:attribute>
             </fo:page-number-citation>
         </fo:block>
 
@@ -521,12 +543,16 @@
 
         <fo:block text-align-last="justify" margin-left="3em" space-before="5pt" font-size="1em" font-weight="400">
             <fo:basic-link>
-                <xsl:attribute name="internal-destination" select="alias"/>
+                <xsl:attribute name="internal-destination">
+                    <xsl:value-of select="alias"/>
+                </xsl:attribute>
                 <xsl:value-of select="name"/>
             </fo:basic-link>
             <fo:leader leader-pattern="dots"/>
             <fo:page-number-citation>
-                <xsl:attribute name="ref-id" select="alias"/>
+                <xsl:attribute name="ref-id">
+                    <xsl:value-of select="alias"/>
+                </xsl:attribute>
             </fo:page-number-citation>
         </fo:block>
     </xsl:template>
@@ -547,7 +573,9 @@
         </xsl:param>
         
         <fo:bookmark>
-            <xsl:attribute name="internal-destination" select="alias"/>
+            <xsl:attribute name="internal-destination">
+                <xsl:value-of select="alias"/>
+            </xsl:attribute>
             <fo:bookmark-title>
                 <xsl:choose>
                     <xsl:when test="$is-top = 't'">
@@ -566,7 +594,9 @@
 
     <xsl:template name="function-bookmark">
         <fo:bookmark>
-            <xsl:attribute name="internal-destination" select="alias"/>
+            <xsl:attribute name="internal-destination">
+                <xsl:value-of select="alias"/>
+            </xsl:attribute>
             <fo:bookmark-title>
                 <xsl:value-of select="name"/>
             </fo:bookmark-title>
@@ -585,7 +615,7 @@
                 <fo:list-item-body start-indent="body-start()"><fo:block>Indication of the line item as being a header (H) or function (F) or conformance criteria.</fo:block></fo:list-item-body>
             </fo:list-item>
             <fo:list-item space-after=".7em">
-                <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">Function Name (Normative)</fo:block></fo:list-item-label>
+                <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">Header/Function Name (Normative)</fo:block></fo:list-item-label>
                 <fo:list-item-body start-indent="body-start()"><fo:block>This is the name of the Function and whilst expected to be unique within the Function List; it is not recommended to be used to identify the function without being accompanied by the Function ID.<fo:block>Example: Manage Medication List</fo:block></fo:block></fo:list-item-body>
             </fo:list-item>
             <fo:list-item space-after=".7em">
@@ -613,10 +643,10 @@
             <xsl:if test="not($iso-format)">
                 <fo:list-item space-after=".7em">
                     <fo:list-item-label end-indent="label-end()">
-                        <fo:block font-weight="bold">R1.1 Reference (Reference)</fo:block>
+                        <fo:block font-weight="bold">Reference (Reference)</fo:block>
                     </fo:list-item-label>
                     <fo:list-item-body start-indent="body-start()">
-                        <fo:block>Reference to the previous version of the Functional Model is included to support transition from one version to the next.   The first 2 digits indicate the source document;  FM = Functional Model, LM = Lifecycle Model.  The remainder of the reference is to the function and, if applicable, conformance criteria.</fo:block>
+                        <fo:block>Reference to the Functional Model or Functional Profile the current Functional Profile was developed against.</fo:block>
                     </fo:list-item-body>
                 </fo:list-item>
                 <fo:list-item space-after=".7em">
@@ -638,16 +668,30 @@
                             <fo:list-item>
                                 <fo:list-item-label end-indent="label-end()"><fo:block/></fo:list-item-label>
                                 <fo:list-item-body start-indent="body-start()"><fo:block>NC - No Change</fo:block></fo:list-item-body></fo:list-item>
+                            <fo:list-item>
+                                <fo:list-item-label end-indent="label-end()"><fo:block/></fo:list-item-label>
+                                <fo:list-item-body start-indent="body-start()"><fo:block>DEP - Deprecated</fo:block></fo:list-item-body></fo:list-item>
                         </fo:list-block>
                     </fo:list-item-body>
                 </fo:list-item>
             </xsl:if>
             <fo:list-item>
                 <fo:list-item-label end-indent="label-end()">
-                    <fo:block font-weight="bold">Row #</fo:block>
+                    <fo:block font-weight="bold">Priority</fo:block>
                 </fo:list-item-label>
                 <fo:list-item-body start-indent="body-start()">
-                    <fo:block>A unique number for the row within the section.</fo:block>
+                    <fo:block>The priority for the implementation of the item. This will be valued as follows:</fo:block>
+                    <fo:list-block>
+                        <fo:list-item>
+                            <fo:list-item-label end-indent="label-end()"><fo:block/></fo:list-item-label>
+                            <fo:list-item-body start-indent="body-start()"><fo:block>EN - Essential Now</fo:block></fo:list-item-body></fo:list-item>
+                        <fo:list-item>
+                            <fo:list-item-label end-indent="label-end()"><fo:block/></fo:list-item-label>
+                            <fo:list-item-body start-indent="body-start()"><fo:block>EF  - Essential Future</fo:block></fo:list-item-body></fo:list-item>
+                        <fo:list-item>
+                            <fo:list-item-label end-indent="label-end()"><fo:block/></fo:list-item-label>
+                            <fo:list-item-body start-indent="body-start()"><fo:block>O   - Optional</fo:block></fo:list-item-body></fo:list-item>
+                    </fo:list-block>
                 </fo:list-item-body>
             </fo:list-item>
         </fo:list-block>
