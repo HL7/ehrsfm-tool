@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Mar 7, 2014 9:21:18 AM                                                        
+
+     Functional Model Publishing    
+     Produce the publishing artefacts for a Functional Model/Profile
+                   
+     stechia                                                                
+     ====================================================================== -->
+<project name="fm-publish" default="artefacts">
+    <description>
+            Produce the publishing artefacts for a given Functional Model/Profile
+    	    - There are specific target for the EHR-S FM and the EHR MU FP (US)
+    	    - Running the the Ant build process (with the included FO processing)
+    	      requires setting the memory for the Java process to 1Gb:
+    	      ANT_OPTS=-Xmx1g
+    </description>
+	
+	<property file="publication-base.properties"/>
+
+	<taskdef name="fop"
+	         classname="org.apache.fop.tools.anttasks.Fop">
+	  <classpath>
+	    <fileset dir="${fop.home}/lib">
+	      <include name="*.jar"/>
+	    </fileset>
+	    <fileset dir="${fop.home}/build">
+	      <include name="fop.jar"/>
+	      <include name="fop-hyph.jar" />
+	    </fileset>
+	  </classpath>
+	</taskdef>
+	
+	<!-- ================================= 
+          target: EHR-S-FM              
+         ================================= -->
+    <target name="EHR-S-FM" description="Build the output artifacts for the EHR-S Functional Model (PDF, HTML, EXCEL data)">
+        <antcall target="artefacts">
+        	<param name="file.base-name" value="ehrs-fm"/>
+        	<param name="is-fm" value='true'/>
+        </antcall>
+    </target>
+
+	<!-- ================================= 
+          target: EHR-MU-FP              
+         ================================= -->
+    <target name="EHR-MU-FP" description="Build the output artifacts for the EHR System Functional Profile for Meaningful Use (PDF, HTML)">
+        <antcall target="artefacts">
+        	<param name="file.base-name" value="ehr-mu-compiled-fp"/>
+        	<param name="is-fm" value='false'/>
+        </antcall>
+    </target>
+
+	
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: artefacts              
+         - - - - - - - - - - - - - - - - - -->
+    <target name="artefacts" description="Generates the output artefacts for a Functional Model or a Functional Profile">
+    	<condition property="file.html-transform" value="${dir.xsl}/max-fm2html.xsl" else="${dir.xsl}/max-fp2html.xsl">
+    		<istrue value="${is-fm}"/>
+    	</condition>
+    	<condition property="file.fo-transform" value="${dir.xsl}/max-fm2fo.xsl" else="${dir.xsl}/max-fp2fo.xsl">
+    		<istrue value="${is-fm}"/>
+    	</condition>
+
+    	<antcall target="html">
+        	<param name="file.max-file" value="${dir.source}/${file.base-name}.max"/>
+        	<param name="file.ballot-file" value="../${dir.source}/${file.base-name}-ballot.mif"/>
+        	<param name="file.additional-text" value=""/>
+        	<param name="file.out-file" value="${dir.html}/${file.base-name}.html"/>
+    	</antcall>
+    	<antcall target="pdf">
+        	<param name="file.max-file" value="${dir.source}/${file.base-name}.max"/>
+        	<param name="file.ballot-file" value="../${dir.source}/${file.base-name}-ballot.mif"/>
+        	<param name="file.additional-text" value=""/>
+        	<param name="file.fo-file" value="${dir.fo}/${file.base-name}.fo"/>
+        	<param name="file.out-file" value="${dir.pdf}/${file.base-name}.pdf"/>
+    	</antcall>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: html              
+         - - - - - - - - - - - - - - - - - -->
+    <target name="html" description="description" depends="css">
+    	<xslt style="${file.html-transform}" in="${file.max-file}" out="${file.out-file}">
+    		<param name="ballot-info-file" expression="${file.ballot-file}"/>
+        </xslt>
+    </target>
+	
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: pdf              
+         - - - - - - - - - - - - - - - - - -->
+    <target name="pdf" depends="fo" description="description">
+    	<fop fofile="${file.fo-file}"
+    	     outfile="${file.out-file}"/>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: fo                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="fo">
+    	<xslt style="${file.fo-transform}" in="${file.max-file}" out="${file.fo-file}">
+    		<param name="ballot-info-file" expression="${file.ballot-file}"/>
+        </xslt>
+    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: css                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="css" depends="sass-needed" if="${do-sass}">
+    	<exec executable="${sass-run}">
+    		<arg value="${dir.source}/${file.css}.scss"/>
+    		<arg value="${dir.html}/${file.css}.css"/>
+    	</exec>
+    	<echo>CSS file: ${dir.html}/${file.css}.css updated</echo>
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: sass-needed                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="sass-needed">
+    	<condition property="do-sass">
+    		<and>
+    	    	<available file="${sass-run}"/>
+    			<not>
+        	    	<uptodate srcfile="${dir.source}/${file.css}.scss" targetfile="${dir.html}/${file.css}.css"/>
+    			</not>
+    		</and>
+    	</condition>
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: property-dump                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="property-dump">
+    	<echoproperties>
+    		<propertyset negate="true">
+    			<propertyref prefix="sun"/>
+    			<propertyref prefix="java"/>
+    			<propertyref prefix="user"/>
+    		</propertyset>
+   		</echoproperties>
+    </target>
+</project>
