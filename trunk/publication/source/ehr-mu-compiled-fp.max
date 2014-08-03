@@ -62,6 +62,10 @@ MAY: Indicates an optional, permissible action. Synonymous with ‘is permitted�
       <tag name="Reference.FunctionID" value="CP.1.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(11) Smoking status$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 115 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a11smokingstatus_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(13) Family health history$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -467 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a13familyhealthhistory_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>3d360a50-c15a-48d1-bdaf-89ebc6fa5729</id>
@@ -115,8 +119,22 @@ MAY: Indicates an optional, permissible action. Synonymous with ‘is permitted�
       <tag name="Reference.FunctionID" value="CP.1.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(14) Patient list creation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -490 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a14patientlist_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(2) Drug-drug, drug-allergy interaction checks$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -393 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a2drug_interaction_checks_2014_tp_approvedv1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(7) Medication allergy list$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 140 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a7medicationallergylist_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(4) Clinical information reconciliation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -469 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b4cir_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(4) Clinical information reconciliation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -469 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b4cir_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>1ec9fa70-9318-469c-8ecb-4617165d436a</id>
@@ -410,8 +428,18 @@ MAY: Indicates an optional, permissible action. Synonymous with ‘is permitted�
       <tag name="Reference.FunctionID" value="CP.1.3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(14) Patient list creation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -490 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a14patientlist_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(5) Problem list$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 125 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a5problemlist_2014_tp_approvedv1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(6) Medication list$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 118 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a6medicationlist_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(4) Clinical information reconciliation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -469 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b4cir_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>05f4dddb-a52e-4760-b2cd-368a1cbdb795</id>
@@ -533,8 +561,18 @@ MAY: Indicates an optional, permissible action. Synonymous with ‘is permitted�
       <tag name="Reference.FunctionID" value="CP.1.4" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(14) Patient list creation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -490 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a14patientlist_2014_tp_approved_v1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(5) Problem list$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 125 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a5problemlist_2014_tp_approvedv1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(6) Medication list$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 118 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a6medicationlist_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(4) Clinical information reconciliation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -469 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b4cir_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>89527bf4-3f31-4c98-825c-6f78fe16908e</id>
@@ -802,6 +840,8 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <tag name="Reference.FunctionID" value="CP.1.8" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(14) Patient list creation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -490 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a14patientlist_2014_tp_approved_v1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(3) Demographics$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -395 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a3demographics_2014_tp_approved_v1.2.pdf"/>
     </object>
@@ -846,6 +886,8 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <tag name="Reference.FunctionID" value="CP.3.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(12) Image results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -337 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a12_imageresults_2014_tp_approved_v1.3_onc.pdf"/>
     </object>
     <object>
       <id>4681a75d-4777-4d82-8e2f-ad589e835eee</id>
@@ -877,6 +919,8 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>bb6e9163-5415-45ac-9aaf-48f8bbf186ff</id>
@@ -1004,8 +1048,8 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(9) Electronic notes$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
     </object>
     <object>
       <id>36ae260d-ea56-4205-a77d-9827d754c3de</id>
@@ -1051,6 +1095,8 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <tag name="Reference.FunctionID" value="CP.3.4" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
     </object>
     <object>
       <id>f0e45cba-8b12-4b8f-9f6e-43a63e569f56</id>
@@ -1080,6 +1126,12 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <tag name="Reference.FunctionID" value="CP.4" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(1) Computerized provider order entry$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 110 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a1cpoe_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(16) Inpatient setting only - electronic medication administration record$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -522 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a16emar_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(2) Drug-drug, drug-allergy interaction checks$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -393 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a2drug_interaction_checks_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>f80af9bf-ce34-425d-96ab-8525c40f08aa</id>
@@ -1508,6 +1560,14 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="Reference.FunctionID" value="CP.4.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(1) Computerized provider order entry$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 110 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a1cpoe_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(16) Inpatient setting only - electronic medication administration record$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -522 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a16emar_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(2) Drug-drug, drug-allergy interaction checks$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -393 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a2drug_interaction_checks_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(3) Electronic prescribing$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -420 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b3eprescribing_2014_tp_approved_v1.4.pdf"/>
     </object>
     <object>
       <id>6135fbd8-69cd-486f-9a0a-643faa30ca48</id>
@@ -1991,6 +2051,8 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="Reference.FunctionID" value="CP.4.4" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(1) Computerized provider order entry$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 110 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a1cpoe_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>6e4d9ba5-ef4b-4dd0-9bd0-cb39037e3bfe</id>
@@ -2036,6 +2098,10 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="Reference.FunctionID" value="CP.4.6" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(12) Image results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -337 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a12_imageresults_2014_tp_approved_v1.3_onc.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
     </object>
     <object>
       <id>67daec84-ec91-4ed4-9627-20b681489c70</id>
@@ -2081,6 +2147,18 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="Reference.FunctionID" value="CP.5" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(12) Image results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -337 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a12_imageresults_2014_tp_approved_v1.3_onc.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(14) Patient list creation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -490 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a14patientlist_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(5)(A) Incorporate laboratory tests and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -820 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b5aincorporatelabtests_2014_tp_approved_v1.4_onc.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(5)(B) Incorporate laboratory tests and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -685 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b5bincorporatelabtests_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(6) Inpatient setting only - transmission of electronic laboratory tests and values/results to ambulatory providers$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 828 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b6_transmissionlabtestsvalues_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>8e744ef3-8ac5-4595-b950-a768f5d4915f</id>
@@ -2332,6 +2410,12 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="Reference.FunctionID" value="CP.5.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(6) Inpatient setting only - transmission of electronic laboratory tests and values/results to ambulatory providers$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 828 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b6_transmissionlabtestsvalues_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(4) Inpatient setting only - transmission of reportable laboratory tests and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 1.05 MB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f4transmissionreportablelabs_tp_2014_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>6999d00c-28ae-466c-8e5c-0f35f5353d53</id>
@@ -2380,6 +2464,8 @@ The system should report medication administration, where appropriate, to public
       <tag name="Reference.FunctionID" value="CP.6.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(16) Inpatient setting only - electronic medication administration record$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -522 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a16emar_2014_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>e51e0394-7cb9-41c6-a953-7302d9b88f0c</id>
@@ -2465,10 +2551,12 @@ The system should report medication administration, where appropriate, to public
       <tag name="Reference.FunctionID" value="CP.6.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(1) Immunization information$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -381 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f1immunizationinformation_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(2) Transmission to immunization registries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 706 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f2transmissiontoimmunizationregistries_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>1f8e872d-076a-4dd0-884b-033e72209835</id>
@@ -2558,8 +2646,6 @@ The system should report medication administration, where appropriate, to public
       <tag name="Reference.FunctionID" value="CP.6.3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
     </object>
     <object>
       <id>106279f6-34cf-4d73-b20f-f1831dadfc58</id>
@@ -2708,6 +2794,8 @@ The system should report medication administration, where appropriate, to public
       <tag name="Reference.FunctionID" value="CP.8.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(15) Patient-specific education resources$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -98 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a15educationresources_2014_tp_approvedv1.4.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
     </object>
@@ -2824,8 +2912,20 @@ The system should report medication administration, where appropriate, to public
       <tag name="Reference.FunctionID" value="CP.9.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(15) Patient-specific education resources$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -98 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a15educationresources_2014_tp_approvedv1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(7) Data portability$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -551 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b7dataportability_2014_tp_approved_v1.4.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(2) Ambulatory setting only clinical summary$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 766 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e2clinicalsummary_2014_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>8a441da4-aa05-4e66-8896-44cc19b1fb26</id>
@@ -2933,6 +3033,10 @@ The system should report medication administration, where appropriate, to public
       <tag name="Reference.FunctionID" value="CP.9.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(3) Demographics$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -395 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a3demographics_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
     </object>
     <object>
       <id>de48bd17-eab8-45da-94c3-bd4f5e4f5dba</id>
@@ -3009,6 +3113,8 @@ All functions within the Care Provision Support Section have an identifier start
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
     </object>
     <object>
       <id>2b3e9cee-c6d5-4c02-8446-9a40903fbbc9</id>
@@ -3051,7 +3157,9 @@ All functions within the Care Provision Support Section have an identifier start
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(3) Demographics$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -395 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a3demographics_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 395 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a3demographics_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>83454945-03ae-47ef-9d31-7f8345613f42</id>
@@ -3260,8 +3368,6 @@ Tele-health encounters have unique requirements that may also be supported by th
       <tag name="Reference.CriterionID" value="1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(17) Advance directives$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -85 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a17advancedirectives_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>7593747d-764d-44af-894c-5010b54dbe4d</id>
@@ -3275,6 +3381,8 @@ Tele-health encounters have unique requirements that may also be supported by th
       <tag name="Reference.FunctionID" value="CPS.1.7.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(17) Advance directives$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 85 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a17advancedirectives_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>ce78b1f6-bf8b-4b32-b3bf-7a3957fb127a</id>
@@ -3309,7 +3417,7 @@ Circumstances is used to indicate where, how and when an advanced directive was 
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(17) Advance directives$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -85 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a17advancedirectives_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 85 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a17advancedirectives_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>65560538-c5ad-4b60-b765-b1e0b2524d25</id>
@@ -3420,8 +3528,16 @@ Data incorporated through these mechanisms is presented alongside locally captur
       <tag name="Reference.FunctionID" value="CPS.2.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(12) Image results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 337 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a12_imageresults_2014_tp_approved_v1.3_onc.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(2) Ambulatory setting only clinical summary$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 766 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e2clinicalsummary_2014_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>24a335e8-2a3b-4092-b36a-e2ced7538435</id>
@@ -3723,6 +3839,8 @@ Such data may be presented with locally-sourced documentation and notes wherever
       <tag name="Reference.FunctionID" value="CPS.2.4" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(12) Image results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 337 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a12_imageresults_2014_tp_approved_v1.3_onc.pdf"/>
     </object>
     <object>
       <id>659b7ca7-e625-4465-9f3d-804882e9b0f3</id>
@@ -3966,6 +4084,8 @@ Such data may be presented with locally-sourced documentation and notes wherever
       <tag name="Reference.FunctionID" value="CPS.3.11" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(4) Inpatient setting only - transmission of reportable laboratory tests and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 1.05 MB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f4transmissionreportablelabs_tp_2014_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>e65da10c-044b-4922-99c5-27790c0b9105</id>
@@ -4642,6 +4762,8 @@ Such data may be presented with locally-sourced documentation and notes wherever
       <tag name="Reference.FunctionID" value="CPS.3.9" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>a8621d8b-9a51-47a0-85d6-57cd3f9fda2b</id>
@@ -4773,6 +4895,8 @@ A component of ordering medications and immunizations is the dispensing of those
       <tag name="Reference.FunctionID" value="CPS.4.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(2) Drug-drug, drug-allergy interaction checks$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 393 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a2drug_interaction_checks_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>d22e09e3-066b-4be7-a725-aa8bdcc9ae6f</id>
@@ -4805,8 +4929,8 @@ Note, medication may be affected by food or diatary choices; whist this is not c
       <tag name="Reference.FunctionID" value="CPS.4.2.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(11) Smoking status$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 115 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a11smokingstatus_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(2) Drug-drug, drug-allergy interaction checks$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 393 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a2drug_interaction_checks_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>ee3d92a1-3f4e-44ef-896f-8b239b8ed50e</id>
@@ -5257,6 +5381,8 @@ Note, medication may be affected by food or diatary choices; whist this is not c
       <tag name="Reference.FunctionID" value="CPS.4.2.3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(10) Drug formulary checks$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 110 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a10drugformularychecks_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>fa15b3e6-a8e5-449b-b421-69c3de959ab7</id>
@@ -5380,6 +5506,8 @@ Transitions in care include changes in setting, service, practitioner, or level 
       <tag name="Reference.FunctionID" value="CPS.4.2.5" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(4) Clinical information reconciliation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 469 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b4cir_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>ebc0eba8-31ec-4888-a4d6-c455119820a8</id>
@@ -5694,6 +5822,8 @@ Transitions in care include changes in setting, service, practitioner, or level 
       <tag name="Reference.FunctionID" value="CPS.5" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>d68b9b62-a53d-45a9-a188-c41bd0f18e75</id>
@@ -5747,6 +5877,10 @@ Examples:
       <tag name="Reference.FunctionID" value="CPS.8.4" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(3) Ambulatory setting only secure messaging$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 528 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf"/>
     </object>
     <object>
       <id>ae8ade6c-08f4-4b13-899a-43bf5b17b9f0</id>
@@ -5815,10 +5949,14 @@ Because of concerns about scalability of the specification over time, communicat
       <tag name="Reference.FunctionID" value="CPS.9.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies syndromic surveillance$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(2) Ambulatory setting only clinical summary$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 766 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e2clinicalsummary_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies syndromic surveillance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>9d3785db-6973-43a5-b4ba-d96e3f22f3ca</id>
@@ -5850,8 +5988,10 @@ The system should provide for both verbal and written communication. These excha
       <tag name="Reference.FunctionID" value="CPS.9.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(3) Demographics$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -395 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a3demographics_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(3) Ambulatory setting only secure messaging$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 528 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(6) Optional ambulatory setting only transmission to cancer registries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314f6transmissiontocancerregistries_tp_approved_v1_3.pdf"/>
     </object>
     <object>
       <id>f825086c-660e-4574-a9ae-3c543c3a40f1</id>
@@ -6072,8 +6212,22 @@ The system should provide for both verbal and written communication. These excha
       <tag name="Reference.FunctionID" value="CPS.9.3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(14) Patient list creation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 490 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a14patientlist_2014_tp_approved_v1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(7) Data portability$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 551 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b7dataportability_2014_tp_approved_v1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(9) Optional accounting of disclosures$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 113 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d9accountingdisclosures_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(2) Ambulatory setting only clinical summary$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 766 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e2clinicalsummary_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(6) Optional ambulatory setting only transmission to cancer registries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314f6transmissiontocancerregistries_tp_approved_v1_3.pdf"/>
     </object>
     <object>
       <id>5877bd7b-e06f-4d24-b93d-4f4baeed4962</id>
@@ -6186,8 +6340,10 @@ Users need to be able to sort, and/or filter reports. For example:
       <tag name="Reference.FunctionID" value="CPS.9.4" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies - syndromic surveillance$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies syndromic surveillance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(6) Optional ambulatory setting only transmission to cancer registries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314f6transmissiontocancerregistries_tp_approved_v1_3.pdf"/>
     </object>
     <object>
       <id>85f1307e-8871-4d7b-9129-756fdb2e4a82</id>
@@ -6277,6 +6433,8 @@ Users need to be able to sort, and/or filter reports. For example:
       <tag name="Reference.FunctionID" value="CPS.9.5" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(14) Patient list creation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 490 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a14patientlist_2014_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>dbd10538-1e2d-4569-9b29-587be351ac47</id>
@@ -6393,8 +6551,8 @@ A “dynamic cohort” query may identify new patients to be added periodically 
       <tag name="Reference.FunctionID" value="POP.2.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies - syndromic surveillance$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies syndromic surveillance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>bfa47c02-25ca-4455-aa05-5ed5d9b04fd9</id>
@@ -6472,8 +6630,10 @@ A “dynamic cohort” query may identify new patients to be added periodically 
       <tag name="Reference.FunctionID" value="POP.2.3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies - syndromic surveillance$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies syndromic surveillance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(6) Optional ambulatory setting only transmission to cancer registries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314f6transmissiontocancerregistries_tp_approved_v1_3.pdf"/>
     </object>
     <object>
       <id>5dbbf1a8-1ebb-4488-aa44-b081e7861ac7</id>
@@ -6692,6 +6852,10 @@ A “dynamic cohort” query may identify new patients to be added periodically 
       <tag name="Reference.FunctionID" value="POP.6.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(c)(1-3) Clinical quality measures capture and export$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 1.75 MB]$$URL$$http://www.healthit.gov/sites/default/files/170.314c123clinicalqualitymeasure_2014_approved_v1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(g)(1-2) Automated numerator recording$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 1.6 MB]$$URL$$http://www.healthit.gov/sites/default/files/170.314g12numrec_automeascalc_2014_tp_approved_v1.5.pdf"/>
     </object>
     <object>
       <id>63f78c3c-4abd-457e-9c21-9bab506718ef</id>
@@ -6938,7 +7102,7 @@ The patient administrative information also includes patient location informatio
       <tag name="Reference.FunctionID" value="AS.2.6" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(9) Optional - accounting of disclosures$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(9) Optional accounting of disclosures$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 113 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d9accountingdisclosures_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
@@ -7057,7 +7221,7 @@ The system should provide for both verbal and written communication. These excha
       <tag name="Reference.FunctionID" value="AS.4.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies - syndromic surveillance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies  syndromic surveillance$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
@@ -7088,8 +7252,6 @@ The system should provide for both verbal and written communication. These excha
       <tag name="Reference.FunctionID" value="AS.4.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
     </object>
     <object>
       <id>371edeac-466c-44a8-992e-5b8788797aaf</id>
@@ -8273,8 +8435,24 @@ Record Entry is persistent evidence of Action occurrence and includes an identif
       <tag name="Reference.FunctionID" value="RI.1.1.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(1) Computerized provider order entry$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 110 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a1cpoe_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(11) Smoking status$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 115 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a11smokingstatus_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(16) Inpatient setting only - electronic medication administration record$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 522 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a16emar_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(9) Electronic notes$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(6) Emergency access$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(5) Optional ambulatory setting only - cancer case information$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 353 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f5cancercaseinformation_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(6) Optional ambulatory setting only transmission to cancer registries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314f6transmissiontocancerregistries_tp_approved_v1_3.pdf"/>
     </object>
     <object>
       <id>a3ecaad4-11fa-42a4-aa29-95c88b960df7</id>
@@ -8304,6 +8482,10 @@ Record Entry is persistent evidence of Action occurrence and includes an identif
       <tag name="Reference.FunctionID" value="RI.1.1.1.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(16) Inpatient setting only - electronic medication administration record$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 522 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a16emar_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>a72d1a97-1312-4f0c-a63d-7a44098fc30c</id>
@@ -8419,6 +8601,12 @@ Reference: ISO 21089, Section 12.6.1.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.13" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(9) Electronic notes$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>7f1170b2-bd85-49a1-8e84-103ac5a22a51</id>
@@ -8464,6 +8652,8 @@ Reference: ISO 21089, Section 12.6.1.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.13.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>3bcdcee6-53f8-4dca-9347-d3ef48404fe9</id>
@@ -8547,6 +8737,8 @@ Reference: ISO 21089, Section 12.11.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.16" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>88f74b50-218f-4434-a4c0-f3a2099f5526</id>
@@ -8576,6 +8768,8 @@ Reference: ISO 21089, Section 12.11.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.16.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>992ec184-b2e3-4738-bbf7-05f135aa8944</id>
@@ -8707,10 +8901,20 @@ Reference: ISO 21089, Section 12.3.2$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(1) Computerized provider order entry$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 110 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a1cpoe_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(11) Smoking status$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 115 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a11smokingstatus_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(9) Electronic notes$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(4) Amendments$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -352 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d4amendments_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 352 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d4amendments_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(5) Optional ambulatory setting only - cancer case information$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 353 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f5cancercaseinformation_2014_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>f15dc272-3c10-4ab8-8c87-24128dfed136</id>
@@ -8772,8 +8976,10 @@ Reference: ISO 21089, Section 12.3.2$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.2.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(4) Amendments$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -352 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d4amendments_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 352 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d4amendments_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>608d60ff-0425-4cb8-8de1-8a8707bdb7cc</id>
@@ -8969,6 +9175,8 @@ The purpose of attestation is to show authorship and assign responsibility for a
       <tag name="Reference.FunctionID" value="RI.1.1.4" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(4) Amendments$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 352 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d4amendments_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>39d748fb-3a9e-4d37-9a6a-36731917f691</id>
@@ -9018,6 +9226,28 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.5" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(1) Computerized provider order entry$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 110 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a1cpoe_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(11) Smoking status$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 115 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a11smokingstatus_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(16) Inpatient setting only - electronic medication administration record$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 522 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a16emar_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(9) Electronic notes$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(9) Electronic notes$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(4) Amendments$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 352 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d4amendments_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(6) Emergency access$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(3) Ambulatory setting only secure messaging$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 528 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(5) Optional ambulatory setting only - cancer case information$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 353 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f5cancercaseinformation_2014_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>ea503b71-81c0-48dd-8208-628e4aeb4931</id>
@@ -9075,8 +9305,10 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.5.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(6) Emergency access$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
     </object>
     <object>
       <id>bb5c488b-3a64-489a-8aec-7215b47963ab</id>
@@ -9141,6 +9373,12 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.6" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(14) Patient list creation$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 490 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a14patientlist_2014_tp_approved_v1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>8b972fe7-a072-4d18-a546-65ce7a629da0</id>
@@ -9186,6 +9424,8 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.6.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>abd43365-b552-47fa-880f-6f27f5d29978</id>
@@ -9267,6 +9507,8 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.7" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(9) Optional accounting of disclosures$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 113 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d9accountingdisclosures_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>6044aa66-f7b0-4d80-80b0-c8a28be7134a</id>
@@ -9312,6 +9554,8 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.7.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(9) Optional accounting of disclosures$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 113 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d9accountingdisclosures_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>ce8ae6f7-4a12-4bba-9903-abdcc9749913</id>
@@ -9426,6 +9670,12 @@ Reference: ISO 21089, Section 12.8.1.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.8" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(3) Ambulatory setting only secure messaging$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 528 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf"/>
     </object>
     <object>
       <id>ecb21305-5851-4537-b4de-8e6b6b6dbba9</id>
@@ -9475,6 +9725,10 @@ Reference: ISO 21089, Section 12.8.1.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.9" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(3) Ambulatory setting only secure messaging$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 528 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf"/>
     </object>
     <object>
       <id>4a6c708d-df14-4383-8fae-5349305e4caa</id>
@@ -9520,6 +9774,8 @@ Reference: ISO 21089, Section 12.8.1.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.1.1.9.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
     </object>
     <object>
       <id>a91b1e1c-41cf-4221-b78a-0555d543f8f7</id>
@@ -9710,6 +9966,8 @@ Note: Standards exist for Consistent Date and Time.$EX$</notes>
       <tag name="Reference.FunctionID" value="RI.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(16) Inpatient setting only - electronic medication administration record$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 522 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a16emar_2014_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>d63b96d6-b91c-4e66-8bb6-2cde8003faa3</id>
@@ -9772,10 +10030,20 @@ Examples of entity authentication, with varying levels of authentication rigor, 
       <tag name="Reference.FunctionID" value="TI.1.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(2) Drug-drug, drug-allergy interaction checks$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 393 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a2drug_interaction_checks_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(1) Authentication, access, control, and authorization$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -357 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d1authentication_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 357 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d1authentication_2014_tp_approvedv1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(3) Ambulatory setting only secure messaging$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 528 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf"/>
     </object>
     <object>
       <id>80dba7fa-8495-4e9e-924e-05a8079871c5</id>
@@ -9872,10 +10140,14 @@ Examples of entity authentication, with varying levels of authentication rigor, 
       <tag name="Reference.FunctionID" value="TI.1.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(6) Emergency access$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
     </object>
     <object>
       <id>eeb7011d-b68e-4271-907a-59af8b05f54e</id>
@@ -9921,10 +10193,22 @@ Examples of entity authentication, with varying levels of authentication rigor, 
       <tag name="Reference.FunctionID" value="TI.1.3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(2) Drug-drug, drug-allergy interaction checks$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 393 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a2drug_interaction_checks_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(8) Clinical decision support$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(1) Authentication, access, control, and authorization$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -357 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d1authentication_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 357 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d1authentication_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(5) Automatic log-off$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -84 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d5automaticlogoff_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 84 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d5automaticlogoff_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(6) Emergency access$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(3) Ambulatory setting only secure messaging$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 528 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf"/>
     </object>
     <object>
       <id>c93ec463-c171-4796-b5b0-99117a1338be</id>
@@ -10009,7 +10293,7 @@ Logging of a user’s activities should occur in the audit record/metadata. Repo
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(6) Emergency access$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>7d025e88-c735-404e-bbd2-444722cff7c3</id>
@@ -10136,8 +10420,18 @@ Logging of a user’s activities should occur in the audit record/metadata. Repo
       <tag name="Reference.FunctionID" value="TI.1.6" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(2) Transitions of care create and transmit transition of care/referral summaries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 650 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b2toc_createandtransmit_2014_tp_updated_v1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(8) Integrity$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 97 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d8integrity_2014_tp_approvedv1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(3) Ambulatory setting only secure messaging$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 528 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf"/>
     </object>
     <object>
       <id>88f60593-553d-4b35-b03a-5669f381efb9</id>
@@ -10447,7 +10741,7 @@ Organizational practices related to privacy and security jurisdictional laws cou
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(6) Emergency access$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
     </object>
     <object>
       <id>febd71b0-845e-46d3-8a02-b78dbcb164a7</id>
@@ -10483,6 +10777,8 @@ Audit functions implement requirements according to scope of practice, organizat
       <tag name="Reference.FunctionID" value="TI.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>c4f942de-b7b8-41d3-b567-337ce8031eae</id>
@@ -10516,6 +10812,10 @@ Audit functions implement requirements according to scope of practice, organizat
       <tag name="Reference.FunctionID" value="TI.2.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
     </object>
     <object>
       <id>980bd822-33cd-459b-98d0-d85ae35ca0a5</id>
@@ -10652,7 +10952,7 @@ Audit functions implement requirements according to scope of practice, organizat
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
     </object>
     <object>
       <id>1227f75e-1a81-45f2-8fba-443cbc4c1d47</id>
@@ -10684,6 +10984,12 @@ Audit log entries capture event details, including key metadata (who, what, when
       <tag name="Reference.FunctionID" value="TI.2.2" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(3) Audit report(s)$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 395 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d3auditreports_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
     </object>
     <object>
       <id>0df85619-7229-47af-8d5c-ed71e8c41ce4</id>
@@ -10887,6 +11193,12 @@ Audit log entries capture event details, including key metadata (who, what, when
       <tag name="Reference.FunctionID" value="TI.2.2.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(2) Auditable events and tamper-resistance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 497 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d2auditableevents_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(3) Audit report(s)$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 395 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d3auditreports_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
     </object>
     <object>
       <id>da2d045d-6183-415e-849a-3aa06379398a</id>
@@ -10918,8 +11230,8 @@ Audit log notification and review functions implement requirements according to 
       <tag name="Reference.FunctionID" value="TI.2.3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(6) Emergency access$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -88 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d6emergencyaccess_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(3) Audit report(s)$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 395 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d3auditreports_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>68249704-79c4-40a4-86b2-755283926aff</id>
@@ -11166,8 +11478,14 @@ Clinical and other terminologies may be provided through a terminology service i
       <tag name="Reference.FunctionID" value="TI.4.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(5)(A) Incorporate laboratory tests and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 820 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b5aincorporatelabtests_2014_tp_approved_v1.4_onc.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(6) Inpatient setting only - transmission of electronic laboratory tests and values/results to ambulatory providers$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 828 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b6_transmissionlabtestsvalues_2014_tp_approved_v1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(4) Inpatient setting only - transmission of reportable laboratory tests and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 1.05 MB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f4transmissionreportablelabs_tp_2014_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>54bc733f-7935-470f-81e3-f846a08e3cf6</id>
@@ -11256,8 +11574,6 @@ Standard terminology is a fundamental part of interoperability and is described 
       <tag name="Reference.FunctionID" value="TI.5.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies - syndromic surveillance$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>db17d289-3b69-4a13-a445-29e460e9b912</id>
@@ -11271,8 +11587,20 @@ Standard terminology is a fundamental part of interoperability and is described 
       <tag name="Reference.FunctionID" value="TI.5.1.1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies - syndromic surveillance$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(3) Electronic prescribing$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 420 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b3eprescribing_2014_tp_approved_v1.4.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(5)(A) Incorporate laboratory tests and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 820 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b5aincorporatelabtests_2014_tp_approved_v1.4_onc.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(6) Inpatient setting only - transmission of electronic laboratory tests and values/results to ambulatory providers$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 828 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b6_transmissionlabtestsvalues_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(8) Integrity$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 97 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314d8integrity_2014_tp_approvedv1.2.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies syndromic surveillance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(4) Inpatient setting only - transmission of reportable laboratory tests and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 1.05 MB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f4transmissionreportablelabs_tp_2014_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(6) Optional ambulatory setting only transmission to cancer registries$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314f6transmissiontocancerregistries_tp_approved_v1_3.pdf"/>
     </object>
     <object>
       <id>c610f81b-5096-47d5-a677-407cf4655da7</id>
@@ -11370,6 +11698,8 @@ Standard terminology is a fundamental part of interoperability and is described 
       <tag name="Reference.FunctionID" value="TI.5.1.3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(3) Transmission to public health agencies syndromic surveillance$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 767 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f3transmissiontopubhealthsyndsurv_2014_tp_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>f095bbc4-e80d-42f1-846f-35083ae4896c</id>
