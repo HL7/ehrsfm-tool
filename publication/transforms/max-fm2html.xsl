@@ -270,8 +270,9 @@
     
     <xsl:template name="get-change-indicator">
         <xsl:choose>
-            <xsl:when test="tag[@name='Reference.ChangeInfo' and @value='Modified']">C</xsl:when>
-            <xsl:when test="tag[@name='Reference.ChangeInfo' and @value='New']">N</xsl:when>
+            <xsl:when test="tag/@name='Reference.ChangeIndicator'">
+                <xsl:value-of select="tag[@name='Reference.ChangeIndicator']/@value"/>
+            </xsl:when>
             <xsl:otherwise>NC</xsl:otherwise>
         </xsl:choose>
     </xsl:template>
