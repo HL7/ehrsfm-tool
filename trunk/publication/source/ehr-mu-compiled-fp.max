@@ -1083,58 +1083,6 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>e81cfda5-7344-45da-a92c-1164ec4bd69e</id>
-      <name>CP.4.2.1 Medication Interaction and Allergy Checking</name>
-      <alias>CP.4.2.1</alias>
-      <notes>$ST$Provide alerts for potential medication interactions and medication allergy reactions.$DE$Check and provide alerts at the time of medication order based upon coded, active and non-active medications for possible interactions, allergies, sensitivities, intolerances, and other adverse reactions.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>67cece6d-846a-41e1-a984-dde655f44a26</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CP.4.2.1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>45bd7512-93e2-43d8-b09b-a105cffabe65</id>
-      <name>CP.4.2.2 Patient-Specific Medication Dosing and Warnings</name>
-      <alias>CP.4.2.2</alias>
-      <notes>$ST$Render medication dosing and warnings related to a medication order based on patient-specific parameters.$DE$Provide parameter-based (e.g., weight, lean body mass, age, sensitivity, genomics, body surface area) medication dosing recommendations and warnings for simple medications and compounded medications at the time of order entry.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>67cece6d-846a-41e1-a984-dde655f44a26</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CP.4.2.2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>d83a47f3-d53a-4d68-af22-54e1f93652e4</id>
-      <name>CP.4.2.3 Medication Order Efficiencies</name>
-      <alias>CP.4.2.3</alias>
-      <notes>$ST$Provide the tooling necessary to increase the efficiency of medication ordering.$DE$Make medication ordering workflows more efficient by allowing medications to be sorted and reviewed by key attributes (e.g., generic or trade names). Also support editing medication orders across multiple instances of an order and capturing medication orders in order sets.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>67cece6d-846a-41e1-a984-dde655f44a26</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CP.4.2.3" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>754c55ff-28bb-4b01-899e-dfdec8f3981f</id>
-      <name>CP.4.2.4 Medication Alert Overrides</name>
-      <alias>CP.4.2.4</alias>
-      <notes>$ST$Capture the alerts and warnings for medications being overridden and reasons for the override.$DE$Alerts are generated for possible contraindications to administration of medications (e.g., the administration of tetracycline to pregnant women) and the prescriber may choose to override the alert.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>67cece6d-846a-41e1-a984-dde655f44a26</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CP.4.2.4" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>809b94a3-9253-4563-b163-723ae46adcb9</id>
       <name>CP.4.4 Manage Orders for Diagnostic/Screening Tests</name>
       <alias>CP.4.4</alias>
@@ -1715,32 +1663,6 @@ The system should report medication administration, where appropriate, to public
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>7be4b2da-e5bb-4b4b-a651-bed68506fcd9</id>
-      <name>CP.7 Manage Future Care</name>
-      <alias>CP.7</alias>
-      <notes>$ST$Provide the functionality to manage treatment and care planning through presentation of guidelines and protocols as well as managing recommendations for future care.$DE$The presentation of appropriate guidelines and protocols for future care and the capture and management of recommendations for future care are required to ensure lifetime care of the patient. This includes the management of recommendations for post-encounter care and linkage of recommendations to other components in the health record such as the problem lists and other source documentation.$EX$</notes>
-      <stereotype>Header</stereotype>
-      <type>Feature</type>
-      <parentId>e0de4a4e-1c97-4ce4-8aa0-eb58da34acd3</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CP.7" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>2796eb3f-22b3-45c1-9250-5ec374deab4d</id>
-      <name>CP.7.1 Present Guidelines and Protocols for Planning Care</name>
-      <alias>CP.7.1</alias>
-      <notes>$ST$Present organizational guidelines for patient care as appropriate to support planning of care, including order entry and clinical documentation.$DE$Guidelines, and protocols presented for planning care may be site specific, community or industry-wide standards.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>7be4b2da-e5bb-4b4b-a651-bed68506fcd9</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CP.7.1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>56100cea-9fb5-4747-b91b-966c3eaf2c65</id>
       <name>CP.8 Manage Patient Education &amp; Communication</name>
       <alias>CP.8</alias>
@@ -2237,21 +2159,6 @@ All functions within the Care Provision Support Section have an identifier start
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>6fd3c109-510c-467e-a957-77cdbec14969</id>
-      <name>CPS.1.5 Manage Patient Encounter</name>
-      <alias>CPS.1.5</alias>
-      <notes>$ST$Manage patient encounter information, including tele-health encounters, and support follow-up encounters.$DE$Each encounter of the patient with the healthcare setting needs to be recorded and the information relevant to the distinct encounter managed. This information includes date and time of the encounter, providers involved, location(s), and the reason for the encounter etc. Additionally, follow-up encounters may require prior administrative and clinical information to be determined or captured, maintained and rendered.
-
-Tele-health encounters have unique requirements that may also be supported by the system.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>945499c7-9b2d-48bc-afdc-52fe5c62a363</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.1.5" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>477cd67f-0ca0-42fe-a8ba-0f8d8ccc7f1b</id>
       <name>CPS.1.7 Preferences, Directives, Consents and Authorizations</name>
       <alias>CPS.1.7</alias>
@@ -2492,43 +2399,7 @@ Data incorporated through these mechanisms is presented alongside locally captur
       <tag name="Reference.ChangeIndicator" value="N" />
       <tag name="Priority" value="EN" />
     </object>
-    <object>
-      <id>f39115c6-e80e-4f3e-978e-b27ccb207d75</id>
-      <name>CPS.2.2 Support externally-sourced Clinical Data</name>
-      <alias>CPS.2.2</alias>
-      <notes>$ST$Incorporate discrete clinical data from external sources and support communication/presentation of data captured from medical and non-medical devices and entities.$DE$Mechanisms for incorporating external clinical data (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced data may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of data received by the provider that would typically be incorporated into a medical record, including but not limited to faxes, referral authorizations, consultant reports, and patient/resident correspondence of a clinical nature. Intrinsic to the concept of electronic health records is the ability to exchange health information with other providers of health care services. Health information from these external sources needs to be received, stored in the patient record, and displayed upon request. 
 
-Examples of externally-sourced data and documents include:
-1. Laboratory results received through an electronic interface. 
-This information is received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (instead of in report or summarized format). 
-
-2. Scanned documents received and stored as images (e.g., power of attorney forms or living wills). 
-These scanned documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. 
-
-3. Text-based outside reports (e.g., x-ray reports, hospital discharge summaries or history and physical examinations). 
-Any mechanism for capturing these reports is acceptable (e.g., OCR, PDF, JPG or TIFF). 
-
-4. Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images). 
-These images may be stored within the system or be available by direct linkage to an external source (e.g., a hospital's picture archiving and communication system). 
-
-5. Other forms of clinical results (e.g., EKG waveforms).
-
-6. Medication history from an external source such as a retail pharmacy, the patient, or another provider . 
-While the medication history includes the medication name, strength, and SIG, this does not imply that the data will populate the medication administration module. In many systems the medication administration module is populated from the medication order rather than from the medication history.
-
-7. Structured, text-based reports (e.g., medical summary text in a structured format). 
-
-8. Standards-based structured, codified data (such as a standards-based referral letter that contains SNOMED CT codes). 
-
-Such data may be presented with locally-sourced documentation and notes wherever appropriate.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>68e5b762-23fd-4f80-aa97-1b61913a29a8</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.2.2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
     <object>
       <id>6a401967-1a01-4af3-8f21-36c0a98df365</id>
       <name>CPS.2.3 Support Emergency Medical System Originated Data</name>
@@ -2633,19 +2504,6 @@ Such data may be presented with locally-sourced documentation and notes wherever
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>cdac7835-0145-4ec5-b53e-44116737b587</id>
-      <name>CPS.3.1 Support for Standard Assessments</name>
-      <alias>CPS.3.1</alias>
-      <notes>$ST$Support the establishment, updates and use of assessment forms that will assist in the development of and adherence to care plans, guidelines, and protocols at the point of information capture.$DE$As part of managing assessment definitions, the system will support the ability to create a set of assessment forms and, optionally, associated logic (e.g., workflow, business and clinical rules). This assessment definition process may include the ability to define, revise and manage the tools, files and processing for the conduct of a patient assessment. Furthermore, the assessment definition may also include template development, prompts for additional information, related notification alerts and workflow processes. When a clinician fills out an assessment, data entered triggers the system to prompt the assessor to consider issues that would help assure a complete/accurate assessment. A simple demographic value or presenting problem (or combination) could provide a template for data gathering that represents best practice in this situation, e.g., Type 2 (Adult Onset) Diabetes diabetic review, fall and 70+, and rectal bleeding. Support for standard assessment may include the ability to record and store the value for the answers to specific questions in standardized assessment tools or questionnaires. When a specific recognized-standard assessment does not exist, the system will support the creation of unique new, locally-defined assessment. The system may enable, and/or encourage the use of the format and data elements of similar assessments in the systems whenever possible. (NOTE: A new assessment may not necessarily be unique, since a facility may copy an assessment from another facility.) $EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>5aa01564-3d26-4af0-9276-eade72963220</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.3.1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>52412b2a-7154-4bd2-be4b-fcc017daaf4c</id>
       <name>CPS.3.11 Support Other Encounter and Episode of Care Documentation</name>
       <alias>CPS.3.11</alias>
@@ -2675,58 +2533,6 @@ Such data may be presented with locally-sourced documentation and notes wherever
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="CPS.3.11" />
       <tag name="Reference.CriterionID" value="3" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>7526e121-ed67-401a-a1cf-562237d7e341</id>
-      <name>CPS.3.2 Support for Patient Context- Driven Assessments</name>
-      <alias>CPS.3.2</alias>
-      <notes>$ST$Offer prompts based on patient-specific data at the point of information capture for assessment purposes.$DE$When a clinician fills out an assessment, data entered is matched against data already in the system to identify potential linkages and optimize patient care. For example, the system could scan the medication list and the knowledge base to see if any of the symptoms are side effects of medication already prescribed. Important diagnoses could be brought to the doctor’s attention, for instance ectopic pregnancy in a woman of child bearing age, or appendicitis in a geriatric patient who has abdominal pain.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>5aa01564-3d26-4af0-9276-eade72963220</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.3.2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>d337ff78-6b9b-4eb7-9d09-272af135e66f</id>
-      <name>CPS.3.3 Support for Standard Care Plans, Guidelines, Protocols</name>
-      <alias>CPS.3.3</alias>
-      <notes>$ST$Support the use of appropriate standard care plans, guidelines, protocols, and/or clinical pathways for the management of specific conditions.$DE$A core capability of Clinical Decision Support is that of providing guidelines, plans and protocols to clinicians. These templates or forms can be specific for populations, medical conditions or individual patients. Before they can be used in care provision standard care plans, guidelines, protocols, and clinical pathways must be created. These templates or forms may reside within the system or be provided through links to external sources, and can be modified and used on a site specific basis. To facilitate retrospective decision support, variances from standard care plans, guidelines, protocols and clinical pathways can be identified and reported.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>5aa01564-3d26-4af0-9276-eade72963220</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.3.3" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>42704c72-0e82-4af1-b65d-759fe28ce0d7</id>
-      <name>CPS.3.4 Support for Context-Sensitive Care Plans, Guidelines, Protocols</name>
-      <alias>CPS.3.4</alias>
-      <notes>$ST$Identify and present the appropriate care plans, guidelines, protocols, and/or clinical pathways for the management of patient-specific conditions that are identified in a patient clinical encounter.$DE$At the time of the clinical encounter (problem identification), recommendations for tests, treatments, medications, immunizations, referrals and evaluations are presented based on evaluation of patient-specific data such as age, gender, developmental stage, their health profile, and any site-specific considerations. These may be modified on the basis of new clinical data at subsequent encounters.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>5aa01564-3d26-4af0-9276-eade72963220</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.3.4" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>1af4e532-a76e-44d6-9f53-dc42fd534b3f</id>
-      <name>CPS.3.8 Manage Documentation of Clinician Response to Decision Support Prompts</name>
-      <alias>CPS.3.8</alias>
-      <notes>$ST$Capture the decision support prompts and manage provider actions to accept or override decision support prompts.$DE$Provider actions in response to prompts offered from decision support are captured. Management of these actions be accomplished at the patient level or aggregated for patient population, research protocol, or organizational trending.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>5aa01564-3d26-4af0-9276-eade72963220</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.3.8" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
     </object>
@@ -2932,19 +2738,6 @@ Note, medication may be affected by food or diatary choices; whist this is not c
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>6024f823-b793-444a-97a6-38d6bcde7766</id>
-      <name>CPS.4.2.2 Support for patient-specific Dosing and Warnings</name>
-      <alias>CPS.4.2.2</alias>
-      <notes>$ST$Identify and present appropriate dose recommendations based on known patient conditions and characteristics at the time of medication ordering and dispensing.$DE$The clinician is alerted to patient-specific contraindications and warnings e.g., pregnancy, breast-feeding or occupational risks, hepatic or renal insufficiency. The preferences of the patient may also be presented (e.g., reluctance to use an antibiotic). Additional patient parameters, such as age, gestation, genetic disposition, height, weight, and Body Surface Area (BSA), shall also be incorporated.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>029c3226-542e-4246-a3ca-5781fd94fa1d</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.4.2.2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>29c8cd69-eabb-4e5b-b89c-946a3282f781</id>
       <name>CPS.4.2.3 Support for Medication Ordering Efficiencies</name>
       <alias>CPS.4.2.3</alias>
@@ -2987,19 +2780,6 @@ Note, medication may be affected by food or diatary choices; whist this is not c
       <tag name="ExternalReference" value=",,">&lt;tagStructure&gt;&lt;property name="Title"/&gt;&lt;property name="URL"/&gt;&lt;property name="Note"/&gt;&lt;/tagStructure&gt;
 </tag>
       <tag name="Reference.ChangeIndicator" value="N" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>932eb0b0-3d13-451a-908a-a13bc17873b4</id>
-      <name>CPS.4.2.4 Support for Medication Recommendations</name>
-      <alias>CPS.4.2.4</alias>
-      <notes>$ST$Offer recommendations and options in medication treatment protocols as well as supporting medication monitoring on the basis of patient diagnosis, patient characteristics, or therapeutic guidelines and protocols.$DE$The system should list medication treatment options on the basis of practice standards and the patient's conditions, diagnoses and characteristics (e.g., obesity, occupation). The system may also provide prompts and notifications to support medication monitoring.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>029c3226-542e-4246-a3ca-5781fd94fa1d</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.4.2.4" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
     </object>
     <object>
@@ -3130,19 +2910,6 @@ Transitions in care include changes in setting, service, practitioner, or level 
       <tag name="ExternalReference" value=",,">&lt;tagStructure&gt;&lt;property name="Title"/&gt;&lt;property name="URL"/&gt;&lt;property name="Note"/&gt;&lt;/tagStructure&gt;
 </tag>
       <tag name="Reference.ChangeIndicator" value="N" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>6871f533-ccd4-4630-a9cd-42c96f79acc9</id>
-      <name>CPS.4.3 Support for Non-Medication Ordering</name>
-      <alias>CPS.4.3</alias>
-      <notes>$ST$Facilitate provider review and validation of order information to make it pertinent, effective and resource-conservative at the point of order entry.$DE$The system assists provider during order entry for therapies, treatments, care, diagnostics and medical supplies and equipment. Support includes, for example: alerts to duplicate orders, missing results or other information required to initiate order, suggested corollary orders, order sets, best practice guidelines, institution-specific order guidelines and patient diagnosis specific recommendations. Also alerts for orders that may be inappropriate or contraindicated for specific patients, for example, X-rays on pregnant women.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>8e5f8cd3-bc60-4e3b-88ae-ba9f023ceace</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.4.3" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
     </object>
     <object>
@@ -3358,21 +3125,6 @@ The system should provide for both verbal and written communication. These excha
       <tag name="Reference.FunctionID" value="CPS.9.2" />
       <tag name="Reference.CriterionID" value="3" />
       <tag name="Reference.ChangeIndicator" value="C" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>8361dcd5-e0e4-4094-8628-5cc55219bb02</id>
-      <name>CPS.9.2.3 Support for Provider -Pharmacy Communication</name>
-      <alias>CPS.9.2.3</alias>
-      <notes>$ST$Provide features to enable secure bi-directional communication of information electronically between practitioners and pharmacies or between practitioner and intended recipient of pharmacy orders.$DE$When a medication is prescribed, the order is routed to the pharmacy or other intended recipient of pharmacy orders. This information is used to avoid transcription errors and facilitate detection of potential adverse reactions. If there is a question from the pharmacy, that communication can be presented to the provider with their other tasks. In certain environments, medication order creation is a collaborative process involving the prescriber and facility staff. Accordingly, this function applies to communication process between the prescriber, facility and the pharmacy or other intended recipient of pharmacy orders. The transmission of prescription data between systems should conform to realm acceptable messaging standards. Informative examples:
-- HL7 Clinical Document
-        Architecture Release 2- ISO/EN 13606 Electronic Health Record Communication- CEN ENV 13607:2000. Health informatics. Messages for the exchange of information on medicine prescriptions- X12N healthcare transactions- US realm: National Council for Prescription Drug Programs (NCPDP)- Canadian realm: National Electronic Claims Standard (NeCST)$EX$- HL7 Clinical Document Architecture Release 2- ISO/EN 13606 Electronic Health Record Communication- CEN ENV 13607:2000. Health informatics. Messages for the exchange of information on medicine prescriptions- X12N healthcare transactions- US realm: National Council for Prescription Drug Programs (NCPDP)- Canadian realm: National Electronic Claims Standard (NeCST)</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>2cdbf24b-7f96-4b54-95d0-755521451897</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.9.2.3" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
     </object>
     <object>
@@ -5663,24 +5415,6 @@ Record Entry is persistent evidence of Action occurrence and includes an identif
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>6be3d8fb-5ec6-4681-8665-4781ff60ef33</id>
-      <name>RI.1.1.10 De-identify Record Entries</name>
-      <alias>RI.1.1.10</alias>
-      <notes>$ST$De-identify content of Record Entries (1 or more instances)$DE$Occurs when Record Entry content is transformed into de-identified version.
-- De-identification of Record Entries may be initiated by User command.
-- De-identification of Record Entries is the responsibility of the System – which invokes relevant rules.
-- An Audit Trigger is initiated to track Record Entry de-identification.
-
-Reference: ISO 21089, Section 12.6.1.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>02c459e6-81df-41e7-ac5a-e8c1f38f6b40</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.1.10" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>5c2a4ede-4f45-42d0-9a82-e6de6f353b86</id>
       <name>RI.1.1.13 Extract Record Entry Content</name>
       <alias>RI.1.1.13</alias>
@@ -5943,38 +5677,6 @@ Reference: ISO 21089, Section 12.11.$EX$</notes>
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="RI.1.1.16.1" />
       <tag name="Reference.CriterionID" value="8" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>a0de9838-384f-4187-bc63-e6dcb4d334c2</id>
-      <name>RI.1.1.17 Deprecate/Retract Record Entries</name>
-      <alias>RI.1.1.17</alias>
-      <notes>$ST$Deprecate/retract Record Entries as invalid (1 or more instances)$DE$Occurs when Record Entries are deprecated if found to be improperly identified or otherwise invalid.
-- Deprecation of Record Entries may be initiated by User command.
-- Deprecation of Record Entries is the responsibility of the System – which invokes relevant rules.
-- An Audit Trigger is initiated to track Record Entry Deprecation.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>02c459e6-81df-41e7-ac5a-e8c1f38f6b40</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.1.17" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>c0705338-0674-4293-8ea4-fc76d85f3cd2</id>
-      <name>RI.1.1.17#01</name>
-      <notes>The system SHALL provide the ability to deprecate/retract Record Entries as invalid according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>a0de9838-384f-4187-bc63-e6dcb4d334c2</parentId>
-      <tag name="Optionality" value="SHALL" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="Y" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.1.17" />
-      <tag name="Reference.CriterionID" value="1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
     </object>
@@ -6875,147 +6577,6 @@ Reference: ISO 21089, Section 12.8.1.$EX$</notes>
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>b36aedfb-4a2f-4de3-96ec-0b65374fe736</id>
-      <name>RI.1.3 Record States</name>
-      <alias>RI.1.3</alias>
-      <notes>$ST$Manage Record States$DE$Record Entries may reside in various states that must be managed. An important underlying principle for managing record states is the need to retain Record Entries that have been viewed for patient care purposes even if the Entry has not been completed or attested. This principle has important legal impact because it provides an account of what the provider viewed and relied on for clinical decision-making. For example, if Record Entry content was available in pending state and a clinician used the information to make decisions, it is important to retain the pending version even after the final version was available. Determining if Record Entry content was used for patient care may be challenging. Access logs could provide a mechanism to determine if the information was used.$EX$</notes>
-      <stereotype>Header</stereotype>
-      <type>Feature</type>
-      <parentId>c0a50c30-f652-4f12-bfdc-53b5d2f0519c</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.3" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>2090bd81-be30-48a3-a84f-beeb49f03672</id>
-      <name>RI.1.3.1 Manage Record Pending State</name>
-      <alias>RI.1.3.1</alias>
-      <notes>$ST$Manage Record Entries during the various states of completion.$DE$Record Entries may reside in various states that must be managed. An important underlying principle for managing record states is the need to retain Record Entries that have been viewed for patient care purposes even if it has not been completed or attested. This principle has important legal impact because it provides a record of what the provider relied on for clinical decision-making. For example, if a Record Entry was available in pending state and a clinician accessed the information to make decisions, it is important to retain the pending version even after the final version was available. Determining if the Record Entry was accessed for patient care may be challenging. Access logs should show if the information was accessed/viewed.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>b36aedfb-4a2f-4de3-96ec-0b65374fe736</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.3.1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>f16b3332-838b-4874-b50b-a3142b44951b</id>
-      <name>RI.1.3.1#01</name>
-      <notes>The system SHOULD provide the ability to manage the length of time a Record Entry can be in a pending or inactive state before being administratively closed.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>2090bd81-be30-48a3-a84f-beeb49f03672</parentId>
-      <tag name="Optionality" value="SHOULD" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.3.1" />
-      <tag name="Reference.CriterionID" value="1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>4dabe57b-ea04-4ad1-a291-cf9db490c40b</id>
-      <name>RI.1.3.1#02</name>
-      <notes>The system MAY present a notification to the author or designate that a Record Entry will be administratively closed after a designated period of time.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>2090bd81-be30-48a3-a84f-beeb49f03672</parentId>
-      <tag name="Optionality" value="MAY" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.3.1" />
-      <tag name="Reference.CriterionID" value="2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>e8443c8f-a7fb-4385-b9c1-f9167ee422f9</id>
-      <name>RI.1.3.1#03</name>
-      <notes>The system MAY present pending Record Entries in accordance with the organization's business rules.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>2090bd81-be30-48a3-a84f-beeb49f03672</parentId>
-      <tag name="Optionality" value="MAY" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.3.1" />
-      <tag name="Reference.CriterionID" value="3" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>c64c63c3-9779-4541-9046-54a8d68e20d7</id>
-      <name>RI.1.3.1#04</name>
-      <notes>IF the system displays pending Record Entries, THEN the system SHALL tag and present that a Record Entry is pending or incomplete.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>2090bd81-be30-48a3-a84f-beeb49f03672</parentId>
-      <tag name="Optionality" value="SHALL" />
-      <tag name="Conditional" value="Y" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.3.1" />
-      <tag name="Reference.CriterionID" value="4" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>2f548179-d6a7-4388-add8-bc6c464ac98d</id>
-      <name>RI.1.3.1#05</name>
-      <notes>The system SHOULD provide the ability to update a Record Entry status to one of:
-- complete,
-- complete while retaining incomplete version of the Entry if viewed for patient care or used by the system,
-- mark as erroneous and retain if Entry used for patient care or by the system, or - discard if Entry never viewed for patient care purposes.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>2090bd81-be30-48a3-a84f-beeb49f03672</parentId>
-      <tag name="Optionality" value="SHOULD" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.3.1" />
-      <tag name="Reference.CriterionID" value="5" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>59898e75-11ab-4405-9ff2-0769739750ed</id>
-      <name>RI.1.3.1#06</name>
-      <notes>The system SHOULD provide the ability to manage administrative closure of a Record Entry after a period of inactivity according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>2090bd81-be30-48a3-a84f-beeb49f03672</parentId>
-      <tag name="Optionality" value="SHOULD" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="Y" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.3.1" />
-      <tag name="Reference.CriterionID" value="6" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>45f0ea79-7b43-4842-8e73-3da18c7c7535</id>
-      <name>RI.1.3.1#07</name>
-      <notes>The system SHALL capture a date/time stamp and identify the author each time a Record Entry is updated including when opened, when updated, with the signature event and when officially closed, conforming to function TI.2.1.1 (Record Entry Audit Triggers).</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>2090bd81-be30-48a3-a84f-beeb49f03672</parentId>
-      <tag name="Optionality" value="SHALL" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="RI.1.3.1" />
-      <tag name="Reference.CriterionID" value="7" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>39e09cb9-53d6-4462-b9c1-1057edab77f4</id>
       <name>RI.2 Record Synchronization</name>
       <alias>RI.2</alias>
@@ -7442,23 +7003,6 @@ Logging of a user’s activities should occur in the audit record/metadata. Repo
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>395f7dd7-13f5-4cc9-a0c7-e533bb203a95</id>
-      <name>TI.1.5 Non-Repudiation</name>
-      <alias>TI.1.5</alias>
-      <notes>$ST$Limit an EHR-S user's ability to deny (repudiate) data origination, transmission or receipt by that user.$DE$An EHR-S allows data entry to a patient's electronic health record and it can be a sender or receiver of healthcare information. Non-repudiation is a way to guarantee that the source of the data/record cannot later deny that fact; and that the sender of a message cannot later deny having sent the message; and that the recipient cannot deny having received the message. Components of non-repudiation can include:
-- Digital signature, which serves as a unique identifier for an individual (much like a written signature);
-- Confirmation service, which utilizes a message transfer agent to create a digital receipt (providing confirmation that a message was sent, and/or received);
-- Timestamp, which proves that a document existed at a certain date and time;
-- The use of standardized timekeeping protocols (e.g., the Integrating the Healthcare Enterprise (IHE) Consistent Time Profile).$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>37747561-8921-4c9f-9182-9794bf5df0b8</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="TI.1.5" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>0a360143-3c10-4979-8dc2-f9da212cc083</id>
       <name>TI.1.6 Secure Data Exchange</name>
       <alias>TI.1.6</alias>
@@ -7738,19 +7282,6 @@ Logging of a user’s activities should occur in the audit record/metadata. Repo
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>72ccca88-0458-4b72-b265-a66ca64dab39</id>
-      <name>TI.1.7 Secure Data Routing</name>
-      <alias>TI.1.7</alias>
-      <notes>$ST$Route electronically exchanged EHR data only to/from known and authenticated destinations/sources (according to applicable healthcare-specific rules and relevant standards).$DE$An EHR-S needs to ensure that it is exchanging EHR information with the entities (applications, institutions, directories) it expects. This function depends on entity authorization and authentication to be available in the system. For example, a physician practice management application in an EHR-S might send claim attachment information to an external entity. To accomplish this, the application must use a secure routing method, which ensures that both the sender and receiving sides are authorized to engage in the information exchange. Known sources and destinations can be established in a static setup or they can be dynamically determined. Examples of a static setup are recordings of IP addresses or recordings of DNS names. For dynamic determination of known sources and destinations systems can use authentication mechanisms as described in IN.1.For example, the sending of a laboratory order from the EHRS to a laboratory system within the same organization usually uses a simple static setup for routing. In contrast sending a laboratory order to a reference laboratory outside of the organization will involve some kind of authentication process. Provision of a secure network infrastructure is beyond the scope of an EHR-S.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>37747561-8921-4c9f-9182-9794bf5df0b8</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="TI.1.7" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>5c14a709-0ebe-4d1d-a5c2-ab4b4ba8d243</id>
       <name>TI.1.8 Patient Privacy and Confidentiality</name>
       <alias>TI.1.8</alias>
@@ -7885,67 +7416,6 @@ Audit functions implement requirements according to scope of practice, organizat
       <tag name="Dependent" value="Y" />
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="TI.2.1" />
-      <tag name="Reference.CriterionID" value="3" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>95fd4b47-1d98-4e9f-beb7-cc01d1a4c32f</id>
-      <name>TI.2.1.1 Record Entry Audit Triggers</name>
-      <alias>TI.2.1.1</alias>
-      <notes>$ST$Manage Record Entry Audit Triggers$DE$Record Entries are managed throughout their lifespan at various points in their lifecycle. Record Entry Audit Triggers are designed to capture Record Entry related events including key metadata (who, what, when, where, why). See Function RI.1, Record Lifecycle.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>9470b3f1-a689-42e2-9bdc-9cb352d69bbd</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="TI.2.1.1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>f2360e8d-7c52-49e0-9ae5-e8a6fc08980b</id>
-      <name>TI.2.1.1#01</name>
-      <notes>The system SHALL conform to Function RI.1 (Record Lifecycle) and its RI.1.x.1 Subsections to capture and maintain Record Entry Audit Metadata.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>95fd4b47-1d98-4e9f-beb7-cc01d1a4c32f</parentId>
-      <tag name="Optionality" value="SHALL" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="TI.2.1.1" />
-      <tag name="Reference.CriterionID" value="1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>8d0ba85e-ef17-4689-a028-31abdc74b237</id>
-      <name>TI.2.1.1#02</name>
-      <notes>The system SHALL link an Audit Log Entry to each Record Entry according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>95fd4b47-1d98-4e9f-beb7-cc01d1a4c32f</parentId>
-      <tag name="Optionality" value="SHALL" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="Y" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="TI.2.1.1" />
-      <tag name="Reference.CriterionID" value="2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>0815e550-5b35-4b9d-b520-7b23351d2e59</id>
-      <name>TI.2.1.1#03</name>
-      <notes>The system SHALL harmonize Audit Log Entry Metadata and corresponding Record Entry Metadata to ensure they remain identical.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>95fd4b47-1d98-4e9f-beb7-cc01d1a4c32f</parentId>
-      <tag name="Optionality" value="SHALL" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="TI.2.1.1" />
       <tag name="Reference.CriterionID" value="3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
@@ -8274,24 +7744,6 @@ Audit log notification and review functions implement requirements according to 
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>e1ecc4c5-0f2e-43db-bea2-2bab993ff790</id>
-      <name>TI.3 Registry and Directory Services</name>
-      <alias>TI.3</alias>
-      <notes>$ST$Enable the use of registry services and directories to uniquely identify, locate and supply links for retrieval of information related to:
-- patients and providers for healthcare purposes;
-- payers, health plans, sponsors, and employers for administrative and financial purposes;
-- public health agencies for healthcare purposes, and- healthcare resources and devices for resource management purposes.$DE$Registry and directory service functions are critical to successfully managing the security, interoperability, and the consistency of the health record data across an EHR-S. These services enable the linking of relevant information across multiple information sources within, or external to, an EHR-S for use within an application. This applies to directories/registries internal to the EHR-S as well as directories/registries external to the EHR-S . Transmission may occur automatically or manually and may include small or large amounts of data. Directories and registries support communication between EHR Systems and may be organized hierarchically or in a federated fashion. For example, a patient being treated by a primary care physician for a chronic condition may become ill while out of town. The new provider’s EHR-S interrogates a local, regional, or national registry to find the patient’s previous records. From the primary care record, a remote EHR-S retrieves relevant information in conformance with applicable patient privacy and confidentiality rules.
-
-An example of local registry usage is an EHR-S application sending a query message to the Hospital Information System to retrieve a patient’s demographic data.$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>81d74b7e-eb82-44d9-b80d-106b85c4a081</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="TI.3" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>b6ca04e9-7984-4edf-9c71-19c2ef8e6d6a</id>
       <name>TI.4 Standard Terminology and Terminology Services</name>
       <alias>TI.4</alias>
@@ -8548,53 +8000,6 @@ Standard terminology is a fundamental part of interoperability and is described 
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="TI.5.1.3" />
       <tag name="Reference.CriterionID" value="1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>164e2e42-ed95-491a-8869-20b12f7558dc</id>
-      <name>TI.5.2 Interchange Standards Versioning and Maintenance</name>
-      <alias>TI.5.2</alias>
-      <notes>$ST$Support various versions of an interchange standard.$DE$Interchange standards characteristically change throughout their lifecycles; those changes are often tagged with "version" numbers. EHR systems need to control the various versions of interchange standards that are used within an EHR implementation and accommodate changes that arise with each version.
-
-For example, if an organization migrates to version 2.5 of HL7's messaging standard, it may choose to utilize that version's specimen or blood bank information capabilities. The organization may also find that certain fields have been retained for backwards compatibility only or withdrawn altogether. The EHR-S needs to be able to handle all of these possibilities.
-
-Standards typically evolve in such a way as to protect backwards compatibility. 
-
-On the other hand, sometimes there is little, or no, backwards compatibility when an organization may need to replace an entire standard with a new methodology. An example of this is migrating from HL7 v2 to HL7 v3.Interchange standards that are backward compatible support exchange among senders and receivers who are using different versions. Version control ensures that those sending information in a later version of a standard consider the difference in information content that can be interchanged effectively with receivers, who are capable of processing only earlier versions. That is, senders need to be aware of the information that receivers are unable to capture and adjust their business processes accordingly.
-
-Version control enables multiple versions of the same interchange standard to exist and be distinctly recognized over time. Since interchange standards are usually periodically updated, concurrent use of different versions may be required.
-
-Large (and/or federated) organizations typically need to use different versions of an interchange standard to meet internal organizational interoperability requirements.
-
-For example, the enterprise-wide standard might use HL7 v2.5 for laboratory messages, but some regions of the enterprise might be at a lower level.
-
-It should be possible to retire deprecated interchange standards versions when applicable business cycles are completed while maintaining obsolete versions. An example use of this is for possible claims adjustment throughout the claim’s life cycle.
-
-When interchange standards change over time, it is important that retrospective analysis and research correlate and note gaps between the different versions’ information structures to support the permanence of concepts over time. $EX$An example use of this is the calculation of outcome or performance measures from persisted data stores where one version of a relevant interchange standard, e.g., CDA Release 1 captures the relevant data, e.g., discharge data, differently than CDA Release 2.</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>0dfcc5a8-71af-47c0-90b0-25a02b1b1bad</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="TI.5.2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>7c0effee-24a6-495e-a11b-c173d5bd7d92</id>
-      <name>TI.5.3 Standards-Based Application Integration</name>
-      <alias>TI.5.3</alias>
-      <notes>$ST$Integrate applications in a standards-based manner.$DE$An EHR-S often consists of multiple applications. Some of those applications may be within the EHR-S; others may be external to the EHR-S. The user of the EHR-S often benefits when those applications are integrated. Application integration can be accomplished in an ad-hoc fashion or in a standards- based fashion.
-
-The method(s) by which applications may be integrated within an organization depends on that organization’s approach to application integration. A given organization could conceivably employ multiple application integration approaches to meet various application integration requirements.$EX$Examples of standards-based application integration approaches include:
-- Desktop visual integration via HL7 Clinical Context Object Workgroup (CCOW) standards.
-- Workflow function integration via the Workflow Management Coalition (WfMC) standards.
-- Enterprise Information System Architecture integration of EHR systems via Service Oriented Architecture (SOA) standards.</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>0dfcc5a8-71af-47c0-90b0-25a02b1b1bad</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="TI.5.3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
     </object>
