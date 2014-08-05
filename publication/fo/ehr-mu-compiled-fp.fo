@@ -914,29 +914,6 @@
 <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
 <fo:list-item space-after=".7em" margin-top=".3em">
 <fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">89.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to manage allergy, intolerance, and adverse reaction to drug, food, medical products (e.g. vaccines, biologics, devices, chemicals) or environmental triggers as unique, discrete entries.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center"> </fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">N</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
 <fo:block font-weight="bold" text-align="right">90.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
@@ -3181,10 +3158,10 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
 <fo:list-item space-after=".7em" margin-top=".3em">
 <fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">92.</fo:block>
+<fo:block font-weight="bold" text-align="right">94.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF known and applicable, THEN the system SHALL display the interpretation of test results and corresponding to the standard code sent in the lab result message.</fo:block>
+<fo:block>The system SHALL render the test result and, if applicable, the units of measurement or interpretation, or both as part of the test report information.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -3204,10 +3181,10 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
 <fo:list-item space-after=".7em" margin-top=".3em">
 <fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">94.</fo:block>
+<fo:block font-weight="bold" text-align="right">95.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL render the test result and, if applicable, the units of measurement or interpretation, or both as part of the test report information.</fo:block>
+<fo:block>The system SHALL render the specimen source, when appropriate, as part of the test report information.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4870,7 +4847,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">7.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD provide the ability to integrate necessary documentation of patient and family preferences (e.g., living wills, advance directives, healthcare proxies, and specific consents or releases).</fo:block>
+<fo:block>The system SHALL provide the ability to integrate necessary documentation of patient and family preferences (e.g., living wills, advance directives, healthcare proxies, and specific consents or releases).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4930,6 +4907,29 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:list-item>
 </fo:list-block>
 </fo:block>
+</fo:table-cell>
+</fo:table-row>
+<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
+<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
+<fo:list-item space-after=".7em" margin-top=".3em">
+<fo:list-item-label end-indent="label-end()">
+<fo:block font-weight="bold" text-align="right">1.</fo:block>
+</fo:list-item-label>
+<fo:list-item-body start-indent="body-start()">
+<fo:block>The system SHALL provide the ability to manage advance directive information including the type of directive, relevant dates (e.g., received, reviewed, rescinded, updated), circumstances under which the directives were received (e.g., during initial consultation), and the location of any paper or electronic advance directive documentation.</fo:block>
+</fo:list-item-body>
+</fo:list-item>
+</fo:list-block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">CPS.1.7.2</fo:block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">NC</fo:block>
+</fo:table-cell>
+<fo:table-cell display-align="center">
+<fo:block text-align="center">EN</fo:block>
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
@@ -5120,9 +5120,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">6.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to receive from an external source structured, text-based documents and reports (e.g., C-CDA, HITSP/C32, and ASTM formats).
-
-</fo:block>
+<fo:block>The system SHALL provide the ability to receive from an external source structured, text-based documents and reports (e.g., C-CDA, HITSP/C32, and ASTM CCR formats).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -5952,7 +5950,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">10.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD provide the ability to capture and maintain the severity level at which warnings are displayed.</fo:block>
+<fo:block>The system SHALL provide the ability to capture and maintain the severity level at which warnings are displayed.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -5961,7 +5959,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block text-align="center">CPS.4.2</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
+<fo:block text-align="center">C</fo:block>
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
@@ -6876,6 +6874,29 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
 <fo:list-item space-after=".7em" margin-top=".3em">
 <fo:list-item-label end-indent="label-end()">
+<fo:block font-weight="bold" text-align="right">2.</fo:block>
+</fo:list-item-label>
+<fo:list-item-body start-indent="body-start()">
+<fo:block>The system SHALL provide the ability to integrate scanned documents from providers into the patient record.</fo:block>
+</fo:list-item-body>
+</fo:list-item>
+</fo:list-block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">CPS.9.2</fo:block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">NC</fo:block>
+</fo:table-cell>
+<fo:table-cell display-align="center">
+<fo:block text-align="center">EN</fo:block>
+</fo:table-cell>
+</fo:table-row>
+<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
+<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
+<fo:list-item space-after=".7em" margin-top=".3em">
+<fo:list-item-label end-indent="label-end()">
 <fo:block font-weight="bold" text-align="right">3.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
@@ -7089,6 +7110,52 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block text-align="center">EN</fo:block>
 </fo:table-cell>
 </fo:table-row>
+<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
+<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
+<fo:list-item space-after=".7em" margin-top=".3em">
+<fo:list-item-label end-indent="label-end()">
+<fo:block font-weight="bold" text-align="right">13.</fo:block>
+</fo:list-item-label>
+<fo:list-item-body start-indent="body-start()">
+<fo:block>The system SHALL provide the ability to maintain a record of disclosure/release that includes the recipient and outbound content.</fo:block>
+</fo:list-item-body>
+</fo:list-item>
+</fo:list-block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">CPS.9.3</fo:block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">C</fo:block>
+</fo:table-cell>
+<fo:table-cell display-align="center">
+<fo:block text-align="center">EN</fo:block>
+</fo:table-cell>
+</fo:table-row>
+<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
+<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
+<fo:list-item space-after=".7em" margin-top=".3em">
+<fo:list-item-label end-indent="label-end()">
+<fo:block font-weight="bold" text-align="right">15.</fo:block>
+</fo:list-item-label>
+<fo:list-item-body start-indent="body-start()">
+<fo:block>The system SHALL provide the ability to render a record summary using the format specified by an organization to which a patient is transferred.</fo:block>
+</fo:list-item-body>
+</fo:list-item>
+</fo:list-block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">CPS.9.3</fo:block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">C</fo:block>
+</fo:table-cell>
+<fo:table-cell display-align="center">
+<fo:block text-align="center">EN</fo:block>
+</fo:table-cell>
+</fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.9.4">CPS.9.4</fo:block>
@@ -7223,29 +7290,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block text-align="center">CPS.9.4</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">C</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">98.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to render a record summary using the format specified by an organization to which a patient is transferred.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.9.3</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block text-align="center">C</fo:block>
@@ -11663,6 +11707,29 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block text-align="center">EN</fo:block>
 </fo:table-cell>
 </fo:table-row>
+<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
+<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
+<fo:list-item space-after=".7em" margin-top=".3em">
+<fo:list-item-label end-indent="label-end()">
+<fo:block font-weight="bold" text-align="right">11.</fo:block>
+</fo:list-item-label>
+<fo:list-item-body start-indent="body-start()">
+<fo:block>The system SHALL capture a reference (e.g., link, pointer) to pre-amendment data for each amended Record Entry.</fo:block>
+</fo:list-item-body>
+</fo:list-item>
+</fo:list-block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">RI.1.1.2.1</fo:block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">C</fo:block>
+</fo:table-cell>
+<fo:table-cell display-align="center">
+<fo:block text-align="center">EN</fo:block>
+</fo:table-cell>
+</fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="RI.1.1.4">RI.1.1.4</fo:block>
@@ -13416,6 +13483,98 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:list-item>
 </fo:list-block>
 </fo:block>
+</fo:table-cell>
+</fo:table-row>
+<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
+<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
+<fo:list-item space-after=".7em" margin-top=".3em">
+<fo:list-item-label end-indent="label-end()">
+<fo:block font-weight="bold" text-align="right">96.</fo:block>
+</fo:list-item-label>
+<fo:list-item-body start-indent="body-start()">
+<fo:block>The system SHALL encrypt electronic health information locally stored on an end-user device after normal user stops.</fo:block>
+</fo:list-item-body>
+</fo:list-item>
+</fo:list-block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center"> </fo:block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">N</fo:block>
+</fo:table-cell>
+<fo:table-cell display-align="center">
+<fo:block text-align="center">EN</fo:block>
+</fo:table-cell>
+</fo:table-row>
+<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
+<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
+<fo:list-item space-after=".7em" margin-top=".3em">
+<fo:list-item-label end-indent="label-end()">
+<fo:block font-weight="bold" text-align="right">97.</fo:block>
+</fo:list-item-label>
+<fo:list-item-body start-indent="body-start()">
+<fo:block>The system SHALL encrypt electronic health information stored on end-user devices in conformance with the encryption algorithm(s) in Annex A of the Federal Information Processing Standards (FIPS) Publication 140-2.</fo:block>
+</fo:list-item-body>
+</fo:list-item>
+</fo:list-block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center"> </fo:block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">N</fo:block>
+</fo:table-cell>
+<fo:table-cell display-align="center">
+<fo:block text-align="center">EN</fo:block>
+</fo:table-cell>
+</fo:table-row>
+<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
+<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
+<fo:list-item space-after=".7em" margin-top=".3em">
+<fo:list-item-label end-indent="label-end()">
+<fo:block font-weight="bold" text-align="right">98.</fo:block>
+</fo:list-item-label>
+<fo:list-item-body start-indent="body-start()">
+<fo:block>The system SHALL manage end-user device settings ensuring encryption is enabled by default.</fo:block>
+</fo:list-item-body>
+</fo:list-item>
+</fo:list-block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center"> </fo:block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">N</fo:block>
+</fo:table-cell>
+<fo:table-cell display-align="center">
+<fo:block text-align="center">EN</fo:block>
+</fo:table-cell>
+</fo:table-row>
+<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
+<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
+<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
+<fo:list-item space-after=".7em" margin-top=".3em">
+<fo:list-item-label end-indent="label-end()">
+<fo:block font-weight="bold" text-align="right">99.</fo:block>
+</fo:list-item-label>
+<fo:list-item-body start-indent="body-start()">
+<fo:block>IF the encryption of electronic health information is a setting that can be disabled, THEN. the system SHALL control access to the encryption settings by a designated set of users.</fo:block>
+</fo:list-item-body>
+</fo:list-item>
+</fo:list-block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center"> </fo:block>
+</fo:table-cell>
+<fo:table-cell border-right="solid 0.5pt black" display-align="center">
+<fo:block text-align="center">N</fo:block>
+</fo:table-cell>
+<fo:table-cell display-align="center">
+<fo:block text-align="center">EN</fo:block>
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
@@ -15885,29 +16044,6 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block text-align="center">EN</fo:block>
 </fo:table-cell>
 </fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">99.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to manage structured messages according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center"> </fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">N</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.5.2">TI.5.2</fo:block>
@@ -15992,6 +16128,13 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:flow>
 </fo:page-sequence>
 </fo:root>
+    
+    
+    
+    
+    
+    
+    
     
     
     

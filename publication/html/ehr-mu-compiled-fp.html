@@ -392,9 +392,6 @@
 <td class="criteria-description" colspan="2"><strong>24</strong>. The system SHALL provide the ability to render historical allergy information.</td><td class="fp-criteria-reference">CP.1.2#24</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section1-lev2-sub">
-<td class="criteria-description" colspan="2"><strong>89</strong>. The system SHALL provide the ability to manage allergy, intolerance, and adverse reaction to drug, food, medical products (e.g. vaccines, biologics, devices, chemicals) or environmental triggers as unique, discrete entries.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
-</tr>
-<tr class="section1-lev2-sub">
 <td class="criteria-description" colspan="2"><strong>90</strong>. The system SHALL provide the ability to capture and maintain the reconciled medication allergy list.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section1-lev2-sub">
@@ -1085,10 +1082,10 @@ In addition, the system should present the clinician with clinical decision supp
 <td class="criteria-description" colspan="2"><strong>91</strong>. The system SHALL render any information regarding the condition and disposition of specimens that do not meet the laboratory&rsquo;s criteria for acceptability as part of the test report information.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section1-lev1-sub">
-<td class="criteria-description" colspan="2"><strong>92</strong>. IF known and applicable, THEN the system SHALL display the interpretation of test results and corresponding to the standard code sent in the lab result message.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
+<td class="criteria-description" colspan="2"><strong>94</strong>. The system SHALL render the test result and, if applicable, the units of measurement or interpretation, or both as part of the test report information.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section1-lev1-sub">
-<td class="criteria-description" colspan="2"><strong>94</strong>. The system SHALL render the test result and, if applicable, the units of measurement or interpretation, or both as part of the test report information.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
+<td class="criteria-description" colspan="2"><strong>95</strong>. The system SHALL render the specimen source, when appropriate, as part of the test report information.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section1-lev1-sub">
 <td class="criteria-description" colspan="2"><strong>96</strong>. The system SHALL render the test performed as part of the test report information.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
@@ -1695,7 +1692,7 @@ Tele-health encounters have unique requirements that may also be supported by th
 </td>
 </tr>
 <tr class="section2-lev3-sub">
-<td class="criteria-description" colspan="2"><strong>07</strong>. The system SHOULD provide the ability to integrate necessary documentation of patient and family preferences (e.g., living wills, advance directives, healthcare proxies, and specific consents or releases).</td><td class="fp-criteria-reference">CPS.1.7.1#7</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
+<td class="criteria-description" colspan="2"><strong>07</strong>. The system SHALL provide the ability to integrate necessary documentation of patient and family preferences (e.g., living wills, advance directives, healthcare proxies, and specific consents or releases).</td><td class="fp-criteria-reference">CPS.1.7.1#7</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section2-lev3-main">
 <td id="CPS.1.7.2">CPS.1.7.2</td><td rowspan="2" class="function-title"> Manage Patient Advance Directives</td><td rowspan="2" class="value-column">CPS.1.7.2</td><td rowspan="2" class="value-column">NC</td><td rowspan="2" class="value-column">EN</td>
@@ -1725,6 +1722,9 @@ Circumstances is used to indicate where, how and when an advanced directive was 
 </dd>
 </dl>
 </td>
+</tr>
+<tr class="section2-lev3-sub">
+<td class="criteria-description" colspan="2"><strong>01</strong>. The system SHALL provide the ability to manage advance directive information including the type of directive, relevant dates (e.g., received, reviewed, rescinded, updated), circumstances under which the directives were received (e.g., during initial consultation), and the location of any paper or electronic advance directive documentation.</td><td class="fp-criteria-reference">CPS.1.7.2#1</td><td class="fp-criteria-change">NC</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section2-lev1-main">
 <td id="CPS.2">CPS.2</td><td rowspan="2" class="function-title"> Support externally-sourced Information</td><td rowspan="2" class="value-column">CPS.2</td><td rowspan="2" class="value-column">NC</td><td rowspan="2" class="value-column">EN</td>
@@ -1813,9 +1813,7 @@ Data incorporated through these mechanisms is presented alongside locally captur
 <td class="criteria-description" colspan="2"><strong>04</strong>. The system SHALL provide the ability to store imaged documents or link to the imaged documents in imaging systems.</td><td class="fp-criteria-reference">CPS.2.1#4</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section2-lev2-sub">
-<td class="criteria-description" colspan="2"><strong>06</strong>. The system SHALL provide the ability to receive from an external source structured, text-based documents and reports (e.g., C-CDA, HITSP/C32, and ASTM formats).
-
-</td><td class="fp-criteria-reference">CPS.2.1#6</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
+<td class="criteria-description" colspan="2"><strong>06</strong>. The system SHALL provide the ability to receive from an external source structured, text-based documents and reports (e.g., C-CDA, HITSP/C32, and ASTM CCR formats).</td><td class="fp-criteria-reference">CPS.2.1#6</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section2-lev2-sub">
 <td class="criteria-description" colspan="2"><strong>98</strong>. The system SHALL provide the ability to display header(s) and individual sections of a conformant standards-based document (e.g., CCD, C-CDA) in human readable form.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
@@ -2127,7 +2125,7 @@ A component of ordering medications and immunizations is the dispensing of those
 </td>
 </tr>
 <tr class="section2-lev2-sub">
-<td class="criteria-description" colspan="2"><strong>10</strong>. The system SHOULD provide the ability to capture and maintain the severity level at which warnings are displayed.</td><td class="fp-criteria-reference">CPS.4.2#10</td><td class="fp-criteria-change">NC</td><td class="fp-criteria-priority">EN</td>
+<td class="criteria-description" colspan="2"><strong>10</strong>. The system SHALL provide the ability to capture and maintain the severity level at which warnings are displayed.</td><td class="fp-criteria-reference">CPS.4.2#10</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section2-lev3-main">
 <td id="CPS.4.2.1">CPS.4.2.1</td><td rowspan="2" class="function-title"> Support for Medication Interaction and Allergy Checking</td><td rowspan="2" class="value-column">CPS.4.2.1</td><td rowspan="2" class="value-column">NC</td><td rowspan="2" class="value-column">EN</td>
@@ -2468,6 +2466,9 @@ The system should provide for both verbal and written communication. These excha
 </td>
 </tr>
 <tr class="section2-lev2-sub">
+<td class="criteria-description" colspan="2"><strong>02</strong>. The system SHALL provide the ability to integrate scanned documents from providers into the patient record.</td><td class="fp-criteria-reference">CPS.9.2#2</td><td class="fp-criteria-change">NC</td><td class="fp-criteria-priority">EN</td>
+</tr>
+<tr class="section2-lev2-sub">
 <td class="criteria-description" colspan="2"><strong>03</strong>. The system SHALL provide the ability to receive and transmit messages or information in real time.</td><td class="fp-criteria-reference">CPS.9.2#3</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section2-lev3-main">
@@ -2551,6 +2552,12 @@ The system should provide for both verbal and written communication. These excha
 <tr class="section2-lev2-sub">
 <td class="criteria-description" colspan="2"><strong>07</strong>. The system SHALL provide the ability to update reports to match mandated formats.</td><td class="fp-criteria-reference">CPS.9.3#7</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
 </tr>
+<tr class="section2-lev2-sub">
+<td class="criteria-description" colspan="2"><strong>13</strong>. The system SHALL provide the ability to maintain a record of disclosure/release that includes the recipient and outbound content.</td><td class="fp-criteria-reference">CPS.9.3#13</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
+</tr>
+<tr class="section2-lev2-sub">
+<td class="criteria-description" colspan="2"><strong>15</strong>. The system SHALL provide the ability to render a record summary using the format specified by an organization to which a patient is transferred.</td><td class="fp-criteria-reference">CPS.9.3#15</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
+</tr>
 <tr class="section2-lev2-main">
 <td id="CPS.9.4">CPS.9.4</td><td rowspan="2" class="function-title"> Standard Report Generation</td><td rowspan="2" class="value-column">CPS.9.4</td><td rowspan="2" class="value-column">NC</td><td rowspan="2" class="value-column">EN</td>
 </tr>
@@ -2594,9 +2601,6 @@ Users need to be able to sort, and/or filter reports. For example:
 </tr>
 <tr class="section2-lev2-sub">
 <td class="criteria-description" colspan="2"><strong>07</strong>. The system SHALL provide the ability to render automated reports as required by industry and regulatory bodies.</td><td class="fp-criteria-reference">CPS.9.4#7</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
-</tr>
-<tr class="section2-lev2-sub">
-<td class="criteria-description" colspan="2"><strong>98</strong>. The system SHALL provide the ability to render a record summary using the format specified by an organization to which a patient is transferred.</td><td class="fp-criteria-reference">CPS.9.3#15</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section2-lev2-sub">
 <td class="criteria-description" colspan="2"><strong>99</strong>. The system SHALL provide the ability to generate cancer case reports using HL7 CDA R2, CDA Implementation Guide for Ambulatory Healthcare Provider Reporting to Central Cancer Registries, IHTSDO CT International July 2012 Release and US Extension to SNOMED CT March 2012 Release and LOINC Database Version 2.40.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
@@ -3962,6 +3966,9 @@ Reference: ISO 21089, Section 12.3.2</p>
 <tr class="section5-lev4-sub">
 <td class="criteria-description" colspan="2"><strong>09</strong>. The system SHALL capture the rationale for amending Record Entry content.</td><td class="fp-criteria-reference">RI.1.1.2.1#9</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
 </tr>
+<tr class="section5-lev4-sub">
+<td class="criteria-description" colspan="2"><strong>11</strong>. The system SHALL capture a reference (e.g., link, pointer) to pre-amendment data for each amended Record Entry.</td><td class="fp-criteria-reference">RI.1.1.2.1#11</td><td class="fp-criteria-change">C</td><td class="fp-criteria-priority">EN</td>
+</tr>
 <tr class="section5-lev3-main">
 <td id="RI.1.1.4">RI.1.1.4</td><td rowspan="2" class="function-title"> Attest Record Entry Content</td><td rowspan="2" class="value-column">RI.1.1.4</td><td rowspan="2" class="value-column">NC</td><td rowspan="2" class="value-column">EN</td>
 </tr>
@@ -4620,6 +4627,18 @@ Examples of entity authentication, with varying levels of authentication rigor, 
 </dd>
 </dl>
 </td>
+</tr>
+<tr class="section6-lev2-sub">
+<td class="criteria-description" colspan="2"><strong>96</strong>. The system SHALL encrypt electronic health information locally stored on an end-user device after normal user stops.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
+</tr>
+<tr class="section6-lev2-sub">
+<td class="criteria-description" colspan="2"><strong>97</strong>. The system SHALL encrypt electronic health information stored on end-user devices in conformance with the encryption algorithm(s) in Annex A of the Federal Information Processing Standards (FIPS) Publication 140-2.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
+</tr>
+<tr class="section6-lev2-sub">
+<td class="criteria-description" colspan="2"><strong>98</strong>. The system SHALL manage end-user device settings ensuring encryption is enabled by default.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
+</tr>
+<tr class="section6-lev2-sub">
+<td class="criteria-description" colspan="2"><strong>99</strong>. IF the encryption of electronic health information is a setting that can be disabled, THEN. the system SHALL control access to the encryption settings by a designated set of users.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
 </tr>
 <tr class="section6-lev2-main">
 <td id="TI.1.2">TI.1.2</td><td rowspan="2" class="function-title"> Entity Authorization</td><td rowspan="2" class="value-column">TI.1.2</td><td rowspan="2" class="value-column">NC</td><td rowspan="2" class="value-column">EN</td>
@@ -5446,9 +5465,6 @@ Standard terminology is a fundamental part of interoperability and is described 
 <tr class="section6-lev3-sub">
 <td class="criteria-description" colspan="2"><strong>01</strong>. The system SHALL provide the ability to manage structured messages according to scope of practice, organizational policy, and/or jurisdictional law.</td><td class="fp-criteria-reference">TI.5.1.3#1</td><td class="fp-criteria-change">NC</td><td class="fp-criteria-priority">EN</td>
 </tr>
-<tr class="section6-lev3-sub">
-<td class="criteria-description" colspan="2"><strong>99</strong>. The system SHALL provide the ability to manage structured messages according to scope of practice, organizational policy, and/or jurisdictional law.</td><td class="fp-criteria-reference"> </td><td class="fp-criteria-change">N</td><td class="fp-criteria-priority">EN</td>
-</tr>
 <tr class="section6-lev2-main">
 <td id="TI.5.2">TI.5.2</td><td rowspan="2" class="function-title"> Interchange Standards Versioning and Maintenance</td><td rowspan="2" class="value-column">TI.5.2</td><td rowspan="2" class="value-column">NC</td><td rowspan="2" class="value-column">EN</td>
 </tr>
@@ -5640,6 +5656,13 @@ The method(s) by which applications may be integrated within an organization dep
 </footer>
 </body>
 </html>
+    
+    
+    
+    
+    
+    
+    
     
     
     
