@@ -36,9 +36,6 @@
 <fo:bookmark internal-destination="CP.6">
 <fo:bookmark-title>CP.6 Manage Medication, Immunization and Treatment Administration</fo:bookmark-title>
 </fo:bookmark>
-<fo:bookmark internal-destination="CP.7">
-<fo:bookmark-title>CP.7 Manage Future Care</fo:bookmark-title>
-</fo:bookmark>
 <fo:bookmark internal-destination="CP.8">
 <fo:bookmark-title>CP.8 Manage Patient Education &amp; Communication</fo:bookmark-title>
 </fo:bookmark>
@@ -125,9 +122,6 @@
 </fo:bookmark>
 <fo:bookmark internal-destination="TI.2">
 <fo:bookmark-title>TI.2 Audit</fo:bookmark-title>
-</fo:bookmark>
-<fo:bookmark internal-destination="TI.3">
-<fo:bookmark-title>TI.3 Registry and Directory Services</fo:bookmark-title>
 </fo:bookmark>
 <fo:bookmark internal-destination="TI.4">
 <fo:bookmark-title>TI.4 Standard Terminology and Terminology Services</fo:bookmark-title>
@@ -255,11 +249,6 @@
 <fo:basic-link internal-destination="CP.6">CP.6 Manage Medication, Immunization and Treatment Administration</fo:basic-link>
 <fo:leader leader-pattern="dots"/>
 <fo:page-number-citation ref-id="CP.6"/>
-</fo:block>
-<fo:block text-align-last="justify" margin-left="3em" space-before="5pt" font-size="1em" font-weight="400">
-<fo:basic-link internal-destination="CP.7">CP.7 Manage Future Care</fo:basic-link>
-<fo:leader leader-pattern="dots"/>
-<fo:page-number-citation ref-id="CP.7"/>
 </fo:block>
 <fo:block text-align-last="justify" margin-left="3em" space-before="5pt" font-size="1em" font-weight="400">
 <fo:basic-link internal-destination="CP.8">CP.8 Manage Patient Education &amp; Communication</fo:basic-link>
@@ -405,11 +394,6 @@
 <fo:basic-link internal-destination="TI.2">TI.2 Audit</fo:basic-link>
 <fo:leader leader-pattern="dots"/>
 <fo:page-number-citation ref-id="TI.2"/>
-</fo:block>
-<fo:block text-align-last="justify" margin-left="3em" space-before="5pt" font-size="1em" font-weight="400">
-<fo:basic-link internal-destination="TI.3">TI.3 Registry and Directory Services</fo:basic-link>
-<fo:leader leader-pattern="dots"/>
-<fo:page-number-citation ref-id="TI.3"/>
 </fo:block>
 <fo:block text-align-last="justify" margin-left="3em" space-before="5pt" font-size="1em" font-weight="400">
 <fo:basic-link internal-destination="TI.4">TI.4 Standard Terminology and Terminology Services</fo:basic-link>
@@ -2583,126 +2567,6 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CP.4.2.1">CP.4.2.1</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Medication Interaction and Allergy Checking</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CP.4.2.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Provide alerts for potential medication interactions and medication allergy reactions.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Check and provide alerts at the time of medication order based upon coded, active and non-active medications for possible interactions, allergies, sensitivities, intolerances, and other adverse reactions.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CP.4.2.2">CP.4.2.2</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Patient-Specific Medication Dosing and Warnings</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CP.4.2.2</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Render medication dosing and warnings related to a medication order based on patient-specific parameters.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Provide parameter-based (e.g., weight, lean body mass, age, sensitivity, genomics, body surface area) medication dosing recommendations and warnings for simple medications and compounded medications at the time of order entry.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CP.4.2.3">CP.4.2.3</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Medication Order Efficiencies</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CP.4.2.3</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Provide the tooling necessary to increase the efficiency of medication ordering.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Make medication ordering workflows more efficient by allowing medications to be sorted and reviewed by key attributes (e.g., generic or trade names). Also support editing medication orders across multiple instances of an order and capturing medication orders in order sets.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CP.4.2.4">CP.4.2.4</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Medication Alert Overrides</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CP.4.2.4</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Capture the alerts and warnings for medications being overridden and reasons for the override.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Alerts are generated for possible contraindications to administration of medications (e.g., the administration of tetracycline to pregnant women) and the prescriber may choose to override the alert.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CP.4.4">CP.4.4</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -3734,66 +3598,6 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CP.7">CP.7</fo:block>
-<fo:block margin-left=".5em">Header</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Manage Future Care</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CP.7</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Provide the functionality to manage treatment and care planning through presentation of guidelines and protocols as well as managing recommendations for future care.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>The presentation of appropriate guidelines and protocols for future care and the capture and management of recommendations for future care are required to ensure lifetime care of the patient. This includes the management of recommendations for post-encounter care and linkage of recommendations to other components in the health record such as the problem lists and other source documentation.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CP.7.1">CP.7.1</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Present Guidelines and Protocols for Planning Care</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CP.7.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Present organizational guidelines for patient care as appropriate to support planning of care, including order entry and clinical documentation.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Guidelines, and protocols presented for planning care may be site specific, community or industry-wide standards.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CP.8">CP.8</fo:block>
 <fo:block margin-left=".5em">Header</fo:block>
 </fo:table-cell>
@@ -4711,38 +4515,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.1.5">CPS.1.5</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Manage Patient Encounter</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.1.5</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Manage patient encounter information, including tele-health encounters, and support follow-up encounters.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Each encounter of the patient with the healthcare setting needs to be recorded and the information relevant to the distinct encounter managed. This information includes date and time of the encounter, providers involved, location(s), and the reason for the encounter etc. Additionally, follow-up encounters may require prior administrative and clinical information to be determined or captured, maintained and rendered.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Tele-health encounters have unique requirements that may also be supported by the system.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.1.7">CPS.1.7</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -5183,60 +4955,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.2.2">CPS.2.2</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support externally-sourced Clinical Data</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.2.2</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Incorporate discrete clinical data from external sources and support communication/presentation of data captured from medical and non-medical devices and entities.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Mechanisms for incorporating external clinical data (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced data may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of data received by the provider that would typically be incorporated into a medical record, including but not limited to faxes, referral authorizations, consultant reports, and patient/resident correspondence of a clinical nature. Intrinsic to the concept of electronic health records is the ability to exchange health information with other providers of health care services. Health information from these external sources needs to be received, stored in the patient record, and displayed upon request. </fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Examples of externally-sourced data and documents include:</fo:block>
-<fo:block space-before=".4em">1. Laboratory results received through an electronic interface. </fo:block>
-<fo:block space-before=".4em">This information is received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (instead of in report or summarized format). </fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">2. Scanned documents received and stored as images (e.g., power of attorney forms or living wills). </fo:block>
-<fo:block space-before=".4em">These scanned documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. </fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">3. Text-based outside reports (e.g., x-ray reports, hospital discharge summaries or history and physical examinations). </fo:block>
-<fo:block space-before=".4em">Any mechanism for capturing these reports is acceptable (e.g., OCR, PDF, JPG or TIFF). </fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">4. Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images). </fo:block>
-<fo:block space-before=".4em">These images may be stored within the system or be available by direct linkage to an external source (e.g., a hospital's picture archiving and communication system). </fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">5. Other forms of clinical results (e.g., EKG waveforms).</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">6. Medication history from an external source such as a retail pharmacy, the patient, or another provider . </fo:block>
-<fo:block space-before=".4em">While the medication history includes the medication name, strength, and SIG, this does not imply that the data will populate the medication administration module. In many systems the medication administration module is populated from the medication order rather than from the medication history.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">7. Structured, text-based reports (e.g., medical summary text in a structured format). </fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">8. Standards-based structured, codified data (such as a standards-based referral letter that contains SNOMED CT codes). </fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Such data may be presented with locally-sourced documentation and notes wherever appropriate.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.2.3">CPS.2.3</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -5445,36 +5163,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.3.1">CPS.3.1</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support for Standard Assessments</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.3.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Support the establishment, updates and use of assessment forms that will assist in the development of and adherence to care plans, guidelines, and protocols at the point of information capture.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>As part of managing assessment definitions, the system will support the ability to create a set of assessment forms and, optionally, associated logic (e.g., workflow, business and clinical rules). This assessment definition process may include the ability to define, revise and manage the tools, files and processing for the conduct of a patient assessment. Furthermore, the assessment definition may also include template development, prompts for additional information, related notification alerts and workflow processes. When a clinician fills out an assessment, data entered triggers the system to prompt the assessor to consider issues that would help assure a complete/accurate assessment. A simple demographic value or presenting problem (or combination) could provide a template for data gathering that represents best practice in this situation, e.g., Type 2 (Adult Onset) Diabetes diabetic review, fall and 70+, and rectal bleeding. Support for standard assessment may include the ability to record and store the value for the answers to specific questions in standardized assessment tools or questionnaires. When a specific recognized-standard assessment does not exist, the system will support the creation of unique new, locally-defined assessment. The system may enable, and/or encourage the use of the format and data elements of similar assessments in the systems whenever possible. (NOTE: A new assessment may not necessarily be unique, since a facility may copy an assessment from another facility.) </fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.3.11">CPS.3.11</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -5539,126 +5227,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.3.2">CPS.3.2</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support for Patient Context- Driven Assessments</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.3.2</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Offer prompts based on patient-specific data at the point of information capture for assessment purposes.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>When a clinician fills out an assessment, data entered is matched against data already in the system to identify potential linkages and optimize patient care. For example, the system could scan the medication list and the knowledge base to see if any of the symptoms are side effects of medication already prescribed. Important diagnoses could be brought to the doctor’s attention, for instance ectopic pregnancy in a woman of child bearing age, or appendicitis in a geriatric patient who has abdominal pain.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.3.3">CPS.3.3</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support for Standard Care Plans, Guidelines, Protocols</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.3.3</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Support the use of appropriate standard care plans, guidelines, protocols, and/or clinical pathways for the management of specific conditions.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>A core capability of Clinical Decision Support is that of providing guidelines, plans and protocols to clinicians. These templates or forms can be specific for populations, medical conditions or individual patients. Before they can be used in care provision standard care plans, guidelines, protocols, and clinical pathways must be created. These templates or forms may reside within the system or be provided through links to external sources, and can be modified and used on a site specific basis. To facilitate retrospective decision support, variances from standard care plans, guidelines, protocols and clinical pathways can be identified and reported.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.3.4">CPS.3.4</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support for Context-Sensitive Care Plans, Guidelines, Protocols</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.3.4</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Identify and present the appropriate care plans, guidelines, protocols, and/or clinical pathways for the management of patient-specific conditions that are identified in a patient clinical encounter.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>At the time of the clinical encounter (problem identification), recommendations for tests, treatments, medications, immunizations, referrals and evaluations are presented based on evaluation of patient-specific data such as age, gender, developmental stage, their health profile, and any site-specific considerations. These may be modified on the basis of new clinical data at subsequent encounters.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.3.8">CPS.3.8</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Manage Documentation of Clinician Response to Decision Support Prompts</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.3.8</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Capture the decision support prompts and manage provider actions to accept or override decision support prompts.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Provider actions in response to prompts offered from decision support are captured. Management of these actions be accomplished at the patient level or aggregated for patient population, research protocol, or organizational trending.</fo:block>
-</fo:block>
-</fo:block>
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
@@ -6059,36 +5627,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.4.2.2">CPS.4.2.2</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support for patient-specific Dosing and Warnings</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.4.2.2</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Identify and present appropriate dose recommendations based on known patient conditions and characteristics at the time of medication ordering and dispensing.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>The clinician is alerted to patient-specific contraindications and warnings e.g., pregnancy, breast-feeding or occupational risks, hepatic or renal insufficiency. The preferences of the patient may also be presented (e.g., reluctance to use an antibiotic). Additional patient parameters, such as age, gestation, genetic disposition, height, weight, and Body Surface Area (BSA), shall also be incorporated.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.4.2.3">CPS.4.2.3</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -6176,36 +5714,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.4.2.4">CPS.4.2.4</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support for Medication Recommendations</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.4.2.4</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Offer recommendations and options in medication treatment protocols as well as supporting medication monitoring on the basis of patient diagnosis, patient characteristics, or therapeutic guidelines and protocols.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>The system should list medication treatment options on the basis of practice standards and the patient's conditions, diagnoses and characteristics (e.g., obesity, occupation). The system may also provide prompts and notifications to support medication monitoring.</fo:block>
-</fo:block>
-</fo:block>
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
@@ -6459,36 +5967,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.4.3">CPS.4.3</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support for Non-Medication Ordering</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.4.3</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Facilitate provider review and validation of order information to make it pertinent, effective and resource-conservative at the point of order entry.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>The system assists provider during order entry for therapies, treatments, care, diagnostics and medical supplies and equipment. Support includes, for example: alerts to duplicate orders, missing results or other information required to initiate order, suggested corollary orders, order sets, best practice guidelines, institution-specific order guidelines and patient diagnosis specific recommendations. Also alerts for orders that may be inappropriate or contraindicated for specific patients, for example, X-rays on pregnant women.</fo:block>
-</fo:block>
-</fo:block>
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
@@ -6913,38 +6391,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="CPS.9.2.3">CPS.9.2.3</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support for Provider -Pharmacy Communication</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.9.2.3</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Provide features to enable secure bi-directional communication of information electronically between practitioners and pharmacies or between practitioner and intended recipient of pharmacy orders.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>When a medication is prescribed, the order is routed to the pharmacy or other intended recipient of pharmacy orders. This information is used to avoid transcription errors and facilitate detection of potential adverse reactions. If there is a question from the pharmacy, that communication can be presented to the provider with their other tasks. In certain environments, medication order creation is a collaborative process involving the prescriber and facility staff. Accordingly, this function applies to communication process between the prescriber, facility and the pharmacy or other intended recipient of pharmacy orders. The transmission of prescription data between systems should conform to realm acceptable messaging standards. Informative examples:</fo:block>
-<fo:block space-before=".4em">- HL7 Clinical Document</fo:block>
-<fo:block space-before=".4em">        Architecture Release 2- ISO/EN 13606 Electronic Health Record Communication- CEN ENV 13607:2000. Health informatics. Messages for the exchange of information on medicine prescriptions- X12N healthcare transactions- US realm: National Council for Prescription Drug Programs (NCPDP)- Canadian realm: National Electronic Claims Standard (NeCST)</fo:block>
-</fo:block>
-</fo:block>
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
@@ -10802,41 +10248,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="RI.1.1.10">RI.1.1.10</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> De-identify Record Entries</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.1.10</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>De-identify content of Record Entries (1 or more instances)</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entry content is transformed into de-identified version.</fo:block>
-<fo:block space-before=".4em">- De-identification of Record Entries may be initiated by User command.</fo:block>
-<fo:block space-before=".4em">- De-identification of Record Entries is the responsibility of the System – which invokes relevant rules.</fo:block>
-<fo:block space-before=".4em">- An Audit Trigger is initiated to track Record Entry de-identification.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Reference: ISO 21089, Section 12.6.1.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="RI.1.1.13">RI.1.1.13</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -11293,62 +10704,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block text-align="center">RI.1.1.16.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="RI.1.1.17">RI.1.1.17</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Deprecate/Retract Record Entries</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.1.17</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Deprecate/retract Record Entries as invalid (1 or more instances)</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entries are deprecated if found to be improperly identified or otherwise invalid.</fo:block>
-<fo:block space-before=".4em">- Deprecation of Record Entries may be initiated by User command.</fo:block>
-<fo:block space-before=".4em">- Deprecation of Record Entries is the responsibility of the System – which invokes relevant rules.</fo:block>
-<fo:block space-before=".4em">- An Audit Trigger is initiated to track Record Entry Deprecation.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">1.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to deprecate/retract Record Entries as invalid according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.1.17</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block text-align="center">NC</fo:block>
@@ -12896,230 +12251,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="RI.1.3">RI.1.3</fo:block>
-<fo:block margin-left=".5em">Header</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Record States</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.3</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Manage Record States</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Record Entries may reside in various states that must be managed. An important underlying principle for managing record states is the need to retain Record Entries that have been viewed for patient care purposes even if the Entry has not been completed or attested. This principle has important legal impact because it provides an account of what the provider viewed and relied on for clinical decision-making. For example, if Record Entry content was available in pending state and a clinician used the information to make decisions, it is important to retain the pending version even after the final version was available. Determining if Record Entry content was used for patient care may be challenging. Access logs could provide a mechanism to determine if the information was used.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="RI.1.3.1">RI.1.3.1</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Manage Record Pending State</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.3.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Manage Record Entries during the various states of completion.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Record Entries may reside in various states that must be managed. An important underlying principle for managing record states is the need to retain Record Entries that have been viewed for patient care purposes even if it has not been completed or attested. This principle has important legal impact because it provides a record of what the provider relied on for clinical decision-making. For example, if a Record Entry was available in pending state and a clinician accessed the information to make decisions, it is important to retain the pending version even after the final version was available. Determining if the Record Entry was accessed for patient care may be challenging. Access logs should show if the information was accessed/viewed.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">1.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD provide the ability to manage the length of time a Record Entry can be in a pending or inactive state before being administratively closed.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.3.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">2.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system MAY present a notification to the author or designate that a Record Entry will be administratively closed after a designated period of time.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.3.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">3.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system MAY present pending Record Entries in accordance with the organization's business rules.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.3.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">4.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>IF the system displays pending Record Entries, THEN the system SHALL tag and present that a Record Entry is pending or incomplete.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.3.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">5.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD provide the ability to update a Record Entry status to one of:
-- complete,
-- complete while retaining incomplete version of the Entry if viewed for patient care or used by the system,
-- mark as erroneous and retain if Entry used for patient care or by the system, or - discard if Entry never viewed for patient care purposes.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.3.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">6.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD provide the ability to manage administrative closure of a Record Entry after a period of inactivity according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.3.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">7.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL capture a date/time stamp and identify the author each time a Record Entry is updated including when opened, when updated, with the signature event and when officially closed, conforming to function TI.2.1.1 (Record Entry Audit Triggers).</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">RI.1.3.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="RI.2">RI.2</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -13939,40 +13070,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.1.5">TI.1.5</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Non-Repudiation</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">TI.1.5</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Limit an EHR-S user's ability to deny (repudiate) data origination, transmission or receipt by that user.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>An EHR-S allows data entry to a patient's electronic health record and it can be a sender or receiver of healthcare information. Non-repudiation is a way to guarantee that the source of the data/record cannot later deny that fact; and that the sender of a message cannot later deny having sent the message; and that the recipient cannot deny having received the message. Components of non-repudiation can include:</fo:block>
-<fo:block space-before=".4em">- Digital signature, which serves as a unique identifier for an individual (much like a written signature);</fo:block>
-<fo:block space-before=".4em">- Confirmation service, which utilizes a message transfer agent to create a digital receipt (providing confirmation that a message was sent, and/or received);</fo:block>
-<fo:block space-before=".4em">- Timestamp, which proves that a document existed at a certain date and time;</fo:block>
-<fo:block space-before=".4em">- The use of standardized timekeeping protocols (e.g., the Integrating the Healthcare Enterprise (IHE) Consistent Time Profile).</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.1.6">TI.1.6</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -14496,36 +13593,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.1.7">TI.1.7</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Secure Data Routing</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">TI.1.7</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Route electronically exchanged EHR data only to/from known and authenticated destinations/sources (according to applicable healthcare-specific rules and relevant standards).</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>An EHR-S needs to ensure that it is exchanging EHR information with the entities (applications, institutions, directories) it expects. This function depends on entity authorization and authentication to be available in the system. For example, a physician practice management application in an EHR-S might send claim attachment information to an external entity. To accomplish this, the application must use a secure routing method, which ensures that both the sender and receiving sides are authorized to engage in the information exchange. Known sources and destinations can be established in a static setup or they can be dynamically determined. Examples of a static setup are recordings of IP addresses or recordings of DNS names. For dynamic determination of known sources and destinations systems can use authentication mechanisms as described in IN.1.For example, the sending of a laboratory order from the EHRS to a laboratory system within the same organization usually uses a simple static setup for routing. In contrast sending a laboratory order to a reference laboratory outside of the organization will involve some kind of authentication process. Provision of a secure network infrastructure is beyond the scope of an EHR-S.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.1.8">TI.1.8</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -14778,105 +13845,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block text-align="center">TI.2.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.2.1.1">TI.2.1.1</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Record Entry Audit Triggers</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">TI.2.1.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Manage Record Entry Audit Triggers</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Record Entries are managed throughout their lifespan at various points in their lifecycle. Record Entry Audit Triggers are designed to capture Record Entry related events including key metadata (who, what, when, where, why). See Function RI.1, Record Lifecycle.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">1.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to Function RI.1 (Record Lifecycle) and its RI.1.x.1 Subsections to capture and maintain Record Entry Audit Metadata.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">TI.2.1.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">2.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL link an Audit Log Entry to each Record Entry according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">TI.2.1.1</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">3.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL harmonize Audit Log Entry Metadata and corresponding Record Entry Metadata to ensure they remain identical.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">TI.2.1.1</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block text-align="center">NC</fo:block>
@@ -15523,41 +14491,6 @@ All functions within the Care Provision Support Section have an identifier start
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
 <fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.3">TI.3</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Registry and Directory Services</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">TI.3</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Enable the use of registry services and directories to uniquely identify, locate and supply links for retrieval of information related to:
-- patients and providers for healthcare purposes;
-- payers, health plans, sponsors, and employers for administrative and financial purposes;
-- public health agencies for healthcare purposes, and- healthcare resources and devices for resource management purposes.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Registry and directory service functions are critical to successfully managing the security, interoperability, and the consistency of the health record data across an EHR-S. These services enable the linking of relevant information across multiple information sources within, or external to, an EHR-S for use within an application. This applies to directories/registries internal to the EHR-S as well as directories/registries external to the EHR-S . Transmission may occur automatically or manually and may include small or large amounts of data. Directories and registries support communication between EHR Systems and may be organized hierarchically or in a federated fashion. For example, a patient being treated by a primary care physician for a chronic condition may become ill while out of town. The new provider’s EHR-S interrogates a local, regional, or national registry to find the patient’s previous records. From the primary care record, a remote EHR-S retrieves relevant information in conformance with applicable patient privacy and confidentiality rules.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">An example of local registry usage is an EHR-S application sending a query message to the Hospital Information System to retrieve a patient’s demographic data.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
 <fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.4">TI.4</fo:block>
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
@@ -16044,84 +14977,6 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block text-align="center">EN</fo:block>
 </fo:table-cell>
 </fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.5.2">TI.5.2</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Interchange Standards Versioning and Maintenance</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">TI.5.2</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Support various versions of an interchange standard.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Interchange standards characteristically change throughout their lifecycles; those changes are often tagged with "version" numbers. EHR systems need to control the various versions of interchange standards that are used within an EHR implementation and accommodate changes that arise with each version.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">For example, if an organization migrates to version 2.5 of HL7's messaging standard, it may choose to utilize that version's specimen or blood bank information capabilities. The organization may also find that certain fields have been retained for backwards compatibility only or withdrawn altogether. The EHR-S needs to be able to handle all of these possibilities.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Standards typically evolve in such a way as to protect backwards compatibility. </fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">On the other hand, sometimes there is little, or no, backwards compatibility when an organization may need to replace an entire standard with a new methodology. An example of this is migrating from HL7 v2 to HL7 v3.Interchange standards that are backward compatible support exchange among senders and receivers who are using different versions. Version control ensures that those sending information in a later version of a standard consider the difference in information content that can be interchanged effectively with receivers, who are capable of processing only earlier versions. That is, senders need to be aware of the information that receivers are unable to capture and adjust their business processes accordingly.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Version control enables multiple versions of the same interchange standard to exist and be distinctly recognized over time. Since interchange standards are usually periodically updated, concurrent use of different versions may be required.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Large (and/or federated) organizations typically need to use different versions of an interchange standard to meet internal organizational interoperability requirements.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">For example, the enterprise-wide standard might use HL7 v2.5 for laboratory messages, but some regions of the enterprise might be at a lower level.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">It should be possible to retire deprecated interchange standards versions when applicable business cycles are completed while maintaining obsolete versions. An example use of this is for possible claims adjustment throughout the claim’s life cycle.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">When interchange standards change over time, it is important that retrospective analysis and research correlate and note gaps between the different versions’ information structures to support the permanence of concepts over time. </fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="TI.5.3">TI.5.3</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Standards-Based Application Integration</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">TI.5.3</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Integrate applications in a standards-based manner.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>An EHR-S often consists of multiple applications. Some of those applications may be within the EHR-S; others may be external to the EHR-S. The user of the EHR-S often benefits when those applications are integrated. Application integration can be accomplished in an ad-hoc fashion or in a standards- based fashion.</fo:block>
-<fo:block space-before=".4em"/>
-<fo:block space-before=".4em">The method(s) by which applications may be integrated within an organization depends on that organization’s approach to application integration. A given organization could conceivably employ multiple application integration approaches to meet various application integration requirements.</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
 </fo:table-body>
 </fo:table>
 </fo:block>
@@ -16280,44 +15135,7 @@ All functions within the Care Provision Support Section have an identifier start
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     
