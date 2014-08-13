@@ -35,10 +35,21 @@
           target: EHR-S-FM              
          ================================= -->
     <target name="EHR-S-FM" description="Build the output artifacts for the EHR-S Functional Model (PDF, HTML, EXCEL data)">
-        <antcall target="artefacts">
-        	<param name="file.base-name" value="ehrs-fm"/>
+    	<property name="file.base-name" value="ehrs-fm"/>
+    	
+    	<antcall target="artefacts">
         	<param name="is-fm" value='true'/>
         </antcall>
+
+    	<antcall target="pdf">
+    		<param name="file.fo-transform" value="${dir.xsl}/max-fm2fo.xsl"/>
+    		<param name="file.max-file" value="${dir.source}/${file.base-name}.max"/>
+    		<param name="file.ballot-file" value="../${dir.source}/${file.base-name}-ballot.mif"/>
+    		<param name="file.additional-text" value=""/>
+    		<param name="file.fo-file" value="${dir.fo}/${file.base-name}-iso.fo"/>
+    		<param name="file.out-file" value="${dir.pdf}/${file.base-name}-iso.pdf"/>
+    		<param name="format.generate-iso" value="true"/>
+    	</antcall>
     </target>
 
 	<!-- ================================= 
@@ -75,6 +86,7 @@
         	<param name="file.additional-text" value=""/>
         	<param name="file.fo-file" value="${dir.fo}/${file.base-name}.fo"/>
         	<param name="file.out-file" value="${dir.pdf}/${file.base-name}.pdf"/>
+    		<param name="format.generate-iso" value="false"/>
     	</antcall>
     </target>
 
@@ -101,6 +113,7 @@
     <target name="fo">
     	<xslt style="${file.fo-transform}" in="${file.max-file}" out="${file.fo-file}">
     		<param name="ballot-info-file" expression="${file.ballot-file}"/>
+    		<param name="iso-format" expression="${format.generate-iso}" type="BOOLEAN"/>
         </xslt>
     </target>
 	
@@ -129,6 +142,19 @@
     	</condition>
     </target>
 
+    <target name="fm-iso-pdf">
+    	<param name="file.base-name" value="ehr-mu-compiled-fp"/>
+    	<param name="file.fo-transform" value="${dir.xsl}/max-fm2fo.xsl"/>
+    	
+    	<antcall target="pdf">
+    		<param name="file.max-file" value="${dir.source}/${file.base-name}.max"/>
+    		<param name="file.ballot-file" value="../${dir.source}/${file.base-name}-ballot.mif"/>
+    		<param name="file.additional-text" value=""/>
+    		<param name="file.fo-file" value="${dir.fo}/${file.base-name}-iso.fo"/>
+    		<param name="file.out-file" value="${dir.pdf}/${file.base-name}-iso.pdf"/>
+    		<param name="format.generate-iso" value="true"/>
+    	</antcall>
+    </target>
 	<!-- - - - - - - - - - - - - - - - - - 
           target: property-dump                      
          - - - - - - - - - - - - - - - - - -->
