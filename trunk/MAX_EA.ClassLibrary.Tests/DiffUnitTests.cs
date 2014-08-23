@@ -38,5 +38,15 @@ namespace MAX_EA.ClassLibrary.Tests
             MAXDiff diff = new MAXDiff();
             diff.diff_FM(fileName1, fileName2);
         }
+
+        [TestMethod]
+        public void TestDiff_FM_MU()
+        {
+            string fileName1 = @"C:\Eclipse Workspace\ehrsfm_profile\publication\source\MU FP compiled-profile 7162014-3.max.xml";
+            string fileName2 = @"C:\Eclipse Workspace\ehrsfm_profile\publication\source\ehr-mu-compiled-fp.max";
+
+            MAXDiff diff = new MAXDiff();
+            diff.diff_FM(fileName1, fileName2);
+        }
     }
 }

@@ -162,9 +162,6 @@ namespace HL7_FM_EA_Extension
                 ListViewItem selected = mainListView.SelectedItems[0];
                 EA.Element element = ((DefinitionLink) selected.Tag).baseModelElement;
 
-                // Also select in Project Browser
-                repository.ShowInProjectView(element);
-
                 // Update checkbox states
                 ignoreEvent = true;
                 if (selected.BackColor == BACKCOLOR_INCLUDED)
@@ -187,6 +184,9 @@ namespace HL7_FM_EA_Extension
 
                 // Update listBox with Criteria of selected
                 criteriaListView.Items.Clear();
+                criteriaListView.Columns.Add("Name");
+                criteriaListView.Columns[0].Width = criteriaListView.Width - 4;
+                criteriaListView.HeaderStyle = ColumnHeaderStyle.None;
                 foreach (EA.Element child in element.Elements)
                 {
                     if (R2Const.ST_CRITERION.Equals(child.Stereotype))
@@ -428,7 +428,14 @@ namespace HL7_FM_EA_Extension
         {
             ListViewItem selected = mainListView.SelectedItems[0];
             DefinitionLink dl = (DefinitionLink) selected.Tag;
-            new FunctionForm().Show((R2ModelV2.Base.R2Function)dl.modelElement);
+            if (dl.modelElement is R2Section)
+            {
+                new SectionForm().Show((R2Section)dl.modelElement);
+            }
+            else
+            {
+                new FunctionForm().Show((R2Function)dl.modelElement);
+            }
         }
 
         private void findButton_Click(object sender, EventArgs e)
@@ -446,6 +453,7 @@ namespace HL7_FM_EA_Extension
                     return;
                 }
             }
+            MessageBox.Show(string.Format("There is no element with ID '{0}'", id), "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -463,6 +471,14 @@ namespace HL7_FM_EA_Extension
                     setCompilerInstruction(dl, R2Const.Qualifier.None);
                 }
                 updateListViewItem(selected);
+            }
+        }
+
+        private void findTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                findButton_Click(sender, e);
             }
         }
     }

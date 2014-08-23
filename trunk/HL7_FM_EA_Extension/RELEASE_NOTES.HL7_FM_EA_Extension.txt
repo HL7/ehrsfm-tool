@@ -6,6 +6,14 @@
 
 CHANGELOG
 =========
+[2014-aug-23]
+ProfilingForm
+- GForge #3465: Find functionality in Edit Profile doesn't give feedback if element cannot be found
+- Also "Enter-key" in Find TextBox starts Find.
+- GForge #3466: Double click on section in Edit Profile does not work
+- GForge #3474: Use single column vertical list instead of horizontal
+- GForge #3475: Don't auto select function in ProjectBrowser on selection in ProfilingForm
+
 [2014-jul-25]
 R2ProfileCompiler
 - Forgot to set notes when instruction (ProfileDefinition) changed it
