@@ -116,6 +116,7 @@
             this.findTextBox.Name = "findTextBox";
             this.findTextBox.Size = new System.Drawing.Size(100, 20);
             this.findTextBox.TabIndex = 1;
+            this.findTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.findTextBox_KeyUp);
             // 
             // findButton
             // 
@@ -138,7 +139,7 @@
             this.groupBox3.Size = new System.Drawing.Size(473, 126);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "TIP: Double click Section, Header, Function or Criterion for full options";
+            this.groupBox3.Text = "For selected Criterion";
             // 
             // excludeCriterionCheckBox
             // 
@@ -154,7 +155,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 26);
+            this.label2.Location = new System.Drawing.Point(3, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 12;
@@ -162,7 +163,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 23);
+            this.textBox1.Location = new System.Drawing.Point(77, 16);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(376, 74);
@@ -186,11 +187,12 @@
             this.criteriaListView.Location = new System.Drawing.Point(3, 16);
             this.criteriaListView.MultiSelect = false;
             this.criteriaListView.Name = "criteriaListView";
+            this.criteriaListView.ShowGroups = false;
             this.criteriaListView.Size = new System.Drawing.Size(467, 267);
             this.criteriaListView.TabIndex = 0;
             this.criteriaListView.TileSize = new System.Drawing.Size(168, 45);
             this.criteriaListView.UseCompatibleStateImageBehavior = false;
-            this.criteriaListView.View = System.Windows.Forms.View.List;
+            this.criteriaListView.View = System.Windows.Forms.View.Details;
             this.criteriaListView.SelectedIndexChanged += new System.EventHandler(this.criteriaListBox_SelectedIndexChanged);
             this.criteriaListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.criteriaListView_MouseDoubleClick);
             // 
