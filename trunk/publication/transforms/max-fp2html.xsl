@@ -280,27 +280,10 @@
     
     <xsl:template name="get-criteria-text">
         <xsl:variable name="criteria-num" select="substring-after(name, '#')"/>
-        <xsl:choose>
-            <xsl:when test="contains(notes,' conform to function ')">
-                <xsl:variable name="pre-text" select="substring-before(notes, ' conform to function ')"/>
-                <xsl:variable name="working-text" select="substring-after(notes, ' conform to function ')"/>
-                <xsl:variable name="function-ref" select="substring-before($working-text, ' ')"/>
-                <xsl:variable name="post-text" select="substring-after($working-text, ' ')"/>
-                <strong><xsl:value-of select="$criteria-num"/></strong>
-                <xsl:value-of select="concat('. ', $pre-text, ' conform to function ')"/>
-                <a>
-                    <xsl:attribute name="href">
-                        <xsl:value-of select="concat('#', $function-ref)"/>
-                    </xsl:attribute>
-                    <xsl:value-of select="$function-ref"/>
-                </a>
-                <xsl:value-of select="concat(' ', $post-text)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <strong><xsl:value-of select="$criteria-num"/></strong>
-                <xsl:value-of select="concat('. ', notes)"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <strong><xsl:value-of select="concat($criteria-num, '. ')"/></strong>
+        <xsl:call-template name="text-with-link">
+            <xsl:with-param name="the-text" select="notes"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="get-functional-reference">
@@ -347,6 +330,33 @@
             </xsl:when>
             <xsl:otherwise>
                 <li><xsl:value-of select="$text-value" disable-output-escaping="yes"/></li>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template name="text-with-link">
+        <xsl:param name="the-text"/>
+        
+        <xsl:choose>
+            <xsl:when test="contains($the-text,' [[')">
+                <xsl:variable name="pre-text" select="substring-before($the-text, '[[')"/>
+                <xsl:variable name="working-text" select="substring-after($the-text, '[[')"/>
+                <xsl:variable name="function-ref" select="substring-before($working-text, ']]')"/>
+                <xsl:variable name="post-text" select="substring-after($working-text, ']]')"/>
+                
+                <xsl:value-of select="$pre-text"/>
+                <a>
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="concat('#', $function-ref)"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="$function-ref"/>
+                </a>
+                <xsl:call-template name="text-with-link">
+                    <xsl:with-param name="the-text" select="$post-text"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$the-text"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

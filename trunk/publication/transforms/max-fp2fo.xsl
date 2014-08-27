@@ -297,6 +297,9 @@
                 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
                     <fo:block space-after=".7em" margin-top=".5em">
                         <fo:inline font-weight="bold">Statement: </fo:inline>
+                        <xsl:call-template name="text-with-link">
+                            <xsl:with-param name="the-text" select="$statement"/>
+                        </xsl:call-template>
                         <xsl:value-of select="$statement"/>
                     </fo:block>
                     <fo:block margin-bottom=".5em">
@@ -346,7 +349,9 @@
             <xsl:if test="$is-first">
                 <fo:inline font-weight="bold">Description: </fo:inline>
             </xsl:if>
-            <xsl:value-of select="$para-text"/>
+            <xsl:call-template name="text-with-link">
+                <xsl:with-param name="the-text" select="$para-text"/>
+            </xsl:call-template>
         </fo:block>
         
         <xsl:if test="string-length($remain-text) > 0">
@@ -447,27 +452,9 @@
     </xsl:template>
     
     <xsl:template name="get-criteria-text">
-        <xsl:choose>
-            <xsl:when test="contains(notes,' conform to function ')">
-                <xsl:variable name="pre-text" select="substring-before(notes, ' conform to function ')"/>
-                <xsl:variable name="working-text" select="substring-after(notes, ' conform to function ')"/>
-                <xsl:variable name="function-ref" select="substring-before($working-text, ' ')"/>
-                <xsl:variable name="post-text" select="substring-after($working-text, ' ')"/>
-                <xsl:value-of select="concat($pre-text, ' conform to function ')"/>
-                <fo:basic-link>
-                    <xsl:attribute name="internal-destination">
-                        <xsl:value-of select="$function-ref"/>
-                    </xsl:attribute>
-                    <fo:inline  text-decoration="underline" color="blue">
-                        <xsl:value-of select="$function-ref"/>
-                    </fo:inline>
-                </fo:basic-link>
-                <xsl:value-of select="concat(' ', $post-text)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="notes"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:call-template name="text-with-link">
+            <xsl:with-param name="the-text" select="notes"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="get-functional-reference">
@@ -494,6 +481,35 @@
         <xsl:if test="tag/@name='Row'">
             <xsl:value-of select="tag[@name='Row']/@value"/>
         </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="text-with-link">
+        <xsl:param name="the-text"/>
+        
+        <xsl:choose>
+            <xsl:when test="contains($the-text,' [[')">
+                <xsl:variable name="pre-text" select="substring-before($the-text, '[[')"/>
+                <xsl:variable name="working-text" select="substring-after($the-text, '[[')"/>
+                <xsl:variable name="function-ref" select="substring-before($working-text, ']]')"/>
+                <xsl:variable name="post-text" select="substring-after($working-text, ']]')"/>
+                
+                <xsl:value-of select="$pre-text"/>
+                <fo:basic-link>
+                    <xsl:attribute name="internal-destination">
+                        <xsl:value-of select="$function-ref"/>
+                    </xsl:attribute>
+                    <fo:inline  text-decoration="underline" color="blue">
+                        <xsl:value-of select="$function-ref"/>
+                    </fo:inline>
+                </fo:basic-link>
+                <xsl:call-template name="text-with-link">
+                    <xsl:with-param name="the-text" select="$post-text"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$the-text"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template name="section-toc">
