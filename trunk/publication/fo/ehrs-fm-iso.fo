@@ -13,6 +13,20 @@
 <fo:region-after extent="0.1in"/>
 </fo:simple-page-master>
 </fo:layout-master-set>
+<fo:declarations>
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<dc:title>ISO/HL7 10781 - Electronic Health Record System Functional Model, Release 2</dc:title>
+<dc:creator>HL7 EHR Work Group</dc:creator>
+<dc:description>MAX: 2014-01-22 2:07:38 PM</dc:description>
+</rdf:Description>
+<rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
+<xmp:CreatorTool>Results4Care Functional Model Publication Tools</xmp:CreatorTool>
+</rdf:Description>
+</rdf:RDF>
+</x:xmpmeta>
+</fo:declarations>
 <fo:bookmark-tree>
 <fo:bookmark internal-destination="toc">
 <fo:bookmark-title>Table of Contents</fo:bookmark-title>
@@ -3929,7 +3943,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF the system conforms to CPS.2.1 (Support for externally-sourced Clinical Documents), THEN the system SHALL provide the ability to render externally-sourced clinical documents.</fo:block>
+<fo:block>IF the system conforms to function <fo:basic-link internal-destination="CPS.2.1">
+<fo:inline text-decoration="underline" color="blue">CPS.2.1</fo:inline>
+</fo:basic-link> (Support for externally-sourced Clinical Documents), THEN the system SHALL provide the ability to render externally-sourced clinical documents.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -3970,7 +3986,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF the system conforms to CPS.2.2 (Support for externally-sourced Clinical data), THEN the system SHALL provide the ability to render externally-sourced clinical data.</fo:block>
+<fo:block>IF the system conforms to function <fo:basic-link internal-destination="CPS.2.2">
+<fo:inline text-decoration="underline" color="blue">CPS.2.2</fo:inline>
+</fo:basic-link> (Support for externally-sourced Clinical data), THEN the system SHALL provide the ability to render externally-sourced clinical data.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4011,7 +4029,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF the system conforms to CPS.2.3 (Support Emergency Medical System Originated Data), THEN the system SHALL provide the ability to render Emergency Medical System Originated Data.</fo:block>
+<fo:block>IF the system conforms to function <fo:basic-link internal-destination="CPS.2.3">
+<fo:inline text-decoration="underline" color="blue">CPS.2.3</fo:inline>
+</fo:basic-link> (Support Emergency Medical System Originated Data), THEN the system SHALL provide the ability to render Emergency Medical System Originated Data.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4052,7 +4072,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF the system conforms to CPS.2.4 (Support externally-sourced Clinical Images), THEN the system SHALL provide the ability to render externally-sourced clinical images.</fo:block>
+<fo:block>IF the system conforms to function <fo:basic-link internal-destination="CPS.2.4">
+<fo:inline text-decoration="underline" color="blue">CPS.2.4</fo:inline>
+</fo:basic-link> (Support externally-sourced Clinical Images), THEN the system SHALL provide the ability to render externally-sourced clinical images.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4083,10 +4105,10 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:inline font-weight="bold">Description: </fo:inline>It is critically important to be able to distinguish clinically authored and authenticated data from patient-originated data that is either provided by the patient for inclusion in the EHR or entered directly into the EHR by the patient from clinically authenticated data. Patients may provide data for entry into the health record or be given a mechanism for entering this data directly. Patient-originated data intended for use by providers will be available for their use. </fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">Data about the patient may be appropriately provided by:</fo:block>
-<fo:block space-before=".4em">1. the patient;</fo:block>
-<fo:block space-before=".4em">2. a surrogate (parent, spouse, guardian) or </fo:block>
-<fo:block space-before=".4em">3. an informant (teacher, lawyer, case worker) </fo:block>
-<fo:block space-before=".4em">4. devices (e.g., blood pressure/sugar monitors). </fo:block>
+<fo:block space-before=".4em">- the patient;</fo:block>
+<fo:block space-before=".4em">- a surrogate (parent, spouse, guardian) or </fo:block>
+<fo:block space-before=".4em">- an informant (teacher, lawyer, case worker) </fo:block>
+<fo:block space-before=".4em">- devices (e.g., blood pressure/sugar monitors). </fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">An electronic health record may provide the ability for direct data entry by any of these. Patient-originated data may also be captured by devices and transmitted for inclusion into the electronic health record.</fo:block>
 <fo:block space-before=".4em"/>
@@ -4188,7 +4210,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">6.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF the system conforms to CPS.2.1 (Support for externally-sourced Clinical documents), THEN the system SHALL provide the ability to render externally-sourced clinical documents.</fo:block>
+<fo:block>IF the system conforms to function <fo:basic-link internal-destination="CPS.2.1">
+<fo:inline text-decoration="underline" color="blue">CPS.2.1</fo:inline>
+</fo:basic-link> (Support for externally-sourced Clinical documents), THEN the system SHALL provide the ability to render externally-sourced clinical documents.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -6466,7 +6490,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The System SHALL conform to CP.4.2.1 (Medication Interaction and Allergy Checking).</fo:block>
+<fo:block>The System SHALL conform to function <fo:basic-link internal-destination="CP.4.2.1">
+<fo:inline text-decoration="underline" color="blue">CP.4.2.1</fo:inline>
+</fo:basic-link> (Medication Interaction and Allergy Checking).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -6483,7 +6509,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The System SHALL conform to CP.4.2.2 (Patient-Specific Medication Dosing &amp; Warnings).</fo:block>
+<fo:block>The System SHALL conform to function <fo:basic-link internal-destination="CP.4.2.2">
+<fo:inline text-decoration="underline" color="blue">CP.4.2.2</fo:inline>
+</fo:basic-link> (Patient-Specific Medication Dosing &amp; Warnings).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -6500,7 +6528,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">3.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The System SHALL conform to CP.4.2.3 (Medication Order Efficiencies).</fo:block>
+<fo:block>The System SHALL conform to function <fo:basic-link internal-destination="CP.4.2.3">
+<fo:inline text-decoration="underline" color="blue">CP.4.2.3</fo:inline>
+</fo:basic-link> (Medication Order Efficiencies).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -6517,7 +6547,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">4.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to CP.4.2.4 (Medication Alert Overrides).</fo:block>
+<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="CP.4.2.4">
+<fo:inline text-decoration="underline" color="blue">CP.4.2.4</fo:inline>
+</fo:basic-link> (Medication Alert Overrides).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -7725,7 +7757,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">7.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to CP.4.1 (Use Order Sets).</fo:block>
+<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="CP.4.1">
+<fo:inline text-decoration="underline" color="blue">CP.4.1</fo:inline>
+</fo:basic-link> (Use Order Sets).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -8627,7 +8661,11 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:inline font-weight="bold">Statement: </fo:inline>Present, annotate, and route current and historical test results to appropriate providers for review. Provide the ability to filter and compare results.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Results of tests are presented in an easily accessible manner to the appropriate providers. For example, flow sheets, graphs, or other tools allow care providers to view or uncover trends in test data over time. The provider may desire to annotate, filter, and/or compare results. In addition to making results viewable, it is often necessary to send results to appropriate providers using electronic messaging systems, pagers, or other mechanisms. In addition, the system may have the ability to redirect or copy specific test results to a specified individual. Documentation of notification is accommodated. Results may also be routed to patients electronically or non-electronically (e.g., by hard copy). Note: “Results” are understood as applying to any type of test, whether biological or psychological. Management of the results may also require the provider's communication of the results to the patient (see function CPS.8.4 (Support for Communications between Provider and the Patient, and/or the Patient's Representative)). There may also be a need to notify public health agencies based on the result. See function POP.2 (Support Population-based Epidemiological Investigation).</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Results of tests are presented in an easily accessible manner to the appropriate providers. For example, flow sheets, graphs, or other tools allow care providers to view or uncover trends in test data over time. The provider may desire to annotate, filter, and/or compare results. In addition to making results viewable, it is often necessary to send results to appropriate providers using electronic messaging systems, pagers, or other mechanisms. In addition, the system may have the ability to redirect or copy specific test results to a specified individual. Documentation of notification is accommodated. Results may also be routed to patients electronically or non-electronically (e.g., by hard copy). Note: “Results” are understood as applying to any type of test, whether biological or psychological. Management of the results may also require the provider's communication of the results to the patient (see function <fo:basic-link internal-destination="CPS.8.4">
+<fo:inline text-decoration="underline" color="blue">CPS.8.4</fo:inline>
+</fo:basic-link> (Support for Communications between Provider and the Patient, and/or the Patient's Representative)). There may also be a need to notify public health agencies based on the result. See function <fo:basic-link internal-destination="POP.2">
+<fo:inline text-decoration="underline" color="blue">POP.2</fo:inline>
+</fo:basic-link> (Support Population-based Epidemiological Investigation).</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -8861,7 +8899,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">14.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD conform to CPS.9.2 (Support for Inter-Provider Communication) to receive a request for action regarding a test result from another provider and to transmit an acknowledgement to that provider of the receipt of that provider's request for action.</fo:block>
+<fo:block>The system SHOULD conform to function <fo:basic-link internal-destination="CPS.9.2">
+<fo:inline text-decoration="underline" color="blue">CPS.9.2</fo:inline>
+</fo:basic-link> (Support for Inter-Provider Communication) to receive a request for action regarding a test result from another provider and to transmit an acknowledgement to that provider of the receipt of that provider's request for action.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -9328,7 +9368,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:inline font-weight="bold">Statement: </fo:inline>Present providers with the list of medications that are to be administered to a patient, necessary administration information, and capture administration details.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>In a setting in which medication orders are to be administered by a provider rather than the patient, the necessary information is presented including: the list of medication orders that are to be administered; administration instructions, times or other conditions of administration; dose and route, etc. The system shall securely relate medications to be administered to the unique identity of the patient (see CPS.1.1). Additionally, the provider can record what actually was or was not administered, whether or not these facts conform to the order. Appropriate time stamps for all medication related activity are generated.</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>In a setting in which medication orders are to be administered by a provider rather than the patient, the necessary information is presented including: the list of medication orders that are to be administered; administration instructions, times or other conditions of administration; dose and route, etc. The system shall securely relate medications to be administered to the unique identity of the patient (see <fo:basic-link internal-destination="CPS.1.1">
+<fo:inline text-decoration="underline" color="blue">CPS.1.1</fo:inline>
+</fo:basic-link>). Additionally, the provider can record what actually was or was not administered, whether or not these facts conform to the order. Appropriate time stamps for all medication related activity are generated.</fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">For some settings that administer complete sets of medications from a variety of providers' orders, it may be useful to provide an additional check for possible drug-drug or other interactions.</fo:block>
 <fo:block space-before=".4em"/>
@@ -10476,7 +10518,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to CP.6.1 (Medication Administration) to support the administration of medications as part of the treatment administration.</fo:block>
+<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="CP.6.1">
+<fo:inline text-decoration="underline" color="blue">CP.6.1</fo:inline>
+</fo:basic-link> (Medication Administration) to support the administration of medications as part of the treatment administration.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -10935,7 +10979,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">29.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD conform to CP.1.2 (Manage Allergy, Intolerance and Adverse Reaction List) to capture an reaction to a specific treatment.</fo:block>
+<fo:block>The system SHOULD conform to function <fo:basic-link internal-destination="CP.1.2">
+<fo:inline text-decoration="underline" color="blue">CP.1.2</fo:inline>
+</fo:basic-link> (Manage Allergy, Intolerance and Adverse Reaction List) to capture an reaction to a specific treatment.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -11022,7 +11068,9 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">34.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD conform to CPS.1.7 (Preferences, Directives, Consents and Authorizations) in order to capture the patient's preferences regarding receipt of treatment (e.g., refusal of certain materials/supplies) at the time of treatment administration.</fo:block>
+<fo:block>The system SHOULD conform to function <fo:basic-link internal-destination="CPS.1.7">
+<fo:inline text-decoration="underline" color="blue">CPS.1.7</fo:inline>
+</fo:basic-link> (Preferences, Directives, Consents and Authorizations) in order to capture the patient's preferences regarding receipt of treatment (e.g., refusal of certain materials/supplies) at the time of treatment administration.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -11695,7 +11743,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block margin-left=".5em">Function</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Capture Heath Service Report Information</fo:block>
+<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Capture Health Service Report Information</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block display-align="center" text-align="center">616</fo:block>
@@ -14257,21 +14305,21 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">External data and documents addressed in the function include: </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">1. Laboratory results received through an electronic interface - This information is to be received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (vs. report format). </fo:block>
+<fo:block space-before=".4em">- Laboratory results received through an electronic interface - This information is to be received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (vs. report format). </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">2. Scanned documents received and stored as images (e.g., power of attorney forms, Living wills) - These scanned documents are indexed and can be retrieved based on the document type, date of the original document, and the date of scanning. </fo:block>
+<fo:block space-before=".4em">- Scanned documents received and stored as images (e.g., power of attorney forms, Living wills) - These scanned documents are indexed and can be retrieved based on the document type, date of the original document, and the date of scanning. </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">3. Text-based outside reports (e.g., x-ray reports, hospital discharge summaries, history &amp; physicals) - Any mechanism for capturing these reports is addendable: OCR, PDF, image file of report, etc. </fo:block>
+<fo:block space-before=".4em">- Text-based outside reports (e.g., x-ray reports, hospital discharge summaries, history &amp; physicals) - Any mechanism for capturing these reports is addendable: OCR, PDF, image file of report, etc. </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">4. Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images) – These images may be stored within the system or be provided through direct linkage to an external source such as a hospital PACS system. </fo:block>
+<fo:block space-before=".4em">- Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images) – These images may be stored within the system or be provided through direct linkage to an external source such as a hospital PACS system. </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">5. Other forms of clinical results, such as wave files of EKG tracings. </fo:block>
+<fo:block space-before=".4em">- Other forms of clinical results, such as wave files of EKG tracings. </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">6. Medication detail (e.g., a medication history) from an external source such as a pharmacy, the patient, payer, or another provider - While the medication detail includes the medication name, strength, and SIG, this does not imply that the data will populate the medication module. </fo:block>
+<fo:block space-before=".4em">- Medication detail (e.g., a medication history) from an external source such as a pharmacy, the patient, payer, or another provider - While the medication detail includes the medication name, strength, and SIG, this does not imply that the data will populate the medication module. </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">7. Structured, text-based reports (e.g., medical summary text in a structured format). </fo:block>
+<fo:block space-before=".4em">- Structured, text-based reports (e.g., medical summary text in a structured format). </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">8. Standards-based structured, codified data (e.g., a Continuity of Care Document (CCD) with SNOMED CT). </fo:block>
+<fo:block space-before=".4em">- Standards-based structured, codified data (e.g., a Continuity of Care Document (CCD) with SNOMED CT). </fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">Data incorporated through these mechanisms is presented alongside locally captured documentation and notes wherever appropriate. </fo:block>
 </fo:block>
@@ -14422,7 +14470,11 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">9.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD conform to TI.1.5 (Non-Repudiation) and TI.1.6 (Secure Data Exchange) when importing/receiving both structured and unstructured data.</fo:block>
+<fo:block>The system SHOULD conform to function <fo:basic-link internal-destination="TI.1.5">
+<fo:inline text-decoration="underline" color="blue">TI.1.5</fo:inline>
+</fo:basic-link> (Non-Repudiation) and <fo:basic-link internal-destination="TI.1.6">
+<fo:inline text-decoration="underline" color="blue">TI.1.6</fo:inline>
+</fo:basic-link> (Secure Data Exchange) when importing/receiving both structured and unstructured data.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -14487,26 +14539,27 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Description: </fo:inline>Mechanisms for incorporating external clinical data (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced data may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of data received by the provider that would typically be incorporated into a medical record, including but not limited to faxes, referral authorizations, consultant reports, and patient/resident correspondence of a clinical nature. Intrinsic to the concept of electronic health records is the ability to exchange health information with other providers of health care services. Health information from these external sources needs to be received, stored in the patient record, and displayed upon request. </fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">Examples of externally-sourced data and documents include:</fo:block>
-<fo:block space-before=".4em">1. Laboratory results received through an electronic interface. </fo:block>
-<fo:block space-before=".4em">This information is received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (instead of in report or summarized format). </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">2. Scanned documents received and stored as images (e.g., power of attorney forms or living wills). </fo:block>
-<fo:block space-before=".4em">These scanned documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. </fo:block>
+<fo:block space-before=".4em">- Laboratory results received through an electronic interface. </fo:block>
+<fo:block space-before=".4em">  This information is received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (instead of in report or summarized format). </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">3. Text-based outside reports (e.g., x-ray reports, hospital discharge summaries or history and physical examinations). </fo:block>
-<fo:block space-before=".4em">Any mechanism for capturing these reports is acceptable (e.g., OCR, PDF, JPG or TIFF). </fo:block>
+<fo:block space-before=".4em">- Scanned documents received and stored as images (e.g., power of attorney forms or living wills). </fo:block>
+<fo:block space-before=".4em">  These scanned documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">4. Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images). </fo:block>
-<fo:block space-before=".4em">These images may be stored within the system or be available by direct linkage to an external source (e.g., a hospital's picture archiving and communication system). </fo:block>
+<fo:block space-before=".4em">- Text-based outside reports (e.g., x-ray reports, hospital discharge summaries or history and physical examinations). </fo:block>
+<fo:block space-before=".4em">  Any mechanism for capturing these reports is acceptable (e.g., OCR, PDF, JPG or TIFF). </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">5. Other forms of clinical results (e.g., EKG waveforms).</fo:block>
+<fo:block space-before=".4em">- Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images). </fo:block>
+<fo:block space-before=".4em">  These images may be stored within the system or be available by direct linkage to an external source (e.g., a hospital's picture archiving and communication system). </fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">6. Medication history from an external source such as a retail pharmacy, the patient, or another provider . </fo:block>
-<fo:block space-before=".4em">While the medication history includes the medication name, strength, and SIG, this does not imply that the data will populate the medication administration module. In many systems the medication administration module is populated from the medication order rather than from the medication history.</fo:block>
+<fo:block space-before=".4em">- Other forms of clinical results (e.g., EKG waveforms).</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">7. Structured, text-based reports (e.g., medical summary text in a structured format). </fo:block>
+<fo:block space-before=".4em">- Medication history from an external source such as a retail pharmacy, the patient, or another provider . </fo:block>
+<fo:block space-before=".4em">  While the medication history includes the medication name, strength, and SIG, this does not imply that the data will populate the medication administration module. In many systems the medication administration module is populated from the medication order rather than from the medication history.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">8. Standards-based structured, codified data (such as a standards-based referral letter that contains SNOMED CT codes). </fo:block>
+<fo:block space-before=".4em">- Structured, text-based reports (e.g., medical summary text in a structured format). </fo:block>
+<fo:block space-before=".4em"/>
+<fo:block space-before=".4em">- Standards-based structured, codified data (such as a standards-based referral letter that contains SNOMED CT codes). </fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">Such data may be presented with locally-sourced documentation and notes wherever appropriate.</fo:block>
 </fo:block>
@@ -14726,7 +14779,15 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Incorporate clinical images from external sources and support communication/presentation of images from medical and non-medical devices and entities.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Mechanisms for incorporating external clinical images (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced images may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of images received by the provider that would typically be incorporated into a medical record. These image documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. Images may also be stored within the system or accessed by reference to an external system (e.g., a hospital's picture archiving and communication system). Examples of image formats include OCR, PDF, JPG or TIFF. Examples of externally-sourced images include: laboratory results report images 2. Radiographic images3. Images of power of attorney forms, living wills or birth certificates4. Graphs and charts5. Photographs or drawings of patient wounds6. Wave files of EKG tracings</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Mechanisms for incorporating external clinical images (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced images may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of images received by the provider that would typically be incorporated into a medical record. These image documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. Images may also be stored within the system or accessed by reference to an external system (e.g., a hospital's picture archiving and communication system). Examples of image formats include OCR, PDF, JPG or TIFF. </fo:block>
+<fo:block space-before=".4em">Examples of externally-sourced images include: </fo:block>
+<fo:block space-before=".4em">            </fo:block>
+<fo:block space-before=".4em">- laboratory results report images</fo:block>
+<fo:block space-before=".4em">- Radiographic images</fo:block>
+<fo:block space-before=".4em">- Images of power of attorney forms, living wills or birth certificates</fo:block>
+<fo:block space-before=".4em">- Graphs and charts</fo:block>
+<fo:block space-before=".4em">- Photographs or drawings of patient wounds</fo:block>
+<fo:block space-before=".4em">- Wave files of EKG tracings</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -14803,7 +14864,17 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>It is critically important to be able to distinguish clinically authored and authenticated data from patient-originated data that is either provided by the patient for inclusion in the EHR or entered directly into the EHR by the patient from clinically authenticated data. Patients may provide data for entry into the health record or be given a mechanism for entering this data directly. Patient-originated data intended for use by providers will be available for their use.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Data about the patient may be appropriately provided by: the patient;2. a surrogate (e.g., parent, spouse, guardian); 3. an informant (e.g., teacher, lawyer, case worker); or4. devices (e.g., blood pressure/sugar monitors).An electronic health record may provide the ability for direct data entry by any of these. Patient-originated data may also be captured by devices and transmitted for inclusion into the electronic health record.</fo:block>
+<fo:block space-before=".4em">Data about the patient may be appropriately provided by: </fo:block>
+<fo:block space-before=".4em"/>
+<fo:block space-before=".4em">- the patient;</fo:block>
+<fo:block space-before=".4em"/>
+<fo:block space-before=".4em">- a surrogate (e.g., parent, spouse, guardian); </fo:block>
+<fo:block space-before=".4em"/>
+<fo:block space-before=".4em">- an informant (e.g., teacher, lawyer, case worker); or</fo:block>
+<fo:block space-before=".4em"/>
+<fo:block space-before=".4em">- devices (e.g., blood pressure/sugar monitors).</fo:block>
+<fo:block space-before=".4em"/>
+<fo:block space-before=".4em">An electronic health record may provide the ability for direct data entry by any of these. Patient-originated data may also be captured by devices and transmitted for inclusion into the electronic health record.</fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">Data entered by any of these must be stored with source information. A provider must authenticate patient-originated data included in the patient's legal health record. A provider must be able to indicate they have verified the accuracy of patient-originated data (when appropriate and when a verification source is available) for inclusion in the patient record.</fo:block>
 <fo:block space-before=".4em"/>
@@ -14871,7 +14942,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">4.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL capture both structured and unstructured data as defined in RI.1.2.1 (Manage Record Entries).</fo:block>
+<fo:block>The system SHALL capture both structured and unstructured data as defined in <fo:basic-link internal-destination="RI.1.2.1">
+<fo:inline text-decoration="underline" color="blue">RI.1.2.1</fo:inline>
+</fo:basic-link> (Manage Record Entries).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -15009,9 +15082,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Sources of eligibility, formulary and benefit may provide data for entry into the electronic prescribing or be given a mechanism for entering this data directly. The data must be explicitly labeled as derived from eligibility, formulary and benefit information. Patient data that is derived from eligibility, formulary and benefit data may be provided by: </fo:block>
-<fo:block space-before=".4em">1. a provider </fo:block>
-<fo:block space-before=".4em">2. a payer, or </fo:block>
-<fo:block space-before=".4em">3. entities that transmit or process eligibility, formulary and benefit data</fo:block>
+<fo:block space-before=".4em">- a provider </fo:block>
+<fo:block space-before=".4em">- a payer, or </fo:block>
+<fo:block space-before=".4em">- entities that transmit or process eligibility, formulary and benefit data</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -15673,7 +15746,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">5.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD conform to POP.4 (Support for Monitoring Response Notifications Regarding a Specific Patient's Health).</fo:block>
+<fo:block>The system SHOULD conform to function <fo:basic-link internal-destination="POP.4">
+<fo:inline text-decoration="underline" color="blue">POP.4</fo:inline>
+</fo:basic-link> (Support for Monitoring Response Notifications Regarding a Specific Patient's Health).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -16158,7 +16233,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">6.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to CP.3.3 (Manage Clinical Documents and Notes) to capture patient condition and response to treatment.</fo:block>
+<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="CP.3.3">
+<fo:inline text-decoration="underline" color="blue">CP.3.3</fo:inline>
+</fo:basic-link> (Manage Clinical Documents and Notes) to capture patient condition and response to treatment.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -17188,7 +17265,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">Decision Support for orders includes checking for allergies or adverse interactions, dosing checking and issuing the appropriate warnings. It may also include functions to increase ordering efficiency such as verifying all necessary information to fulfill the order is captured and making recommendations for supporting orders.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">A component of ordering medications and immunizations is the dispensing of those orders and, where applicable, this function will include criteria to support dispensing. Note: Administration of Orders is included in CPS.6 (Support for Treatment Administration).</fo:block>
+<fo:block space-before=".4em">A component of ordering medications and immunizations is the dispensing of those orders and, where applicable, this function will include criteria to support dispensing. Note: Administration of Orders is included in <fo:basic-link internal-destination="CPS.6">
+<fo:inline text-decoration="underline" color="blue">CPS.6</fo:inline>
+</fo:basic-link> (Support for Treatment Administration).</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -17859,7 +17938,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>The clinician is alerted to medication-medication, medication-allergy, medication-food, medication-supplement (herbal or dietary) interactions at levels appropriate to the health care setting and with respect to the patient condition. These alerts may be customized to suit the user or group.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Note, medication may be affected by food or diatary choices; whist this is not considered an interaction it is consequently not included in this function; however, the provision of drug-food effectiveness in information to be provided to the patient is included in the function CP.8.1 (Generate, Record and Distribute Patient-Specific Instructions).If the patient’s condition is one where, in order to view the necessary components of the health record, patient authorization or consent is required; then the system should show the</fo:block>
+<fo:block space-before=".4em">Note, medication may be affected by food or diatary choices; whist this is not considered an interaction it is consequently not included in this function; however, the provision of drug-food effectiveness in information to be provided to the patient is included in the function <fo:basic-link internal-destination="CP.8.1">
+<fo:inline text-decoration="underline" color="blue">CP.8.1</fo:inline>
+</fo:basic-link> (Generate, Record and Distribute Patient-Specific Instructions).If the patient’s condition is one where, in order to view the necessary components of the health record, patient authorization or consent is required; then the system should show the</fo:block>
 <fo:block space-before=".4em">        medication but mask the condition for which the medication is prescribed until the required consent or authorization is available. In an emergent situation, where all health information is required to provide the most effective treatment, and it is not possible to obtain an authorization or consent; the system should provide an override (e.g., "break the glass") function to allow access to the diagnosis or problem for which a medication was ordered, according to scope of practice, organizational policies, and/or jurisdictional law.</fo:block>
 </fo:block>
 </fo:block>
@@ -18096,7 +18177,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">14.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to CP.1.3 (Manage Medication List) in order to maintain a coded list of medications for the patient (including a unique identifier for each medication).</fo:block>
+<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="CP.1.3">
+<fo:inline text-decoration="underline" color="blue">CP.1.3</fo:inline>
+</fo:basic-link> (Manage Medication List) in order to maintain a coded list of medications for the patient (including a unique identifier for each medication).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -18205,7 +18288,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">3.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD conform to CPS.9.2.3 (Support for Provider Pharmacy Communication) to support transmitting documented reasons for overriding a medication alert to the pharmacy .</fo:block>
+<fo:block>The system SHOULD conform to function <fo:basic-link internal-destination="CPS.9.2.3">
+<fo:inline text-decoration="underline" color="blue">CPS.9.2.3</fo:inline>
+</fo:basic-link> (Support for Provider Pharmacy Communication) to support transmitting documented reasons for overriding a medication alert to the pharmacy .</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -18829,8 +18914,15 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Medication reconciliation is the process of comparing a patient's medication information (from all sources) to the medications that the patient is actually has been taking. Medication reconciliation is done to avoid medication errors such as omissions, duplications, dosing errors, or drug interactions. Medication Reconciliation should be done at every episode or transition of care in which new medications are ordered or administered, existing orders are rewritten or where medications may influence the care given.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Transitions in care include changes in setting, service, practitioner, or level of care. The Medication Reconciliation process comprises five includes several steps: (1) develop a list of current medication list of medications that the patient is taking, (2) develop a list of medications to be prescribed or recommended (3) compare the medication information from</fo:block>
-<fo:block space-before=".4em">        all sources; (4) make shared and informed clinical decisions based on the comparison and provide the ability to document the interaction; and (5) communicate the updated medication information to the healthcare teams, the patient and appropriate caregivers. For example: If a patient’s pain, anticoagulation, hyperglycemia or other high risk therapy is being managed by a specialist, the healthcare team must be aware to avoid prescribing an additional equivalent of this medication.(6) Verify the patient’s/caregiver’s understanding and agreement to the patient’s medication treatment plan.(7) Standardization of shared medication information (name, dose, instructions, indications, prescriber, etc)</fo:block>
+<fo:block space-before=".4em">Transitions in care include changes in setting, service, practitioner, or level of care. The Medication Reconciliation process includes several steps: </fo:block>
+<fo:block space-before=".4em">(1) develop a list of current medication list of medications that the patient is taking, </fo:block>
+<fo:block space-before=".4em">(2) develop a list of medications to be prescribed or recommended </fo:block>
+<fo:block space-before=".4em">(3) compare the medication information from all sources; </fo:block>
+<fo:block space-before=".4em">(4) make shared and informed clinical decisions based on the comparison and provide the ability to document the interaction; and </fo:block>
+<fo:block space-before=".4em">(5) communicate the updated medication information to the healthcare teams, the patient and appropriate caregivers. </fo:block>
+<fo:block space-before=".4em">    For example: If a patient’s pain, anticoagulation, hyperglycemia or other high risk therapy is being managed by a specialist, the healthcare team must be aware to avoid prescribing an additional equivalent of this medication.</fo:block>
+<fo:block space-before=".4em">(6) Verify the patient’s/caregiver’s understanding and agreement to the patient’s medication treatment plan.</fo:block>
+<fo:block space-before=".4em">(7) Standardization of shared medication information (name, dose, instructions, indications, prescriber, etc)</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -22244,8 +22336,12 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>When a medication is prescribed, the order is routed to the pharmacy or other intended recipient of pharmacy orders. This information is used to avoid transcription errors and facilitate detection of potential adverse reactions. If there is a question from the pharmacy, that communication can be presented to the provider with their other tasks. In certain environments, medication order creation is a collaborative process involving the prescriber and facility staff. Accordingly, this function applies to communication process between the prescriber, facility and the pharmacy or other intended recipient of pharmacy orders. The transmission of prescription data between systems should conform to realm acceptable messaging standards. Informative examples:</fo:block>
-<fo:block space-before=".4em">- HL7 Clinical Document</fo:block>
-<fo:block space-before=".4em">        Architecture Release 2- ISO/EN 13606 Electronic Health Record Communication- CEN ENV 13607:2000. Health informatics. Messages for the exchange of information on medicine prescriptions- X12N healthcare transactions- US realm: National Council for Prescription Drug Programs (NCPDP)- Canadian realm: National Electronic Claims Standard (NeCST)</fo:block>
+<fo:block space-before=".4em">- HL7 Clinical Document Architecture Release 2</fo:block>
+<fo:block space-before=".4em">- ISO/EN 13606 Electronic Health Record Communication</fo:block>
+<fo:block space-before=".4em">- CEN ENV 13607:2000. Health informatics. Messages for the exchange of information on medicine prescriptions</fo:block>
+<fo:block space-before=".4em">- X12N healthcare transactions</fo:block>
+<fo:block space-before=".4em">- US realm: National Council for Prescription Drug Programs (NCPDP)</fo:block>
+<fo:block space-before=".4em">- Canadian realm: National Electronic Claims Standard (NeCST)</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -23479,7 +23575,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">7.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF TI.3 (Registry and Directory Services) is implemented, THEN the system SHALL conform to function <fo:basic-link internal-destination="TI.3">
+<fo:block>IF <fo:basic-link internal-destination="TI.3">
+<fo:inline text-decoration="underline" color="blue">TI.3</fo:inline>
+</fo:basic-link> (Registry and Directory Services) is implemented, THEN the system SHALL conform to function <fo:basic-link internal-destination="TI.3">
 <fo:inline text-decoration="underline" color="blue">TI.3</fo:inline>
 </fo:basic-link> and provide the ability to use registries or directories to uniquely identify providers for the provision of care.</fo:block>
 </fo:list-item-body>
@@ -23498,7 +23596,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">8.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD provide the ability for authorized users to restrict the view of selected elements of the registry or directory information for the users of the system based on the user's security level and access needs.</fo:block>
+<fo:block>The system SHOULD provide the ability for authorized users to hide selected elements of the registry or directory information for the users of the system based on the user's security level and access needs. For example, the administrator hides from data-entry clerks the name of the data-entry clerk’s immediate relatives who are listed on the hospital’s cancer registry.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -29663,7 +29761,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">10.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD conform to TI.5.3 (Standards-Based Application Integration) to suppport the creation of a query.</fo:block>
+<fo:block>The system SHOULD conform to function <fo:basic-link internal-destination="TI.5.3">
+<fo:inline text-decoration="underline" color="blue">TI.5.3</fo:inline>
+</fo:basic-link> (Standards-Based Application Integration) to suppport the creation of a query.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -29823,7 +29923,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">5.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD conform to TI.5.3 (Standards-Based Application Integration) to manage query results.</fo:block>
+<fo:block>The system SHOULD conform to function <fo:basic-link internal-destination="TI.5.3">
+<fo:inline text-decoration="underline" color="blue">TI.5.3</fo:inline>
+</fo:basic-link> (Standards-Based Application Integration) to manage query results.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -31526,7 +31628,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:list-item-body start-indent="body-start()">
 <fo:block>The system SHALL conform to function <fo:basic-link internal-destination="RI.1.2.1">
 <fo:inline text-decoration="underline" color="blue">RI.1.2.1</fo:inline>
-</fo:basic-link> (Manage Record Entries) as the final step to conclude each Record Lifecycle Event in RI.1.1 (Record Lifecycle) and all child functions.</fo:block>
+</fo:basic-link> (Manage Record Entries) as the final step to conclude each Record Lifecycle Event in <fo:basic-link internal-destination="RI.1.1">
+<fo:inline text-decoration="underline" color="blue">RI.1.1</fo:inline>
+</fo:basic-link> (Record Lifecycle) and all child functions.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -32839,7 +32943,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">6.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL present the status of attestable Record Entry content which has not been attested, conforming to function RI.1.3.1 (Record Pending State).</fo:block>
+<fo:block>The system SHALL present the status of attestable Record Entry content which has not been attested, conforming to function <fo:basic-link internal-destination="RI.1.3.1">
+<fo:inline text-decoration="underline" color="blue">RI.1.3.1</fo:inline>
+</fo:basic-link> (Record Pending State).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -33624,7 +33730,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">7.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to extract Record Entry content prior to output/report, conforming to function RI.1.1.13 (Extract Record Entry Content).</fo:block>
+<fo:block>The system SHALL provide the ability to extract Record Entry content prior to output/report, conforming to function <fo:basic-link internal-destination="RI.1.1.13">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.13</fo:inline>
+</fo:basic-link> (Extract Record Entry Content).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -33641,7 +33749,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">8.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to de-identify Record Entry content prior to output/report, conforming to function RI.1.1.10 (De-Identify Record Entries).</fo:block>
+<fo:block>The system SHALL provide the ability to de-identify Record Entry content prior to output/report, conforming to function <fo:basic-link internal-destination="RI.1.1.10">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.10</fo:inline>
+</fo:basic-link> (De-Identify Record Entries).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -34018,7 +34128,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">6.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to extract Record Entry content prior to disclosure, conforming to function RI.1.1.13 (Extract Record Entry Content).</fo:block>
+<fo:block>The system SHALL provide the ability to extract Record Entry content prior to disclosure, conforming to function <fo:basic-link internal-destination="RI.1.1.13">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.13</fo:inline>
+</fo:basic-link> (Extract Record Entry Content).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -34035,7 +34147,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">7.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to de-identify Record Entry content prior to disclosure, conforming to function RI.1.1.10 (De-Identify Record Entries).</fo:block>
+<fo:block>The system SHALL provide the ability to de-identify Record Entry content prior to disclosure, conforming to function <fo:basic-link internal-destination="RI.1.1.10">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.10</fo:inline>
+</fo:basic-link> (De-Identify Record Entries).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -34413,7 +34527,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">7.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to extract Record Entry content prior to transmittal, conforming to function RI.1.1.13 (Extract Record Entry Content).</fo:block>
+<fo:block>The system SHALL provide the ability to extract Record Entry content prior to transmittal, conforming to function <fo:basic-link internal-destination="RI.1.1.13">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.13</fo:inline>
+</fo:basic-link> (Extract Record Entry Content).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -34430,7 +34546,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">8.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to de-identify Record Entry content prior to transmittal, conforming to function RI.1.1.10 (De-Identify Record Entries).</fo:block>
+<fo:block>The system SHALL provide the ability to de-identify Record Entry content prior to transmittal, conforming to function <fo:basic-link internal-destination="RI.1.1.10">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.10</fo:inline>
+</fo:basic-link> (De-Identify Record Entries).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -35866,7 +35984,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to de-identify Record Entries during extraction in accordance with function RI.1.1.10 (De-Identify Record Entries).</fo:block>
+<fo:block>The system SHALL provide the ability to de-identify Record Entries during extraction in accordance with function <fo:basic-link internal-destination="RI.1.1.10">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.10</fo:inline>
+</fo:basic-link> (De-Identify Record Entries).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -36242,7 +36362,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL archive Record Entries according to function RI.3 (Manage Record Archive and Restore).</fo:block>
+<fo:block>The system SHALL archive Record Entries according to function <fo:basic-link internal-destination="RI.3">
+<fo:inline text-decoration="underline" color="blue">RI.3</fo:inline>
+</fo:basic-link> (Manage Record Archive and Restore).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -37776,7 +37898,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Unmerge previously merged Record Entries (2 or more instances)</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entries must be unmerged from previous merge, as in RI.1.1.16.</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entries must be unmerged from previous merge, as in <fo:basic-link internal-destination="RI.1.1.16">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.16</fo:inline>
+</fo:basic-link>.</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -38264,7 +38388,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Unlink previously linked Record Entries (2 or more instances)</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entries must be unlinked from previous linkage, as in RI.1.1.18.</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entries must be unlinked from previous linkage, as in <fo:basic-link internal-destination="RI.1.1.18">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.18</fo:inline>
+</fo:basic-link>.</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -38751,7 +38877,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Release legal hold on Record Entries (1 or more instances)</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entries are released from legal hold (previously marked and held in unaltered state), as in RI.1.1.20.</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entries are released from legal hold (previously marked and held in unaltered state), as in <fo:basic-link internal-destination="RI.1.1.20">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.20</fo:inline>
+</fo:basic-link>.</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -38969,7 +39097,13 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Manage Record Lifespan</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Record Lifecycle Events (Section RI.1.1) are those required to manage Record Entries in persistent storage over the full course of Record Lifespan (Section RI.1.2). See Section RI.1.1, Record Lifecycle, for further description.</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Record Lifecycle Events (Function <fo:basic-link internal-destination="RI.1.1">
+<fo:inline text-decoration="underline" color="blue">RI.1.1</fo:inline>
+</fo:basic-link>) are those required to manage Record Entries in persistent storage over the full course of Record Lifespan (Section <fo:basic-link internal-destination="RI.1.2">
+<fo:inline text-decoration="underline" color="blue">RI.1.2</fo:inline>
+</fo:basic-link>). See Section <fo:basic-link internal-destination="RI.1.1">
+<fo:inline text-decoration="underline" color="blue">RI.1.1</fo:inline>
+</fo:basic-link>, Record Lifecycle, for further description.</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -39043,7 +39177,11 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">3.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL manage (persist) the full set of identity, event and provenance Audit Metadata for each Record Entry, conforming to lifecycle events in function RI.1.1 (Record Lifecycle) and metadata requirements in function TI.2.1.1 (Record Entry Audit Triggers).</fo:block>
+<fo:block>The system SHALL manage (persist) the full set of identity, event and provenance Audit Metadata for each Record Entry, conforming to lifecycle events in function <fo:basic-link internal-destination="RI.1.1">
+<fo:inline text-decoration="underline" color="blue">RI.1.1</fo:inline>
+</fo:basic-link> (Record Lifecycle) and metadata requirements in function <fo:basic-link internal-destination="TI.2.1.1">
+<fo:inline text-decoration="underline" color="blue">TI.2.1.1</fo:inline>
+</fo:basic-link> (Record Entry Audit Triggers).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -39060,7 +39198,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">4.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL manage (persist) the attestation/signature event (e.g., digital signature) of each Record Entry conforming to function RI.1.1.4 (Attest Record Entry Content).</fo:block>
+<fo:block>The system SHALL manage (persist) the attestation/signature event (e.g., digital signature) of each Record Entry conforming to function <fo:basic-link internal-destination="RI.1.1.4">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.4</fo:inline>
+</fo:basic-link> (Attest Record Entry Content).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -39463,7 +39603,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">7.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system MAY provide the ability to render Record Entry content preserved for a legal hold by type, class or encounter (e.g., medical Record Entry or report, e-mail, metadata, etc.), conforming to function RI.1.1.13 (Extract Record Entry Content).</fo:block>
+<fo:block>The system MAY provide the ability to render Record Entry content preserved for a legal hold by type, class or encounter (e.g., medical Record Entry or report, e-mail, metadata, etc.), conforming to function <fo:basic-link internal-destination="RI.1.1.13">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.13</fo:inline>
+</fo:basic-link> (Extract Record Entry Content).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -39633,7 +39775,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">7.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL capture a date/time stamp and identify the author each time a Record Entry is updated including when opened, when updated, with the signature event and when officially closed, conforming to function TI.2.1.1 (Record Entry Audit Triggers).</fo:block>
+<fo:block>The system SHALL capture a date/time stamp and identify the author each time a Record Entry is updated including when opened, when updated, with the signature event and when officially closed, conforming to function <fo:basic-link internal-destination="TI.2.1.1">
+<fo:inline text-decoration="underline" color="blue">TI.2.1.1</fo:inline>
+</fo:basic-link> (Record Entry Audit Triggers).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -39675,7 +39819,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to update a Record Entry for purposes of amendment, correction or augmentation, conforming to function RI.1.1.2 (Amend Record Entry Content).</fo:block>
+<fo:block>The system SHALL provide the ability to update a Record Entry for purposes of amendment, correction or augmentation, conforming to function <fo:basic-link internal-destination="RI.1.1.2">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.2</fo:inline>
+</fo:basic-link> (Amend Record Entry Content).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -39709,7 +39855,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">3.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL capture, maintain and render the corresponding date, time, and user specifying when and by whom a Record Entry was amended, corrected, or augmented, conforming to function RI.1.1.2.1 (Evidence of Record Entry Amendment Event).</fo:block>
+<fo:block>The system SHALL capture, maintain and render the corresponding date, time, and user specifying when and by whom a Record Entry was amended, corrected, or augmented, conforming to function <fo:basic-link internal-destination="RI.1.1.2.1">
+<fo:inline text-decoration="underline" color="blue">RI.1.1.2.1</fo:inline>
+</fo:basic-link> (Evidence of Record Entry Amendment Event).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -39743,7 +39891,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">5.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL manage all versions of the Record Entry for the legal retention period, conforming to function RI.1.2.1 (Manage Record Entries).</fo:block>
+<fo:block>The system SHALL manage all versions of the Record Entry for the legal retention period, conforming to function <fo:basic-link internal-destination="RI.1.2.1">
+<fo:inline text-decoration="underline" color="blue">RI.1.2.1</fo:inline>
+</fo:basic-link> (Manage Record Entries).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -40393,7 +40543,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Manage EHR-S security.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>EHR-S security consists of entity authentication, entity authorization, entity access control, patient access management, secure data exchange, attestation, patient privacy and confidentiality. EHR audit functions are described in TI.2.</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>EHR-S security consists of entity authentication, entity authorization, entity access control, patient access management, secure data exchange, attestation, patient privacy and confidentiality. EHR audit functions are described in <fo:basic-link internal-destination="TI.2">
+<fo:inline text-decoration="underline" color="blue">TI.2</fo:inline>
+</fo:basic-link>.</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -40684,7 +40836,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to TI.2 (Audit) to audit authorization actions as security events.</fo:block>
+<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="TI.2">
+<fo:inline text-decoration="underline" color="blue">TI.2</fo:inline>
+</fo:basic-link> (Audit) to audit authorization actions as security events.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -41104,7 +41258,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF organizational policy allows patient access to the EHR-S, THEN the system SHALL conform to Function TI.1.3 (Entity Access Control).</fo:block>
+<fo:block>IF organizational policy allows patient access to the EHR-S, THEN the system SHALL conform to function <fo:basic-link internal-destination="TI.1.3">
+<fo:inline text-decoration="underline" color="blue">TI.1.3</fo:inline>
+</fo:basic-link> (Entity Access Control).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -41121,7 +41277,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF organizational policy allows patient access to the EHR-S, THEN the system SHALL conform to Function TI.1.2 (Entity Authorization).</fo:block>
+<fo:block>IF organizational policy allows patient access to the EHR-S, THEN the system SHALL conform to function <fo:basic-link internal-destination="TI.1.2">
+<fo:inline text-decoration="underline" color="blue">TI.1.2</fo:inline>
+</fo:basic-link> (Entity Authorization).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -41426,7 +41584,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to Section TI.2 (Audit) to capture audit information about changes to the status of sources and destinations.</fo:block>
+<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="TI.2">
+<fo:inline text-decoration="underline" color="blue">TI.2</fo:inline>
+</fo:basic-link> (Audit) to capture audit information about changes to the status of sources and destinations.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -42054,7 +42214,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL audit key events, as specified in function TI.2.1 (Audit Triggers) and child functions, according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
+<fo:block>The system SHALL audit key events, as specified in function <fo:basic-link internal-destination="TI.2.1">
+<fo:inline text-decoration="underline" color="blue">TI.2.1</fo:inline>
+</fo:basic-link> (Audit Triggers) and child functions, according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -42071,7 +42233,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL capture key Audit Metadata at each Audit Trigger, as specified in TI.2.1 (Audit Triggers) and child functions, according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
+<fo:block>The system SHALL capture key Audit Metadata at each Audit Trigger, as specified in <fo:basic-link internal-destination="TI.2.1">
+<fo:inline text-decoration="underline" color="blue">TI.2.1</fo:inline>
+</fo:basic-link> (Audit Triggers) and child functions, according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -42088,7 +42252,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">3.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL capture an Audit Log Entry at each Audit Trigger as specified in TI.2.1 (Audit Triggers) according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
+<fo:block>The system SHALL capture an Audit Log Entry at each Audit Trigger as specified in <fo:basic-link internal-destination="TI.2.1">
+<fo:inline text-decoration="underline" color="blue">TI.2.1</fo:inline>
+</fo:basic-link> (Audit Triggers) according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -42150,7 +42316,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Manage Record Entry Audit Triggers</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Record Entries are managed throughout their lifespan at various points in their lifecycle. Record Entry Audit Triggers are designed to capture Record Entry related events including key metadata (who, what, when, where, why). See Function RI.1, Record Lifecycle.</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Record Entries are managed throughout their lifespan at various points in their lifecycle. Record Entry Audit Triggers are designed to capture Record Entry related events including key metadata (who, what, when, where, why). See Function <fo:basic-link internal-destination="RI.1">
+<fo:inline text-decoration="underline" color="blue">RI.1</fo:inline>
+</fo:basic-link>, Record Lifecycle.</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -42163,7 +42331,9 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to Function RI.1 (Record Lifecycle) and its RI.1.x.1 Subsections to capture and maintain Record Entry Audit Metadata.</fo:block>
+<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="RI.1">
+<fo:inline text-decoration="underline" color="blue">RI.1</fo:inline>
+</fo:basic-link> (Record Lifecycle) and its RI.1.x.1 Subsections to capture and maintain Record Entry Audit Metadata.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -47853,8 +48023,9 @@ This includes the ability to accommodate changes to terminology sets as the sour
 <fo:block space-before=".4em">- Structured/discrete clinical documents (e.g., a structured clinical note);</fo:block>
 <fo:block space-before=".4em">- Unstructured clinical document (e.g., dictated surgical note).</fo:block>
 <fo:block space-before=".4em">        </fo:block>
-<fo:block space-before=".4em">Standard terminology is a fundamental part of interoperability and is described in section TI.4. Using a formal explicit information model further optimizes interoperability. An example of an information model is the HL7 Reference Information Model (RIM). Organizations typically need to deal with more than one information model and may need to develop a mapping between information models, a meta-model (that helps to explain and organize the various information models), or both.</fo:block>
-<fo:block space-before=".4em">        </fo:block>
+<fo:block space-before=".4em">Standard terminology is a fundamental part of interoperability and is described in function <fo:basic-link internal-destination="TI.4">
+<fo:inline text-decoration="underline" color="blue">TI.4</fo:inline>
+</fo:basic-link>. Using a formal explicit information model further optimizes interoperability. An example of an information model is the HL7 Reference Information Model (RIM). Organizations typically need to deal with more than one information model and may need to develop a mapping between information models, a meta-model (that helps to explain and organize the various information models), or both.</fo:block>
 </fo:block>
 </fo:block>
 </fo:table-cell>
@@ -47925,7 +48096,9 @@ This includes the ability to accommodate changes to terminology sets as the sour
 <fo:block font-weight="bold" text-align="right">3.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to TI.4 (Standard Terminology and Terminology Services) including all child-functions, to support terminology standards according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
+<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="TI.4">
+<fo:inline text-decoration="underline" color="blue">TI.4</fo:inline>
+</fo:basic-link> (Standard Terminology and Terminology Services) including all child-functions, to support terminology standards according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
