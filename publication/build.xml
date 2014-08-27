@@ -37,6 +37,7 @@
     <target name="EHR-S-FM" description="Build the output artifacts for the EHR-S Functional Model (PDF, HTML, EXCEL data)">
     	<property name="file.base-name" value="ehrs-fm"/>
     	
+    	<antcall target="property-dump"></antcall>
     	<antcall target="artefacts">
         	<param name="is-fm" value='true'/>
         </antcall>

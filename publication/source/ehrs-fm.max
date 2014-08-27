@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <max:model xmlns:max="http://www.umcg.nl/MAX"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   exportDate="2014-04-20">
   <objects>
       <object>
          <id>4</id>
@@ -36,7 +37,7 @@ A unique number for the row within the section.</notes>
          <stereotype>HL7-FM</stereotype>
          <type>Package</type>
          <modified>2014-01-21T00:00:00</modified>
-         <tag name="MAX::LastImportDate" value="2014-01-22 2:07:38 PM"/>
+         <tag name="MAX.LastImportDate" value="2014-01-22 2:07:38 PM"/>
       </object>
       <object>
          <id>5</id>
@@ -66,7 +67,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>7</id>
          <name>OV.1#01</name>
-         <notes>The system SHALL conform to function CP.9.1 (Produce a Summary Record of Care).</notes>
+         <notes>The system SHALL conform to function [[CP.9.1]] (Produce a Summary Record of Care).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -79,7 +80,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>8</id>
          <name>OV.1#02</name>
-         <notes>The system SHALL conform to function CPS.9.3 (Health Record Output).</notes>
+         <notes>The system SHALL conform to function [[CPS.9.3]] (Health Record Output).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -92,7 +93,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>9</id>
          <name>OV.1#03</name>
-         <notes>The system SHALL conform to function CPS.9.4 (Standard Report Generation).</notes>
+         <notes>The system SHALL conform to function [[CPS.9.4]] (Standard Report Generation).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -105,7 +106,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>10</id>
          <name>OV.1#04</name>
-         <notes>The system SHALL conform to function RI.1.1 (Record Lifecycle) and all child functions.</notes>
+         <notes>The system SHALL conform to function [[RI.1.1]] (Record Lifecycle) and all child functions.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -118,7 +119,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>11</id>
          <name>OV.1#05</name>
-         <notes>The system SHALL conform to function RI.1.2 (Record Lifespan) and all child functions.</notes>
+         <notes>The system SHALL conform to function [[RI.1.2]] (Record Lifespan) and all child functions.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -131,7 +132,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>12</id>
          <name>OV.1#06</name>
-         <notes>The system SHALL conform to function RI.2 (Record Synchronization).</notes>
+         <notes>The system SHALL conform to function [[RI.2]] (Record Synchronization).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -144,7 +145,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>13</id>
          <name>OV.1#07</name>
-         <notes>The system SHALL conform to function RI.3 (Record Archive and Restore).</notes>
+         <notes>The system SHALL conform to function [[RI.3]] (Record Archive and Restore).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -157,7 +158,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>14</id>
          <name>OV.1#08</name>
-         <notes>The system SHALL conform to function TI.1.1 (Entity Authentication).</notes>
+         <notes>The system SHALL conform to function [[TI.1.1]] (Entity Authentication).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -170,7 +171,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>15</id>
          <name>OV.1#09</name>
-         <notes>The system SHALL conform to function TI.1.2 (Entity Authorization) .</notes>
+         <notes>The system SHALL conform to function [[TI.1.2]] (Entity Authorization) .</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -183,7 +184,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>16</id>
          <name>OV.1#10</name>
-         <notes>The system SHALL conform to function TI.1.3 (Entity Access Control).</notes>
+         <notes>The system SHALL conform to function [[TI.1.3]] (Entity Access Control).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -196,7 +197,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>17</id>
          <name>OV.1#11</name>
-         <notes>The system SHALL conform to function TI.1.4 (Patient Access Management).</notes>
+         <notes>The system SHALL conform to function [[TI.1.4]] (Patient Access Management).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -209,7 +210,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>18</id>
          <name>OV.1#12</name>
-         <notes>The system SHALL conform to function TI.1.5 (Non-Repudiation).</notes>
+         <notes>The system SHALL conform to function [[TI.1.5]] (Non-Repudiation).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -222,7 +223,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>19</id>
          <name>OV.1#13</name>
-         <notes>IF the system transmits data to or receives data from a system outside of a secure network, THEN the system SHALL conform to function TI.1.6 (Secure Data Exchange), to ensure that the data are protected.</notes>
+         <notes>IF the system transmits data to or receives data from a system outside of a secure network, THEN the system SHALL conform to function [[TI.1.6]] (Secure Data Exchange), to ensure that the data are protected.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -235,7 +236,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>20</id>
          <name>OV.1#14</name>
-         <notes>IF the system transmits data to or receives data from a system outside of a secure network, THEN the system SHALL conform to function TI.1.7 (Secure Data Routing), to ensure that the exchange occurs only among authorized senders and receivers.</notes>
+         <notes>IF the system transmits data to or receives data from a system outside of a secure network, THEN the system SHALL conform to function [[TI.1.7]] (Secure Data Routing), to ensure that the exchange occurs only among authorized senders and receivers.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -248,7 +249,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>21</id>
          <name>OV.1#15</name>
-         <notes>The system SHALL conform to function TI.1.8 (Patient Privacy and Confidentiality).</notes>
+         <notes>The system SHALL conform to function [[TI.1.8]] (Patient Privacy and Confidentiality).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -261,7 +262,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>22</id>
          <name>OV.1#16</name>
-         <notes>The system SHALL conform to function TI.2 (Audit) and all child functions.</notes>
+         <notes>The system SHALL conform to function [[TI.2]] (Audit) and all child functions.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -274,7 +275,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>23</id>
          <name>OV.1#17</name>
-         <notes>The system SHOULD conform to function TI.3 (Registry and Directory Services).</notes>
+         <notes>The system SHOULD conform to function [[TI.3]] (Registry and Directory Services).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -287,7 +288,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>24</id>
          <name>OV.1#18</name>
-         <notes>The system SHALL conform to function TI.4 (Standard Terminology and Terminology Services).</notes>
+         <notes>The system SHALL conform to function [[TI.4]] (Standard Terminology and Terminology Services).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -300,7 +301,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>25</id>
          <name>OV.1#19</name>
-         <notes>IF the system manages data for which standard terminologies have been established, THEN the system SHALL conform to function TI.4.1 (Standard Terminologies and Terminology Models) to support semantic interoperability.</notes>
+         <notes>IF the system manages data for which standard terminologies have been established, THEN the system SHALL conform to function [[TI.4.1]] (Standard Terminologies and Terminology Models) to support semantic interoperability.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -313,7 +314,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>26</id>
          <name>OV.1#20</name>
-         <notes>IF the system manages data for which standard terminologies have been established, THEN the system SHALL conform to function TI.4.2 (Maintenance and Versioning of Standard Terminologies) to preserve the semantics of coded data over time.</notes>
+         <notes>IF the system manages data for which standard terminologies have been established, THEN the system SHALL conform to function [[TI.4.2]] (Maintenance and Versioning of Standard Terminologies) to preserve the semantics of coded data over time.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -326,7 +327,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>27</id>
          <name>OV.1#21</name>
-         <notes>IF terminology mapping is implemented within the system, THEN the system SHALL conform to function TI.4.3 (Terminology Mapping).</notes>
+         <notes>IF terminology mapping is implemented within the system, THEN the system SHALL conform to function [[TI.4.3]] (Terminology Mapping).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -339,7 +340,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>28</id>
          <name>OV.1#22</name>
-         <notes>IF the system receives or transmits data for which jurisdictionally established interchange standards exist, THEN the system SHALL conform to function TI.5.1 (Application and Structured-Document Interchange Standards) and all child functions to support interoperability.</notes>
+         <notes>IF the system receives or transmits data for which jurisdictionally established interchange standards exist, THEN the system SHALL conform to function [[TI.5.1]] (Application and Structured-Document Interchange Standards) and all child functions to support interoperability.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -352,7 +353,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>29</id>
          <name>OV.1#23</name>
-         <notes>IF the system receives and transmits data for which generally accepted interchange standards have been established, THEN the system SHALL conform to function TI.5.2 (Interchange Standards Versioning and Maintenance), to accommodate the inevitable evolution of interchange standards.</notes>
+         <notes>IF the system receives and transmits data for which generally accepted interchange standards have been established, THEN the system SHALL conform to function [[TI.5.2]] (Interchange Standards Versioning and Maintenance), to accommodate the inevitable evolution of interchange standards.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -365,7 +366,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>30</id>
          <name>OV.1#24</name>
-         <notes>The system SHOULD conform to function TI.5.3 (Standards-based Application Integration).</notes>
+         <notes>The system SHOULD conform to function [[TI.5.3]] (Standards-based Application Integration).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -378,7 +379,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>31</id>
          <name>OV.1#25</name>
-         <notes>IF the system receives and transmits data with other systems outside itself, THEN the system SHALL conform to function TI.5.4 (Interchange Agreements), to define how the sender and receiver will exchange data.</notes>
+         <notes>IF the system receives and transmits data with other systems outside itself, THEN the system SHALL conform to function [[TI.5.4]] (Interchange Agreements), to define how the sender and receiver will exchange data.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -391,7 +392,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>32</id>
          <name>OV.1#26</name>
-         <notes>The system SHOULD conform to function TI.6 (Business Rules Management).</notes>
+         <notes>The system SHOULD conform to function [[TI.6]] (Business Rules Management).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -404,7 +405,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>33</id>
          <name>OV.1#27</name>
-         <notes>The system SHOULD conform to function TI.7 (Workflow Management).</notes>
+         <notes>The system SHOULD conform to function [[TI.7]] (Workflow Management).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -417,7 +418,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>34</id>
          <name>OV.1#28</name>
-         <notes>The system SHALL conform to function TI.8 (Database Backup and Recovery).</notes>
+         <notes>The system SHALL conform to function [[TI.8]] (Database Backup and Recovery).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -430,7 +431,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>36</id>
          <name>OV.1#29</name>
-         <notes>The system SHALL conform to function CPS.10 (Manage User Help).</notes>
+         <notes>The system SHALL conform to function [[CPS.10]] (Manage User Help).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -443,7 +444,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>35</id>
          <name>OV.1#30</name>
-         <notes>The system SHALL conform to function TI.9 (System Management Operations and Performance).</notes>
+         <notes>The system SHALL conform to function [[TI.9]] (System Management Operations and Performance).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>6</parentId>
@@ -522,7 +523,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
          <id>450</id>
          <name>CP.5 Manage Results</name>
          <alias>CP.5</alias>
-         <notes>$ST$Present, annotate, and route current and historical test results to appropriate providers for review. Provide the ability to filter and compare results.$DE$Results of tests are presented in an easily accessible manner to the appropriate providers. For example, flow sheets, graphs, or other tools allow care providers to view or uncover trends in test data over time. The provider may desire to annotate, filter, and/or compare results. In addition to making results viewable, it is often necessary to send results to appropriate providers using electronic messaging systems, pagers, or other mechanisms. In addition, the system may have the ability to redirect or copy specific test results to a specified individual. Documentation of notification is accommodated. Results may also be routed to patients electronically or non-electronically (e.g., by hard copy). Note: ‚ÄúResults‚Äù are understood as applying to any type of test, whether biological or psychological. Management of the results may also require the provider's communication of the results to the patient (see function CPS.8.4 (Support for Communications between Provider and the Patient, and/or the Patient's Representative)). There may also be a need to notify public health agencies based on the result. See function POP.2 (Support Population-based Epidemiological Investigation).$EX$</notes>
+         <notes>$ST$Present, annotate, and route current and historical test results to appropriate providers for review. Provide the ability to filter and compare results.$DE$Results of tests are presented in an easily accessible manner to the appropriate providers. For example, flow sheets, graphs, or other tools allow care providers to view or uncover trends in test data over time. The provider may desire to annotate, filter, and/or compare results. In addition to making results viewable, it is often necessary to send results to appropriate providers using electronic messaging systems, pagers, or other mechanisms. In addition, the system may have the ability to redirect or copy specific test results to a specified individual. Documentation of notification is accommodated. Results may also be routed to patients electronically or non-electronically (e.g., by hard copy). Note: ‚ÄúResults‚Äù are understood as applying to any type of test, whether biological or psychological. Management of the results may also require the provider's communication of the results to the patient (see function [[CPS.8.4]] (Support for Communications between Provider and the Patient, and/or the Patient's Representative)). There may also be a need to notify public health agencies based on the result. See function [[POP.2]] (Support Population-based Epidemiological Investigation).$EX$</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
          <parentId>37</parentId>
@@ -631,7 +632,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>42</id>
          <name>CP.1.1#03</name>
-         <notes>The system SHOULD conform to function CPS.2.1 (Support externally-sourced Clinical Documents) to capture, store and render previous external patient histories.</notes>
+         <notes>The system SHOULD conform to function [[CPS.2.1]] (Support externally-sourced Clinical Documents) to capture, store and render previous external patient histories.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>39</parentId>
@@ -648,7 +649,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>43</id>
          <name>CP.1.1#04</name>
-         <notes>The system SHOULD conform to function CPS.2.2 (Support externally-sourced Clinical Data) to capture, store and render previous external patient histories.</notes>
+         <notes>The system SHOULD conform to function [[CPS.2.2]] (Support externally-sourced Clinical Data) to capture, store and render previous external patient histories.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>39</parentId>
@@ -1177,7 +1178,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>79</id>
          <name>CP.1.2#26</name>
-         <notes>The system SHOULD conform to function CPS.4.2.1 (Support for Medication Interaction and Allergy Checking) to render any potential interactions when capturing or maintaining allergies, intolerances or adverse reactions.</notes>
+         <notes>The system SHOULD conform to function [[CPS.4.2.1]] (Support for Medication Interaction and Allergy Checking) to render any potential interactions when capturing or maintaining allergies, intolerances or adverse reactions.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>53</parentId>
@@ -1530,7 +1531,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>103</id>
          <name>CP.1.3#22</name>
-         <notes>The system SHALL conform to function CPS.4.2.1 (Support for Medication Interaction and Allergy Checking) to render any potential interactions when capturing or maintaining medications.</notes>
+         <notes>The system SHALL conform to function [[CPS.4.2.1]] (Support for Medication Interaction and Allergy Checking) to render any potential interactions when capturing or maintaining medications.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>81</parentId>
@@ -1785,7 +1786,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>121</id>
          <name>CP.1.4#07</name>
-         <notes>The system SHALL conform to function RI.1.1.17 (Deprecate/Retract Record Entries) to enable the inactivation or deprecation of a problem.</notes>
+         <notes>The system SHALL conform to function [[RI.1.1.17]] (Deprecate/Retract Record Entries) to enable the inactivation or deprecation of a problem.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>114</parentId>
@@ -2086,7 +2087,7 @@ All functions within the Overarching Section have an identifier starting with ‚Ä
       <object>
          <id>143</id>
          <name>CP.1.5#03</name>
-         <notes>The system SHALL conform to function RI.1.1.17 (Deprecate/Retract Record Entries) to enable the inactivation or deprecation of a patient-specific Health-Related Factors.</notes>
+         <notes>The system SHALL conform to function [[RI.1.1.17]] (Deprecate/Retract Record Entries) to enable the inactivation or deprecation of a patient-specific Health-Related Factors.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>140</parentId>
@@ -2642,7 +2643,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <object>
          <id>184</id>
          <name>CP.2.1#01</name>
-         <notes>IF the system conforms to CPS.2.1 (Support for externally-sourced Clinical Documents), THEN the system SHALL provide the ability to render externally-sourced clinical documents.</notes>
+         <notes>IF the system conforms to function [[CPS.2.1]] (Support for externally-sourced Clinical Documents), THEN the system SHALL provide the ability to render externally-sourced clinical documents.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>183</parentId>
@@ -2667,7 +2668,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <object>
          <id>186</id>
          <name>CP.2.2#01</name>
-         <notes>IF the system conforms to CPS.2.2 (Support for externally-sourced Clinical data), THEN the system SHALL provide the ability to render externally-sourced clinical data.</notes>
+         <notes>IF the system conforms to function [[CPS.2.2]] (Support for externally-sourced Clinical data), THEN the system SHALL provide the ability to render externally-sourced clinical data.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>185</parentId>
@@ -2692,7 +2693,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <object>
          <id>188</id>
          <name>CP.2.3#01</name>
-         <notes>IF the system conforms to CPS.2.3 (Support Emergency Medical System Originated Data), THEN the system SHALL provide the ability to render Emergency Medical System Originated Data.</notes>
+         <notes>IF the system conforms to function [[CPS.2.3]] (Support Emergency Medical System Originated Data), THEN the system SHALL provide the ability to render Emergency Medical System Originated Data.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>187</parentId>
@@ -2717,7 +2718,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <object>
          <id>190</id>
          <name>CP.2.4#01</name>
-         <notes>IF the system conforms to CPS.2.4 (Support externally-sourced Clinical Images), THEN the system SHALL provide the ability to render externally-sourced clinical images.</notes>
+         <notes>IF the system conforms to function [[CPS.2.4]] (Support externally-sourced Clinical Images), THEN the system SHALL provide the ability to render externally-sourced clinical images.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>189</parentId>
@@ -2734,10 +2735,10 @@ according to scope of practice, organizational policy, and/or jurisdictional law
          <notes>$ST$Capture and explicitly label patient-originated data, link the data source with the data, and support provider authentication for inclusion in patient health record as well as subsequent rendering of the information as part of the health record.$DE$It is critically important to be able to distinguish clinically authored and authenticated data from patient-originated data that is either provided by the patient for inclusion in the EHR or entered directly into the EHR by the patient from clinically authenticated data. Patients may provide data for entry into the health record or be given a mechanism for entering this data directly. Patient-originated data intended for use by providers will be available for their use. 
 
 Data about the patient may be appropriately provided by:
-1. the patient;
-2. a surrogate (parent, spouse, guardian) or 
-3. an informant (teacher, lawyer, case worker) 
-4. devices (e.g., blood pressure/sugar monitors). 
+- the patient;
+- a surrogate (parent, spouse, guardian) or 
+- an informant (teacher, lawyer, case worker) 
+- devices (e.g., blood pressure/sugar monitors). 
 
 An electronic health record may provide the ability for direct data entry by any of these. Patient-originated data may also be captured by devices and transmitted for inclusion into the electronic health record.
 
@@ -2835,7 +2836,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>197</id>
          <name>CP.2.5#06</name>
-         <notes>IF the system conforms to CPS.2.1 (Support for externally-sourced Clinical documents), THEN the system SHALL provide the ability to render externally-sourced clinical documents.</notes>
+         <notes>IF the system conforms to function [[CPS.2.1]] (Support for externally-sourced Clinical documents), THEN the system SHALL provide the ability to render externally-sourced clinical documents.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>191</parentId>
@@ -3020,7 +3021,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>212</id>
          <name>CP.3.1#11</name>
-         <notes>The system SHOULD conform to function CPS.3.1 (Support for Standard Assessments).</notes>
+         <notes>The system SHOULD conform to function [[CPS.3.1]] (Support for Standard Assessments).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>199</parentId>
@@ -3033,7 +3034,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>213</id>
          <name>CP.3.1#12</name>
-         <notes>The system SHOULD conform to function CPS.3.2 (Support for Patient Context-Driven Assessments).</notes>
+         <notes>The system SHOULD conform to function [[CPS.3.2]] (Support for Patient Context-Driven Assessments).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>199</parentId>
@@ -3765,7 +3766,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>262</id>
          <name>CP.3.4#02</name>
-         <notes>The system SHALL conform to function CP.7.1 (Present Guidelines and Protocols for Planning Care) and provide the ability to render locally or non-locally developed templates, guidelines, and protocols for the creation of patient-specific plans of care and treatment.</notes>
+         <notes>The system SHALL conform to function [[CP.7.1]] (Present Guidelines and Protocols for Planning Care) and provide the ability to render locally or non-locally developed templates, guidelines, and protocols for the creation of patient-specific plans of care and treatment.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>260</parentId>
@@ -3880,7 +3881,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>269</id>
          <name>CP.3.4#09</name>
-         <notes>The system SHOULD conform to function AS.5.1 (Clinical Task Creation, Assignment and Routing) to link care plan items into the tasks assigned and routed.</notes>
+         <notes>The system SHOULD conform to function [[AS.5.1]] (Clinical Task Creation, Assignment and Routing) to link care plan items into the tasks assigned and routed.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>260</parentId>
@@ -3897,7 +3898,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>270</id>
          <name>CP.3.4#10</name>
-         <notes>The system SHOULD conform to function AS.5.3 (Clinical Task Linking) to link care plan items and tasks.</notes>
+         <notes>The system SHOULD conform to function [[AS.5.3]] (Clinical Task Linking) to link care plan items and tasks.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>260</parentId>
@@ -3914,7 +3915,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>271</id>
          <name>CP.3.4#11</name>
-         <notes>The system SHOULD conform to function AS.5.4 (Clinical Task Status Tracking) to link care plan items with tasks tracked.</notes>
+         <notes>The system SHOULD conform to function [[AS.5.4]] (Clinical Task Status Tracking) to link care plan items with tasks tracked.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>260</parentId>
@@ -3931,7 +3932,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>272</id>
          <name>CP.3.4#12</name>
-         <notes>The system SHOULD conform to function CPS.4.2.2 (Support for Patient-Specific Dosing and Warnings) to determine and render related warnings on drug dosing and interactions.</notes>
+         <notes>The system SHOULD conform to function [[CPS.4.2.2]] (Support for Patient-Specific Dosing and Warnings) to determine and render related warnings on drug dosing and interactions.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>260</parentId>
@@ -3948,7 +3949,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>273</id>
          <name>CP.3.4#13</name>
-         <notes>The system MAY conform to function CPS.1.7.1 (Support for Patient and Family Preferences) to improve the effectiveness of care and treatment plans.</notes>
+         <notes>The system MAY conform to function [[CPS.1.7.1]] (Support for Patient and Family Preferences) to improve the effectiveness of care and treatment plans.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>260</parentId>
@@ -4470,7 +4471,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>313</id>
          <name>CP.4#26</name>
-         <notes>The system SHOULD conform to function CPS.8.4 (Support for Communication between Provider and Patient, and/or the Patient Representative) to manage information regarding orders.</notes>
+         <notes>The system SHOULD conform to function [[CPS.8.4]] (Support for Communication between Provider and Patient, and/or the Patient Representative) to manage information regarding orders.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>287</parentId>
@@ -4570,7 +4571,7 @@ Data entered by any of these must be stored with source information. A provider 
       <object>
          <id>320</id>
          <name>CP.4.1#05</name>
-         <notes>The system SHALL conform to function CPS.4.1 (Manage Order Set Templates).</notes>
+         <notes>The system SHALL conform to function [[CPS.4.1]] (Manage Order Set Templates).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>315</parentId>
@@ -4689,7 +4690,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>328</id>
          <name>CP.4.2#01</name>
-         <notes>The System SHALL conform to CP.4.2.1 (Medication Interaction and Allergy Checking).</notes>
+         <notes>The System SHALL conform to function [[CP.4.2.1]] (Medication Interaction and Allergy Checking).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>327</parentId>
@@ -4702,7 +4703,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>329</id>
          <name>CP.4.2#02</name>
-         <notes>The System SHALL conform to CP.4.2.2 (Patient-Specific Medication Dosing &amp; Warnings).</notes>
+         <notes>The System SHALL conform to function [[CP.4.2.2]] (Patient-Specific Medication Dosing &amp; Warnings).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>327</parentId>
@@ -4715,7 +4716,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>330</id>
          <name>CP.4.2#03</name>
-         <notes>The System SHALL conform to CP.4.2.3 (Medication Order Efficiencies).</notes>
+         <notes>The System SHALL conform to function [[CP.4.2.3]] (Medication Order Efficiencies).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>327</parentId>
@@ -4728,7 +4729,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>331</id>
          <name>CP.4.2#04</name>
-         <notes>The system SHALL conform to CP.4.2.4 (Medication Alert Overrides).</notes>
+         <notes>The system SHALL conform to function [[CP.4.2.4]] (Medication Alert Overrides).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>327</parentId>
@@ -4905,7 +4906,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>344</id>
          <name>CP.4.2#17</name>
-         <notes>The system SHALL conform to function CP.1.3 (Manage Medication List) and update the appropriate medication list with the prescribed medications (in case of multiple medication lists).</notes>
+         <notes>The system SHALL conform to function [[CP.1.3]] (Manage Medication List) and update the appropriate medication list with the prescribed medications (in case of multiple medication lists).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>327</parentId>
@@ -4948,7 +4949,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>347</id>
          <name>CP.4.2#20</name>
-         <notes>The system SHOULD conform to function CPS.4.2.4 (Support for Medication Recommendations).</notes>
+         <notes>The system SHOULD conform to function [[CPS.4.2.4]] (Support for Medication Recommendations).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>327</parentId>
@@ -5116,7 +5117,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>359</id>
          <name>CP.4.2#32</name>
-         <notes>The system SHOULD conform to function AS.9.2 (Support Financial Eligibility Verification) to capture and render the results of electronic prescription eligibility and health plan/payer formulary verification of prescription coverage.</notes>
+         <notes>The system SHOULD conform to function [[AS.9.2]] (Support Financial Eligibility Verification) to capture and render the results of electronic prescription eligibility and health plan/payer formulary verification of prescription coverage.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>327</parentId>
@@ -5133,7 +5134,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>360</id>
          <name>CP.4.2#33</name>
-         <notes>The system SHOULD conform to function AS.9.2 (Support Financial Eligibility Verification) to capture and render patient-specific health plan/payer formulary and benefit coverage.</notes>
+         <notes>The system SHOULD conform to function [[AS.9.2]] (Support Financial Eligibility Verification) to capture and render patient-specific health plan/payer formulary and benefit coverage.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>327</parentId>
@@ -5320,7 +5321,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>374</id>
          <name>CP.4.2.1#01</name>
-         <notes>The system SHALL conform to function CPS.4.2.1 (Support for Medication Interaction and Allergy Checking) to determine allergic reactions, drug-drug interactions, and other potential adverse reactions, and render alerts or notifications when new medications are ordered.</notes>
+         <notes>The system SHALL conform to function [[CPS.4.2.1]] (Support for Medication Interaction and Allergy Checking) to determine allergic reactions, drug-drug interactions, and other potential adverse reactions, and render alerts or notifications when new medications are ordered.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>373</parentId>
@@ -5337,7 +5338,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>375</id>
          <name>CP.4.2.1#02</name>
-         <notes>The system SHALL conform to function CP.1.2 (Manage Allergy, Intolerance and Adverse Reaction List) to provide the ability to manage interaction and allergy checking and render alerts and notifications when new medications are ordered.</notes>
+         <notes>The system SHALL conform to function [[CP.1.2]] (Manage Allergy, Intolerance and Adverse Reaction List) to provide the ability to manage interaction and allergy checking and render alerts and notifications when new medications are ordered.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>373</parentId>
@@ -5403,7 +5404,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>380</id>
          <name>CP.4.2.2#01</name>
-         <notes>The system SHALL conform to function CPS.4.2.2 (Support for Patient-Specific Dosing and Warnings) to determine potential adverse reactions and render alerts or notifications when new medications are ordered.</notes>
+         <notes>The system SHALL conform to function [[CPS.4.2.2]] (Support for Patient-Specific Dosing and Warnings) to determine potential adverse reactions and render alerts or notifications when new medications are ordered.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>379</parentId>
@@ -5684,7 +5685,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>400</id>
          <name>CP.4.2.3#07</name>
-         <notes>The system SHALL conform to CP.4.1 (Use Order Sets).</notes>
+         <notes>The system SHALL conform to function [[CP.4.1]] (Use Order Sets).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>393</parentId>
@@ -5909,7 +5910,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>415</id>
          <name>CP.4.3#09</name>
-         <notes>The system SHALL conform to function CPS.4.3 (Support for Non-Medication Ordering).</notes>
+         <notes>The system SHALL conform to function [[CPS.4.3]] (Support for Non-Medication Ordering).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>406</parentId>
@@ -6055,7 +6056,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>424</id>
          <name>CP.4.4#08</name>
-         <notes>The system SHALL conform to function CPS.4.3 (Support for Non-Medication Ordering).</notes>
+         <notes>The system SHALL conform to function [[CPS.4.3]] (Support for Non-Medication Ordering).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>416</parentId>
@@ -6193,7 +6194,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>434</id>
          <name>CP.4.5#05</name>
-         <notes>The system SHALL conform to function CPS.9.2 (Support for Inter-Provider Communication) to provide the ability to exchange blood product, and/or biological products between members of the care team.</notes>
+         <notes>The system SHALL conform to function [[CPS.9.2]] (Support for Inter-Provider Communication) to provide the ability to exchange blood product, and/or biological products between members of the care team.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>429</parentId>
@@ -6663,7 +6664,7 @@ In addition, the system should present the clinician with clinical decision supp
       <object>
          <id>464</id>
          <name>CP.5#14</name>
-         <notes>The system SHOULD conform to CPS.9.2 (Support for Inter-Provider Communication) to receive a request for action regarding a test result from another provider and to transmit an acknowledgement to that provider of the receipt of that provider's request for action.</notes>
+         <notes>The system SHOULD conform to function [[CPS.9.2]] (Support for Inter-Provider Communication) to receive a request for action regarding a test result from another provider and to transmit an acknowledgement to that provider of the receipt of that provider's request for action.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>450</parentId>
@@ -6993,7 +6994,7 @@ In addition, the system should present the clinician with clinical decision supp
          <id>489</id>
          <name>CP.6.1 Manage Medication Administration</name>
          <alias>CP.6.1</alias>
-         <notes>$ST$Present providers with the list of medications that are to be administered to a patient, necessary administration information, and capture administration details.$DE$In a setting in which medication orders are to be administered by a provider rather than the patient, the necessary information is presented including: the list of medication orders that are to be administered; administration instructions, times or other conditions of administration; dose and route, etc. The system shall securely relate medications to be administered to the unique identity of the patient (see CPS.1.1). Additionally, the provider can record what actually was or was not administered, whether or not these facts conform to the order. Appropriate time stamps for all medication related activity are generated.
+         <notes>$ST$Present providers with the list of medications that are to be administered to a patient, necessary administration information, and capture administration details.$DE$In a setting in which medication orders are to be administered by a provider rather than the patient, the necessary information is presented including: the list of medication orders that are to be administered; administration instructions, times or other conditions of administration; dose and route, etc. The system shall securely relate medications to be administered to the unique identity of the patient (see [[CPS.1.1]]). Additionally, the provider can record what actually was or was not administered, whether or not these facts conform to the order. Appropriate time stamps for all medication related activity are generated.
 
 For some settings that administer complete sets of medications from a variety of providers' orders, it may be useful to provide an additional check for possible drug-drug or other interactions.
 
@@ -7119,7 +7120,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>497</id>
          <name>CP.6.1#08</name>
-         <notes>The system SHALL conform to function CPS.4.2.1 (Support for Medication Interaction and Allergy Checking) in order to determine and render allergies, drug-drug interactions, and other potential adverse reactions, when rendering medication administration information.</notes>
+         <notes>The system SHALL conform to function [[CPS.4.2.1]] (Support for Medication Interaction and Allergy Checking) in order to determine and render allergies, drug-drug interactions, and other potential adverse reactions, when rendering medication administration information.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>489</parentId>
@@ -7136,7 +7137,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>498</id>
          <name>CP.6.1#09</name>
-         <notes>The system SHALL conform to function CPS.4.2.2 (Support for Patient-Specific Dosing and Warnings) in order to determine and render other potential adverse reactions, when rendering medication administration information.</notes>
+         <notes>The system SHALL conform to function [[CPS.4.2.2]] (Support for Patient-Specific Dosing and Warnings) in order to determine and render other potential adverse reactions, when rendering medication administration information.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>489</parentId>
@@ -7646,7 +7647,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>535</id>
          <name>CP.6.2#05</name>
-         <notes>The system SHALL conform to function CP.3.2 (Manage Patient Clinical Measurements) to capture other clinical data pertinent to the immunization administration (e.g., vital signs).</notes>
+         <notes>The system SHALL conform to function [[CP.3.2]] (Manage Patient Clinical Measurements) to capture other clinical data pertinent to the immunization administration (e.g., vital signs).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>530</parentId>
@@ -7714,7 +7715,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>539</id>
          <name>CP.6.2#09</name>
-         <notes>The system SHALL conform to function CP.1.2 (Manage Allergy, Intolerance and Adverse Reaction List).</notes>
+         <notes>The system SHALL conform to function [[CP.1.2]] (Manage Allergy, Intolerance and Adverse Reaction List).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>530</parentId>
@@ -7795,7 +7796,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>544</id>
          <name>CP.6.2#14</name>
-         <notes>The system SHALL conform to function CP.1.6 (Manage Immunization List).</notes>
+         <notes>The system SHALL conform to function [[CP.1.6]] (Manage Immunization List).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>530</parentId>
@@ -7941,7 +7942,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>555</id>
          <name>CP.6.3#02</name>
-         <notes>The system SHALL conform to CP.6.1 (Medication Administration) to support the administration of medications as part of the treatment administration.</notes>
+         <notes>The system SHALL conform to function [[CP.6.1]] (Medication Administration) to support the administration of medications as part of the treatment administration.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>553</parentId>
@@ -8292,7 +8293,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>582</id>
          <name>CP.6.3#29</name>
-         <notes>The system SHOULD conform to CP.1.2 (Manage Allergy, Intolerance and Adverse Reaction List) to capture an reaction to a specific treatment.</notes>
+         <notes>The system SHOULD conform to function [[CP.1.2]] (Manage Allergy, Intolerance and Adverse Reaction List) to capture an reaction to a specific treatment.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>553</parentId>
@@ -8318,7 +8319,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>584</id>
          <name>CP.6.3#31</name>
-         <notes>The system SHALL conform to function CP.3.2 (Manage Patient Clinical Measurements) to capture other clinical data pertinent to the treatment (e.g., vital signs, blood glucose reading).</notes>
+         <notes>The system SHALL conform to function [[CP.3.2]] (Manage Patient Clinical Measurements) to capture other clinical data pertinent to the treatment (e.g., vital signs, blood glucose reading).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>553</parentId>
@@ -8357,7 +8358,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>587</id>
          <name>CP.6.3#34</name>
-         <notes>The system SHOULD conform to CPS.1.7 (Preferences, Directives, Consents and Authorizations) in order to capture the patient's preferences regarding receipt of treatment (e.g., refusal of certain materials/supplies) at the time of treatment administration.</notes>
+         <notes>The system SHOULD conform to function [[CPS.1.7]] (Preferences, Directives, Consents and Authorizations) in order to capture the patient's preferences regarding receipt of treatment (e.g., refusal of certain materials/supplies) at the time of treatment administration.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>553</parentId>
@@ -8448,7 +8449,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>594</id>
          <name>CP.7.1#04</name>
-         <notes>IF decision support prompts are used to support a specific clinical guideline or protocol, THEN the system SHALL conform to function CPS.3.8 (Manage Documentation of Clinician Response to Decision Support Prompts).</notes>
+         <notes>IF decision support prompts are used to support a specific clinical guideline or protocol, THEN the system SHALL conform to function [[CPS.3.8]] (Manage Documentation of Clinician Response to Decision Support Prompts).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>590</parentId>
@@ -8465,7 +8466,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>595</id>
          <name>CP.7.1#05</name>
-         <notes>IF the system supports context sensitive care plans, guidelines and protocols, THEN the system SHALL conform to function CPS.3.4 (Support for Context-Sensitive Care Plans, Guidelines, Protocols).</notes>
+         <notes>IF the system supports context sensitive care plans, guidelines and protocols, THEN the system SHALL conform to function [[CPS.3.4]] (Support for Context-Sensitive Care Plans, Guidelines, Protocols).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>590</parentId>
@@ -8845,7 +8846,7 @@ The system should report medication administration, where appropriate, to public
       </object>
       <object>
          <id>623</id>
-         <name>CP.9.2 Capture Heath Service Report Information</name>
+         <name>CP.9.2 Capture Health Service Report Information</name>
          <alias>CP.9.2</alias>
          <notes>$ST$Support the creation of health service reports to authorized health entities that a provider may be required to generate (e.g., the creation of an oncologist's report that must be submitted to a national cancer registry).$DE$Providers are prompted to collect sufficient information in the course of care to avoid duplicate, retrospective or other additional data entry as part of supporting health management programs and reporting, for example public health, such as notifiable condition reports, immunization, cancer registry and discharge data.$EX$</notes>
          <stereotype>Function</stereotype>
@@ -8920,7 +8921,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>628</id>
          <name>CP.9.2#05</name>
-         <notes>The system SHALL conform to function CP.9.1 (Produce a Summary Record of Care).</notes>
+         <notes>The system SHALL conform to function [[CP.9.1]] (Produce a Summary Record of Care).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>623</parentId>
@@ -8959,7 +8960,7 @@ The system should report medication administration, where appropriate, to public
       <object>
          <id>5348</id>
          <name>CP.1.8#06</name>
-         <notes>The system SHOULD conform to function CPS.1.7.1 (Support for Patient and Family Preferences).</notes>
+         <notes>The system SHOULD conform to function [[CPS.1.7.1]] (Support for Patient and Family Preferences).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>170</parentId>
@@ -9746,7 +9747,7 @@ After care is given during an emergent situation, records are often incomplete o
       <object>
          <id>680</id>
          <name>CPS.1.4#04</name>
-         <notes>The system SHALL conform to function CPS.2.1 (Support externally-sourced Clinical Documents) to support the capture of referral documents.</notes>
+         <notes>The system SHALL conform to function [[CPS.2.1]] (Support externally-sourced Clinical Documents) to support the capture of referral documents.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>676</parentId>
@@ -9759,7 +9760,7 @@ After care is given during an emergent situation, records are often incomplete o
       <object>
          <id>681</id>
          <name>CPS.1.4#05</name>
-         <notes>The system SHALL conform to function CPS.2.2 (Support externally-sourced Clinical Data) to support the capture of referral data.</notes>
+         <notes>The system SHALL conform to function [[CPS.2.2]] (Support externally-sourced Clinical Data) to support the capture of referral data.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>676</parentId>
@@ -9772,7 +9773,7 @@ After care is given during an emergent situation, records are often incomplete o
       <object>
          <id>682</id>
          <name>CPS.1.4#06</name>
-         <notes>The system SHOULD conform to function CPS.2.3 (Support Emergency Medical System Originated Data) to support the capture of referral data.</notes>
+         <notes>The system SHOULD conform to function [[CPS.2.3]] (Support Emergency Medical System Originated Data) to support the capture of referral data.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>676</parentId>
@@ -9785,7 +9786,7 @@ After care is given during an emergent situation, records are often incomplete o
       <object>
          <id>683</id>
          <name>CPS.1.4#07</name>
-         <notes>The system SHALL conform to function CPS.2.4 (Support externally-sourced Clinical Images) to support the capture of referral images.</notes>
+         <notes>The system SHALL conform to function [[CPS.2.4]] (Support externally-sourced Clinical Images) to support the capture of referral images.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>676</parentId>
@@ -9876,7 +9877,7 @@ After care is given during an emergent situation, records are often incomplete o
       <object>
          <id>690</id>
          <name>CPS.1.4#14</name>
-         <notes>The system MAY conform to function AS.9.2 (Support Financial Eligibility Verification) and display the results of electronic referral eligibility and health plan/payer checking.</notes>
+         <notes>The system MAY conform to function [[AS.9.2]] (Support Financial Eligibility Verification) and display the results of electronic referral eligibility and health plan/payer checking.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>676</parentId>
@@ -10006,7 +10007,7 @@ After care is given during an emergent situation, records are often incomplete o
       <object>
          <id>700</id>
          <name>CPS.1.4#24</name>
-         <notes>The system SHOULD conform to function AS.6.2 (Manage Healthcare Resource Availability Information) to support the allocation of resources for incoming referred patients.</notes>
+         <notes>The system SHOULD conform to function [[AS.6.2]] (Manage Healthcare Resource Availability Information) to support the allocation of resources for incoming referred patients.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>676</parentId>
@@ -10400,7 +10401,7 @@ Tele-health encounters have unique requirements that may also be supported by th
       <object>
          <id>727</id>
          <name>CPS.1.7#01</name>
-         <notes>The system SHOULD conform to function CPS.1.7.1 (Support for Patient and Family Preferences).</notes>
+         <notes>The system SHOULD conform to function [[CPS.1.7.1]] (Support for Patient and Family Preferences).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>726</parentId>
@@ -10636,7 +10637,7 @@ Circumstances is used to indicate where, how and when an advanced directive was 
       <object>
          <id>741</id>
          <name>CPS.1.7.2#05</name>
-         <notes>The system SHOULD conform to function CPS.2.4 (Support externally-sourced Clinical Images) in order to capture scanned patient advance directive documents, and/or "Do Not Resuscitate" orders.</notes>
+         <notes>The system SHOULD conform to function [[CPS.2.4]] (Support externally-sourced Clinical Images) in order to capture scanned patient advance directive documents, and/or "Do Not Resuscitate" orders.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>736</parentId>
@@ -10755,7 +10756,7 @@ Some jurisdictions may mandate assent. Assent is agreement
       <object>
          <id>748</id>
          <name>CPS.1.7.3#03</name>
-         <notes>The system SHOULD conform to function CPS.2.1 (Support externally-sourced Clinical Documents).</notes>
+         <notes>The system SHOULD conform to function [[CPS.2.1]] (Support externally-sourced Clinical Documents).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>745</parentId>
@@ -10772,7 +10773,7 @@ Some jurisdictions may mandate assent. Assent is agreement
       <object>
          <id>749</id>
          <name>CPS.1.7.3#04</name>
-         <notes>The system SHOULD conform to function CPS.2.2 (Support externally-sourced Clinical Data).</notes>
+         <notes>The system SHOULD conform to function [[CPS.2.2]] (Support externally-sourced Clinical Data).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>745</parentId>
@@ -10979,21 +10980,21 @@ Some jurisdictions may mandate assent. Assent is agreement
 
 External data and documents addressed in the function include: 
 
-1. Laboratory results received through an electronic interface - This information is to be received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (vs. report format). 
+- Laboratory results received through an electronic interface - This information is to be received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (vs. report format). 
 
-2. Scanned documents received and stored as images (e.g., power of attorney forms, Living wills) - These scanned documents are indexed and can be retrieved based on the document type, date of the original document, and the date of scanning. 
+- Scanned documents received and stored as images (e.g., power of attorney forms, Living wills) - These scanned documents are indexed and can be retrieved based on the document type, date of the original document, and the date of scanning. 
 
-3. Text-based outside reports (e.g., x-ray reports, hospital discharge summaries, history &amp; physicals) - Any mechanism for capturing these reports is addendable: OCR, PDF, image file of report, etc. 
+- Text-based outside reports (e.g., x-ray reports, hospital discharge summaries, history &amp; physicals) - Any mechanism for capturing these reports is addendable: OCR, PDF, image file of report, etc. 
 
-4. Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images) ‚Äì These images may be stored within the system or be provided through direct linkage to an external source such as a hospital PACS system. 
+- Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images) ‚Äì These images may be stored within the system or be provided through direct linkage to an external source such as a hospital PACS system. 
 
-5. Other forms of clinical results, such as wave files of EKG tracings. 
+- Other forms of clinical results, such as wave files of EKG tracings. 
 
-6. Medication detail (e.g., a medication history) from an external source such as a pharmacy, the patient, payer, or another provider - While the medication detail includes the medication name, strength, and SIG, this does not imply that the data will populate the medication module. 
+- Medication detail (e.g., a medication history) from an external source such as a pharmacy, the patient, payer, or another provider - While the medication detail includes the medication name, strength, and SIG, this does not imply that the data will populate the medication module. 
 
-7. Structured, text-based reports (e.g., medical summary text in a structured format). 
+- Structured, text-based reports (e.g., medical summary text in a structured format). 
 
-8. Standards-based structured, codified data (e.g., a Continuity of Care Document (CCD) with SNOMED CT). 
+- Standards-based structured, codified data (e.g., a Continuity of Care Document (CCD) with SNOMED CT). 
 
 Data incorporated through these mechanisms is presented alongside locally captured documentation and notes wherever appropriate. $EX$</notes>
          <stereotype>Function</stereotype>
@@ -11136,7 +11137,7 @@ Data incorporated through these mechanisms is presented alongside locally captur
       <object>
          <id>771</id>
          <name>CPS.2.1#09</name>
-         <notes>The system SHOULD conform to TI.1.5 (Non-Repudiation) and TI.1.6 (Secure Data Exchange) when importing/receiving both structured and unstructured data.</notes>
+         <notes>The system SHOULD conform to function [[TI.1.5]] (Non-Repudiation) and [[TI.1.6]] (Secure Data Exchange) when importing/receiving both structured and unstructured data.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>762</parentId>
@@ -11179,26 +11180,27 @@ Data incorporated through these mechanisms is presented alongside locally captur
          <notes>$ST$Incorporate discrete clinical data from external sources and support communication/presentation of data captured from medical and non-medical devices and entities.$DE$Mechanisms for incorporating external clinical data (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced data may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of data received by the provider that would typically be incorporated into a medical record, including but not limited to faxes, referral authorizations, consultant reports, and patient/resident correspondence of a clinical nature. Intrinsic to the concept of electronic health records is the ability to exchange health information with other providers of health care services. Health information from these external sources needs to be received, stored in the patient record, and displayed upon request. 
 
 Examples of externally-sourced data and documents include:
-1. Laboratory results received through an electronic interface. 
-This information is received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (instead of in report or summarized format). 
 
-2. Scanned documents received and stored as images (e.g., power of attorney forms or living wills). 
-These scanned documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. 
+- Laboratory results received through an electronic interface. 
+  This information is received and stored in the resident record as discrete data, which means that each separate element of the data needs to be stored in its own field. Therefore, if laboratory results are received through an electronic interface, the results are received in the EHR and the laboratory test name, result (value), and unit of measure are correctly displayed as discrete data (instead of in report or summarized format). 
 
-3. Text-based outside reports (e.g., x-ray reports, hospital discharge summaries or history and physical examinations). 
-Any mechanism for capturing these reports is acceptable (e.g., OCR, PDF, JPG or TIFF). 
+- Scanned documents received and stored as images (e.g., power of attorney forms or living wills). 
+  These scanned documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. 
 
-4. Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images). 
-These images may be stored within the system or be available by direct linkage to an external source (e.g., a hospital's picture archiving and communication system). 
+- Text-based outside reports (e.g., x-ray reports, hospital discharge summaries or history and physical examinations). 
+  Any mechanism for capturing these reports is acceptable (e.g., OCR, PDF, JPG or TIFF). 
 
-5. Other forms of clinical results (e.g., EKG waveforms).
+- Clinical images from an external source (e.g., radiographic images, digital images from a diagnostic scan or graphical images). 
+  These images may be stored within the system or be available by direct linkage to an external source (e.g., a hospital's picture archiving and communication system). 
 
-6. Medication history from an external source such as a retail pharmacy, the patient, or another provider . 
-While the medication history includes the medication name, strength, and SIG, this does not imply that the data will populate the medication administration module. In many systems the medication administration module is populated from the medication order rather than from the medication history.
+- Other forms of clinical results (e.g., EKG waveforms).
 
-7. Structured, text-based reports (e.g., medical summary text in a structured format). 
+- Medication history from an external source such as a retail pharmacy, the patient, or another provider . 
+  While the medication history includes the medication name, strength, and SIG, this does not imply that the data will populate the medication administration module. In many systems the medication administration module is populated from the medication order rather than from the medication history.
 
-8. Standards-based structured, codified data (such as a standards-based referral letter that contains SNOMED CT codes). 
+- Structured, text-based reports (e.g., medical summary text in a structured format). 
+
+- Standards-based structured, codified data (such as a standards-based referral letter that contains SNOMED CT codes). 
 
 Such data may be presented with locally-sourced documentation and notes wherever appropriate.$EX$</notes>
          <stereotype>Function</stereotype>
@@ -11362,7 +11364,15 @@ Such data may be presented with locally-sourced documentation and notes wherever
          <id>786</id>
          <name>CPS.2.4 Support externally-sourced Clinical Images</name>
          <alias>CPS.2.4</alias>
-         <notes>$ST$Incorporate clinical images from external sources and support communication/presentation of images from medical and non-medical devices and entities.$DE$Mechanisms for incorporating external clinical images (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced images may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of images received by the provider that would typically be incorporated into a medical record. These image documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. Images may also be stored within the system or accessed by reference to an external system (e.g., a hospital's picture archiving and communication system). Examples of image formats include OCR, PDF, JPG or TIFF. Examples of externally-sourced images include: laboratory results report images 2. Radiographic images3. Images of power of attorney forms, living wills or birth certificates4. Graphs and charts5. Photographs or drawings of patient wounds6. Wave files of EKG tracings$EX$</notes>
+         <notes>$ST$Incorporate clinical images from external sources and support communication/presentation of images from medical and non-medical devices and entities.$DE$Mechanisms for incorporating external clinical images (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced images may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of images received by the provider that would typically be incorporated into a medical record. These image documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. Images may also be stored within the system or accessed by reference to an external system (e.g., a hospital's picture archiving and communication system). Examples of image formats include OCR, PDF, JPG or TIFF. 
+Examples of externally-sourced images include: 
+            
+- laboratory results report images
+- Radiographic images
+- Images of power of attorney forms, living wills or birth certificates
+- Graphs and charts
+- Photographs or drawings of patient wounds
+- Wave files of EKG tracings$EX$</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
          <parentId>759</parentId>
@@ -11427,7 +11437,17 @@ Such data may be presented with locally-sourced documentation and notes wherever
          <alias>CPS.2.5</alias>
          <notes>$ST$Capture and explicitly label patient-originated data, link the data source with the data, and support provider authentication for inclusion in patient health record.$DE$It is critically important to be able to distinguish clinically authored and authenticated data from patient-originated data that is either provided by the patient for inclusion in the EHR or entered directly into the EHR by the patient from clinically authenticated data. Patients may provide data for entry into the health record or be given a mechanism for entering this data directly. Patient-originated data intended for use by providers will be available for their use.
 
-Data about the patient may be appropriately provided by: the patient;2. a surrogate (e.g., parent, spouse, guardian); 3. an informant (e.g., teacher, lawyer, case worker); or4. devices (e.g., blood pressure/sugar monitors).An electronic health record may provide the ability for direct data entry by any of these. Patient-originated data may also be captured by devices and transmitted for inclusion into the electronic health record.
+Data about the patient may be appropriately provided by: 
+
+- the patient;
+
+- a surrogate (e.g., parent, spouse, guardian); 
+
+- an informant (e.g., teacher, lawyer, case worker); or
+
+- devices (e.g., blood pressure/sugar monitors).
+
+An electronic health record may provide the ability for direct data entry by any of these. Patient-originated data may also be captured by devices and transmitted for inclusion into the electronic health record.
 
 Data entered by any of these must be stored with source information. A provider must authenticate patient-originated data included in the patient's legal health record. A provider must be able to indicate they have verified the accuracy of patient-originated data (when appropriate and when a verification source is available) for inclusion in the patient record.
 
@@ -11495,7 +11515,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>794</id>
          <name>CPS.2.5#04</name>
-         <notes>The system SHALL capture both structured and unstructured data as defined in RI.1.2.1 (Manage Record Entries).</notes>
+         <notes>The system SHALL capture both structured and unstructured data as defined in [[RI.1.2.1]] (Manage Record Entries).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>790</parentId>
@@ -11597,9 +11617,9 @@ Such verification does not have to occur at each individual data field and can b
          <name>CPS.2.7 Support Patient Data Derived from Eligibility, Formulary and Benefit Documentation for Electronic Prescribing</name>
          <alias>CPS.2.7</alias>
          <notes>$ST$Capture and explicitly label patient data derived from eligibility, formulary and benefit information; and link the data source with that data.$DE$Sources of eligibility, formulary and benefit may provide data for entry into the electronic prescribing or be given a mechanism for entering this data directly. The data must be explicitly labeled as derived from eligibility, formulary and benefit information. Patient data that is derived from eligibility, formulary and benefit data may be provided by: 
-1. a provider 
-2. a payer, or 
-3. entities that transmit or process eligibility, formulary and benefit data$EX$</notes>
+- a provider 
+- a payer, or 
+- entities that transmit or process eligibility, formulary and benefit data$EX$</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
          <parentId>759</parentId>
@@ -11839,7 +11859,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>818</id>
          <name>CPS.3.1#05</name>
-         <notes>The system SHOULD conform to function CP.1.4 (Manage Problem List) and provide the ability to maintain the problem list by activating new problems and deactivating old problems as identified when captured using recognized-standard, and/or locally-defined assessments.</notes>
+         <notes>The system SHOULD conform to function [[CP.1.4]] (Manage Problem List) and provide the ability to maintain the problem list by activating new problems and deactivating old problems as identified when captured using recognized-standard, and/or locally-defined assessments.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>813</parentId>
@@ -12119,7 +12139,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>836</id>
          <name>CPS.3.3#05</name>
-         <notes>The system SHOULD conform to POP.4 (Support for Monitoring Response Notifications Regarding a Specific Patient's Health).</notes>
+         <notes>The system SHOULD conform to function [[POP.4]] (Support for Monitoring Response Notifications Regarding a Specific Patient's Health).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>831</parentId>
@@ -12132,7 +12152,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>837</id>
          <name>CPS.3.3#06</name>
-         <notes>The system SHALL conform to function CPS.3.4 (Support for Context-Sensitive Care Plans, Guidelines, Protocols).</notes>
+         <notes>The system SHALL conform to function [[CPS.3.4]] (Support for Context-Sensitive Care Plans, Guidelines, Protocols).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>831</parentId>
@@ -12149,7 +12169,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>838</id>
          <name>CPS.3.3#07</name>
-         <notes>The system SHALL conform to function CPS.3.1 (Support for Standard Assessments).</notes>
+         <notes>The system SHALL conform to function [[CPS.3.1]] (Support for Standard Assessments).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>831</parentId>
@@ -12330,7 +12350,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>850</id>
          <name>CPS.3.4#04</name>
-         <notes>The system SHALL conform to function CPS.3.1 (Support for Standard Assessments).</notes>
+         <notes>The system SHALL conform to function [[CPS.3.1]] (Support for Standard Assessments).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>846</parentId>
@@ -12347,7 +12367,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>851</id>
          <name>CPS.3.4#05</name>
-         <notes>The system SHALL conform to function CPS.3.2 (Support for Patient Context-Driven Assessments).</notes>
+         <notes>The system SHALL conform to function [[CPS.3.2]] (Support for Patient Context-Driven Assessments).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>846</parentId>
@@ -12364,7 +12384,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>852</id>
          <name>CPS.3.4#06</name>
-         <notes>The system SHALL conform to function CPS.3.3 (Support for Standard Care Plans, Guidelines, Protocols).</notes>
+         <notes>The system SHALL conform to function [[CPS.3.3]] (Support for Standard Care Plans, Guidelines, Protocols).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>846</parentId>
@@ -12489,7 +12509,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>860</id>
          <name>CPS.3.5#03</name>
-         <notes>The system SHOULD conform to function AS.9.1 (Support Financial Plan Enrollment), to enable participation in research studies.</notes>
+         <notes>The system SHOULD conform to function [[AS.9.1]] (Support Financial Plan Enrollment), to enable participation in research studies.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>857</parentId>
@@ -12540,7 +12560,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>863</id>
          <name>CPS.3.5#06</name>
-         <notes>The system SHALL conform to CP.3.3 (Manage Clinical Documents and Notes) to capture patient condition and response to treatment.</notes>
+         <notes>The system SHALL conform to function [[CP.3.3]] (Manage Clinical Documents and Notes) to capture patient condition and response to treatment.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>857</parentId>
@@ -12653,7 +12673,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>871</id>
          <name>CPS.3.6#03</name>
-         <notes>The system SHOULD conform to function CPS.2.5 (Support patient-originated Data).</notes>
+         <notes>The system SHOULD conform to function [[CPS.2.5]] (Support patient-originated Data).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>868</parentId>
@@ -12670,7 +12690,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>872</id>
          <name>CPS.3.6#04</name>
-         <notes>The system SHOULD conform to function CP.1.8 (Manage Patient and Family Preferences).</notes>
+         <notes>The system SHOULD conform to function [[CP.1.8]] (Manage Patient and Family Preferences).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>868</parentId>
@@ -12687,7 +12707,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>873</id>
          <name>CPS.3.6#05</name>
-         <notes>The system SHALL conform to function CP.1.4 (Manage Problem list).</notes>
+         <notes>The system SHALL conform to function [[CP.1.4]] (Manage Problem list).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>868</parentId>
@@ -12886,7 +12906,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>886</id>
          <name>CPS.3.10#01</name>
-         <notes>The system SHALL conform to function CP.3.1 (Conduct Assessments) and provide the ability to access standard assessment data in the patient record.</notes>
+         <notes>The system SHALL conform to function [[CP.3.1]] (Conduct Assessments) and provide the ability to access standard assessment data in the patient record.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>885</parentId>
@@ -13053,7 +13073,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>897</id>
          <name>CPS.3.10#12</name>
-         <notes>The system SHOULD conform to function CPS.3.8 (Manage Documentation of Clinician Response to Decision Support Prompts).</notes>
+         <notes>The system SHOULD conform to function [[CPS.3.8]] (Manage Documentation of Clinician Response to Decision Support Prompts).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>885</parentId>
@@ -13087,7 +13107,7 @@ Such verification does not have to occur at each individual data field and can b
       <object>
          <id>899</id>
          <name>CPS.3.10#14</name>
-         <notes>The system SHOULD conform to function CPS.3.4 (Support for Context-Sensitive Care Plans, Guidelines, Protocols).</notes>
+         <notes>The system SHOULD conform to function [[CPS.3.4]] (Support for Context-Sensitive Care Plans, Guidelines, Protocols).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>885</parentId>
@@ -13374,7 +13394,7 @@ Such verification does not have to occur at each individual data field and can b
 
 Decision Support for orders includes checking for allergies or adverse interactions, dosing checking and issuing the appropriate warnings. It may also include functions to increase ordering efficiency such as verifying all necessary information to fulfill the order is captured and making recommendations for supporting orders.
 
-A component of ordering medications and immunizations is the dispensing of those orders and, where applicable, this function will include criteria to support dispensing. Note: Administration of Orders is included in CPS.6 (Support for Treatment Administration).$EX$</notes>
+A component of ordering medications and immunizations is the dispensing of those orders and, where applicable, this function will include criteria to support dispensing. Note: Administration of Orders is included in [[CPS.6]] (Support for Treatment Administration).$EX$</notes>
          <stereotype>Header</stereotype>
          <type>Feature</type>
          <parentId>630</parentId>
@@ -13484,7 +13504,7 @@ A component of ordering medications and immunizations is the dispensing of those
       <object>
          <id>926</id>
          <name>CPS.4.1#06</name>
-         <notes>The system SHALL conform to function CP.4.1 (Use Order Sets).</notes>
+         <notes>The system SHALL conform to function [[CP.4.1]] (Use Order Sets).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>920</parentId>
@@ -13903,7 +13923,7 @@ A component of ordering medications and immunizations is the dispensing of those
          <alias>CPS.4.2.1</alias>
          <notes>$ST$Identify medication interaction warnings at the time of medication or immunization ordering, or prescribing, as well as at the time of dispensing.$DE$The clinician is alerted to medication-medication, medication-allergy, medication-food, medication-supplement (herbal or dietary) interactions at levels appropriate to the health care setting and with respect to the patient condition. These alerts may be customized to suit the user or group.
 
-Note, medication may be affected by food or diatary choices; whist this is not considered an interaction it is consequently not included in this function; however, the provision of drug-food effectiveness in information to be provided to the patient is included in the function CP.8.1 (Generate, Record and Distribute Patient-Specific Instructions).If the patient‚Äôs condition is one where, in order to view the necessary components of the health record, patient authorization or consent is required; then the system should show the
+Note, medication may be affected by food or diatary choices; whist this is not considered an interaction it is consequently not included in this function; however, the provision of drug-food effectiveness in information to be provided to the patient is included in the function [[CP.8.1]] (Generate, Record and Distribute Patient-Specific Instructions).If the patient‚Äôs condition is one where, in order to view the necessary components of the health record, patient authorization or consent is required; then the system should show the
         medication but mask the condition for which the medication is prescribed until the required consent or authorization is available. In an emergent situation, where all health information is required to provide the most effective treatment, and it is not possible to obtain an authorization or consent; the system should provide an override (e.g., "break the glass") function to allow access to the diagnosis or problem for which a medication was ordered, according to scope of practice, organizational policies, and/or jurisdictional law.$EX$</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
@@ -14045,7 +14065,7 @@ Note, medication may be affected by food or diatary choices; whist this is not c
       <object>
          <id>966</id>
          <name>CPS.4.2.1#09</name>
-         <notes>The system SHALL conform to function CPS.3.8 (Manage Documentation of Clinician Response to Decision Support Prompts) and provide the ability to document why a drug interaction warning was overridden.</notes>
+         <notes>The system SHALL conform to function [[CPS.3.8]] (Manage Documentation of Clinician Response to Decision Support Prompts) and provide the ability to document why a drug interaction warning was overridden.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>957</parentId>
@@ -14122,7 +14142,7 @@ Note, medication may be affected by food or diatary choices; whist this is not c
       <object>
          <id>971</id>
          <name>CPS.4.2.1#14</name>
-         <notes>The system SHALL conform to CP.1.3 (Manage Medication List) in order to maintain a coded list of medications for the patient (including a unique identifier for each medication).</notes>
+         <notes>The system SHALL conform to function [[CP.1.3]] (Manage Medication List) in order to maintain a coded list of medications for the patient (including a unique identifier for each medication).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>957</parentId>
@@ -14209,7 +14229,7 @@ Note, medication may be affected by food or diatary choices; whist this is not c
       <object>
          <id>977</id>
          <name>CPS.4.2.2#03</name>
-         <notes>The system SHOULD conform to CPS.9.2.3 (Support for Provider Pharmacy Communication) to support transmitting documented reasons for overriding a medication alert to the pharmacy .</notes>
+         <notes>The system SHOULD conform to function [[CPS.9.2.3]] (Support for Provider Pharmacy Communication) to support transmitting documented reasons for overriding a medication alert to the pharmacy .</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>974</parentId>
@@ -14660,7 +14680,7 @@ Note, medication may be affected by food or diatary choices; whist this is not c
       <object>
          <id>1008</id>
          <name>CPS.4.2.4#01</name>
-         <notes>The system SHALL conform to function CPS.4.2.2 (Support for Patient-Specific Dosing and Warnings).</notes>
+         <notes>The system SHALL conform to function [[CPS.4.2.2]] (Support for Patient-Specific Dosing and Warnings).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1007</parentId>
@@ -14731,8 +14751,15 @@ Note, medication may be affected by food or diatary choices; whist this is not c
          <alias>CPS.4.2.5</alias>
          <notes>$ST$Review a patient‚Äôs medication information (from more than one source) and reconcile conflicts.$DE$Medication reconciliation is the process of comparing a patient's medication information (from all sources) to the medications that the patient is actually has been taking. Medication reconciliation is done to avoid medication errors such as omissions, duplications, dosing errors, or drug interactions. Medication Reconciliation should be done at every episode or transition of care in which new medications are ordered or administered, existing orders are rewritten or where medications may influence the care given.
 
-Transitions in care include changes in setting, service, practitioner, or level of care. The Medication Reconciliation process comprises five includes several steps: (1) develop a list of current medication list of medications that the patient is taking, (2) develop a list of medications to be prescribed or recommended (3) compare the medication information from
-        all sources; (4) make shared and informed clinical decisions based on the comparison and provide the ability to document the interaction; and (5) communicate the updated medication information to the healthcare teams, the patient and appropriate caregivers. For example: If a patient‚Äôs pain, anticoagulation, hyperglycemia or other high risk therapy is being managed by a specialist, the healthcare team must be aware to avoid prescribing an additional equivalent of this medication.(6) Verify the patient‚Äôs/caregiver‚Äôs understanding and agreement to the patient‚Äôs medication treatment plan.(7) Standardization of shared medication information (name, dose, instructions, indications, prescriber, etc)$EX$</notes>
+Transitions in care include changes in setting, service, practitioner, or level of care. The Medication Reconciliation process includes several steps: 
+(1) develop a list of current medication list of medications that the patient is taking, 
+(2) develop a list of medications to be prescribed or recommended 
+(3) compare the medication information from all sources; 
+(4) make shared and informed clinical decisions based on the comparison and provide the ability to document the interaction; and 
+(5) communicate the updated medication information to the healthcare teams, the patient and appropriate caregivers. 
+    For example: If a patient‚Äôs pain, anticoagulation, hyperglycemia or other high risk therapy is being managed by a specialist, the healthcare team must be aware to avoid prescribing an additional equivalent of this medication.
+(6) Verify the patient‚Äôs/caregiver‚Äôs understanding and agreement to the patient‚Äôs medication treatment plan.
+(7) Standardization of shared medication information (name, dose, instructions, indications, prescriber, etc)$EX$</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
          <parentId>945</parentId>
@@ -15408,7 +15435,7 @@ Transitions in care include changes in setting, service, practitioner, or level 
       <object>
          <id>1062</id>
          <name>CPS.4.6.3#18</name>
-         <notes>The system MAY conform to function AS.9.2 (Support Financial Eligibility Verification) and display the results of e-referral eligibility and health plan/payer checking prior to approval of an referral order.</notes>
+         <notes>The system MAY conform to function [[AS.9.2]] (Support Financial Eligibility Verification) and display the results of e-referral eligibility and health plan/payer checking prior to approval of an referral order.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1044</parentId>
@@ -15649,7 +15676,7 @@ Transitions in care include changes in setting, service, practitioner, or level 
       <object>
          <id>1078</id>
          <name>CPS.6.1#04</name>
-         <notes>The system MAY conform to function CPS.7.1 (Access Healthcare Guidance) to enable access to external medication guidance (e.g., drug monograph or package insert information).</notes>
+         <notes>The system MAY conform to function [[CPS.7.1]] (Access Healthcare Guidance) to enable access to external medication guidance (e.g., drug monograph or package insert information).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1074</parentId>
@@ -15809,7 +15836,7 @@ Transitions in care include changes in setting, service, practitioner, or level 
       <object>
          <id>1089</id>
          <name>CPS.6.2#05</name>
-         <notes>The system MAY conform to function CPS.7.1 (Access Healthcare Guidance) to enable access to external immunization guidance (e.g., in the US, the Center for Disease Control immunization recommendations).</notes>
+         <notes>The system MAY conform to function [[CPS.7.1]] (Access Healthcare Guidance) to enable access to external immunization guidance (e.g., in the US, the Center for Disease Control immunization recommendations).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1084</parentId>
@@ -15982,7 +16009,7 @@ Transitions in care include changes in setting, service, practitioner, or level 
       <object>
          <id>1101</id>
          <name>CPS.6.3#04</name>
-         <notes>The system SHALL conform to function CP.3.2 (Manage Patient Clinical Measurements) and capture the blood pressure, temperature, pulse and respiration rate of the patient receiving the product.</notes>
+         <notes>The system SHALL conform to function [[CP.3.2]] (Manage Patient Clinical Measurements) and capture the blood pressure, temperature, pulse and respiration rate of the patient receiving the product.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1097</parentId>
@@ -16159,7 +16186,7 @@ Transitions in care include changes in setting, service, practitioner, or level 
       <object>
          <id>1112</id>
          <name>CPS.7.1#04</name>
-         <notes>The system SHALL conform to function CPS.3.3 (Support for Standard Care Plans, Guidelines, Protocols).</notes>
+         <notes>The system SHALL conform to function [[CPS.3.3]] (Support for Standard Care Plans, Guidelines, Protocols).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1108</parentId>
@@ -17479,8 +17506,17 @@ The system should provide for both verbal and written communication. These excha
          <name>CPS.9.2.3 Support for Provider -Pharmacy Communication</name>
          <alias>CPS.9.2.3</alias>
          <notes>$ST$Provide features to enable secure bi-directional communication of information electronically between practitioners and pharmacies or between practitioner and intended recipient of pharmacy orders.$DE$When a medication is prescribed, the order is routed to the pharmacy or other intended recipient of pharmacy orders. This information is used to avoid transcription errors and facilitate detection of potential adverse reactions. If there is a question from the pharmacy, that communication can be presented to the provider with their other tasks. In certain environments, medication order creation is a collaborative process involving the prescriber and facility staff. Accordingly, this function applies to communication process between the prescriber, facility and the pharmacy or other intended recipient of pharmacy orders. The transmission of prescription data between systems should conform to realm acceptable messaging standards. Informative examples:
-- HL7 Clinical Document
-        Architecture Release 2- ISO/EN 13606 Electronic Health Record Communication- CEN ENV 13607:2000. Health informatics. Messages for the exchange of information on medicine prescriptions- X12N healthcare transactions- US realm: National Council for Prescription Drug Programs (NCPDP)- Canadian realm: National Electronic Claims Standard (NeCST)$EX$- HL7 Clinical Document Architecture Release 2- ISO/EN 13606 Electronic Health Record Communication- CEN ENV 13607:2000. Health informatics. Messages for the exchange of information on medicine prescriptions- X12N healthcare transactions- US realm: National Council for Prescription Drug Programs (NCPDP)- Canadian realm: National Electronic Claims Standard (NeCST)</notes>
+- HL7 Clinical Document Architecture Release 2
+- ISO/EN 13606 Electronic Health Record Communication
+- CEN ENV 13607:2000. Health informatics. Messages for the exchange of information on medicine prescriptions
+- X12N healthcare transactions
+- US realm: National Council for Prescription Drug Programs (NCPDP)
+- Canadian realm: National Electronic Claims Standard (NeCST)$EX$- HL7 Clinical Document Architecture Release 2
+- ISO/EN 13606 Electronic Health Record Communication
+- CEN ENV 13607:2000. Health informatics. Messages for the exchange of information on medicine prescriptions
+- X12N healthcare transactions
+- US realm: National Council for Prescription Drug Programs (NCPDP)
+- Canadian realm: National Electronic Claims Standard (NeCST)</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
          <parentId>1173</parentId>
@@ -17493,7 +17529,7 @@ The system should provide for both verbal and written communication. These excha
       <object>
          <id>1202</id>
          <name>CPS.9.2.3#01</name>
-         <notes>The system SHALL conform to function CP.4.2 (Manage Medication Orders) and provide the ability to transmit medication orders.</notes>
+         <notes>The system SHALL conform to function [[CP.4.2]] (Manage Medication Orders) and provide the ability to transmit medication orders.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1201</parentId>
@@ -18574,7 +18610,7 @@ Users need to be able to sort, and/or filter reports. For example:
       <object>
          <id>1403</id>
          <name>AS.1.1#07</name>
-         <notes>IF TI.3 (Registry and Directory Services) is implemented, THEN the system SHALL conform to function TI.3 and provide the ability to use registries or directories to uniquely identify providers for the provision of care.</notes>
+         <notes>IF [[TI.3]] (Registry and Directory Services) is implemented, THEN the system SHALL conform to function [[TI.3]] and provide the ability to use registries or directories to uniquely identify providers for the provision of care.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1396</parentId>
@@ -18591,7 +18627,7 @@ Users need to be able to sort, and/or filter reports. For example:
       <object>
          <id>1404</id>
          <name>AS.1.1#08</name>
-         <notes>The system SHOULD provide the ability for authorized users to restrict the view of selected elements of the registry or directory information for the users of the system based on the user's security level and access needs.</notes>
+         <notes>The system SHOULD provide the ability for authorized users to hide selected elements of the registry or directory information for the users of the system based on the user's security level and access needs. For example, the administrator hides from data-entry clerks the name of the data-entry clerk‚Äôs immediate relatives who are listed on the hospital‚Äôs cancer registry.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1396</parentId>
@@ -18877,7 +18913,7 @@ Users need to be able to sort, and/or filter reports. For example:
       <object>
          <id>1423</id>
          <name>AS.1.6#02</name>
-         <notes>The system SHOULD conform to function AS.1.7 (Manage Practitioner/Patient Relationships).</notes>
+         <notes>The system SHOULD conform to function [[AS.1.7]] (Manage Practitioner/Patient Relationships).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1421</parentId>
@@ -22208,7 +22244,7 @@ This support is necessary for care provision functionality that relies on provid
       <object>
          <id>1657</id>
          <name>AS.8.3#06</name>
-         <notes>The system SHOULD conform to function AS.9.3 (Support Service Authorizations) to integrate support of prior authorization processes.</notes>
+         <notes>The system SHOULD conform to function [[AS.9.3]] (Support Service Authorizations) to integrate support of prior authorization processes.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1651</parentId>
@@ -23447,7 +23483,7 @@ A ‚Äúdynamic cohort‚Äù query may identify new patients to be added periodically 
       <object>
          <id>1296</id>
          <name>POP.2.1#10</name>
-         <notes>The system SHOULD conform to TI.5.3 (Standards-Based Application Integration) to suppport the creation of a query.</notes>
+         <notes>The system SHOULD conform to function [[TI.5.3]] (Standards-Based Application Integration) to suppport the creation of a query.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1286</parentId>
@@ -23550,7 +23586,7 @@ A ‚Äúdynamic cohort‚Äù query may identify new patients to be added periodically 
       <object>
          <id>1304</id>
          <name>POP.2.2#05</name>
-         <notes>The system SHOULD conform to TI.5.3 (Standards-Based Application Integration) to manage query results.</notes>
+         <notes>The system SHOULD conform to function [[TI.5.3]] (Standards-Based Application Integration) to manage query results.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1299</parentId>
@@ -23653,7 +23689,7 @@ A ‚Äúdynamic cohort‚Äù query may identify new patients to be added periodically 
       <object>
          <id>1312</id>
          <name>POP.2.3#06</name>
-         <notes>IF standardized transmission of the results of a query are required to/from a registry or directory, THEN the system SHALL conform to function TI.3 (Registry and Directory Services).</notes>
+         <notes>IF standardized transmission of the results of a query are required to/from a registry or directory, THEN the system SHALL conform to function [[TI.3]] (Registry and Directory Services).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1306</parentId>
@@ -24535,7 +24571,7 @@ A random re-identification key may be added to the data, to support re-identific
       <object>
          <id>1371</id>
          <name>POP.8#01</name>
-         <notes>The system SHALL conform to function TI.1.8 (Patient Privacy and Confidentiality) when managing de-identified views of data according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+         <notes>The system SHALL conform to function [[TI.1.8]] (Patient Privacy and Confidentiality) when managing de-identified views of data according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1370</parentId>
@@ -24641,7 +24677,7 @@ The system may also provide the ability to create and render configurable report
       <object>
          <id>1378</id>
          <name>POP.9#01</name>
-         <notes>The system SHALL conform to function CPS.3.4 (Support for Context-Sensitive Care Plans, Guidelines, Protocols).</notes>
+         <notes>The system SHALL conform to function [[CPS.3.4]] (Support for Context-Sensitive Care Plans, Guidelines, Protocols).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1377</parentId>
@@ -24722,7 +24758,7 @@ The system may also provide the ability to create and render configurable report
       <object>
          <id>1383</id>
          <name>POP.9#06</name>
-         <notes>The system SHALL conform to function CPS.9.4 (Standard Report Generation).</notes>
+         <notes>The system SHALL conform to function [[CPS.9.4]] (Standard Report Generation).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1377</parentId>
@@ -24951,7 +24987,7 @@ Record Lifecycle Events (as per Section RI.1.1) are those required to manage Rec
       <object>
          <id>1705</id>
          <name>RI.1.1#01</name>
-         <notes>The system SHALL conform to function RI.1.2.1 (Manage Record Entries) as the final step to conclude each Record Lifecycle Event in RI.1.1 (Record Lifecycle) and all child functions.</notes>
+         <notes>The system SHALL conform to function [[RI.1.2.1]] (Manage Record Entries) as the final step to conclude each Record Lifecycle Event in [[RI.1.1]] (Record Lifecycle) and all child functions.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1704</parentId>
@@ -25963,7 +25999,7 @@ The purpose of attestation is to show authorship and assign responsibility for a
       <object>
          <id>1773</id>
          <name>RI.1.1.4#01</name>
-         <notes>The system SHALL conform to function TI.1.1 (Entity Authentication).</notes>
+         <notes>The system SHALL conform to function [[TI.1.1]] (Entity Authentication).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1772</parentId>
@@ -25980,7 +26016,7 @@ The purpose of attestation is to show authorship and assign responsibility for a
       <object>
          <id>1774</id>
          <name>RI.1.1.4#02</name>
-         <notes>The system SHALL conform to function TI.1.2 (Entity Authorization).</notes>
+         <notes>The system SHALL conform to function [[TI.1.2]] (Entity Authorization).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1772</parentId>
@@ -26044,7 +26080,7 @@ The purpose of attestation is to show authorship and assign responsibility for a
       <object>
          <id>1778</id>
          <name>RI.1.1.4#06</name>
-         <notes>The system SHALL present the status of attestable Record Entry content which has not been attested, conforming to function RI.1.3.1 (Record Pending State).</notes>
+         <notes>The system SHALL present the status of attestable Record Entry content which has not been attested, conforming to function [[RI.1.3.1]] (Record Pending State).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1772</parentId>
@@ -26645,7 +26681,7 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <object>
          <id>1821</id>
          <name>RI.1.1.6#06</name>
-         <notes>The system SHALL conform to function TI.1.6 (Secure Data Exchange).</notes>
+         <notes>The system SHALL conform to function [[TI.1.6]] (Secure Data Exchange).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1815</parentId>
@@ -26658,7 +26694,7 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <object>
          <id>1822</id>
          <name>RI.1.1.6#07</name>
-         <notes>The system SHALL provide the ability to extract Record Entry content prior to output/report, conforming to function RI.1.1.13 (Extract Record Entry Content).</notes>
+         <notes>The system SHALL provide the ability to extract Record Entry content prior to output/report, conforming to function [[RI.1.1.13]] (Extract Record Entry Content).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1815</parentId>
@@ -26671,7 +26707,7 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <object>
          <id>1823</id>
          <name>RI.1.1.6#08</name>
-         <notes>The system SHALL provide the ability to de-identify Record Entry content prior to output/report, conforming to function RI.1.1.10 (De-Identify Record Entries).</notes>
+         <notes>The system SHALL provide the ability to de-identify Record Entry content prior to output/report, conforming to function [[RI.1.1.10]] (De-Identify Record Entries).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1815</parentId>
@@ -26935,7 +26971,7 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <object>
          <id>1843</id>
          <name>RI.1.1.7#05</name>
-         <notes>The system SHALL conform to function TI.1.6 (Secure Data Exchange).</notes>
+         <notes>The system SHALL conform to function [[TI.1.6]] (Secure Data Exchange).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1838</parentId>
@@ -26948,7 +26984,7 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <object>
          <id>1844</id>
          <name>RI.1.1.7#06</name>
-         <notes>The system SHALL provide the ability to extract Record Entry content prior to disclosure, conforming to function RI.1.1.13 (Extract Record Entry Content).</notes>
+         <notes>The system SHALL provide the ability to extract Record Entry content prior to disclosure, conforming to function [[RI.1.1.13]] (Extract Record Entry Content).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1838</parentId>
@@ -26961,7 +26997,7 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <object>
          <id>1845</id>
          <name>RI.1.1.7#07</name>
-         <notes>The system SHALL provide the ability to de-identify Record Entry content prior to disclosure, conforming to function RI.1.1.10 (De-Identify Record Entries).</notes>
+         <notes>The system SHALL provide the ability to de-identify Record Entry content prior to disclosure, conforming to function [[RI.1.1.10]] (De-Identify Record Entries).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1838</parentId>
@@ -27231,7 +27267,7 @@ Reference: ISO 21089, Section 12.8.1.$EX$</notes>
       <object>
          <id>1865</id>
          <name>RI.1.1.8#06</name>
-         <notes>The system SHALL conform to function TI.1.6 (Secure Data Exchange).</notes>
+         <notes>The system SHALL conform to function [[TI.1.6]] (Secure Data Exchange).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1859</parentId>
@@ -27244,7 +27280,7 @@ Reference: ISO 21089, Section 12.8.1.$EX$</notes>
       <object>
          <id>1866</id>
          <name>RI.1.1.8#07</name>
-         <notes>The system SHALL provide the ability to extract Record Entry content prior to transmittal, conforming to function RI.1.1.13 (Extract Record Entry Content).</notes>
+         <notes>The system SHALL provide the ability to extract Record Entry content prior to transmittal, conforming to function [[RI.1.1.13]] (Extract Record Entry Content).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1859</parentId>
@@ -27257,7 +27293,7 @@ Reference: ISO 21089, Section 12.8.1.$EX$</notes>
       <object>
          <id>1867</id>
          <name>RI.1.1.8#08</name>
-         <notes>The system SHALL provide the ability to de-identify Record Entry content prior to transmittal, conforming to function RI.1.1.10 (De-Identify Record Entries).</notes>
+         <notes>The system SHALL provide the ability to de-identify Record Entry content prior to transmittal, conforming to function [[RI.1.1.10]] (De-Identify Record Entries).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1859</parentId>
@@ -28335,7 +28371,7 @@ Reference: ISO 21089, Section 12.6.2.$EX$</notes>
       <object>
          <id>1946</id>
          <name>RI.1.1.13#02</name>
-         <notes>The system SHALL provide the ability to de-identify Record Entries during extraction in accordance with function RI.1.1.10 (De-Identify Record Entries).</notes>
+         <notes>The system SHALL provide the ability to de-identify Record Entries during extraction in accordance with function [[RI.1.1.10]] (De-Identify Record Entries).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1944</parentId>
@@ -28625,7 +28661,7 @@ Reference: ISO 21089, Section 12.10.$EX$</notes>
       <object>
          <id>1969</id>
          <name>RI.1.1.14#01</name>
-         <notes>The system SHALL archive Record Entries according to function RI.3 (Manage Record Archive and Restore).</notes>
+         <notes>The system SHALL archive Record Entries according to function [[RI.3]] (Manage Record Archive and Restore).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>1966</parentId>
@@ -29763,7 +29799,7 @@ Reference: ISO 21089, Section 12.11.$EX$</notes>
          <id>2053</id>
          <name>RI.1.1.20 Unmerge Record Entries</name>
          <alias>RI.1.1.20</alias>
-         <notes>$ST$Unmerge previously merged Record Entries (2 or more instances)$DE$Occurs when Record Entries must be unmerged from previous merge, as in RI.1.1.16.$EX$</notes>
+         <notes>$ST$Unmerge previously merged Record Entries (2 or more instances)$DE$Occurs when Record Entries must be unmerged from previous merge, as in [[RI.1.1.16]].$EX$</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
          <parentId>1704</parentId>
@@ -30111,7 +30147,7 @@ Reference: ISO 21089, Section 12.11.$EX$</notes>
          <id>2080</id>
          <name>RI.1.1.22 Unlink Record Entries</name>
          <alias>RI.1.1.22</alias>
-         <notes>$ST$Unlink previously linked Record Entries (2 or more instances)$DE$Occurs when Record Entries must be unlinked from previous linkage, as in RI.1.1.18.$EX$</notes>
+         <notes>$ST$Unlink previously linked Record Entries (2 or more instances)$DE$Occurs when Record Entries must be unlinked from previous linkage, as in [[RI.1.1.18]].$EX$</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
          <parentId>1704</parentId>
@@ -30458,7 +30494,7 @@ Reference: ISO 21089, Section 12.11.$EX$</notes>
          <id>2107</id>
          <name>RI.1.1.24 Release Record Entries from Legal Hold</name>
          <alias>RI.1.1.24</alias>
-         <notes>$ST$Release legal hold on Record Entries (1 or more instances)$DE$Occurs when Record Entries are released from legal hold (previously marked and held in unaltered state), as in RI.1.1.20.$EX$</notes>
+         <notes>$ST$Release legal hold on Record Entries (1 or more instances)$DE$Occurs when Record Entries are released from legal hold (previously marked and held in unaltered state), as in [[RI.1.1.20]].$EX$</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
          <parentId>1704</parentId>
@@ -30612,7 +30648,7 @@ Reference: ISO 21089, Section 12.11.$EX$</notes>
          <id>2119</id>
          <name>RI.1.2 Record Lifespan</name>
          <alias>RI.1.2</alias>
-         <notes>$ST$Manage Record Lifespan$DE$Record Lifecycle Events (Section RI.1.1) are those required to manage Record Entries in persistent storage over the full course of Record Lifespan (Section RI.1.2). See Section RI.1.1, Record Lifecycle, for further description.$EX$</notes>
+         <notes>$ST$Manage Record Lifespan$DE$Record Lifecycle Events (Function [[RI.1.1]]) are those required to manage Record Entries in persistent storage over the full course of Record Lifespan (Section [[RI.1.2]]). See Section [[RI.1.1]], Record Lifecycle, for further description.$EX$</notes>
          <stereotype>Header</stereotype>
          <type>Feature</type>
          <parentId>1703</parentId>
@@ -30664,7 +30700,7 @@ Reference: ISO 21089, Section 12.2.2$EX$</notes>
       <object>
          <id>2123</id>
          <name>RI.1.2.1#03</name>
-         <notes>The system SHALL manage (persist) the full set of identity, event and provenance Audit Metadata for each Record Entry, conforming to lifecycle events in function RI.1.1 (Record Lifecycle) and metadata requirements in function TI.2.1.1 (Record Entry Audit Triggers).</notes>
+         <notes>The system SHALL manage (persist) the full set of identity, event and provenance Audit Metadata for each Record Entry, conforming to lifecycle events in function [[RI.1.1]] (Record Lifecycle) and metadata requirements in function [[TI.2.1.1]] (Record Entry Audit Triggers).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2120</parentId>
@@ -30677,7 +30713,7 @@ Reference: ISO 21089, Section 12.2.2$EX$</notes>
       <object>
          <id>2124</id>
          <name>RI.1.2.1#04</name>
-         <notes>The system SHALL manage (persist) the attestation/signature event (e.g., digital signature) of each Record Entry conforming to function RI.1.1.4 (Attest Record Entry Content).</notes>
+         <notes>The system SHALL manage (persist) the attestation/signature event (e.g., digital signature) of each Record Entry conforming to function [[RI.1.1.4]] (Attest Record Entry Content).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2120</parentId>
@@ -30906,7 +30942,7 @@ Reference: ISO 21089, Section 12.2.2$EX$</notes>
       <object>
          <id>2141</id>
          <name>RI.1.2.2#01</name>
-         <notes>The system SHALL conform to function RI.1.1.23 (Place Record Entries on Legal Hold).</notes>
+         <notes>The system SHALL conform to function [[RI.1.1.23]] (Place Record Entries on Legal Hold).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2140</parentId>
@@ -30919,7 +30955,7 @@ Reference: ISO 21089, Section 12.2.2$EX$</notes>
       <object>
          <id>2142</id>
          <name>RI.1.2.2#02</name>
-         <notes>The system SHALL conform to function RI.1.1.24 (Release Record Entries from Legal Hold).</notes>
+         <notes>The system SHALL conform to function [[RI.1.1.24]] (Release Record Entries from Legal Hold).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2140</parentId>
@@ -30984,7 +31020,7 @@ Reference: ISO 21089, Section 12.2.2$EX$</notes>
       <object>
          <id>2147</id>
          <name>RI.1.2.2#07</name>
-         <notes>The system MAY provide the ability to render Record Entry content preserved for a legal hold by type, class or encounter (e.g., medical Record Entry or report, e-mail, metadata, etc.), conforming to function RI.1.1.13 (Extract Record Entry Content).</notes>
+         <notes>The system MAY provide the ability to render Record Entry content preserved for a legal hold by type, class or encounter (e.g., medical Record Entry or report, e-mail, metadata, etc.), conforming to function [[RI.1.1.13]] (Extract Record Entry Content).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2140</parentId>
@@ -31104,7 +31140,7 @@ Reference: ISO 21089, Section 12.2.2$EX$</notes>
       <object>
          <id>2156</id>
          <name>RI.1.3.1#07</name>
-         <notes>The system SHALL capture a date/time stamp and identify the author each time a Record Entry is updated including when opened, when updated, with the signature event and when officially closed, conforming to function TI.2.1.1 (Record Entry Audit Triggers).</notes>
+         <notes>The system SHALL capture a date/time stamp and identify the author each time a Record Entry is updated including when opened, when updated, with the signature event and when officially closed, conforming to function [[TI.2.1.1]] (Record Entry Audit Triggers).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2149</parentId>
@@ -31130,7 +31166,7 @@ Reference: ISO 21089, Section 12.2.2$EX$</notes>
       <object>
          <id>2158</id>
          <name>RI.1.3.2#01</name>
-         <notes>The system SHALL provide the ability to update a Record Entry for purposes of amendment, correction or augmentation, conforming to function RI.1.1.2 (Amend Record Entry Content).</notes>
+         <notes>The system SHALL provide the ability to update a Record Entry for purposes of amendment, correction or augmentation, conforming to function [[RI.1.1.2]] (Amend Record Entry Content).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2157</parentId>
@@ -31156,7 +31192,7 @@ Reference: ISO 21089, Section 12.2.2$EX$</notes>
       <object>
          <id>2160</id>
          <name>RI.1.3.2#03</name>
-         <notes>The system SHALL capture, maintain and render the corresponding date, time, and user specifying when and by whom a Record Entry was amended, corrected, or augmented, conforming to function RI.1.1.2.1 (Evidence of Record Entry Amendment Event).</notes>
+         <notes>The system SHALL capture, maintain and render the corresponding date, time, and user specifying when and by whom a Record Entry was amended, corrected, or augmented, conforming to function [[RI.1.1.2.1]] (Evidence of Record Entry Amendment Event).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2157</parentId>
@@ -31182,7 +31218,7 @@ Reference: ISO 21089, Section 12.2.2$EX$</notes>
       <object>
          <id>2162</id>
          <name>RI.1.3.2#05</name>
-         <notes>The system SHALL manage all versions of the Record Entry for the legal retention period, conforming to function RI.1.2.1 (Manage Record Entries).</notes>
+         <notes>The system SHALL manage all versions of the Record Entry for the legal retention period, conforming to function [[RI.1.2.1]] (Manage Record Entries).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2157</parentId>
@@ -31318,7 +31354,7 @@ There are times that a EHR Record Entry is created then found to be erroneous, i
       <object>
          <id>2172</id>
          <name>RI.1.3.4#04</name>
-         <notes>The system SHALL conform to function RI.1.1.17 (Deprecate/Retract Record Entries).</notes>
+         <notes>The system SHALL conform to function [[RI.1.1.17]] (Deprecate/Retract Record Entries).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2168</parentId>
@@ -31430,7 +31466,7 @@ Note: Standards exist for Consistent Date and Time.$EX$</notes>
       <object>
          <id>2180</id>
          <name>RI.2#01</name>
-         <notes>The system SHALL conform to function TI.5.1 (Application and Structured-Document Interchange Standards).</notes>
+         <notes>The system SHALL conform to function [[TI.5.1]] (Application and Structured-Document Interchange Standards).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2179</parentId>
@@ -31447,7 +31483,7 @@ Note: Standards exist for Consistent Date and Time.$EX$</notes>
       <object>
          <id>2181</id>
          <name>RI.2#02</name>
-         <notes>The system SHOULD conform to function TI.3 (Registry and Directory Services).</notes>
+         <notes>The system SHOULD conform to function [[TI.3]] (Registry and Directory Services).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2179</parentId>
@@ -31651,7 +31687,7 @@ The system must enable compliance with records retention according to scope of p
          <id>2194</id>
          <name>TI.1 Security</name>
          <alias>TI.1</alias>
-         <notes>$ST$Manage EHR-S security.$DE$EHR-S security consists of entity authentication, entity authorization, entity access control, patient access management, secure data exchange, attestation, patient privacy and confidentiality. EHR audit functions are described in TI.2.$EX$</notes>
+         <notes>$ST$Manage EHR-S security.$DE$EHR-S security consists of entity authentication, entity authorization, entity access control, patient access management, secure data exchange, attestation, patient privacy and confidentiality. EHR audit functions are described in [[TI.2]].$EX$</notes>
          <stereotype>Header</stereotype>
          <type>Feature</type>
          <parentId>2193</parentId>
@@ -31882,7 +31918,7 @@ Examples of entity authentication, with varying levels of authentication rigor, 
       <object>
          <id>2210</id>
          <name>TI.1.2#02</name>
-         <notes>The system SHALL conform to TI.2 (Audit) to audit authorization actions as security events.</notes>
+         <notes>The system SHALL conform to function [[TI.2]] (Audit) to audit authorization actions as security events.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2208</parentId>
@@ -31956,7 +31992,7 @@ Examples of entity authentication, with varying levels of authentication rigor, 
       <object>
          <id>2215</id>
          <name>TI.1.3#01</name>
-         <notes>The system SHALL conform to function TI.1.1 (Entity Authentication).</notes>
+         <notes>The system SHALL conform to function [[TI.1.1]] (Entity Authentication).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2214</parentId>
@@ -31973,7 +32009,7 @@ Examples of entity authentication, with varying levels of authentication rigor, 
       <object>
          <id>2216</id>
          <name>TI.1.3#02</name>
-         <notes>The system SHALL conform to function TI.1.2 (Entity Authorization).</notes>
+         <notes>The system SHALL conform to function [[TI.1.2]] (Entity Authorization).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2214</parentId>
@@ -32158,7 +32194,7 @@ Logging of a user‚Äôs activities should occur in the audit record/metadata. Repo
       <object>
          <id>2229</id>
          <name>TI.1.4#01</name>
-         <notes>IF organizational policy allows patient access to the EHR-S, THEN the system SHALL conform to Function TI.1.3 (Entity Access Control).</notes>
+         <notes>IF organizational policy allows patient access to the EHR-S, THEN the system SHALL conform to function [[TI.1.3]] (Entity Access Control).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2228</parentId>
@@ -32175,7 +32211,7 @@ Logging of a user‚Äôs activities should occur in the audit record/metadata. Repo
       <object>
          <id>2230</id>
          <name>TI.1.4#02</name>
-         <notes>IF organizational policy allows patient access to the EHR-S, THEN the system SHALL conform to Function TI.1.2 (Entity Authorization).</notes>
+         <notes>IF organizational policy allows patient access to the EHR-S, THEN the system SHALL conform to function [[TI.1.2]] (Entity Authorization).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2228</parentId>
@@ -32240,7 +32276,7 @@ Logging of a user‚Äôs activities should occur in the audit record/metadata. Repo
       <object>
          <id>2234</id>
          <name>TI.1.5#03</name>
-         <notes>The system SHALL conform to function TI.2 (Audit) to prevent repudiation of data origination, transmission and receipt according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+         <notes>The system SHALL conform to function [[TI.2]] (Audit) to prevent repudiation of data origination, transmission and receipt according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2231</parentId>
@@ -32257,7 +32293,7 @@ Logging of a user‚Äôs activities should occur in the audit record/metadata. Repo
       <object>
          <id>2235</id>
          <name>TI.1.5#04</name>
-         <notes>The system SHOULD conform to function RI.1.1.4 (Attest Record Entry Content) to ensure integrity of data and data exchange and thus prevent repudiation of data origination, transmission or receipt according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+         <notes>The system SHOULD conform to function [[RI.1.1.4]] (Attest Record Entry Content) to ensure integrity of data and data exchange and thus prevent repudiation of data origination, transmission or receipt according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2231</parentId>
@@ -32305,7 +32341,7 @@ Logging of a user‚Äôs activities should occur in the audit record/metadata. Repo
       <object>
          <id>2238</id>
          <name>TI.1.6#02</name>
-         <notes>The system SHALL conform to function TI.1.7 (Secure Data Routing).</notes>
+         <notes>The system SHALL conform to function [[TI.1.7]] (Secure Data Routing).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2236</parentId>
@@ -32413,7 +32449,7 @@ Logging of a user‚Äôs activities should occur in the audit record/metadata. Repo
       <object>
          <id>2245</id>
          <name>TI.1.7#01</name>
-         <notes>The system SHALL conform to function TI.1.1 (Entity Authentication) to exchange EHR data only to and from known, authenticated sources and destinations.</notes>
+         <notes>The system SHALL conform to function [[TI.1.1]] (Entity Authentication) to exchange EHR data only to and from known, authenticated sources and destinations.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2244</parentId>
@@ -32430,7 +32466,7 @@ Logging of a user‚Äôs activities should occur in the audit record/metadata. Repo
       <object>
          <id>2246</id>
          <name>TI.1.7#02</name>
-         <notes>The system SHALL conform to Section TI.2 (Audit) to capture audit information about changes to the status of sources and destinations.</notes>
+         <notes>The system SHALL conform to function [[TI.2]] (Audit) to capture audit information about changes to the status of sources and destinations.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2244</parentId>
@@ -32480,7 +32516,7 @@ Organizational practices related to privacy and security jurisdictional laws cou
       <object>
          <id>2249</id>
          <name>TI.1.8#02</name>
-         <notes>The system SHALL conform to function TI.1.1 (Entity Authentication).</notes>
+         <notes>The system SHALL conform to function [[TI.1.1]] (Entity Authentication).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2247</parentId>
@@ -32497,7 +32533,7 @@ Organizational practices related to privacy and security jurisdictional laws cou
       <object>
          <id>2250</id>
          <name>TI.1.8#03</name>
-         <notes>The system SHALL conform to function TI.1.2 (Entity Authorization).</notes>
+         <notes>The system SHALL conform to function [[TI.1.2]] (Entity Authorization).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2247</parentId>
@@ -32514,7 +32550,7 @@ Organizational practices related to privacy and security jurisdictional laws cou
       <object>
          <id>2251</id>
          <name>TI.1.8#04</name>
-         <notes>The system SHALL conform to function TI.1.3 (Entity Access Control).</notes>
+         <notes>The system SHALL conform to function [[TI.1.3]] (Entity Access Control).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2247</parentId>
@@ -32531,7 +32567,7 @@ Organizational practices related to privacy and security jurisdictional laws cou
       <object>
          <id>2252</id>
          <name>TI.1.8#05</name>
-         <notes>The system SHALL conform to function TI.1.5 (Non-Repudiation).</notes>
+         <notes>The system SHALL conform to function [[TI.1.5]] (Non-Repudiation).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2247</parentId>
@@ -32548,7 +32584,7 @@ Organizational practices related to privacy and security jurisdictional laws cou
       <object>
          <id>2253</id>
          <name>TI.1.8#06</name>
-         <notes>The system SHALL conform to function TI.1.6 (Secure Data Exchange).</notes>
+         <notes>The system SHALL conform to function [[TI.1.6]] (Secure Data Exchange).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2247</parentId>
@@ -32565,7 +32601,7 @@ Organizational practices related to privacy and security jurisdictional laws cou
       <object>
          <id>2254</id>
          <name>TI.1.8#07</name>
-         <notes>The system SHALL conform to function TI.2 (Audit).</notes>
+         <notes>The system SHALL conform to function [[TI.2]] (Audit).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2247</parentId>
@@ -32856,7 +32892,7 @@ Audit functions implement requirements according to scope of practice, organizat
       <object>
          <id>2275</id>
          <name>TI.2#01</name>
-         <notes>The system SHALL conform to function TI.1.3 (Entity Access Control) to limit access to, or modification of, audit record information to appropriate entities according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+         <notes>The system SHALL conform to function [[TI.1.3]] (Entity Access Control) to limit access to, or modification of, audit record information to appropriate entities according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2274</parentId>
@@ -32873,7 +32909,7 @@ Audit functions implement requirements according to scope of practice, organizat
       <object>
          <id>2276</id>
          <name>TI.2#02</name>
-         <notes>The system SHALL conform to function TI.1.3 (Entity Access Control) to limit access to audit record information for purposes of deletion according to scope of practice, organizational policy, and/or jurisdictional law (e.g., limit access to only allow a specific system administrator to delete audit record information).</notes>
+         <notes>The system SHALL conform to function [[TI.1.3]] (Entity Access Control) to limit access to audit record information for purposes of deletion according to scope of practice, organizational policy, and/or jurisdictional law (e.g., limit access to only allow a specific system administrator to delete audit record information).</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2274</parentId>
@@ -32904,7 +32940,7 @@ Audit functions implement requirements according to scope of practice, organizat
       <object>
          <id>2278</id>
          <name>TI.2.1#01</name>
-         <notes>The system SHALL audit key events, as specified in function TI.2.1 (Audit Triggers) and child functions, according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+         <notes>The system SHALL audit key events, as specified in function [[TI.2.1]] (Audit Triggers) and child functions, according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2277</parentId>
@@ -32917,7 +32953,7 @@ Audit functions implement requirements according to scope of practice, organizat
       <object>
          <id>2279</id>
          <name>TI.2.1#02</name>
-         <notes>The system SHALL capture key Audit Metadata at each Audit Trigger, as specified in TI.2.1 (Audit Triggers) and child functions, according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+         <notes>The system SHALL capture key Audit Metadata at each Audit Trigger, as specified in [[TI.2.1]] (Audit Triggers) and child functions, according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2277</parentId>
@@ -32930,7 +32966,7 @@ Audit functions implement requirements according to scope of practice, organizat
       <object>
          <id>2280</id>
          <name>TI.2.1#03</name>
-         <notes>The system SHALL capture an Audit Log Entry at each Audit Trigger as specified in TI.2.1 (Audit Triggers) according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+         <notes>The system SHALL capture an Audit Log Entry at each Audit Trigger as specified in [[TI.2.1]] (Audit Triggers) according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2277</parentId>
@@ -32974,7 +33010,7 @@ Audit functions implement requirements according to scope of practice, organizat
          <id>2283</id>
          <name>TI.2.1.1 Record Entry Audit Triggers</name>
          <alias>TI.2.1.1</alias>
-         <notes>$ST$Manage Record Entry Audit Triggers$DE$Record Entries are managed throughout their lifespan at various points in their lifecycle. Record Entry Audit Triggers are designed to capture Record Entry related events including key metadata (who, what, when, where, why). See Function RI.1, Record Lifecycle.$EX$</notes>
+         <notes>$ST$Manage Record Entry Audit Triggers$DE$Record Entries are managed throughout their lifespan at various points in their lifecycle. Record Entry Audit Triggers are designed to capture Record Entry related events including key metadata (who, what, when, where, why). See Function [[RI.1]], Record Lifecycle.$EX$</notes>
          <stereotype>Function</stereotype>
          <type>Feature</type>
          <parentId>2277</parentId>
@@ -32985,7 +33021,7 @@ Audit functions implement requirements according to scope of practice, organizat
       <object>
          <id>2284</id>
          <name>TI.2.1.1#01</name>
-         <notes>The system SHALL conform to Function RI.1 (Record Lifecycle) and its RI.1.x.1 Subsections to capture and maintain Record Entry Audit Metadata.</notes>
+         <notes>The system SHALL conform to function [[RI.1]] (Record Lifecycle) and its RI.1.x.1 Subsections to capture and maintain Record Entry Audit Metadata.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2283</parentId>
@@ -36652,7 +36688,7 @@ An example of local registry usage is an EHR-S application sending a query messa
       <object>
          <id>2563</id>
          <name>TI.3#04</name>
-         <notes>The system SHALL conform to function TI.5.1 (Application and Structured-Document Interchange Standards) to exchange information with external registry services and directories.</notes>
+         <notes>The system SHALL conform to function [[TI.5.1]] (Application and Structured-Document Interchange Standards) to exchange information with external registry services and directories.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2559</parentId>
@@ -37280,8 +37316,7 @@ A variety of interaction modes are typically supported such as:
 - Structured/discrete clinical documents (e.g., a structured clinical note);
 - Unstructured clinical document (e.g., dictated surgical note).
         
-Standard terminology is a fundamental part of interoperability and is described in section TI.4. Using a formal explicit information model further optimizes interoperability. An example of an information model is the HL7 Reference Information Model (RIM). Organizations typically need to deal with more than one information model and may need to develop a mapping between information models, a meta-model (that helps to explain and organize the various information models), or both.
-        $EX$</notes>
+Standard terminology is a fundamental part of interoperability and is described in function [[TI.4]]. Using a formal explicit information model further optimizes interoperability. An example of an information model is the HL7 Reference Information Model (RIM). Organizations typically need to deal with more than one information model and may need to develop a mapping between information models, a meta-model (that helps to explain and organize the various information models), or both.$EX$</notes>
          <stereotype>Header</stereotype>
          <type>Feature</type>
          <parentId>2601</parentId>
@@ -37340,7 +37375,7 @@ Standard terminology is a fundamental part of interoperability and is described 
       <object>
          <id>2606</id>
          <name>TI.5.1.1#03</name>
-         <notes>The system SHALL conform to TI.4 (Standard Terminology and Terminology Services) including all child-functions, to support terminology standards according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+         <notes>The system SHALL conform to function [[TI.4]] (Standard Terminology and Terminology Services) including all child-functions, to support terminology standards according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2603</parentId>
@@ -37694,7 +37729,7 @@ Entity directories can be used to determine the address, profile, and data excha
       <object>
          <id>2628</id>
          <name>TI.5.4#03</name>
-         <notes>The system MAY conform to function TI.3 (Registry and Directory Services) to interact with registries, and/or directories to determine the address, profile, and data exchange requirements of known, and/or potential partners.</notes>
+         <notes>The system MAY conform to function [[TI.3]] (Registry and Directory Services) to interact with registries, and/or directories to determine the address, profile, and data exchange requirements of known, and/or potential partners.</notes>
          <stereotype>Criteria</stereotype>
          <type>Requirement</type>
          <parentId>2625</parentId>

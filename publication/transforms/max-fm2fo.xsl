@@ -22,6 +22,7 @@
     <xsl:variable name="ballot-info" select="document($ballot-info-file)/mif:package"/>
     
     <xsl:template match="objects/object[stereotype/text()='HL7-FM']">
+        <xsl:param name="file-date" select="tag[@name='MAX.LastImportDate']/@value"/>
         <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
             <fo:layout-master-set>
                 <fo:simple-page-master page-height="11.0in" page-width="8.5in" margin-top="0.25in" margin-bottom=".2in" margin-left="0.5in" margin-right="0.5in" master-name="FM-TitlePage">
@@ -35,6 +36,30 @@
                     <fo:region-after extent="0.1in"/>
                 </fo:simple-page-master>
             </fo:layout-master-set>
+            <fo:declarations>
+                <x:xmpmeta xmlns:x="adobe:ns:meta/">
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about=""
+                            xmlns:dc="http://purl.org/dc/elements/1.1/">
+                            <!-- Dublin Core properties go here -->
+                            <dc:title>
+                                <xsl:value-of select="$ballot-info/@title"/>
+                            </dc:title>
+                            <dc:creator>
+                                <xsl:value-of select="concat($ballot-info/mif:header/mif:responsibleGroup/@organizationName, ' ', $ballot-info/mif:header/mif:responsibleGroup/@groupName)"/>
+                            </dc:creator>
+                            <dc:description>
+                                <xsl:value-of select="concat('MAX: ', $file-date)"/>
+                            </dc:description>
+                        </rdf:Description>
+                        <rdf:Description rdf:about=""
+                            xmlns:xmp="http://ns.adobe.com/xap/1.0/">
+                            <!-- XMP properties go here -->
+                            <xmp:CreatorTool>Results4Care Functional Model Publication Tools</xmp:CreatorTool>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </x:xmpmeta>
+            </fo:declarations>
             <fo:bookmark-tree>
                 <fo:bookmark internal-destination="toc">
                     <fo:bookmark-title>Table of Contents</fo:bookmark-title>
@@ -271,7 +296,9 @@
                 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
                     <fo:block space-after=".7em" margin-top=".5em">
                         <fo:inline font-weight="bold">Statement: </fo:inline>
-                        <xsl:value-of select="$statement"/>
+                        <xsl:call-template name="text-with-link">
+                            <xsl:with-param name="the-text" select="$statement"/>
+                        </xsl:call-template>
                     </fo:block>
                     <fo:block margin-bottom=".5em">
                         <xsl:call-template name="description-output">
@@ -317,7 +344,9 @@
             <xsl:if test="$is-first">
                 <fo:inline font-weight="bold">Description: </fo:inline>
             </xsl:if>
-            <xsl:value-of select="$para-text"/>
+            <xsl:call-template name="text-with-link">
+                <xsl:with-param name="the-text" select="$para-text"/>
+            </xsl:call-template>
         </fo:block>
         
         <xsl:if test="string-length($remain-text) > 0">
@@ -381,6 +410,11 @@
     </xsl:template>
     
     <xsl:template name="get-criteria-text">
+        <xsl:call-template name="text-with-link">
+            <xsl:with-param name="the-text" select="notes"/>
+        </xsl:call-template>
+        
+        <!--
         <xsl:choose>
             <xsl:when test="contains(notes,' conform to function ')">
                 <xsl:variable name="pre-text" select="substring-before(notes, ' conform to function ')"/>
@@ -402,6 +436,7 @@
                 <xsl:value-of select="notes"/>
             </xsl:otherwise>
         </xsl:choose>
+        -->
     </xsl:template>
 
     <xsl:template name="get-functional-reference">
@@ -428,6 +463,48 @@
         <xsl:if test="tag/@name='Row'">
             <xsl:value-of select="tag[@name='Row']/@value"/>
         </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="text-with-link">
+        <xsl:param name="the-text"/>
+        
+        <xsl:choose>
+            <xsl:when test="contains($the-text,' [[')">
+                <xsl:variable name="pre-text" select="substring-before($the-text, '[[')"/>
+                <xsl:variable name="working-text" select="substring-after($the-text, '[[')"/>
+                <xsl:variable name="function-ref" select="substring-before($working-text, ']]')"/>
+                <xsl:variable name="post-text" select="substring-after($working-text, ']]')"/>
+                
+                <xsl:value-of select="$pre-text"/>
+                <fo:basic-link>
+                    <xsl:attribute name="internal-destination">
+                        <xsl:value-of select="$function-ref"/>
+                    </xsl:attribute>
+                    <fo:inline  text-decoration="underline" color="blue">
+                        <xsl:value-of select="$function-ref"/>
+                    </fo:inline>
+                </fo:basic-link>
+                <xsl:call-template name="text-with-link">
+                    <xsl:with-param name="the-text" select="$post-text"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$the-text"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        <!--
+        <xsl:analyze-string select="$the-text" regex="(.+)\[\[([A-Z]{{2,3}}(\.[0-9]?[0-9])+)\]\](.*)">
+            <xsl:matching-substring>
+                <xsl:message>
+                    Found link
+                    <xsl:value-of select="regex-group(2)"/>
+                </xsl:message>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+        -->
     </xsl:template>
     
     <xsl:template name="section-toc">
