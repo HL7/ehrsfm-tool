@@ -155,11 +155,6 @@
             "AssemblyAsmDisplayName" = "8:MAX_EA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_18B835DEF62AD40DC85D3A32D64FB67B"
-                    {
-                    "Name" = "8:MAX_EA.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MAX_EA.dll"
             "TargetName" = "8:"
@@ -289,14 +284,14 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HL7 FM EA Extension"
         "ProductCode" = "8:{50D6D088-CD93-457C-BBD5-07CC39BBB3FA}"
-        "PackageCode" = "8:{86BC415C-CA1A-4CDC-9EAB-14E222FF49A9}"
+        "PackageCode" = "8:{81AFD938-02A1-4CDE-865D-421D26107319}"
         "UpgradeCode" = "8:{C34E59C2-750C-4865-857C-7CC8A3BF387C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.14.0823"
+        "ProductVersion" = "8:2.14.0829"
         "Manufacturer" = "8:Results4Care"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:mailto:tooling@lists.hl7.org"

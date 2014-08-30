@@ -6,6 +6,20 @@
 
 CHANGELOG
 =========
+[2014-aug-29]
+CruterionForm
+- GForge #3473: Renamed "ID" label to "Sequence#"
+AboutForm
+- GForge #3489: Added AssemblyVersion tot title
+R2ProfileCompiler
+- GForge #3491: new Criteria are now included
+- Don't remove row#
+- Add tagged value "Debug.InclusionReason" when included via ConsequenceLink
+
+[2014-aug-25]
+R2ProfileCompiler
+- set @exportDate on compiled profile
+
 [2014-aug-23]
 ProfilingForm
 - GForge #3465: Find functionality in Edit Profile doesn't give feedback if element cannot be found

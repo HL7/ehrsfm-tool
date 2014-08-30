@@ -56,6 +56,13 @@ namespace HL7_FM_EA_Extension
                 OPT     // Optional
             };
 
+            public Dictionary<Priority, string> PriorityDescription = new Dictionary<Priority, string>()
+            {
+                { Priority.EN, "Essential Now" },
+                { Priority.EF, "Essential Future" },
+                { Priority.OPT, "Optional" }
+            };
+
             public const string EmptyPriority = "";
         }
 
