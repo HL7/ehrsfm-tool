@@ -131,9 +131,9 @@
             this.idLabel.AutoSize = true;
             this.idLabel.Location = new System.Drawing.Point(10, 49);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(18, 13);
+            this.idLabel.Size = new System.Drawing.Size(63, 13);
             this.idLabel.TabIndex = 7;
-            this.idLabel.Text = "ID";
+            this.idLabel.Text = "Sequence#";
             // 
             // rowLabel
             // 

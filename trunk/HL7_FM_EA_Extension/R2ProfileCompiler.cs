@@ -72,8 +72,14 @@ namespace HL7_FM_EA_Extension
                                 newNode.parent = node;
                                 newNode.isNew = true;
                                 newNode.includeInProfile = true;
+                                setDebugInclusionReason(newNode, "New in ProfileDefinition");
+
                                 node.children.Add(newNode);
                                 node.includeInProfile = true;
+                                setDebugInclusionReason(node, "Because child is included");
+
+                                // Make sure to add new Node!
+                                treeNodes[rel.sourceId] = newNode;
                             }
                             else
                             {
@@ -160,6 +166,7 @@ namespace HL7_FM_EA_Extension
 
                 // save compiled profile as MAX XML
                 ModelType model = new ModelType();
+                model.exportDate = DateTime.Now.ToString();
                 model.objects = objects.ToArray();
                 model.relationships = relationships.ToArray();
                 XmlWriterSettings settings = new XmlWriterSettings();
@@ -275,6 +282,7 @@ namespace HL7_FM_EA_Extension
                     {
                         linkedNode.includeInProfile = true;
                         followConsequenceLinks(linkedNode);
+                        setDebugInclusionReason(linkedNode, string.Format("ConsequenceLink from function {0}", node.baseModelObject.name));
                     }
                     else
                     {
@@ -284,6 +292,17 @@ namespace HL7_FM_EA_Extension
             }
         }
 
+        private void setDebugInclusionReason(TreeNode node, string reason)
+        {
+            List<TagType> tags = new List<TagType>();
+            if (node.baseModelObject.tag != null)
+            {
+                tags.AddRange(node.baseModelObject.tag);
+            }
+            tags.Add(new TagType() { name = "Debug.InclusionReason", value = reason });
+            node.baseModelObject.tag = tags.ToArray();
+        }
+
         private void executeInstructions(TreeNode node, string priority)
         {
             List<TagType> tags = new List<TagType>();
@@ -291,8 +310,6 @@ namespace HL7_FM_EA_Extension
             {
                 tags.AddRange(node.baseModelObject.tag);
             }
-            // remove deprecated row tag
-            tags.RemoveAll(t => t.name.Equals(R2Const.TV_ROW));
             // remove empty value tags (cleans up)
             tags.RemoveAll(t => string.IsNullOrEmpty(t.value));
             

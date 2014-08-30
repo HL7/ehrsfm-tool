@@ -107,8 +107,8 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(412, 32);
             this.textBox1.TabIndex = 28;
-            this.textBox1.Text = "The HL7 FM EA Extension Phase 1 is developed by Results4Care for the EHR WG of HL" +
-    "7 International. Currently works with the EHR-S FM R2.";
+            this.textBox1.Text = "The HL7 FM EA Extension is developed by Results4Care for the EHR WG of HL7 Intern" +
+    "ational.";
             // 
             // textBox2
             // 
