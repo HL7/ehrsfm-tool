@@ -37,7 +37,7 @@ namespace HL7_FM_EA_Extension
         {
             ignoreEvents = true;
 
-            idNumericUpDown.Enabled = enableEdit;
+            seqNoNumericUpDown.Enabled = enableEdit;
             rowNumericUpDown.Enabled = enableEdit;
             textTextBox.Enabled = enableEdit;
             optionalityComboBox.Enabled = enableEdit;
@@ -79,12 +79,12 @@ namespace HL7_FM_EA_Extension
             }
             pathLabel.Text = criterion.Path;
 
-            idNumericUpDown.Minimum = 0;
-            idNumericUpDown.Maximum = 99;
+            seqNoNumericUpDown.Minimum = 0;
+            seqNoNumericUpDown.Maximum = 99;
             rowNumericUpDown.Minimum = 0;
             rowNumericUpDown.Maximum = 10000;
 
-            idNumericUpDown.Value = criterion.CriterionId;
+            seqNoNumericUpDown.Value = criterion.CriterionSeqNo;
             textTextBox.Text = criterion.Text;
             rowNumericUpDown.Value = criterion.Row;
             conditionalCheckBox.Checked = criterion.Conditional;
@@ -131,7 +131,7 @@ namespace HL7_FM_EA_Extension
          */
         private void updateLabels(bool? star = null)
         {
-            updateLabel(R2ModelElement.PropertyName.CriterionId, "ID", idLabel, star);
+            updateLabel(R2ModelElement.PropertyName.CriterionSeqNo, "Sequence#", seqNoLabel, star);
             updateLabel(R2ModelElement.PropertyName.Row, "Row#", rowLabel, star);
             updateLabel(R2ModelElement.PropertyName.Text, "Text", textLinkLabel, star);
             updateLabel(R2ModelElement.PropertyName.Conditional, "Conditional", conditionalCheckBox, star);
@@ -142,7 +142,7 @@ namespace HL7_FM_EA_Extension
 
         private void applyChanges()
         {
-            _criterion.CriterionId = idNumericUpDown.Value;
+            _criterion.CriterionSeqNo = seqNoNumericUpDown.Value;
             _criterion.Text = textTextBox.Text;
             _criterion.Row = rowNumericUpDown.Value;
             _criterion.Conditional = conditionalCheckBox.Checked;
@@ -155,7 +155,7 @@ namespace HL7_FM_EA_Extension
             }
             _criterion.SaveToSource();
 
-            idNumericUpDown.Value = _criterion.CriterionId;
+            seqNoNumericUpDown.Value = _criterion.CriterionSeqNo;
             textTextBox.Text = _criterion.Text;
             rowNumericUpDown.Value = _criterion.Row;
             conditionalCheckBox.Checked = _criterion.Conditional;
@@ -246,7 +246,7 @@ namespace HL7_FM_EA_Extension
 
         private void idNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.CriterionId, "ID", idLabel, true);
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.CriterionSeqNo, "ID", seqNoLabel, true);
         }
 
         private void textLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

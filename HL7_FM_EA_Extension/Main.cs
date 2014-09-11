@@ -129,7 +129,7 @@ namespace HL7_FM_EA_Extension
                         CompileProfile(Repository, SelectedPackage);
                         break;
                     case "Merge Profiles":
-                        new MergeProfilesForm().Show(Repository, SelectedPackage);
+                        new MergeProfilesForm().PopulateAndShow();
                         break;
                     case "Create Diagram":
                         CreateDiagram(Repository);

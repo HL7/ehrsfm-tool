@@ -29,16 +29,17 @@ namespace HL7_FM_EA_Extension.Tests
 
             Assert.IsNotNull(modelElement);
             Assert.AreEqual("Overarching", modelElement.Name);
+            Assert.AreEqual("OV", modelElement.GetId());
             Assert.AreEqual("OV", modelElement.SectionId);
             Assert.AreEqual("Section", modelElement.Stereotype);
             Assert.AreEqual("overview", modelElement.Overview);
-            //Assert.AreEqual("", section.LastModified); // now returns 1/1/0001 00:00:00 <- test Util.formatDateTime
+            Assert.AreEqual("", modelElement.LastModified);
             Assert.AreEqual("", modelElement.Priority);
             Assert.AreEqual("example", modelElement.Example);
             Assert.AreEqual("actors", modelElement.Actors);
             Assert.AreEqual("", modelElement.ChangeNote);
             Assert.IsFalse(modelElement.IsCompilerInstruction);
-            Assert.AreEqual("", modelElement.Path);
+            Assert.AreEqual("Overarching", modelElement.Path);
         }
 
         [TestMethod]
@@ -60,6 +61,7 @@ namespace HL7_FM_EA_Extension.Tests
 
             Assert.IsNotNull(modelElement);
             Assert.AreEqual("OV.1 Header", modelElement.Name);
+            Assert.AreEqual("OV.1", modelElement.GetId());
             Assert.AreEqual("OV.1", modelElement.FunctionId);
             Assert.AreEqual("Header", modelElement.Stereotype);
             Assert.AreEqual("", modelElement.Priority);
@@ -67,7 +69,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual("description", modelElement.Description);
             Assert.AreEqual("", modelElement.ChangeNote);
             Assert.IsFalse(modelElement.IsCompilerInstruction);
-            Assert.AreEqual("", modelElement.Path);
+            Assert.AreEqual("OV.1 Header", modelElement.Path);
         }
 
         [TestMethod]
@@ -89,6 +91,7 @@ namespace HL7_FM_EA_Extension.Tests
 
             Assert.IsNotNull(modelElement);
             Assert.AreEqual("OV.1 Function", modelElement.Name);
+            Assert.AreEqual("OV.1", modelElement.GetId());
             Assert.AreEqual("OV.1", modelElement.FunctionId);
             Assert.AreEqual("Function", modelElement.Stereotype);
             Assert.AreEqual("", modelElement.Priority);
@@ -96,7 +99,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual("description", modelElement.Description);
             Assert.AreEqual("", modelElement.ChangeNote);
             Assert.IsFalse(modelElement.IsCompilerInstruction);
-            Assert.AreEqual("", modelElement.Path);
+            Assert.AreEqual("OV.1 Function", modelElement.Path);
         }
 
         [TestMethod]
@@ -117,27 +120,35 @@ namespace HL7_FM_EA_Extension.Tests
                 (R2ModelV2.Base.R2Criterion)R2ModelV2.MAX.Factory.Create(objectType);
 
             Assert.IsNotNull(modelElement);
+            Assert.AreEqual("OV.1#01", modelElement.GetId());
             Assert.AreEqual("OV.1#01", modelElement.Name);
             Assert.AreEqual("OV.1", modelElement.FunctionId);
-            Assert.AreEqual(1, modelElement.CriterionId);
+            Assert.AreEqual(1, modelElement.CriterionSeqNo);
             Assert.AreEqual("Criteria", modelElement.Stereotype);
             Assert.AreEqual("", modelElement.Priority);
             Assert.AreEqual("The system SHALL dididi", modelElement.Text);
             Assert.AreEqual("", modelElement.ChangeNote);
             Assert.IsFalse(modelElement.IsCompilerInstruction);
-            Assert.AreEqual("", modelElement.Path);
+            Assert.AreEqual("OV.1#01", modelElement.Path);
         }
 
         [TestMethod]
         public void TestR2ModelLoad()
         {
             string maxFileName = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\EHRS_FM_R2_N2.max.xml";
-            R2ModelV2.MAX.R2Model profileDefinition = R2ModelV2.MAX.Factory.LoadModel(maxFileName);
+            R2ModelV2.MAX.R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName);
 
-            Assert.AreEqual(2680, profileDefinition.elements.Count);
-            Assert.AreEqual(7, profileDefinition.elements.Count(t => "Section".Equals(t.Stereotype)));
-            Assert.AreEqual(299, profileDefinition.elements.Count(t => "Function".Equals(t.Stereotype)));
-            Assert.AreEqual(2341, profileDefinition.elements.Count(t => "Criteria".Equals(t.Stereotype)));
+            Assert.AreEqual(2680, model.elements.Count);
+            Assert.AreEqual(7, model.elements.Count(t => "Section".Equals(t.Stereotype)));
+            Assert.AreEqual(299, model.elements.Count(t => "Function".Equals(t.Stereotype)));
+            Assert.AreEqual(2341, model.elements.Count(t => "Criteria".Equals(t.Stereotype)));
+        }
+
+        [TestMethod]
+        public void TestMergeProfilesForm()
+        {
+            MergeProfilesForm form = new MergeProfilesForm();
+            form.PopulateAndShow();
         }
     }
 }

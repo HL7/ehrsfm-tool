@@ -33,6 +33,10 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 CHANGELOG
 =========
+[2014-sep-02]
+MAXImporter3
+- Now accept file extensions .xml and .max
+
 [2014-jul-14]
 MAXImporter3
 - Used wrong id for packages, now use Package.Element.ElementID instead of PackageID

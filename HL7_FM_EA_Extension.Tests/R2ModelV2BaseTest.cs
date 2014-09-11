@@ -15,7 +15,7 @@ namespace HL7_FM_EA_Extension.Tests
             var criterion = new R2ModelV2.Base.R2Criterion
                                 {
                                     FunctionId = "CP.1.2",
-                                    CriterionId = 1,
+                                    CriterionSeqNo = 1,
                                     Text = "The system SHALL bladibla",
                                     Row = 1,
                                     Conditional = false,
@@ -24,7 +24,7 @@ namespace HL7_FM_EA_Extension.Tests
                                 };
 
             Assert.AreEqual("CP.1.2", criterion.FunctionId);
-            Assert.AreEqual(1, criterion.CriterionId);
+            Assert.AreEqual(1, criterion.CriterionSeqNo);
             Assert.AreEqual("The system SHALL bladibla", criterion.Text);
             Assert.AreEqual(1, criterion.Row);
             Assert.AreEqual(false, criterion.Conditional);
@@ -39,7 +39,7 @@ namespace HL7_FM_EA_Extension.Tests
             var defaults = new R2ModelV2.Base.R2Criterion
             {
                 FunctionId = "CP.1.2",
-                CriterionId = 1,
+                CriterionSeqNo = 1,
                 Text = "The system SHALL bladibla",
                 Row = 1,
                 Conditional = false,
@@ -50,7 +50,7 @@ namespace HL7_FM_EA_Extension.Tests
             criterion.Defaults = defaults;
 
             Assert.AreEqual("CP.1.2", criterion.FunctionId);
-            Assert.AreEqual(1, criterion.CriterionId);
+            Assert.AreEqual(1, criterion.CriterionSeqNo);
             Assert.AreEqual("The system SHALL bladibla", criterion.Text);
             Assert.AreEqual(1, criterion.Row);
             Assert.AreEqual(false, criterion.Conditional);
@@ -65,7 +65,7 @@ namespace HL7_FM_EA_Extension.Tests
             var defaults = new R2ModelV2.Base.R2Criterion
             {
                 FunctionId = "CP.1.2",
-                CriterionId = 1,
+                CriterionSeqNo = 1,
                 Text = "The system SHALL bladibla",
                 Row = 1,
                 Conditional = false,
@@ -85,7 +85,7 @@ namespace HL7_FM_EA_Extension.Tests
 
 
             Assert.AreEqual("CP.1.3", criterion.FunctionId);
-            Assert.AreEqual(1, criterion.CriterionId);
+            Assert.AreEqual(1, criterion.CriterionSeqNo);
             Assert.AreEqual("Changed", criterion.Text);
             Assert.AreEqual(10, criterion.Row);
             Assert.AreEqual(false, criterion.Conditional);
@@ -100,7 +100,7 @@ namespace HL7_FM_EA_Extension.Tests
             var defaults = new R2ModelV2.Base.R2Criterion
             {
                 FunctionId = "CP.1.2",
-                CriterionId = 1,
+                CriterionSeqNo = 1,
                 Text = "The system SHALL bladibla",
                 Row = 1,
                 Conditional = false,
@@ -124,7 +124,7 @@ namespace HL7_FM_EA_Extension.Tests
             criterion.Priority = "";
 
             Assert.AreEqual("CP.1.2", criterion.FunctionId);
-            Assert.AreEqual(1, criterion.CriterionId);
+            Assert.AreEqual(1, criterion.CriterionSeqNo);
             Assert.AreEqual("The system SHALL bladibla", criterion.Text);
             Assert.AreEqual(1, criterion.Row);
             Assert.AreEqual(false, criterion.Conditional);
