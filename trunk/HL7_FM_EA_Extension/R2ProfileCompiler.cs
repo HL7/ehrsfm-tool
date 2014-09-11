@@ -75,8 +75,11 @@ namespace HL7_FM_EA_Extension
                                 setDebugInclusionReason(newNode, "New in ProfileDefinition");
 
                                 node.children.Add(newNode);
-                                node.includeInProfile = true;
-                                setDebugInclusionReason(node, "Because child is included");
+                                if (!node.includeInProfile)
+                                {
+                                    node.includeInProfile = true;
+                                    setDebugInclusionReason(node, "Because child is included");
+                                }
 
                                 // Make sure to add new Node!
                                 treeNodes[rel.sourceId] = newNode;

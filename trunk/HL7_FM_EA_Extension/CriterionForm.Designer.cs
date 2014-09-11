@@ -36,9 +36,9 @@
             this.dependentCheckBox = new System.Windows.Forms.CheckBox();
             this.optionalityComboBox = new System.Windows.Forms.ComboBox();
             this.optionalityLabel = new System.Windows.Forms.Label();
-            this.idLabel = new System.Windows.Forms.Label();
+            this.seqNoLabel = new System.Windows.Forms.Label();
             this.rowLabel = new System.Windows.Forms.Label();
-            this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.seqNoNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.rowNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.switchLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -52,7 +52,7 @@
             this.changeNoteLinkLabel = new System.Windows.Forms.LinkLabel();
             this.textLinkLabel = new System.Windows.Forms.LinkLabel();
             this.changeNoteTextBox = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqNoNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,12 +128,12 @@
             // 
             // idLabel
             // 
-            this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(10, 49);
-            this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(63, 13);
-            this.idLabel.TabIndex = 7;
-            this.idLabel.Text = "Sequence#";
+            this.seqNoLabel.AutoSize = true;
+            this.seqNoLabel.Location = new System.Drawing.Point(10, 49);
+            this.seqNoLabel.Name = "seqNoLabel";
+            this.seqNoLabel.Size = new System.Drawing.Size(63, 13);
+            this.seqNoLabel.TabIndex = 7;
+            this.seqNoLabel.Text = "Sequence#";
             // 
             // rowLabel
             // 
@@ -146,11 +146,11 @@
             // 
             // idNumericUpDown
             // 
-            this.idNumericUpDown.Location = new System.Drawing.Point(85, 46);
-            this.idNumericUpDown.Name = "idNumericUpDown";
-            this.idNumericUpDown.Size = new System.Drawing.Size(42, 20);
-            this.idNumericUpDown.TabIndex = 13;
-            this.idNumericUpDown.ValueChanged += new System.EventHandler(this.idNumericUpDown_ValueChanged);
+            this.seqNoNumericUpDown.Location = new System.Drawing.Point(85, 46);
+            this.seqNoNumericUpDown.Name = "seqNoNumericUpDown";
+            this.seqNoNumericUpDown.Size = new System.Drawing.Size(42, 20);
+            this.seqNoNumericUpDown.TabIndex = 13;
+            this.seqNoNumericUpDown.ValueChanged += new System.EventHandler(this.idNumericUpDown_ValueChanged);
             // 
             // rowNumericUpDown
             // 
@@ -289,9 +289,9 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.rowNumericUpDown);
-            this.Controls.Add(this.idNumericUpDown);
+            this.Controls.Add(this.seqNoNumericUpDown);
             this.Controls.Add(this.rowLabel);
-            this.Controls.Add(this.idLabel);
+            this.Controls.Add(this.seqNoLabel);
             this.Controls.Add(this.priorityLabel);
             this.Controls.Add(this.optionalityLabel);
             this.Controls.Add(this.optionalityComboBox);
@@ -309,7 +309,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EHR-S FM Criterion";
-            ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqNoNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -324,10 +324,10 @@
         private System.Windows.Forms.CheckBox dependentCheckBox;
         private System.Windows.Forms.ComboBox optionalityComboBox;
         private System.Windows.Forms.Label optionalityLabel;
-        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.Label seqNoLabel;
         private System.Windows.Forms.Label rowLabel;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.NumericUpDown idNumericUpDown;
+        private System.Windows.Forms.NumericUpDown seqNoNumericUpDown;
         private System.Windows.Forms.NumericUpDown rowNumericUpDown;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;

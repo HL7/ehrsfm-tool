@@ -34,7 +34,7 @@ namespace MAX_EA
             {
                 defaultFileName = tvImportFile.Value;
             }
-            string fileName = showFileDialog("Select input MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, true);
+            string fileName = showFileDialog("Select input MAX XML file", "xml files (*.xml, *.max)|*.xml;*.max", defaultFileName, true);
             if (fileName != String.Empty)
             {
                 return import(Repository, selectedPackage, fileName);

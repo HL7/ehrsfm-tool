@@ -6,8 +6,13 @@
 
 CHANGELOG
 =========
+[2014-sep-05]
+- Renamed CriterionId to CriterionSeqNo
+MergeProfilesForm
+- More implementation of the Compare Section
+
 [2014-aug-29]
-CruterionForm
+CriterionForm
 - GForge #3473: Renamed "ID" label to "Sequence#"
 AboutForm
 - GForge #3489: Added AssemblyVersion tot title

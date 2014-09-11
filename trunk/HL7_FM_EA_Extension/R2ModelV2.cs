@@ -70,7 +70,15 @@ namespace HL7_FM_EA_Extension
         {
             internal static string FormatLastModified(DateTime dateTime)
             {
-                return dateTime.ToString();
+                string formatted = dateTime.ToString();
+                if ("1/1/0001 00:00:00".Equals(formatted))
+                {
+                    return "";
+                }
+                else
+                {
+                    return formatted;
+                }
             }
 
             internal static Dictionary<string, string> SplitNotes(string notes)
@@ -106,7 +114,7 @@ namespace HL7_FM_EA_Extension
                 Stereotype,
                 SectionId, Name, Overview, Example, Actors,
                 FunctionId, Statement, Description,
-                CriterionId, Text, Row, Dependent, Conditional, Optionality,
+                CriterionSeqNo, Text, Row, Dependent, Conditional, Optionality,
                 Priority, ChangeNote
             };
             internal Dictionary<PropertyName, string> _values = new Dictionary<PropertyName, string>();
@@ -180,6 +188,7 @@ namespace HL7_FM_EA_Extension
                 return _values.ContainsKey(key);
             }
 
+            public abstract string GetId();
             public string LastModified { get { return get(PropertyName.LastModified); } set { set(PropertyName.LastModified, value); } }
             public string Path
             {
@@ -245,8 +254,21 @@ namespace HL7_FM_EA_Extension
             }
         }
 
+        public class R2Model : R2ModelElement
+        {
+            public override string GetId()
+            {
+                throw new NotImplementedException();
+            }
+            public string Name { get { return get(PropertyName.Name); } set { set(PropertyName.Name, value); } }
+        }
+
         public class R2Section : R2ModelElement
         {
+            public override string GetId()
+            {
+                return SectionId;
+            }
             public string SectionId { get { return get(PropertyName.SectionId); } set { set(PropertyName.SectionId, value); } }
             public string Name { get { return get(PropertyName.Name); } set { set(PropertyName.Name, value); } }
             public string Overview { get { return get(PropertyName.Overview); } set { set(PropertyName.Overview, value); } }
@@ -256,6 +278,10 @@ namespace HL7_FM_EA_Extension
 
         public class R2Function : R2ModelElement
         {
+            public override string GetId()
+            {
+                return FunctionId;
+            }
             public string FunctionId { get { return get(PropertyName.FunctionId); } set { set(PropertyName.FunctionId, value); } }
             public string Name { get { return get(PropertyName.Name); } set { set(PropertyName.Name, value); } }
             public string Statement { get { return get(PropertyName.Statement); } set { set(PropertyName.Statement, value); } }
@@ -267,9 +293,13 @@ namespace HL7_FM_EA_Extension
 
         public class R2Criterion : R2ModelElement
         {
+            public override string GetId()
+            {
+                return Name;
+            }
             public string Name
             {
-                get { return string.Format("{0}#{1:00}", get(PropertyName.FunctionId), getDecimal(PropertyName.CriterionId)); }
+                get { return string.Format("{0}#{1:00}", get(PropertyName.FunctionId), getDecimal(PropertyName.CriterionSeqNo)); }
                 set
                 {
                     // FuntionId
@@ -287,18 +317,18 @@ namespace HL7_FM_EA_Extension
                     // If the name doesnot contain a '#' yet, assume 0
                     if (sepIdx == -1)
                     {
-                        CriterionId = 0;
+                        CriterionSeqNo = 0;
                     }
                     else
                     {
                         int sepIdx2 = value.IndexOf(' ', sepIdx);
                         if (sepIdx2 == -1) sepIdx2 = value.Length;
-                        CriterionId = decimal.Parse(value.Substring(sepIdx + 1, sepIdx2 - sepIdx - 1));
+                        CriterionSeqNo = decimal.Parse(value.Substring(sepIdx + 1, sepIdx2 - sepIdx - 1));
                     }
                 }
             }
             public string FunctionId { get { return get(PropertyName.FunctionId); } set { set(PropertyName.FunctionId, value); } }
-            public decimal CriterionId { get { return getDecimal(PropertyName.CriterionId); } set { set(PropertyName.CriterionId, value); } }
+            public decimal CriterionSeqNo { get { return getDecimal(PropertyName.CriterionSeqNo); } set { set(PropertyName.CriterionSeqNo, value); } }
             public string Text { get { return get(PropertyName.Text); } set { set(PropertyName.Text, value); } }
             public decimal Row { get { return getDecimal(PropertyName.Row); } set { set(PropertyName.Row, value); } }
             public bool Conditional { get { return getBool(PropertyName.Conditional); } set { set(PropertyName.Conditional, value); } }

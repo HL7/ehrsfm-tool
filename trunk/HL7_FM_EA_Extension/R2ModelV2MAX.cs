@@ -70,7 +70,11 @@ namespace HL7_FM_EA_Extension
                 StreamReader stream = new StreamReader(maxFileName);
                 var sourceModel = (ModelType)serializer.Deserialize(stream);
 
-                R2Model model = new R2Model();
+                ObjectType modelObjectType =
+                    sourceModel.objects.Single(
+                        o => R2Const.ST_FM.Equals(o.stereotype) || R2Const.ST_FM_PROFILE.Equals(o.stereotype));
+
+                R2Model model = new R2Model(modelObjectType);
                 foreach (ObjectType objectType in sourceModel.objects)
                 {
                     R2ModelElement modelElement = Create(objectType);
@@ -106,12 +110,25 @@ namespace HL7_FM_EA_Extension
         /**
          * An R2Model is a HL7-FM or a HL7-Profile
          */
-        public class R2Model
+        public class R2Model : Base.R2Model
         {
             public readonly List<R2ModelElement> elements = new List<R2ModelElement>();
+
+            public R2Model(ObjectType sourceObject)
+            {
+                SourceObject = sourceObject;
+                LoadFromSource();
+            }
+
+            public override void LoadFromSource()
+            {
+                ObjectType objectType = (ObjectType)SourceObject;
+                Stereotype = objectType.stereotype;
+                Name = objectType.name;
+            }
         }
 
-        public class R2ProfileDefinition
+        public class R2ProfileDefinition : Base.R2Model
         {
             public readonly List<R2ModelElement> elements = new List<R2ModelElement>();
         }
@@ -138,6 +155,7 @@ namespace HL7_FM_EA_Extension
                 Overview = noteParts.ContainsKey("OV") ? noteParts["OV"] : "";
                 Example = noteParts.ContainsKey("EX") ? noteParts["EX"] : "";
                 Actors = noteParts.ContainsKey("AC") ? noteParts["AC"] : "";
+                Path = Name;
             }
         }
 
@@ -162,6 +180,7 @@ namespace HL7_FM_EA_Extension
                 Dictionary<string, string> noteParts = Util.SplitNotes(notes);
                 Statement = noteParts.ContainsKey("ST") ? noteParts["ST"] : "";
                 Description = noteParts.ContainsKey("DE") ? noteParts["DE"] : "";
+                Path = Name;
             }
         }
 
@@ -212,6 +231,7 @@ namespace HL7_FM_EA_Extension
                     _values.Remove(PropertyName.Dependent);
                 }
                 Optionality = objectType.TagValue(R2Const.TV_OPTIONALITY, "");
+                Path = Name;
             }
         }
     }
