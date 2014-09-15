@@ -54,7 +54,7 @@ namespace HL7_FM_EA_Extension
             progress.setup(functionCount);
 
             // Create the main package
-            string fmName = string.Format("{0} (import v{1})", getXElementValue(xModel, "Alias"), Properties.Resources.VERSION_DATE);
+            string fmName = string.Format("{0} (imported)", getXElementValue(xModel, "Alias"));
             EA.Package fmPackage = (EA.Package)rootPackage.Packages.AddNew(fmName, "Package");
             fmPackage.Version = getXElementValue(xModel, "Version") + " " + getXElementValue(xModel, "Date");
             fmPackage.Notes = xModel.XPathSelectElement("Overview").CreateNavigator().InnerXml.Replace("<br />", "\r\n");

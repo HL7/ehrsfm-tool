@@ -6,6 +6,9 @@
 
 CHANGELOG
 =========
+[2014-sep-15]
+Updated MDG
+
 [2014-sep-05]
 - Renamed CriterionId to CriterionSeqNo
 MergeProfilesForm

@@ -120,7 +120,4 @@
   <data name="OUTPUT_TAB_HL7_FM" xml:space="preserve">
     <value>HL7 FM</value>
   </data>
-  <data name="VERSION_DATE" xml:space="preserve">
-    <value>2013-jul-13</value>
-  </data>
 </root>
