@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace HL7_FM_EA_Extension
         public QuickAccessControl()
         {
             InitializeComponent();
-            label3.Text = string.Format("v{0}", Properties.Resources.VERSION_DATE);
+            label3.Text = string.Format("v{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
         }
 
         EA.Repository Repository;
