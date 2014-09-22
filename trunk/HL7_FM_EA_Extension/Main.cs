@@ -20,6 +20,7 @@ namespace HL7_FM_EA_Extension
             //No special processing required.
             /* return "MDG" to receive extra MDG Events
              */
+            EAHelper.repository = Repository;
             return "";
         }
 
@@ -168,7 +169,7 @@ namespace HL7_FM_EA_Extension
             }
             catch (Exception e)
             {
-                EAHelper.LogMessage(Repository, e.ToString());
+                EAHelper.LogMessage(e.ToString());
                 MessageBox.Show(e.ToString());
             }
         }
@@ -359,10 +360,10 @@ namespace HL7_FM_EA_Extension
                     return;
                 }
                 string profileDefinitionFileName = tvExportFile.Value;
-                EAHelper.LogMessage(repository, string.Format("[INFO] Profile Definition MAX file: {0}", profileDefinitionFileName));
-                EAHelper.LogMessage(repository, "[BEGIN] Export Profile Definition to MAX file");
+                EAHelper.LogMessage(string.Format("[INFO] Profile Definition MAX file: {0}", profileDefinitionFileName));
+                EAHelper.LogMessage("[BEGIN] Export Profile Definition to MAX file");
                 new MAX_EA.MAXExporter3().exportPackage(repository, package, profileDefinitionFileName);
-                EAHelper.LogMessage(repository, "[END] Export Profile Definition to MAX file");
+                EAHelper.LogMessage("[END] Export Profile Definition to MAX file");
 
                 // Find associated Base
                 EA.Package baseModelPackage = findAssociatedBaseModel(repository, package);
@@ -371,7 +372,7 @@ namespace HL7_FM_EA_Extension
                     MessageBox.Show("First setup Profile Definition Package.");
                     return;
                 }
-                EAHelper.LogMessage(repository, string.Format("[INFO] Base Model Package name: {0}", baseModelPackage.Name));
+                EAHelper.LogMessage(string.Format("[INFO] Base Model Package name: {0}", baseModelPackage.Name));
                 EA.TaggedValue tvImportFile = (EA.TaggedValue)baseModelPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
                 if (tvImportFile == null)
                 {
@@ -379,7 +380,7 @@ namespace HL7_FM_EA_Extension
                     return;
                 }
                 string baseModelFileName = tvImportFile.Value;
-                EAHelper.LogMessage(repository, string.Format("[INFO] Base Model MAX file: {0}", baseModelFileName));
+                EAHelper.LogMessage(string.Format("[INFO] Base Model MAX file: {0}", baseModelFileName));
 
                 // Find associated Target Profile Package
                 EA.Package compiledProfilePackage = findAssociatedCompiledProfile(repository, package);
@@ -388,7 +389,7 @@ namespace HL7_FM_EA_Extension
                     MessageBox.Show("First setup Profile Definition Package.");
                     return;
                 }
-                EAHelper.LogMessage(repository, string.Format("[INFO] Compiled Profile Package name: {0}", compiledProfilePackage.Name));
+                EAHelper.LogMessage(string.Format("[INFO] Compiled Profile Package name: {0}", compiledProfilePackage.Name));
                 EA.TaggedValue tvExportFile2 = (EA.TaggedValue)compiledProfilePackage.Element.TaggedValues.GetByName("MAX::ExportFile");
                 if (tvExportFile2 == null)
                 {
@@ -398,11 +399,12 @@ namespace HL7_FM_EA_Extension
                 string profileFileName = tvExportFile2.Value;
 
                 // Call R2ProfileCompiler
-                EAHelper.LogMessage(repository, string.Format("[INFO] Compiled Profile MAX file: {0}", profileFileName));
-                EAHelper.LogMessage(repository, "[BEGIN] Compile Profile");
+                EAHelper.LogMessage(string.Format("[INFO] Compiled Profile MAX file: {0}", profileFileName));
+                EAHelper.LogMessage("[BEGIN] Compile Profile");
                 R2ProfileCompiler compiler = new R2ProfileCompiler();
+                compiler._OutputListener = new EAHelper();
                 compiler.Compile(baseModelFileName, profileDefinitionFileName, profileFileName);
-                EAHelper.LogMessage(repository, "[END] Compile Profile");
+                EAHelper.LogMessage("[END] Compile Profile");
 
                 // Import compiled profile from MAX file
                 //new MAX_EA.MAXImporter3().import(repository, profilePackage, profileFileName);

@@ -238,6 +238,7 @@ namespace HL7_FM_EA_Extension
             DefinitionLink dl = (DefinitionLink)item.Tag;
             if (dl.compilerInstructionElement != null)
             {
+                item.Checked = false;
                 switch (EAHelper.getTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, ""))
                 {
                     case "DEP":
@@ -256,6 +257,7 @@ namespace HL7_FM_EA_Extension
                     default:
                         item.ForeColor = Color.White;
                         item.BackColor = BACKCOLOR_INCLUDED;
+                        item.Checked = true;
                         break;
                 }
             }
@@ -479,6 +481,20 @@ namespace HL7_FM_EA_Extension
             if (e.KeyCode == Keys.Enter)
             {
                 findButton_Click(sender, e);
+            }
+        }
+
+        private void groupCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (groupCheckBox.Checked)
+            {
+                mainListView.ShowGroups = true;
+                mainListView.View = View.Tile;
+            }
+            else
+            {
+                mainListView.ShowGroups = false;
+                mainListView.View = View.List;
             }
         }
     }

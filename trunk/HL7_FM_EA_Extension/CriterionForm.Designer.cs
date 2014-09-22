@@ -60,7 +60,7 @@
             // 
             this.pathLabel.AutoEllipsis = true;
             this.pathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pathLabel.ForeColor = System.Drawing.SystemColors.Info;
+            this.pathLabel.ForeColor = System.Drawing.SystemColors.InfoText;
             this.pathLabel.Location = new System.Drawing.Point(12, 9);
             this.pathLabel.Name = "pathLabel";
             this.pathLabel.Size = new System.Drawing.Size(652, 24);
@@ -126,7 +126,7 @@
             this.optionalityLabel.TabIndex = 6;
             this.optionalityLabel.Text = "Optionality";
             // 
-            // idLabel
+            // seqNoLabel
             // 
             this.seqNoLabel.AutoSize = true;
             this.seqNoLabel.Location = new System.Drawing.Point(10, 49);
@@ -144,7 +144,7 @@
             this.rowLabel.TabIndex = 8;
             this.rowLabel.Text = "Row#";
             // 
-            // idNumericUpDown
+            // seqNoNumericUpDown
             // 
             this.seqNoNumericUpDown.Location = new System.Drawing.Point(85, 46);
             this.seqNoNumericUpDown.Name = "seqNoNumericUpDown";

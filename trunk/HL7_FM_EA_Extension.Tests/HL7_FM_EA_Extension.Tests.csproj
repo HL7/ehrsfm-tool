@@ -47,6 +47,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormsUnitTests.cs" />
     <Compile Include="MAXTreeNodeTests.cs" />
     <Compile Include="NoteSplitterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

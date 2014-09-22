@@ -143,12 +143,5 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual(299, model.elements.Count(t => "Function".Equals(t.Stereotype)));
             Assert.AreEqual(2341, model.elements.Count(t => "Criteria".Equals(t.Stereotype)));
         }
-
-        [TestMethod]
-        public void TestMergeProfilesForm()
-        {
-            MergeProfilesForm form = new MergeProfilesForm();
-            form.PopulateAndShow();
-        }
     }
 }

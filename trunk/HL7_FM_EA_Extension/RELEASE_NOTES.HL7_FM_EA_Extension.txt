@@ -6,6 +6,24 @@
 
 CHANGELOG
 =========
+[2014-sep-22]
+ProfilingForm
+- Moved Section/Header/Function buttons left, made left/right parts more distinct. Left is for Section/Header/Function,
+  Right is for Criteria
+- Added Checkbox to switch from Tile to List mode (as requested by Diana)
+- Started work on Checkboxes for Criteria
+R2ProfileCompiler
+- Fixed EXCLUDE-issue. 
+  Functions that were auto included through a consequence link that was caused by a criterion that is EXCLUDED, 
+  are now removed from the result.
+
+[2014-sep-16]
+R2ProfileCompiler
+- Compiler now ignores not complete elements. E.g. Optionality tag is missing in new Criteria.
+- Warnings and Errors are now shown in EA Console
+*Form
+- PathLabel set to black for readability
+
 [2014-sep-15]
 Updated MDG
 

@@ -110,7 +110,7 @@
             // 
             this.pathLabel.AutoEllipsis = true;
             this.pathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pathLabel.ForeColor = System.Drawing.SystemColors.Info;
+            this.pathLabel.ForeColor = System.Drawing.SystemColors.InfoText;
             this.pathLabel.Location = new System.Drawing.Point(14, 9);
             this.pathLabel.Name = "pathLabel";
             this.pathLabel.Size = new System.Drawing.Size(746, 24);

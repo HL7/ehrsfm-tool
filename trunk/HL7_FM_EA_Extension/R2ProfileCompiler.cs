@@ -13,7 +13,7 @@ namespace HL7_FM_EA_Extension
     public class R2ProfileCompiler
     {
         // This contains the citation id of the Base Model where this Profile is based on
-        private string baseName = "";
+        private string baseName;
         // This will contain a lookup map
         private Dictionary<string, TreeNode> treeNodes = new Dictionary<string, TreeNode>();
 
@@ -29,8 +29,15 @@ namespace HL7_FM_EA_Extension
 
         private const string PRIORITY_ESSENTIALNOW = "EN";
 
+        public OutputListener _OutputListener { get; set; }
+
         public void Compile(string fileNameBase, string fileNameDefinition, string fileNameOutput)
         {
+            if (_OutputListener == null)
+            {
+                _OutputListener = new ConsoleOutputListener();
+            }
+
             XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
             StreamReader streamBase = new StreamReader(fileNameBase);
             StreamReader streamDef = new StreamReader(fileNameDefinition);
@@ -78,7 +85,7 @@ namespace HL7_FM_EA_Extension
                                 if (!node.includeInProfile)
                                 {
                                     node.includeInProfile = true;
-                                    setDebugInclusionReason(node, "Because child is included");
+                                    setDebugInclusionReason(node, "Because of new child");
                                 }
 
                                 // Make sure to add new Node!
@@ -86,13 +93,13 @@ namespace HL7_FM_EA_Extension
                             }
                             else
                             {
-                                Console.WriteLine("Ignored relationship type: {0}", rel.type);
+                                _OutputListener.writeOutput("WARN: Ignored relationship type: {0}", rel.type);
                             }
                         }
                         else
                         {
                             // E.g. for ExternalReferences
-                            Console.WriteLine("Destination not in model: {0}", rel.destId);
+                            _OutputListener.writeOutput("WARN: Destination not in model: {0}", rel.destId);
                         }
                     }
 
@@ -116,6 +123,9 @@ namespace HL7_FM_EA_Extension
                     TagType typeTag = root.baseModelObject.tag.Single(t => "Type".Equals(t.name));
                     doFollowConsequenceLinks = !"Companion".Equals(typeTag.value);
                 }
+
+                // Exclude and exclude consequenceLinks when Criterion is Excluded
+                exclude(root);
 
                 // Now auto include parents and criterions and included consequenceLinks
                 autoInclude(root, doFollowConsequenceLinks);
@@ -148,7 +158,7 @@ namespace HL7_FM_EA_Extension
                         }
                         else
                         {
-                            Console.WriteLine("already new: {0}", maxObj.name);
+                            _OutputListener.writeOutput("WARN: already new: {0}", maxObj.name);
                         }
                     }
                 }
@@ -187,13 +197,13 @@ namespace HL7_FM_EA_Extension
                     {
                         string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
                         string destName = model.objects.Single(t => t.id == maxRel.destId).name;
-                        Console.WriteLine("relationship from not included object sourceId={0} destId={1} stereotype={2} destName={3}", sourceId, maxRel.destId, maxRel.stereotype, destName);
+                        _OutputListener.writeOutput("WARN: relationship from not included object sourceId={0} destId={1} stereotype={2} destName={3}", sourceId, maxRel.destId, maxRel.stereotype, destName);
                     }
                     if (!objects.Any(t => t.id == maxRel.destId))
                     {
                         string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
                         string sourceName = model.objects.Single(t => t.id == maxRel.sourceId).name;
-                        Console.WriteLine("relationship to not included object sourceId={0} destId={1} stereotype={2} sourceName={3}", sourceId, maxRel.destId, maxRel.stereotype, sourceName);
+                        _OutputListener.writeOutput("WARN: relationship to not included object sourceId={0} destId={1} stereotype={2} sourceName={3}", sourceId, maxRel.destId, maxRel.stereotype, sourceName);
                     }
                 }
             }
@@ -206,16 +216,71 @@ namespace HL7_FM_EA_Extension
             tags.ForEach(t => tagsAsString.Add(string.Format("{0}={1}", t.name, t.value)));
             if (node.instructionObject == null)
             {
-                Console.WriteLine("[{0}] {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
+                _OutputListener.writeOutput("[{0}] {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
             }
             else
             {
-                Console.WriteLine("[{0}] <profiled> {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
+                _OutputListener.writeOutput("[{0}] <profiled> {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
             }
             foreach (TreeNode child in node.children)
             {
                 displayNode(child, depth+1);
             }
+        }
+
+        /**
+         * This will remove excluded functions and also consequenceLinks when originating criterion is excluded
+         */
+        private void exclude(TreeNode node)
+        {
+            List<TreeNode> newChildren = new List<TreeNode>();
+            foreach (TreeNode childNode in node.children)
+            {
+                if (R2Const.ST_CRITERION.Equals(childNode.baseModelObject.stereotype))
+                {
+                    if (childNode.instructionObject != null && childNode.instructionObject.tag != null)
+                    {
+                        TagType tagQualifier = childNode.instructionObject.tag.FirstOrDefault(t => t.name == R2Const.TV_QUALIFIER);
+                        if (tagQualifier != null && QUALIFIER_EXCLUDE.Equals(tagQualifier.value))
+                        {
+                            // If this criterion results in a consequencelink, make sure to also remove that function
+                            // ... if it was not explicitly included
+                            // Check for "conform to function <FunctionID> (...)"
+                            if (childNode.baseModelObject.notes != null && childNode.baseModelObject.notes.Text.Any())
+                            {
+                                string criterionText = childNode.baseModelObject.notes.Text[0];
+                                int ref_idx = criterionText.IndexOf("conform to function");
+                                if (ref_idx > 0)
+                                {
+                                    string ref_id = criterionText.Substring(ref_idx + 20, criterionText.IndexOf(' ', ref_idx + 20) - ref_idx - 20);
+                                    TreeNode referencedNode = treeNodes.Values.SingleOrDefault(t => ref_id.Equals(t.baseModelObject.alias));
+                                    if (referencedNode != null)
+                                    {
+                                        if (referencedNode.instructionObject == null)
+                                        {
+                                            childNode.relationships.RemoveAll(t => t.destId.Equals(referencedNode.baseModelObject.id));
+                                            treeNodes.Remove(referencedNode.baseModelObject.id);
+
+                                            _OutputListener.writeOutput("{0} reference to {1} removed because of EXCLUDE", childNode.baseModelObject.name, ref_id);
+                                        }
+                                        else
+                                        {
+                                            _OutputListener.writeOutput("{0} reference to {1} NOT removed because there is an instruction", childNode.baseModelObject.name, ref_id);
+                                        }
+                                    }
+                                }
+                            }
+                            continue;
+                        }
+                    }
+                }
+                else
+                {
+                    exclude(childNode);
+                }
+                newChildren.Add(childNode);
+            }
+            node.children = newChildren;
         }
 
         /**
@@ -239,19 +304,8 @@ namespace HL7_FM_EA_Extension
                 {
                     if (R2Const.ST_CRITERION.Equals(child.baseModelObject.stereotype))
                     {
-                        if (child.instructionObject != null && child.instructionObject.tag != null)
-                        {
-                            TagType tagQualifier = child.instructionObject.tag.FirstOrDefault(t => t.name == R2Const.TV_QUALIFIER);
-                            if (tagQualifier != null && QUALIFIER_EXCLUDE.Equals(tagQualifier.value))
-                            {
-                                continue;
-                            }
-                        }
-                        else
-                        {
-                            child.includeInProfile = true;
-                            node.includeInProfile = true;
-                        }
+                        child.includeInProfile = true;
+                        node.includeInProfile = true;
                     }
                     else
                     {
@@ -280,16 +334,23 @@ namespace HL7_FM_EA_Extension
             {
                 foreach (RelationshipType consequenceLink in node.consequenceLinks)
                 {
-                    TreeNode linkedNode = treeNodes[consequenceLink.destId];
-                    if (!linkedNode.includeInProfile)
+                    if (treeNodes.ContainsKey(consequenceLink.destId))
                     {
-                        linkedNode.includeInProfile = true;
-                        followConsequenceLinks(linkedNode);
-                        setDebugInclusionReason(linkedNode, string.Format("ConsequenceLink from function {0}", node.baseModelObject.name));
+                        TreeNode linkedNode = treeNodes[consequenceLink.destId];
+                        if (!linkedNode.includeInProfile)
+                        {
+                            linkedNode.includeInProfile = true;
+                            followConsequenceLinks(linkedNode);
+                            setDebugInclusionReason(linkedNode, string.Format("ConsequenceLink from function {0}", node.baseModelObject.name));
+                        }
+                        else
+                        {
+                            _OutputListener.writeOutput("WARN: consequenceLink from {0} to {1} object already included", node.baseModelObject.alias, linkedNode.baseModelObject.alias);
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("consequenceLink from {0} to {1} object already included", node.baseModelObject.alias, linkedNode.baseModelObject.alias);
+                        _OutputListener.writeOutput("WARN: {0} already gone, probably because of an EXCLUDE", consequenceLink.destId);
                     }
                 }
             }
@@ -366,14 +427,16 @@ namespace HL7_FM_EA_Extension
                     int optionalityCount = node.baseModelObject.tag.Count(t => t.name == R2Const.TV_OPTIONALITY);
                     if (optionalityCount != 1)
                     {
-                        Console.WriteLine("{0} expected 1 Optionality tag but got {1}", node.baseModelObject.name, optionalityCount);
+                        _OutputListener.writeOutput("ERROR: {0} expected 1 Optionality tag but got {1}", node.baseModelObject.name, optionalityCount);
+                        return;
                     }
                     TagType tagOptionality = node.baseModelObject.tag.Single(t => t.name == R2Const.TV_OPTIONALITY);
 
                     int newOptionalityCount = node.instructionObject.tag.Count(t => t.name == R2Const.TV_OPTIONALITY);
                     if (newOptionalityCount > 1)
                     {
-                        Console.WriteLine("{0} expected 0..1 Optionality tag but got {1}", node.baseModelObject.name, newOptionalityCount);
+                        _OutputListener.writeOutput("ERROR: {0} expected 0..1 Optionality tag but got {1}", node.baseModelObject.name, newOptionalityCount);
+                        return;
                     }
                     TagType tagOptionalityNew = node.instructionObject.tag.FirstOrDefault(t => t.name == R2Const.TV_OPTIONALITY);
                     if (tagOptionalityNew != null && !tagOptionalityNew.value.Equals(tagOptionality.value))
@@ -409,7 +472,7 @@ namespace HL7_FM_EA_Extension
                 int newQualifierCount = node.instructionObject.tag.Count(t => t.name == R2Const.TV_QUALIFIER);
                 if (newQualifierCount > 1)
                 {
-                    Console.WriteLine("{0} expected 0..1 Qualifier tag but got {1}", node.baseModelObject.name, newQualifierCount);
+                    _OutputListener.writeOutput("WARN: {0} expected 0..1 Qualifier tag but got {1}", node.baseModelObject.name, newQualifierCount);
                 }
                 TagType tagQualifier = node.instructionObject.tag.FirstOrDefault(t => t.name == R2Const.TV_QUALIFIER);
                 if (tagQualifier != null)
@@ -450,6 +513,19 @@ namespace HL7_FM_EA_Extension
                     node.children = newChildren.OrderBy(o => o.baseModelObject.tag.FirstOrDefault(t=>"ID".Equals(t.name)).value).ToList();
                     break;
             }
+        }
+    }
+
+    public interface OutputListener
+    {
+        void writeOutput(string format, params object[] arg);
+    }
+
+    public class ConsoleOutputListener : OutputListener
+    {
+        public void writeOutput(string format, params object[] arg)
+        {
+            Console.WriteLine(format, arg);
         }
     }
 }
