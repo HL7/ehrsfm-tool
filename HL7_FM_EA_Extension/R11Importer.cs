@@ -92,7 +92,7 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    EAHelper.LogMessage(Repository, String.Format("See Also from {0} to {1}, target not found.", sourceID, targetID));
+                    EAHelper.LogMessage(string.Format("See Also from {0} to {1}, target not found.", sourceID, targetID));
                 }
             }
 
@@ -110,7 +110,7 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    EAHelper.LogMessage(Repository, String.Format("Function link from {0} to {1}, target not found.", sourceID, targetID));
+                    EAHelper.LogMessage(string.Format("Function link from {0} to {1}, target not found.", sourceID, targetID));
                 }
             }
 
@@ -129,7 +129,7 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    EAHelper.LogMessage(Repository, String.Format("Function composition from {0} to {1}, target not found.", sourceID, targetID));
+                    EAHelper.LogMessage(string.Format("Function composition from {0} to {1}, target not found.", sourceID, targetID));
                 }
             }
 
@@ -247,7 +247,7 @@ namespace HL7_FM_EA_Extension
             {
                 if (functionSeeAlsoSource[i] == sourceID && functionSeeAlsoTarget[i] == targetID)
                 {
-                    EAHelper.LogMessage(Repository, String.Format("Duplicate See Also from {0} to {1}", sourceID, targetID));
+                    EAHelper.LogMessage(string.Format("Duplicate See Also from {0} to {1}", sourceID, targetID));
                     return false;
                 }
             }
@@ -263,7 +263,7 @@ namespace HL7_FM_EA_Extension
             {
                 if (functionCompSource[i] == sourceID && functionCompTarget[i] == targetID)
                 {
-                    EAHelper.LogMessage(Repository, String.Format("Duplicate Function composition from {0} to {1}", sourceID, targetID));
+                    EAHelper.LogMessage(string.Format("Duplicate Function composition from {0} to {1}", sourceID, targetID));
                     return false;
                 }
             }
@@ -279,7 +279,7 @@ namespace HL7_FM_EA_Extension
             {
                 if (functionLinkSource[i] == sourceID && functionLinkTarget[i] == targetID)
                 {
-                    EAHelper.LogMessage(Repository, String.Format("Duplicate Function link from {0} to {1}", sourceID, targetID));
+                    EAHelper.LogMessage(string.Format("Duplicate Function link from {0} to {1}", sourceID, targetID));
                     return false;
                 }
             }

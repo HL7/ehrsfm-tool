@@ -31,30 +31,33 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfilingForm));
             this.mainListView = new System.Windows.Forms.ListView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.excludeRadioButton = new System.Windows.Forms.RadioButton();
+            this.includeRadioButton = new System.Windows.Forms.RadioButton();
+            this.deprecateRadioButton = new System.Windows.Forms.RadioButton();
+            this.deleteRadioButton = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.findTextBox = new System.Windows.Forms.TextBox();
             this.findButton = new System.Windows.Forms.Button();
+            this.groupCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.excludeCriterionCheckBox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.criteriaListView = new System.Windows.Forms.ListView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.excludeRadioButton = new System.Windows.Forms.RadioButton();
-            this.includeRadioButton = new System.Windows.Forms.RadioButton();
-            this.deprecateRadioButton = new System.Windows.Forms.RadioButton();
-            this.deleteRadioButton = new System.Windows.Forms.RadioButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainListView
@@ -63,7 +66,7 @@
             this.mainListView.Location = new System.Drawing.Point(0, 0);
             this.mainListView.MultiSelect = false;
             this.mainListView.Name = "mainListView";
-            this.mainListView.Size = new System.Drawing.Size(375, 483);
+            this.mainListView.Size = new System.Drawing.Size(335, 394);
             this.mainListView.TabIndex = 0;
             this.mainListView.TileSize = new System.Drawing.Size(168, 45);
             this.mainListView.UseCompatibleStateImageBehavior = false;
@@ -73,139 +76,50 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.Black;
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(8);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
-            this.splitContainer1.Panel1.Controls.Add(this.mainListView);
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(8);
+            this.splitContainer1.Panel1MinSize = 300;
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(8);
             this.splitContainer1.Size = new System.Drawing.Size(852, 483);
-            this.splitContainer1.SplitterDistance = 375;
+            this.splitContainer1.SplitterDistance = 355;
+            this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 1;
             // 
-            // panel1
+            // splitContainer2
             // 
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.findTextBox);
-            this.panel1.Controls.Add(this.findButton);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(236, 29);
-            this.panel1.TabIndex = 3;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer2.IsSplitterFixed = true;
+            this.splitContainer2.Location = new System.Drawing.Point(8, 8);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // label3
+            // splitContainer2.Panel1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 7);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Select by ID";
+            this.splitContainer2.Panel1.Controls.Add(this.mainListView);
             // 
-            // findTextBox
+            // splitContainer2.Panel2
             // 
-            this.findTextBox.Location = new System.Drawing.Point(74, 4);
-            this.findTextBox.Name = "findTextBox";
-            this.findTextBox.Size = new System.Drawing.Size(100, 20);
-            this.findTextBox.TabIndex = 1;
-            this.findTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.findTextBox_KeyUp);
-            // 
-            // findButton
-            // 
-            this.findButton.Location = new System.Drawing.Point(180, 2);
-            this.findButton.Name = "findButton";
-            this.findButton.Size = new System.Drawing.Size(49, 23);
-            this.findButton.TabIndex = 17;
-            this.findButton.Text = "Find";
-            this.findButton.UseVisualStyleBackColor = true;
-            this.findButton.Click += new System.EventHandler(this.findButton_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.excludeCriterionCheckBox);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox3.Location = new System.Drawing.Point(0, 357);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(473, 126);
-            this.groupBox3.TabIndex = 11;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "For selected Criterion";
-            // 
-            // excludeCriterionCheckBox
-            // 
-            this.excludeCriterionCheckBox.AutoSize = true;
-            this.excludeCriterionCheckBox.Location = new System.Drawing.Point(11, 102);
-            this.excludeCriterionCheckBox.Name = "excludeCriterionCheckBox";
-            this.excludeCriterionCheckBox.Size = new System.Drawing.Size(160, 17);
-            this.excludeCriterionCheckBox.TabIndex = 13;
-            this.excludeCriterionCheckBox.Text = "Exclude Criterion from Profile";
-            this.excludeCriterionCheckBox.UseVisualStyleBackColor = true;
-            this.excludeCriterionCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Change note";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(77, 16);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(376, 74);
-            this.textBox1.TabIndex = 11;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.criteriaListView);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(0, 68);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(473, 286);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Criteria for selected Header or Function";
-            // 
-            // criteriaListView
-            // 
-            this.criteriaListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.criteriaListView.Location = new System.Drawing.Point(3, 16);
-            this.criteriaListView.MultiSelect = false;
-            this.criteriaListView.Name = "criteriaListView";
-            this.criteriaListView.ShowGroups = false;
-            this.criteriaListView.Size = new System.Drawing.Size(467, 267);
-            this.criteriaListView.TabIndex = 0;
-            this.criteriaListView.TileSize = new System.Drawing.Size(168, 45);
-            this.criteriaListView.UseCompatibleStateImageBehavior = false;
-            this.criteriaListView.View = System.Windows.Forms.View.Details;
-            this.criteriaListView.SelectedIndexChanged += new System.EventHandler(this.criteriaListBox_SelectedIndexChanged);
-            this.criteriaListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.criteriaListView_MouseDoubleClick);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(473, 68);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "<< Actions for selected Section, Header or Function";
+            this.splitContainer2.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.splitContainer2.Size = new System.Drawing.Size(335, 463);
+            this.splitContainer2.SplitterDistance = 394;
+            this.splitContainer2.TabIndex = 1;
             // 
             // flowLayoutPanel1
             // 
@@ -213,10 +127,11 @@
             this.flowLayoutPanel1.Controls.Add(this.includeRadioButton);
             this.flowLayoutPanel1.Controls.Add(this.deprecateRadioButton);
             this.flowLayoutPanel1.Controls.Add(this.deleteRadioButton);
+            this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(467, 49);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(335, 65);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // excludeRadioButton
@@ -284,6 +199,127 @@
             this.deleteRadioButton.UseVisualStyleBackColor = false;
             this.deleteRadioButton.CheckedChanged += new System.EventHandler(this.deleteRadioButton_CheckedChanged);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.findTextBox);
+            this.panel1.Controls.Add(this.findButton);
+            this.panel1.Controls.Add(this.groupCheckBox);
+            this.panel1.Location = new System.Drawing.Point(3, 34);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(296, 29);
+            this.panel1.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 7);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Select by ID";
+            // 
+            // findTextBox
+            // 
+            this.findTextBox.Location = new System.Drawing.Point(74, 4);
+            this.findTextBox.Name = "findTextBox";
+            this.findTextBox.Size = new System.Drawing.Size(100, 20);
+            this.findTextBox.TabIndex = 1;
+            this.findTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.findTextBox_KeyUp);
+            // 
+            // findButton
+            // 
+            this.findButton.Location = new System.Drawing.Point(180, 2);
+            this.findButton.Name = "findButton";
+            this.findButton.Size = new System.Drawing.Size(49, 23);
+            this.findButton.TabIndex = 17;
+            this.findButton.Text = "Find";
+            this.findButton.UseVisualStyleBackColor = true;
+            this.findButton.Click += new System.EventHandler(this.findButton_Click);
+            // 
+            // groupCheckBox
+            // 
+            this.groupCheckBox.AutoSize = true;
+            this.groupCheckBox.Checked = true;
+            this.groupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.groupCheckBox.Location = new System.Drawing.Point(235, 6);
+            this.groupCheckBox.Name = "groupCheckBox";
+            this.groupCheckBox.Size = new System.Drawing.Size(55, 17);
+            this.groupCheckBox.TabIndex = 6;
+            this.groupCheckBox.Text = "Group";
+            this.groupCheckBox.UseVisualStyleBackColor = true;
+            this.groupCheckBox.CheckedChanged += new System.EventHandler(this.groupCheckBox_CheckedChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.excludeCriterionCheckBox);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox3.Location = new System.Drawing.Point(8, 345);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(469, 126);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "For selected Criterion";
+            // 
+            // excludeCriterionCheckBox
+            // 
+            this.excludeCriterionCheckBox.AutoSize = true;
+            this.excludeCriterionCheckBox.Location = new System.Drawing.Point(11, 102);
+            this.excludeCriterionCheckBox.Name = "excludeCriterionCheckBox";
+            this.excludeCriterionCheckBox.Size = new System.Drawing.Size(160, 17);
+            this.excludeCriterionCheckBox.TabIndex = 13;
+            this.excludeCriterionCheckBox.Text = "Exclude Criterion from Profile";
+            this.excludeCriterionCheckBox.UseVisualStyleBackColor = true;
+            this.excludeCriterionCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Change note";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(77, 16);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(376, 74);
+            this.textBox1.TabIndex = 11;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.criteriaListView);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox2.Location = new System.Drawing.Point(8, 8);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(469, 331);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Criteria for selected Header or Function";
+            // 
+            // criteriaListView
+            // 
+            this.criteriaListView.CheckBoxes = true;
+            this.criteriaListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.criteriaListView.Location = new System.Drawing.Point(3, 16);
+            this.criteriaListView.MultiSelect = false;
+            this.criteriaListView.Name = "criteriaListView";
+            this.criteriaListView.ShowGroups = false;
+            this.criteriaListView.Size = new System.Drawing.Size(463, 312);
+            this.criteriaListView.TabIndex = 0;
+            this.criteriaListView.TileSize = new System.Drawing.Size(168, 45);
+            this.criteriaListView.UseCompatibleStateImageBehavior = false;
+            this.criteriaListView.View = System.Windows.Forms.View.Details;
+            this.criteriaListView.SelectedIndexChanged += new System.EventHandler(this.criteriaListBox_SelectedIndexChanged);
+            this.criteriaListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.criteriaListView_MouseDoubleClick);
+            // 
             // ProfilingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -296,14 +332,16 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -312,7 +350,6 @@
 
         private System.Windows.Forms.ListView mainListView;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton deleteRadioButton;
         private System.Windows.Forms.RadioButton deprecateRadioButton;
         private System.Windows.Forms.RadioButton includeRadioButton;
@@ -328,6 +365,8 @@
         private System.Windows.Forms.TextBox findTextBox;
         private System.Windows.Forms.Button findButton;
         private System.Windows.Forms.CheckBox excludeCriterionCheckBox;
+        private System.Windows.Forms.CheckBox groupCheckBox;
+        private System.Windows.Forms.SplitContainer splitContainer2;
 
     }
 }

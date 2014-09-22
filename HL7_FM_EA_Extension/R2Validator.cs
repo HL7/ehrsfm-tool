@@ -93,7 +93,7 @@ namespace HL7_FM_EA_Extension
                 string code = xSvrlDiag.Attribute("diagnostic").Value;
                 string message = xSvrlDiag.Value.Trim();
                 string issueName = string.Format("{0}:{1} - {2}", code, message, element.Name);
-                EAHelper.LogMessage(repository, issueName, element.ElementID);
+                EAHelper.LogMessage(issueName, element.ElementID);
 
                 //EA.ProjectIssues issue = (EA.ProjectIssues)Repository.Issues.AddNew(issueName, "ProjectIssues");
                 //issue.Update();
