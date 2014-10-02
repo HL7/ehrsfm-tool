@@ -6,6 +6,14 @@
 
 CHANGELOG
 =========
+[2014-oct-02]
+ProfileMetadataForm,Main
+- getAssociatedProfileDefinition was double implemented and getAssociatedOutputProfile was missing.
+
+[2014-sep-25]
+ProfilingForm
+- For CriteriaList use checkBox in front of criterion to include/exclude
+
 [2014-sep-22]
 ProfilingForm
 - Moved Section/Header/Function buttons left, made left/right parts more distinct. Left is for Section/Header/Function,

@@ -235,26 +235,29 @@ namespace HL7_FM_EA_Extension
 
         private void updateListViewItem(ListViewItem item)
         {
+            bool _ignoreEvent = ignoreEvent;
+            ignoreEvent = true;
             DefinitionLink dl = (DefinitionLink)item.Tag;
             if (dl.compilerInstructionElement != null)
             {
-                item.Checked = false;
                 switch (EAHelper.getTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, ""))
                 {
                     case "DEP":
                         item.ForeColor = Color.White;
                         item.BackColor = BACKCOLOR_DEPRECATED;
+                        item.Checked = true;
                         break;
                     case "D":
                         item.ForeColor = Color.White;
                         item.BackColor = BACKCOLOR_DELETED;
+                        item.Checked = false;
                         break;
                     case "EXCLUDE": // special for excluded criteria
                         item.ForeColor = Color.LightGray;
                         item.BackColor = BACKCOLOR_EXCLUDED;
+                        item.Checked = false;
                         break;
-                    case "":
-                    default:
+                    default: // ""
                         item.ForeColor = Color.White;
                         item.BackColor = BACKCOLOR_INCLUDED;
                         item.Checked = true;
@@ -265,7 +268,9 @@ namespace HL7_FM_EA_Extension
             {
                 item.ForeColor = Color.Black;
                 item.BackColor = BACKCOLOR_EXCLUDED;
+                item.Checked = true;
             }
+            ignoreEvent = _ignoreEvent;
         }
 
         private void setCompilerInstruction(DefinitionLink dl, R2Const.Qualifier qualifier, string change_note = null)
@@ -376,24 +381,6 @@ namespace HL7_FM_EA_Extension
                     textBox1.Text = "";
                     ignoreEvent = false;
                 }
-                EA.TaggedValue tvQualifier = null;
-                if (ciElement != null)
-                {
-                    tvQualifier = (EA.TaggedValue)ciElement.TaggedValues.GetByName(R2Const.TV_QUALIFIER);
-                }
-                if (tvQualifier != null)
-                {
-                    ignoreEvent = true;
-                    excludeCriterionCheckBox.Checked = "EXCLUDE".Equals(tvQualifier.Value);
-                    ignoreEvent = false;
-                }
-                else
-                {
-                    ignoreEvent = true;
-                    excludeCriterionCheckBox.Checked = false;
-                    ignoreEvent = false;
-                }
-
                 groupBox3.Show();
             }
             else
@@ -458,24 +445,6 @@ namespace HL7_FM_EA_Extension
             MessageBox.Show(string.Format("There is no element with ID '{0}'", id), "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!ignoreEvent)
-            {
-                ListViewItem selected = criteriaListView.SelectedItems[0];
-                DefinitionLink dl = (DefinitionLink) selected.Tag;
-                if (excludeCriterionCheckBox.Checked)
-                {
-                    setCompilerInstruction(dl, R2Const.Qualifier.Exclude);
-                }
-                else
-                {
-                    setCompilerInstruction(dl, R2Const.Qualifier.None);
-                }
-                updateListViewItem(selected);
-            }
-        }
-
         private void findTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -495,6 +464,24 @@ namespace HL7_FM_EA_Extension
             {
                 mainListView.ShowGroups = false;
                 mainListView.View = View.List;
+            }
+        }
+
+        private void criteriaListView_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (!ignoreEvent)
+            {
+                ListViewItem selected = e.Item;
+                DefinitionLink dl = (DefinitionLink)selected.Tag;
+                if (!selected.Checked)
+                {
+                    setCompilerInstruction(dl, R2Const.Qualifier.Exclude);
+                }
+                else
+                {
+                    setCompilerInstruction(dl, R2Const.Qualifier.None);
+                }
+                updateListViewItem(selected);
             }
         }
     }

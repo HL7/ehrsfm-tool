@@ -48,6 +48,19 @@ namespace HL7_FM_EA_Extension
 
         private string getAssociatedBaseModelName(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
         {
+            EA.Package baseModelPackage = getAssociatedBaseModel(Repository, ProfileDefinitionPackage);
+            if (baseModelPackage != null)
+            {
+                return baseModelPackage.Name;
+            }
+            else
+            {
+                return "No base model defined or linked...";
+            }
+        }
+
+        public static EA.Package getAssociatedBaseModel(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
+        {
             EA.Connector con = ProfileDefinitionPackage.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype) || "Usage".Equals(t.Type));
             if (con != null)
             {
@@ -57,11 +70,29 @@ namespace HL7_FM_EA_Extension
                     // con.SupplierID is the ElementID of the PackageElement
                     // Find the Package with the PackageElement by selecting the child Package in the parent Package where
                     // the ElementID is con.SupplierID
-                    EA.Package BaseModelPackage = Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
-                    return BaseModelPackage.Name;
+                    return Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
                 }
             }
-            return "No base model defined or linked...";
+            EAHelper.LogMessage("Expected <use> relationship to a <HL7-FM> Package == Base Model");
+            return null;
+        }
+
+        public static EA.Package getAssociatedOutputProfile(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
+        {
+            EA.Connector con = ProfileDefinitionPackage.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_TARGETPROFILE.Equals(t.Stereotype));
+            if (con != null)
+            {
+                EA.Element packageElement = Repository.GetElementByID(con.SupplierID);
+                if (R2Const.ST_FM_PROFILE.Equals(packageElement.Stereotype))
+                {
+                    // con.SupplierID is the ElementID of the PackageElement
+                    // Find the Package with the PackageElement by selecting the child Package in the parent Package where
+                    // the ElementID is con.SupplierID
+                    return Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
+                }
+            }
+            EAHelper.LogMessage("Expected <create> relationship to a <HL7-FM-Profile> Package == Compiled Profile Model");
+            return null;
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
