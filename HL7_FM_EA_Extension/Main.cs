@@ -356,6 +356,7 @@ namespace HL7_FM_EA_Extension
                 EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
                 if (tvExportFile == null)
                 {
+                    EAHelper.LogMessage(string.Format("MAX::ExportFile tagged value missing in Package \"{0}\"", package.Name));
                     MessageBox.Show("First setup Profile Definition Package.");
                     return;
                 }
@@ -366,7 +367,7 @@ namespace HL7_FM_EA_Extension
                 EAHelper.LogMessage("[END] Export Profile Definition to MAX file");
 
                 // Find associated Base
-                EA.Package baseModelPackage = findAssociatedBaseModel(repository, package);
+                EA.Package baseModelPackage = ProfileMetadataForm.getAssociatedBaseModel(repository, package);
                 if (baseModelPackage == null)
                 {
                     MessageBox.Show("First setup Profile Definition Package.");
@@ -383,7 +384,7 @@ namespace HL7_FM_EA_Extension
                 EAHelper.LogMessage(string.Format("[INFO] Base Model MAX file: {0}", baseModelFileName));
 
                 // Find associated Target Profile Package
-                EA.Package compiledProfilePackage = findAssociatedCompiledProfile(repository, package);
+                EA.Package compiledProfilePackage = ProfileMetadataForm.getAssociatedOutputProfile(repository, package);
                 if (compiledProfilePackage == null)
                 {
                     MessageBox.Show("First setup Profile Definition Package.");
@@ -413,29 +414,6 @@ namespace HL7_FM_EA_Extension
             else
             {
                 MessageBox.Show("Please select a Profile Definition Package to Compile.");
-            }
-        }
-
-        private EA.Package findAssociatedBaseModel(EA.Repository Repository, EA.Package package)
-        {
-            EA.Connector con = package.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype));
-            if (con != null)
-            {
-                EA.Element packageElement = Repository.GetElementByID(con.SupplierID);
-                // Check if base is a HL7-FM
-                // TODO: Also allow HL7-FM-Profile in the future
-                if (R2Const.ST_FM.Equals(packageElement.Stereotype))
-                {
-                    return Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
             }
         }
 

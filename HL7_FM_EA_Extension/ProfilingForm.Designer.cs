@@ -43,7 +43,6 @@
             this.findButton = new System.Windows.Forms.Button();
             this.groupCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.excludeCriterionCheckBox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -252,32 +251,20 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.excludeCriterionCheckBox);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox3.Location = new System.Drawing.Point(8, 345);
+            this.groupBox3.Location = new System.Drawing.Point(8, 367);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(469, 126);
+            this.groupBox3.Size = new System.Drawing.Size(469, 104);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "For selected Criterion";
             // 
-            // excludeCriterionCheckBox
-            // 
-            this.excludeCriterionCheckBox.AutoSize = true;
-            this.excludeCriterionCheckBox.Location = new System.Drawing.Point(11, 102);
-            this.excludeCriterionCheckBox.Name = "excludeCriterionCheckBox";
-            this.excludeCriterionCheckBox.Size = new System.Drawing.Size(160, 17);
-            this.excludeCriterionCheckBox.TabIndex = 13;
-            this.excludeCriterionCheckBox.Text = "Exclude Criterion from Profile";
-            this.excludeCriterionCheckBox.UseVisualStyleBackColor = true;
-            this.excludeCriterionCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 19);
+            this.label2.Location = new System.Drawing.Point(6, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 12;
@@ -285,7 +272,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 16);
+            this.textBox1.Location = new System.Drawing.Point(80, 19);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(376, 74);
@@ -299,7 +286,7 @@
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox2.Location = new System.Drawing.Point(8, 8);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(469, 331);
+            this.groupBox2.Size = new System.Drawing.Size(469, 353);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Criteria for selected Header or Function";
@@ -312,11 +299,12 @@
             this.criteriaListView.MultiSelect = false;
             this.criteriaListView.Name = "criteriaListView";
             this.criteriaListView.ShowGroups = false;
-            this.criteriaListView.Size = new System.Drawing.Size(463, 312);
+            this.criteriaListView.Size = new System.Drawing.Size(463, 334);
             this.criteriaListView.TabIndex = 0;
             this.criteriaListView.TileSize = new System.Drawing.Size(168, 45);
             this.criteriaListView.UseCompatibleStateImageBehavior = false;
             this.criteriaListView.View = System.Windows.Forms.View.Details;
+            this.criteriaListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.criteriaListView_ItemChecked);
             this.criteriaListView.SelectedIndexChanged += new System.EventHandler(this.criteriaListBox_SelectedIndexChanged);
             this.criteriaListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.criteriaListView_MouseDoubleClick);
             // 
@@ -364,7 +352,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox findTextBox;
         private System.Windows.Forms.Button findButton;
-        private System.Windows.Forms.CheckBox excludeCriterionCheckBox;
         private System.Windows.Forms.CheckBox groupCheckBox;
         private System.Windows.Forms.SplitContainer splitContainer2;
 
