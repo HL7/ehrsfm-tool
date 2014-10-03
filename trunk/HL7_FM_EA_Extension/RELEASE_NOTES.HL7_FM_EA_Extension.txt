@@ -9,14 +9,24 @@ CHANGELOG
 [2014-oct-03]
 R2ProfileCompiler
 - More robust missing or to many Priority and Optionality tag handling and reporting
+- GForge #3490: Implement sort functionality in compiler
+ProfilingForm,ProfileMetadataForm
+- Moved getAssociatedProfileDefinition to ProfileMetadataForm
+- Edit Profile also for Header and Function level
+  GForge #3553: Implement to open Edit Profile form at different levels
+Main
+- Check required tagged values in Compile and report if missing
+- Made enabling of menu extension items more context sensative
 
 [2014-oct-02]
 ProfileMetadataForm,Main
-- getAssociatedProfileDefinition was double implemented and getAssociatedOutputProfile was missing.
+- getAssociatedBaseModel was double implemented and getAssociatedOutputProfile was missing.
 
 [2014-sep-25]
 ProfilingForm
 - For CriteriaList use checkBox in front of criterion to include/exclude
+  GForge #3551: Implement the option 'Exclude criterion' in Edit Profile with every criterion...
+  GForge #3552: duplicate
 
 [2014-sep-22]
 ProfilingForm

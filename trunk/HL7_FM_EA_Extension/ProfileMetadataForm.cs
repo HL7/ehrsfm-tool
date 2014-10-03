@@ -59,6 +59,25 @@ namespace HL7_FM_EA_Extension
             }
         }
 
+        public static EA.Package getAssociatedProfileDefinition(EA.Repository repository, EA.Package selectedSectionPackage)
+        {
+            EA.Package baseModel = repository.GetPackageByID(selectedSectionPackage.ParentID);
+            EA.Connector con = baseModel.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype) || "Usage".Equals(t.Type));
+            if (con != null)
+            {
+                EA.Element packageElement = repository.GetElementByID(con.ClientID);
+                if (R2Const.ST_FM_PROFILEDEFINITION.Equals(packageElement.Stereotype))
+                {
+                    // con.ClientID is the ElementID of the PackageElement
+                    // Find the Package with the PackageElement by selecting the child Package in the parent Package where
+                    // the ElementID is con.ClientID
+                    return repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.ClientID);
+                }
+            }
+            EAHelper.LogMessage("Expected <use> relationship to a <HL7-FM> Package == Base Model");
+            return null;
+        }
+
         public static EA.Package getAssociatedBaseModel(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
         {
             EA.Connector con = ProfileDefinitionPackage.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype) || "Usage".Equals(t.Type));
