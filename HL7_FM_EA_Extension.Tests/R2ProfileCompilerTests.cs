@@ -13,6 +13,35 @@ namespace HL7_FM_EA_Extension.Tests
     public class R2ProfileCompilerTests
     {
         [TestMethod]
+        public void TestElementNameToSortKey()
+        {
+            R2ProfileCompiler compiler = new R2ProfileCompiler();
+            Assert.AreEqual("CP0001", compiler.ElementNameToSortKey("CP.1 Bla"));
+            Assert.AreEqual("CP00010001", compiler.ElementNameToSortKey("CP.1.1 Bla"));
+            Assert.AreEqual("CP0001A", compiler.ElementNameToSortKey("CP.1.A Bla"));
+            Assert.AreEqual("CP0001000200000001", compiler.ElementNameToSortKey("CP.1.2#01"));
+            Assert.AreEqual("CP00010002000000010001", compiler.ElementNameToSortKey("CP.1.2#01.1"));
+            Assert.AreEqual("CP00010000A10002", compiler.ElementNameToSortKey("CP.1#A1.2"));
+
+            string[] unsorted = {
+                                    "CP.1 Bla",
+                                    "CP.19 Bla",
+                                    "CP.2 Bla",
+                                    "CP.2.1 Bla",
+                                    "CP.2#01",
+                                    "CP.4 Bla",
+                                    "CP.3 Bla",
+                                    "CP.20 Bla",
+                                    "RI.1.1.19.1#12",
+                                    "RI.1.1.2",
+                                    "AS.8.4 Gestione delle informazioni sulle performance della struttura/servizio [facility] sanitario",
+                                    "AS.1 Gestione delle informazioni relative all'operatore"
+                                };
+            List<string> tosort = new List<string>(unsorted);
+            Console.WriteLine(string.Join(" ", tosort.OrderBy(t => compiler.ElementNameToSortKey(t)).ToList()));
+        }
+
+        [TestMethod]
         public void TestCompileOV1Only()
         {
             string fileNameBase = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\\EHRS_FM_R2_N2.max.xml";
@@ -46,7 +75,6 @@ namespace HL7_FM_EA_Extension.Tests
             string fileNameDefinition = @"C:\My Documents\__R4C 2014\EHR-S FM Italy FP (2014-jun)\Italy FP Profile Definition.max.xml";
             string fileNameOutput = @"c:\temp\Italy FP Compiled.max.xml";
             new R2ProfileCompiler().Compile(fileNameBase, fileNameDefinition, fileNameOutput);
-            
         }
 
         [TestMethod]

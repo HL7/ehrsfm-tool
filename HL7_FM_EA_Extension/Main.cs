@@ -11,6 +11,8 @@ namespace HL7_FM_EA_Extension
 {
     public class Main
     {
+        public const string MESSAGE_PROFILE_DEFINITION = "Profile Definition setup incomplete.\nCheck console.";
+
         QuickAccessControl view_ctrl;
         ModelBrowserControl mb_ctrl;
 
@@ -66,12 +68,29 @@ namespace HL7_FM_EA_Extension
             {
                 switch (ItemName)
                 {
+                    case "Edit Profile":
+                        if (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage)
+                        {
+                            EA.Package package = Repository.GetTreeSelectedPackage();
+                            IsEnabled = R2Const.ST_SECTION.Equals(package.StereotypeEx);
+                        }
+                        else if (Repository.GetTreeSelectedItemType() == EA.ObjectType.otElement)
+                        {
+                            EA.Element element = (EA.Element)Repository.GetTreeSelectedObject();
+                            IsEnabled = R2Const.ST_HEADER.Equals(element.StereotypeEx) || R2Const.ST_FUNCTION.Equals(element.StereotypeEx);
+                        }
+                        break;
+                    case "Compile Profile":
+                        if (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage)
+                        {
+                            EA.Package package = Repository.GetTreeSelectedPackage();
+                            IsEnabled = R2Const.ST_FM_PROFILEDEFINITION.Equals(package.StereotypeEx);
+                        }
+                        break;
                     case "Import R1.1":
                     case "Import R2":
                     case "Update Style":
                     case "Validate":
-                    case "Edit Profile":
-                    case "Compile Profile":
                     case "Merge Profiles":
                         IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage);
                         break;
@@ -356,8 +375,8 @@ namespace HL7_FM_EA_Extension
                 EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
                 if (tvExportFile == null)
                 {
-                    EAHelper.LogMessage(string.Format("MAX::ExportFile tagged value missing in Package \"{0}\"", package.Name));
-                    MessageBox.Show("First setup Profile Definition Package.");
+                    EAHelper.LogMessage(string.Format("MAX::ExportFile tag missing in Package \"{0}\"", package.Name));
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
                     return;
                 }
                 string profileDefinitionFileName = tvExportFile.Value;
@@ -370,14 +389,15 @@ namespace HL7_FM_EA_Extension
                 EA.Package baseModelPackage = ProfileMetadataForm.getAssociatedBaseModel(repository, package);
                 if (baseModelPackage == null)
                 {
-                    MessageBox.Show("First setup Profile Definition Package.");
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
                     return;
                 }
                 EAHelper.LogMessage(string.Format("[INFO] Base Model Package name: {0}", baseModelPackage.Name));
                 EA.TaggedValue tvImportFile = (EA.TaggedValue)baseModelPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
                 if (tvImportFile == null)
                 {
-                    MessageBox.Show("First setup Profile Definition Package.");
+                    EAHelper.LogMessage(string.Format("MAX::ImportFile tag missing in Package \"{0}\"", baseModelPackage.Name));
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
                     return;
                 }
                 string baseModelFileName = tvImportFile.Value;
@@ -387,14 +407,15 @@ namespace HL7_FM_EA_Extension
                 EA.Package compiledProfilePackage = ProfileMetadataForm.getAssociatedOutputProfile(repository, package);
                 if (compiledProfilePackage == null)
                 {
-                    MessageBox.Show("First setup Profile Definition Package.");
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
                     return;
                 }
                 EAHelper.LogMessage(string.Format("[INFO] Compiled Profile Package name: {0}", compiledProfilePackage.Name));
                 EA.TaggedValue tvExportFile2 = (EA.TaggedValue)compiledProfilePackage.Element.TaggedValues.GetByName("MAX::ExportFile");
                 if (tvExportFile2 == null)
                 {
-                    MessageBox.Show("First setup Profile Definition Package.");
+                    EAHelper.LogMessage(string.Format("MAX::ExportFile tag missing in Package \"{0}\"", compiledProfilePackage.Name));
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
                     return;
                 }
                 string profileFileName = tvExportFile2.Value;
@@ -413,29 +434,7 @@ namespace HL7_FM_EA_Extension
             }
             else
             {
-                MessageBox.Show("Please select a Profile Definition Package to Compile.");
-            }
-        }
-
-        private EA.Package findAssociatedCompiledProfile(EA.Repository Repository, EA.Package package)
-        {
-            EA.Connector con = package.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_TARGETPROFILE.Equals(t.Stereotype));
-            if (con != null)
-            {
-                EA.Element packageElement = Repository.GetElementByID(con.SupplierID);
-                // Check if target profile is HL7-FM-Profile
-                if (R2Const.ST_FM_PROFILE.Equals(packageElement.Stereotype))
-                {
-                    return Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
+                MessageBox.Show("Select a Profile Definition Package to Compile.");
             }
         }
         #endregion

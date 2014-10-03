@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using EA;
 using HL7_FM_EA_Extension.R2ModelV2.Base;
 
 namespace HL7_FM_EA_Extension
@@ -32,9 +33,39 @@ namespace HL7_FM_EA_Extension
         public void Show(EA.Repository repository, EA.Package selectedPackage)
         {
             this.repository = repository;
-            if (selectedPackage != null && R2Const.ST_SECTION.Equals(selectedPackage.StereotypeEx))
+            if (repository.GetTreeSelectedItemType() == ObjectType.otElement)
             {
-                if (findAssociatedProfileDefinition(selectedPackage))
+                EA.Element selectedElement = (EA.Element) repository.GetTreeSelectedObject();
+                if (R2Const.ST_HEADER.Equals(selectedElement.StereotypeEx) || R2Const.ST_FUNCTION.Equals(selectedElement.StereotypeEx))
+                {
+                    profileDefinitionPackage = ProfileMetadataForm.getAssociatedProfileDefinition(repository, selectedPackage);
+                    if (profileDefinitionPackage != null)
+                    {
+                        Text = string.Format("Profile Definition for {0}: {1}", selectedElement.StereotypeEx, selectedElement.Name);
+                        Show();
+                        Refresh();
+
+                        mainListView.Items.Clear();
+                        mainListView.Groups.Clear();
+                        mainGroup = new ListViewGroup("");
+                        mainListView.Groups.Add(mainGroup);
+
+                        ListViewItem item = createListViewItem(selectedElement);
+                        item.Group = mainGroup;
+                        mainListView.Items.Add(item);
+
+                        createElementGroup(string.Format("«{0}» {1}", selectedElement.StereotypeEx, selectedElement.Name), selectedElement.Elements);
+                    }
+                    else
+                    {
+                        MessageBox.Show(Main.MESSAGE_PROFILE_DEFINITION);
+                    }
+                }
+            }
+            else if (selectedPackage != null && R2Const.ST_SECTION.Equals(selectedPackage.StereotypeEx))
+            {
+                profileDefinitionPackage = ProfileMetadataForm.getAssociatedProfileDefinition(repository, selectedPackage);
+                if (profileDefinitionPackage != null)
                 {
                     Text = string.Format("Profile Definition for Section: {0}", selectedPackage.Name);
                     Show();
@@ -51,38 +82,14 @@ namespace HL7_FM_EA_Extension
 
                     visitPackage(selectedPackage);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Please select a Base FM Section to Profile.");
-            }
-        }
-
-        private bool findAssociatedProfileDefinition(EA.Package selectedSectionPackage)
-        {
-            EA.Package baseModel = repository.GetPackageByID(selectedSectionPackage.ParentID);
-            EA.Connector con = baseModel.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype) || "Usage".Equals(t.Type));
-            if (con != null)
-            {
-                EA.Element packageElement = repository.GetElementByID(con.ClientID);
-                if (R2Const.ST_FM_PROFILEDEFINITION.Equals(packageElement.Stereotype))
-                {
-                    // con.ClientID is the ElementID of the PackageElement
-                    // Find the Package with the PackageElement by selecting the child Package in the parent Package where
-                    // the ElementID is con.ClientID
-                    profileDefinitionPackage = repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.ClientID);
-                    return true;
-                }
                 else
                 {
-                    MessageBox.Show("First setup Profile Definition Package.");
-                    return false;
+                    MessageBox.Show(Main.MESSAGE_PROFILE_DEFINITION);
                 }
             }
             else
             {
-                MessageBox.Show("First setup Profile Definition Package.");
-                return false;
+                MessageBox.Show("Select a Base FM Section to Profile.");
             }
         }
 

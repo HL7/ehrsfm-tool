@@ -177,6 +177,7 @@ namespace HL7_FM_EA_Extension
                     }
                 }
 
+                // smart sort objects, mixed string and numbers
                 // save compiled profile as MAX XML
                 ModelType model = new ModelType();
                 model.exportDate = DateTime.Now.ToString();
@@ -280,7 +281,7 @@ namespace HL7_FM_EA_Extension
                 }
                 newChildren.Add(childNode);
             }
-            node.children = newChildren;
+            node.children = newChildren.OrderBy(n => ObjectTypeToSortKey(n.baseModelObject)).ToList();
         }
 
         /**
@@ -509,20 +510,41 @@ namespace HL7_FM_EA_Extension
                     newChildren.Add(child);
                 }
             }
-            switch (node.baseModelObject.stereotype)
+            node.children = newChildren;
+        }
+
+        public string ObjectTypeToSortKey(ObjectType element)
+        {
+            switch (element.stereotype)
             {
                 case R2Const.ST_SECTION:
+                    return ElementNameToSortKey(element.tag.Single(t => "ID".Equals(t.name)).value);
                 case R2Const.ST_HEADER:
                 case R2Const.ST_FUNCTION:
                 case R2Const.ST_CRITERION:
-                    // sort the items based on their name
-                    node.children = newChildren.OrderBy(o => o.baseModelObject.name).ToList();
-                    break;
+                    return ElementNameToSortKey(element.name);
                 default:
-                    // sort root childs == sections on ID tagged value
-                    node.children = newChildren.OrderBy(o => o.baseModelObject.tag.FirstOrDefault(t=>"ID".Equals(t.name)).value).ToList();
-                    break;
+                    return "";
             }
+        }
+
+        public string ElementNameToSortKey(string sortKey)
+        {
+            // Only take first part == ID
+            // Make sure # shows before .1 by replacing it with .0
+            string[] parts = sortKey.Split(' ')[0].Replace("#", ".0.").Split('.');
+            StringBuilder sb = new StringBuilder(parts[0]);
+            for(int i=1; i<parts.Length;i++)
+            {
+                string part = parts[i];
+                try
+                {
+                    part = string.Format("{0:D4}", int.Parse(part));
+                }
+                catch { }
+                sb.Append(part);
+            }
+            return sb.ToString();
         }
     }
 
