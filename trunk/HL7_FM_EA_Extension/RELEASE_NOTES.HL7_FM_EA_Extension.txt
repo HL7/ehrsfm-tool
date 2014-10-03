@@ -6,6 +6,10 @@
 
 CHANGELOG
 =========
+[2014-oct-03]
+R2ProfileCompiler
+- More robust missing or to many Priority and Optionality tag handling and reporting
+
 [2014-oct-02]
 ProfileMetadataForm,Main
 - getAssociatedProfileDefinition was double implemented and getAssociatedOutputProfile was missing.
