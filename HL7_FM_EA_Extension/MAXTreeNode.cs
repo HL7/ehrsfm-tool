@@ -75,6 +75,17 @@ namespace HL7_FM_EA_Extension
         public bool isNew = false;
         public List<TreeNode> children = new List<TreeNode>();
 
+        public void addBaseModelTag(string _name, string _value)
+        {
+            List<TagType> tags = new List<TagType>();
+            if (baseModelObject.tag != null)
+            {
+                tags.AddRange(baseModelObject.tag);
+            }
+            tags.Add(new TagType() { name = _name, value = _value });
+            baseModelObject.tag = tags.ToArray();
+        }
+
         private void ToObjectList(TreeNode node, List<ObjectType> objects)
         {
             if (node.baseModelObject != null)
