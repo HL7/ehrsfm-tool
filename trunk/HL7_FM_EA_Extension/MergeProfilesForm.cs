@@ -7,7 +7,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 using HL7_FM_EA_Extension.R2ModelV2.Base;
+using MAX_EA.MAXSchema;
 
 namespace HL7_FM_EA_Extension
 {
@@ -20,6 +23,7 @@ namespace HL7_FM_EA_Extension
 
         // Limit rows for each model
         private int _currentRow = -1;
+        private int _currentCompareRow = -1;
         private List<string> modelNames = new List<string>();
 
         public void PopulateAndShow()
@@ -191,6 +195,7 @@ namespace HL7_FM_EA_Extension
             if (section != null)
             {
                 dataGridView1.Rows[rowNumber].DefaultCellStyle = dataGridView1.DefaultCellStyle;
+                dataGridView1.Rows[rowNumber].Cells["Priority"].Value = section.Priority;
                 dataGridView1.Rows[rowNumber].Cells["SectionId"].Value = section.SectionId;
                 dataGridView1.Rows[rowNumber].Cells["Name"].Value = section.Name;
                 dataGridView1.Rows[rowNumber].Cells["LastModified"].Value = section.LastModified;
@@ -203,10 +208,11 @@ namespace HL7_FM_EA_Extension
 
         private void populateSelectedFunction(R2Function function, int rowNumber, DataGridViewCellStyle emptyCellStyle, R2Function function0, DataGridViewCellStyle diffCellStyle)
         {
+            if (function0 == null) function0 = function;
             if (function != null)
             {
                 dataGridView1.Rows[rowNumber].DefaultCellStyle = dataGridView1.DefaultCellStyle;
-
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Priority"], function.Priority, function0.Priority, diffCellStyle);
                 populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["FunctionId"], function.FunctionId, function0.FunctionId, diffCellStyle);
                 populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Name"], function.Name, function0.Name, diffCellStyle);
                 populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["LastModified"], function.LastModified, function0.LastModified, diffCellStyle);
@@ -219,9 +225,11 @@ namespace HL7_FM_EA_Extension
 
         private void populateSelectedCriterion(R2Criterion criterion, int rowNumber, DataGridViewCellStyle emptyCellStyle, R2Criterion criterion0, DataGridViewCellStyle diffCellStyle)
         {
+            if (criterion0 == null) criterion0 = criterion;
             if (criterion != null)
             {
                 dataGridView1.Rows[rowNumber].DefaultCellStyle = dataGridView1.DefaultCellStyle;
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Priority"], criterion.Priority, criterion0.Priority, diffCellStyle);
                 populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Name"], criterion.Name, criterion0.Name, diffCellStyle);
                 populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Text"], criterion.Text, criterion0.Text, diffCellStyle);
                 populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Row#"], criterion.Row, criterion0.Row, diffCellStyle);
@@ -266,90 +274,132 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void dataGridView2_CellEnter(object sender, DataGridViewCellEventArgs e)
+        private void updateDataGridView1(bool reset, int selectedRow, int compareRow)
         {
-            if (_currentRow != e.RowIndex)
-            {
-                _currentRow = e.RowIndex;
-                if (e.RowIndex == -1) return;
+            DataGridViewCell cell0 = dataGridView2.Rows[selectedRow].Cells[0];
+            DataGridViewCell cell1 = dataGridView2.Rows[selectedRow].Cells[1];
+            DataGridViewCell cell2 = dataGridView2.Rows[selectedRow].Cells[2];
+            DataGridViewCell cell3 = dataGridView2.Rows[selectedRow].Cells[3];
+            DataGridViewCell cell4 = dataGridView2.Rows[selectedRow].Cells[4];
 
+            if (reset)
+            {
                 // setup datagrid to selected Element type
                 dataGridView1.Columns.Clear();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-                DataGridViewCell cell0 = dataGridView2.Rows[e.RowIndex].Cells[0];
                 if (cell0.Tag is R2Section)
                 {
+                    dataGridView1.Columns.Add("Priority", "Priority");
                     dataGridView1.Columns.Add("SectionId", "SectionId");
                     dataGridView1.Columns.Add("Name", "Name");
                     dataGridView1.Columns.Add("LastModified", "LastModified");
                 }
                 else if (cell0.Tag is R2Function)
                 {
+                    dataGridView1.Columns.Add("Priority", "Priority");
                     dataGridView1.Columns.Add("FunctionId", "FunctionId");
                     dataGridView1.Columns.Add("Name", "Name");
                     dataGridView1.Columns.Add("LastModified", "LastModified");
                 }
                 else if (cell0.Tag is R2Criterion)
                 {
+                    dataGridView1.Columns.Add("Priority", "Priority");
                     dataGridView1.Columns.Add("Name", "Name");
-                    dataGridView1.Columns.Add("Row#", "Row#");
-                    dataGridView1.Columns.Add("Dependent", "Dependent");
-                    dataGridView1.Columns.Add("Conditional", "Conditional");
                     dataGridView1.Columns.Add("Optionality", "Optionality");
                     dataGridView1.Columns.Add("Text", "Text");
+                    dataGridView1.Columns.Add("Dependent", "Dependent");
+                    dataGridView1.Columns.Add("Conditional", "Conditional");
+                    dataGridView1.Columns.Add("Row#", "Row#");
                     dataGridView1.Columns.Add("LastModified", "LastModified");
                 }
 
                 dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
                 dataGridView1.Rows.Add(5);
-                for (int rowNumber=0; rowNumber<modelNames.Count; rowNumber++)
+                for (int rowNumber = 0; rowNumber < modelNames.Count; rowNumber++)
                 {
                     dataGridView1.Rows[rowNumber].HeaderCell.Value = modelNames[rowNumber];
                 }
+            }
 
-                // populate cells
-                DataGridViewCell cell1 = dataGridView2.Rows[e.RowIndex].Cells[1];
-                DataGridViewCell cell2 = dataGridView2.Rows[e.RowIndex].Cells[2];
-                DataGridViewCell cell3 = dataGridView2.Rows[e.RowIndex].Cells[3];
-                DataGridViewCell cell4 = dataGridView2.Rows[e.RowIndex].Cells[4];
+            // populate cells
+            DataGridViewCellStyle emptyCellStyle = new DataGridViewCellStyle();
+            emptyCellStyle.BackColor = Color.LightGray;
+            DataGridViewCellStyle c2CellStyle = new DataGridViewCellStyle();
+            c2CellStyle.BackColor = Color.LightYellow;
+            DataGridViewCellStyle diffCellStyle = new DataGridViewCellStyle();
+            diffCellStyle.BackColor = Color.LightGreen;
 
-                DataGridViewCellStyle emptyCellStyle = new DataGridViewCellStyle();
-                emptyCellStyle.BackColor = Color.LightGray;
-                DataGridViewCellStyle c2CellStyle = new DataGridViewCellStyle();
-                c2CellStyle.BackColor = Color.LightYellow;
-                DataGridViewCellStyle diffCellStyle = new DataGridViewCellStyle();
-                diffCellStyle.BackColor = Color.LightGreen;
+            R2ModelElement compareElement;
+            switch (compareRow)
+            {
+                case 1:
+                    compareElement = (R2ModelElement)cell1.Tag;
+                    break;
+                case 2:
+                    compareElement = (R2ModelElement)cell2.Tag;
+                    break;
+                case 3:
+                    compareElement = (R2ModelElement)cell3.Tag;
+                    break;
+                case 4:
+                    compareElement = (R2ModelElement)cell4.Tag;
+                    break;
+                default:
+                    compareElement = (R2ModelElement)cell0.Tag;
+                    break;
+            }
 
-                if (cell0.Tag is R2Section)
-                {
-                    populateSelectedSection((R2Section)cell0.Tag, 0, emptyCellStyle);
-                    populateSelectedSection((R2Section)cell1.Tag, 1, c2CellStyle);
-                    populateSelectedSection((R2Section)cell2.Tag, 2, emptyCellStyle);
-                    populateSelectedSection((R2Section)cell3.Tag, 3, emptyCellStyle);
-                    populateSelectedSection((R2Section)cell4.Tag, 4, emptyCellStyle);
-                }
-                else if (cell0.Tag is R2Function)
-                {
-                    R2Function function = (R2Function)cell0.Tag;
-                    populateSelectedFunction(function, 0, emptyCellStyle, function, diffCellStyle);
-                    populateSelectedFunction((R2Function)cell1.Tag, 1, c2CellStyle, function, diffCellStyle);
-                    populateSelectedFunction((R2Function)cell2.Tag, 2, emptyCellStyle, function, diffCellStyle);
-                    populateSelectedFunction((R2Function)cell3.Tag, 3, emptyCellStyle, function, diffCellStyle);
-                    populateSelectedFunction((R2Function)cell4.Tag, 4, emptyCellStyle, function, diffCellStyle);
-                }
-                else if (cell0.Tag is R2Criterion)
-                {
-                    R2Criterion criterion = (R2Criterion)cell0.Tag;
-                    populateSelectedCriterion(criterion, 0, emptyCellStyle, criterion, diffCellStyle);
-                    populateSelectedCriterion((R2Criterion)cell1.Tag, 1, c2CellStyle, criterion, diffCellStyle);
-                    populateSelectedCriterion((R2Criterion)cell2.Tag, 2, emptyCellStyle, criterion, diffCellStyle);
-                    populateSelectedCriterion((R2Criterion)cell3.Tag, 3, emptyCellStyle, criterion, diffCellStyle);
-                    populateSelectedCriterion((R2Criterion)cell4.Tag, 4, emptyCellStyle, criterion, diffCellStyle);
-                }
+            if (cell0.Tag is R2Section)
+            {
+                populateSelectedSection((R2Section)cell0.Tag, 0, emptyCellStyle);
+                populateSelectedSection((R2Section)cell1.Tag, 1, c2CellStyle);
+                populateSelectedSection((R2Section)cell2.Tag, 2, emptyCellStyle);
+                populateSelectedSection((R2Section)cell3.Tag, 3, emptyCellStyle);
+                populateSelectedSection((R2Section)cell4.Tag, 4, emptyCellStyle);
+            }
+            else if (cell0.Tag is R2Function)
+            {
+                R2Function compareFunction = (R2Function)compareElement;
+                populateSelectedFunction((R2Function)cell0.Tag, 0, emptyCellStyle, compareFunction, diffCellStyle);
+                populateSelectedFunction((R2Function)cell1.Tag, 1, c2CellStyle, compareFunction, diffCellStyle);
+                populateSelectedFunction((R2Function)cell2.Tag, 2, emptyCellStyle, compareFunction, diffCellStyle);
+                populateSelectedFunction((R2Function)cell3.Tag, 3, emptyCellStyle, compareFunction, diffCellStyle);
+                populateSelectedFunction((R2Function)cell4.Tag, 4, emptyCellStyle, compareFunction, diffCellStyle);
+            }
+            else if (cell0.Tag is R2Criterion)
+            {
+                R2Criterion compareCriterion = (R2Criterion)compareElement;
+                populateSelectedCriterion((R2Criterion)cell0.Tag, 0, emptyCellStyle, compareCriterion, diffCellStyle);
+                populateSelectedCriterion((R2Criterion)cell1.Tag, 1, c2CellStyle, compareCriterion, diffCellStyle);
+                populateSelectedCriterion((R2Criterion)cell2.Tag, 2, emptyCellStyle, compareCriterion, diffCellStyle);
+                populateSelectedCriterion((R2Criterion)cell3.Tag, 3, emptyCellStyle, compareCriterion, diffCellStyle);
+                populateSelectedCriterion((R2Criterion)cell4.Tag, 4, emptyCellStyle, compareCriterion, diffCellStyle);
             }
         }
 
+        private void dataGridView2_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (_currentRow != e.RowIndex)
+            {
+                _currentRow = e.RowIndex;
+                if (e.RowIndex == -1) return;
+                _currentCompareRow = dataGridView2.CurrentCell.ColumnIndex;
+                updateDataGridView1(true, _currentRow, _currentCompareRow);
+            }
+        }
+
+        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (_currentCompareRow != e.RowIndex)
+            {
+                _currentCompareRow = e.RowIndex;
+                if (e.RowIndex == -1) return;
+                updateDataGridView1(false, _currentRow, _currentCompareRow);
+            }
+        }
+
+        // Collapse empty rows button
         private void button1_Click(object sender, EventArgs e)
         {
             for (int rowNumber=dataGridView2.Rows.Count-1; rowNumber>=0; rowNumber--)
@@ -375,6 +425,92 @@ namespace HL7_FM_EA_Extension
             StringBuilder sb = new StringBuilder();
             sb.Append("Rows: ").Append(dataGridView2.Rows.Count);
             statsTextBox.Text = sb.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.CurrentCell.ColumnIndex < 2)
+            {
+                // Ignore, cannot select FM or Merged Profile itself
+                return;
+            }
+
+            DataGridViewCell currentCell = dataGridView2.CurrentCell;
+            dataGridView2.CurrentRow.Cells[1].Value = currentCell.Value;
+
+            R2ModelElement currentCopy = R2ModelV2.MAX.Factory.CreateCompilerInstruction((R2ModelElement)currentCell.Tag, (R2ModelElement)dataGridView2.CurrentRow.Cells[0].Tag);
+            dataGridView2.CurrentRow.Cells[1].Tag = currentCopy;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView2.CurrentRow.Cells[1].Value = "";
+            dataGridView2.CurrentRow.Cells[1].Tag = null;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            List<ObjectType> objects = new List<ObjectType>();
+            List<RelationshipType> relationships = new List<RelationshipType>();
+
+            // Create Profile Definition Object
+            string defId = Guid.NewGuid().ToString();
+            string fileNameOutput = @"c:\temp\merged-profile-definition.max";
+            ObjectType maxDefObj = new ObjectType()
+            {
+                id = defId,
+                name = "Merged Profile",
+                stereotype = R2Const.ST_FM_PROFILEDEFINITION,
+                type = ObjectTypeEnum.Package };
+            maxDefObj.SetTagValue("PrioritiesDescription", null);
+            maxDefObj.SetTagValue("Rationale", "&lt;memo&gt;");
+            maxDefObj.SetTagValue("Scope", "&lt;memo&gt;");
+            maxDefObj.SetTagValue("Type", "Merged");
+            maxDefObj.SetTagValue("LanguageTag", null);
+            maxDefObj.SetTagValue("PrioritiesDefinition", "&lt;memo&gt;");
+            maxDefObj.SetTagValue("ConformanceClause", null);
+            maxDefObj.SetTagValue("MAX::ExportDate", DateTime.Now.ToString());
+            maxDefObj.SetTagValue("MAX::ExportFile", fileNameOutput);
+
+            objects.Add(maxDefObj);
+
+            foreach(DataGridViewRow row in dataGridView2.Rows)
+            {
+                R2ModelElement element = (R2ModelElement)row.Cells[1].Tag;
+                if (element != null)
+                {
+                    element.SaveToSource();
+                    ObjectType maxObj = (ObjectType) element.SourceObject;
+                    maxObj.id = Guid.NewGuid().ToString();
+                    maxObj.parentId = defId;
+                    objects.Add(maxObj);
+
+                    RelationshipType maxRel = new RelationshipType();
+                    maxRel.sourceId = maxObj.id;
+                    maxRel.destId = ((ObjectType)element.Defaults.SourceObject).id;
+                    maxRel.type = RelationshipTypeEnum.Generalization;
+                    maxRel.typeSpecified = true;
+                    relationships.Add(maxRel);
+                }
+            }
+
+            // Convert to MAX model
+            ModelType model = new ModelType();
+            model.exportDate = DateTime.Now.ToString();
+            model.objects = objects.ToArray();
+            model.relationships = relationships.ToArray();
+
+            // Save Merged profile definition as MAX XML
+            XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.NewLineChars = "\n";
+            using (XmlWriter writer = XmlWriter.Create(fileNameOutput, settings))
+            {
+                serializer.Serialize(writer, model);
+            }
+
+            MessageBox.Show("Created Profile Definition MAX file.");
         }
     }
 }

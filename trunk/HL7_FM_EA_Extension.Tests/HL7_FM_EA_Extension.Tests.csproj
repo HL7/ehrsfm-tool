@@ -47,6 +47,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BTUnitTests.cs" />
     <Compile Include="FormsUnitTests.cs" />
     <Compile Include="MAXTreeNodeTests.cs" />
     <Compile Include="NoteSplitterTests.cs" />
@@ -73,6 +74,9 @@
     </Content>
     <Content Include="InputFiles\MU Profile Definition.max.xml" />
     <Content Include="InputFiles\OV1 Only FP.max.xml" />
+    <Content Include="InputFiles\Testing Profile Definition BT 14 &amp; 15.max.xml" />
+    <Content Include="InputFiles\Testing Profile Definition BT 18 &amp; 19.max.xml" />
+    <Content Include="InputFiles\Testing Profile Definition BT 20 &amp; 21.max.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

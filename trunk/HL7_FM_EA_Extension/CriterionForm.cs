@@ -246,7 +246,7 @@ namespace HL7_FM_EA_Extension
 
         private void idNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.CriterionSeqNo, "ID", seqNoLabel, true);
+            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.CriterionSeqNo, "Sequence#", seqNoLabel, true);
         }
 
         private void textLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
