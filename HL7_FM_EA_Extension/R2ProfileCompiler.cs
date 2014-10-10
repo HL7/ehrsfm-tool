@@ -177,35 +177,40 @@ namespace HL7_FM_EA_Extension
                     }
                 }
 
-                // smart sort objects, mixed string and numbers
-                // save compiled profile as MAX XML
+                // Convert back to MAX model
                 ModelType model = new ModelType();
                 model.exportDate = DateTime.Now.ToString();
                 model.objects = objects.ToArray();
                 model.relationships = relationships.ToArray();
-                XmlWriterSettings settings = new XmlWriterSettings();
-                settings.Indent = true;
-                settings.NewLineChars = "\n";
-                using (XmlWriter writer = XmlWriter.Create(fileNameOutput, settings))
-                {
-                    serializer.Serialize(writer, model);
-                }
-
                 // Check if all objects are included
+                // and remove dangling relationships
                 foreach (RelationshipType maxRel in model.relationships)
                 {
                     if (!objects.Any(t => t.id == maxRel.sourceId))
                     {
                         string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
                         string destName = model.objects.Single(t => t.id == maxRel.destId).name;
-                        _OutputListener.writeOutput("WARN: relationship from not included object sourceId={0} destId={1} stereotype={2} destName={3}", sourceId, maxRel.destId, maxRel.stereotype, destName);
+                        _OutputListener.writeOutput("WARN: relationship from not included object removed sourceId={0} destId={1} stereotype={2} destName={3}", sourceId, maxRel.destId, maxRel.stereotype, destName);
+                        relationships.Remove(maxRel);
                     }
                     if (!objects.Any(t => t.id == maxRel.destId))
                     {
                         string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
                         string sourceName = model.objects.Single(t => t.id == maxRel.sourceId).name;
-                        _OutputListener.writeOutput("WARN: relationship to not included object sourceId={0} destId={1} stereotype={2} sourceName={3}", sourceId, maxRel.destId, maxRel.stereotype, sourceName);
+                        _OutputListener.writeOutput("WARN: relationship to not included object removed sourceId={0} destId={1} stereotype={2} sourceName={3}", sourceId, maxRel.destId, maxRel.stereotype, sourceName);
+                        relationships.Remove(maxRel);
                     }
+                }
+                // update relationships
+                model.relationships = relationships.ToArray();
+
+                // Save compiled profile as MAX XML
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+                settings.NewLineChars = "\n";
+                using (XmlWriter writer = XmlWriter.Create(fileNameOutput, settings))
+                {
+                    serializer.Serialize(writer, model);
                 }
             }
         }
@@ -281,6 +286,7 @@ namespace HL7_FM_EA_Extension
                 }
                 newChildren.Add(childNode);
             }
+            // Smart sort objects, mixed string and numbers
             node.children = newChildren.OrderBy(n => ObjectTypeToSortKey(n.baseModelObject)).ToList();
         }
 

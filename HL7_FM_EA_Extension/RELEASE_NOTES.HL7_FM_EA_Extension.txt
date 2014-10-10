@@ -1,11 +1,23 @@
 ﻿TODO
 ====
-- AboutBox: use Setup parameters to populate fields.
 - *Form should call R2Config.updateStyle, no Modified event is created, so call it ourselfs.
-- Repository.AdviseElementChange
+- ??? Remove dangling relationships
 
 CHANGELOG
 =========
+[2014-oct-10]
+R2ProfileCompiler
+- Remove relationships to objects that are not in the profile
+MergeProfilesForm
+- Show difference compared to selected profile in compare view
+- Start of creating Merged Profile, Select and Clear
+CriterionForm
+- Label was wrong for Sequence# when using up/down
+MAXExtensionMethods
+- Added SetTagValue and RemoveTagValue
+R2ModelV2MAX
+- Implemented SaveToSource
+
 [2014-oct-03]
 R2ProfileCompiler
 - More robust missing or to many Priority and Optionality tag handling and reporting
