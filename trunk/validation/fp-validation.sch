@@ -11,7 +11,7 @@
     <pattern id="identity-info">
         <rule context="object[stereotype/text()='HL7-FM-Profile']">
             <let name="id" value="../id"/>
-            <assert test="tag[@name='Description']" diagnostics="FPID01"/>
+            <assert test="tag[@name='Rationale']" diagnostics="FPID01"/>
             
             <assert test="tag[@name='Version']" diagnostics="FPID02"/>
             <assert test="tag[@name='IssuanceDate']" diagnostics="FPID03"/>
@@ -22,17 +22,18 @@
     </pattern>
     
     <pattern id="prioritization">
-        <rule context="object[stereotype/text()='Function'| stereotype/text()='Criteria']">
+        <rule context="object[stereotype/text()='Function' or stereotype/text()='Criteria']">
             <assert test="tag[@name='Priority']" diagnostics="FMPR01"/>
-            <assert test="tag[@name='Priority']/[text()='en' | text()='ef' | text()='O']" diagnostics="FMPR01"/>
+            <assert test="tag[@name='Priority' and (text()='EN' or text()='EF' or text()='O')]" diagnostics="FMPR01"/>
         </rule>
-        <rule context="object[stereotype/text()='Function'| stereotype/text()='Criteria']/tag[@name='Priority']">
-            <assert test="text()='ef' and ../tag[@name='Timeframe']" diagnostics="FMPR02"/>
+        <rule context="object[stereotype/text()='Function'or stereotype/text()='Criteria']/tag[@name='Priority']">
+            <assert test="text()='EF' and ../tag[@name='Timeframe']" diagnostics="FMPR02"/>
         </rule>
     </pattern>
     
-    <pattern id="funciton-content">
+    <pattern id="function-content">
         <rule context="object[stereotype/text()='Function']">
+            <let name="id" value="../id"/>
             <let name="statement" value="substring-before(substring-after(notes,'$ST$'), '$DE$')"/>
             <let name="stmt-lgth" value="string-length($statement)"/>
             <let name="description" value="substring-before(substring-after(notes,'$DE$'), '$EX$')"/>
@@ -44,7 +45,7 @@
             <assert test="$stmt-lgth > 0" diagnostics="FMST27"/>
             <assert test="$desc-lgth > 0" diagnostics="FMST28"/>
             
-            <assert test="count(../object/alias[text()=$thing-id])=1" diagnostics="FMST29"><value-of select="$id"/></assert>
+            <assert test="count(../object/alias[text()=$id])=1" diagnostics="FMST29"><value-of select="$id"/></assert>
         </rule>
     </pattern>
         
@@ -86,7 +87,6 @@
         <diagnostic id="FMST24" xml:lang="en">The change of the optionallity is not allowed in the Functional domain Profile.</diagnostic>
         <diagnostic id="FMST99" xml:lang="en">In the criterion the concept 'standard(s)-based' is used. Please replace this with specific standards and/or specifications.</diagnostic>
         <diagnostic id="FMST25" xml:lang="en">You did not inherite the 'dependent shall' criterion that is originally in the function.</diagnostic>
-        <diagnostic id="FMST98" xml:lang="en">You didn't use the correct test for this dependent shall criteria.</diagnostic>
         <diagnostic id="FMST06" xml:lang="en">You didn't replicate the dependent shall criteria for this function.</diagnostic>
         <diagnostic id="FMID09" xml:lang="en">The specific scope of practice is missing.</diagnostic>
         <diagnostic id="FMID10" xml:lang="en">Please provide the reason(s) why the dependencies are not applicable in the Functional Profile.</diagnostic>
