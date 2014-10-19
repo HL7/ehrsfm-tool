@@ -249,7 +249,10 @@ namespace HL7_FM_EA_Extension
                 {
                     case R2Const.ST_FM_PROFILE:
                     case R2Const.ST_FM_PROFILEDEFINITION:
-                        new ProfileMetadataForm().Show(repository, repository.GetPackageByGuid(GUID));
+                        EA.Package profDefPackage = repository.GetPackageByGuid(GUID);
+                        R2ProfileDefinition profDef = (R2ProfileDefinition)R2ModelV2.EA_API.Factory.Create(repository, profDefPackage.Element);
+                        profDef.BaseModel = EAHelper.getAssociatedBaseModelName(repository, profDefPackage);
+                        new ProfileMetadataForm().Show(profDef);
                         return true;
                     case R2Const.ST_SECTION:
                         new SectionForm().Show((R2ModelV2.Base.R2Section)R2ModelV2.EA_API.Factory.Create(repository, element));
@@ -386,7 +389,7 @@ namespace HL7_FM_EA_Extension
                 EAHelper.LogMessage("[END] Export Profile Definition to MAX file");
 
                 // Find associated Base
-                EA.Package baseModelPackage = ProfileMetadataForm.getAssociatedBaseModel(repository, package);
+                EA.Package baseModelPackage = EAHelper.getAssociatedBaseModel(repository, package);
                 if (baseModelPackage == null)
                 {
                     MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
@@ -404,7 +407,7 @@ namespace HL7_FM_EA_Extension
                 EAHelper.LogMessage(string.Format("[INFO] Base Model MAX file: {0}", baseModelFileName));
 
                 // Find associated Target Profile Package
-                EA.Package compiledProfilePackage = ProfileMetadataForm.getAssociatedOutputProfile(repository, package);
+                EA.Package compiledProfilePackage = EAHelper.getAssociatedOutputProfile(repository, package);
                 if (compiledProfilePackage == null)
                 {
                     MessageBox.Show(MESSAGE_PROFILE_DEFINITION);

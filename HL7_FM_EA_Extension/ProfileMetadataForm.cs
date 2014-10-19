@@ -17,101 +17,22 @@ namespace HL7_FM_EA_Extension
             InitializeComponent();
         }
 
-        public const string TV_TYPE = "Type";
-        public const string TV_LANGUAGETAG = "LanguageTag";
-        public const string TV_RATIONALE = "Rationale";
-        public const string TV_SCOPE = "Scope";
-        public const string TV_PRIODESC = "PrioritiesDefinition";
-        public const string TV_CONFCLAUSE = "ConformanceClause";
+        private R2ProfileDefinition _profDef;
 
-        private EA.Package ProfileDefinitionPackage;
-
-        public void Show(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
+        public void Show(R2ProfileDefinition profDef)
         {
-            this.ProfileDefinitionPackage = ProfileDefinitionPackage;
-            EA.Element element = ProfileDefinitionPackage.Element;
-
-            nameTextBox.Text = element.Name;
-            versionTextBox.Text = element.Version;
-            dateTimePicker1.Value = element.Modified;
-            comboBox1.SelectedItem = EAHelper.getTaggedValue(element, TV_TYPE);
-            comboBox2.SelectedItem = EAHelper.getTaggedValue(element, TV_LANGUAGETAG);
-            rationaleTextBox.Text = EAHelper.getTaggedValueNotes(element, TV_RATIONALE);
-            scopeTextBox.Text = EAHelper.getTaggedValueNotes(element, TV_SCOPE);
-            prioDescTextBox.Text = EAHelper.getTaggedValueNotes(element, TV_PRIODESC);
-            confClauseTextBox.Text = EAHelper.getTaggedValueNotes(element, TV_CONFCLAUSE);
-
-            // TODO: If basemodel is profile, then use tagged values to construct name
-            baseModelTextBox.Text = getAssociatedBaseModelName(Repository, ProfileDefinitionPackage);
+            _profDef = profDef;
+            nameTextBox.Text = _profDef.Name;
+            versionTextBox.Text = _profDef.Version;
+            dateTimePicker1.Value = DateTime.Parse(profDef.LastModified);
+            comboBox1.SelectedItem = _profDef.Type;
+            comboBox2.SelectedItem = _profDef.LanguageTag;
+            rationaleTextBox.Text = _profDef.Rationale;
+            scopeTextBox.Text = _profDef.Scope;
+            prioDefTextBox.Text = _profDef.PrioDef;
+            confClauseTextBox.Text = _profDef.ConfClause;
+            baseModelTextBox.Text = _profDef.BaseModel;
             ShowDialog();
-        }
-
-        private string getAssociatedBaseModelName(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
-        {
-            EA.Package baseModelPackage = getAssociatedBaseModel(Repository, ProfileDefinitionPackage);
-            if (baseModelPackage != null)
-            {
-                return baseModelPackage.Name;
-            }
-            else
-            {
-                return "No base model defined or linked...";
-            }
-        }
-
-        public static EA.Package getAssociatedProfileDefinition(EA.Repository repository, EA.Package selectedSectionPackage)
-        {
-            EA.Package baseModel = repository.GetPackageByID(selectedSectionPackage.ParentID);
-            EA.Connector con = baseModel.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype) || "Usage".Equals(t.Type));
-            if (con != null)
-            {
-                EA.Element packageElement = repository.GetElementByID(con.ClientID);
-                if (R2Const.ST_FM_PROFILEDEFINITION.Equals(packageElement.Stereotype))
-                {
-                    // con.ClientID is the ElementID of the PackageElement
-                    // Find the Package with the PackageElement by selecting the child Package in the parent Package where
-                    // the ElementID is con.ClientID
-                    return repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.ClientID);
-                }
-            }
-            EAHelper.LogMessage("Expected <use> relationship to a <HL7-FM> Package == Base Model");
-            return null;
-        }
-
-        public static EA.Package getAssociatedBaseModel(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
-        {
-            EA.Connector con = ProfileDefinitionPackage.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_BASEMODEL.Equals(t.Stereotype) || "Usage".Equals(t.Type));
-            if (con != null)
-            {
-                EA.Element packageElement = Repository.GetElementByID(con.SupplierID);
-                if (R2Const.ST_FM.Equals(packageElement.Stereotype) || R2Const.ST_FM_PROFILE.Equals(packageElement.Stereotype))
-                {
-                    // con.SupplierID is the ElementID of the PackageElement
-                    // Find the Package with the PackageElement by selecting the child Package in the parent Package where
-                    // the ElementID is con.SupplierID
-                    return Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
-                }
-            }
-            EAHelper.LogMessage("Expected <use> relationship to a <HL7-FM> Package == Base Model");
-            return null;
-        }
-
-        public static EA.Package getAssociatedOutputProfile(EA.Repository Repository, EA.Package ProfileDefinitionPackage)
-        {
-            EA.Connector con = ProfileDefinitionPackage.Connectors.Cast<EA.Connector>().SingleOrDefault(t => R2Const.ST_TARGETPROFILE.Equals(t.Stereotype));
-            if (con != null)
-            {
-                EA.Element packageElement = Repository.GetElementByID(con.SupplierID);
-                if (R2Const.ST_FM_PROFILE.Equals(packageElement.Stereotype))
-                {
-                    // con.SupplierID is the ElementID of the PackageElement
-                    // Find the Package with the PackageElement by selecting the child Package in the parent Package where
-                    // the ElementID is con.SupplierID
-                    return Repository.GetPackageByID(packageElement.PackageID).Packages.Cast<EA.Package>().Single(p => p.Element.ElementID == con.SupplierID);
-                }
-            }
-            EAHelper.LogMessage("Expected <create> relationship to a <HL7-FM-Profile> Package == Compiled Profile Model");
-            return null;
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -127,19 +48,7 @@ namespace HL7_FM_EA_Extension
         private void okButton_Click(object sender, EventArgs e)
         {
             Close();
-
-            EA.Element element = ProfileDefinitionPackage.Element;
-            element.Name = nameTextBox.Text;
-            element.Version = versionTextBox.Text;
-            element.Modified = dateTimePicker1.Value;
-            element.Update();
-
-            EAHelper.updateTaggedValue(element, TV_TYPE, comboBox1.Text);
-            EAHelper.updateTaggedValue(element, TV_LANGUAGETAG, comboBox2.Text);
-            EAHelper.updateTaggedValue(element, TV_RATIONALE, "<memo>", rationaleTextBox.Text);
-            EAHelper.updateTaggedValue(element, TV_SCOPE, "<memo>", scopeTextBox.Text);
-            EAHelper.updateTaggedValue(element, TV_PRIODESC, "<memo>", prioDescTextBox.Text);
-            EAHelper.updateTaggedValue(element, TV_CONFCLAUSE, "<memo>", confClauseTextBox.Text);
+            _profDef.SaveToSource();
         }
     }
 }
