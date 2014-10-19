@@ -23,7 +23,7 @@ namespace HL7_FM_EA_Extension
 
         public void import(EA.Repository Repository, EA.Package rootPackage)
         {
-            string xmlFileName = showFileDialog("Select EHR-S FM R2 XML File", "xml files (*.xml)|*.xml", @"D:\VisualStudio Projects\HL7\EHRSFM_EA_AddIn\EHRSFM\EHRS_FM_R2_N2_C3_FunctionList_2013MAY.xml", true);
+            string xmlFileName = FileUtil.showFileDialog("Select EHR-S FM R2 XML File", "xml files (*.xml)|*.xml", @"D:\VisualStudio Projects\HL7\EHRSFM_EA_AddIn\EHRSFM\EHRS_FM_R2_N2_C3_FunctionList_2013MAY.xml", true);
             if (!string.IsNullOrEmpty(xmlFileName))
             {
                 import(Repository, rootPackage, xmlFileName);
@@ -387,32 +387,6 @@ namespace HL7_FM_EA_Extension
                 {
                     return String.Empty;
                 }
-            }
-            else
-            {
-                return String.Empty;
-            }
-        }
-
-        private string showFileDialog(string title, string filter, string fileName, bool open)
-        {
-            FileDialog dialog;
-            if (open)
-            {
-                dialog = new OpenFileDialog();
-            }
-            else
-            {
-                dialog = new SaveFileDialog();
-            }
-            dialog.Filter = filter;
-            dialog.InitialDirectory = "C:";
-            dialog.Title = title;
-            dialog.FileName = fileName;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                return dialog.FileName;
             }
             else
             {

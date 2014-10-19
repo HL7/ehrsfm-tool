@@ -53,6 +53,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="EAHelper.cs" />
+    <Compile Include="FileUtil.cs" />
     <Compile Include="MAXExtensionMethods.cs" />
     <Compile Include="MAXTreeNode.cs" />
     <Compile Include="MergeProfilesForm.cs">

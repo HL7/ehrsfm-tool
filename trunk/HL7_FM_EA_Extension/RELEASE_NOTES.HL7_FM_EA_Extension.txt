@@ -2,9 +2,17 @@
 ====
 - *Form should call R2Config.updateStyle, no Modified event is created, so call it ourselfs.
 - ??? Remove dangling relationships
+- Move R2ModelElement.Priority up one abstract class, now Priority is also in Model/Profile/ProfileDefinition
+- Fix R2ModelElement.Stereotype, cannot change, Defaults make no sense for Model/Profile/ProfileDefinition
+- R2ModelMax update lastModified when any field is modified
+- Move EAHelper in R2ModelEA
 
 CHANGELOG
 =========
+[2014-oct-16]
+R2Model,ProfileMetadataForm
+- Start implementation of Profile/Definition Model Elements on MAX/EA
+
 [2014-oct-10]
 R2ProfileCompiler
 - Remove relationships to objects that are not in the profile

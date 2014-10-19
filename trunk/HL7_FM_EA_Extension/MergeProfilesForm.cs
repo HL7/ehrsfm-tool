@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -21,7 +22,11 @@ namespace HL7_FM_EA_Extension
             InitializeComponent();
         }
 
-        // Limit rows for each model
+        private string fileNameBaseModel = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\EHRS_FM_R2_N2.max.xml";
+        private string fileNameMerged = @"c:\temp\merged-profile-definition.max";
+        private string fileNameProfile1 = @"C:\My Documents\__R4C 2014\EHR-S FM FHFP Merge Project (2014-jun)\CDC Surveillance Compiled Profile.max";
+        private string fileNameProfile2 = @"C:\My Documents\__R4C 2014\EHR-S FM FHFP Merge Project (2014-jun)\PHFP Vital Records compiled-profile.max.xml";
+        private string fileNameProfile3 = "";
         private int _currentRow = -1;
         private int _currentCompareRow = -1;
         private List<string> modelNames = new List<string>();
@@ -59,13 +64,13 @@ namespace HL7_FM_EA_Extension
             dataGridView2.Columns[c4].DefaultCellStyle = emptyCellStyle;
             dataGridView2.Columns[c5].DefaultCellStyle = emptyCellStyle;
 
-            R2ModelV2.MAX.R2Model baseModel = R2ModelV2.MAX.Factory.LoadModel(@"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\EHRS_FM_R2_N2.max.xml");
-            dataGridView2.Rows.Add(baseModel.elements.Count);
+            R2ModelV2.MAX.R2Model baseModel = R2ModelV2.MAX.Factory.LoadModel(fileNameBaseModel);
+            dataGridView2.Rows.Add(baseModel.children.Count);
 
             ArrayList rowIds = loadBaseModel(c1, baseModel);
-            loadData(c3, @"C:\My Documents\__R4C 2014\EHR-S FM FHFP Merge Project (2014-jun)\CDC Surveillance Compiled Profile.max", rowIds, cellStyle);
-            loadData(c4, @"C:\My Documents\__R4C 2014\EHR-S FM FHFP Merge Project (2014-jun)\PHFP Vital Records compiled-profile.max.xml", rowIds, cellStyle);
-            dummyData(c5, rowIds, cellStyle);
+            loadData(c3, fileNameProfile1, rowIds, cellStyle);
+            loadData(c4, fileNameProfile2, rowIds, cellStyle);
+            loadDummyData(c5, rowIds, cellStyle);
 
             updateStatistics();
 
@@ -76,13 +81,13 @@ namespace HL7_FM_EA_Extension
         {
             modelNames[columnNumber] = baseModel.Name;
             dataGridView2.Columns[columnNumber].HeaderText = baseModel.Name;
-            ArrayList rowIds = new ArrayList(baseModel.elements.Count);
+            ArrayList rowIds = new ArrayList(baseModel.children.Count);
             int rowNumber = 0;
-            foreach (R2ModelElement element in baseModel.elements)
+            foreach (R2ModelElement element in baseModel.children)
             {
                 DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
                 cell.Tag = element;
-                cell.Value = element.GetId();
+                cell.Value = element.GetExtId();
                 if (element is R2Criterion)
                 {
                     R2Criterion criterion = (R2Criterion) element;
@@ -98,7 +103,7 @@ namespace HL7_FM_EA_Extension
                     R2Section section = (R2Section) element;
                     cell.ToolTipText = section.Name;
                 }
-                rowIds.Add(element.GetId());
+                rowIds.Add(element.GetExtId());
                 rowNumber++;
             }
             return rowIds;
@@ -109,15 +114,15 @@ namespace HL7_FM_EA_Extension
             R2ModelV2.MAX.R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName);
             modelNames[columnNumber] = model.Name;
             dataGridView2.Columns[columnNumber].HeaderText = model.Name;
-            foreach (R2ModelElement element in model.elements)
+            foreach (R2ModelElement element in model.children)
             {
-                int rowNumber = rowIds.IndexOf(element.GetId());
+                int rowNumber = rowIds.IndexOf(element.GetExtId());
                 if (rowNumber == -1) continue;
 
                 DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
                 cell.Style = cellStyle;
                 cell.Tag = element;
-                cell.Value = element.GetId();
+                cell.Value = element.GetExtId();
                 if (element is R2Criterion)
                 {
                     R2Criterion criterion = (R2Criterion)element;
@@ -136,13 +141,13 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void dummyData(int columnNumber, ArrayList rowIds, DataGridViewCellStyle cellStyle)
+        private void loadDummyData(int columnNumber, ArrayList rowIds, DataGridViewCellStyle cellStyle)
         {
             modelNames[columnNumber] = "Dummy";
             dataGridView2.Columns[columnNumber].HeaderText = "Dummy";
 
             R2Section section = new R2Section { SectionId = "CP" };
-            int rowNumber = rowIds.IndexOf(section.GetId());
+            int rowNumber = rowIds.IndexOf(section.GetExtId());
 
             DataGridViewCell sectionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
             sectionCell.Tag = section;
@@ -151,7 +156,7 @@ namespace HL7_FM_EA_Extension
             for (int h = 1; h < 3; h++)
             {
                 R2Function header = new R2Function { FunctionId = string.Format("CP.{0}", h) };
-                rowNumber = rowIds.IndexOf(header.GetId());
+                rowNumber = rowIds.IndexOf(header.GetExtId());
                 if (rowNumber == -1) continue;
 
                 DataGridViewCell headerCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
@@ -161,7 +166,7 @@ namespace HL7_FM_EA_Extension
                 for (int f = 1; f < 3; f++)
                 {
                     R2Function function = new R2Function { FunctionId = string.Format("CP.{0}.{1}", h, f) };
-                    rowNumber = rowIds.IndexOf(function.GetId());
+                    rowNumber = rowIds.IndexOf(function.GetExtId());
                     if (rowNumber == -1) continue;
 
                     DataGridViewCell functionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
@@ -177,7 +182,7 @@ namespace HL7_FM_EA_Extension
                                                         Text = "The system SHALL xyz",
                                                         Optionality = "SHALL"
                                                     };
-                        rowNumber = rowIds.IndexOf(criterion.GetId());
+                        rowNumber = rowIds.IndexOf(criterion.GetExtId());
                         if (rowNumber == -1) continue;
 
                         DataGridViewCell criterionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
@@ -259,18 +264,44 @@ namespace HL7_FM_EA_Extension
 
         private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewCell cell = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            if (cell.Tag is R2Section)
+            if (e.RowIndex == -1)
             {
-                new SectionForm().Show((R2Section)cell.Tag);
+                string defaultFileName = null;
+                switch (e.ColumnIndex)
+                {
+                    case 0:
+                        defaultFileName = fileNameBaseModel;
+                        break;
+                    case 1:
+                        defaultFileName = fileNameMerged;
+                        break;
+                    case 2:
+                        defaultFileName = fileNameProfile1;
+                        break;
+                    case 3:
+                        defaultFileName = fileNameProfile2;
+                        break;
+                    case 4:
+                        defaultFileName = fileNameProfile3;
+                        break;
+                }
+                FileUtil.showFileDialog("Select input MAX XML file", "max files (*.xml, *.max)|*.xml;*.max", defaultFileName, true);
             }
-            else if (cell.Tag is R2Function)
+            else
             {
-                new FunctionForm().Show((R2Function)cell.Tag);
-            }
-            else if (cell.Tag is R2Criterion)
-            {
-                new CriterionForm().Show((R2Criterion)cell.Tag);
+                DataGridViewCell cell = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Tag is R2Section)
+                {
+                    new SectionForm().Show((R2Section)cell.Tag);
+                }
+                else if (cell.Tag is R2Function)
+                {
+                    new FunctionForm().Show((R2Function)cell.Tag);
+                }
+                else if (cell.Tag is R2Criterion)
+                {
+                    new CriterionForm().Show((R2Criterion)cell.Tag);
+                }
             }
         }
 
@@ -400,7 +431,7 @@ namespace HL7_FM_EA_Extension
         }
 
         // Collapse empty rows button
-        private void button1_Click(object sender, EventArgs e)
+        private void collapseButton_Click(object sender, EventArgs e)
         {
             for (int rowNumber=dataGridView2.Rows.Count-1; rowNumber>=0; rowNumber--)
             {
@@ -427,51 +458,79 @@ namespace HL7_FM_EA_Extension
             statsTextBox.Text = sb.ToString();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void selectButton_Click(object sender, EventArgs e)
         {
             if (dataGridView2.CurrentCell.ColumnIndex < 2)
             {
                 // Ignore, cannot select FM or Merged Profile itself
                 return;
             }
-
             DataGridViewCell currentCell = dataGridView2.CurrentCell;
+            if (currentCell.Tag == null)
+            {
+                // Nothing to do, select an empty cell.
+                return;
+            }
             dataGridView2.CurrentRow.Cells[1].Value = currentCell.Value;
 
             R2ModelElement currentCopy = R2ModelV2.MAX.Factory.CreateCompilerInstruction((R2ModelElement)currentCell.Tag, (R2ModelElement)dataGridView2.CurrentRow.Cells[0].Tag);
-            dataGridView2.CurrentRow.Cells[1].Tag = currentCopy;
+            DataGridViewCell cell = dataGridView2.CurrentRow.Cells[1];
+            cell.Tag = currentCopy;
+            if (currentCopy is R2Criterion)
+            {
+                R2Criterion criterion = (R2Criterion)currentCopy;
+                cell.ToolTipText = criterion.Text;
+            }
+            else if (currentCopy is R2Function)
+            {
+                R2Function function = (R2Function)currentCopy;
+                cell.ToolTipText = function.Name + "\n" + function.Description;
+            }
+            else if (currentCopy is R2Section)
+            {
+                R2Section section = (R2Section)currentCopy;
+                cell.ToolTipText = section.Name;
+            }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void clearButton_Click(object sender, EventArgs e)
         {
-            dataGridView2.CurrentRow.Cells[1].Value = "";
-            dataGridView2.CurrentRow.Cells[1].Tag = null;
+            DataGridViewCell cell = dataGridView2.CurrentRow.Cells[1];
+            cell.Value = "";
+            cell.Tag = null;
+            cell.ToolTipText = null;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void saveButton_Click(object sender, EventArgs e)
         {
+            string fileNameOutput = FileUtil.showFileDialog("Select output MAX XML file", "max files (*.xml, *.max)|*.xml;*.max", fileNameMerged, false);
+            if (fileNameOutput == null)
+            {
+                // Save canceled
+                return;
+            }
+
             List<ObjectType> objects = new List<ObjectType>();
             List<RelationshipType> relationships = new List<RelationshipType>();
 
             // Create Profile Definition Object
-            string defId = Guid.NewGuid().ToString();
-            string fileNameOutput = @"c:\temp\merged-profile-definition.max";
-            ObjectType maxDefObj = new ObjectType()
+            R2ProfileDefinition profileDef = new R2ModelV2.MAX.R2ProfileDefinition
             {
-                id = defId,
-                name = "Merged Profile",
-                stereotype = R2Const.ST_FM_PROFILEDEFINITION,
-                type = ObjectTypeEnum.Package };
-            maxDefObj.SetTagValue("PrioritiesDescription", null);
-            maxDefObj.SetTagValue("Rationale", "&lt;memo&gt;");
-            maxDefObj.SetTagValue("Scope", "&lt;memo&gt;");
-            maxDefObj.SetTagValue("Type", "Merged");
-            maxDefObj.SetTagValue("LanguageTag", null);
-            maxDefObj.SetTagValue("PrioritiesDefinition", "&lt;memo&gt;");
-            maxDefObj.SetTagValue("ConformanceClause", null);
-            maxDefObj.SetTagValue("MAX::ExportDate", DateTime.Now.ToString());
+                Name = "Merged Profile",
+                Type = "Merged",
+                Version = "1.0",
+                LanguageTag = "en-EN",
+                Rationale = " ",
+                Scope = " ",
+                PrioDef = " ",
+                ConfClause = " ",
+                LastModified = Util.FormatLastModified(DateTime.Now)
+            };
+            profileDef.SaveToSource();
+            string defId = profileDef.Id;
+            ObjectType maxDefObj = (ObjectType)profileDef.SourceObject;
+            maxDefObj.SetTagValue("MAX::ExportDate", Util.FormatLastModified(DateTime.Now));
             maxDefObj.SetTagValue("MAX::ExportFile", fileNameOutput);
-
             objects.Add(maxDefObj);
 
             foreach(DataGridViewRow row in dataGridView2.Rows)
@@ -496,7 +555,7 @@ namespace HL7_FM_EA_Extension
 
             // Convert to MAX model
             ModelType model = new ModelType();
-            model.exportDate = DateTime.Now.ToString();
+            model.exportDate = Util.FormatLastModified(DateTime.Now);
             model.objects = objects.ToArray();
             model.relationships = relationships.ToArray();
 

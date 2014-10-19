@@ -25,6 +25,13 @@ namespace HL7_FM_EA_Extension
                 R2ModelElement modelElement = null;
                 switch (objectType.stereotype)
                 {
+                    case R2Const.ST_FM:
+                        modelElement = new R2Model(objectType);
+                        break;
+                    case R2Const.ST_FM_PROFILEDEFINITION:
+                    case R2Const.ST_FM_PROFILE:
+                        modelElement = new R2ProfileDefinition(objectType);
+                        break;
                     case R2Const.ST_SECTION:
                         modelElement = new R2Section(objectType);
                         break;
@@ -64,15 +71,15 @@ namespace HL7_FM_EA_Extension
             {
                 // only set in compiler instruction what is different that in base model element
                 R2ModelElement element = null;
-                if (profileElement is R2Section)
+                if (profileElement is Base.R2Section)
                 {
                     element = new R2Section();
                 }
-                else if (profileElement is R2Function)
+                else if (profileElement is Base.R2Function)
                 {
                     element = new R2Function();
                 }
-                else if (profileElement is R2Criterion)
+                else if (profileElement is Base.R2Criterion)
                 {
                     element = new R2Criterion();
                 }
@@ -82,9 +89,9 @@ namespace HL7_FM_EA_Extension
                 element.LastModified = Util.FormatLastModified(DateTime.Now);
                 element.Priority = profileElement.Priority;
                 element.Path = profileElement.Path;
-                if (profileElement is R2Section)
+                if (profileElement is Base.R2Section)
                 {
-                    R2Section profileSection = (R2Section) profileElement;
+                    Base.R2Section profileSection = (Base.R2Section)profileElement;
                     R2Section section = (R2Section) element;
                     section.SectionId = profileSection.SectionId;
                     section.Name = profileSection.Name;
@@ -92,18 +99,18 @@ namespace HL7_FM_EA_Extension
                     section.Example = profileSection.Example;
                     section.Actors = profileSection.Actors;
                 }
-                else if (profileElement is R2Function)
+                else if (profileElement is Base.R2Function)
                 {
-                    R2Function profileFunction = (R2Function)profileElement;
+                    Base.R2Function profileFunction = (Base.R2Function)profileElement;
                     R2Function function = (R2Function)element;
                     function.FunctionId = profileFunction.FunctionId;
                     function.Name = profileFunction.Name;
                     function.Statement = profileFunction.Statement;
                     function.Description = profileFunction.Description;
                 }
-                else if (profileElement is R2Criterion)
+                else if (profileElement is Base.R2Criterion)
                 {
-                    R2Criterion profileCriterion = (R2Criterion)profileElement;
+                    Base.R2Criterion profileCriterion = (Base.R2Criterion)profileElement;
                     R2Criterion criterion = (R2Criterion)element;
                     criterion.FunctionId = profileCriterion.FunctionId;
                     criterion.CriterionSeqNo = profileCriterion.CriterionSeqNo;
@@ -127,17 +134,16 @@ namespace HL7_FM_EA_Extension
                 var sourceModel = (ModelType)serializer.Deserialize(stream);
 
                 ObjectType modelObjectType =
-                    sourceModel.objects.Single(
-                        o => R2Const.ST_FM.Equals(o.stereotype) || R2Const.ST_FM_PROFILE.Equals(o.stereotype));
+                    sourceModel.objects.Single(o => R2Const.ST_FM.Equals(o.stereotype) || R2Const.ST_FM_PROFILE.Equals(o.stereotype));
 
                 R2Model model = new R2Model(modelObjectType);
                 foreach (ObjectType objectType in sourceModel.objects)
                 {
                     R2ModelElement modelElement = Create(objectType);
                     // modelElement can be null when it is a not supported object
-                    if (modelElement != null)
+                    if (modelElement != null && !(modelElement is R2RootElement))
                     {
-                        model.elements.Add(modelElement);
+                        model.children.Add(modelElement);
                     }
                 }
                 return model;
@@ -149,16 +155,16 @@ namespace HL7_FM_EA_Extension
              */
             public static R2ProfileDefinition LoadProfileDefinition(R2Model baseModel, string maxFileName)
             {
-                R2ProfileDefinition profileDefinition = new R2ProfileDefinition();
-                /*                XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
-                                StreamReader stream = new StreamReader(maxFileName);
-                                var sourceModel = (ModelType)serializer.Deserialize(stream);
-
-                                foreach (ObjectType objectType in sourceModel.objects)
-                                {
-                                    R2ModelElement modelElement = Create(objectType);
-                                    profileDefinition.elements.Add(modelElement);
-                                }*/
+                XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
+                StreamReader stream = new StreamReader(maxFileName);
+                var sourceModel = (ModelType)serializer.Deserialize(stream);
+                ObjectType profDefObj = sourceModel.objects.Single(o => R2Const.ST_FM_PROFILEDEFINITION.Equals(o.stereotype));
+                R2ProfileDefinition profileDefinition = new R2ProfileDefinition(profDefObj);
+                foreach (ObjectType objectType in sourceModel.objects)
+                {
+                    R2ModelElement modelElement = Create(objectType);
+                    profileDefinition.children.Add(modelElement);
+                }
                 return profileDefinition;
             }
         }
@@ -168,8 +174,6 @@ namespace HL7_FM_EA_Extension
          */
         public class R2Model : Base.R2Model
         {
-            public readonly List<R2ModelElement> elements = new List<R2ModelElement>();
-
             public R2Model(ObjectType sourceObject)
             {
                 SourceObject = sourceObject;
@@ -179,21 +183,74 @@ namespace HL7_FM_EA_Extension
             public override void LoadFromSource()
             {
                 ObjectType objectType = (ObjectType)SourceObject;
+                Id = objectType.id;
                 Stereotype = objectType.stereotype;
                 Name = objectType.name;
             }
         }
 
-        public class R2ProfileDefinition : Base.R2Model
+        public class R2ProfileDefinition : Base.R2ProfileDefinition
         {
-            public readonly List<R2ModelElement> elements = new List<R2ModelElement>();
+            public R2ProfileDefinition()
+            {
+                SourceObject = new ObjectType() { id = Guid.NewGuid().ToString(), type = ObjectTypeEnum.Package, typeSpecified = true, stereotype = R2Const.ST_FM_PROFILEDEFINITION };
+                LoadFromSource();
+            }
+
+            public R2ProfileDefinition(ObjectType sourceObject)
+            {
+                SourceObject = sourceObject;
+                LoadFromSource();
+            }
+
+            public override void LoadFromSource()
+            {
+                ObjectType objectType = (ObjectType)SourceObject;
+                Id = objectType.id;
+                Stereotype = objectType.stereotype;
+                Name = objectType.name;
+                LastModified = Util.FormatLastModified(objectType.modified);
+                ChangeNote = objectType.GetTagValue(R2Const.TV_CHANGENOTE);
+                Type = objectType.GetTagValue(R2Const.TV_TYPE);
+                Version = objectType.GetTagValue(R2Const.TV_VERSION);
+                LanguageTag = objectType.GetTagValue(R2Const.TV_LANGUAGETAG);
+                Rationale = objectType.GetTagValueNotes(R2Const.TV_RATIONALE);
+                Scope = objectType.GetTagValueNotes(R2Const.TV_SCOPE);
+                PrioDef = objectType.GetTagValueNotes(R2Const.TV_PRIODEF);
+                ConfClause = objectType.GetTagValueNotes(R2Const.TV_CONFCLAUSE);
+            }
+
+            public override void SaveToSource()
+            {
+                ObjectType objectType = (ObjectType)SourceObject;
+                objectType.id = Id;
+                objectType.stereotype = Stereotype;
+                objectType.name = Name;
+                objectType.modified = DateTime.Parse(get(PropertyName.LastModified));
+                objectType.modifiedSpecified = true;
+                if (isSet(PropertyName.Type)) objectType.SetTagValue(R2Const.TV_TYPE, get(PropertyName.Type));
+                else objectType.DeleteTagValue(R2Const.TV_TYPE);
+                if (isSet(PropertyName.Version)) objectType.SetTagValue(R2Const.TV_VERSION, get(PropertyName.Version));
+                else objectType.DeleteTagValue(R2Const.TV_VERSION);
+                if (isSet(PropertyName.LanguageTag)) objectType.SetTagValue(R2Const.TV_LANGUAGETAG, get(PropertyName.LanguageTag));
+                else objectType.DeleteTagValue(R2Const.TV_LANGUAGETAG);
+                if (isSet(PropertyName.Rationale)) objectType.SetTagValue(R2Const.TV_RATIONALE, "<memo>", get(PropertyName.Rationale));
+                else objectType.DeleteTagValue(R2Const.TV_RATIONALE);
+                if (isSet(PropertyName.Scope)) objectType.SetTagValue(R2Const.TV_SCOPE, "<memo>", get(PropertyName.Scope));
+                else objectType.DeleteTagValue(R2Const.TV_SCOPE);
+                if (isSet(PropertyName.PrioDef)) objectType.SetTagValue(R2Const.TV_PRIODEF, "<memo>", get(PropertyName.PrioDef));
+                else objectType.DeleteTagValue(R2Const.TV_PRIODEF);
+                if (isSet(PropertyName.ConfClause)) objectType.SetTagValue(R2Const.TV_CONFCLAUSE, "<memo>", get(PropertyName.ConfClause));
+                else objectType.DeleteTagValue(R2Const.TV_CONFCLAUSE);
+            }
         }
 
         class R2Section : Base.R2Section
         {
             public R2Section()
             {
-                SourceObject = new ObjectType();
+                SourceObject = new ObjectType() { id = Guid.NewGuid().ToString(), type = ObjectTypeEnum.Package, typeSpecified = true, stereotype = R2Const.ST_SECTION };
+                LoadFromSource();
             }
 
             public R2Section(ObjectType sourceObject)
@@ -205,34 +262,41 @@ namespace HL7_FM_EA_Extension
             public override void LoadFromSource()
             {
                 ObjectType objectType = (ObjectType)SourceObject;
+                Id = objectType.id;
                 Stereotype = objectType.stereotype;
                 LastModified = Util.FormatLastModified(objectType.modified);
-                Priority = objectType.TagValue(R2Const.TV_PRIORITY);
-                ChangeNote = objectType.TagValue(R2Const.TV_CHANGENOTE);
+                Priority = objectType.GetTagValue(R2Const.TV_PRIORITY);
+                ChangeNote = objectType.GetTagValue(R2Const.TV_CHANGENOTE);
                 SectionId = objectType.alias;
                 Name = objectType.name;
-                string notes = objectType.notes.Text[0];
+                string notes = objectType.GetNotes();
                 Dictionary<string, string> noteParts = Util.SplitNotes(notes);
                 Overview = noteParts.ContainsKey("OV") ? noteParts["OV"] : "";
                 Example = noteParts.ContainsKey("EX") ? noteParts["EX"] : "";
                 Actors = noteParts.ContainsKey("AC") ? noteParts["AC"] : "";
                 Path = Name;
+                string refAlias = objectType.GetTagValue("Reference.Alias");
+                if (refAlias != null)
+                {
+                    RefId = string.Format("{0}.{1}", refAlias, objectType.GetTagValue("Reference.SectionID"));
+                }
             }
 
             public override void SaveToSource()
             {
                 ObjectType objectType = (ObjectType)SourceObject;
+                objectType.id = Id;
                 objectType.stereotype = get(PropertyName.Stereotype);
                 objectType.modified = DateTime.Parse(get(PropertyName.LastModified));
                 objectType.modifiedSpecified = true;
                 if (!isDefault(PropertyName.Priority)) objectType.SetTagValue(R2Const.TV_PRIORITY, get(PropertyName.Priority));
-                else objectType.RemoveTagValue(R2Const.TV_PRIORITY);
+                else objectType.DeleteTagValue(R2Const.TV_PRIORITY);
                 if (!isDefault(PropertyName.ChangeNote)) objectType.SetTagValue(R2Const.TV_CHANGENOTE, get(PropertyName.ChangeNote));
-                else objectType.RemoveTagValue(R2Const.TV_CHANGENOTE);
+                else objectType.DeleteTagValue(R2Const.TV_CHANGENOTE);
                 if (!isDefault(PropertyName.SectionId)) objectType.alias = get(PropertyName.SectionId);
                 else objectType.alias = null;
                 objectType.name = get(PropertyName.Name);
-                if (!isDefault(PropertyName.Overview) || !isDefault(PropertyName.Example) || !isDefault(PropertyName.Actors)) objectType.notes = new MarkupType() { Text = new string[] { string.Format("$OV${0}$EX${1}$AC${2}", get(PropertyName.Statement), get(PropertyName.Description), get(PropertyName.Actors)) } };
+                if (!isDefault(PropertyName.Overview) || !isDefault(PropertyName.Example) || !isDefault(PropertyName.Actors)) objectType.SetNotes (string.Format("$OV${0}$EX${1}$AC${2}", get(PropertyName.Statement), get(PropertyName.Description), get(PropertyName.Actors)));
                 else objectType.notes = null;
             }
         }
@@ -241,7 +305,8 @@ namespace HL7_FM_EA_Extension
         {
             public R2Function()
             {
-                SourceObject = new ObjectType() { type = ObjectTypeEnum.Feature, typeSpecified = true };
+                SourceObject = new ObjectType() { id = Guid.NewGuid().ToString(), type = ObjectTypeEnum.Feature, typeSpecified = true };
+                LoadFromSource();
             }
 
             public R2Function(ObjectType sourceObject)
@@ -253,17 +318,23 @@ namespace HL7_FM_EA_Extension
             public override void LoadFromSource()
             {
                 ObjectType objectType = (ObjectType)SourceObject;
+                Id = objectType.id;
                 Stereotype = objectType.stereotype;
                 LastModified = Util.FormatLastModified(objectType.modified);
-                Priority = objectType.TagValue(R2Const.TV_PRIORITY);
-                ChangeNote = objectType.TagValue(R2Const.TV_CHANGENOTE);
+                Priority = objectType.GetTagValue(R2Const.TV_PRIORITY);
+                ChangeNote = objectType.GetTagValue(R2Const.TV_CHANGENOTE);
                 FunctionId = objectType.alias;
                 Name = objectType.name;
-                string notes = objectType.notes.Text[0];
+                string notes = objectType.GetNotes();
                 Dictionary<string, string> noteParts = Util.SplitNotes(notes);
                 Statement = noteParts.ContainsKey("ST") ? noteParts["ST"] : "";
                 Description = noteParts.ContainsKey("DE") ? noteParts["DE"] : "";
                 Path = Name;
+                string refAlias = objectType.GetTagValue("Reference.Alias");
+                if (refAlias != null)
+                {
+                    RefId = string.Format("{0}.{1}", refAlias, objectType.GetTagValue("Reference.FunctionID"));
+                }
             }
 
             public override void SaveToSource()
@@ -273,13 +344,13 @@ namespace HL7_FM_EA_Extension
                 objectType.modified = DateTime.Parse(get(PropertyName.LastModified));
                 objectType.modifiedSpecified = true;
                 if (!isDefault(PropertyName.Priority)) objectType.SetTagValue(R2Const.TV_PRIORITY, get(PropertyName.Priority));
-                else objectType.RemoveTagValue(R2Const.TV_PRIORITY);
+                else objectType.DeleteTagValue(R2Const.TV_PRIORITY);
                 if (!isDefault(PropertyName.ChangeNote)) objectType.SetTagValue(R2Const.TV_CHANGENOTE, get(PropertyName.ChangeNote));
-                else objectType.RemoveTagValue(R2Const.TV_CHANGENOTE);
+                else objectType.DeleteTagValue(R2Const.TV_CHANGENOTE);
                 if (!isDefault(PropertyName.FunctionId)) objectType.alias = get(PropertyName.FunctionId);
                 else objectType.alias = null;
                 objectType.name = get(PropertyName.Name);
-                if (!isDefault(PropertyName.Statement) || !isDefault(PropertyName.Description)) objectType.notes = new MarkupType() { Text = new string[] { string.Format("$ST${0}$DE${1}", get(PropertyName.Statement), get(PropertyName.Description)) } };
+                if (!isDefault(PropertyName.Statement) || !isDefault(PropertyName.Description)) objectType.SetNotes(string.Format("$ST${0}$DE${1}", get(PropertyName.Statement), get(PropertyName.Description)));
                 else objectType.notes = null;
             }
         }
@@ -288,7 +359,8 @@ namespace HL7_FM_EA_Extension
         {
             public R2Criterion()
             {
-                SourceObject = new ObjectType() { type = ObjectTypeEnum.Requirement, typeSpecified = true };
+                SourceObject = new ObjectType() { id = Guid.NewGuid().ToString(), type = ObjectTypeEnum.Requirement, typeSpecified = true, stereotype = R2Const.ST_CRITERION };
+                LoadFromSource();
             }
 
             public R2Criterion(ObjectType sourceObject)
@@ -300,14 +372,15 @@ namespace HL7_FM_EA_Extension
             public override void LoadFromSource()
             {
                 ObjectType objectType = (ObjectType) SourceObject;
+                Id = objectType.id;
                 Stereotype = objectType.stereotype;
                 LastModified = Util.FormatLastModified(objectType.modified);
-                Priority = objectType.TagValue(R2Const.TV_PRIORITY);
-                ChangeNote = objectType.TagValue(R2Const.TV_CHANGENOTE);
+                Priority = objectType.GetTagValue(R2Const.TV_PRIORITY);
+                ChangeNote = objectType.GetTagValue(R2Const.TV_CHANGENOTE);
                 Name = objectType.name;
-                Text = objectType.notes.Text[0];
+                Text = objectType.GetNotes();
                 // Row
-                string value = objectType.TagValue(R2Const.TV_ROW, "").Trim();
+                string value = objectType.GetTagValue(R2Const.TV_ROW, "").Trim();
                 if (!string.IsNullOrEmpty(value))
                 {
                     Row = decimal.Parse(value);
@@ -317,7 +390,7 @@ namespace HL7_FM_EA_Extension
                     _values.Remove(PropertyName.Row);
                 }
 
-                string conditionalValue = objectType.TagValue(R2Const.TV_CONDITIONAL);
+                string conditionalValue = objectType.GetTagValue(R2Const.TV_CONDITIONAL);
                 if (conditionalValue != null)
                 {
                     Conditional = "Y".Equals(conditionalValue);
@@ -326,7 +399,7 @@ namespace HL7_FM_EA_Extension
                 {
                     _values.Remove(PropertyName.Conditional);
                 }
-                string dependentValue = objectType.TagValue(R2Const.TV_DEPENDENT);
+                string dependentValue = objectType.GetTagValue(R2Const.TV_DEPENDENT);
                 if (dependentValue != null)
                 {
                     Dependent = "Y".Equals(dependentValue);
@@ -335,31 +408,37 @@ namespace HL7_FM_EA_Extension
                 {
                     _values.Remove(PropertyName.Dependent);
                 }
-                Optionality = objectType.TagValue(R2Const.TV_OPTIONALITY, "");
+                Optionality = objectType.GetTagValue(R2Const.TV_OPTIONALITY, "");
                 Path = Name;
+                string refAlias = objectType.GetTagValue("Reference.Alias");
+                if (refAlias != null)
+                {
+                    RefId = string.Format("{0}.{1}#{2}", refAlias, objectType.GetTagValue("Reference.FunctionID"), objectType.GetTagValue("Reference.CriterionID"));
+                }
             }
 
             public override void SaveToSource()
             {
                 ObjectType objectType = (ObjectType)SourceObject;
+                objectType.id = Id;
                 objectType.stereotype = get(PropertyName.Stereotype);
                 objectType.modified = DateTime.Parse(LastModified);
                 objectType.modifiedSpecified = true;
                 if (!isDefault(PropertyName.Priority)) objectType.SetTagValue(R2Const.TV_PRIORITY, get(PropertyName.Priority));
-                else objectType.RemoveTagValue(R2Const.TV_PRIORITY);
+                else objectType.DeleteTagValue(R2Const.TV_PRIORITY);
                 if (!isDefault(PropertyName.ChangeNote)) objectType.SetTagValue(R2Const.TV_CHANGENOTE, get(PropertyName.ChangeNote));
-                else objectType.RemoveTagValue(R2Const.TV_CHANGENOTE);
+                else objectType.DeleteTagValue(R2Const.TV_CHANGENOTE);
                 objectType.name = Name;
-                if (!isDefault(PropertyName.Text)) objectType.notes = new MarkupType() { Text = new string[] { get(PropertyName.Text) } };
+                if (!isDefault(PropertyName.Text)) objectType.SetNotes(get(PropertyName.Text));
                 else objectType.notes = null;
                 if (!isDefault(PropertyName.Row)) objectType.SetTagValue(R2Const.TV_ROW, get(PropertyName.Row));
-                else objectType.RemoveTagValue(R2Const.TV_ROW);
+                else objectType.DeleteTagValue(R2Const.TV_ROW);
                 if (!isDefault(PropertyName.Conditional)) objectType.SetTagValue(R2Const.TV_CONDITIONAL, get(PropertyName.Conditional));
-                else objectType.RemoveTagValue(R2Const.TV_CONDITIONAL);
+                else objectType.DeleteTagValue(R2Const.TV_CONDITIONAL);
                 if (!isDefault(PropertyName.Dependent)) objectType.SetTagValue(R2Const.TV_DEPENDENT, get(PropertyName.Dependent));
-                else objectType.RemoveTagValue(R2Const.TV_DEPENDENT);
+                else objectType.DeleteTagValue(R2Const.TV_DEPENDENT);
                 if (!isDefault(PropertyName.Optionality)) objectType.SetTagValue(R2Const.TV_OPTIONALITY, get(PropertyName.Optionality));
-                else objectType.RemoveTagValue(R2Const.TV_OPTIONALITY);
+                else objectType.DeleteTagValue(R2Const.TV_OPTIONALITY);
             }
         }
     }

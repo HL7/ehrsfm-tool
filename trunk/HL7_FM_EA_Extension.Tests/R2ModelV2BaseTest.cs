@@ -31,6 +31,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual(false, criterion.Dependent);
             Assert.AreEqual("SHALL", criterion.Optionality);
             Assert.AreEqual(R2ModelV2.Base.R2Const.EmptyPriority, criterion.Priority);
+            Assert.IsNull(criterion.RefId);
         }
 
         [TestMethod]
@@ -57,6 +58,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual(false, criterion.Dependent);
             Assert.AreEqual("SHALL", criterion.Optionality);
             Assert.AreEqual(R2ModelV2.Base.R2Const.EmptyPriority, criterion.Priority);
+            Assert.IsNull(criterion.RefId);
         }
 
         [TestMethod]
@@ -92,6 +94,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual(false, criterion.Dependent);
             Assert.AreEqual("SHOULD", criterion.Optionality);
             Assert.AreEqual("EN", criterion.Priority);
+            Assert.IsNull(criterion.RefId);
         }
 
         [TestMethod]
@@ -131,6 +134,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual(false, criterion.Dependent);
             Assert.AreEqual("SHALL", criterion.Optionality);
             Assert.AreEqual("", criterion.Priority);
+            Assert.IsNull(criterion.RefId);
         }
 
         [TestMethod]

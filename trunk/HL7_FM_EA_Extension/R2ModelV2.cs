@@ -18,8 +18,15 @@ namespace HL7_FM_EA_Extension
             public const string ST_FUNCTION = "Function";
             public const string ST_CONSEQUENCELINK = "ConsequenceLink";
             public const string ST_SEEALSO = "SeeAlso";
-
+            
             public const string ST_FM_PROFILEDEFINITION = "HL7-FM-ProfileDefinition";
+            public const string TV_TYPE = "Type";
+            public const string TV_VERSION = "Version";
+            public const string TV_LANGUAGETAG = "LanguageTag";
+            public const string TV_RATIONALE = "Rationale";
+            public const string TV_SCOPE = "Scope";
+            public const string TV_PRIODEF = "PrioritiesDefinition";
+            public const string TV_CONFCLAUSE = "ConformanceClause";
 
             public const string ST_COMPILERINSTRUCTION = "CI";
             public const string TV_PRIORITY = "Priority";
@@ -38,7 +45,8 @@ namespace HL7_FM_EA_Extension
                 Domain,
                 Realm,
                 Derived,
-                Combined
+                Combined,
+                Merged
             };
 
             public enum Qualifier
@@ -83,12 +91,15 @@ namespace HL7_FM_EA_Extension
 
             internal static Dictionary<string, string> SplitNotes(string notes)
             {
-                System.Text.RegularExpressions.Regex regex2 = new System.Text.RegularExpressions.Regex(@"\$([A-Z]{2})\$");
-                string[] parts = regex2.Split(notes, 10);
                 Dictionary<string, string> dict = new Dictionary<string, string>();
-                for (int i = 1; i < parts.Length; i += 2)
+                if (notes != null)
                 {
-                    dict[parts[i]] = (parts.Length > i + 1) ? parts[i + 1] : "";
+                    System.Text.RegularExpressions.Regex regex2 = new System.Text.RegularExpressions.Regex(@"\$([A-Z]{2})\$");
+                    string[] parts = regex2.Split(notes, 10);
+                    for (int i = 1; i < parts.Length; i += 2)
+                    {
+                        dict[parts[i]] = (parts.Length > i + 1) ? parts[i + 1] : "";
+                    }
                 }
                 return dict;
             }
@@ -96,11 +107,14 @@ namespace HL7_FM_EA_Extension
 
         public abstract class R2ModelElement
         {
+            // The SourceObject is a backingstore that can be serialized
             public Object SourceObject { get; set; }
+            // Load the values from the SourceObject
             public virtual void LoadFromSource()
             {
             }
 
+            // Save the values to the SourceObject
             public virtual void SaveToSource()
             {
             }
@@ -115,7 +129,8 @@ namespace HL7_FM_EA_Extension
                 SectionId, Name, Overview, Example, Actors,
                 FunctionId, Statement, Description,
                 CriterionSeqNo, Text, Row, Dependent, Conditional, Optionality,
-                Priority, ChangeNote
+                Priority, ChangeNote,
+                Version, Type, LanguageTag, Rationale, Scope, PrioDef, ConfClause
             };
             internal Dictionary<PropertyName, string> _values = new Dictionary<PropertyName, string>();
             internal string get(PropertyName key)
@@ -188,7 +203,12 @@ namespace HL7_FM_EA_Extension
                 return _values.ContainsKey(key);
             }
 
-            public abstract string GetId();
+            // Get the Externalized Id, e.g. CP.1.2
+            public abstract string GetExtId();
+            // Get the Referenced Id
+            public string RefId { get; set; }
+            // Get the unique Id, should be a GUID
+            public string Id { get; set; }
             public string LastModified { get { return get(PropertyName.LastModified); } set { set(PropertyName.LastModified, value); } }
             public string Path
             {
@@ -248,24 +268,41 @@ namespace HL7_FM_EA_Extension
                 }
                 set
                 {
-                    // if (!IsCompilerInstruction) throw Illegal;
                     set(PropertyName.ChangeNote, value);
                 }
             }
         }
 
-        public class R2Model : R2ModelElement
+        public abstract class R2RootElement : R2ModelElement
         {
-            public override string GetId()
+            public override string GetExtId()
             {
                 throw new NotImplementedException();
             }
             public string Name { get { return get(PropertyName.Name); } set { set(PropertyName.Name, value); } }
+
+            public List<R2ModelElement> children = new List<R2ModelElement>();
+        }
+
+        public abstract class R2Model : R2RootElement
+        {
+        }
+
+        public abstract class R2ProfileDefinition : R2RootElement
+        {
+            public string Version { get { return get(PropertyName.Version); } set { set(PropertyName.Version, value); } }
+            public string Type { get { return get(PropertyName.Type); } set { set(PropertyName.Type, value); } }
+            public string LanguageTag { get { return get(PropertyName.LanguageTag); } set { set(PropertyName.LanguageTag, value); } }
+            public string Rationale { get { return get(PropertyName.Rationale); } set { set(PropertyName.Rationale, value); } }
+            public string Scope { get { return get(PropertyName.Scope); } set { set(PropertyName.Scope, value); } }
+            public string PrioDef { get { return get(PropertyName.PrioDef); } set { set(PropertyName.PrioDef, value); } }
+            public string ConfClause { get { return get(PropertyName.ConfClause); } set { set(PropertyName.ConfClause, value); } }
+            public string BaseModel { get; set; }
         }
 
         public class R2Section : R2ModelElement
         {
-            public override string GetId()
+            public override string GetExtId()
             {
                 return SectionId;
             }
@@ -278,7 +315,7 @@ namespace HL7_FM_EA_Extension
 
         public class R2Function : R2ModelElement
         {
-            public override string GetId()
+            public override string GetExtId()
             {
                 return FunctionId;
             }
@@ -293,7 +330,7 @@ namespace HL7_FM_EA_Extension
 
         public class R2Criterion : R2ModelElement
         {
-            public override string GetId()
+            public override string GetExtId()
             {
                 return Name;
             }
@@ -302,28 +339,36 @@ namespace HL7_FM_EA_Extension
                 get { return string.Format("{0}#{1:00}", get(PropertyName.FunctionId), getDecimal(PropertyName.CriterionSeqNo)); }
                 set
                 {
-                    // FuntionId
-                    int sepIdx = value.IndexOf('#');
-                    if (sepIdx == -1)
+                    if (value != null)
                     {
-                        FunctionId = value;
-                    }
-                    else
-                    {
-                        FunctionId = value.Substring(0, sepIdx);
-                    }
+                        // FuntionId
+                        int sepIdx = value.IndexOf('#');
+                        if (sepIdx == -1)
+                        {
+                            FunctionId = value;
+                        }
+                        else
+                        {
+                            FunctionId = value.Substring(0, sepIdx);
+                        }
 
-                    // CriterionId
-                    // If the name doesnot contain a '#' yet, assume 0
-                    if (sepIdx == -1)
-                    {
-                        CriterionSeqNo = 0;
+                        // CriterionId
+                        // If the name doesnot contain a '#' yet, assume 0
+                        if (sepIdx == -1)
+                        {
+                            CriterionSeqNo = 0;
+                        }
+                        else
+                        {
+                            int sepIdx2 = value.IndexOf(' ', sepIdx);
+                            if (sepIdx2 == -1) sepIdx2 = value.Length;
+                            CriterionSeqNo = decimal.Parse(value.Substring(sepIdx + 1, sepIdx2 - sepIdx - 1));
+                        }
                     }
                     else
                     {
-                        int sepIdx2 = value.IndexOf(' ', sepIdx);
-                        if (sepIdx2 == -1) sepIdx2 = value.Length;
-                        CriterionSeqNo = decimal.Parse(value.Substring(sepIdx + 1, sepIdx2 - sepIdx - 1));
+                        FunctionId = "";
+                        CriterionSeqNo = 0;
                     }
                 }
             }

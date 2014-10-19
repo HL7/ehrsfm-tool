@@ -29,7 +29,7 @@ namespace HL7_FM_EA_Extension.Tests
 
             Assert.IsNotNull(modelElement);
             Assert.AreEqual("Overarching", modelElement.Name);
-            Assert.AreEqual("OV", modelElement.GetId());
+            Assert.AreEqual("OV", modelElement.GetExtId());
             Assert.AreEqual("OV", modelElement.SectionId);
             Assert.AreEqual("Section", modelElement.Stereotype);
             Assert.AreEqual("overview", modelElement.Overview);
@@ -40,6 +40,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual("", modelElement.ChangeNote);
             Assert.IsFalse(modelElement.IsCompilerInstruction);
             Assert.AreEqual("Overarching", modelElement.Path);
+            Assert.IsNull(modelElement.RefId);
         }
 
         [TestMethod]
@@ -61,7 +62,7 @@ namespace HL7_FM_EA_Extension.Tests
 
             Assert.IsNotNull(modelElement);
             Assert.AreEqual("OV.1 Header", modelElement.Name);
-            Assert.AreEqual("OV.1", modelElement.GetId());
+            Assert.AreEqual("OV.1", modelElement.GetExtId());
             Assert.AreEqual("OV.1", modelElement.FunctionId);
             Assert.AreEqual("Header", modelElement.Stereotype);
             Assert.AreEqual("", modelElement.Priority);
@@ -70,6 +71,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual("", modelElement.ChangeNote);
             Assert.IsFalse(modelElement.IsCompilerInstruction);
             Assert.AreEqual("OV.1 Header", modelElement.Path);
+            Assert.IsNull(modelElement.RefId);
         }
 
         [TestMethod]
@@ -91,7 +93,7 @@ namespace HL7_FM_EA_Extension.Tests
 
             Assert.IsNotNull(modelElement);
             Assert.AreEqual("OV.1 Function", modelElement.Name);
-            Assert.AreEqual("OV.1", modelElement.GetId());
+            Assert.AreEqual("OV.1", modelElement.GetExtId());
             Assert.AreEqual("OV.1", modelElement.FunctionId);
             Assert.AreEqual("Function", modelElement.Stereotype);
             Assert.AreEqual("", modelElement.Priority);
@@ -100,6 +102,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual("", modelElement.ChangeNote);
             Assert.IsFalse(modelElement.IsCompilerInstruction);
             Assert.AreEqual("OV.1 Function", modelElement.Path);
+            Assert.IsNull(modelElement.RefId);
         }
 
         [TestMethod]
@@ -120,7 +123,7 @@ namespace HL7_FM_EA_Extension.Tests
                 (R2ModelV2.Base.R2Criterion)R2ModelV2.MAX.Factory.Create(objectType);
 
             Assert.IsNotNull(modelElement);
-            Assert.AreEqual("OV.1#01", modelElement.GetId());
+            Assert.AreEqual("OV.1#01", modelElement.GetExtId());
             Assert.AreEqual("OV.1#01", modelElement.Name);
             Assert.AreEqual("OV.1", modelElement.FunctionId);
             Assert.AreEqual(1, modelElement.CriterionSeqNo);
@@ -130,6 +133,7 @@ namespace HL7_FM_EA_Extension.Tests
             Assert.AreEqual("", modelElement.ChangeNote);
             Assert.IsFalse(modelElement.IsCompilerInstruction);
             Assert.AreEqual("OV.1#01", modelElement.Path);
+            Assert.IsNull(modelElement.RefId);
         }
 
         [TestMethod]
@@ -138,10 +142,10 @@ namespace HL7_FM_EA_Extension.Tests
             string maxFileName = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\EHRS_FM_R2_N2.max.xml";
             R2ModelV2.MAX.R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName);
 
-            Assert.AreEqual(2680, model.elements.Count);
-            Assert.AreEqual(7, model.elements.Count(t => "Section".Equals(t.Stereotype)));
-            Assert.AreEqual(299, model.elements.Count(t => "Function".Equals(t.Stereotype)));
-            Assert.AreEqual(2341, model.elements.Count(t => "Criteria".Equals(t.Stereotype)));
+            Assert.AreEqual(2680, model.children.Count);
+            Assert.AreEqual(7, model.children.Count(t => "Section".Equals(t.Stereotype)));
+            Assert.AreEqual(299, model.children.Count(t => "Function".Equals(t.Stereotype)));
+            Assert.AreEqual(2341, model.children.Count(t => "Criteria".Equals(t.Stereotype)));
         }
     }
 }

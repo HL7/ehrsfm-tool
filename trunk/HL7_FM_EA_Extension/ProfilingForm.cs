@@ -38,7 +38,7 @@ namespace HL7_FM_EA_Extension
                 EA.Element selectedElement = (EA.Element) repository.GetTreeSelectedObject();
                 if (R2Const.ST_HEADER.Equals(selectedElement.StereotypeEx) || R2Const.ST_FUNCTION.Equals(selectedElement.StereotypeEx))
                 {
-                    profileDefinitionPackage = ProfileMetadataForm.getAssociatedProfileDefinition(repository, selectedPackage);
+                    profileDefinitionPackage = EAHelper.getAssociatedProfileDefinition(repository, selectedPackage);
                     if (profileDefinitionPackage != null)
                     {
                         Text = string.Format("Profile Definition for {0}: {1}", selectedElement.StereotypeEx, selectedElement.Name);
@@ -64,7 +64,7 @@ namespace HL7_FM_EA_Extension
             }
             else if (selectedPackage != null && R2Const.ST_SECTION.Equals(selectedPackage.StereotypeEx))
             {
-                profileDefinitionPackage = ProfileMetadataForm.getAssociatedProfileDefinition(repository, selectedPackage);
+                profileDefinitionPackage = EAHelper.getAssociatedProfileDefinition(repository, selectedPackage);
                 if (profileDefinitionPackage != null)
                 {
                     Text = string.Format("Profile Definition for Section: {0}", selectedPackage.Name);
@@ -247,7 +247,7 @@ namespace HL7_FM_EA_Extension
             DefinitionLink dl = (DefinitionLink)item.Tag;
             if (dl.compilerInstructionElement != null)
             {
-                switch (EAHelper.getTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, ""))
+                switch (EAHelper.GetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, ""))
                 {
                     case "DEP":
                         item.ForeColor = Color.White;
@@ -298,27 +298,27 @@ namespace HL7_FM_EA_Extension
             switch (qualifier)
             {
                 case R2Const.Qualifier.Deprecate:
-                    EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "DEP");
+                    EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "DEP");
                     break;
                 case R2Const.Qualifier.Delete:
-                    EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "D");
+                    EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "D");
                     break;
                 case R2Const.Qualifier.Exclude:
-                    EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "EXCLUDE");
+                    EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "EXCLUDE");
                     break;
                 case R2Const.Qualifier.None:
                 default:
-                    EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "");
+                    EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "");
                     break;
             }
 
             if (!string.IsNullOrEmpty(change_note))
             {
-                EAHelper.updateTaggedValue(dl.compilerInstructionElement, R2Const.TV_CHANGENOTE, "<memo>", change_note);
+                EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_CHANGENOTE, "<memo>", change_note);
             }
             else
             {
-                EAHelper.deleteTaggedValue(dl.compilerInstructionElement, R2Const.TV_CHANGENOTE);
+                EAHelper.DeleteTaggedValue(dl.compilerInstructionElement, R2Const.TV_CHANGENOTE);
             }
 
             dl.compilerInstructionElement.TaggedValues.Refresh();

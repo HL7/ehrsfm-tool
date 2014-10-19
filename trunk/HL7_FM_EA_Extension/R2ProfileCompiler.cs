@@ -179,7 +179,7 @@ namespace HL7_FM_EA_Extension
 
                 // Convert back to MAX model
                 ModelType model = new ModelType();
-                model.exportDate = DateTime.Now.ToString();
+                model.exportDate = Util.FormatLastModified(DateTime.Now);
                 model.objects = objects.ToArray();
                 model.relationships = relationships.ToArray();
                 // Check if all objects are included

@@ -43,7 +43,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.rationaleTextBox = new System.Windows.Forms.TextBox();
             this.scopeTextBox = new System.Windows.Forms.TextBox();
-            this.prioDescTextBox = new System.Windows.Forms.TextBox();
+            this.prioDefTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.baseModelTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -159,9 +159,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(5, 203);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 13);
+            this.label7.Size = new System.Drawing.Size(93, 13);
             this.label7.TabIndex = 11;
-            this.label7.Text = "Priorities Description";
+            this.label7.Text = "Priorities Definition";
             // 
             // rationaleTextBox
             // 
@@ -181,14 +181,14 @@
             this.scopeTextBox.Size = new System.Drawing.Size(441, 136);
             this.scopeTextBox.TabIndex = 13;
             // 
-            // prioDescTextBox
+            // prioDefTextBox
             // 
-            this.prioDescTextBox.Location = new System.Drawing.Point(8, 219);
-            this.prioDescTextBox.Multiline = true;
-            this.prioDescTextBox.Name = "prioDescTextBox";
-            this.prioDescTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.prioDescTextBox.Size = new System.Drawing.Size(441, 136);
-            this.prioDescTextBox.TabIndex = 14;
+            this.prioDefTextBox.Location = new System.Drawing.Point(8, 219);
+            this.prioDefTextBox.Multiline = true;
+            this.prioDefTextBox.Name = "prioDefTextBox";
+            this.prioDefTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.prioDefTextBox.Size = new System.Drawing.Size(441, 136);
+            this.prioDefTextBox.TabIndex = 14;
             // 
             // label8
             // 
@@ -262,7 +262,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.baseModelTextBox);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.prioDescTextBox);
+            this.Controls.Add(this.prioDefTextBox);
             this.Controls.Add(this.scopeTextBox);
             this.Controls.Add(this.rationaleTextBox);
             this.Controls.Add(this.label7);
@@ -307,7 +307,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox rationaleTextBox;
         private System.Windows.Forms.TextBox scopeTextBox;
-        private System.Windows.Forms.TextBox prioDescTextBox;
+        private System.Windows.Forms.TextBox prioDefTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox baseModelTextBox;
         private System.Windows.Forms.Label label9;
