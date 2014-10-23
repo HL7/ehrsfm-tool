@@ -104,7 +104,7 @@ namespace HL7_FM_EA_Extension
         /**
          * Append star(*) after label of Label is value is different from Default
          */ 
-        private void updateLabel(R2ModelElement.PropertyName key, string labelText, Label label, bool? star)
+        private void updateLabel(string key, string labelText, Label label, bool? star)
         {
             if (star == null)
             {
@@ -122,10 +122,10 @@ namespace HL7_FM_EA_Extension
          */
         private void updateLabels(bool? star = null)
         {
-            updateLabel(R2ModelElement.PropertyName.Name, "Name", nameLabel, star);
-            updateLabel(R2ModelElement.PropertyName.Statement, "Statement", statementLabel, star);
-            updateLabel(R2ModelElement.PropertyName.Description, "Description", descriptionLinkLabel, star);
-            updateLabel(R2ModelElement.PropertyName.Priority, "Priority", priorityLabel, star);
+            updateLabel(R2Const.AT_NAME, "Name", nameLabel, star);
+            updateLabel(R2Const.AT_STATEMENT, "Statement", statementLabel, star);
+            updateLabel(R2Const.AT_DESCRIPTION, "Description", descriptionLinkLabel, star);
+            updateLabel(R2Const.TV_PRIORITY, "Priority", priorityLabel, star);
         }
 
         private void applyChanges()
@@ -183,7 +183,7 @@ namespace HL7_FM_EA_Extension
                 id = nameTextBox.Text.Substring(0, spidx);
             }
             idTextBox.Text = id;
-            updateLabel(R2ModelElement.PropertyName.Name, "Name", nameLabel, true);
+            updateLabel(R2Const.AT_NAME, "Name", nameLabel, true);
         }
 
         private bool switched = false;
@@ -205,17 +205,17 @@ namespace HL7_FM_EA_Extension
 
         private void statementTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Statement, "Statement", statementLabel, true);
+            if (!ignoreEvents) updateLabel(R2Const.AT_STATEMENT, "Statement", statementLabel, true);
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Description, "Description", descriptionLinkLabel, true);
+            if (!ignoreEvents) updateLabel(R2Const.AT_DESCRIPTION, "Description", descriptionLinkLabel, true);
         }
 
         private void priorityComboBox_TextChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Priority, "Priority", priorityLabel, true);
+            if (!ignoreEvents) updateLabel(R2Const.TV_PRIORITY, "Priority", priorityLabel, true);
         }
 
         private void descriptionLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

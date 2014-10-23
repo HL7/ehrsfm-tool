@@ -9,6 +9,20 @@ namespace HL7_FM_EA_Extension
     {
         public class R2Const
         {
+            public const string AT_STEREOTYPE = "@Stereotype";
+            public const string AT_LASTMODIFIED = "@LastModified";
+            public const string AT_NAME = "@Name";
+            public const string AT_TEXT = "@Text";
+            public const string AT_PATH = "@Path";
+            public const string AT_STATEMENT = "@Statement";
+            public const string AT_DESCRIPTION = "@Description";
+            public const string AT_OVERVIEW = "@Overview";
+            public const string AT_EXAMPLE = "@Example";
+            public const string AT_ACTORS = "@Actors";
+            public const string AT_SECTIONID = "@SectionId";
+            public const string AT_FUNCTIONID = "@FunctionId";
+            public const string AT_CRITSEQNO = "@CriterionSeqNo";
+
             public const string ST_FM = "HL7-FM";
             public const string ST_BASEMODEL = "use";
             public const string ST_TARGETPROFILE = "create";
@@ -18,7 +32,7 @@ namespace HL7_FM_EA_Extension
             public const string ST_FUNCTION = "Function";
             public const string ST_CONSEQUENCELINK = "ConsequenceLink";
             public const string ST_SEEALSO = "SeeAlso";
-            
+
             public const string ST_FM_PROFILEDEFINITION = "HL7-FM-ProfileDefinition";
             public const string TV_TYPE = "Type";
             public const string TV_VERSION = "Version";
@@ -121,19 +135,8 @@ namespace HL7_FM_EA_Extension
 
             // use another R2ModelElement for Default values
             public R2ModelElement Defaults { get; set; }
-            internal enum PropertyName
-            {
-                Path,
-                LastModified,
-                Stereotype,
-                SectionId, Name, Overview, Example, Actors,
-                FunctionId, Statement, Description,
-                CriterionSeqNo, Text, Row, Dependent, Conditional, Optionality,
-                Priority, ChangeNote,
-                Version, Type, LanguageTag, Rationale, Scope, PrioDef, ConfClause
-            };
-            internal Dictionary<PropertyName, string> _values = new Dictionary<PropertyName, string>();
-            internal string get(PropertyName key)
+            internal Dictionary<string, string> _values = new Dictionary<string, string>();
+            internal string get(string key)
             {
                 string value = "";
                 if (_values.ContainsKey(key))
@@ -146,7 +149,7 @@ namespace HL7_FM_EA_Extension
                 }
                 return value;
             }
-            internal decimal getDecimal(PropertyName key)
+            internal decimal getDecimal(string key)
             {
                 string value = get(key);
                 if (string.IsNullOrEmpty(value))
@@ -155,12 +158,12 @@ namespace HL7_FM_EA_Extension
                 }
                 return decimal.Parse(value);
             }
-            internal bool getBool(PropertyName key)
+            internal bool getBool(string key)
             {
                 string value = get(key);
                 return "Y".Equals(value);
             }
-            internal void set(PropertyName key, string value)
+            internal void set(string key, string value)
             {
                 _values[key] = value;
                 if (string.IsNullOrEmpty(value))
@@ -172,15 +175,15 @@ namespace HL7_FM_EA_Extension
                     _values.Remove(key);
                 }
             }
-            internal void set(PropertyName key, decimal value)
+            internal void set(string key, decimal value)
             {
                 set(key, value.ToString());
             }
-            internal void set(PropertyName key, bool value)
+            internal void set(string key, bool value)
             {
                 set(key, value ? "Y" : "N");
             }
-            internal bool isDefault(PropertyName key)
+            internal bool isDefault(string key)
             {
                 if (Defaults != null)
                 {
@@ -198,7 +201,7 @@ namespace HL7_FM_EA_Extension
                     return false;
                 }
             }
-            internal bool isSet(PropertyName key)
+            internal bool isSet(string key)
             {
                 return _values.ContainsKey(key);
             }
@@ -209,7 +212,7 @@ namespace HL7_FM_EA_Extension
             public string RefId { get; set; }
             // Get the unique Id, should be a GUID
             public string Id { get; set; }
-            public string LastModified { get { return get(PropertyName.LastModified); } set { set(PropertyName.LastModified, value); } }
+            public string LastModified { get { return get(R2Const.AT_LASTMODIFIED); } set { set(R2Const.AT_LASTMODIFIED, value); } }
             public string Path
             {
                 get
@@ -220,12 +223,12 @@ namespace HL7_FM_EA_Extension
                     }
                     else
                     {
-                        return get(PropertyName.Path);
+                        return get(R2Const.AT_PATH);
                     }
                 } 
                 set
                 {
-                    set(PropertyName.Path, value);
+                    set(R2Const.AT_PATH, value);
                 }
             }
             public string Stereotype
@@ -238,12 +241,12 @@ namespace HL7_FM_EA_Extension
                     }
                     else
                     {
-                        return get(PropertyName.Stereotype);
+                        return get(R2Const.AT_STEREOTYPE);
                     }
                 }
                 internal set
                 {
-                    set(PropertyName.Stereotype, value);
+                    set(R2Const.AT_STEREOTYPE, value);
                 }
             }
 
@@ -252,23 +255,23 @@ namespace HL7_FM_EA_Extension
             {
                 get
                 {
-                    return get(PropertyName.Priority);
+                    return get(R2Const.TV_PRIORITY);
                 }
                 set
                 {
                     // if (!IsCompilerInstruction) throw Illegal;
-                    set(PropertyName.Priority, value);
+                    set(R2Const.TV_PRIORITY, value);
                 }
             }
             public string ChangeNote
             {
                 get
                 {
-                    return get(PropertyName.ChangeNote);
+                    return get(R2Const.TV_CHANGENOTE);
                 }
                 set
                 {
-                    set(PropertyName.ChangeNote, value);
+                    set(R2Const.TV_CHANGENOTE, value);
                 }
             }
         }
@@ -279,7 +282,7 @@ namespace HL7_FM_EA_Extension
             {
                 throw new NotImplementedException();
             }
-            public string Name { get { return get(PropertyName.Name); } set { set(PropertyName.Name, value); } }
+            public string Name { get { return get(R2Const.AT_NAME); } set { set(R2Const.AT_NAME, value); } }
 
             public List<R2ModelElement> children = new List<R2ModelElement>();
         }
@@ -290,13 +293,13 @@ namespace HL7_FM_EA_Extension
 
         public abstract class R2ProfileDefinition : R2RootElement
         {
-            public string Version { get { return get(PropertyName.Version); } set { set(PropertyName.Version, value); } }
-            public string Type { get { return get(PropertyName.Type); } set { set(PropertyName.Type, value); } }
-            public string LanguageTag { get { return get(PropertyName.LanguageTag); } set { set(PropertyName.LanguageTag, value); } }
-            public string Rationale { get { return get(PropertyName.Rationale); } set { set(PropertyName.Rationale, value); } }
-            public string Scope { get { return get(PropertyName.Scope); } set { set(PropertyName.Scope, value); } }
-            public string PrioDef { get { return get(PropertyName.PrioDef); } set { set(PropertyName.PrioDef, value); } }
-            public string ConfClause { get { return get(PropertyName.ConfClause); } set { set(PropertyName.ConfClause, value); } }
+            public string Version { get { return get(R2Const.TV_VERSION); } set { set(R2Const.TV_VERSION, value); } }
+            public string Type { get { return get(R2Const.TV_TYPE); } set { set(R2Const.TV_TYPE, value); } }
+            public string LanguageTag { get { return get(R2Const.TV_LANGUAGETAG); } set { set(R2Const.TV_LANGUAGETAG, value); } }
+            public string Rationale { get { return get(R2Const.TV_RATIONALE); } set { set(R2Const.TV_RATIONALE, value); } }
+            public string Scope { get { return get(R2Const.TV_SCOPE); } set { set(R2Const.TV_SCOPE, value); } }
+            public string PrioDef { get { return get(R2Const.TV_PRIODEF); } set { set(R2Const.TV_PRIODEF, value); } }
+            public string ConfClause { get { return get(R2Const.TV_CONFCLAUSE); } set { set(R2Const.TV_CONFCLAUSE, value); } }
             public string BaseModel { get; set; }
         }
 
@@ -306,11 +309,11 @@ namespace HL7_FM_EA_Extension
             {
                 return SectionId;
             }
-            public string SectionId { get { return get(PropertyName.SectionId); } set { set(PropertyName.SectionId, value); } }
-            public string Name { get { return get(PropertyName.Name); } set { set(PropertyName.Name, value); } }
-            public string Overview { get { return get(PropertyName.Overview); } set { set(PropertyName.Overview, value); } }
-            public string Example { get { return get(PropertyName.Example); } set { set(PropertyName.Example, value); } }
-            public string Actors { get { return get(PropertyName.Actors); } set { set(PropertyName.Actors, value); } }
+            public string SectionId { get { return get(R2Const.AT_SECTIONID); } set { set(R2Const.AT_SECTIONID, value); } }
+            public string Name { get { return get(R2Const.AT_NAME); } set { set(R2Const.AT_NAME, value); } }
+            public string Overview { get { return get(R2Const.AT_OVERVIEW); } set { set(R2Const.AT_OVERVIEW, value); } }
+            public string Example { get { return get(R2Const.AT_EXAMPLE); } set { set(R2Const.AT_EXAMPLE, value); } }
+            public string Actors { get { return get(R2Const.AT_ACTORS); } set { set(R2Const.AT_ACTORS, value); } }
         }
 
         public class R2Function : R2ModelElement
@@ -319,10 +322,10 @@ namespace HL7_FM_EA_Extension
             {
                 return FunctionId;
             }
-            public string FunctionId { get { return get(PropertyName.FunctionId); } set { set(PropertyName.FunctionId, value); } }
-            public string Name { get { return get(PropertyName.Name); } set { set(PropertyName.Name, value); } }
-            public string Statement { get { return get(PropertyName.Statement); } set { set(PropertyName.Statement, value); } }
-            public string Description { get { return get(PropertyName.Description); } set { set(PropertyName.Description, value); } }
+            public string FunctionId { get { return get(R2Const.AT_FUNCTIONID); } set { set(R2Const.AT_FUNCTIONID, value); } }
+            public string Name { get { return get(R2Const.AT_NAME); } set { set(R2Const.AT_NAME, value); } }
+            public string Statement { get { return get(R2Const.AT_STATEMENT); } set { set(R2Const.AT_STATEMENT, value); } }
+            public string Description { get { return get(R2Const.AT_DESCRIPTION); } set { set(R2Const.AT_DESCRIPTION, value); } }
 
             // TODO: This has to go to R2Profile/R2ProfileDefinition
             public string ProfileType { get; set; }
@@ -336,7 +339,7 @@ namespace HL7_FM_EA_Extension
             }
             public string Name
             {
-                get { return string.Format("{0}#{1:00}", get(PropertyName.FunctionId), getDecimal(PropertyName.CriterionSeqNo)); }
+                get { return string.Format("{0}#{1:00}", get(R2Const.AT_FUNCTIONID), getDecimal(R2Const.AT_CRITSEQNO)); }
                 set
                 {
                     if (value != null)
@@ -372,13 +375,13 @@ namespace HL7_FM_EA_Extension
                     }
                 }
             }
-            public string FunctionId { get { return get(PropertyName.FunctionId); } set { set(PropertyName.FunctionId, value); } }
-            public decimal CriterionSeqNo { get { return getDecimal(PropertyName.CriterionSeqNo); } set { set(PropertyName.CriterionSeqNo, value); } }
-            public string Text { get { return get(PropertyName.Text); } set { set(PropertyName.Text, value); } }
-            public decimal Row { get { return getDecimal(PropertyName.Row); } set { set(PropertyName.Row, value); } }
-            public bool Conditional { get { return getBool(PropertyName.Conditional); } set { set(PropertyName.Conditional, value); } }
-            public bool Dependent { get { return getBool(PropertyName.Dependent); } set { set(PropertyName.Dependent, value); } }
-            public string Optionality { get { return get(PropertyName.Optionality); } set { set(PropertyName.Optionality, value); } }
+            public string FunctionId { get { return get(R2Const.AT_FUNCTIONID); } set { set(R2Const.AT_FUNCTIONID, value); } }
+            public decimal CriterionSeqNo { get { return getDecimal(R2Const.AT_CRITSEQNO); } set { set(R2Const.AT_CRITSEQNO, value); } }
+            public string Text { get { return get(R2Const.AT_TEXT); } set { set(R2Const.AT_TEXT, value); } }
+            public decimal Row { get { return getDecimal(R2Const.TV_ROW); } set { set(R2Const.TV_ROW, value); } }
+            public bool Conditional { get { return getBool(R2Const.TV_CONDITIONAL); } set { set(R2Const.TV_CONDITIONAL, value); } }
+            public bool Dependent { get { return getBool(R2Const.TV_DEPENDENT); } set { set(R2Const.TV_DEPENDENT, value); } }
+            public string Optionality { get { return get(R2Const.TV_OPTIONALITY); } set { set(R2Const.TV_OPTIONALITY, value); } }
         }
     }
 }

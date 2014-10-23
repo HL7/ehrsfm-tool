@@ -139,16 +139,16 @@ namespace HL7_FM_EA_Extension
             public override void SaveToSource()
             {
                 EA.Element element = (EA.Element) SourceObject;
-                if (!isSet(PropertyName.Name)) element.Name = get(PropertyName.Name);
+                if (!isSet(R2Const.AT_NAME)) element.Name = get(R2Const.AT_NAME);
                 element.Version = Version;
                 element.Update();
 
-                EAHelper.SetTaggedValue(element, R2Const.TV_TYPE, get(PropertyName.Type));
-                EAHelper.SetTaggedValue(element, R2Const.TV_LANGUAGETAG, get(PropertyName.LanguageTag));
-                EAHelper.SetTaggedValue(element, R2Const.TV_RATIONALE, "<memo>", get(PropertyName.Rationale));
-                EAHelper.SetTaggedValue(element, R2Const.TV_SCOPE, "<memo>", get(PropertyName.Scope));
-                EAHelper.SetTaggedValue(element, R2Const.TV_PRIODEF, "<memo>", get(PropertyName.PrioDef));
-                EAHelper.SetTaggedValue(element, R2Const.TV_CONFCLAUSE, "<memo>", get(PropertyName.ConfClause));
+                EAHelper.SetTaggedValue(element, R2Const.TV_TYPE, get(R2Const.TV_TYPE));
+                EAHelper.SetTaggedValue(element, R2Const.TV_LANGUAGETAG, get(R2Const.TV_LANGUAGETAG));
+                EAHelper.SetTaggedValue(element, R2Const.TV_RATIONALE, "<memo>", get(R2Const.TV_RATIONALE));
+                EAHelper.SetTaggedValue(element, R2Const.TV_SCOPE, "<memo>", get(R2Const.TV_SCOPE));
+                EAHelper.SetTaggedValue(element, R2Const.TV_PRIODEF, "<memo>", get(R2Const.TV_PRIODEF));
+                EAHelper.SetTaggedValue(element, R2Const.TV_CONFCLAUSE, "<memo>", get(R2Const.TV_CONFCLAUSE));
             }
         }
 
@@ -184,15 +184,15 @@ namespace HL7_FM_EA_Extension
             public override void SaveToSource()
             {
                 EA.Element element = (EA.Element)SourceObject;
-                if (!isDefault(PropertyName.SectionId)) element.Alias = get(PropertyName.SectionId);
-                if (!isDefault(PropertyName.Name)) element.Name = get(PropertyName.Name);
-                if (!isDefault(PropertyName.Overview) || !isDefault(PropertyName.Example) || !isDefault(PropertyName.Actors))
-                    element.Notes = string.Format("$OV${0}$EX${1}$AC${2}", get(PropertyName.Overview), get(PropertyName.Example), get(PropertyName.Actors));
+                if (!isDefault(R2Const.AT_SECTIONID)) element.Alias = get(R2Const.AT_SECTIONID);
+                if (!isDefault(R2Const.AT_NAME)) element.Name = get(R2Const.AT_NAME);
+                if (!isDefault(R2Const.AT_OVERVIEW) || !isDefault(R2Const.AT_EXAMPLE) || !isDefault(R2Const.AT_ACTORS))
+                    element.Notes = string.Format("$OV${0}$EX${1}$AC${2}", get(R2Const.AT_OVERVIEW), get(R2Const.AT_EXAMPLE), get(R2Const.AT_ACTORS));
                 element.Update();
-                string priority = get(PropertyName.Priority);
+                string priority = get(R2Const.TV_PRIORITY);
                 if (!string.IsNullOrEmpty(priority)) EAHelper.SetTaggedValue(element, R2Const.TV_PRIORITY, priority);
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_PRIORITY);
-                if (isSet(PropertyName.ChangeNote)) EAHelper.SetTaggedValue(element, R2Const.TV_CHANGENOTE, "<memo>", get(PropertyName.ChangeNote));
+                if (isSet(R2Const.TV_CHANGENOTE)) EAHelper.SetTaggedValue(element, R2Const.TV_CHANGENOTE, "<memo>", get(R2Const.TV_CHANGENOTE));
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_CHANGENOTE);
                 R2Config.config.updateStyle(element);
             }
@@ -229,15 +229,15 @@ namespace HL7_FM_EA_Extension
             public override void SaveToSource()
             {
                 EA.Element element = (EA.Element)SourceObject;
-                if (!isDefault(PropertyName.FunctionId)) element.Alias = get(PropertyName.FunctionId);
-                if (!isDefault(PropertyName.Name)) element.Name = get(PropertyName.Name);
-                if (!isDefault(PropertyName.Statement) || !isDefault(PropertyName.Description))
-                    element.Notes = string.Format("$ST${0}$DE${1}", get(PropertyName.Statement), get(PropertyName.Description));
+                if (!isDefault(R2Const.AT_FUNCTIONID)) element.Alias = get(R2Const.AT_FUNCTIONID);
+                if (!isDefault(R2Const.AT_NAME)) element.Name = get(R2Const.AT_NAME);
+                if (!isDefault(R2Const.AT_STATEMENT) || !isDefault(R2Const.AT_DESCRIPTION))
+                    element.Notes = string.Format("$ST${0}$DE${1}", get(R2Const.AT_STATEMENT), get(R2Const.AT_DESCRIPTION));
                 element.Update();
-                string priority = get(PropertyName.Priority);
+                string priority = get(R2Const.TV_PRIORITY);
                 if (!string.IsNullOrEmpty(priority)) EAHelper.SetTaggedValue(element, R2Const.TV_PRIORITY, priority);
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_PRIORITY);
-                if (isSet(PropertyName.ChangeNote)) EAHelper.SetTaggedValue(element, R2Const.TV_CHANGENOTE, "<memo>", get(PropertyName.ChangeNote));
+                if (isSet(R2Const.TV_CHANGENOTE)) EAHelper.SetTaggedValue(element, R2Const.TV_CHANGENOTE, "<memo>", get(R2Const.TV_CHANGENOTE));
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_CHANGENOTE);
                 // TODO: update visual style
                 R2Config.config.updateStyle(element);
@@ -275,7 +275,7 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    _values.Remove(PropertyName.Conditional);
+                    _values.Remove(R2Const.TV_CONDITIONAL);
                 }
                 string dependentValue = EAHelper.GetTaggedValue(element, R2Const.TV_DEPENDENT);
                 if (dependentValue != null)
@@ -284,7 +284,7 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    _values.Remove(PropertyName.Dependent);
+                    _values.Remove(R2Const.TV_DEPENDENT);
                 }
                 Optionality = EAHelper.GetTaggedValue(element, R2Const.TV_OPTIONALITY, "");
                 string refAlias = EAHelper.GetTaggedValue(element, "Reference.Alias");
@@ -297,22 +297,22 @@ namespace HL7_FM_EA_Extension
             public override void SaveToSource()
             {
                 EA.Element element = (EA.Element) SourceObject;
-                if (!isDefault(PropertyName.Name)) element.Name = Name;
-                if (!isDefault(PropertyName.Text)) element.Notes = get(PropertyName.Text);
+                if (!isDefault(R2Const.AT_NAME)) element.Name = Name;
+                if (!isDefault(R2Const.AT_TEXT)) element.Notes = get(R2Const.AT_TEXT);
                 else element.Notes = "";
                 element.Update();
-                if (!isDefault(PropertyName.Row)) EAHelper.SetTaggedValue(element, R2Const.TV_ROW, Row.ToString());
+                if (!isDefault(R2Const.TV_ROW)) EAHelper.SetTaggedValue(element, R2Const.TV_ROW, Row.ToString());
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_ROW);
-                if (!isDefault(PropertyName.Conditional)) EAHelper.SetTaggedValue(element, R2Const.TV_CONDITIONAL, Conditional ? "Y" : "N");
+                if (!isDefault(R2Const.TV_CONDITIONAL)) EAHelper.SetTaggedValue(element, R2Const.TV_CONDITIONAL, Conditional ? "Y" : "N");
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_CONDITIONAL);
-                if (!isDefault(PropertyName.Dependent)) EAHelper.SetTaggedValue(element, R2Const.TV_DEPENDENT, Dependent ? "Y" : "N");
+                if (!isDefault(R2Const.TV_DEPENDENT)) EAHelper.SetTaggedValue(element, R2Const.TV_DEPENDENT, Dependent ? "Y" : "N");
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_DEPENDENT);
-                if (!isDefault(PropertyName.Optionality)) EAHelper.SetTaggedValue(element, R2Const.TV_OPTIONALITY, Optionality);
+                if (!isDefault(R2Const.TV_OPTIONALITY)) EAHelper.SetTaggedValue(element, R2Const.TV_OPTIONALITY, Optionality);
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_OPTIONALITY);
-                string priority = get(PropertyName.Priority);
+                string priority = get(R2Const.TV_PRIORITY);
                 if (!string.IsNullOrEmpty(priority)) EAHelper.SetTaggedValue(element, R2Const.TV_PRIORITY, priority);
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_PRIORITY);
-                if (isSet(PropertyName.ChangeNote)) EAHelper.SetTaggedValue(element, R2Const.TV_CHANGENOTE, "<memo>", get(PropertyName.ChangeNote));
+                if (isSet(R2Const.TV_CHANGENOTE)) EAHelper.SetTaggedValue(element, R2Const.TV_CHANGENOTE, "<memo>", get(R2Const.TV_CHANGENOTE));
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_CHANGENOTE);
                 // TODO: update visual style
                 R2Config.config.updateStyle(element);
