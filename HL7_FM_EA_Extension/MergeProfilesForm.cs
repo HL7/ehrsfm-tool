@@ -116,7 +116,17 @@ namespace HL7_FM_EA_Extension
             dataGridView2.Columns[columnNumber].HeaderText = model.Name;
             foreach (R2ModelElement element in model.children)
             {
-                int rowNumber = rowIds.IndexOf(element.GetExtId());
+                string alignId;
+                if (element.RefId == null)
+                {
+                    alignId = element.RefId;
+                }
+                else
+                {
+                    alignId = element.GetExtId();
+                }
+
+                int rowNumber = rowIds.IndexOf(alignId);
                 if (rowNumber == -1) continue;
 
                 DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
@@ -180,14 +190,16 @@ namespace HL7_FM_EA_Extension
                                                         FunctionId = string.Format("CP.{0}.{1}", h, f), 
                                                         CriterionSeqNo = c,
                                                         Text = "The system SHALL xyz",
-                                                        Optionality = "SHALL"
+                                                        Optionality = "SHALL",
+                                                        RefId = string.Format("CP.{0}.{1}#{2:00}", h, f, c+1)
                                                     };
-                        rowNumber = rowIds.IndexOf(criterion.GetExtId());
+                        //rowNumber = rowIds.IndexOf(criterion.GetExtId());
+                        rowNumber = rowIds.IndexOf(criterion.RefId);
                         if (rowNumber == -1) continue;
 
                         DataGridViewCell criterionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
                         criterionCell.Tag = criterion;
-                        criterionCell.Value = criterion.Name;
+                        criterionCell.Value = string.Format("! {0}", criterion.Name);
                         criterionCell.ToolTipText = string.Format("{0} {1}", criterion.Name, criterion.Text);
                         criterionCell.Style = cellStyle;
                     }
@@ -302,6 +314,8 @@ namespace HL7_FM_EA_Extension
                 {
                     new CriterionForm().Show((R2Criterion)cell.Tag);
                 }
+                // Update content of compare grid, content might be changed in the form
+                updateDataGridView1(false, _currentRow, _currentCompareRow);
             }
         }
 

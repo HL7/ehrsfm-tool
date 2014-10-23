@@ -97,7 +97,7 @@ namespace HL7_FM_EA_Extension
         /**
          * Append star(*) after label of Label is value is different from Default
          */ 
-        private void updateLabel(R2ModelElement.PropertyName key, string labelText, Label label, bool? star)
+        private void updateLabel(string key, string labelText, Label label, bool? star)
         {
             if (star == null)
             {
@@ -113,7 +113,7 @@ namespace HL7_FM_EA_Extension
         /**
          * Append star(*) after label of Label is value is different from Default
          */
-        private void updateLabel(R2ModelElement.PropertyName key, string labelText, CheckBox checkBox, bool? star)
+        private void updateLabel(string key, string labelText, CheckBox checkBox, bool? star)
         {
             if (star == null)
             {
@@ -131,13 +131,13 @@ namespace HL7_FM_EA_Extension
          */
         private void updateLabels(bool? star = null)
         {
-            updateLabel(R2ModelElement.PropertyName.CriterionSeqNo, "Sequence#", seqNoLabel, star);
-            updateLabel(R2ModelElement.PropertyName.Row, "Row#", rowLabel, star);
-            updateLabel(R2ModelElement.PropertyName.Text, "Text", textLinkLabel, star);
-            updateLabel(R2ModelElement.PropertyName.Conditional, "Conditional", conditionalCheckBox, star);
-            updateLabel(R2ModelElement.PropertyName.Dependent, "Dependent", dependentCheckBox, star);
-            updateLabel(R2ModelElement.PropertyName.Optionality, "Optionality", optionalityLabel, star);
-            updateLabel(R2ModelElement.PropertyName.Priority, "Priority", priorityLabel, star);
+            updateLabel(R2Const.AT_CRITSEQNO, "Sequence#", seqNoLabel, star);
+            updateLabel(R2Const.TV_ROW, "Row#", rowLabel, star);
+            updateLabel(R2Const.AT_TEXT, "Text", textLinkLabel, star);
+            updateLabel(R2Const.TV_CONDITIONAL, "Conditional", conditionalCheckBox, star);
+            updateLabel(R2Const.TV_DEPENDENT, "Dependent", dependentCheckBox, star);
+            updateLabel(R2Const.TV_OPTIONALITY, "Optionality", optionalityLabel, star);
+            updateLabel(R2Const.TV_PRIORITY, "Priority", priorityLabel, star);
         }
 
         private void applyChanges()
@@ -202,8 +202,8 @@ namespace HL7_FM_EA_Extension
             }
             if (!ignoreEvents)
             {
-                updateLabel(R2ModelElement.PropertyName.Text, "Text", textLinkLabel, true);
-                updateLabel(R2ModelElement.PropertyName.Optionality, "Optionality", optionalityLabel, true);
+                updateLabel(R2Const.AT_TEXT, "Text", textLinkLabel, true);
+                updateLabel(R2Const.TV_OPTIONALITY, "Optionality", optionalityLabel, true);
             }
         }
 
@@ -226,27 +226,27 @@ namespace HL7_FM_EA_Extension
 
         private void textTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Text, "Text", textLinkLabel, true);
+            if (!ignoreEvents) updateLabel(R2Const.AT_TEXT, "Text", textLinkLabel, true);
         }
 
         private void conditionalCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Conditional, "Conditional", conditionalCheckBox, true);
+            if (!ignoreEvents) updateLabel(R2Const.TV_CONDITIONAL, "Conditional", conditionalCheckBox, true);
         }
 
         private void dependentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Dependent, "Dependent", dependentCheckBox, true);
+            if (!ignoreEvents) updateLabel(R2Const.TV_DEPENDENT, "Dependent", dependentCheckBox, true);
         }
 
         private void rowNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.Row, "Row#", rowLabel, true);
+            if (!ignoreEvents) updateLabel(R2Const.TV_ROW, "Row#", rowLabel, true);
         }
 
         private void idNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (!ignoreEvents) updateLabel(R2ModelElement.PropertyName.CriterionSeqNo, "Sequence#", seqNoLabel, true);
+            if (!ignoreEvents) updateLabel(R2Const.AT_CRITSEQNO, "Sequence#", seqNoLabel, true);
         }
 
         private void textLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

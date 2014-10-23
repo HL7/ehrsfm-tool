@@ -9,6 +9,15 @@
 
 CHANGELOG
 =========
+[2014-oct-22]
+MergeProfilesForm
+- SingleSelect for now
+- Compare Grid is updated after change in Form
+
+[2014-oct-19]
+- Further refactoring and completing of R2ModelV2.
+- Align elements by their Reference to their Base Id or if they don't have that to the External.Id
+
 [2014-oct-16]
 R2Model,ProfileMetadataForm
 - Start implementation of Profile/Definition Model Elements on MAX/EA
