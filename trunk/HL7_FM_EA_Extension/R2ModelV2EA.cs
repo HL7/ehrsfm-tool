@@ -150,6 +150,11 @@ namespace HL7_FM_EA_Extension
                 EAHelper.SetTaggedValue(element, R2Const.TV_PRIODEF, "<memo>", get(R2Const.TV_PRIODEF));
                 EAHelper.SetTaggedValue(element, R2Const.TV_CONFCLAUSE, "<memo>", get(R2Const.TV_CONFCLAUSE));
             }
+
+            public override bool IsReadOnly()
+            {
+                return ((EA.Element)SourceObject).Locked;
+            }
         }
 
         public class R2Section : Base.R2Section
@@ -169,16 +174,11 @@ namespace HL7_FM_EA_Extension
                 ChangeNote = EAHelper.GetTaggedValueNotes(element, R2Const.TV_CHANGENOTE);
                 SectionId = element.Alias;
                 Name = element.Name;
-                string notes = element.Notes;
-                Dictionary<string, string> noteParts = Util.SplitNotes(notes);
+                Dictionary<string, string> noteParts = Util.SplitNotes(element.Notes);
                 Overview = noteParts.ContainsKey("OV") ? noteParts["OV"] : "";
                 Example = noteParts.ContainsKey("EX") ? noteParts["EX"] : "";
                 Actors = noteParts.ContainsKey("AC") ? noteParts["AC"] : "";
-                string refAlias = EAHelper.GetTaggedValue(element, "Reference.Alias");
-                if (refAlias != null)
-                {
-                    RefId = string.Format("{0}.{1}", refAlias, EAHelper.GetTaggedValue(element, "Reference.SectionID"));
-                }
+                SetRefId(EAHelper.GetTaggedValue(element, "Reference.Alias"), EAHelper.GetTaggedValue(element, "Reference.SectionID"));
             }
 
             public override void SaveToSource()
@@ -195,6 +195,11 @@ namespace HL7_FM_EA_Extension
                 if (isSet(R2Const.TV_CHANGENOTE)) EAHelper.SetTaggedValue(element, R2Const.TV_CHANGENOTE, "<memo>", get(R2Const.TV_CHANGENOTE));
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_CHANGENOTE);
                 R2Config.config.updateStyle(element);
+            }
+
+            public override bool IsReadOnly()
+            {
+                return ((EA.Element)SourceObject).Locked;
             }
         }
 
@@ -215,15 +220,10 @@ namespace HL7_FM_EA_Extension
                 ChangeNote = EAHelper.GetTaggedValueNotes(element, R2Const.TV_CHANGENOTE);
                 FunctionId = element.Alias;
                 Name = element.Name;
-                string notes = element.Notes;
-                Dictionary<string, string> noteParts = Util.SplitNotes(notes);
+                Dictionary<string, string> noteParts = Util.SplitNotes(element.Notes);
                 Statement = noteParts.ContainsKey("ST") ? noteParts["ST"] : "";
                 Description = noteParts.ContainsKey("DE") ? noteParts["DE"] : "";
-                string refAlias = EAHelper.GetTaggedValue(element, "Reference.Alias");
-                if (refAlias != null)
-                {
-                    RefId = string.Format("{0}.{1}", refAlias, EAHelper.GetTaggedValue(element, "Reference.FunctionID"));
-                }
+                SetRefId (EAHelper.GetTaggedValue(element, "Reference.Alias"), EAHelper.GetTaggedValue(element, "Reference.FunctionID"));
             }
 
             public override void SaveToSource()
@@ -241,6 +241,11 @@ namespace HL7_FM_EA_Extension
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_CHANGENOTE);
                 // TODO: update visual style
                 R2Config.config.updateStyle(element);
+            }
+
+            public override bool IsReadOnly()
+            {
+                return ((EA.Element)SourceObject).Locked;
             }
         }
 
@@ -261,37 +266,11 @@ namespace HL7_FM_EA_Extension
                 ChangeNote = EAHelper.GetTaggedValueNotes(element, R2Const.TV_CHANGENOTE);
                 Name = element.Name;
                 Text = element.Notes;
-                // Row
-                string value = EAHelper.GetTaggedValue(element, R2Const.TV_ROW).Trim();
-                if (!string.IsNullOrEmpty(value))
-                {
-                    Row = decimal.Parse(value);
-                }
-
-                string conditionalValue = EAHelper.GetTaggedValue(element, R2Const.TV_CONDITIONAL);
-                if (conditionalValue != null)
-                {
-                    Conditional = "Y".Equals(conditionalValue);
-                }
-                else
-                {
-                    _values.Remove(R2Const.TV_CONDITIONAL);
-                }
-                string dependentValue = EAHelper.GetTaggedValue(element, R2Const.TV_DEPENDENT);
-                if (dependentValue != null)
-                {
-                    Dependent = "Y".Equals(dependentValue);
-                }
-                else
-                {
-                    _values.Remove(R2Const.TV_DEPENDENT);
-                }
+                SetRow(EAHelper.GetTaggedValue(element, R2Const.TV_ROW));
+                SetConditional(EAHelper.GetTaggedValue(element, R2Const.TV_CONDITIONAL));
+                SetDependent(EAHelper.GetTaggedValue(element, R2Const.TV_DEPENDENT));
                 Optionality = EAHelper.GetTaggedValue(element, R2Const.TV_OPTIONALITY, "");
-                string refAlias = EAHelper.GetTaggedValue(element, "Reference.Alias");
-                if (refAlias != null)
-                {
-                    RefId = string.Format("{0}.{1}#{2}", refAlias, EAHelper.GetTaggedValue(element, "Reference.FunctionID"), EAHelper.GetTaggedValue(element, "Reference.CriterionID"));
-                }
+                SetRefId(EAHelper.GetTaggedValue(element, "Reference.Alias"), EAHelper.GetTaggedValue(element, "Reference.FunctionID"), EAHelper.GetTaggedValue(element, "Reference.CriterionID"));
             }
 
             public override void SaveToSource()
@@ -316,6 +295,11 @@ namespace HL7_FM_EA_Extension
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_CHANGENOTE);
                 // TODO: update visual style
                 R2Config.config.updateStyle(element);
+            }
+
+            public override bool IsReadOnly()
+            {
+                return ((EA.Element) SourceObject).Locked;
             }
         }
     }

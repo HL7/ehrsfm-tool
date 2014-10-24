@@ -133,6 +133,11 @@ namespace HL7_FM_EA_Extension
             {
             }
 
+            public virtual bool IsReadOnly()
+            {
+                return false;
+            }
+
             // use another R2ModelElement for Default values
             public R2ModelElement Defaults { get; set; }
             internal Dictionary<string, string> _values = new Dictionary<string, string>();
@@ -209,7 +214,19 @@ namespace HL7_FM_EA_Extension
             // Get the Externalized Id, e.g. CP.1.2
             public abstract string GetExtId();
             // Get the Referenced Id
-            public string RefId { get; set; }
+            public string RefId { get; internal set; }
+            // Get Align Id returns RefId or if not set the ExtId
+            public string GetAlignId()
+            {
+                if (!string.IsNullOrEmpty(RefId))
+                {
+                    return RefId;
+                }
+                else
+                {
+                    return GetExtId();
+                }
+            }
             // Get the unique Id, should be a GUID
             public string Id { get; set; }
             public string LastModified { get { return get(R2Const.AT_LASTMODIFIED); } set { set(R2Const.AT_LASTMODIFIED, value); } }
@@ -309,6 +326,10 @@ namespace HL7_FM_EA_Extension
             {
                 return SectionId;
             }
+            public void SetRefId(string RefAlias, string RefSectionId)
+            {
+                RefId = RefSectionId;
+            }
             public string SectionId { get { return get(R2Const.AT_SECTIONID); } set { set(R2Const.AT_SECTIONID, value); } }
             public string Name { get { return get(R2Const.AT_NAME); } set { set(R2Const.AT_NAME, value); } }
             public string Overview { get { return get(R2Const.AT_OVERVIEW); } set { set(R2Const.AT_OVERVIEW, value); } }
@@ -321,6 +342,10 @@ namespace HL7_FM_EA_Extension
             public override string GetExtId()
             {
                 return FunctionId;
+            }
+            public void SetRefId(string RefAlias, string RefFunctionId)
+            {
+                RefId = RefFunctionId;
             }
             public string FunctionId { get { return get(R2Const.AT_FUNCTIONID); } set { set(R2Const.AT_FUNCTIONID, value); } }
             public string Name { get { return get(R2Const.AT_NAME); } set { set(R2Const.AT_NAME, value); } }
@@ -337,6 +362,15 @@ namespace HL7_FM_EA_Extension
             {
                 return Name;
             }
+
+            public void SetRefId(string RefAlias, string RefFunctionId, string RefCriterionId)
+            {
+                if (RefFunctionId != null && RefCriterionId != null)
+                {
+                    RefId = string.Format("{0}#{1:00}", RefFunctionId, int.Parse(RefCriterionId));
+                }
+            }
+
             public string Name
             {
                 get { return string.Format("{0}#{1:00}", get(R2Const.AT_FUNCTIONID), getDecimal(R2Const.AT_CRITSEQNO)); }
@@ -379,8 +413,46 @@ namespace HL7_FM_EA_Extension
             public decimal CriterionSeqNo { get { return getDecimal(R2Const.AT_CRITSEQNO); } set { set(R2Const.AT_CRITSEQNO, value); } }
             public string Text { get { return get(R2Const.AT_TEXT); } set { set(R2Const.AT_TEXT, value); } }
             public decimal Row { get { return getDecimal(R2Const.TV_ROW); } set { set(R2Const.TV_ROW, value); } }
+            public void SetRow(string raw)
+            {
+                string value = null;
+                if (raw != null)
+                {
+                    value = raw.Trim();
+                }
+                if (string.IsNullOrEmpty(value))
+                {
+                    _values.Remove(R2Const.TV_ROW);
+                }
+                else
+                {
+                    Row = decimal.Parse(value);
+                }
+            }
             public bool Conditional { get { return getBool(R2Const.TV_CONDITIONAL); } set { set(R2Const.TV_CONDITIONAL, value); } }
+            public void SetConditional(string raw)
+            {
+                if (raw != null)
+                {
+                    Conditional = "Y".Equals(raw);
+                }
+                else
+                {
+                    _values.Remove(R2Const.TV_CONDITIONAL);
+                }
+            }
             public bool Dependent { get { return getBool(R2Const.TV_DEPENDENT); } set { set(R2Const.TV_DEPENDENT, value); } }
+            public void SetDependent(string raw)
+            {
+                if (raw != null)
+                {
+                    Dependent = "Y".Equals(raw);
+                }
+                else
+                {
+                    _values.Remove(R2Const.TV_DEPENDENT);
+                }
+            }
             public string Optionality { get { return get(R2Const.TV_OPTIONALITY); } set { set(R2Const.TV_OPTIONALITY, value); } }
         }
     }
