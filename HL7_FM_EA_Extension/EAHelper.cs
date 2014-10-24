@@ -31,7 +31,6 @@ namespace HL7_FM_EA_Extension
         public static string GetTaggedValue(EA.Element element, string name, string defaultValue = "")
         {
             EA.TaggedValue tv = element.TaggedValues.Cast<EA.TaggedValue>().FirstOrDefault(t => name.Equals(t.Name) && !string.IsNullOrEmpty(t.Value));
-            //EA.TaggedValue tv = (EA.TaggedValue)element.TaggedValues.GetByName(name);
             if (tv != null)
             {
                 return tv.Value;

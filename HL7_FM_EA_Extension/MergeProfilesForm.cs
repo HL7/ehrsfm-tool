@@ -29,13 +29,13 @@ namespace HL7_FM_EA_Extension
         private string fileNameProfile3 = "";
         private int _currentRow = -1;
         private int _currentCompareRow = -1;
+        const int MERGED_PROFILE_COLUMN = 1;
         private List<string> modelNames = new List<string>();
+        private R2Model baseModel;
+        private ArrayList rowIds;
 
         public void PopulateAndShow()
         {
-//            Show();
-//            Refresh();
-
             modelNames.Clear();
             modelNames.Add("Base Model");
             modelNames.Add("Merged Profile");
@@ -64,20 +64,20 @@ namespace HL7_FM_EA_Extension
             dataGridView2.Columns[c4].DefaultCellStyle = emptyCellStyle;
             dataGridView2.Columns[c5].DefaultCellStyle = emptyCellStyle;
 
-            R2ModelV2.MAX.R2Model baseModel = R2ModelV2.MAX.Factory.LoadModel(fileNameBaseModel);
+            baseModel = R2ModelV2.MAX.Factory.LoadModel(fileNameBaseModel);
             dataGridView2.Rows.Add(baseModel.children.Count);
 
-            ArrayList rowIds = loadBaseModel(c1, baseModel);
-            loadData(c3, fileNameProfile1, rowIds, cellStyle);
-            loadData(c4, fileNameProfile2, rowIds, cellStyle);
-            loadDummyData(c5, rowIds, cellStyle);
+            rowIds = PopulateBaseModelColumn(c1, baseModel);
+            LoadProfile(c3, fileNameProfile1, rowIds, cellStyle);
+            LoadProfile(c4, fileNameProfile2, rowIds, cellStyle);
+            LoadDummyProfile(c5, rowIds, cellStyle);
 
-            updateStatistics();
+            UpdateStatistics();
 
             ShowDialog();
         }
 
-        private ArrayList loadBaseModel(int columnNumber, R2ModelV2.MAX.R2Model baseModel)
+        private ArrayList PopulateBaseModelColumn(int columnNumber, R2Model baseModel)
         {
             modelNames[columnNumber] = baseModel.Name;
             dataGridView2.Columns[columnNumber].HeaderText = baseModel.Name;
@@ -109,25 +109,19 @@ namespace HL7_FM_EA_Extension
             return rowIds;
         }
 
-        private void loadData(int columnNumber, string maxFileName, ArrayList rowIds, DataGridViewCellStyle cellStyle)
+        private void LoadProfile(int columnNumber, string maxFileName, ArrayList rowIds, DataGridViewCellStyle cellStyle)
         {
-            R2ModelV2.MAX.R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName);
+            R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName);
             modelNames[columnNumber] = model.Name;
             dataGridView2.Columns[columnNumber].HeaderText = model.Name;
             foreach (R2ModelElement element in model.children)
             {
-                string alignId;
-                if (element.RefId == null)
+                int rowNumber = rowIds.IndexOf(element.GetAlignId());
+                if (rowNumber == -1)
                 {
-                    alignId = element.RefId;
+                    // Base Model doesnot have this row, add Row at end
+                    rowNumber = dataGridView2.Rows.Add();
                 }
-                else
-                {
-                    alignId = element.GetExtId();
-                }
-
-                int rowNumber = rowIds.IndexOf(alignId);
-                if (rowNumber == -1) continue;
 
                 DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
                 cell.Style = cellStyle;
@@ -151,13 +145,13 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void loadDummyData(int columnNumber, ArrayList rowIds, DataGridViewCellStyle cellStyle)
+        private void LoadDummyProfile(int columnNumber, ArrayList rowIds, DataGridViewCellStyle cellStyle)
         {
             modelNames[columnNumber] = "Dummy";
             dataGridView2.Columns[columnNumber].HeaderText = "Dummy";
 
             R2Section section = new R2Section { SectionId = "CP" };
-            int rowNumber = rowIds.IndexOf(section.GetExtId());
+            int rowNumber = rowIds.IndexOf(section.GetAlignId());
 
             DataGridViewCell sectionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
             sectionCell.Tag = section;
@@ -166,8 +160,12 @@ namespace HL7_FM_EA_Extension
             for (int h = 1; h < 3; h++)
             {
                 R2Function header = new R2Function { FunctionId = string.Format("CP.{0}", h) };
-                rowNumber = rowIds.IndexOf(header.GetExtId());
-                if (rowNumber == -1) continue;
+                rowNumber = rowIds.IndexOf(header.GetAlignId());
+                if (rowNumber == -1)
+                {
+                    // Base Model doesnot have this row, add Row at end
+                    rowNumber = dataGridView2.Rows.Add();
+                }
 
                 DataGridViewCell headerCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
                 headerCell.Tag = header;
@@ -176,8 +174,12 @@ namespace HL7_FM_EA_Extension
                 for (int f = 1; f < 3; f++)
                 {
                     R2Function function = new R2Function { FunctionId = string.Format("CP.{0}.{1}", h, f) };
-                    rowNumber = rowIds.IndexOf(function.GetExtId());
-                    if (rowNumber == -1) continue;
+                    rowNumber = rowIds.IndexOf(function.GetAlignId());
+                    if (rowNumber == -1)
+                    {
+                        // Base Model doesnot have this row, add Row at end
+                        rowNumber = dataGridView2.Rows.Add();
+                    }
 
                     DataGridViewCell functionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
                     functionCell.Tag = function;
@@ -190,19 +192,63 @@ namespace HL7_FM_EA_Extension
                                                         FunctionId = string.Format("CP.{0}.{1}", h, f), 
                                                         CriterionSeqNo = c,
                                                         Text = "The system SHALL xyz",
-                                                        Optionality = "SHALL",
-                                                        RefId = string.Format("CP.{0}.{1}#{2:00}", h, f, c+1)
+                                                        Optionality = "SHALL"
                                                     };
-                        //rowNumber = rowIds.IndexOf(criterion.GetExtId());
-                        rowNumber = rowIds.IndexOf(criterion.RefId);
-                        if (rowNumber == -1) continue;
+                        criterion.SetRefId(null, string.Format("CP.{0}.{1}", h, f), string.Format("{0}", c+1));
+                        rowNumber = rowIds.IndexOf(criterion.GetAlignId());
+                        if (rowNumber == -1)
+                        {
+                            // Base Model doesnot have this row, add Row at end
+                            rowNumber = dataGridView2.Rows.Add();
+                        }
 
                         DataGridViewCell criterionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
                         criterionCell.Tag = criterion;
                         criterionCell.Value = string.Format("! {0}", criterion.Name);
-                        criterionCell.ToolTipText = string.Format("{0} {1}", criterion.Name, criterion.Text);
+                        criterionCell.ToolTipText = criterion.Text;
                         criterionCell.Style = cellStyle;
                     }
+                }
+            }
+        }
+
+        private void LoadProfileDefinition(string maxFileName, ArrayList rowIds)
+        {
+            // Delete current profile
+            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
+            {
+                dataGridView2.Rows[rowNumber].Cells[MERGED_PROFILE_COLUMN].Tag = null;
+            }
+
+            R2ProfileDefinition model = R2ModelV2.MAX.Factory.LoadProfileDefinition(baseModel, maxFileName);
+            modelNames[MERGED_PROFILE_COLUMN] = model.Name;
+            dataGridView2.Columns[MERGED_PROFILE_COLUMN].HeaderText = model.Name;
+            foreach (R2ModelElement element in model.children)
+            {
+                int rowNumber = rowIds.IndexOf(element.GetAlignId());
+                if (rowNumber == -1)
+                {
+                    // Base Model doesnot have this row, add Row at end
+                    rowNumber = dataGridView2.Rows.Add();
+                }
+
+                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[MERGED_PROFILE_COLUMN];
+                cell.Tag = element;
+                cell.Value = element.GetExtId();
+                if (element is R2Criterion)
+                {
+                    R2Criterion criterion = (R2Criterion)element;
+                    cell.ToolTipText = criterion.Text;
+                }
+                else if (element is R2Function)
+                {
+                    R2Function function = (R2Function)element;
+                    cell.ToolTipText = function.Name + "\n" + function.Description;
+                }
+                else if (element is R2Section)
+                {
+                    R2Section section = (R2Section)element;
+                    cell.ToolTipText = section.Name;
                 }
             }
         }
@@ -223,16 +269,16 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void populateSelectedFunction(R2Function function, int rowNumber, DataGridViewCellStyle emptyCellStyle, R2Function function0, DataGridViewCellStyle diffCellStyle)
+        private void populateSelectedFunction(R2Function function, int rowNumber, DataGridViewCellStyle emptyCellStyle, R2Function compareFunction, DataGridViewCellStyle diffCellStyle)
         {
-            if (function0 == null) function0 = function;
+            if (compareFunction == null) compareFunction = function;
             if (function != null)
             {
                 dataGridView1.Rows[rowNumber].DefaultCellStyle = dataGridView1.DefaultCellStyle;
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Priority"], function.Priority, function0.Priority, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["FunctionId"], function.FunctionId, function0.FunctionId, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Name"], function.Name, function0.Name, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["LastModified"], function.LastModified, function0.LastModified, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Priority"], function.Priority, compareFunction.Priority, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["FunctionId"], function.FunctionId, compareFunction.FunctionId, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Name"], function.Name, compareFunction.Name, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["LastModified"], function.LastModified, compareFunction.LastModified, diffCellStyle);
             }
             else
             {
@@ -240,20 +286,20 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void populateSelectedCriterion(R2Criterion criterion, int rowNumber, DataGridViewCellStyle emptyCellStyle, R2Criterion criterion0, DataGridViewCellStyle diffCellStyle)
+        private void populateSelectedCriterion(R2Criterion criterion, int rowNumber, DataGridViewCellStyle emptyCellStyle, R2Criterion compareCriterion, DataGridViewCellStyle diffCellStyle)
         {
-            if (criterion0 == null) criterion0 = criterion;
+            if (compareCriterion == null) compareCriterion = criterion;
             if (criterion != null)
             {
                 dataGridView1.Rows[rowNumber].DefaultCellStyle = dataGridView1.DefaultCellStyle;
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Priority"], criterion.Priority, criterion0.Priority, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Name"], criterion.Name, criterion0.Name, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Text"], criterion.Text, criterion0.Text, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Row#"], criterion.Row, criterion0.Row, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Dependent"], criterion.Dependent, criterion0.Dependent, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Conditional"], criterion.Conditional, criterion0.Conditional, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Optionality"], criterion.Optionality, criterion0.Optionality, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["LastModified"], criterion.LastModified, criterion0.LastModified, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Priority"], criterion.Priority, compareCriterion.Priority, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Name"], criterion.Name, compareCriterion.Name, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Text"], criterion.Text, compareCriterion.Text, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Row#"], criterion.Row, compareCriterion.Row, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Dependent"], criterion.Dependent, compareCriterion.Dependent, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Conditional"], criterion.Conditional, compareCriterion.Conditional, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Optionality"], criterion.Optionality, compareCriterion.Optionality, diffCellStyle);
+                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["LastModified"], criterion.LastModified, compareCriterion.LastModified, diffCellStyle);
             }
             else
             {
@@ -261,10 +307,10 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void populateSelectedCell(DataGridViewCell cell, object value, object value0, DataGridViewCellStyle diffCellStyle)
+        private void populateSelectedCell(DataGridViewCell cell, object value, object compareValue, DataGridViewCellStyle diffCellStyle)
         {
             cell.Value = value;
-            if (value.Equals(value0))
+            if (value.Equals(compareValue))
             {
                 cell.Style = null;
             }
@@ -327,27 +373,34 @@ namespace HL7_FM_EA_Extension
             DataGridViewCell cell3 = dataGridView2.Rows[selectedRow].Cells[3];
             DataGridViewCell cell4 = dataGridView2.Rows[selectedRow].Cells[4];
 
+            // Get type of rows by the cell type. Some rows have no base, so then we use the profile.
+            DataGridViewCell typeCell = cell0;
+            if (typeCell.Tag == null) typeCell = cell2;
+            if (typeCell.Tag == null) typeCell = cell3;
+            if (typeCell.Tag == null) typeCell = cell4;
+
             if (reset)
             {
                 // setup datagrid to selected Element type
                 dataGridView1.Columns.Clear();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-                if (cell0.Tag is R2Section)
+                // Create columns based on element type of the cell
+                if (typeCell.Tag is R2Section)
                 {
                     dataGridView1.Columns.Add("Priority", "Priority");
                     dataGridView1.Columns.Add("SectionId", "SectionId");
                     dataGridView1.Columns.Add("Name", "Name");
                     dataGridView1.Columns.Add("LastModified", "LastModified");
                 }
-                else if (cell0.Tag is R2Function)
+                else if (typeCell.Tag is R2Function)
                 {
                     dataGridView1.Columns.Add("Priority", "Priority");
                     dataGridView1.Columns.Add("FunctionId", "FunctionId");
                     dataGridView1.Columns.Add("Name", "Name");
                     dataGridView1.Columns.Add("LastModified", "LastModified");
                 }
-                else if (cell0.Tag is R2Criterion)
+                else if (typeCell.Tag is R2Criterion)
                 {
                     dataGridView1.Columns.Add("Priority", "Priority");
                     dataGridView1.Columns.Add("Name", "Name");
@@ -395,7 +448,7 @@ namespace HL7_FM_EA_Extension
                     break;
             }
 
-            if (cell0.Tag is R2Section)
+            if (typeCell.Tag is R2Section)
             {
                 populateSelectedSection((R2Section)cell0.Tag, 0, emptyCellStyle);
                 populateSelectedSection((R2Section)cell1.Tag, 1, c2CellStyle);
@@ -403,7 +456,7 @@ namespace HL7_FM_EA_Extension
                 populateSelectedSection((R2Section)cell3.Tag, 3, emptyCellStyle);
                 populateSelectedSection((R2Section)cell4.Tag, 4, emptyCellStyle);
             }
-            else if (cell0.Tag is R2Function)
+            else if (typeCell.Tag is R2Function)
             {
                 R2Function compareFunction = (R2Function)compareElement;
                 populateSelectedFunction((R2Function)cell0.Tag, 0, emptyCellStyle, compareFunction, diffCellStyle);
@@ -412,7 +465,7 @@ namespace HL7_FM_EA_Extension
                 populateSelectedFunction((R2Function)cell3.Tag, 3, emptyCellStyle, compareFunction, diffCellStyle);
                 populateSelectedFunction((R2Function)cell4.Tag, 4, emptyCellStyle, compareFunction, diffCellStyle);
             }
-            else if (cell0.Tag is R2Criterion)
+            else if (typeCell.Tag is R2Criterion)
             {
                 R2Criterion compareCriterion = (R2Criterion)compareElement;
                 populateSelectedCriterion((R2Criterion)cell0.Tag, 0, emptyCellStyle, compareCriterion, diffCellStyle);
@@ -444,31 +497,84 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        // Collapse empty rows button
+        // Hide rows that are profiled
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
+            {
+                if (dataGridView2.Rows[rowNumber].Cells[1].Tag != null)
+                {
+                    dataGridView2.Rows[rowNumber].Visible = false;
+                }
+            }
+            UpdateStatistics();
+            Cursor = Cursors.Default;
+        }
+
+        // Show rows that are profiled
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
+            {
+                if (dataGridView2.Rows[rowNumber].Cells[1].Tag != null)
+                {
+                    dataGridView2.Rows[rowNumber].Visible = true;
+                }
+            }
+            UpdateStatistics();
+            Cursor = Cursors.Default;
+        }
+
+        // Hide rows that have no profiled element
         private void collapseButton_Click(object sender, EventArgs e)
         {
-            for (int rowNumber=dataGridView2.Rows.Count-1; rowNumber>=0; rowNumber--)
+            Cursor = Cursors.WaitCursor;
+            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
             {
                 int cellsWithTag = 0;
-                for (int colNum=0; colNum<dataGridView2.Rows[rowNumber].Cells.Count;colNum++)
+                // Ignore BaseModel and Merged
+                for (int colNum=2; colNum<dataGridView2.Rows[rowNumber].Cells.Count;colNum++)
                 {
                     if (dataGridView2.Rows[rowNumber].Cells[colNum].Tag != null)
                     {
                         cellsWithTag++;
                     }
                 }
-                if (cellsWithTag < 2)
+                if (cellsWithTag < 1)
                 {
-                    dataGridView2.Rows.RemoveAt(rowNumber);
+                    dataGridView2.Rows[rowNumber].Visible = false;
                 }
             }
-            updateStatistics();
+            UpdateStatistics();
+            Cursor = Cursors.Default;
         }
 
-        private void updateStatistics()
+        // Show all rows
+        private void button3_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
+            {
+                dataGridView2.Rows[rowNumber].Visible = true;
+            }
+            UpdateStatistics();
+            Cursor = Cursors.Default;
+        }
+
+        private void UpdateStatistics()
+        {
+            int rowCount = dataGridView2.Rows.Cast<DataGridViewRow>().Count();
+            int showingCount = dataGridView2.Rows.Cast<DataGridViewRow>().Count(r => r.Visible);
+            int hiddenCount = dataGridView2.Rows.Cast<DataGridViewRow>().Count(r => !r.Visible);
+            int mergedCount = dataGridView2.Rows.Cast<DataGridViewRow>().Count(r => r.Cells[1].Tag != null);
+
             StringBuilder sb = new StringBuilder();
-            sb.Append("Rows: ").Append(dataGridView2.Rows.Count);
+            sb.Append("Rows: ").Append(rowCount).AppendLine();
+            sb.Append("Showing: ").Append(showingCount).AppendLine();
+            sb.Append("Hidden: ").Append(hiddenCount).AppendLine();
+            sb.Append("Merged: ").Append(mergedCount).AppendLine();
             statsTextBox.Text = sb.ToString();
         }
 
@@ -517,8 +623,8 @@ namespace HL7_FM_EA_Extension
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            string fileNameOutput = FileUtil.showFileDialog("Select output MAX XML file", "max files (*.xml, *.max)|*.xml;*.max", fileNameMerged, false);
-            if (fileNameOutput == null)
+            string fileNameOutput = FileUtil.showFileDialog("Select Profile Definition MAX XML file", "max files (*.xml, *.max)|*.xml;*.max", fileNameMerged, false);
+            if (string.IsNullOrEmpty(fileNameOutput))
             {
                 // Save canceled
                 return;
@@ -584,6 +690,17 @@ namespace HL7_FM_EA_Extension
             }
 
             MessageBox.Show("Created Profile Definition MAX file.");
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            string fileNameInput = FileUtil.showFileDialog("Select Profile Definition MAX XML file", "max files (*.xml, *.max)|*.xml;*.max", fileNameMerged, true);
+            if (string.IsNullOrEmpty(fileNameInput))
+            {
+                // Load canceled
+                return;
+            }
+            LoadProfileDefinition(fileNameInput, rowIds);
         }
     }
 }

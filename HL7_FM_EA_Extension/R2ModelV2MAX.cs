@@ -43,25 +43,10 @@ namespace HL7_FM_EA_Extension
                         modelElement = new R2Criterion(objectType);
                         break;
                     case R2Const.ST_COMPILERINSTRUCTION:
-                        // TODO: baseElement comes from BaseModel, mock for now
-                        ObjectType baseElement = new ObjectType();
-                        switch (baseElement.stereotype)
-                        {
-                            case R2Const.ST_SECTION:
-                                modelElement = new R2Section(objectType);
-                                modelElement.Defaults = new R2Section(baseElement);
-                                break;
-                            case R2Const.ST_HEADER:
-                            case R2Const.ST_FUNCTION:
-                                modelElement = new R2Function(objectType);
-                                modelElement.Defaults = new R2Function(baseElement);
-                                break;
-                            case R2Const.ST_CRITERION:
-                                modelElement = new R2Criterion(objectType);
-                                modelElement.Defaults = new R2Criterion(baseElement);
-                                break;
-                        }
-                        modelElement.IsCompilerInstruction = true;
+                        // TODO: baseElement comes from BaseModel, mock to Criterion for now
+                        Console.Write("!! R2ModelV2MAX.Create ST_COMPILERINSTRUCTION mocked to Criterion");
+                        modelElement = new R2Criterion(objectType);
+                        //modelElement.IsCompilerInstruction = true;
                         break;
                 }
                 return modelElement;
@@ -127,7 +112,7 @@ namespace HL7_FM_EA_Extension
              * Load a HL7 Model from a MAX file.
              * The MAX file contains a HL7-FM or a HL7-Profile
              */
-            public static R2Model LoadModel(string maxFileName)
+            public static Base.R2Model LoadModel(string maxFileName)
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
                 StreamReader stream = new StreamReader(maxFileName);
@@ -153,7 +138,7 @@ namespace HL7_FM_EA_Extension
              * Load a Profile Definition model from a MAX file.
              * The MAX file contains a HL7-ProfileDefinition.
              */
-            public static R2ProfileDefinition LoadProfileDefinition(R2Model baseModel, string maxFileName)
+            public static Base.R2ProfileDefinition LoadProfileDefinition(Base.R2Model baseModel, string maxFileName)
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
                 StreamReader stream = new StreamReader(maxFileName);
@@ -163,7 +148,10 @@ namespace HL7_FM_EA_Extension
                 foreach (ObjectType objectType in sourceModel.objects)
                 {
                     R2ModelElement modelElement = Create(objectType);
-                    profileDefinition.children.Add(modelElement);
+                    if (modelElement != null && !(modelElement is R2RootElement))
+                    {
+                        profileDefinition.children.Add(modelElement);
+                    }
                 }
                 return profileDefinition;
             }
@@ -275,11 +263,7 @@ namespace HL7_FM_EA_Extension
                 Example = noteParts.ContainsKey("EX") ? noteParts["EX"] : "";
                 Actors = noteParts.ContainsKey("AC") ? noteParts["AC"] : "";
                 Path = Name;
-                string refId = objectType.GetTagValue("Reference.SectionID");
-                if (refId != null)
-                {
-                    RefId = refId;
-                }
+                SetRefId (objectType.GetTagValue("Reference.Alias"), objectType.GetTagValue("Reference.SectionID"));
             }
 
             public override void SaveToSource()
@@ -330,11 +314,7 @@ namespace HL7_FM_EA_Extension
                 Statement = noteParts.ContainsKey("ST") ? noteParts["ST"] : "";
                 Description = noteParts.ContainsKey("DE") ? noteParts["DE"] : "";
                 Path = Name;
-                string refId = objectType.GetTagValue("Reference.FunctionID");
-                if (refId != null)
-                {
-                    RefId = refId;
-                }
+                SetRefId (objectType.GetTagValue("Reference.Alias"), objectType.GetTagValue("Reference.FunctionID"));
             }
 
             public override void SaveToSource()
@@ -379,42 +359,12 @@ namespace HL7_FM_EA_Extension
                 ChangeNote = objectType.GetTagValue(R2Const.TV_CHANGENOTE);
                 Name = objectType.name;
                 Text = objectType.GetNotes();
-                // Row
-                string value = objectType.GetTagValue(R2Const.TV_ROW, "").Trim();
-                if (!string.IsNullOrEmpty(value))
-                {
-                    Row = decimal.Parse(value);
-                }
-                else
-                {
-                    _values.Remove(R2Const.TV_ROW);
-                }
-
-                string conditionalValue = objectType.GetTagValue(R2Const.TV_CONDITIONAL);
-                if (conditionalValue != null)
-                {
-                    Conditional = "Y".Equals(conditionalValue);
-                }
-                else
-                {
-                    _values.Remove(R2Const.TV_CONDITIONAL);
-                }
-                string dependentValue = objectType.GetTagValue(R2Const.TV_DEPENDENT);
-                if (dependentValue != null)
-                {
-                    Dependent = "Y".Equals(dependentValue);
-                }
-                else
-                {
-                    _values.Remove(R2Const.TV_DEPENDENT);
-                }
+                SetRow(objectType.GetTagValue(R2Const.TV_ROW, ""));
+                SetConditional(objectType.GetTagValue(R2Const.TV_CONDITIONAL));
+                SetDependent(objectType.GetTagValue(R2Const.TV_DEPENDENT));
                 Optionality = objectType.GetTagValue(R2Const.TV_OPTIONALITY, "");
                 Path = Name;
-                string refId = objectType.GetTagValue("Reference.FunctionID");
-                if (refId != null)
-                {
-                    RefId = string.Format("{0}#{1}", refId, objectType.GetTagValue("Reference.CriterionID"));
-                }
+                SetRefId(objectType.GetTagValue("Reference.Alias"), objectType.GetTagValue("Reference.FunctionID"), objectType.GetTagValue("Reference.CriterionID"));
             }
 
             public override void SaveToSource()

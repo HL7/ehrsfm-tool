@@ -45,7 +45,7 @@ namespace HL7_FM_EA_Extension
             if (objectType.tag != null)
             {
                 TagType tag = objectType.tag.FirstOrDefault(t => key.Equals(t.name));
-                if (tag != null && tag.Text.Any())
+                if (tag != null && tag.Text != null && tag.Text.Any())
                 {
                     return tag.Text[0];
                 }

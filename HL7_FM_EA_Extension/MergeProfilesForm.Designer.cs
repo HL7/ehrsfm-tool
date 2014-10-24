@@ -39,12 +39,18 @@
             this.clearButton = new System.Windows.Forms.Button();
             this.selectButton = new System.Windows.Forms.Button();
             this.collapseButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.loadButton = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -57,7 +63,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(842, 138);
+            this.dataGridView1.Size = new System.Drawing.Size(967, 138);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             // 
@@ -94,37 +100,36 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(842, 482);
+            this.splitContainer1.Size = new System.Drawing.Size(967, 482);
             this.splitContainer1.SplitterDistance = 340;
             this.splitContainer1.TabIndex = 7;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.statsTextBox);
-            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Controls.Add(this.loadButton);
             this.panel2.Controls.Add(this.saveButton);
             this.panel2.Controls.Add(this.clearButton);
             this.panel2.Controls.Add(this.selectButton);
-            this.panel2.Controls.Add(this.collapseButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(689, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(153, 340);
+            this.panel2.Size = new System.Drawing.Size(278, 340);
             this.panel2.TabIndex = 7;
             // 
             // statsTextBox
             // 
             this.statsTextBox.Enabled = false;
-            this.statsTextBox.Location = new System.Drawing.Point(14, 210);
+            this.statsTextBox.Location = new System.Drawing.Point(61, 85);
             this.statsTextBox.Multiline = true;
             this.statsTextBox.Name = "statsTextBox";
-            this.statsTextBox.Size = new System.Drawing.Size(124, 117);
+            this.statsTextBox.Size = new System.Drawing.Size(124, 105);
             this.statsTextBox.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 194);
+            this.label1.Location = new System.Drawing.Point(6, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 1;
@@ -133,9 +138,9 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(14, 70);
+            this.saveButton.Location = new System.Drawing.Point(14, 68);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(100, 40);
+            this.saveButton.Size = new System.Drawing.Size(114, 40);
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "Save Profile Definition";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -143,10 +148,10 @@
             // 
             // clearButton
             // 
-            this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(14, 38);
+            this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearButton.Location = new System.Drawing.Point(14, 37);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(100, 26);
+            this.clearButton.Size = new System.Drawing.Size(114, 25);
             this.clearButton.TabIndex = 0;
             this.clearButton.Text = "<<  Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -154,10 +159,10 @@
             // 
             // selectButton
             // 
-            this.selectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectButton.Location = new System.Drawing.Point(14, 6);
             this.selectButton.Name = "selectButton";
-            this.selectButton.Size = new System.Drawing.Size(100, 26);
+            this.selectButton.Size = new System.Drawing.Size(114, 25);
             this.selectButton.TabIndex = 0;
             this.selectButton.Text = "<<  Select";
             this.selectButton.UseVisualStyleBackColor = true;
@@ -165,19 +170,75 @@
             // 
             // collapseButton
             // 
-            this.collapseButton.Location = new System.Drawing.Point(53, 151);
+            this.collapseButton.Location = new System.Drawing.Point(6, 49);
             this.collapseButton.Name = "collapseButton";
-            this.collapseButton.Size = new System.Drawing.Size(100, 40);
+            this.collapseButton.Size = new System.Drawing.Size(114, 25);
             this.collapseButton.TabIndex = 0;
-            this.collapseButton.Text = "Collapse empty rows";
+            this.collapseButton.Text = "Hide not profiled";
             this.collapseButton.UseVisualStyleBackColor = true;
             this.collapseButton.Click += new System.EventHandler(this.collapseButton_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 18);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 25);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Hide merged";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(126, 18);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(114, 25);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "Show merged";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(126, 49);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(114, 25);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "Show all";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // loadButton
+            // 
+            this.loadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadButton.Location = new System.Drawing.Point(134, 68);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(114, 40);
+            this.loadButton.TabIndex = 0;
+            this.loadButton.Text = "Load Profile Definition";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.statsTextBox);
+            this.groupBox1.Controls.Add(this.collapseButton);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Location = new System.Drawing.Point(12, 141);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(246, 196);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filter";
             // 
             // MergeProfilesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 502);
+            this.ClientSize = new System.Drawing.Size(987, 502);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
@@ -190,7 +251,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -207,5 +269,10 @@
         private System.Windows.Forms.Button selectButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button loadButton;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
