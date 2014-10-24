@@ -49,22 +49,22 @@ namespace HL7_FM_EA_Extension
                         {
                             case R2Const.ST_SECTION:
                                 modelElement = new R2Section(element);
-                                modelElement.Defaults = new R2Section(baseElement);
+                                modelElement.BaseElement = new R2Section(baseElement);
                                 break;
                             case R2Const.ST_HEADER:
                             case R2Const.ST_FUNCTION:
                                 modelElement = new R2Function(element);
-                                modelElement.Defaults = new R2Function(baseElement);
+                                modelElement.BaseElement = new R2Function(baseElement);
                                 break;
                             case R2Const.ST_CRITERION:
                                 modelElement = new R2Criterion(element);
-                                modelElement.Defaults = new R2Criterion(baseElement);
+                                modelElement.BaseElement = new R2Criterion(baseElement);
                                 break;
                         }
                         modelElement.IsCompilerInstruction = true;
                         if (repository != null)
                         {
-                            modelElement.Defaults.Path = GetModelElementPath(repository, baseElement);
+                            modelElement.BaseElement.Path = GetModelElementPath(repository, baseElement);
                         }
 
                         // The ProfileType is needed for R2FunctionCI's in the FunctionForm

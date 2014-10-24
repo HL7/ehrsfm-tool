@@ -138,8 +138,8 @@ namespace HL7_FM_EA_Extension
                 return false;
             }
 
-            // use another R2ModelElement for Default values
-            public R2ModelElement Defaults { get; set; }
+            // This R2ModelElement is a Compiler Instruction for a Base Element, base element has Default values
+            public R2ModelElement BaseElement { get; set; }
             internal Dictionary<string, string> _values = new Dictionary<string, string>();
             internal string get(string key)
             {
@@ -148,9 +148,9 @@ namespace HL7_FM_EA_Extension
                 {
                     value = _values[key];
                 }
-                else if (Defaults != null)
+                else if (BaseElement != null)
                 {
-                    value = Defaults.get(key);
+                    value = BaseElement.get(key);
                 }
                 return value;
             }
@@ -175,7 +175,7 @@ namespace HL7_FM_EA_Extension
                 {
                     _values.Remove(key);
                 }
-                else if (Defaults != null && value.Equals(Defaults.get(key)))
+                else if (BaseElement != null && value.Equals(BaseElement.get(key)))
                 {
                     _values.Remove(key);
                 }
@@ -190,11 +190,11 @@ namespace HL7_FM_EA_Extension
             }
             internal bool isDefault(string key)
             {
-                if (Defaults != null)
+                if (BaseElement != null)
                 {
                     if (_values.ContainsKey(key))
                     {
-                        return _values[key].Equals(Defaults.get(key));
+                        return _values[key].Equals(BaseElement.get(key));
                     }
                     else
                     {
@@ -234,9 +234,9 @@ namespace HL7_FM_EA_Extension
             {
                 get
                 {
-                    if (IsCompilerInstruction && Defaults != null)
+                    if (IsCompilerInstruction && BaseElement != null)
                     {
-                        return Defaults.Path;
+                        return BaseElement.Path;
                     }
                     else
                     {
@@ -252,9 +252,9 @@ namespace HL7_FM_EA_Extension
             {
                 get
                 {
-                    if (IsCompilerInstruction && Defaults != null)
+                    if (IsCompilerInstruction && BaseElement != null)
                     {
-                        return Defaults.Stereotype;
+                        return BaseElement.Stereotype;
                     }
                     else
                     {

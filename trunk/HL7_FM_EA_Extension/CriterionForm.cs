@@ -213,7 +213,7 @@ namespace HL7_FM_EA_Extension
             if (!switched)
             {
                 switched = true;
-                R2Criterion baseCriterion = (R2Criterion) _criterion.Defaults;
+                R2Criterion baseCriterion = (R2Criterion) _criterion.BaseElement;
                 // Disable edit of base to prevent accidental changes
                 setShowingCriterion(baseCriterion, false);
             }

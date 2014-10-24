@@ -15,6 +15,7 @@ R2Model/EA
 MergeProfilesForm
 - Added more buttons to filter rows
 - Also show new elements in Profiles that are not in the base
+- Cleanup, renaming and comments added
 
 [2014-oct-22]
 MergeProfilesForm

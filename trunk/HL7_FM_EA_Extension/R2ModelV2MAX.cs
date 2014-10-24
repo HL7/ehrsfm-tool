@@ -52,7 +52,11 @@ namespace HL7_FM_EA_Extension
                 return modelElement;
             }
 
-            public static R2ModelElement CreateCompilerInstruction(R2ModelElement profileElement, R2ModelElement baseElement)
+            /*
+             * Only make Compiler Instruction if there is a baseElement
+             * otherwise this is a new element that was not in the base.
+             */
+            public static R2ModelElement CreateModelElement(R2ModelElement profileElement, R2ModelElement baseElement)
             {
                 // only set in compiler instruction what is different that in base model element
                 R2ModelElement element = null;
@@ -68,9 +72,12 @@ namespace HL7_FM_EA_Extension
                 {
                     element = new R2Criterion();
                 }
-                element.Defaults = baseElement;
-                element.Stereotype = R2Const.ST_COMPILERINSTRUCTION;
-                element.IsCompilerInstruction = true;
+                element.BaseElement = baseElement;
+                if (baseElement != null)
+                {
+                    element.Stereotype = R2Const.ST_COMPILERINSTRUCTION;
+                    element.IsCompilerInstruction = true;
+                }
                 element.LastModified = Util.FormatLastModified(DateTime.Now);
                 element.Priority = profileElement.Priority;
                 element.Path = profileElement.Path;
