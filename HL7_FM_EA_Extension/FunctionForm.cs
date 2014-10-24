@@ -192,7 +192,7 @@ namespace HL7_FM_EA_Extension
             if (!switched)
             {
                 switched = true;
-                R2Function baseFunction = (R2Function)_function.Defaults;
+                R2Function baseFunction = (R2Function)_function.BaseElement;
                 // Disable edit of base to prevent accidental changes
                 setShowingFunction(baseFunction, false);
             }

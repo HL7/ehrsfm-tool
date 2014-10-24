@@ -593,22 +593,22 @@ namespace HL7_FM_EA_Extension
             }
             dataGridView2.CurrentRow.Cells[1].Value = currentCell.Value;
 
-            R2ModelElement currentCopy = R2ModelV2.MAX.Factory.CreateCompilerInstruction((R2ModelElement)currentCell.Tag, (R2ModelElement)dataGridView2.CurrentRow.Cells[0].Tag);
+            R2ModelElement compilerInstruction = R2ModelV2.MAX.Factory.CreateModelElement((R2ModelElement)currentCell.Tag, (R2ModelElement)dataGridView2.CurrentRow.Cells[0].Tag);
             DataGridViewCell cell = dataGridView2.CurrentRow.Cells[1];
-            cell.Tag = currentCopy;
-            if (currentCopy is R2Criterion)
+            cell.Tag = compilerInstruction;
+            if (compilerInstruction is R2Criterion)
             {
-                R2Criterion criterion = (R2Criterion)currentCopy;
+                R2Criterion criterion = (R2Criterion)compilerInstruction;
                 cell.ToolTipText = criterion.Text;
             }
-            else if (currentCopy is R2Function)
+            else if (compilerInstruction is R2Function)
             {
-                R2Function function = (R2Function)currentCopy;
+                R2Function function = (R2Function)compilerInstruction;
                 cell.ToolTipText = function.Name + "\n" + function.Description;
             }
-            else if (currentCopy is R2Section)
+            else if (compilerInstruction is R2Section)
             {
-                R2Section section = (R2Section)currentCopy;
+                R2Section section = (R2Section)compilerInstruction;
                 cell.ToolTipText = section.Name;
             }
         }
@@ -664,12 +664,16 @@ namespace HL7_FM_EA_Extension
                     maxObj.parentId = defId;
                     objects.Add(maxObj);
 
-                    RelationshipType maxRel = new RelationshipType();
-                    maxRel.sourceId = maxObj.id;
-                    maxRel.destId = ((ObjectType)element.Defaults.SourceObject).id;
-                    maxRel.type = RelationshipTypeEnum.Generalization;
-                    maxRel.typeSpecified = true;
-                    relationships.Add(maxRel);
+                    // Only create Generalization Relationship if this is a Compiler Instruction
+                    if (element.BaseElement != null)
+                    {
+                        RelationshipType maxRel = new RelationshipType();
+                        maxRel.sourceId = maxObj.id;
+                        maxRel.destId = ((ObjectType) element.BaseElement.SourceObject).id;
+                        maxRel.type = RelationshipTypeEnum.Generalization;
+                        maxRel.typeSpecified = true;
+                        relationships.Add(maxRel);
+                    }
                 }
             }
 

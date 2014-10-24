@@ -48,7 +48,7 @@ namespace HL7_FM_EA_Extension.Tests
                 Optionality = "SHALL"
             };
             var criterion = new R2ModelV2.Base.R2Criterion();
-            criterion.Defaults = defaults;
+            criterion.BaseElement = defaults;
 
             Assert.AreEqual("CP.1.2", criterion.FunctionId);
             Assert.AreEqual(1, criterion.CriterionSeqNo);
@@ -76,7 +76,7 @@ namespace HL7_FM_EA_Extension.Tests
             };
             var criterion = new R2ModelV2.Base.R2Criterion
                                 {
-                                    Defaults = defaults,
+                                    BaseElement = defaults,
                                     FunctionId = "CP.1.3",
                                     Text = "Changed",
                                     Row = 10,
@@ -111,7 +111,7 @@ namespace HL7_FM_EA_Extension.Tests
                 Optionality = "SHALL"
             };
             var criterion = new R2ModelV2.Base.R2Criterion();
-            criterion.Defaults = defaults;
+            criterion.BaseElement = defaults;
             //criterion.IsCompilerInstruction = true;
 
             // overrule and erase to see if fallback to defaults works
@@ -147,7 +147,7 @@ namespace HL7_FM_EA_Extension.Tests
             var criterion = new R2ModelV2.Base.R2Criterion();
             Assert.AreEqual(0, criterion.Row);
             Assert.AreEqual(1, defaults.Row);
-            criterion.Defaults = defaults;
+            criterion.BaseElement = defaults;
             Assert.AreEqual(1, criterion.Row);
         }
     }
