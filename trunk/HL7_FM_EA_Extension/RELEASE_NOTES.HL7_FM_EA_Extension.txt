@@ -14,6 +14,7 @@ MergeProfilesForm
 - Double Click on Column Heading opens file dialog for Loading Profile (Definition)
 - LoadProfile(Definition) on double click on Column Header
 - Removed fixed profile filenames
+- Fixed numerous little bugs
 
 [2014-oct-25]
 SectionForm

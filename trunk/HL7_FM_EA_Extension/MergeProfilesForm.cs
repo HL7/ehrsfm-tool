@@ -429,9 +429,15 @@ namespace HL7_FM_EA_Extension
 
             // Get type of rows by the cell type. Some rows have no base, so then we use the profile.
             DataGridViewCell typeCell = cell0;
+            if (typeCell.Tag == null) typeCell = cell1;
             if (typeCell.Tag == null) typeCell = cell2;
             if (typeCell.Tag == null) typeCell = cell3;
             if (typeCell.Tag == null) typeCell = cell4;
+            if (typeCell.Tag == null)
+            {
+                // Happens when a row is empty, e.g. by clearing
+                return;
+            }
 
             if (reset)
             {
