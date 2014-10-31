@@ -224,6 +224,7 @@ namespace HL7_FM_EA_Extension
             // Clear Column
             for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
             {
+                dataGridView2.Rows[rowNumber].Cells[colNum].Style = null;
                 dataGridView2.Rows[rowNumber].Cells[colNum].Value = "";
                 dataGridView2.Rows[rowNumber].Cells[colNum].Tag = null;
             }
