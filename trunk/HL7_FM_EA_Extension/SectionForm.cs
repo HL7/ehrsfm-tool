@@ -27,8 +27,8 @@ namespace HL7_FM_EA_Extension
             BackColor = R2Config.config.getSectionColor(_section.SectionId, DefaultBackColor);
 
             // Other properties
-            nameTextBox.Text = _section.Name;
             idTextBox.Text = _section.SectionId;
+            nameTextBox.Text = _section.Name;
             overviewTextBox.Text = _section.Overview;
             exampleTextBox.Text = _section.Example;
             actorsTextBox.Text = _section.Actors;
@@ -36,8 +36,8 @@ namespace HL7_FM_EA_Extension
             // TODO: Add "depends on" and "needed by" compartments
 
             bool enable = !section.IsCompilerInstruction;
-            nameTextBox.Enabled = enable;
             idTextBox.Enabled = enable;
+            nameTextBox.Enabled = enable;
             overviewTextBox.Enabled = enable;
             exampleTextBox.Enabled = enable;
             actorsTextBox.Enabled = enable;
@@ -82,13 +82,11 @@ namespace HL7_FM_EA_Extension
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-            string id = "";
             int spidx = nameTextBox.Text.IndexOf(' ');
-            if (spidx != -1)
-            {
-                id = nameTextBox.Text.Substring(0, spidx);
-            }
+            if (spidx == -1) spidx = nameTextBox.Text.Length;
+            string id = nameTextBox.Text.Substring(0, spidx);
             idTextBox.Text = id;
+            BackColor = R2Config.config.getSectionColor(id, DefaultBackColor);
         }
     }
 }

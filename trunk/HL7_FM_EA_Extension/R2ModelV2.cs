@@ -322,14 +322,21 @@ namespace HL7_FM_EA_Extension
 
         public class R2Section : R2ModelElement
         {
+            public R2Section()
+            {
+                Stereotype = R2Const.ST_SECTION;
+            }
+
             public override string GetExtId()
             {
                 return SectionId;
             }
+
             public void SetRefId(string RefAlias, string RefSectionId)
             {
                 RefId = RefSectionId;
             }
+
             public string SectionId { get { return get(R2Const.AT_SECTIONID); } set { set(R2Const.AT_SECTIONID, value); } }
             public string Name { get { return get(R2Const.AT_NAME); } set { set(R2Const.AT_NAME, value); } }
             public string Overview { get { return get(R2Const.AT_OVERVIEW); } set { set(R2Const.AT_OVERVIEW, value); } }
@@ -339,14 +346,21 @@ namespace HL7_FM_EA_Extension
 
         public class R2Function : R2ModelElement
         {
+            public R2Function()
+            {
+                Stereotype = R2Const.ST_FUNCTION;
+            }
+
             public override string GetExtId()
             {
                 return FunctionId;
             }
+
             public void SetRefId(string RefAlias, string RefFunctionId)
             {
                 RefId = RefFunctionId;
             }
+
             public string FunctionId { get { return get(R2Const.AT_FUNCTIONID); } set { set(R2Const.AT_FUNCTIONID, value); } }
             public string Name { get { return get(R2Const.AT_NAME); } set { set(R2Const.AT_NAME, value); } }
             public string Statement { get { return get(R2Const.AT_STATEMENT); } set { set(R2Const.AT_STATEMENT, value); } }
@@ -358,6 +372,11 @@ namespace HL7_FM_EA_Extension
 
         public class R2Criterion : R2ModelElement
         {
+            public R2Criterion()
+            {
+                Stereotype = R2Const.ST_CRITERION;
+            }
+
             public override string GetExtId()
             {
                 return Name;
