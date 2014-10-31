@@ -22,17 +22,17 @@ namespace HL7_FM_EA_Extension
             InitializeComponent();
         }
 
-        private string fileNameBaseModel = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\EHRS_FM_R2_N2.max.xml";
-        private string fileNameMerged = @"c:\temp\merged-profile-definition.max";
-        private string fileNameProfile1 = @"C:\My Documents\__R4C 2014\EHR-S FM FHFP Merge Project (2014-jun)\CDC Surveillance Compiled Profile.max";
-        private string fileNameProfile2 = @"C:\My Documents\__R4C 2014\EHR-S FM FHFP Merge Project (2014-jun)\PHFP Vital Records compiled-profile.max.xml";
+        private string fileNameBaseModel = @"C:\Temp\EHRS_FM_R2_N2.max.xml";
+        private string fileNameMerged = @"C:\Temp\merged-profile-definition.max";
+        private string fileNameProfile1 = "";
+        private string fileNameProfile2 = "";
         private string fileNameProfile3 = "";
         private int _currentRow = -1;
         private int _currentCompareRow = -1;
-        const int MERGED_PROFILE_COLUMN = 1;
+        const int COLUMN_BASE_MODEL = 0;
+        const int COLUMN_MERGED_PROFILE = 1;
         private List<string> modelNames = new List<string>();
         private R2Model baseModel;
-        private ArrayList rowIds;
 
         public void PopulateAndShow()
         {
@@ -45,11 +45,11 @@ namespace HL7_FM_EA_Extension
 
             dataGridView2.Rows.Clear();
             dataGridView2.Columns.Clear();
-            int c1 = dataGridView2.Columns.Add("bm", modelNames[0]);
-            int c2 = dataGridView2.Columns.Add("mp", modelNames[1]);
-            int c3 = dataGridView2.Columns.Add("p1", modelNames[2]);
-            int c4 = dataGridView2.Columns.Add("p2", modelNames[3]);
-            int c5 = dataGridView2.Columns.Add("p3", modelNames[4]);
+            dataGridView2.Columns.Add("bm", modelNames[0]);
+            dataGridView2.Columns.Add("mp", modelNames[1]);
+            dataGridView2.Columns.Add("p1", modelNames[2]);
+            dataGridView2.Columns.Add("p2", modelNames[3]);
+            dataGridView2.Columns.Add("p3", modelNames[4]);
 
             DataGridViewCellStyle c2CellStyle = new DataGridViewCellStyle();
             c2CellStyle.BackColor = Color.LightYellow;
@@ -58,34 +58,43 @@ namespace HL7_FM_EA_Extension
             DataGridViewCellStyle emptyCellStyle = new DataGridViewCellStyle();
             emptyCellStyle.BackColor = Color.LightGray;
 
-            //dataGridView2.Columns[c1].DefaultCellStyle = emptyCellStyle;
-            dataGridView2.Columns[c2].DefaultCellStyle = c2CellStyle;
-            dataGridView2.Columns[c3].DefaultCellStyle = emptyCellStyle;
-            dataGridView2.Columns[c4].DefaultCellStyle = emptyCellStyle;
-            dataGridView2.Columns[c5].DefaultCellStyle = emptyCellStyle;
+            //dataGridView2.Columns[0].DefaultCellStyle = emptyCellStyle;
+            dataGridView2.Columns[1].DefaultCellStyle = c2CellStyle;
+            dataGridView2.Columns[2].DefaultCellStyle = emptyCellStyle;
+            dataGridView2.Columns[3].DefaultCellStyle = emptyCellStyle;
+            dataGridView2.Columns[4].DefaultCellStyle = emptyCellStyle;
 
             baseModel = R2ModelV2.MAX.Factory.LoadModel(fileNameBaseModel);
             dataGridView2.Rows.Add(baseModel.children.Count);
 
-            rowIds = PopulateBaseModelColumn(c1, baseModel);
-            LoadProfile(c3, fileNameProfile1, rowIds, cellStyle);
-            LoadProfile(c4, fileNameProfile2, rowIds, cellStyle);
-            LoadDummyProfile(c5, rowIds, cellStyle);
-
+            PopulateBaseModelColumn(baseModel);
+            LoadDummyProfile(4, cellStyle);
             UpdateStatistics();
 
             ShowDialog();
         }
 
-        private ArrayList PopulateBaseModelColumn(int columnNumber, R2Model baseModel)
+        private int getBaseModelRowNumber(string id)
         {
-            modelNames[columnNumber] = baseModel.Name;
-            dataGridView2.Columns[columnNumber].HeaderText = baseModel.Name;
-            ArrayList rowIds = new ArrayList(baseModel.children.Count);
+            for(int rowNumber=0; rowNumber<dataGridView2.Rows.Count; rowNumber++)
+            {
+                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[COLUMN_BASE_MODEL];
+                if (cell.Tag != null && id.Equals(((R2ModelElement)cell.Tag).GetExtId()))
+                {
+                    return rowNumber;
+                }
+            }
+            return -1;
+        }
+
+        private void PopulateBaseModelColumn(R2Model baseModel)
+        {
+            modelNames[COLUMN_BASE_MODEL] = baseModel.Name;
+            dataGridView2.Columns[COLUMN_BASE_MODEL].HeaderText = baseModel.Name;
             int rowNumber = 0;
             foreach (R2ModelElement element in baseModel.children)
             {
-                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
+                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[COLUMN_BASE_MODEL];
                 cell.Tag = element;
                 cell.Value = element.GetExtId();
                 if (element is R2Criterion)
@@ -103,20 +112,18 @@ namespace HL7_FM_EA_Extension
                     R2Section section = (R2Section) element;
                     cell.ToolTipText = section.Name;
                 }
-                rowIds.Add(element.GetExtId());
                 rowNumber++;
             }
-            return rowIds;
         }
 
-        private void LoadProfile(int columnNumber, string maxFileName, ArrayList rowIds, DataGridViewCellStyle cellStyle)
+        private void LoadProfile(int columnNumber, string maxFileName, DataGridViewCellStyle cellStyle)
         {
             R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName);
             modelNames[columnNumber] = model.Name;
             dataGridView2.Columns[columnNumber].HeaderText = model.Name;
             foreach (R2ModelElement element in model.children)
             {
-                int rowNumber = rowIds.IndexOf(element.GetAlignId());
+                int rowNumber = getBaseModelRowNumber(element.GetAlignId());
                 if (rowNumber == -1)
                 {
                     // Base Model doesnot have this row, add Row at end
@@ -145,13 +152,13 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void LoadDummyProfile(int columnNumber, ArrayList rowIds, DataGridViewCellStyle cellStyle)
+        private void LoadDummyProfile(int columnNumber, DataGridViewCellStyle cellStyle)
         {
             modelNames[columnNumber] = "Dummy";
             dataGridView2.Columns[columnNumber].HeaderText = "Dummy";
 
             R2Section section = new R2Section { SectionId = "CP" };
-            int rowNumber = rowIds.IndexOf(section.GetAlignId());
+            int rowNumber = getBaseModelRowNumber(section.GetAlignId());
 
             DataGridViewCell sectionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
             sectionCell.Tag = section;
@@ -160,7 +167,7 @@ namespace HL7_FM_EA_Extension
             for (int h = 1; h < 3; h++)
             {
                 R2Function header = new R2Function { FunctionId = string.Format("CP.{0}", h) };
-                rowNumber = rowIds.IndexOf(header.GetAlignId());
+                rowNumber = getBaseModelRowNumber(header.GetAlignId());
                 if (rowNumber == -1)
                 {
                     // Base Model doesnot have this row, add Row at end
@@ -174,7 +181,7 @@ namespace HL7_FM_EA_Extension
                 for (int f = 1; f < 3; f++)
                 {
                     R2Function function = new R2Function { FunctionId = string.Format("CP.{0}.{1}", h, f) };
-                    rowNumber = rowIds.IndexOf(function.GetAlignId());
+                    rowNumber = getBaseModelRowNumber(function.GetAlignId());
                     if (rowNumber == -1)
                     {
                         // Base Model doesnot have this row, add Row at end
@@ -195,7 +202,7 @@ namespace HL7_FM_EA_Extension
                                                         Optionality = "SHALL"
                                                     };
                         criterion.SetRefId(null, string.Format("CP.{0}.{1}", h, f), string.Format("{0}", c+1));
-                        rowNumber = rowIds.IndexOf(criterion.GetAlignId());
+                        rowNumber = getBaseModelRowNumber(criterion.GetAlignId());
                         if (rowNumber == -1)
                         {
                             // Base Model doesnot have this row, add Row at end
@@ -212,27 +219,31 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void LoadProfileDefinition(string maxFileName, ArrayList rowIds)
+        private void ClearColumn(int colNum)
         {
-            // Delete current profile
+            // Clear Column
             for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
             {
-                dataGridView2.Rows[rowNumber].Cells[MERGED_PROFILE_COLUMN].Tag = null;
+                dataGridView2.Rows[rowNumber].Cells[colNum].Value = "";
+                dataGridView2.Rows[rowNumber].Cells[colNum].Tag = null;
             }
+        }
 
+        private void LoadProfileDefinition(string maxFileName)
+        {
             R2ProfileDefinition model = R2ModelV2.MAX.Factory.LoadProfileDefinition(baseModel, maxFileName);
-            modelNames[MERGED_PROFILE_COLUMN] = model.Name;
-            dataGridView2.Columns[MERGED_PROFILE_COLUMN].HeaderText = model.Name;
+            modelNames[COLUMN_MERGED_PROFILE] = model.Name;
+            dataGridView2.Columns[COLUMN_MERGED_PROFILE].HeaderText = model.Name;
             foreach (R2ModelElement element in model.children)
             {
-                int rowNumber = rowIds.IndexOf(element.GetAlignId());
+                int rowNumber = getBaseModelRowNumber(element.GetAlignId());
                 if (rowNumber == -1)
                 {
                     // Base Model doesnot have this row, add Row at end
                     rowNumber = dataGridView2.Rows.Add();
                 }
 
-                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[MERGED_PROFILE_COLUMN];
+                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[COLUMN_MERGED_PROFILE];
                 cell.Tag = element;
                 cell.Value = element.GetExtId();
                 if (element is R2Criterion)
@@ -324,13 +335,15 @@ namespace HL7_FM_EA_Extension
         {
             if (e.RowIndex == -1)
             {
+                // Only popup file selection for Base Model and Profiles
+                // There are separate buttons for MergedProfile Definition (== column 1)
                 string defaultFileName = null;
                 switch (e.ColumnIndex)
                 {
-                    case 0:
+                    case COLUMN_BASE_MODEL:
                         defaultFileName = fileNameBaseModel;
                         break;
-                    case 1:
+                    case COLUMN_MERGED_PROFILE:
                         defaultFileName = fileNameMerged;
                         break;
                     case 2:
@@ -343,7 +356,47 @@ namespace HL7_FM_EA_Extension
                         defaultFileName = fileNameProfile3;
                         break;
                 }
-                FileUtil.showFileDialog("Select input MAX XML file", "max files (*.xml, *.max)|*.xml;*.max", defaultFileName, true);
+                if (defaultFileName != null)
+                {
+                    string fileName = FileUtil.showFileDialog("Select input MAX XML file",
+                                                              "max files (*.xml, *.max)|*.xml;*.max", defaultFileName,
+                                                              true);
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        Cursor = Cursors.WaitCursor;
+                        DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+                        cellStyle.BackColor = Color.White;
+                        switch (e.ColumnIndex)
+                        {
+                            case COLUMN_BASE_MODEL:
+                                fileNameBaseModel = fileName;
+                                MessageBox.Show("Not yet implemented");
+                                break;
+                            case COLUMN_MERGED_PROFILE:
+                                fileNameMerged = fileName;
+                                ClearColumn(COLUMN_MERGED_PROFILE);
+                                LoadProfileDefinition(fileNameMerged);
+                                break;
+                            case 2:
+                                fileNameProfile1 = fileName;
+                                ClearColumn(e.ColumnIndex);
+                                LoadProfile(e.ColumnIndex, fileName, cellStyle);
+                                break;
+                            case 3:
+                                fileNameProfile2 = fileName;
+                                ClearColumn(e.ColumnIndex);
+                                LoadProfile(e.ColumnIndex, fileName, cellStyle);
+                                break;
+                            case 4:
+                                fileNameProfile3 = fileName;
+                                ClearColumn(e.ColumnIndex);
+                                LoadProfile(e.ColumnIndex, fileName, cellStyle);
+                                break;
+                        }
+                        UpdateStatistics();
+                        Cursor = Cursors.Default;
+                    }
+                }
             }
             else
             {
@@ -611,6 +664,7 @@ namespace HL7_FM_EA_Extension
                 R2Section section = (R2Section)compilerInstruction;
                 cell.ToolTipText = section.Name;
             }
+            UpdateStatistics();
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -619,6 +673,7 @@ namespace HL7_FM_EA_Extension
             cell.Value = "";
             cell.Tag = null;
             cell.ToolTipText = null;
+            UpdateStatistics();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -692,7 +747,6 @@ namespace HL7_FM_EA_Extension
             {
                 serializer.Serialize(writer, model);
             }
-
             MessageBox.Show("Created Profile Definition MAX file.");
         }
 
@@ -704,7 +758,11 @@ namespace HL7_FM_EA_Extension
                 // Load canceled
                 return;
             }
-            LoadProfileDefinition(fileNameInput, rowIds);
+            Cursor = Cursors.WaitCursor;
+            ClearColumn(COLUMN_MERGED_PROFILE);
+            LoadProfileDefinition(fileNameInput);
+            UpdateStatistics();
+            Cursor = Cursors.Default;
         }
     }
 }

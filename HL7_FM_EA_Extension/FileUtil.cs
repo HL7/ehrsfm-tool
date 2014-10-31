@@ -22,8 +22,16 @@ namespace HL7_FM_EA_Extension
             }
             dialog.Filter = filter;
             dialog.Title = title;
-            dialog.InitialDirectory = Path.GetDirectoryName(fileName);
-            dialog.FileName = Path.GetFileName(fileName);
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                dialog.InitialDirectory = Path.GetDirectoryName(fileName);
+                dialog.FileName = Path.GetFileName(fileName);
+            }
+            else
+            {
+                dialog.InitialDirectory = null;
+                dialog.FileName = null;
+            }
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {

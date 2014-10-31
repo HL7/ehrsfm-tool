@@ -44,12 +44,14 @@ namespace HL7_FM_EA_Extension
             conditionalCheckBox.Enabled = enableEdit;
             dependentCheckBox.Enabled = enableEdit;
 
+            // always show ChangeNote
+            changeNoteLinkLabel.Visible = true;
+            changeNoteLinkLabel.Enabled = true;
+            changeNoteTextBox.Visible = false;
+            changeNoteTextBox.Text = criterion.ChangeNote;
+
             if (criterion.IsCompilerInstruction)
             {
-                changeNoteLinkLabel.Visible = true;
-                changeNoteLinkLabel.Enabled = true;
-                changeNoteTextBox.Visible = false;
-                changeNoteTextBox.Text = criterion.ChangeNote;
                 textLinkLabel.Enabled = false;
                 textTextBox.Visible = true;
 

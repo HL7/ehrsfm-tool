@@ -9,6 +9,21 @@
 
 CHANGELOG
 =========
+[2014-oct-31]
+MergeProfilesForm
+- Double Click on Column Heading opens file dialog for Loading Profile (Definition)
+- LoadProfile(Definition) on double click on Column Header
+- Removed fixed profile filenames
+
+[2014-oct-25]
+SectionForm
+- Added FormUnitTest
+- Set BackColor when name changes
+FunctionForm
+- Added FormUnitTest
+- Set BackColor when name changes
+- Enable ChangeNote always
+
 [2014-oct-24]
 R2Model/EA
 - Added IsReadOnly so that Forms can be Disabled when an R2ModelElement SourceObject is locked, e.g. with EA.
@@ -16,6 +31,8 @@ MergeProfilesForm
 - Added more buttons to filter rows
 - Also show new elements in Profiles that are not in the base
 - Cleanup, renaming and comments added
+R2Model
+- Renamed @Defaults to @BaseElement, since that is what it realy is. The BaseElement is used for Default values
 
 [2014-oct-22]
 MergeProfilesForm

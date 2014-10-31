@@ -32,12 +32,15 @@ namespace HL7_FM_EA_Extension
         private void setShowingFunction(R2Function function, bool enableEdit)
         {
             ignoreEvents = true;
+
+            // always show ChangeNote
+            changeNoteLinkLabel.Visible = true;
+            changeNoteLinkLabel.Enabled = true;
+            changeNoteTextBox.Visible = false;
+            changeNoteTextBox.Text = function.ChangeNote;
+
             if (function.IsCompilerInstruction)
             {
-                changeNoteLinkLabel.Visible = true;
-                changeNoteLinkLabel.Enabled = true;
-                changeNoteTextBox.Visible = false;
-                changeNoteTextBox.Text = function.ChangeNote;
                 descriptionLinkLabel.Enabled = false;
                 descriptionTextBox.Visible = true;
 
@@ -51,9 +54,6 @@ namespace HL7_FM_EA_Extension
             }
             else
             {
-                changeNoteLinkLabel.Visible = false;
-                changeNoteTextBox.Visible = false;
-                changeNoteTextBox.Text = "";
                 descriptionTextBox.Visible = true;
                 descriptionLinkLabel.Enabled = false;
 
@@ -85,7 +85,7 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    idTextBox.Enabled = true;
+                    idTextBox.Enabled = false;
                     nameTextBox.Enabled = true;
                     statementTextBox.Enabled = true;
                     descriptionTextBox.Enabled = true;
@@ -93,8 +93,8 @@ namespace HL7_FM_EA_Extension
             }
             else
             {
-                nameTextBox.Enabled = false;
                 idTextBox.Enabled = false;
+                nameTextBox.Enabled = false;
                 statementTextBox.Enabled = false;
                 descriptionTextBox.Enabled = false;
             }
@@ -176,14 +176,12 @@ namespace HL7_FM_EA_Extension
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-            string id = "";
             int spidx = nameTextBox.Text.IndexOf(' ');
-            if (spidx != -1)
-            {
-                id = nameTextBox.Text.Substring(0, spidx);
-            }
+            if (spidx == -1) spidx = nameTextBox.Text.Length;
+            string id = nameTextBox.Text.Substring(0, spidx);
             idTextBox.Text = id;
             updateLabel(R2Const.AT_NAME, "Name", nameLabel, true);
+            BackColor = R2Config.config.getSectionColor(id, DefaultBackColor);
         }
 
         private bool switched = false;
