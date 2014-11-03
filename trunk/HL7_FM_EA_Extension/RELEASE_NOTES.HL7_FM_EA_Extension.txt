@@ -6,15 +6,20 @@
 - Fix R2ModelElement.Stereotype, cannot change, Defaults make no sense for Model/Profile/ProfileDefinition
 - R2ModelMax update lastModified when any field is modified
 - Move EAHelper in R2ModelEA
+- ??? Check: Edit Profile: Populate Criteria is really slow ???
 
 CHANGELOG
 =========
+[2014-nov-03]
+R2ModelV2
+- SetRefId not robust enough, caused bug in EditProfile where you cannot see the Criteria
+
 [2014-oct-31]
 MergeProfilesForm
 - Double Click on Column Heading opens file dialog for Loading Profile (Definition)
 - LoadProfile(Definition) on double click on Column Header
 - Removed fixed profile filenames
-- Fixed numerous little bugs
+- Fixed little bugs
 
 [2014-oct-25]
 SectionForm
