@@ -384,7 +384,7 @@ namespace HL7_FM_EA_Extension
 
             public void SetRefId(string RefAlias, string RefFunctionId, string RefCriterionId)
             {
-                if (RefFunctionId != null && RefCriterionId != null)
+                if (!string.IsNullOrEmpty(RefFunctionId) && !string.IsNullOrEmpty(RefCriterionId))
                 {
                     RefId = string.Format("{0}#{1:00}", RefFunctionId, int.Parse(RefCriterionId));
                 }
