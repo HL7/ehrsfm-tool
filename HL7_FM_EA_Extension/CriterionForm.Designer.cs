@@ -52,8 +52,10 @@
             this.changeNoteLinkLabel = new System.Windows.Forms.LinkLabel();
             this.textLinkLabel = new System.Windows.Forms.LinkLabel();
             this.changeNoteTextBox = new System.Windows.Forms.TextBox();
+            this.lockIcon = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.seqNoNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // pathLabel
@@ -274,11 +276,23 @@
             this.changeNoteTextBox.Size = new System.Drawing.Size(579, 159);
             this.changeNoteTextBox.TabIndex = 2;
             // 
+            // lockIcon
+            // 
+            this.lockIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lockIcon.Image = ((System.Drawing.Image)(resources.GetObject("lockIcon.Image")));
+            this.lockIcon.InitialImage = null;
+            this.lockIcon.Location = new System.Drawing.Point(649, 9);
+            this.lockIcon.Name = "lockIcon";
+            this.lockIcon.Size = new System.Drawing.Size(16, 16);
+            this.lockIcon.TabIndex = 37;
+            this.lockIcon.TabStop = false;
+            // 
             // CriterionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 295);
+            this.Controls.Add(this.lockIcon);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.priorityComboBox);
             this.Controls.Add(this.helpButton);
@@ -311,6 +325,7 @@
             this.Text = "EHR-S FM Criterion";
             ((System.ComponentModel.ISupportInitialize)(this.seqNoNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,5 +355,6 @@
         private System.Windows.Forms.LinkLabel changeNoteLinkLabel;
         private System.Windows.Forms.LinkLabel textLinkLabel;
         private System.Windows.Forms.TextBox changeNoteTextBox;
+        private System.Windows.Forms.PictureBox lockIcon;
     }
 }

@@ -140,7 +140,7 @@ namespace HL7_FM_EA_Extension.Tests
         public void TestR2ModelLoad()
         {
             string maxFileName = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\EHRS_FM_R2_N2.max.xml";
-            R2ModelV2.Base.R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName);
+            R2ModelV2.Base.R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName, false);
 
             Assert.AreEqual(2680, model.children.Count);
             Assert.AreEqual(7, model.children.Count(t => "Section".Equals(t.Stereotype)));

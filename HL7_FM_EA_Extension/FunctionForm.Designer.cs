@@ -48,6 +48,8 @@
             this.changeNoteLinkLabel = new System.Windows.Forms.LinkLabel();
             this.descriptionLinkLabel = new System.Windows.Forms.LinkLabel();
             this.changeNoteTextBox = new System.Windows.Forms.TextBox();
+            this.lockIcon = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -239,11 +241,23 @@
             this.changeNoteTextBox.TabIndex = 21;
             this.changeNoteTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
+            // lockIcon
+            // 
+            this.lockIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lockIcon.Image = ((System.Drawing.Image)(resources.GetObject("lockIcon.Image")));
+            this.lockIcon.InitialImage = null;
+            this.lockIcon.Location = new System.Drawing.Point(744, 9);
+            this.lockIcon.Name = "lockIcon";
+            this.lockIcon.Size = new System.Drawing.Size(16, 16);
+            this.lockIcon.TabIndex = 38;
+            this.lockIcon.TabStop = false;
+            // 
             // FunctionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 411);
+            this.Controls.Add(this.lockIcon);
             this.Controls.Add(this.descriptionLinkLabel);
             this.Controls.Add(this.changeNoteLinkLabel);
             this.Controls.Add(this.label1);
@@ -272,6 +286,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EHR-S FM Function";
+            ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,5 +313,6 @@
         private System.Windows.Forms.LinkLabel changeNoteLinkLabel;
         private System.Windows.Forms.LinkLabel descriptionLinkLabel;
         private System.Windows.Forms.TextBox changeNoteTextBox;
+        private System.Windows.Forms.PictureBox lockIcon;
     }
 }

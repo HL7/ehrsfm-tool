@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using EA;
 using HL7_FM_EA_Extension.R2ModelV2.Base;
 
 namespace HL7_FM_EA_Extension
@@ -33,7 +32,7 @@ namespace HL7_FM_EA_Extension
         public void Show(EA.Repository repository, EA.Package selectedPackage)
         {
             this.repository = repository;
-            if (repository.GetTreeSelectedItemType() == ObjectType.otElement)
+            if (repository.GetTreeSelectedItemType() == EA.ObjectType.otElement)
             {
                 EA.Element selectedElement = (EA.Element) repository.GetTreeSelectedObject();
                 if (R2Const.ST_HEADER.Equals(selectedElement.StereotypeEx) || R2Const.ST_FUNCTION.Equals(selectedElement.StereotypeEx))
@@ -515,7 +514,7 @@ namespace HL7_FM_EA_Extension
             // to an Element with stereotype Compiler Instruction
             foreach (EA.Connector con in element.Connectors.Cast<EA.Connector>().Where(c => "Generalization".Equals(c.Type)))
             {
-                EA.Element _element = (EA.Element)repository.GetElementByID(con.ClientID);
+                EA.Element _element = repository.GetElementByID(con.ClientID);
                 if (R2Const.ST_COMPILERINSTRUCTION.Equals(_element.Stereotype))
                 {
                     return _element;

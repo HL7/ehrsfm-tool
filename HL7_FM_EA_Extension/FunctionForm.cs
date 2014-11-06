@@ -33,11 +33,20 @@ namespace HL7_FM_EA_Extension
         {
             ignoreEvents = true;
 
+            lockIcon.Visible = function.IsReadOnly;
+            if (function.IsReadOnly)
+            {
+                enableEdit = false;
+            }
+            okButton.Enabled = enableEdit;
+            applyButton.Enabled = enableEdit;
+
             // always show ChangeNote
             changeNoteLinkLabel.Visible = true;
             changeNoteLinkLabel.Enabled = true;
             changeNoteTextBox.Visible = false;
             changeNoteTextBox.Text = function.ChangeNote;
+            changeNoteTextBox.Enabled = enableEdit;
 
             if (function.IsCompilerInstruction)
             {

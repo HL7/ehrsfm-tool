@@ -66,5 +66,13 @@ namespace HL7_FM_EA_Extension.Tests
             MergeProfilesForm form = new MergeProfilesForm();
             form.PopulateAndShow();
         }
+
+        [TestMethod]
+        public void TestProfileMetadataForm()
+        {
+            R2ProfileDefinition profDef = new R2ModelV2.MAX.R2ProfileDefinition();
+            ProfileMetadataForm form = new ProfileMetadataForm();
+            form.Show(profDef);
+        }
     }
 }

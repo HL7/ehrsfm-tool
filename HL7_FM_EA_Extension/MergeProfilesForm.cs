@@ -45,11 +45,11 @@ namespace HL7_FM_EA_Extension
 
             dataGridView2.Rows.Clear();
             dataGridView2.Columns.Clear();
-            dataGridView2.Columns.Add("bm", modelNames[0]);
-            dataGridView2.Columns.Add("mp", modelNames[1]);
-            dataGridView2.Columns.Add("p1", modelNames[2]);
-            dataGridView2.Columns.Add("p2", modelNames[3]);
-            dataGridView2.Columns.Add("p3", modelNames[4]);
+            dataGridView2.Columns.Add("bm", "");
+            dataGridView2.Columns.Add("mp", "Merged Profile");
+            dataGridView2.Columns.Add("p1", "");
+            dataGridView2.Columns.Add("p2", "");
+            dataGridView2.Columns.Add("p3", "");
 
             DataGridViewCellStyle c2CellStyle = new DataGridViewCellStyle();
             c2CellStyle.BackColor = Color.LightYellow;
@@ -64,7 +64,7 @@ namespace HL7_FM_EA_Extension
             dataGridView2.Columns[3].DefaultCellStyle = emptyCellStyle;
             dataGridView2.Columns[4].DefaultCellStyle = emptyCellStyle;
 
-            baseModel = R2ModelV2.MAX.Factory.LoadModel(fileNameBaseModel);
+            baseModel = R2ModelV2.MAX.Factory.LoadModel(fileNameBaseModel, true);
             dataGridView2.Rows.Add(baseModel.children.Count);
 
             PopulateBaseModelColumn(baseModel);
@@ -118,7 +118,7 @@ namespace HL7_FM_EA_Extension
 
         private void LoadProfile(int columnNumber, string maxFileName, DataGridViewCellStyle cellStyle)
         {
-            R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName);
+            R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName, true);
             modelNames[columnNumber] = model.Name;
             dataGridView2.Columns[columnNumber].HeaderText = model.Name;
             foreach (R2ModelElement element in model.children)
@@ -157,7 +157,7 @@ namespace HL7_FM_EA_Extension
             modelNames[columnNumber] = "Dummy";
             dataGridView2.Columns[columnNumber].HeaderText = "Dummy";
 
-            R2Section section = new R2Section { SectionId = "CP" };
+            R2Section section = new R2Section { SectionId = "CP", IsReadOnly = true };
             int rowNumber = getBaseModelRowNumber(section.GetAlignId());
 
             DataGridViewCell sectionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
@@ -166,7 +166,7 @@ namespace HL7_FM_EA_Extension
             sectionCell.Style = cellStyle;
             for (int h = 1; h < 3; h++)
             {
-                R2Function header = new R2Function { FunctionId = string.Format("CP.{0}", h) };
+                R2Function header = new R2Function { FunctionId = string.Format("CP.{0}", h), IsReadOnly = true };
                 rowNumber = getBaseModelRowNumber(header.GetAlignId());
                 if (rowNumber == -1)
                 {
@@ -180,7 +180,7 @@ namespace HL7_FM_EA_Extension
                 headerCell.Style = cellStyle;
                 for (int f = 1; f < 3; f++)
                 {
-                    R2Function function = new R2Function { FunctionId = string.Format("CP.{0}.{1}", h, f) };
+                    R2Function function = new R2Function { FunctionId = string.Format("CP.{0}.{1}", h, f), IsReadOnly = true };
                     rowNumber = getBaseModelRowNumber(function.GetAlignId());
                     if (rowNumber == -1)
                     {
@@ -199,7 +199,8 @@ namespace HL7_FM_EA_Extension
                                                         FunctionId = string.Format("CP.{0}.{1}", h, f), 
                                                         CriterionSeqNo = c,
                                                         Text = "The system SHALL xyz",
-                                                        Optionality = "SHALL"
+                                                        Optionality = "SHALL",
+                                                        IsReadOnly = true
                                                     };
                         criterion.SetRefId(null, string.Format("CP.{0}.{1}", h, f), string.Format("{0}", c+1));
                         rowNumber = getBaseModelRowNumber(criterion.GetAlignId());
