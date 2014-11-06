@@ -13,6 +13,7 @@ Main
 MergeProfileForm
 - Default Lock BaseModel and Profiles to prevent accidental changes
 - Now relationship to baseModelElement is restored after loading of profile
+- Double click on Merged Profile opens ProfileDefinitionForm
 ProfileMetadataForm
 - Forgot to copy UI values to R2ModelElement on "Ok"
 - Added "Apply" and "Cancel" buttons to be more consistent with *Forms

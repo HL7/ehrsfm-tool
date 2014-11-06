@@ -132,6 +132,7 @@
             "Companion",
             "Derived",
             "Domain",
+            "Merged",
             "Realm"});
             this.comboBox1.Location = new System.Drawing.Point(493, 25);
             this.comboBox1.Name = "comboBox1";

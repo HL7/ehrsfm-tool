@@ -301,12 +301,17 @@ namespace HL7_FM_EA_Extension
             public List<R2ModelElement> children = new List<R2ModelElement>();
         }
 
-        public abstract class R2Model : R2RootElement
+        public class R2Model : R2RootElement
         {
         }
 
-        public abstract class R2ProfileDefinition : R2RootElement
+        public class R2ProfileDefinition : R2RootElement
         {
+            public R2ProfileDefinition()
+            {
+                Stereotype = R2Const.ST_FM_PROFILEDEFINITION;
+            }
+
             public string Version { get { return get(R2Const.TV_VERSION); } set { set(R2Const.TV_VERSION, value); } }
             public string Type { get { return get(R2Const.TV_TYPE); } set { set(R2Const.TV_TYPE, value); } }
             public string LanguageTag { get { return get(R2Const.TV_LANGUAGETAG); } set { set(R2Const.TV_LANGUAGETAG, value); } }
