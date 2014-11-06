@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MergeProfilesForm));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.compareDataGridView = new System.Windows.Forms.DataGridView();
+            this.modelsDataGridView = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
             this.statsTextBox = new System.Windows.Forms.TextBox();
@@ -44,8 +44,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.compareDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelsDataGridView)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -53,37 +53,37 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // compareDataGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(967, 138);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
+            this.compareDataGridView.AllowUserToAddRows = false;
+            this.compareDataGridView.AllowUserToDeleteRows = false;
+            this.compareDataGridView.AllowUserToOrderColumns = true;
+            this.compareDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.compareDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.compareDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.compareDataGridView.Name = "compareDataGridView";
+            this.compareDataGridView.ReadOnly = true;
+            this.compareDataGridView.Size = new System.Drawing.Size(967, 138);
+            this.compareDataGridView.TabIndex = 0;
+            this.compareDataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.compareDataGridView_CellEnter);
             // 
-            // dataGridView2
+            // modelsDataGridView
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(683, 340);
-            this.dataGridView2.TabIndex = 6;
-            this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellDoubleClick);
-            this.dataGridView2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
+            this.modelsDataGridView.AllowUserToAddRows = false;
+            this.modelsDataGridView.AllowUserToDeleteRows = false;
+            this.modelsDataGridView.AllowUserToOrderColumns = true;
+            this.modelsDataGridView.AllowUserToResizeRows = false;
+            this.modelsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.modelsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.modelsDataGridView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.modelsDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.modelsDataGridView.MultiSelect = false;
+            this.modelsDataGridView.Name = "modelsDataGridView";
+            this.modelsDataGridView.ReadOnly = true;
+            this.modelsDataGridView.Size = new System.Drawing.Size(683, 340);
+            this.modelsDataGridView.TabIndex = 6;
+            this.modelsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.modelsDataGridView_CellDoubleClick);
+            this.modelsDataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.modelsDataGridView_CellEnter);
             // 
             // splitContainer1
             // 
@@ -95,11 +95,11 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.panel2);
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView2);
+            this.splitContainer1.Panel1.Controls.Add(this.modelsDataGridView);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Panel2.Controls.Add(this.compareDataGridView);
             this.splitContainer1.Size = new System.Drawing.Size(967, 482);
             this.splitContainer1.SplitterDistance = 340;
             this.splitContainer1.TabIndex = 7;
@@ -245,8 +245,8 @@
             this.Name = "MergeProfilesForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Merge Profiles";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.compareDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelsDataGridView)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
@@ -259,8 +259,8 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView compareDataGridView;
+        private System.Windows.Forms.DataGridView modelsDataGridView;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button collapseButton;

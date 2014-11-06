@@ -31,25 +31,17 @@ namespace HL7_FM_EA_Extension
         private int _currentCompareRow = -1;
         const int COLUMN_BASE_MODEL = 0;
         const int COLUMN_MERGED_PROFILE = 1;
-        private List<string> modelNames = new List<string>();
         private R2Model baseModel;
 
         public void PopulateAndShow()
         {
-            modelNames.Clear();
-            modelNames.Add("Base Model");
-            modelNames.Add("Merged Profile");
-            modelNames.Add("");
-            modelNames.Add("");
-            modelNames.Add("");
-
-            dataGridView2.Rows.Clear();
-            dataGridView2.Columns.Clear();
-            dataGridView2.Columns.Add("bm", "");
-            dataGridView2.Columns.Add("mp", "Merged Profile");
-            dataGridView2.Columns.Add("p1", "");
-            dataGridView2.Columns.Add("p2", "");
-            dataGridView2.Columns.Add("p3", "");
+            modelsDataGridView.Rows.Clear();
+            modelsDataGridView.Columns.Clear();
+            modelsDataGridView.Columns.Add("bm", "");
+            modelsDataGridView.Columns.Add("mp", "");
+            modelsDataGridView.Columns.Add("p1", "");
+            modelsDataGridView.Columns.Add("p2", "");
+            modelsDataGridView.Columns.Add("p3", "");
 
             DataGridViewCellStyle c2CellStyle = new DataGridViewCellStyle();
             c2CellStyle.BackColor = Color.LightYellow;
@@ -58,14 +50,31 @@ namespace HL7_FM_EA_Extension
             DataGridViewCellStyle emptyCellStyle = new DataGridViewCellStyle();
             emptyCellStyle.BackColor = Color.LightGray;
 
-            //dataGridView2.Columns[0].DefaultCellStyle = emptyCellStyle;
-            dataGridView2.Columns[1].DefaultCellStyle = c2CellStyle;
-            dataGridView2.Columns[2].DefaultCellStyle = emptyCellStyle;
-            dataGridView2.Columns[3].DefaultCellStyle = emptyCellStyle;
-            dataGridView2.Columns[4].DefaultCellStyle = emptyCellStyle;
+            modelsDataGridView.Columns[1].DefaultCellStyle = c2CellStyle;
+            modelsDataGridView.Columns[2].DefaultCellStyle = emptyCellStyle;
+            modelsDataGridView.Columns[3].DefaultCellStyle = emptyCellStyle;
+            modelsDataGridView.Columns[4].DefaultCellStyle = emptyCellStyle;
 
             baseModel = R2ModelV2.MAX.Factory.LoadModel(fileNameBaseModel, true);
-            dataGridView2.Rows.Add(baseModel.children.Count);
+            modelsDataGridView.Rows.Add(baseModel.children.Count);
+
+            // Create initial Profile Definition Object
+            R2ProfileDefinition profileDef = new R2ModelV2.MAX.R2ProfileDefinition
+            {
+                Name = "Merged Profile",
+                Type = "Merged",
+                Version = "1.0",
+                LanguageTag = "en-EN",
+                Rationale = " ",
+                Scope = " ",
+                PrioDef = " ",
+                ConfClause = " ",
+                LastModified = Util.FormatLastModified(DateTime.Now),
+                BaseModelName = baseModel.Name
+            };
+            profileDef.SaveToSource();
+            modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].HeaderText = profileDef.Name;
+            modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag = profileDef;
 
             PopulateBaseModelColumn(baseModel);
             LoadDummyProfile(4, cellStyle);
@@ -76,9 +85,9 @@ namespace HL7_FM_EA_Extension
 
         private int getBaseModelRowNumber(string id)
         {
-            for(int rowNumber=0; rowNumber<dataGridView2.Rows.Count; rowNumber++)
+            for(int rowNumber=0; rowNumber<modelsDataGridView.Rows.Count; rowNumber++)
             {
-                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[COLUMN_BASE_MODEL];
+                DataGridViewCell cell = modelsDataGridView.Rows[rowNumber].Cells[COLUMN_BASE_MODEL];
                 if (cell.Tag != null && id.Equals(((R2ModelElement)cell.Tag).GetExtId()))
                 {
                     return rowNumber;
@@ -89,12 +98,12 @@ namespace HL7_FM_EA_Extension
 
         private void PopulateBaseModelColumn(R2Model baseModel)
         {
-            modelNames[COLUMN_BASE_MODEL] = baseModel.Name;
-            dataGridView2.Columns[COLUMN_BASE_MODEL].HeaderText = baseModel.Name;
+            modelsDataGridView.Columns[COLUMN_BASE_MODEL].HeaderText = baseModel.Name;
+            modelsDataGridView.Columns[COLUMN_BASE_MODEL].Tag = baseModel;
             int rowNumber = 0;
             foreach (R2ModelElement element in baseModel.children)
             {
-                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[COLUMN_BASE_MODEL];
+                DataGridViewCell cell = modelsDataGridView.Rows[rowNumber].Cells[COLUMN_BASE_MODEL];
                 cell.Tag = element;
                 cell.Value = element.GetExtId();
                 if (element is R2Criterion)
@@ -119,18 +128,18 @@ namespace HL7_FM_EA_Extension
         private void LoadProfile(int columnNumber, string maxFileName, DataGridViewCellStyle cellStyle)
         {
             R2Model model = R2ModelV2.MAX.Factory.LoadModel(maxFileName, true);
-            modelNames[columnNumber] = model.Name;
-            dataGridView2.Columns[columnNumber].HeaderText = model.Name;
+            modelsDataGridView.Columns[columnNumber].HeaderText = model.Name;
+            modelsDataGridView.Columns[columnNumber].Tag = model;
             foreach (R2ModelElement element in model.children)
             {
                 int rowNumber = getBaseModelRowNumber(element.GetAlignId());
                 if (rowNumber == -1)
                 {
                     // Base Model doesnot have this row, add Row at end
-                    rowNumber = dataGridView2.Rows.Add();
+                    rowNumber = modelsDataGridView.Rows.Add();
                 }
 
-                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
+                DataGridViewCell cell = modelsDataGridView.Rows[rowNumber].Cells[columnNumber];
                 cell.Style = cellStyle;
                 cell.Tag = element;
                 cell.Value = element.GetExtId();
@@ -154,41 +163,45 @@ namespace HL7_FM_EA_Extension
 
         private void LoadDummyProfile(int columnNumber, DataGridViewCellStyle cellStyle)
         {
-            modelNames[columnNumber] = "Dummy";
-            dataGridView2.Columns[columnNumber].HeaderText = "Dummy";
+            R2Model model = new R2Model { Name = "Dummy" };
+            modelsDataGridView.Columns[columnNumber].HeaderText = model.Name;
+            modelsDataGridView.Columns[columnNumber].Tag = model;
 
             R2Section section = new R2Section { SectionId = "CP", IsReadOnly = true };
+            model.children.Add(section);
             int rowNumber = getBaseModelRowNumber(section.GetAlignId());
 
-            DataGridViewCell sectionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
+            DataGridViewCell sectionCell = modelsDataGridView.Rows[rowNumber].Cells[columnNumber];
             sectionCell.Tag = section;
             sectionCell.Value = string.Format("{0}", section.SectionId);
             sectionCell.Style = cellStyle;
             for (int h = 1; h < 3; h++)
             {
                 R2Function header = new R2Function { FunctionId = string.Format("CP.{0}", h), IsReadOnly = true };
+                model.children.Add(header);
                 rowNumber = getBaseModelRowNumber(header.GetAlignId());
                 if (rowNumber == -1)
                 {
                     // Base Model doesnot have this row, add Row at end
-                    rowNumber = dataGridView2.Rows.Add();
+                    rowNumber = modelsDataGridView.Rows.Add();
                 }
 
-                DataGridViewCell headerCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
+                DataGridViewCell headerCell = modelsDataGridView.Rows[rowNumber].Cells[columnNumber];
                 headerCell.Tag = header;
                 headerCell.Value = header.FunctionId;
                 headerCell.Style = cellStyle;
                 for (int f = 1; f < 3; f++)
                 {
                     R2Function function = new R2Function { FunctionId = string.Format("CP.{0}.{1}", h, f), IsReadOnly = true };
+                    model.children.Add(function);
                     rowNumber = getBaseModelRowNumber(function.GetAlignId());
                     if (rowNumber == -1)
                     {
                         // Base Model doesnot have this row, add Row at end
-                        rowNumber = dataGridView2.Rows.Add();
+                        rowNumber = modelsDataGridView.Rows.Add();
                     }
 
-                    DataGridViewCell functionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
+                    DataGridViewCell functionCell = modelsDataGridView.Rows[rowNumber].Cells[columnNumber];
                     functionCell.Tag = function;
                     functionCell.Value = function.FunctionId;
                     functionCell.Style = cellStyle;
@@ -202,15 +215,16 @@ namespace HL7_FM_EA_Extension
                                                         Optionality = "SHALL",
                                                         IsReadOnly = true
                                                     };
+                        model.children.Add(criterion);
                         criterion.SetRefId(null, string.Format("CP.{0}.{1}", h, f), string.Format("{0}", c+1));
                         rowNumber = getBaseModelRowNumber(criterion.GetAlignId());
                         if (rowNumber == -1)
                         {
                             // Base Model doesnot have this row, add Row at end
-                            rowNumber = dataGridView2.Rows.Add();
+                            rowNumber = modelsDataGridView.Rows.Add();
                         }
 
-                        DataGridViewCell criterionCell = dataGridView2.Rows[rowNumber].Cells[columnNumber];
+                        DataGridViewCell criterionCell = modelsDataGridView.Rows[rowNumber].Cells[columnNumber];
                         criterionCell.Tag = criterion;
                         criterionCell.Value = string.Format("! {0}", criterion.Name);
                         criterionCell.ToolTipText = criterion.Text;
@@ -223,29 +237,30 @@ namespace HL7_FM_EA_Extension
         private void ClearColumn(int colNum)
         {
             // Clear Column
-            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
+            for (int rowNumber = modelsDataGridView.Rows.Count - 1; rowNumber >= 0; rowNumber--)
             {
-                dataGridView2.Rows[rowNumber].Cells[colNum].Style = null;
-                dataGridView2.Rows[rowNumber].Cells[colNum].Value = "";
-                dataGridView2.Rows[rowNumber].Cells[colNum].Tag = null;
+                modelsDataGridView.Rows[rowNumber].Cells[colNum].Style = null;
+                modelsDataGridView.Rows[rowNumber].Cells[colNum].Value = "";
+                modelsDataGridView.Rows[rowNumber].Cells[colNum].Tag = null;
             }
         }
 
         private void LoadProfileDefinition(string maxFileName)
         {
-            R2ProfileDefinition model = R2ModelV2.MAX.Factory.LoadProfileDefinition(baseModel, maxFileName);
-            modelNames[COLUMN_MERGED_PROFILE] = model.Name;
-            dataGridView2.Columns[COLUMN_MERGED_PROFILE].HeaderText = model.Name;
-            foreach (R2ModelElement element in model.children)
+            R2ProfileDefinition profDef = R2ModelV2.MAX.Factory.LoadProfileDefinition(baseModel, maxFileName);
+            profDef.BaseModelName = baseModel.Name;
+            modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].HeaderText = profDef.Name;
+            modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag = profDef;
+            foreach (R2ModelElement element in profDef.children)
             {
                 int rowNumber = getBaseModelRowNumber(element.GetAlignId());
                 if (rowNumber == -1)
                 {
                     // Base Model doesnot have this row, add Row at end
-                    rowNumber = dataGridView2.Rows.Add();
+                    rowNumber = modelsDataGridView.Rows.Add();
                 }
 
-                DataGridViewCell cell = dataGridView2.Rows[rowNumber].Cells[COLUMN_MERGED_PROFILE];
+                DataGridViewCell cell = modelsDataGridView.Rows[rowNumber].Cells[COLUMN_MERGED_PROFILE];
                 cell.Tag = element;
                 cell.Value = element.GetExtId();
                 if (element is R2Criterion)
@@ -270,15 +285,15 @@ namespace HL7_FM_EA_Extension
         {
             if (section != null)
             {
-                dataGridView1.Rows[rowNumber].DefaultCellStyle = dataGridView1.DefaultCellStyle;
-                dataGridView1.Rows[rowNumber].Cells["Priority"].Value = section.Priority;
-                dataGridView1.Rows[rowNumber].Cells["SectionId"].Value = section.SectionId;
-                dataGridView1.Rows[rowNumber].Cells["Name"].Value = section.Name;
-                dataGridView1.Rows[rowNumber].Cells["LastModified"].Value = section.LastModified;
+                compareDataGridView.Rows[rowNumber].DefaultCellStyle = compareDataGridView.DefaultCellStyle;
+                compareDataGridView.Rows[rowNumber].Cells["Priority"].Value = section.Priority;
+                compareDataGridView.Rows[rowNumber].Cells["SectionId"].Value = section.SectionId;
+                compareDataGridView.Rows[rowNumber].Cells["Name"].Value = section.Name;
+                compareDataGridView.Rows[rowNumber].Cells["LastModified"].Value = section.LastModified;
             }
             else
             {
-                dataGridView1.Rows[rowNumber].DefaultCellStyle = emptyCellStyle;
+                compareDataGridView.Rows[rowNumber].DefaultCellStyle = emptyCellStyle;
             }
         }
 
@@ -287,15 +302,15 @@ namespace HL7_FM_EA_Extension
             if (compareFunction == null) compareFunction = function;
             if (function != null)
             {
-                dataGridView1.Rows[rowNumber].DefaultCellStyle = dataGridView1.DefaultCellStyle;
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Priority"], function.Priority, compareFunction.Priority, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["FunctionId"], function.FunctionId, compareFunction.FunctionId, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Name"], function.Name, compareFunction.Name, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["LastModified"], function.LastModified, compareFunction.LastModified, diffCellStyle);
+                compareDataGridView.Rows[rowNumber].DefaultCellStyle = compareDataGridView.DefaultCellStyle;
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["Priority"], function.Priority, compareFunction.Priority, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["FunctionId"], function.FunctionId, compareFunction.FunctionId, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["Name"], function.Name, compareFunction.Name, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["LastModified"], function.LastModified, compareFunction.LastModified, diffCellStyle);
             }
             else
             {
-                dataGridView1.Rows[rowNumber].DefaultCellStyle = emptyCellStyle;
+                compareDataGridView.Rows[rowNumber].DefaultCellStyle = emptyCellStyle;
             }
         }
 
@@ -304,19 +319,19 @@ namespace HL7_FM_EA_Extension
             if (compareCriterion == null) compareCriterion = criterion;
             if (criterion != null)
             {
-                dataGridView1.Rows[rowNumber].DefaultCellStyle = dataGridView1.DefaultCellStyle;
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Priority"], criterion.Priority, compareCriterion.Priority, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Name"], criterion.Name, compareCriterion.Name, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Text"], criterion.Text, compareCriterion.Text, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Row#"], criterion.Row, compareCriterion.Row, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Dependent"], criterion.Dependent, compareCriterion.Dependent, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Conditional"], criterion.Conditional, compareCriterion.Conditional, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["Optionality"], criterion.Optionality, compareCriterion.Optionality, diffCellStyle);
-                populateSelectedCell(dataGridView1.Rows[rowNumber].Cells["LastModified"], criterion.LastModified, compareCriterion.LastModified, diffCellStyle);
+                compareDataGridView.Rows[rowNumber].DefaultCellStyle = compareDataGridView.DefaultCellStyle;
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["Priority"], criterion.Priority, compareCriterion.Priority, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["Name"], criterion.Name, compareCriterion.Name, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["Text"], criterion.Text, compareCriterion.Text, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["Row#"], criterion.Row, compareCriterion.Row, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["Dependent"], criterion.Dependent, compareCriterion.Dependent, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["Conditional"], criterion.Conditional, compareCriterion.Conditional, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["Optionality"], criterion.Optionality, compareCriterion.Optionality, diffCellStyle);
+                populateSelectedCell(compareDataGridView.Rows[rowNumber].Cells["LastModified"], criterion.LastModified, compareCriterion.LastModified, diffCellStyle);
             }
             else
             {
-                dataGridView1.Rows[rowNumber].DefaultCellStyle = emptyCellStyle;
+                compareDataGridView.Rows[rowNumber].DefaultCellStyle = emptyCellStyle;
             }
         }
 
@@ -333,7 +348,7 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void modelsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
             {
@@ -346,8 +361,11 @@ namespace HL7_FM_EA_Extension
                         defaultFileName = fileNameBaseModel;
                         break;
                     case COLUMN_MERGED_PROFILE:
-                        defaultFileName = fileNameMerged;
-                        break;
+                        ProfileMetadataForm form = new ProfileMetadataForm();
+                        R2ProfileDefinition profDef = (R2ProfileDefinition)modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag;
+                        form.Show(profDef);
+                        modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].HeaderText = profDef.Name;
+                        return;
                     case 2:
                         defaultFileName = fileNameProfile1;
                         break;
@@ -374,11 +392,11 @@ namespace HL7_FM_EA_Extension
                                 fileNameBaseModel = fileName;
                                 MessageBox.Show("Not yet implemented");
                                 break;
-                            case COLUMN_MERGED_PROFILE:
+/*                            case COLUMN_MERGED_PROFILE:
                                 fileNameMerged = fileName;
                                 ClearColumn(COLUMN_MERGED_PROFILE);
                                 LoadProfileDefinition(fileNameMerged);
-                                break;
+                                break;*/
                             case 2:
                                 fileNameProfile1 = fileName;
                                 ClearColumn(e.ColumnIndex);
@@ -402,7 +420,7 @@ namespace HL7_FM_EA_Extension
             }
             else
             {
-                DataGridViewCell cell = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                DataGridViewCell cell = modelsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (cell.Tag is R2Section)
                 {
                     new SectionForm().Show((R2Section)cell.Tag);
@@ -416,17 +434,17 @@ namespace HL7_FM_EA_Extension
                     new CriterionForm().Show((R2Criterion)cell.Tag);
                 }
                 // Update content of compare grid, content might be changed in the form
-                updateDataGridView1(false, _currentRow, _currentCompareRow);
+                updateCompareDataGridView(false, _currentRow, _currentCompareRow);
             }
         }
 
-        private void updateDataGridView1(bool reset, int selectedRow, int compareRow)
+        private void updateCompareDataGridView(bool reset, int selectedRow, int compareRow)
         {
-            DataGridViewCell cell0 = dataGridView2.Rows[selectedRow].Cells[0];
-            DataGridViewCell cell1 = dataGridView2.Rows[selectedRow].Cells[1];
-            DataGridViewCell cell2 = dataGridView2.Rows[selectedRow].Cells[2];
-            DataGridViewCell cell3 = dataGridView2.Rows[selectedRow].Cells[3];
-            DataGridViewCell cell4 = dataGridView2.Rows[selectedRow].Cells[4];
+            DataGridViewCell cell0 = modelsDataGridView.Rows[selectedRow].Cells[0];
+            DataGridViewCell cell1 = modelsDataGridView.Rows[selectedRow].Cells[1];
+            DataGridViewCell cell2 = modelsDataGridView.Rows[selectedRow].Cells[2];
+            DataGridViewCell cell3 = modelsDataGridView.Rows[selectedRow].Cells[3];
+            DataGridViewCell cell4 = modelsDataGridView.Rows[selectedRow].Cells[4];
 
             // Get type of rows by the cell type. Some rows have no base, so then we use the profile.
             DataGridViewCell typeCell = cell0;
@@ -443,41 +461,51 @@ namespace HL7_FM_EA_Extension
             if (reset)
             {
                 // setup datagrid to selected Element type
-                dataGridView1.Columns.Clear();
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                compareDataGridView.Columns.Clear();
+                compareDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
                 // Create columns based on element type of the cell
                 if (typeCell.Tag is R2Section)
                 {
-                    dataGridView1.Columns.Add("Priority", "Priority");
-                    dataGridView1.Columns.Add("SectionId", "SectionId");
-                    dataGridView1.Columns.Add("Name", "Name");
-                    dataGridView1.Columns.Add("LastModified", "LastModified");
+                    compareDataGridView.Columns.Add("Priority", "Priority");
+                    compareDataGridView.Columns.Add("SectionId", "SectionId");
+                    compareDataGridView.Columns.Add("Name", "Name");
+                    compareDataGridView.Columns.Add("LastModified", "LastModified");
                 }
                 else if (typeCell.Tag is R2Function)
                 {
-                    dataGridView1.Columns.Add("Priority", "Priority");
-                    dataGridView1.Columns.Add("FunctionId", "FunctionId");
-                    dataGridView1.Columns.Add("Name", "Name");
-                    dataGridView1.Columns.Add("LastModified", "LastModified");
+                    compareDataGridView.Columns.Add("Priority", "Priority");
+                    compareDataGridView.Columns.Add("FunctionId", "FunctionId");
+                    compareDataGridView.Columns.Add("Name", "Name");
+                    compareDataGridView.Columns.Add("LastModified", "LastModified");
                 }
                 else if (typeCell.Tag is R2Criterion)
                 {
-                    dataGridView1.Columns.Add("Priority", "Priority");
-                    dataGridView1.Columns.Add("Name", "Name");
-                    dataGridView1.Columns.Add("Optionality", "Optionality");
-                    dataGridView1.Columns.Add("Text", "Text");
-                    dataGridView1.Columns.Add("Dependent", "Dependent");
-                    dataGridView1.Columns.Add("Conditional", "Conditional");
-                    dataGridView1.Columns.Add("Row#", "Row#");
-                    dataGridView1.Columns.Add("LastModified", "LastModified");
+                    compareDataGridView.Columns.Add("Priority", "Priority");
+                    compareDataGridView.Columns.Add("Name", "Name");
+                    compareDataGridView.Columns.Add("Optionality", "Optionality");
+                    compareDataGridView.Columns.Add("Text", "Text");
+                    compareDataGridView.Columns.Add("Dependent", "Dependent");
+                    compareDataGridView.Columns.Add("Conditional", "Conditional");
+                    compareDataGridView.Columns.Add("Row#", "Row#");
+                    compareDataGridView.Columns.Add("LastModified", "LastModified");
                 }
 
-                dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-                dataGridView1.Rows.Add(5);
-                for (int rowNumber = 0; rowNumber < modelNames.Count; rowNumber++)
+                compareDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+                compareDataGridView.Rows.Add(5);
+                for (int rowNumber = 0; rowNumber < modelsDataGridView.Columns.Count; rowNumber++)
                 {
-                    dataGridView1.Rows[rowNumber].HeaderCell.Value = modelNames[rowNumber];
+                    DataGridViewColumn col = modelsDataGridView.Columns[rowNumber];
+                    string modelName = "";
+                    if (col.Tag is R2Model)
+                    {
+                        modelName = ((R2Model)col.Tag).Name;
+                    }
+                    else if (col.Tag is R2ProfileDefinition)
+                    {
+                        modelName = ((R2ProfileDefinition)col.Tag).Name;
+                    }
+                    compareDataGridView.Rows[rowNumber].HeaderCell.Value = modelName;
                 }
             }
 
@@ -537,24 +565,24 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void dataGridView2_CellEnter(object sender, DataGridViewCellEventArgs e)
+        private void modelsDataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (_currentRow != e.RowIndex)
             {
                 _currentRow = e.RowIndex;
                 if (e.RowIndex == -1) return;
-                _currentCompareRow = dataGridView2.CurrentCell.ColumnIndex;
-                updateDataGridView1(true, _currentRow, _currentCompareRow);
+                _currentCompareRow = modelsDataGridView.CurrentCell.ColumnIndex;
+                updateCompareDataGridView(true, _currentRow, _currentCompareRow);
             }
         }
 
-        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        private void compareDataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (_currentCompareRow != e.RowIndex)
             {
                 _currentCompareRow = e.RowIndex;
                 if (e.RowIndex == -1) return;
-                updateDataGridView1(false, _currentRow, _currentCompareRow);
+                updateCompareDataGridView(false, _currentRow, _currentCompareRow);
             }
         }
 
@@ -562,11 +590,11 @@ namespace HL7_FM_EA_Extension
         private void button1_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
+            for (int rowNumber = modelsDataGridView.Rows.Count - 1; rowNumber >= 0; rowNumber--)
             {
-                if (dataGridView2.Rows[rowNumber].Cells[1].Tag != null)
+                if (modelsDataGridView.Rows[rowNumber].Cells[1].Tag != null)
                 {
-                    dataGridView2.Rows[rowNumber].Visible = false;
+                    modelsDataGridView.Rows[rowNumber].Visible = false;
                 }
             }
             UpdateStatistics();
@@ -577,11 +605,11 @@ namespace HL7_FM_EA_Extension
         private void button2_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
+            for (int rowNumber = modelsDataGridView.Rows.Count - 1; rowNumber >= 0; rowNumber--)
             {
-                if (dataGridView2.Rows[rowNumber].Cells[1].Tag != null)
+                if (modelsDataGridView.Rows[rowNumber].Cells[1].Tag != null)
                 {
-                    dataGridView2.Rows[rowNumber].Visible = true;
+                    modelsDataGridView.Rows[rowNumber].Visible = true;
                 }
             }
             UpdateStatistics();
@@ -592,20 +620,20 @@ namespace HL7_FM_EA_Extension
         private void collapseButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
+            for (int rowNumber = modelsDataGridView.Rows.Count - 1; rowNumber >= 0; rowNumber--)
             {
                 int cellsWithTag = 0;
                 // Ignore BaseModel and Merged
-                for (int colNum=2; colNum<dataGridView2.Rows[rowNumber].Cells.Count;colNum++)
+                for (int colNum=2; colNum<modelsDataGridView.Rows[rowNumber].Cells.Count;colNum++)
                 {
-                    if (dataGridView2.Rows[rowNumber].Cells[colNum].Tag != null)
+                    if (modelsDataGridView.Rows[rowNumber].Cells[colNum].Tag != null)
                     {
                         cellsWithTag++;
                     }
                 }
                 if (cellsWithTag < 1)
                 {
-                    dataGridView2.Rows[rowNumber].Visible = false;
+                    modelsDataGridView.Rows[rowNumber].Visible = false;
                 }
             }
             UpdateStatistics();
@@ -616,9 +644,9 @@ namespace HL7_FM_EA_Extension
         private void button3_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            for (int rowNumber = dataGridView2.Rows.Count - 1; rowNumber >= 0; rowNumber--)
+            for (int rowNumber = modelsDataGridView.Rows.Count - 1; rowNumber >= 0; rowNumber--)
             {
-                dataGridView2.Rows[rowNumber].Visible = true;
+                modelsDataGridView.Rows[rowNumber].Visible = true;
             }
             UpdateStatistics();
             Cursor = Cursors.Default;
@@ -626,10 +654,10 @@ namespace HL7_FM_EA_Extension
 
         private void UpdateStatistics()
         {
-            int rowCount = dataGridView2.Rows.Cast<DataGridViewRow>().Count();
-            int showingCount = dataGridView2.Rows.Cast<DataGridViewRow>().Count(r => r.Visible);
-            int hiddenCount = dataGridView2.Rows.Cast<DataGridViewRow>().Count(r => !r.Visible);
-            int mergedCount = dataGridView2.Rows.Cast<DataGridViewRow>().Count(r => r.Cells[1].Tag != null);
+            int rowCount = modelsDataGridView.Rows.Cast<DataGridViewRow>().Count();
+            int showingCount = modelsDataGridView.Rows.Cast<DataGridViewRow>().Count(r => r.Visible);
+            int hiddenCount = modelsDataGridView.Rows.Cast<DataGridViewRow>().Count(r => !r.Visible);
+            int mergedCount = modelsDataGridView.Rows.Cast<DataGridViewRow>().Count(r => r.Cells[1].Tag != null);
 
             StringBuilder sb = new StringBuilder();
             sb.Append("Rows: ").Append(rowCount).AppendLine();
@@ -641,21 +669,21 @@ namespace HL7_FM_EA_Extension
 
         private void selectButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView2.CurrentCell.ColumnIndex < 2)
+            if (modelsDataGridView.CurrentCell.ColumnIndex < 2)
             {
                 // Ignore, cannot select FM or Merged Profile itself
                 return;
             }
-            DataGridViewCell currentCell = dataGridView2.CurrentCell;
+            DataGridViewCell currentCell = modelsDataGridView.CurrentCell;
             if (currentCell.Tag == null)
             {
                 // Nothing to do, select an empty cell.
                 return;
             }
-            dataGridView2.CurrentRow.Cells[1].Value = currentCell.Value;
+            modelsDataGridView.CurrentRow.Cells[1].Value = currentCell.Value;
 
-            R2ModelElement compilerInstruction = R2ModelV2.MAX.Factory.CreateModelElement((R2ModelElement)currentCell.Tag, (R2ModelElement)dataGridView2.CurrentRow.Cells[0].Tag);
-            DataGridViewCell cell = dataGridView2.CurrentRow.Cells[1];
+            R2ModelElement compilerInstruction = R2ModelV2.MAX.Factory.CreateModelElement((R2ModelElement)currentCell.Tag, (R2ModelElement)modelsDataGridView.CurrentRow.Cells[0].Tag);
+            DataGridViewCell cell = modelsDataGridView.CurrentRow.Cells[1];
             cell.Tag = compilerInstruction;
             if (compilerInstruction is R2Criterion)
             {
@@ -677,7 +705,7 @@ namespace HL7_FM_EA_Extension
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            DataGridViewCell cell = dataGridView2.CurrentRow.Cells[1];
+            DataGridViewCell cell = modelsDataGridView.CurrentRow.Cells[1];
             cell.Value = "";
             cell.Tag = null;
             cell.ToolTipText = null;
@@ -696,27 +724,14 @@ namespace HL7_FM_EA_Extension
             List<ObjectType> objects = new List<ObjectType>();
             List<RelationshipType> relationships = new List<RelationshipType>();
 
-            // Create Profile Definition Object
-            R2ProfileDefinition profileDef = new R2ModelV2.MAX.R2ProfileDefinition
-            {
-                Name = "Merged Profile",
-                Type = "Merged",
-                Version = "1.0",
-                LanguageTag = "en-EN",
-                Rationale = " ",
-                Scope = " ",
-                PrioDef = " ",
-                ConfClause = " ",
-                LastModified = Util.FormatLastModified(DateTime.Now)
-            };
-            profileDef.SaveToSource();
+            R2ProfileDefinition profileDef = (R2ProfileDefinition)modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag;
             string defId = profileDef.Id;
             ObjectType maxDefObj = (ObjectType)profileDef.SourceObject;
             maxDefObj.SetTagValue("MAX::ExportDate", Util.FormatLastModified(DateTime.Now));
             maxDefObj.SetTagValue("MAX::ExportFile", fileNameOutput);
             objects.Add(maxDefObj);
 
-            foreach(DataGridViewRow row in dataGridView2.Rows)
+            foreach(DataGridViewRow row in modelsDataGridView.Rows)
             {
                 R2ModelElement element = (R2ModelElement)row.Cells[1].Tag;
                 if (element != null)
