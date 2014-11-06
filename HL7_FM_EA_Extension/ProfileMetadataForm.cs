@@ -32,8 +32,8 @@ namespace HL7_FM_EA_Extension
             {
                 dateTimePicker1.Value = DateTime.Parse(profDef.LastModified);
             }
-            comboBox1.Text = _profDef.Type;
-            comboBox2.Text = _profDef.LanguageTag;
+            typeComboBox.Text = _profDef.Type;
+            languageComboBox.Text = _profDef.LanguageTag;
             rationaleTextBox.Text = _profDef.Rationale;
             scopeTextBox.Text = _profDef.Scope;
             prioDefTextBox.Text = _profDef.PrioDef;
@@ -56,8 +56,8 @@ namespace HL7_FM_EA_Extension
         {
             _profDef.LastModified = Util.FormatLastModified(dateTimePicker1.Value);
             _profDef.Name = nameTextBox.Text;
-            _profDef.Type = comboBox1.Text;
-            _profDef.LanguageTag = comboBox2.Text;
+            _profDef.Type = typeComboBox.Text;
+            _profDef.LanguageTag = languageComboBox.Text;
             _profDef.Rationale = rationaleTextBox.Text;
             _profDef.Scope = scopeTextBox.Text;
             _profDef.PrioDef = prioDefTextBox.Text;

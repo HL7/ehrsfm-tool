@@ -5,18 +5,27 @@
 - When element is Locked/ReadOnly disable Ok/Apply en edit of text field
 - #3480 Enable ChangeNote always for Function/Criteria
 - Added Lock Icon to show ReadOnly
+- Priority is no longer fixed items
 SectionForm
 - ID was not set correctly
 - StartPosition now CenterParent for more consistent behaviour, just as Function and Criterion Forms
 Main
 - Tried to update style even when Element was Locked, fixed
 MergeProfileForm
-- Default Lock BaseModel and Profiles to prevent accidental changes
+- Default Lock/ReadOnly BaseModel and Profiles to prevent accidental changes
 - Now relationship to baseModelElement is restored after loading of profile
 - Double click on Merged Profile opens ProfileDefinitionForm
+- Disable sorting on header for now, gives unconsistent results
+- Some cosmetic changes
+-- BackColor using the Section Colors
+-- Fix width of RowHeaderColumn
 ProfileMetadataForm
 - Forgot to copy UI values to R2ModelElement on "Ok"
 - Added "Apply" and "Cancel" buttons to be more consistent with *Forms
+R2ModelV2,R2ModelV2.EA
+- Added ReadOnly as property and set it in R2ModelV2.EA Load function
+FormsUnitTests
+- Added ProfileMetadataForm test
 
 [2014-nov-03]
 R2ModelV2

@@ -56,7 +56,7 @@ namespace HL7_FM_EA_Extension
                 Text = string.Format("EHR-S FM {0}: {1} (Profile Definition) @{2}", function.Stereotype, function.Name, function.LastModified);
                 switchLinkLabel.Text = "Switch to base Element";
                 priorityLabel.Visible = true;
-                priorityComboBox.SelectedItem = function.Priority;
+                priorityComboBox.Text = function.Priority;
                 priorityComboBox.Visible = true;
 
                 updateLabels();
@@ -69,7 +69,7 @@ namespace HL7_FM_EA_Extension
                 Text = string.Format("EHR-S FM {0}: {1} @{2}", function.Stereotype, function.Name, function.LastModified);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
                 priorityLabel.Visible = false;
-                priorityComboBox.SelectedItem = R2Const.EmptyPriority;
+                priorityComboBox.Text = R2Const.EmptyPriority;
                 priorityComboBox.Visible = false;
 
                 updateLabels(false);

@@ -35,20 +35,29 @@ namespace HL7_FM_EA_Extension
 
         public void PopulateAndShow()
         {
+            toolTip1.SetToolTip(button1, "Will hide rows with an\nelement in the Merged Profile.");
+            toolTip1.SetToolTip(button2, "Will show all rows with an\nelement in the Merged Profile.");
+            toolTip1.SetToolTip(button3, "Show all rows.");
+
             modelsDataGridView.Rows.Clear();
+            modelsDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            modelsDataGridView.RowHeadersWidth = 24;
             modelsDataGridView.Columns.Clear();
             modelsDataGridView.Columns.Add("bm", "");
             modelsDataGridView.Columns.Add("mp", "");
             modelsDataGridView.Columns.Add("p1", "");
             modelsDataGridView.Columns.Add("p2", "");
             modelsDataGridView.Columns.Add("p3", "");
+            // Disable sorting on header for now
+            modelsDataGridView.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+            modelsDataGridView.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
+            modelsDataGridView.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
+            modelsDataGridView.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
+            modelsDataGridView.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
 
-            DataGridViewCellStyle c2CellStyle = new DataGridViewCellStyle();
-            c2CellStyle.BackColor = Color.LightYellow;
-            DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
-            cellStyle.BackColor = Color.White;
-            DataGridViewCellStyle emptyCellStyle = new DataGridViewCellStyle();
-            emptyCellStyle.BackColor = Color.LightGray;
+            DataGridViewCellStyle c2CellStyle = new DataGridViewCellStyle {BackColor = Color.LightYellow};
+            DataGridViewCellStyle cellStyle = new DataGridViewCellStyle {BackColor = Color.White};
+            DataGridViewCellStyle emptyCellStyle = new DataGridViewCellStyle {BackColor = Color.LightGray};
 
             modelsDataGridView.Columns[1].DefaultCellStyle = c2CellStyle;
             modelsDataGridView.Columns[2].DefaultCellStyle = emptyCellStyle;
@@ -65,10 +74,10 @@ namespace HL7_FM_EA_Extension
                 Type = "Merged",
                 Version = "1.0",
                 LanguageTag = "en-EN",
-                Rationale = " ",
-                Scope = " ",
-                PrioDef = " ",
-                ConfClause = " ",
+                Rationale = "",
+                Scope = "",
+                PrioDef = "",
+                ConfClause = "",
                 LastModified = Util.FormatLastModified(DateTime.Now),
                 BaseModelName = baseModel.Name
             };
@@ -104,6 +113,7 @@ namespace HL7_FM_EA_Extension
             foreach (R2ModelElement element in baseModel.children)
             {
                 DataGridViewCell cell = modelsDataGridView.Rows[rowNumber].Cells[COLUMN_BASE_MODEL];
+                cell.Style = new DataGridViewCellStyle { BackColor = R2Config.config.getSectionColor(element.GetExtId(), Color.White) };
                 cell.Tag = element;
                 cell.Value = element.GetExtId();
                 if (element is R2Criterion)
@@ -384,8 +394,7 @@ namespace HL7_FM_EA_Extension
                     if (!string.IsNullOrEmpty(fileName))
                     {
                         Cursor = Cursors.WaitCursor;
-                        DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
-                        cellStyle.BackColor = Color.White;
+                        DataGridViewCellStyle cellStyle = new DataGridViewCellStyle {BackColor = Color.White};
                         switch (e.ColumnIndex)
                         {
                             case COLUMN_BASE_MODEL:
@@ -418,7 +427,7 @@ namespace HL7_FM_EA_Extension
                     }
                 }
             }
-            else
+            else if (e.ColumnIndex != -1)
             {
                 DataGridViewCell cell = modelsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (cell.Tag is R2Section)
@@ -510,12 +519,9 @@ namespace HL7_FM_EA_Extension
             }
 
             // populate cells
-            DataGridViewCellStyle emptyCellStyle = new DataGridViewCellStyle();
-            emptyCellStyle.BackColor = Color.LightGray;
-            DataGridViewCellStyle c2CellStyle = new DataGridViewCellStyle();
-            c2CellStyle.BackColor = Color.LightYellow;
-            DataGridViewCellStyle diffCellStyle = new DataGridViewCellStyle();
-            diffCellStyle.BackColor = Color.LightGreen;
+            DataGridViewCellStyle emptyCellStyle = new DataGridViewCellStyle {BackColor = Color.LightGray};
+            DataGridViewCellStyle c2CellStyle = new DataGridViewCellStyle {BackColor = Color.LightYellow};
+            DataGridViewCellStyle diffCellStyle = new DataGridViewCellStyle {BackColor = Color.LightGreen};
 
             R2ModelElement compareElement;
             switch (compareRow)

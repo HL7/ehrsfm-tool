@@ -15,6 +15,8 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
 - LOW: [ ] Use ModelViewController SourceObject = R2Model for DataGrid e.d.
 - LOW: [ ] IsReadOnly should have effect on SaveObject
 - LOW: [ ] Make ProfilingForm work on Base.R2ModelElement so that we can test it without EA
+- [ ] Priority: use Text instead of SelectedItem
+- [ ] Implement Smart Sorting
 
 DONE
 ====
