@@ -37,7 +37,7 @@
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.versionTextBox = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.typeComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.baseModelTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.languageComboBox = new System.Windows.Forms.ComboBox();
             this.confClauseTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.applyButton = new System.Windows.Forms.Button();
@@ -125,8 +125,8 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.typeComboBox.FormattingEnabled = true;
+            this.typeComboBox.Items.AddRange(new object[] {
             "",
             "Combined",
             "Companion",
@@ -134,11 +134,11 @@
             "Domain",
             "Merged",
             "Realm"});
-            this.comboBox1.Location = new System.Drawing.Point(493, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(98, 21);
-            this.comboBox1.Sorted = true;
-            this.comboBox1.TabIndex = 8;
+            this.typeComboBox.Location = new System.Drawing.Point(493, 25);
+            this.typeComboBox.Name = "typeComboBox";
+            this.typeComboBox.Size = new System.Drawing.Size(98, 21);
+            this.typeComboBox.Sorted = true;
+            this.typeComboBox.TabIndex = 8;
             // 
             // label5
             // 
@@ -222,8 +222,8 @@
             // 
             // comboBox2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.languageComboBox.FormattingEnabled = true;
+            this.languageComboBox.Items.AddRange(new object[] {
             "",
             "en",
             "en-UK",
@@ -233,11 +233,11 @@
             "ja",
             "nl-BE",
             "nl-NL"});
-            this.comboBox2.Location = new System.Drawing.Point(600, 25);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(98, 21);
-            this.comboBox2.Sorted = true;
-            this.comboBox2.TabIndex = 8;
+            this.languageComboBox.Location = new System.Drawing.Point(600, 25);
+            this.languageComboBox.Name = "languageComboBox";
+            this.languageComboBox.Size = new System.Drawing.Size(98, 21);
+            this.languageComboBox.Sorted = true;
+            this.languageComboBox.TabIndex = 8;
             // 
             // confClauseTextBox
             // 
@@ -305,8 +305,8 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.languageComboBox);
+            this.Controls.Add(this.typeComboBox);
             this.Controls.Add(this.versionTextBox);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.nameTextBox);
@@ -338,7 +338,7 @@
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox versionTextBox;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox typeComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -348,7 +348,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox baseModelTextBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox languageComboBox;
         private System.Windows.Forms.TextBox confClauseTextBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button applyButton;
