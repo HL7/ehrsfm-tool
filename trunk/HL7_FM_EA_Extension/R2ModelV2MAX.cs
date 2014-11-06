@@ -119,22 +119,29 @@ namespace HL7_FM_EA_Extension
              * Load a HL7 Model from a MAX file.
              * The MAX file contains a HL7-FM or a HL7-Profile
              */
-            public static Base.R2Model LoadModel(string maxFileName)
+            public static Base.R2Model LoadModel(string maxFileName, bool ReadOnly)
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
                 StreamReader stream = new StreamReader(maxFileName);
-                var sourceModel = (ModelType)serializer.Deserialize(stream);
+                ModelType sourceModel;
+                using (stream)
+                {
+                    sourceModel = (ModelType) serializer.Deserialize(stream);
+                }
 
                 ObjectType modelObjectType =
-                    sourceModel.objects.Single(o => R2Const.ST_FM.Equals(o.stereotype) || R2Const.ST_FM_PROFILE.Equals(o.stereotype));
+                    sourceModel.objects.Single(
+                        o => R2Const.ST_FM.Equals(o.stereotype) || R2Const.ST_FM_PROFILE.Equals(o.stereotype));
 
                 R2Model model = new R2Model(modelObjectType);
+                model.IsReadOnly = ReadOnly;
                 foreach (ObjectType objectType in sourceModel.objects)
                 {
                     R2ModelElement modelElement = Create(objectType);
                     // modelElement can be null when it is a not supported object
                     if (modelElement != null && !(modelElement is R2RootElement))
                     {
+                        modelElement.IsReadOnly = ReadOnly;
                         model.children.Add(modelElement);
                     }
                 }
@@ -149,7 +156,11 @@ namespace HL7_FM_EA_Extension
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
                 StreamReader stream = new StreamReader(maxFileName);
-                var sourceModel = (ModelType)serializer.Deserialize(stream);
+                ModelType sourceModel;
+                using (stream)
+                {
+                    sourceModel = (ModelType) serializer.Deserialize(stream);
+                }
                 ObjectType profDefObj = sourceModel.objects.Single(o => R2Const.ST_FM_PROFILEDEFINITION.Equals(o.stereotype));
                 R2ProfileDefinition profileDefinition = new R2ProfileDefinition(profDefObj);
                 foreach (ObjectType objectType in sourceModel.objects)
@@ -158,6 +169,18 @@ namespace HL7_FM_EA_Extension
                     if (modelElement != null && !(modelElement is R2RootElement))
                     {
                         profileDefinition.children.Add(modelElement);
+
+                        // find Base Element if any
+                        RelationshipType relType =
+                            sourceModel.relationships.SingleOrDefault(r => modelElement.Id.Equals(r.sourceId));
+                        if (relType != null)
+                        {
+                            string destId = relType.destId;
+                            R2ModelElement baseModelElement =
+                                baseModel.children.SingleOrDefault(e => destId.Equals(e.Id));
+                            modelElement.BaseElement = baseModelElement;
+                            modelElement.IsCompilerInstruction = true;
+                        }
                     }
                 }
                 return profileDefinition;

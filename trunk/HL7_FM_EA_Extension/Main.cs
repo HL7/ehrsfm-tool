@@ -251,7 +251,7 @@ namespace HL7_FM_EA_Extension
                     case R2Const.ST_FM_PROFILEDEFINITION:
                         EA.Package profDefPackage = repository.GetPackageByGuid(GUID);
                         R2ProfileDefinition profDef = (R2ProfileDefinition)R2ModelV2.EA_API.Factory.Create(repository, profDefPackage.Element);
-                        profDef.BaseModel = EAHelper.getAssociatedBaseModelName(repository, profDefPackage);
+                        profDef.BaseModelName = EAHelper.getAssociatedBaseModelName(repository, profDefPackage);
                         new ProfileMetadataForm().Show(profDef);
                         return true;
                     case R2Const.ST_SECTION:
@@ -277,26 +277,32 @@ namespace HL7_FM_EA_Extension
             if (ot == EA.ObjectType.otElement)
             {
                 EA.Element el = Repository.GetElementByGuid(GUID);
-                switch (el.Stereotype)
+                if (!el.Locked)
                 {
-                    case R2Const.ST_FUNCTION:
-                    case R2Const.ST_HEADER:
-                    case R2Const.ST_CRITERION:
-                    case R2Const.ST_COMPILERINSTRUCTION:
-                        R2Config.config.updateStyle(el);
-                        el.Update();
-                        break;
+                    switch (el.Stereotype)
+                    {
+                        case R2Const.ST_FUNCTION:
+                        case R2Const.ST_HEADER:
+                        case R2Const.ST_CRITERION:
+                        case R2Const.ST_COMPILERINSTRUCTION:
+                            R2Config.config.updateStyle(el);
+                            el.Update();
+                            break;
+                    }
                 }
             }
             else if (ot == EA.ObjectType.otPackage)
             {
                 EA.Element el = Repository.GetPackageByGuid(GUID).Element;
-                switch (el.Stereotype)
+                if (!el.Locked)
                 {
-                    case R2Const.ST_SECTION:
-                        R2Config.config.updateStyle(el);
-                        el.Update();
-                        break;
+                    switch (el.Stereotype)
+                    {
+                        case R2Const.ST_SECTION:
+                            R2Config.config.updateStyle(el);
+                            el.Update();
+                            break;
+                    }
                 }
             }
         }

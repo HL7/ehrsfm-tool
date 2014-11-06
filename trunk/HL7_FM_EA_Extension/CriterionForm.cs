@@ -37,18 +37,28 @@ namespace HL7_FM_EA_Extension
         {
             ignoreEvents = true;
 
+            lockIcon.Visible = criterion.IsReadOnly;
+            if (criterion.IsReadOnly)
+            {
+                enableEdit = false;
+            }
+            okButton.Enabled = enableEdit;
+            applyButton.Enabled = enableEdit;
+
             seqNoNumericUpDown.Enabled = enableEdit;
             rowNumericUpDown.Enabled = enableEdit;
             textTextBox.Enabled = enableEdit;
             optionalityComboBox.Enabled = enableEdit;
             conditionalCheckBox.Enabled = enableEdit;
             dependentCheckBox.Enabled = enableEdit;
+            changeNoteTextBox.Enabled = enableEdit;
 
             // always show ChangeNote
             changeNoteLinkLabel.Visible = true;
             changeNoteLinkLabel.Enabled = true;
             changeNoteTextBox.Visible = false;
             changeNoteTextBox.Text = criterion.ChangeNote;
+            changeNoteTextBox.Enabled = enableEdit;
 
             if (criterion.IsCompilerInstruction)
             {
@@ -65,9 +75,6 @@ namespace HL7_FM_EA_Extension
             }
             else
             {
-                changeNoteLinkLabel.Visible = false;
-                changeNoteTextBox.Visible = false;
-                changeNoteTextBox.Text = "";
                 textTextBox.Visible = true;
                 textLinkLabel.Enabled = false;
 

@@ -50,6 +50,9 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.confClauseTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.applyButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.helpButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -73,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(401, 9);
+            this.label3.Location = new System.Drawing.Point(407, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 2;
@@ -82,7 +85,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(484, 9);
+            this.label4.Location = new System.Drawing.Point(490, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 13);
             this.label4.TabIndex = 3;
@@ -90,9 +93,9 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(820, 375);
+            this.okButton.Location = new System.Drawing.Point(637, 375);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.Size = new System.Drawing.Size(60, 23);
             this.okButton.TabIndex = 4;
             this.okButton.Text = "Ok";
             this.okButton.UseVisualStyleBackColor = true;
@@ -110,12 +113,12 @@
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(321, 25);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(77, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(83, 20);
             this.dateTimePicker1.TabIndex = 6;
             // 
             // versionTextBox
             // 
-            this.versionTextBox.Location = new System.Drawing.Point(404, 25);
+            this.versionTextBox.Location = new System.Drawing.Point(410, 25);
             this.versionTextBox.Name = "versionTextBox";
             this.versionTextBox.Size = new System.Drawing.Size(77, 20);
             this.versionTextBox.TabIndex = 7;
@@ -130,7 +133,7 @@
             "Derived",
             "Domain",
             "Realm"});
-            this.comboBox1.Location = new System.Drawing.Point(487, 25);
+            this.comboBox1.Location = new System.Drawing.Point(493, 25);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(98, 21);
             this.comboBox1.Sorted = true;
@@ -210,7 +213,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(591, 9);
+            this.label9.Location = new System.Drawing.Point(597, 9);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 13);
             this.label9.TabIndex = 3;
@@ -229,7 +232,7 @@
             "ja",
             "nl-BE",
             "nl-NL"});
-            this.comboBox2.Location = new System.Drawing.Point(594, 25);
+            this.comboBox2.Location = new System.Drawing.Point(600, 25);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(98, 21);
             this.comboBox2.Sorted = true;
@@ -253,11 +256,44 @@
             this.label10.TabIndex = 17;
             this.label10.Text = "Conformance Clause";
             // 
+            // applyButton
+            // 
+            this.applyButton.Location = new System.Drawing.Point(769, 375);
+            this.applyButton.Name = "applyButton";
+            this.applyButton.Size = new System.Drawing.Size(60, 23);
+            this.applyButton.TabIndex = 21;
+            this.applyButton.Text = "Apply";
+            this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(703, 375);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(60, 23);
+            this.cancelButton.TabIndex = 20;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
+            // helpButton
+            // 
+            this.helpButton.Enabled = false;
+            this.helpButton.Location = new System.Drawing.Point(835, 375);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(60, 23);
+            this.helpButton.TabIndex = 22;
+            this.helpButton.Text = "Help";
+            this.helpButton.UseVisualStyleBackColor = true;
+            // 
             // ProfileMetadataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 410);
+            this.Controls.Add(this.helpButton);
+            this.Controls.Add(this.applyButton);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.confClauseTextBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.baseModelTextBox);
@@ -314,5 +350,8 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox confClauseTextBox;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button applyButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button helpButton;
     }
 }

@@ -1,0 +1,21 @@
+﻿TODO
+====
+http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrowse&tracker_id=743
+
+- LOW: [ ] When R2ModelElement.BaseElement is set, is CompilerInstruction dan niet altijd true?
+- LOW: [ ] Sometimes style is not updated e.g. for Optionality
+- [ ] Sync Reference tagged value <-> Relationship
+- [ ] MSI: testlearningcenter profile 22-10-2014.xml; update MDG
+- [ ] MergeProfiles: Add function to align elements that have no base, based on their id
+- [ ] MergeProfiles: Add function to connect merged element to base model based on id
+- [ ] Move R2ModelElement.Priority up one abstract class, now Priority is also in Model/Profile/ProfileDefinition
+- LOW: [ ] R2ModelMax update lastModified when any field is modified
+- LOW: [ ] Move EAHelper in R2ModelEA
+- [ ] ??? Check: Edit Profile: Populate Criteria is really slow ???
+- LOW: [ ] Use ModelViewController SourceObject = R2Model for DataGrid e.d.
+- LOW: [ ] IsReadOnly should have effect on SaveObject
+- LOW: [ ] Make ProfilingForm work on Base.R2ModelElement so that we can test it without EA
+
+DONE
+====
+- [X] Test Load Profile Def in EA

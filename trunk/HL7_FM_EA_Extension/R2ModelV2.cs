@@ -133,10 +133,7 @@ namespace HL7_FM_EA_Extension
             {
             }
 
-            public virtual bool IsReadOnly()
-            {
-                return false;
-            }
+            public bool IsReadOnly { get; set; }
 
             // This R2ModelElement is a Compiler Instruction for a Base Element, base element has Default values
             public R2ModelElement BaseElement { get; set; }
@@ -317,7 +314,7 @@ namespace HL7_FM_EA_Extension
             public string Scope { get { return get(R2Const.TV_SCOPE); } set { set(R2Const.TV_SCOPE, value); } }
             public string PrioDef { get { return get(R2Const.TV_PRIODEF); } set { set(R2Const.TV_PRIODEF, value); } }
             public string ConfClause { get { return get(R2Const.TV_CONFCLAUSE); } set { set(R2Const.TV_CONFCLAUSE, value); } }
-            public string BaseModel { get; set; }
+            public string BaseModelName { get; set; }
         }
 
         public class R2Section : R2ModelElement

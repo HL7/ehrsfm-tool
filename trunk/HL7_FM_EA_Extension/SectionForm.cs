@@ -25,6 +25,7 @@ namespace HL7_FM_EA_Extension
 
             Text = string.Format("EHR-S FM Section: {0} @{1}", _section.Name, _section.LastModified);
             BackColor = R2Config.config.getSectionColor(_section.SectionId, DefaultBackColor);
+            lockIcon.Visible = section.IsReadOnly;
 
             // Other properties
             idTextBox.Text = _section.SectionId;
@@ -35,12 +36,14 @@ namespace HL7_FM_EA_Extension
 
             // TODO: Add "depends on" and "needed by" compartments
 
-            bool enable = !section.IsCompilerInstruction;
-            idTextBox.Enabled = enable;
-            nameTextBox.Enabled = enable;
-            overviewTextBox.Enabled = enable;
-            exampleTextBox.Enabled = enable;
-            actorsTextBox.Enabled = enable;
+            bool enableEdit = !section.IsCompilerInstruction && !section.IsReadOnly;
+            okButton.Enabled = enableEdit;
+            applyButton.Enabled = enableEdit;
+            idTextBox.Enabled = enableEdit;
+            nameTextBox.Enabled = enableEdit;
+            overviewTextBox.Enabled = enableEdit;
+            exampleTextBox.Enabled = enableEdit;
+            actorsTextBox.Enabled = enableEdit;
             ShowDialog();
         }
 
@@ -80,13 +83,9 @@ namespace HL7_FM_EA_Extension
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        private void idTextBox_TextChanged(object sender, EventArgs e)
         {
-            int spidx = nameTextBox.Text.IndexOf(' ');
-            if (spidx == -1) spidx = nameTextBox.Text.Length;
-            string id = nameTextBox.Text.Substring(0, spidx);
-            idTextBox.Text = id;
-            BackColor = R2Config.config.getSectionColor(id, DefaultBackColor);
+            BackColor = R2Config.config.getSectionColor(idTextBox.Text, DefaultBackColor);
         }
     }
 }

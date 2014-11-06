@@ -124,6 +124,7 @@ namespace HL7_FM_EA_Extension
             public override void LoadFromSource()
             {
                 EA.Element element = (EA.Element)SourceObject;
+                IsReadOnly = element.Locked;
                 Stereotype = element.Stereotype;
                 LastModified = Util.FormatLastModified(element.Modified);
                 ChangeNote = EAHelper.GetTaggedValueNotes(element, R2Const.TV_CHANGENOTE);
@@ -150,11 +151,6 @@ namespace HL7_FM_EA_Extension
                 EAHelper.SetTaggedValue(element, R2Const.TV_PRIODEF, "<memo>", get(R2Const.TV_PRIODEF));
                 EAHelper.SetTaggedValue(element, R2Const.TV_CONFCLAUSE, "<memo>", get(R2Const.TV_CONFCLAUSE));
             }
-
-            public override bool IsReadOnly()
-            {
-                return ((EA.Element)SourceObject).Locked;
-            }
         }
 
         public class R2Section : Base.R2Section
@@ -168,6 +164,7 @@ namespace HL7_FM_EA_Extension
             public override void LoadFromSource()
             {
                 EA.Element element = (EA.Element) SourceObject;
+                IsReadOnly = element.Locked;
                 Stereotype = element.Stereotype;
                 LastModified = Util.FormatLastModified(element.Modified);
                 Priority = EAHelper.GetTaggedValue(element, R2Const.TV_PRIORITY, R2Const.EmptyPriority);
@@ -196,11 +193,6 @@ namespace HL7_FM_EA_Extension
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_CHANGENOTE);
                 R2Config.config.updateStyle(element);
             }
-
-            public override bool IsReadOnly()
-            {
-                return ((EA.Element)SourceObject).Locked;
-            }
         }
 
         public class R2Function : Base.R2Function
@@ -214,6 +206,7 @@ namespace HL7_FM_EA_Extension
             public override void LoadFromSource()
             {
                 EA.Element element = (EA.Element)SourceObject;
+                IsReadOnly = element.Locked;
                 Stereotype = element.Stereotype;
                 LastModified = Util.FormatLastModified(element.Modified);
                 Priority = EAHelper.GetTaggedValue(element, R2Const.TV_PRIORITY, R2Const.EmptyPriority);
@@ -242,11 +235,6 @@ namespace HL7_FM_EA_Extension
                 // TODO: update visual style
                 R2Config.config.updateStyle(element);
             }
-
-            public override bool IsReadOnly()
-            {
-                return ((EA.Element)SourceObject).Locked;
-            }
         }
 
         public class R2Criterion : Base.R2Criterion
@@ -260,6 +248,7 @@ namespace HL7_FM_EA_Extension
             public override void LoadFromSource()
             {
                 EA.Element element = (EA.Element) SourceObject;
+                IsReadOnly = element.Locked;
                 Stereotype = element.Stereotype;
                 LastModified = Util.FormatLastModified(element.Modified);
                 Priority = EAHelper.GetTaggedValue(element, R2Const.TV_PRIORITY, R2Const.EmptyPriority);
@@ -295,11 +284,6 @@ namespace HL7_FM_EA_Extension
                 else EAHelper.DeleteTaggedValue(element, R2Const.TV_CHANGENOTE);
                 // TODO: update visual style
                 R2Config.config.updateStyle(element);
-            }
-
-            public override bool IsReadOnly()
-            {
-                return ((EA.Element) SourceObject).Locked;
             }
         }
     }

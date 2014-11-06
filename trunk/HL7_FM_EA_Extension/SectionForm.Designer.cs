@@ -43,6 +43,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.helpButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
+            this.lockIcon = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // okButton
@@ -108,6 +110,7 @@
             this.idTextBox.ReadOnly = true;
             this.idTextBox.Size = new System.Drawing.Size(112, 20);
             this.idTextBox.TabIndex = 30;
+            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
             // label6
             // 
@@ -142,7 +145,6 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(495, 20);
             this.nameTextBox.TabIndex = 32;
-            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // label3
             // 
@@ -173,11 +175,23 @@
             this.applyButton.UseVisualStyleBackColor = true;
             this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
             // 
+            // lockIcon
+            // 
+            this.lockIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lockIcon.Image = ((System.Drawing.Image)(resources.GetObject("lockIcon.Image")));
+            this.lockIcon.InitialImage = null;
+            this.lockIcon.Location = new System.Drawing.Point(575, 6);
+            this.lockIcon.Name = "lockIcon";
+            this.lockIcon.Size = new System.Drawing.Size(16, 16);
+            this.lockIcon.TabIndex = 41;
+            this.lockIcon.TabStop = false;
+            // 
             // SectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 405);
+            this.Controls.Add(this.lockIcon);
             this.Controls.Add(this.helpButton);
             this.Controls.Add(this.applyButton);
             this.Controls.Add(this.okButton);
@@ -196,7 +210,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SectionForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EHR-S FM Section";
+            ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,5 +234,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button helpButton;
         private System.Windows.Forms.Button applyButton;
+        private System.Windows.Forms.PictureBox lockIcon;
     }
 }

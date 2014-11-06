@@ -122,6 +122,7 @@
     <Compile Include="R2Validator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TODO.txt" />
     <None Include="EHRSFM\EHRS_FM_R2_N1_C3_FunctionList_2012MAY.xml">
       <SubType>Designer</SubType>
     </None>
