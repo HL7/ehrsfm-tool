@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2014-nov-11]
+R2ProfileCompiler
+- Include "ChangeNote" in compiled profile. Used by e.g. the Italy FP.
+
 [2014-nov-06]
 *Form
 - When element is Locked/ReadOnly disable Ok/Apply en edit of text field
