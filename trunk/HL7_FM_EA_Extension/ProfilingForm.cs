@@ -193,12 +193,10 @@ namespace HL7_FM_EA_Extension
                 criteriaListView.Columns.Add("Name");
                 criteriaListView.Columns[0].Width = criteriaListView.Width - 4;
                 criteriaListView.HeaderStyle = ColumnHeaderStyle.None;
-                foreach (EA.Element child in element.Elements)
+
+                foreach (EA.Element child in element.Elements.Cast<EA.Element>().Where(t => R2Const.ST_CRITERION.Equals(t.Stereotype)))
                 {
-                    if (R2Const.ST_CRITERION.Equals(child.Stereotype))
-                    {
-                        criteriaListView.Items.Add(createCriteriaListViewItem(child));
-                    }
+                    criteriaListView.Items.Add(createCriteriaListViewItem(child));
                 }
                 groupBox2.Show();
             }
