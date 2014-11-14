@@ -2,12 +2,11 @@
 =========
 [2014-nov-13]
 Function/CriterionForm
-- Priority field is now toggled by the fact that an element is a compiler instruction (is in the profile definition package)
-- Enable Edit all Fields for new Functions
+- GForge #3732: Priority field is now toggled by the fact that an element is a compiler instruction (is in the profile definition package)
+- GForge #3666: Enable Edit all Fields for new Functions
+- Priority can now be something else than the predefined items
 R2ModelV2
 - IsCompilerInstruction now denotes that an element is in the profile definition package
-CirterionForm
-- Priority can now be something else than the predefined items
 ProfilingForm
 - After selecting a Header/Function the Criteria were always included, not ignoreEvents.
 - Keep selection visible
