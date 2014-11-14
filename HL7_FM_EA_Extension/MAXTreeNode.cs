@@ -62,6 +62,10 @@ namespace HL7_FM_EA_Extension
         {
             get { return instructionObject != null;  }
         }
+        public int instrID
+        {
+            get { return hasInstruction?int.Parse(instructionObject.id):-1; }
+        }
         public List<RelationshipType> relationships = new List<RelationshipType>();
         public bool hasConsequenceLinks
         {

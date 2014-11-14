@@ -111,12 +111,12 @@ namespace HL7_FM_EA_Extension
                                 {
                                     dstName = objectsCI[rel.destId].name.Split(new[] { ' ' })[0];
                                 }
-                                _OutputListener.writeOutput("WARN: Ignored element {0}. Destination is in profile definition: {1}", srcName, dstName);
+                                _OutputListener.writeOutput("WARN: Ignored element {0}. Destination is in profile definition: {1}", srcName, dstName, int.Parse(rel.sourceId));
                             }
                             else
                             {
                                 // E.g. for ExternalReferences
-                                _OutputListener.writeOutput("WARN: Ignored element {0}. Destination not in base model: {1}", objectsCI[rel.sourceId].name, rel.destId);
+                                _OutputListener.writeOutput("WARN: Ignored element {0}. Destination not in base model: {1}", objectsCI[rel.sourceId].name, rel.destId, int.Parse(rel.sourceId));
                             }
                         }
                     }
@@ -176,7 +176,7 @@ namespace HL7_FM_EA_Extension
                         }
                         else
                         {
-                            _OutputListener.writeOutput("WARN: already new: {0}", maxObj.name);
+                            _OutputListener.writeOutput("WARN: already new: {0}", maxObj.name, int.Parse(maxObj.id));
                         }
                     }
                 }
@@ -439,7 +439,7 @@ namespace HL7_FM_EA_Extension
                 int changeNoteCount = node.instructionObject.tag.Count(t => R2Const.TV_CHANGENOTE.Equals(t.name));
                 if (changeNoteCount > 1)
                 {
-                    _OutputListener.writeOutput("WARN: {0} expected 0..1 ChangeNote tag but got {1}", node.baseModelObject.name, changeNoteCount);
+                    _OutputListener.writeOutput("WARN: {0} expected 0..1 ChangeNote tag but got {1}", node.baseModelObject.name, changeNoteCount, node.instrID);
                 }
                 TagType tagChangeNote = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_CHANGENOTE.Equals(t.name));
                 if (tagChangeNote != null)
@@ -459,19 +459,19 @@ namespace HL7_FM_EA_Extension
                     int optionalityCount = node.baseModelObject.tag.Count(t => R2Const.TV_OPTIONALITY.Equals(t.name));
                     if (optionalityCount == 0)
                     {
-                        _OutputListener.writeOutput("ERROR: {0} expected 1 Optionality tag but got none", node.baseModelObject.name);
+                        _OutputListener.writeOutput("ERROR: {0} expected 1 Optionality tag but got none", node.baseModelObject.name, node.instrID);
                         return;
                     }
                     else if (optionalityCount != 1)
                     {
-                        _OutputListener.writeOutput("WARN: {0} expected 1 Optionality tag but got {1}", node.baseModelObject.name, optionalityCount);
+                        _OutputListener.writeOutput("WARN: {0} expected 1 Optionality tag but got {1}", node.baseModelObject.name, optionalityCount, node.instrID);
                     }
                     TagType tagOptionality = node.baseModelObject.tag.First(t => R2Const.TV_OPTIONALITY.Equals(t.name));
 
                     int newOptionalityCount = node.instructionObject.tag.Count(t => R2Const.TV_OPTIONALITY.Equals(t.name));
                     if (newOptionalityCount > 1)
                     {
-                        _OutputListener.writeOutput("WARN: {0} expected 0..1 Optionality tag but got {1}", node.baseModelObject.name, newOptionalityCount);
+                        _OutputListener.writeOutput("WARN: {0} expected 0..1 Optionality tag but got {1}", node.baseModelObject.name, newOptionalityCount, node.instrID);
                     }
                     TagType tagOptionalityNew = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_OPTIONALITY.Equals(t.name));
                     if (tagOptionalityNew != null && !tagOptionalityNew.value.Equals(tagOptionality.value))
@@ -495,32 +495,36 @@ namespace HL7_FM_EA_Extension
                     node.baseModelObject.notes = node.instructionObject.notes;
                 }
 
-                // override Priority
+                // is a new Priority in the instruction?
                 TagType tagPriorityNew = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_PRIORITY.Equals(t.name));
                 if (tagPriorityNew != null)
                 {
                     int newPriorityCount = node.instructionObject.tag.Count(t => R2Const.TV_PRIORITY.Equals(t.name));
                     if (newPriorityCount > 1)
                     {
-                        _OutputListener.writeOutput("WARN!: {0} expected 1 Priority tag but got {1}", node.baseModelObject.name, newPriorityCount);
+                        _OutputListener.writeOutput("WARN: {0} expected 1 Priority tag but got {1}", node.baseModelObject.name, newPriorityCount, node.instrID);
                     }
-
-                    TagType tagPriority = node.baseModelObject.tag.FirstOrDefault(t => R2Const.TV_PRIORITY.Equals(t.name));
-                    if (tagPriority != null)
+                    if (!string.IsNullOrEmpty(tagPriorityNew.value))
                     {
-                        tagPriority.value = tagPriorityNew.value;
+                        priority = tagPriorityNew.value;
                     }
-                    else
-                    {
-                        node.addBaseModelTag(R2Const.TV_PRIORITY, tagPriorityNew.value);
-                    }
+                }
+                // update priority in the compiled (base) profile
+                TagType tagPriority = node.baseModelObject.tag.FirstOrDefault(t => R2Const.TV_PRIORITY.Equals(t.name));
+                if (tagPriority != null)
+                {
+                    tagPriority.value = priority;
+                }
+                else
+                {
+                    node.addBaseModelTag(R2Const.TV_PRIORITY, priority);
                 }
 
                 // do Qualifier stuff. Delete or Deprecate
                 int newQualifierCount = node.instructionObject.tag.Count(t => R2Const.TV_QUALIFIER.Equals(t.name));
                 if (newQualifierCount > 1)
                 {
-                    _OutputListener.writeOutput("WARN: {0} expected 0..1 Qualifier tag but got {1}", node.baseModelObject.name, newQualifierCount);
+                    _OutputListener.writeOutput("WARN: {0} expected 0..1 Qualifier tag but got {1}", node.baseModelObject.name, newQualifierCount, node.instrID);
                 }
                 TagType tagQualifier = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_QUALIFIER.Equals(t.name));
                 if (tagQualifier != null)
