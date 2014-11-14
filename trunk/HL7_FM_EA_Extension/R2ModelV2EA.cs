@@ -83,6 +83,13 @@ namespace HL7_FM_EA_Extension
                 if (modelElement != null && repository != null)
                 {
                     modelElement.Path = GetModelElementPath(repository, element);
+
+                    // is element is in profile definition package this is a compiler instruction
+                    EA.Package ProfileDefinitionPackage = repository.GetPackageByID(((EA.Element)modelElement.SourceObject).PackageID);
+                    if (R2Const.ST_FM_PROFILEDEFINITION.Equals(ProfileDefinitionPackage.StereotypeEx))
+                    {
+                        modelElement.IsCompilerInstruction = true;
+                    }
                 }
                 return modelElement;
             }

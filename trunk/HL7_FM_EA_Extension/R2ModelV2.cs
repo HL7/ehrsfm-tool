@@ -231,7 +231,7 @@ namespace HL7_FM_EA_Extension
             {
                 get
                 {
-                    if (IsCompilerInstruction && BaseElement != null)
+                    if (IsCompilerInstruction && HasBaseElement)
                     {
                         return BaseElement.Path;
                     }
@@ -249,7 +249,7 @@ namespace HL7_FM_EA_Extension
             {
                 get
                 {
-                    if (IsCompilerInstruction && BaseElement != null)
+                    if (IsCompilerInstruction && HasBaseElement)
                     {
                         return BaseElement.Stereotype;
                     }
@@ -264,6 +264,7 @@ namespace HL7_FM_EA_Extension
                 }
             }
 
+            public bool HasBaseElement { get { return BaseElement != null; } }
             public bool IsCompilerInstruction { get; set; }
             public string Priority
             {

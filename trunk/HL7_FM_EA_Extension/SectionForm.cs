@@ -36,7 +36,7 @@ namespace HL7_FM_EA_Extension
 
             // TODO: Add "depends on" and "needed by" compartments
 
-            bool enableEdit = !section.IsCompilerInstruction && !section.IsReadOnly;
+            bool enableEdit = !section.IsReadOnly;
             okButton.Enabled = enableEdit;
             applyButton.Enabled = enableEdit;
             idTextBox.Enabled = enableEdit;

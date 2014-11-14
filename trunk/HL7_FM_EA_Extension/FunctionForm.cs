@@ -25,7 +25,7 @@ namespace HL7_FM_EA_Extension
             _function = function;
             BackColor = R2Config.config.getSectionColor(_function.FunctionId, DefaultBackColor);
             setShowingFunction(function, true);
-            switchLinkLabel.Visible = function.IsCompilerInstruction;
+            switchLinkLabel.Visible = function.HasBaseElement;
             ShowDialog();
         }
 
@@ -50,14 +50,24 @@ namespace HL7_FM_EA_Extension
 
             if (function.IsCompilerInstruction)
             {
+                priorityLabel.Visible = true;
+                priorityComboBox.Text = function.Priority;
+                priorityComboBox.Visible = true;
+            }
+            else
+            {
+                priorityLabel.Visible = false;
+                priorityComboBox.Text = R2Const.EmptyPriority;
+                priorityComboBox.Visible = false;
+            }
+
+            if (function.HasBaseElement)
+            {
                 descriptionLinkLabel.Enabled = false;
                 descriptionTextBox.Visible = true;
 
                 Text = string.Format("EHR-S FM {0}: {1} (Profile Definition) @{2}", function.Stereotype, function.Name, function.LastModified);
                 switchLinkLabel.Text = "Switch to base Element";
-                priorityLabel.Visible = true;
-                priorityComboBox.Text = function.Priority;
-                priorityComboBox.Visible = true;
 
                 updateLabels();
             }
@@ -68,9 +78,6 @@ namespace HL7_FM_EA_Extension
 
                 Text = string.Format("EHR-S FM {0}: {1} @{2}", function.Stereotype, function.Name, function.LastModified);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
-                priorityLabel.Visible = false;
-                priorityComboBox.Text = R2Const.EmptyPriority;
-                priorityComboBox.Visible = false;
 
                 updateLabels(false);
             }
