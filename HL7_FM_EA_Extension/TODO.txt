@@ -4,7 +4,6 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
 
 - LOW: [ ] Sometimes style is not updated e.g. when Optionality changes
 - [ ] Sync Reference tagged value <-> Relationship
-- [ ] MSI: testlearningcenter profile 22-10-2014.xml; update MDG
 - [ ] MergeProfiles: Add function to align elements that have no base, based on their id
 - [ ] MergeProfiles: Add function to connect merged element to base model based on id
 - [ ] Move R2ModelElement.Priority up one abstract class, now Priority is also in Model/Profile/ProfileDefinition

@@ -1,5 +1,5 @@
 <MDG.Technology version="1.0">
-  <Documentation id="1" name="HL7-FM" version="0.16" notes="The EHR-S FM Tool&#xA;Containing:&#xA;- Learning Center&#xA;- UML Profile&#xA;- RTF Templates&#xA;- Tagged Value Types&#xA;- Searches"/>
+  <Documentation id="1" name="HL7-FM" version="0.17" notes="The EHR-S FM Tool&#xA;Containing:&#xA;- Learning Center&#xA;- UML Profile&#xA;- RTF Templates&#xA;- Tagged Value Types&#xA;- Searches"/>
   <UMLProfiles>
     <UMLProfile profiletype="uml2">
       <Documentation id="F2D4FBFF-F" name="HL7-FM" version="1.0" notes="HL7-FM"/>
@@ -185,28 +185,34 @@
       <Documentation id="E3990698-7" name="Test Learning Center" version="1.0" notes="Test Learning Center"/>
       <Content>
         <Stereotypes>
-          <Stereotype name="Browse in the Functional Model" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+          <Stereotype name="Browse in the Functional Model" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
             <AppliesTo>
               <Apply type="ToolboxPage"/>
             </AppliesTo>
             <TaggedValues>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Browse/ReadEHRSFM.pdf" type="" description="" unit="" values="" default="Read the EHR-S FM"/>
-              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Browse/BrowseEHRSFM.pdf" type="" description="" unit="" values="" default="Browse the EHR-S FM"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Browse/SearchEHRSFM.pdf" type="" description="" unit="" values="" default="Search the EHR-S FM"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Browse/TraceabilityElements.pdf)" type="" description="" unit="" values="" default="Traceability"/>
               <Tag name="EASystem::ShowMovie(http://ehrsfmfp.results4care.eu/LearningCenter/Browse/BrowseEHR_S_ FM_FINAL.mp4) " type="" description="" unit="" values="" default="Video of Browsing the EHR-S FM"/>
             </TaggedValues>
           </Stereotype>
-          <Stereotype name="Export (part) Base model or Functional Profile" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+          <Stereotype name="Combine, Compare and Merge" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
             <AppliesTo>
               <Apply type="ToolboxPage"/>
             </AppliesTo>
             <TaggedValues>
-              <Tag name="EASystem::ShowURL(http:://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Export/ExportSection.pdf)" type="" description="" unit="" values="" default="Export a section of the EHR-S FM"/>
-              <Tag name="EASystem::ShowURL(http:://ehrsfmfp.results4care.eu/EHRSFMFP/LearningCenter/Export/PublicationFM_FP.pdf)" type="" description="" unit="" values="" default="Create a publication of the functional Model/ Profile"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Combine, Compare &amp; Merge/CombineCompareMerge.pdf)" type="" description="" unit="" values="" default="Combine, Compare and Merge Functional Profiles"/>
             </TaggedValues>
           </Stereotype>
-          <Stereotype name="FAQ and Lessons Learned" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+          <Stereotype name="Export (part) Base model or Functional Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+            <AppliesTo>
+              <Apply type="ToolboxPage"/>
+            </AppliesTo>
+            <TaggedValues>
+              <Tag name="EASystem::ShowURL(http:://ehrsfmfp.results4care.eu/LearningCenter/Export/ExportSection.pdf)" type="" description="" unit="" values="" default="Export a section of the EHR-S FM"/>
+            </TaggedValues>
+          </Stereotype>
+          <Stereotype name="FAQ and Lessons Learned" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
             <AppliesTo>
               <Apply type="ToolboxPage"/>
             </AppliesTo>
@@ -214,7 +220,7 @@
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/FAQ.pdf)" type="" description="" unit="" values="" default="FAQ and lessons learned"/>
             </TaggedValues>
           </Stereotype>
-          <Stereotype name="How-To Guide for Creating Functional Profiles" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+          <Stereotype name="How-To Guide for Creating Functional Profiles" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
             <AppliesTo>
               <Apply type="ToolboxPage"/>
             </AppliesTo>
@@ -224,12 +230,12 @@
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsGeneralFPInformation.pdf)" type="" description="" unit="" values="" default="Providing General Profile Information"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsCreatingConformanceClause.pdf)" type="" description="" unit="" values="" default="Creating the Conformance Clause "/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsSelectingFunctions.pdf)" type="" description="" unit="" values="" default="Selecting Functions "/>
-              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsCreatingConformanceCriteria.pdf)" type="" description="" unit="" values="" default="Create Conformance Criteria"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsCreatingCC.pdf)" type="" description="" unit="" values="" default="Create Conformance Criteria"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/Principles.pdf)" type="" description="" unit="" values="" default="Principles"/>
-              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsRegistration&amp;Ballot.pdf" type="" description="" unit="" values="" default="Profile registration and ballot process"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Instructions/InstructionsRegistration&amp;Ballot.pdf)" type="" description="" unit="" values="" default="Profile registration and ballot process"/>
             </TaggedValues>
           </Stereotype>
-          <Stereotype name="Overview and Definitions of the Functional Model (normative)" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+          <Stereotype name="Overview and Definitions of the Functional Model (normative)" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
             <AppliesTo>
               <Apply type="ToolboxPage"/>
             </AppliesTo>
@@ -250,7 +256,7 @@
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/14Glossary.pdf)" type="" description="" unit="" values="" default="Glossary"/>
             </TaggedValues>
           </Stereotype>
-          <Stereotype name="Edit the Functional Model/ Profile" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+          <Stereotype name="Edit the Functional Model/ Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
             <AppliesTo>
               <Apply type="ToolboxPage"/>
             </AppliesTo>
@@ -262,7 +268,7 @@
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Edit_FM_FP/MovingEHR_S_FMFPcomponents.pdf)" type="" description="" unit="" values="" default="Moving EHR-S FM/FP components"/>
             </TaggedValues>
           </Stereotype>
-          <Stereotype name="Create a Functional Profile" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+          <Stereotype name="Create a Functional Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
             <AppliesTo>
               <Apply type="ToolboxPage"/>
             </AppliesTo>
@@ -273,11 +279,11 @@
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/3CreatePackageforFP.pdf)" type="" description="" unit="" values="" default="Create a package in EA for the new functional profile"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/4ProvideGeneralInformation.pdf)" type="" description="" unit="" values="" default="Provide General Information"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/5CreateUMLmodelNewFP.pdf)" type="" description="" unit="" values="" default="Create an UML model for the new functional profile"/>
-              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/7CreateProfileDefinition.pdf)" type="" description="" unit="" values="" default="Create the Profile Definition for the new functional profile"/>
-              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/8 ?)" type="" description="" unit="" values="" default="Validate the Profile Definition"/>
-              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/9CreateCompiledProfile.pdf)" type="" description="" unit="" values="" default="Create the Compiled Profile"/>
-              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/10CreatePublication.pdf)" type="" description="" unit="" values="" default="Create publication"/>
-              <Tag name="EASystem::ShowMovie(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/CreateProfileDefinition_FINAL.mp4)" type="" description="" unit="" values="" default=""/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/6CreateProfileDefinition.pdf)" type="" description="" unit="" values="" default="Create the Profile Definition for the new functional profile"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/7CreateCompiledProfile.pdf)" type="" description="" unit="" values="" default="Create the Compiled Profile"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/8Validation.pdf)" type="" description="" unit="" values="" default="Validate the Profile Definition"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/9CreatePublication.pdf)" type="" description="" unit="" values="" default="Create publication"/>
+              <Tag name="EASystem::ShowMovie(http://ehrsfmfp.results4care.eu/LearningCenter/Creation/CreateProfileDefinition_FINAL.mp4)" type="" description="" unit="" values="" default="Create Profile Definition"/>
             </TaggedValues>
           </Stereotype>
         </Stereotypes>
