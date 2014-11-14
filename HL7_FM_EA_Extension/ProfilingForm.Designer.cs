@@ -46,7 +46,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.criteriaListView = new System.Windows.Forms.ListView();
+            this.button2 = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -62,6 +64,7 @@
             // mainListView
             // 
             this.mainListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainListView.HideSelection = false;
             this.mainListView.Location = new System.Drawing.Point(0, 0);
             this.mainListView.MultiSelect = false;
             this.mainListView.Name = "mainListView";
@@ -111,6 +114,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.button2);
             this.splitContainer2.Panel1.Controls.Add(this.mainListView);
             // 
             // splitContainer2.Panel2
@@ -281,6 +285,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.criteriaListView);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -291,10 +296,21 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Criteria for selected Header or Function";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(430, 324);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(33, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "<->";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // criteriaListView
             // 
             this.criteriaListView.CheckBoxes = true;
             this.criteriaListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.criteriaListView.HideSelection = false;
             this.criteriaListView.Location = new System.Drawing.Point(3, 16);
             this.criteriaListView.MultiSelect = false;
             this.criteriaListView.Name = "criteriaListView";
@@ -307,6 +323,16 @@
             this.criteriaListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.criteriaListView_ItemChecked);
             this.criteriaListView.SelectedIndexChanged += new System.EventHandler(this.criteriaListBox_SelectedIndexChanged);
             this.criteriaListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.criteriaListView_MouseDoubleClick);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(299, 368);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(33, 23);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "<->";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ProfilingForm
             // 
@@ -354,6 +380,8 @@
         private System.Windows.Forms.Button findButton;
         private System.Windows.Forms.CheckBox groupCheckBox;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
 
     }
 }

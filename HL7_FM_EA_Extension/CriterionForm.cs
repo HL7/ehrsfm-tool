@@ -25,7 +25,7 @@ namespace HL7_FM_EA_Extension
             _criterion = criterion;
             BackColor = R2Config.config.getSectionColor(_criterion.Name, DefaultBackColor);
             setShowingCriterion(criterion, true);
-            switchLinkLabel.Visible = criterion.IsCompilerInstruction;
+            switchLinkLabel.Visible = criterion.HasBaseElement;
             ShowDialog();
         }
 
@@ -62,14 +62,24 @@ namespace HL7_FM_EA_Extension
 
             if (criterion.IsCompilerInstruction)
             {
+                priorityLabel.Visible = true;
+                priorityComboBox.Visible = true;
+                priorityComboBox.Text = criterion.Priority;
+            }
+            else
+            {
+                priorityLabel.Visible = false;
+                priorityComboBox.Visible = false;
+                priorityComboBox.Text = R2Const.EmptyPriority;
+            }
+
+            if (criterion.HasBaseElement)
+            {
                 textLinkLabel.Enabled = false;
                 textTextBox.Visible = true;
 
                 Text = string.Format("EHR-S FM Criterion: {0} (Profile Definition) @{1}", criterion.Name, criterion.LastModified);
                 switchLinkLabel.Text = "Switch to base Element";
-                priorityLabel.Visible = true;
-                priorityComboBox.Visible = true;
-                priorityComboBox.SelectedItem = criterion.Priority;
 
                 updateLabels();
             }
@@ -80,9 +90,6 @@ namespace HL7_FM_EA_Extension
 
                 Text = string.Format("EHR-S FM Criterion: {0} @{1}", criterion.Name, criterion.LastModified);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
-                priorityLabel.Visible = false;
-                priorityComboBox.Visible = false;
-                priorityComboBox.SelectedItem = R2Const.EmptyPriority;
 
                 updateLabels(false);
             }

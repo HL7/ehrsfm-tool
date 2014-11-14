@@ -79,7 +79,9 @@ namespace HL7_FM_EA_Extension
                     item.Group = mainGroup;
                     mainListView.Items.Add(item);
 
+                    Cursor = Cursors.WaitCursor;
                     visitPackage(selectedPackage);
+                    Cursor = Cursors.Default;
                 }
                 else
                 {
@@ -133,16 +135,14 @@ namespace HL7_FM_EA_Extension
         private ListViewItem createListViewItem(EA.Package package)
         {
             ListViewItem item = new ListViewItem(package.Name);
-            DefinitionLink dl = new DefinitionLink(repository, package.Element);
-            item.Tag = dl;
+            item.Tag = new DefinitionLink(repository, package.Element);
             return item;
         }
 
         private ListViewItem createListViewItem(EA.Element element)
         {
             ListViewItem item = new ListViewItem(element.Name);
-            DefinitionLink dl = new DefinitionLink(repository, element);
-            item.Tag = dl;
+            item.Tag = new DefinitionLink(repository, element);
             updateListViewItem(item);
             return item;
         }
@@ -151,8 +151,8 @@ namespace HL7_FM_EA_Extension
         {
             ListViewItem item = new ListViewItem();
             DefinitionLink dl = new DefinitionLink(repository, element);
-            R2Criterion criterion = (R2Criterion)dl.modelElement;
             item.Tag = dl;
+            R2Criterion criterion = (R2Criterion)dl.modelElement;
             item.Text = string.Format("{0} {1}", criterion.Name, criterion.Text);
             updateListViewItem(item);
             return item;
@@ -160,6 +160,7 @@ namespace HL7_FM_EA_Extension
 
         private void mainListView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             groupBox2.Hide();
             groupBox3.Hide();
 
@@ -186,7 +187,6 @@ namespace HL7_FM_EA_Extension
                 {
                     excludeRadioButton.Checked = true;
                 }
-                ignoreEvent = false;
 
                 // Update listBox with Criteria of selected
                 criteriaListView.Items.Clear();
@@ -199,7 +199,9 @@ namespace HL7_FM_EA_Extension
                     criteriaListView.Items.Add(createCriteriaListViewItem(child));
                 }
                 groupBox2.Show();
+                ignoreEvent = false;
             }
+            Cursor = Cursors.Default;
         }
 
         private void updateSelectedListViewItem()
@@ -256,7 +258,7 @@ namespace HL7_FM_EA_Extension
                         item.BackColor = BACKCOLOR_DELETED;
                         item.Checked = false;
                         break;
-                    case "EXCLUDE": // special for excluded criteria
+                    case "EXCLUDE": // special for excluded criteria; excluded is kind of deleted
                         item.ForeColor = Color.LightGray;
                         item.BackColor = BACKCOLOR_EXCLUDED;
                         item.Checked = false;
@@ -272,7 +274,7 @@ namespace HL7_FM_EA_Extension
             {
                 item.ForeColor = Color.Black;
                 item.BackColor = BACKCOLOR_EXCLUDED;
-                item.Checked = true;
+                item.Checked = false;
             }
             ignoreEvent = _ignoreEvent;
         }
@@ -290,6 +292,7 @@ namespace HL7_FM_EA_Extension
                 con.Update();
                 dl.compilerInstructionElement.Connectors.Refresh();
                 dl.modelElement = R2ModelV2.EA_API.Factory.Create(repository, dl.compilerInstructionElement);
+                profileDefinitionPackage.Elements.Refresh();
             }
 
             switch (qualifier)
@@ -327,18 +330,26 @@ namespace HL7_FM_EA_Extension
             // Only delete if there is a Compiler Instruction
             if (dl.compilerInstructionElement != null)
             {
-                for (short index = 0; index < profileDefinitionPackage.Elements.Count; index++)
-                {
-                    EA.Element _element = (EA.Element) profileDefinitionPackage.Elements.GetAt(index);
-                    if (_element.ElementID == dl.compilerInstructionElement.ElementID)
-                    {
-                        profileDefinitionPackage.Elements.Delete(index);
-                        break;
-                    }
-                }
-                profileDefinitionPackage.Elements.Refresh();
+                Cursor = Cursors.WaitCursor;
+                deleteElementRecurse(profileDefinitionPackage.Elements, dl.compilerInstructionElement.ElementID);
                 dl.compilerInstructionElement = null;
                 dl.modelElement = R2ModelV2.EA_API.Factory.Create(repository, dl.baseModelElement);
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void deleteElementRecurse(EA.Collection Elements, int ElementID)
+        {
+            for (short index = 0; index < Elements.Count; index++)
+            {
+                EA.Element _element = (EA.Element)Elements.GetAt(index);
+                if (_element.ElementID == ElementID)
+                {
+                    Elements.Delete(index);
+                    Elements.Refresh();
+                    break;
+                }
+                deleteElementRecurse(_element.Elements, ElementID);
             }
         }
 
@@ -373,18 +384,16 @@ namespace HL7_FM_EA_Extension
                 {
                     tvChangeNote = (EA.TaggedValue)ciElement.TaggedValues.GetByName(R2Const.TV_CHANGENOTE);
                 }
+                ignoreEvent = true;
                 if (tvChangeNote != null)
                 {
-                    ignoreEvent = true;
                     textBox1.Text = tvChangeNote.Notes;
-                    ignoreEvent = false;
                 }
                 else
                 {
-                    ignoreEvent = true;
                     textBox1.Text = "";
-                    ignoreEvent = false;
                 }
+                ignoreEvent = false;
                 groupBox3.Show();
             }
             else
@@ -405,16 +414,19 @@ namespace HL7_FM_EA_Extension
 
         private void criteriaListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            ListViewItem selected = criteriaListView.SelectedItems[0];
+/*            ListViewItem selected = criteriaListView.SelectedItems[0];
             DefinitionLink dl = (DefinitionLink)selected.Tag;
+
             // make sure CI is created first
-            setCompilerInstruction(dl, R2Const.Qualifier.None, textBox1.Text);
+            //setCompilerInstruction(dl, R2Const.Qualifier.None, textBox1.Text);
 
             R2Criterion criterion = (R2Criterion)dl.modelElement;
             new CriterionForm().Show(criterion);
 
             // Update Criterion Text in Critaria List
             selected.Text = string.Format("{0} {1}", criterion.Name, criterion.Text);
+
+            updateListViewItem(selected);*/
         }
 
         private void mainListView_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -483,9 +495,44 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    setCompilerInstruction(dl, R2Const.Qualifier.None);
+                    // Tri-state; back to normal
+                    if (dl.compilerInstructionElement != null)
+                    {
+                        ignoreEvent = true;
+                        selected.Checked = false;
+                        deleteCompilerInstruction(dl);
+                        ignoreEvent = false;
+                    }
+                    else
+                    {
+                        setCompilerInstruction(dl, R2Const.Qualifier.None);
+                    }
                 }
                 updateListViewItem(selected);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (criteriaListView.SelectedItems.Count > 0)
+            {
+                DefinitionLink dl = (DefinitionLink) criteriaListView.SelectedItems[0].Tag;
+                if (dl.compilerInstructionElement != null)
+                {
+                    repository.ShowInProjectView(dl.compilerInstructionElement);
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (mainListView.SelectedItems.Count > 0)
+            {
+                DefinitionLink dl = (DefinitionLink) mainListView.SelectedItems[0].Tag;
+                if (dl.compilerInstructionElement != null)
+                {
+                    repository.ShowInProjectView(dl.compilerInstructionElement);
+                }
             }
         }
     }
@@ -523,6 +570,6 @@ namespace HL7_FM_EA_Extension
 
         public EA.Element baseModelElement;
         public EA.Element compilerInstructionElement;
-        public R2ModelV2.Base.R2ModelElement modelElement;
+        public R2ModelElement modelElement;
     }
 }

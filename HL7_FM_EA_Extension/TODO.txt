@@ -2,8 +2,7 @@
 ====
 http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrowse&tracker_id=743
 
-- LOW: [ ] When R2ModelElement.BaseElement is set, is CompilerInstruction dan niet altijd true?
-- LOW: [ ] Sometimes style is not updated e.g. for Optionality
+- LOW: [ ] Sometimes style is not updated e.g. when Optionality changes
 - [ ] Sync Reference tagged value <-> Relationship
 - [ ] MSI: testlearningcenter profile 22-10-2014.xml; update MDG
 - [ ] MergeProfiles: Add function to align elements that have no base, based on their id
@@ -11,13 +10,21 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
 - [ ] Move R2ModelElement.Priority up one abstract class, now Priority is also in Model/Profile/ProfileDefinition
 - LOW: [ ] R2ModelMax update lastModified when any field is modified
 - LOW: [ ] Move EAHelper in R2ModelEA
-- [ ] ??? Check: Edit Profile: Populate Criteria is really slow ???
 - LOW: [ ] Use ModelViewController SourceObject = R2Model for DataGrid e.d.
 - LOW: [ ] IsReadOnly should have effect on SaveObject
 - LOW: [ ] Make ProfilingForm work on Base.R2ModelElement so that we can test it without EA
-- [ ] Priority: use Text instead of SelectedItem
-- [ ] Implement Smart Sorting
+- [ ] MergeProfilesForm Implement Smart Sorting
 
-DONE
-====
-- [X] Test Load Profile Def in EA
+---------------
+Italy profile issue 2014-nov-08:
+
+CI: AS.2.7#02
+- Has Aggregation to AS.2.7 CI and Generalization???  Aggregation should not be there. Compiler trips on this.
+
+CI: CPS.9.2.3#07
+CI: TI.1.3#03
+
+There are 2, 1 Criteria and 1 CI???
+- CI: CPS.2.2.1#01
+- Criteria: CPS.2.2.1#02
+- Criteria: CPS.2.2.2#02
