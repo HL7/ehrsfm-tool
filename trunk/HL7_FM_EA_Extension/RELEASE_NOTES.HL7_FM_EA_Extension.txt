@@ -21,6 +21,7 @@ MDG
 R2ProfileCompiler
 - Made Ignored Element WARNings better understandable
 - Sometimes there are more than 1 ChangeNote. WARN and only copy first in Compiled Profile.
+- GForge #3631 Priority now inherited from parent function/header's priority, can be overriden on Header/Function/Criteria levels.
 
 [2014-nov-11]
 R2ProfileCompiler
@@ -29,7 +30,7 @@ R2ProfileCompiler
 [2014-nov-06]
 *Form
 - When element is Locked/ReadOnly disable Ok/Apply en edit of text field
-- #3480 Enable ChangeNote always for Function/Criteria
+- GForge #3480 Enable ChangeNote always for Function/Criteria
 - Added Lock Icon to show ReadOnly
 - Priority is no longer fixed items
 SectionForm
