@@ -3,6 +3,7 @@
 [2014-nov-13]
 Function/CriterionForm
 - Priority field is now toggled by the fact that an element is a compiler instruction (is in the profile definition package)
+- Enable Edit all Fields for new Functions
 R2ModelV2
 - IsCompilerInstruction now denotes that an element is in the profile definition package
 CirterionForm
@@ -19,6 +20,7 @@ MDG
 - Updated learningcenter profile 10-11-2014
 R2ProfileCompiler
 - Made Ignored Element WARNings better understandable
+- Sometimes there are more than 1 ChangeNote. WARN and only copy first in Compiled Profile.
 
 [2014-nov-11]
 R2ProfileCompiler
