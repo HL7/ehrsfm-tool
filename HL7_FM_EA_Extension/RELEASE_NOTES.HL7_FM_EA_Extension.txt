@@ -14,8 +14,11 @@ ProfilingForm
 - SetCompilerInstruction/when new compiler instruction was created, a package.refresh was needed, otherwise delete did not work
 - CheckBox for Criteria is now Tri-State: [No Compiler Instruction]>[Include]>[Exclude]>[No Compiler Instruction]
 - Added WaitCursor on some slow events.
+- N.B. Double click in Criteria will not open CriteriaForm, but rather toggles CheckBox!
 MDG
 - Updated learningcenter profile 10-11-2014
+R2ProfileCompiler
+- Made Ignored Element WARNings better understandable
 
 [2014-nov-11]
 R2ProfileCompiler

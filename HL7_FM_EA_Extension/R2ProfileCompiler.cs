@@ -98,8 +98,26 @@ namespace HL7_FM_EA_Extension
                         }
                         else
                         {
-                            // E.g. for ExternalReferences
-                            _OutputListener.writeOutput("WARN: Destination not in model: {0}", rel.destId);
+                            if (objectsCI.ContainsKey(rel.destId))
+                            {
+                                // E.g. for links in Profile Definition
+                                string srcName = rel.sourceId;
+                                if (objectsCI[rel.sourceId].name != null)
+                                {
+                                    srcName = objectsCI[rel.sourceId].name.Split(new[] { ' ' })[0];
+                                }
+                                string dstName = rel.sourceId;
+                                if (objectsCI[rel.destId].name != null)
+                                {
+                                    dstName = objectsCI[rel.destId].name.Split(new[] { ' ' })[0];
+                                }
+                                _OutputListener.writeOutput("WARN: Ignored element {0}. Destination is in profile definition: {1}", srcName, dstName);
+                            }
+                            else
+                            {
+                                // E.g. for ExternalReferences
+                                _OutputListener.writeOutput("WARN: Ignored element {0}. Destination not in base model: {1}", objectsCI[rel.sourceId].name, rel.destId);
+                            }
                         }
                     }
 
