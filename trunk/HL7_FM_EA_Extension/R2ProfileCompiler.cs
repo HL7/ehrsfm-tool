@@ -436,8 +436,12 @@ namespace HL7_FM_EA_Extension
             // copy changenote.value if any
             if (node.hasInstruction)
             {
-                TagType tagChangeNote =
-                    node.instructionObject.tag.SingleOrDefault(t => R2Const.TV_CHANGENOTE.Equals(t.name));
+                int changeNoteCount = node.instructionObject.tag.Count(t => R2Const.TV_CHANGENOTE.Equals(t.name));
+                if (changeNoteCount > 1)
+                {
+                    _OutputListener.writeOutput("WARN: {0} expected 0..1 ChangeNote tag but got {1}", node.baseModelObject.name, changeNoteCount);
+                }
+                TagType tagChangeNote = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_CHANGENOTE.Equals(t.name));
                 if (tagChangeNote != null)
                 {
                     tags.Add(tagChangeNote);
@@ -455,7 +459,7 @@ namespace HL7_FM_EA_Extension
                     int optionalityCount = node.baseModelObject.tag.Count(t => R2Const.TV_OPTIONALITY.Equals(t.name));
                     if (optionalityCount == 0)
                     {
-                        _OutputListener.writeOutput("ERROR: {0} expected 1 Optionality tag but got {1}", node.baseModelObject.name, optionalityCount);
+                        _OutputListener.writeOutput("ERROR: {0} expected 1 Optionality tag but got none", node.baseModelObject.name);
                         return;
                     }
                     else if (optionalityCount != 1)

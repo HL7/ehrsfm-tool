@@ -10,7 +10,7 @@ namespace HL7_FM_EA_Extension
     {
         public static EA.Repository repository { get; set; }
 
-        public static void LogMessage(string message, int id = 0)
+        public static void LogMessage(string message, int id = -1)
         {
             string timestamp = DateTime.Now.ToString();
             repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, string.Format("@{0} {1}", timestamp, message), id);

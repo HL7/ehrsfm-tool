@@ -94,9 +94,10 @@ namespace HL7_FM_EA_Extension
                 if (function.IsCompilerInstruction)
                 {
                     idTextBox.Enabled = false;
-                    bool isRealm = "Realm".Equals(function.ProfileType);
-                    nameTextBox.Enabled = isRealm;
-                    statementTextBox.Enabled = isRealm;
+                    // If this is a Realm Profile or this is a new Function you can edit all fields
+                    bool overrideEnableEdit = "Realm".Equals(function.ProfileType) || !function.HasBaseElement;
+                    nameTextBox.Enabled = overrideEnableEdit;
+                    statementTextBox.Enabled = overrideEnableEdit;
                     descriptionTextBox.Enabled = true;
                 }
                 else
