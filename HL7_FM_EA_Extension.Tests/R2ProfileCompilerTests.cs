@@ -28,6 +28,7 @@ namespace HL7_FM_EA_Extension.Tests
                                     "CP.19 Bla",
                                     "CP.2 Bla",
                                     "CP.2.1 Bla",
+                                    "CP.2.1#01.1",
                                     "CP.2#01",
                                     "CP.4 Bla",
                                     "CP.3 Bla",

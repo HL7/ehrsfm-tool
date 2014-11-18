@@ -3,15 +3,25 @@
 http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrowse&tracker_id=743
 
 - LOW: [ ] Sometimes style is not updated e.g. when Optionality changes
-- [ ] Sync Reference tagged value <-> Relationship
-- [ ] MergeProfiles: Add function to align elements that have no base, based on their id
-- [ ] MergeProfiles: Add function to connect merged element to base model based on id
-- [ ] Move R2ModelElement.Priority up one abstract class, now Priority is also in Model/Profile/ProfileDefinition
+- LOW: [ ] Sync Reference tagged value <-> Relationship
+- LOW: [ ] MergeProfiles: Add function to align elements that have no base, based on their id
+- LOW: [ ] MergeProfiles: Add function to connect merged element to base model based on id
+- LOW: [ ] Move R2ModelElement.Priority up one abstract class, now Priority is also in Model/Profile/ProfileDefinition
 - LOW: [ ] R2ModelMax update lastModified when any field is modified
 - LOW: [ ] Move EAHelper in R2ModelEA
 - LOW: [ ] Use ModelViewController SourceObject = R2Model for DataGrid e.d.
 - LOW: [ ] IsReadOnly should have effect on SaveObject
 - LOW: [ ] Make ProfilingForm work on Base.R2ModelElement so that we can test it without EA
 - [ ] MergeProfilesForm Implement Smart Sorting
-- [/] Finalize: OutputListener add ID of element so DoubleClick in EAOutputConsole brings you to associated element
-- [ ] On Compile check path and give proper message instead of Exception
+- LOW: [/] Finalize: OutputListener add ID of element so DoubleClick in EAOutputConsole brings you to associated element
+- LOW: [ ] On Compile check path and give proper message instead of Exception
+- LOW: [ ] Update the Quick Access Tab
+- LOW: [ ] Implement R2ModelV2EAXML <- work on SQL XML query
+- LOW: [ ] Update the FM Browser Tab
+-- + show ConsequenceLinks
+-- + Make it work on R2ModelV2EAXML
+-- + Make it use Element.Elements
+-- + Smart sort!
+- LOW: [ ] Use Controls instead of Forms
+- [ ] UML Profile. Fix values for Reference.ChangeIndicator to "NC,N,C,D,DEP"
+- [ ] Update Schematrons

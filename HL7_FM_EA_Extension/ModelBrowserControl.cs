@@ -19,7 +19,6 @@ namespace HL7_FM_EA_Extension
         }
 
         EA.Repository Repository;
-        EA.Package SelectedPackage;
         public void SetRepository(EA.Repository Repository)
         {
             this.Repository = Repository;
@@ -28,13 +27,12 @@ namespace HL7_FM_EA_Extension
 
         public void SetSelectedPackage(EA.Package SelectedPackage)
         {
-            this.SelectedPackage = SelectedPackage;
             if (SelectedPackage != null)
             {
                 // update contents treeView1
                 treeView1.Nodes.Clear();
 
-                System.Windows.Forms.TreeNode topNode = createTreeNode(SelectedPackage.Element.Stereotype, SelectedPackage.Name, SelectedPackage.Alias);
+                System.Windows.Forms.TreeNode topNode = createTreeNode(SelectedPackage.Element.ElementID, SelectedPackage.Element.Stereotype, SelectedPackage.Name, SelectedPackage.Alias);
                 treeView1.Nodes.Add(topNode);
                 visitPackage(SelectedPackage, topNode);
                 treeView1.ExpandAll();
@@ -50,7 +48,7 @@ namespace HL7_FM_EA_Extension
         {
             foreach (EA.Package childPackage in package.Packages)
             {
-                System.Windows.Forms.TreeNode childTreeNode = createTreeNode(childPackage.Element.Stereotype, childPackage.Name, childPackage.Alias);
+                System.Windows.Forms.TreeNode childTreeNode = createTreeNode(package.Element.ElementID, childPackage.Element.Stereotype, childPackage.Name, childPackage.Alias);
                 treeNode.Nodes.Add(childTreeNode);
                 visitPackage(childPackage, childTreeNode);
             }
@@ -92,7 +90,7 @@ namespace HL7_FM_EA_Extension
                         alias = xAlias.Value;
                     }
                     int EA_ParentID = int.Parse(xRow.Element("ParentID").Value);
-                    System.Windows.Forms.TreeNode childTreeNode = createTreeNode(stereotype, name, alias);
+                    System.Windows.Forms.TreeNode childTreeNode = createTreeNode(EA_Object_ID, stereotype, name, alias);
                     nodes[EA_Object_ID] = childTreeNode;
                     if (nodes.ContainsKey(EA_ParentID))
                     {
@@ -106,7 +104,7 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private System.Windows.Forms.TreeNode createTreeNode(string stereotype, string name, string alias)
+        private System.Windows.Forms.TreeNode createTreeNode(int ID, string stereotype, string name, string alias)
         {
             System.Windows.Forms.TreeNode treeNode;
             if (string.IsNullOrEmpty(stereotype))
@@ -117,13 +115,20 @@ namespace HL7_FM_EA_Extension
             {
                 treeNode = new System.Windows.Forms.TreeNode(string.Format("«{0}» {1}", stereotype, name));
             }
-            string ID = alias;
+            string extID = alias;
             if (string.IsNullOrEmpty(alias))
             {
-                ID = name;
+                extID = name;
             }
-            treeNode.BackColor = R2Config.config.getSectionColor(ID, DefaultBackColor);
+            treeNode.BackColor = R2Config.config.getSectionColor(extID, DefaultBackColor);
+            treeNode.Tag = ID;
             return treeNode;
+        }
+
+        private void treeView1_DoubleClick(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TreeNode selectedNode = treeView1.SelectedNode;
+            Repository.ShowInProjectView(Repository.GetElementByID((int)selectedNode.Tag));
         }
     }
 }
