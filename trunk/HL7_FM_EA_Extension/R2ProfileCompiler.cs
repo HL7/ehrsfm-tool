@@ -93,7 +93,7 @@ namespace HL7_FM_EA_Extension
                             }
                             else
                             {
-                                _OutputListener.writeOutput("WARN: Ignored relationship type: {0}", rel.type);
+                                _OutputListener.writeOutput("[WARN] Ignored relationship type: {0}", rel.type);
                             }
                         }
                         else
@@ -111,12 +111,12 @@ namespace HL7_FM_EA_Extension
                                 {
                                     dstName = objectsCI[rel.destId].name.Split(new[] { ' ' })[0];
                                 }
-                                _OutputListener.writeOutput("WARN: Ignored element {0}. Destination is in profile definition: {1}", srcName, dstName, int.Parse(rel.sourceId));
+                                _OutputListener.writeOutput("[WARN] Ignored {0}. Not expected {1} to {2} in profile definition", srcName, rel.type, dstName, int.Parse(rel.sourceId));
                             }
                             else
                             {
                                 // E.g. for ExternalReferences
-                                _OutputListener.writeOutput("WARN: Ignored element {0}. Destination not in base model: {1}", objectsCI[rel.sourceId].name, rel.destId, int.Parse(rel.sourceId));
+                                _OutputListener.writeOutput("[WARN] Ignored {0}. Not expected {1} to id={2} outside base model", objectsCI[rel.sourceId].name, rel.type, rel.destId, int.Parse(rel.sourceId));
                             }
                         }
                     }
@@ -176,7 +176,8 @@ namespace HL7_FM_EA_Extension
                         }
                         else
                         {
-                            _OutputListener.writeOutput("WARN: already new: {0}", maxObj.name, int.Parse(maxObj.id));
+                            // object already has new id assigned, which is also not an integer!
+                            _OutputListener.writeOutput("[WARN] Already has new id: {0}", maxObj.name, -1);
                         }
                     }
                 }
@@ -200,22 +201,21 @@ namespace HL7_FM_EA_Extension
                 model.exportDate = Util.FormatLastModified(DateTime.Now);
                 model.objects = objects.ToArray();
                 model.relationships = relationships.ToArray();
-                // Check if all objects are included
-                // and remove dangling relationships
+                // Check if all objects are included and remove dangling relationships
                 foreach (RelationshipType maxRel in model.relationships)
                 {
                     if (!objects.Any(t => t.id == maxRel.sourceId))
                     {
                         string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
                         string destName = model.objects.Single(t => t.id == maxRel.destId).name;
-                        _OutputListener.writeOutput("WARN: relationship from not included object removed sourceId={0} destId={1} stereotype={2} destName={3}", sourceId, maxRel.destId, maxRel.stereotype, destName);
+                        _OutputListener.writeOutput("[WARN] Relationship from not included object removed (sourceId={0} destId={1} stereotype={2} destName={3})", sourceId, maxRel.destId, maxRel.stereotype, destName);
                         relationships.Remove(maxRel);
                     }
                     if (!objects.Any(t => t.id == maxRel.destId))
                     {
                         string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
                         string sourceName = model.objects.Single(t => t.id == maxRel.sourceId).name;
-                        _OutputListener.writeOutput("WARN: relationship to not included object removed sourceId={0} destId={1} stereotype={2} sourceName={3}", sourceId, maxRel.destId, maxRel.stereotype, sourceName);
+                        _OutputListener.writeOutput("[WARN] Relationship to not included object removed (sourceId={0} destId={1} stereotype={2} sourceName={3})", sourceId, maxRel.destId, maxRel.stereotype, sourceName);
                         relationships.Remove(maxRel);
                     }
                 }
@@ -240,11 +240,11 @@ namespace HL7_FM_EA_Extension
             tags.ForEach(t => tagsAsString.Add(string.Format("{0}={1}", t.name, t.value)));
             if (node.instructionObject == null)
             {
-                _OutputListener.writeOutput("[{0}] {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
+                _OutputListener.writeOutput("[DEBUG] #{0} {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
             }
             else
             {
-                _OutputListener.writeOutput("[{0}] <profiled> {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
+                _OutputListener.writeOutput("[DEBUG] #{0} <profiled> {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
             }
             foreach (TreeNode child in node.children)
             {
@@ -285,11 +285,11 @@ namespace HL7_FM_EA_Extension
                                             childNode.relationships.RemoveAll(t => t.destId.Equals(referencedNode.baseModelObject.id));
                                             treeNodes.Remove(referencedNode.baseModelObject.id);
 
-                                            _OutputListener.writeOutput("{0} reference to {1} removed because of EXCLUDE", childNode.baseModelObject.name, ref_id);
+                                            _OutputListener.writeOutput("[INFO] Reference from {0} to {1} removed because of EXCLUDE", childNode.baseModelObject.name, ref_id);
                                         }
                                         else
                                         {
-                                            _OutputListener.writeOutput("{0} reference to {1} NOT removed because there is an instruction", childNode.baseModelObject.name, ref_id);
+                                            _OutputListener.writeOutput("[INFO] Reference from {0} to {1} NOT removed because there is an instruction", childNode.baseModelObject.name, ref_id);
                                         }
                                     }
                                 }
@@ -370,12 +370,12 @@ namespace HL7_FM_EA_Extension
                         }
                         else
                         {
-                            _OutputListener.writeOutput("WARN: consequenceLink from {0} to {1} object already included", node.baseModelObject.alias, linkedNode.baseModelObject.alias);
+                            _OutputListener.writeOutput("[WARN] ConsequenceLink from {0} to {1} object already included", node.baseModelObject.alias, linkedNode.baseModelObject.alias);
                         }
                     }
                     else
                     {
-                        _OutputListener.writeOutput("WARN: {0} already gone, probably because of an EXCLUDE", consequenceLink.destId);
+                        _OutputListener.writeOutput("[WARN] Already removed {0}, probably because of an EXCLUDE", consequenceLink.destId);
                     }
                 }
             }
@@ -439,7 +439,7 @@ namespace HL7_FM_EA_Extension
                 int changeNoteCount = node.instructionObject.tag.Count(t => R2Const.TV_CHANGENOTE.Equals(t.name));
                 if (changeNoteCount > 1)
                 {
-                    _OutputListener.writeOutput("WARN: {0} expected 0..1 ChangeNote tag but got {1}", node.baseModelObject.name, changeNoteCount, node.instrID);
+                    _OutputListener.writeOutput("[WARN] {0} expected 0..1 ChangeNote tag but got {1}", node.baseModelObject.name, changeNoteCount, node.instrID);
                 }
                 TagType tagChangeNote = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_CHANGENOTE.Equals(t.name));
                 if (tagChangeNote != null)
@@ -459,19 +459,19 @@ namespace HL7_FM_EA_Extension
                     int optionalityCount = node.baseModelObject.tag.Count(t => R2Const.TV_OPTIONALITY.Equals(t.name));
                     if (optionalityCount == 0)
                     {
-                        _OutputListener.writeOutput("ERROR: {0} expected 1 Optionality tag but got none", node.baseModelObject.name, node.instrID);
+                        _OutputListener.writeOutput("[ERROR] {0} expected 1 Optionality tag but got none", node.baseModelObject.name, node.instrID);
                         return;
                     }
                     else if (optionalityCount != 1)
                     {
-                        _OutputListener.writeOutput("WARN: {0} expected 1 Optionality tag but got {1}", node.baseModelObject.name, optionalityCount, node.instrID);
+                        _OutputListener.writeOutput("[WARN] {0} expected 1 Optionality tag but got {1}", node.baseModelObject.name, optionalityCount, node.instrID);
                     }
                     TagType tagOptionality = node.baseModelObject.tag.First(t => R2Const.TV_OPTIONALITY.Equals(t.name));
 
                     int newOptionalityCount = node.instructionObject.tag.Count(t => R2Const.TV_OPTIONALITY.Equals(t.name));
                     if (newOptionalityCount > 1)
                     {
-                        _OutputListener.writeOutput("WARN: {0} expected 0..1 Optionality tag but got {1}", node.baseModelObject.name, newOptionalityCount, node.instrID);
+                        _OutputListener.writeOutput("[WARN] {0} expected 0..1 Optionality tag but got {1}", node.baseModelObject.name, newOptionalityCount, node.instrID);
                     }
                     TagType tagOptionalityNew = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_OPTIONALITY.Equals(t.name));
                     if (tagOptionalityNew != null && !tagOptionalityNew.value.Equals(tagOptionality.value))
@@ -502,7 +502,7 @@ namespace HL7_FM_EA_Extension
                     int newPriorityCount = node.instructionObject.tag.Count(t => R2Const.TV_PRIORITY.Equals(t.name));
                     if (newPriorityCount > 1)
                     {
-                        _OutputListener.writeOutput("WARN: {0} expected 1 Priority tag but got {1}", node.baseModelObject.name, newPriorityCount, node.instrID);
+                        _OutputListener.writeOutput("[WARN] {0} expected 1 Priority tag but got {1}", node.baseModelObject.name, newPriorityCount, node.instrID);
                     }
                     if (!string.IsNullOrEmpty(tagPriorityNew.value))
                     {
@@ -524,7 +524,7 @@ namespace HL7_FM_EA_Extension
                 int newQualifierCount = node.instructionObject.tag.Count(t => R2Const.TV_QUALIFIER.Equals(t.name));
                 if (newQualifierCount > 1)
                 {
-                    _OutputListener.writeOutput("WARN: {0} expected 0..1 Qualifier tag but got {1}", node.baseModelObject.name, newQualifierCount, node.instrID);
+                    _OutputListener.writeOutput("[WARN] {0} expected 0..1 Qualifier tag but got {1}", node.baseModelObject.name, newQualifierCount, node.instrID);
                 }
                 TagType tagQualifier = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_QUALIFIER.Equals(t.name));
                 if (tagQualifier != null)

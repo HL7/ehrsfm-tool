@@ -41,7 +41,7 @@ namespace HL7_FM_EA_Extension
                 case "":
                     return "-&HL7 FM";
                 case "-&HL7 FM":
-                    string[] ar = { "Import R1.1", "Import R2", "Update Style", "Validate", "-", "Edit Profile", "Compile Profile", "Generate Publication", "Merge Profiles", "-", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "About" };
+                    string[] ar = { "Import R1.1", "Import R2", "Update Style", "Validate", "-", "Edit Profile", "Compile Profile", "Generate Publication", "Merge Profiles", "-", "Create Diagram", "Quick Access Tab", "FM Browser Tab", "D3", "About" };
                     return ar;
             }
             return "";
@@ -99,6 +99,7 @@ namespace HL7_FM_EA_Extension
                         break;
                     case "Quick Access Tab":
                     case "FM Browser Tab":
+                    case "D3":
                     case "About":
                         IsEnabled = true;
                         break;

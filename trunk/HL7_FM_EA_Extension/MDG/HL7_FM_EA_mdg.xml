@@ -17,7 +17,7 @@
             </Image>
             <TaggedValues>
               <Tag name="Row" type="int" description="" unit="" values="" default=""/>
-              <Tag name="Reference.ChangeIndicator" type="enumeration" description="" unit="" values="NC,A,M,D,DEP" default=""/>
+              <Tag name="Reference.ChangeIndicator" type="enumeration" description="" unit="" values="NC,N,C,D,DEP" default=""/>
               <Tag name="Reference.Alias" type="String" description="" unit="" values="" default=""/>
               <Tag name="Reference.FunctionID" type="String" description="" unit="" values="" default=""/>
               <Tag name="Reference.CriteriaID" type="String" description="" unit="" values="" default=""/>

@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2014-nov-18]
+R2ProfileCompiler
+- Logger tried to parse an non int as int.
+
 [2014-nov-13]
 Function/CriterionForm
 - GForge #3732: Priority field is now toggled by the fact that an element is a compiler instruction (is in the profile definition package)
