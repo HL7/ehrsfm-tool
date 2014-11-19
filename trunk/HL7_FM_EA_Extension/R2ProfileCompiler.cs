@@ -111,12 +111,12 @@ namespace HL7_FM_EA_Extension
                                 {
                                     dstName = objectsCI[rel.destId].name.Split(new[] { ' ' })[0];
                                 }
-                                _OutputListener.writeOutput("[WARN] Ignored {0}. Not expected {1} to {2} in profile definition", srcName, rel.type, dstName, int.Parse(rel.sourceId));
+                                _OutputListener.writeOutput("[WARN] Ignored {0}. Not expected {1} to {2} in profile definition", srcName, rel.type, dstName, parseIdForConsole(rel.sourceId));
                             }
                             else
                             {
                                 // E.g. for ExternalReferences
-                                _OutputListener.writeOutput("[WARN] Ignored {0}. Not expected {1} to id={2} outside base model", objectsCI[rel.sourceId].name, rel.type, rel.destId, int.Parse(rel.sourceId));
+                                _OutputListener.writeOutput("[WARN] Ignored {0}. Not expected {1} to id={2} outside base model", objectsCI[rel.sourceId].name, rel.type, rel.destId, parseIdForConsole(rel.sourceId));
                             }
                         }
                     }
@@ -395,11 +395,11 @@ namespace HL7_FM_EA_Extension
             }
             // remove empty value tags (cleans up)
             tags.RemoveAll(t => string.IsNullOrEmpty(t.value));
-            
+
+            // remove old Reference and set new Reference to base
+            tags.RemoveAll(t => t.name.StartsWith("Reference."));
             if (!node.isNew)
             {
-                // remove old Reference and set new Reference to base
-                tags.RemoveAll(t => t.name.StartsWith("Reference."));
                 switch (node.baseModelObject.stereotype)
                 {
                     case R2Const.ST_CRITERION:
@@ -476,7 +476,7 @@ namespace HL7_FM_EA_Extension
                     TagType tagOptionalityNew = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_OPTIONALITY.Equals(t.name));
                     if (tagOptionalityNew != null && !tagOptionalityNew.value.Equals(tagOptionality.value))
                     {
-                        tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
+                        if (tagChangeIndicator.value != CHANGEINDICATOR_NEW) tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
                         tagOptionality.value = tagOptionalityNew.value;
                     }
                 }
@@ -484,14 +484,29 @@ namespace HL7_FM_EA_Extension
                 // update name if changed
                 if (!node.baseModelObject.name.Equals(node.instructionObject.name))
                 {
-                    tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
-                    node.baseModelObject.name = node.instructionObject.name;
+                    if (tagChangeIndicator.value != CHANGEINDICATOR_NEW) tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
+                    string newName = node.instructionObject.name;
+                    node.baseModelObject.name = newName;
+
+                    // set alias to ID in name if Header or Function
+                    switch (node.baseModelObject.stereotype)
+                    {
+                        case R2Const.ST_HEADER:
+                        case R2Const.ST_FUNCTION:
+                            int sp = newName.IndexOf(' ');
+                            if (sp == -1)
+                            {
+                                sp = newName.Length;
+                            }
+                            node.baseModelObject.alias = newName.Substring(0, sp);
+                            break;
+                    }
                 }
 
                 // update notes if instruction has notes
                 if (node.instructionObject.notes != null && node.instructionObject.notes.Text.Length > 0)
                 {
-                    tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
+                    if (tagChangeIndicator.value != CHANGEINDICATOR_NEW) tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
                     node.baseModelObject.notes = node.instructionObject.notes;
                 }
 
@@ -586,6 +601,19 @@ namespace HL7_FM_EA_Extension
                 sb.Append(part);
             }
             return sb.ToString();
+        }
+
+        private int parseIdForConsole(string id)
+        {
+            try
+            {
+                return int.Parse(id);
+            }
+            catch
+            {
+                _OutputListener.writeOutput("[WARN] Expected integer as id but got: {0}", id);
+                return -1;
+            }
         }
     }
 
