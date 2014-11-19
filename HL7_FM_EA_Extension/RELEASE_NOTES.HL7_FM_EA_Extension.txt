@@ -1,5 +1,11 @@
 ﻿CHANGELOG
 =========
+[2014-nov-19]
+R2ProfileCompiler
+- ChangeIndicator was set to Changed instead of New for new elements. Fixed.
+- Dangling Reference tags removed for Changed and New elements.
+- Alias now set to ID in name when name changed in instruction.
+
 [2014-nov-18]
 R2ProfileCompiler
 - Logger tried to parse an non int as int.
