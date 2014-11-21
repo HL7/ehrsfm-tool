@@ -12,17 +12,17 @@ namespace HL7_FM_EA_Extension
          * Converts a flat MAX model to a tree.
          * Will also fill a id to treeNode Dictionary.
          */
-        public static TreeNode ToTree(ModelType model, Dictionary<string, TreeNode> treeNodes)
+        public static FMTreeNode ToTree(ModelType model, Dictionary<string, FMTreeNode> treeNodes)
         {
             // Create TreeNodes lookup map
             foreach (ObjectType maxObj in model.objects)
             {
-                treeNodes[maxObj.id] = new TreeNode();
+                treeNodes[maxObj.id] = new FMTreeNode();
                 treeNodes[maxObj.id].baseModelObject = maxObj;
             }
 
             // Now create tree
-            TreeNode root = null;
+            FMTreeNode root = null;
             foreach (ObjectType maxObj in model.objects)
             {
                 // This is a root element when it has no parent
@@ -33,8 +33,8 @@ namespace HL7_FM_EA_Extension
                 }
                 else if (treeNodes.ContainsKey(maxObj.parentId))
                 {
-                    TreeNode node = treeNodes[maxObj.id];
-                    TreeNode parent = treeNodes[maxObj.parentId];
+                    FMTreeNode node = treeNodes[maxObj.id];
+                    FMTreeNode parent = treeNodes[maxObj.parentId];
                     parent.children.Add(node);
                     node.parent = parent;
                 }
@@ -53,9 +53,9 @@ namespace HL7_FM_EA_Extension
         }
     }
 
-    public class TreeNode
+    public class FMTreeNode
     {
-        public TreeNode parent;
+        public FMTreeNode parent;
         public ObjectType baseModelObject;
         public ObjectType instructionObject;
         public bool hasInstruction
@@ -77,7 +77,7 @@ namespace HL7_FM_EA_Extension
         }
         public bool includeInProfile = false;
         public bool isNew = false;
-        public List<TreeNode> children = new List<TreeNode>();
+        public List<FMTreeNode> children = new List<FMTreeNode>();
 
         public void addBaseModelTag(string _name, string _value)
         {
@@ -90,13 +90,13 @@ namespace HL7_FM_EA_Extension
             baseModelObject.tag = tags.ToArray();
         }
 
-        private void ToObjectList(TreeNode node, List<ObjectType> objects)
+        private void ToObjectList(FMTreeNode node, List<ObjectType> objects)
         {
             if (node.baseModelObject != null)
             {
                 objects.Add(node.baseModelObject);
             }
-            foreach (TreeNode child in node.children)
+            foreach (FMTreeNode child in node.children)
             {
                 ToObjectList(child, objects);
             }
@@ -113,10 +113,10 @@ namespace HL7_FM_EA_Extension
             return objects;
         }
 
-        private void ToRelationshipList(TreeNode node, List<RelationshipType> relationships)
+        private void ToRelationshipList(FMTreeNode node, List<RelationshipType> relationships)
         {
             relationships.AddRange(node.relationships);
-            foreach (TreeNode child in node.children)
+            foreach (FMTreeNode child in node.children)
             {
                 ToRelationshipList(child, relationships);
             }
