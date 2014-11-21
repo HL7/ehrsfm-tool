@@ -36,14 +36,18 @@ namespace HL7_FM_EA_Extension
                         modelElement = new R2Criterion(element);
                         break;
                     case R2Const.ST_COMPILERINSTRUCTION:
-                        EA.Connector generalization =
-                            element.Connectors.Cast<EA.Connector>().SingleOrDefault(
-                                t => "Generalization".Equals(t.Type));
-                        if (generalization == null)
+                        int genCount = element.Connectors.Cast<EA.Connector>().Count(c => "Generalization".Equals(c.Type));
+                        if (genCount == 0)
                         {
-                            MessageBox.Show("Generalization to Base Element missing");
+                            MessageBox.Show(string.Format("{0} is a Compiler Instruction.\nExpected one(1) Generalization to a Base Element.\nFix this manually.", element.Name), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return null;
                         }
+                        else if (genCount > 1)
+                        {
+                            MessageBox.Show(string.Format("{0} is a Compiler Instruction.\nExpected one(1) Generalization, but got {1}.\nFix this manually.", element.Name, genCount), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return null;
+                        }
+                        EA.Connector generalization = element.Connectors.Cast<EA.Connector>().SingleOrDefault(c => "Generalization".Equals(c.Type));
                         EA.Element baseElement = repository.GetElementByID(generalization.SupplierID);
                         switch (baseElement.Stereotype)
                         {
