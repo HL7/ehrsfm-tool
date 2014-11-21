@@ -6,7 +6,22 @@ using HL7_FM_EA_Extension.R2ModelV2.Base;
 
 namespace HL7_FM_EA_Extension
 {
-    class EAHelper : OutputListener
+    class EAOutputListener : OutputListener
+    {
+        // Last argument is ID of Element (used for double click!)
+        public void writeOutput(string format, params object[] arg)
+        {
+            int ID = -1;
+            object lastArg = arg[arg.Count() - 1];
+            if (lastArg is int)
+            {
+                ID = (int)lastArg;
+            }
+            EAHelper.LogMessage(string.Format(format, arg), ID);
+        }
+    }
+
+    class EAHelper
     {
         public static EA.Repository repository { get; set; }
 
@@ -68,18 +83,6 @@ namespace HL7_FM_EA_Extension
                 }
             }
             element.TaggedValues.Refresh();
-        }
-
-        // Last argument is ID of Element (used for double click!)
-        public void writeOutput(string format, params object[] arg)
-        {
-            int ID = -1;
-            object lastArg = arg[arg.Count() - 1];
-            if (lastArg is int)
-            {
-                ID = (int) lastArg;
-            }
-            LogMessage(string.Format(format, arg), ID);
         }
 
         public static string getAssociatedBaseModelName(EA.Repository Repository, EA.Package ProfileDefinitionPackage)

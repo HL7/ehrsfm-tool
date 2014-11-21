@@ -385,7 +385,7 @@ namespace HL7_FM_EA_Extension
                 EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
                 if (tvExportFile == null)
                 {
-                    EAHelper.LogMessage(string.Format("MAX::ExportFile tag missing in Package \"{0}\"", package.Name));
+                    EAHelper.LogMessage(string.Format("[ERROR] MAX::ExportFile tag missing in Package \"{0}\"", package.Name), package.Element.ElementID);
                     MessageBox.Show(MESSAGE_PROFILE_DEFINITION, "Complete setup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
@@ -406,7 +406,7 @@ namespace HL7_FM_EA_Extension
                 EA.TaggedValue tvImportFile = (EA.TaggedValue)baseModelPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
                 if (tvImportFile == null)
                 {
-                    EAHelper.LogMessage(string.Format("MAX::ImportFile tag missing in Package \"{0}\"", baseModelPackage.Name));
+                    EAHelper.LogMessage(string.Format("[ERROR] MAX::ImportFile tag missing in Package \"{0}\"", baseModelPackage.Name));
                     MessageBox.Show(MESSAGE_PROFILE_DEFINITION, "Complete setup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
@@ -434,13 +434,13 @@ namespace HL7_FM_EA_Extension
                 EAHelper.LogMessage(string.Format("[INFO] Compiled Profile MAX file: {0}", profileFileName));
                 EAHelper.LogMessage("[BEGIN] Compile Profile");
                 R2ProfileCompiler compiler = new R2ProfileCompiler();
-                compiler._OutputListener = new EAHelper();
+                compiler._OutputListener = new EAOutputListener();
                 compiler.Compile(baseModelFileName, profileDefinitionFileName, profileFileName);
                 EAHelper.LogMessage("[END] Compile Profile");
 
                 // Import compiled profile from MAX file
                 //new MAX_EA.MAXImporter3().import(repository, profilePackage, profileFileName);
-                MessageBox.Show("Manually import compiled profile now...");
+                MessageBox.Show("Manually import compiled profile now...", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
