@@ -31,6 +31,14 @@ namespace HL7_FM_EA_Extension
 
         public void Show(EA.Repository repository, EA.Package selectedPackage)
         {
+            toolTip1.SetToolTip(button1, "Click to select the current Criterion in the Project Browser.\nNote that if there is a Compiler Instruction that will be selected instead.");
+            toolTip1.SetToolTip(button2, "Click to select the current Element in the Project Browser.\nNote that if there is a Compiler Instruction that will be selected instead.");
+            toolTip1.SetToolTip(excludeRadioButton, "The current Element (and children) will be excluded.");
+            toolTip1.SetToolTip(includeRadioButton, "The current Element (and children) will be included.");
+            toolTip1.SetToolTip(deprecateRadioButton, "The current Element (and children) will be included and marked as deprecated.");
+            toolTip1.SetToolTip(deleteRadioButton, "The current Element (and children) will be included and marked as deleted.");
+            toolTip1.SetToolTip(groupCheckBox, "If checked the Elements will be grouped. If unchecked the Elements will be presented in a list.");
+
             this.repository = repository;
             if (repository.GetTreeSelectedItemType() == EA.ObjectType.otElement)
             {
