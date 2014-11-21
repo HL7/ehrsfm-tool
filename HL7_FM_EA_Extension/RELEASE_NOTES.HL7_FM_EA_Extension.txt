@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2014-nov-21]
+R2ProfileCompiler
+- When new element has multiple Aggregation relationships it was included multiple times. Now compiler detects this and warns.
+
 [2014-nov-19]
 R2ProfileCompiler
 - ChangeIndicator was set to Changed instead of New for new elements. Fixed.

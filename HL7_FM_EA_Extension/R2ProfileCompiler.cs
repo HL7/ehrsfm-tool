@@ -15,7 +15,7 @@ namespace HL7_FM_EA_Extension
         // This contains the citation id of the Base Model where this Profile is based on
         private string baseName;
         // This will contain a lookup map
-        private Dictionary<string, TreeNode> treeNodes = new Dictionary<string, TreeNode>();
+        private Dictionary<string, FMTreeNode> treeNodes = new Dictionary<string, FMTreeNode>();
 
         private const string CHANGEINDICATOR_NOCHANGE = "NC";
         private const string CHANGEINDICATOR_CHANGED = "C";
@@ -28,6 +28,8 @@ namespace HL7_FM_EA_Extension
         private const string QUALIFIER_EXCLUDE = "EXCLUDE";
 
         private const string PRIORITY_ESSENTIALNOW = "EN";
+
+        private const string TV_INCLUSIONREASON = "CompilerInclusionReason";
 
         public OutputListener _OutputListener { get; set; }
 
@@ -44,10 +46,9 @@ namespace HL7_FM_EA_Extension
             using (streamBase)
             {
                 var modelBM = (ModelType)serializer.Deserialize(streamBase);
-                TreeNode root = MAXTreeNodeUtils.ToTree(modelBM, treeNodes);
+                FMTreeNode root = MAXTreeNodeUtils.ToTree(modelBM, treeNodes);
                 baseName = root.baseModelObject.name;
 
-                // Add compiler instructions to the nodes
                 using (streamDef)
                 {
                     ModelType modelCI = (ModelType) serializer.Deserialize(streamDef);
@@ -57,12 +58,17 @@ namespace HL7_FM_EA_Extension
                         objectsCI[maxObj.id] = maxObj;
                     }
 
-                    // Bind CI to related elements in the base tree
+                    /**
+                     * Bind compiler instructions to the related base element nodes
+                     * and add new nodes.
+                     * 
+                     * TODO: Child nodes may come before (new) parent is added. Figure out how to fix this.
+                     */ 
                     foreach (RelationshipType rel in modelCI.relationships)
                     {
                         if (treeNodes.ContainsKey(rel.destId))
                         {
-                            TreeNode node = treeNodes[rel.destId];
+                            FMTreeNode node = treeNodes[rel.destId];
                             // Changed element
                             if (rel.type == RelationshipTypeEnum.Generalization)
                             {
@@ -72,35 +78,43 @@ namespace HL7_FM_EA_Extension
                             // New child element
                             else if (rel.type == RelationshipTypeEnum.Aggregation)
                             {
-                                // Set new parentId for the new element
-                                TreeNode newNode = new TreeNode();
-                                newNode.baseModelObject = objectsCI[rel.sourceId];
-                                newNode.baseModelObject.parentId = node.baseModelObject.id;
-                                newNode.parent = node;
-                                newNode.isNew = true;
-                                newNode.includeInProfile = true;
-                                setDebugInclusionReason(newNode, "New in ProfileDefinition");
-
-                                node.children.Add(newNode);
-                                if (!node.includeInProfile)
+                                if (objectsCI[rel.sourceId].tag.Any(t => TV_INCLUSIONREASON.Equals(t.name)))
                                 {
-                                    node.includeInProfile = true;
-                                    setDebugInclusionReason(node, "Because of new child");
+                                    _OutputListener.writeOutput("[WARN] Already new {0}. Check Aggregation relationships!", objectsCI[rel.sourceId].name);
                                 }
+                                else
+                                {
+                                    // Set new parentId for the new element
+                                    FMTreeNode newNode = new FMTreeNode();
+                                    newNode.baseModelObject = objectsCI[rel.sourceId];
+                                    newNode.baseModelObject.parentId = node.baseModelObject.id;
+                                    newNode.parent = node;
+                                    newNode.isNew = true;
+                                    newNode.includeInProfile = true;
+                                    setCompilerInclusionReason(newNode, "New from ProfileDefinition");
 
-                                // Make sure to add new Node!
-                                treeNodes[rel.sourceId] = newNode;
+                                    node.children.Add(newNode);
+                                    if (!node.includeInProfile)
+                                    {
+                                        node.includeInProfile = true;
+                                        setCompilerInclusionReason(node, "Because of new child");
+                                    }
+                                    treeNodes[rel.sourceId] = newNode;
+                                }
                             }
                             else
                             {
-                                _OutputListener.writeOutput("[WARN] Ignored relationship type: {0}", rel.type);
+                                _OutputListener.writeOutput("[DEBUG] Ignored {0}", rel.type);
                             }
                         }
                         else
                         {
+                            /**
+                             * Check if destination is inside Profile Definition.
+                             * E.g. for internal relationships in Profile Definition or for new elments.
+                             */
                             if (objectsCI.ContainsKey(rel.destId))
                             {
-                                // E.g. for links in Profile Definition
                                 string srcName = rel.sourceId;
                                 if (objectsCI[rel.sourceId].name != null)
                                 {
@@ -111,12 +125,12 @@ namespace HL7_FM_EA_Extension
                                 {
                                     dstName = objectsCI[rel.destId].name.Split(new[] { ' ' })[0];
                                 }
-                                _OutputListener.writeOutput("[WARN] Ignored {0}. Not expected {1} to {2} in profile definition", srcName, rel.type, dstName, parseIdForConsole(rel.sourceId));
+                                _OutputListener.writeOutput("[DEBUG] Ignored {0} from {1} to {2} inside ProfileDefinition", rel.type, srcName, dstName, parseIdForConsole(rel.sourceId));
                             }
                             else
                             {
                                 // E.g. for ExternalReferences
-                                _OutputListener.writeOutput("[WARN] Ignored {0}. Not expected {1} to id={2} outside base model", objectsCI[rel.sourceId].name, rel.type, rel.destId, parseIdForConsole(rel.sourceId));
+                                _OutputListener.writeOutput("[DEBUG] Ignored {0} from {1} to id={2} outside BaseModel", rel.type, objectsCI[rel.sourceId].name, rel.destId, parseIdForConsole(rel.sourceId));
                             }
                         }
                     }
@@ -165,7 +179,7 @@ namespace HL7_FM_EA_Extension
                     maxObj.modifiedSpecified = false;
                 }
 
-                // assign new id's in objects parentId
+                // Set new (gu)id's in objects parentId
                 foreach (ObjectType maxObj in objects)
                 {
                     if (!string.IsNullOrEmpty(maxObj.parentId))
@@ -182,7 +196,7 @@ namespace HL7_FM_EA_Extension
                     }
                 }
 
-                // assign new id's for relationships
+                // Set new (gu)id's for relationships
                 List<RelationshipType> relationships = root.ToRelationshipList();
                 foreach (RelationshipType maxRel in relationships)
                 {
@@ -196,30 +210,28 @@ namespace HL7_FM_EA_Extension
                     }
                 }
 
-                // Convert back to MAX model
-                ModelType model = new ModelType();
-                model.exportDate = Util.FormatLastModified(DateTime.Now);
-                model.objects = objects.ToArray();
-                model.relationships = relationships.ToArray();
-                // Check if all objects are included and remove dangling relationships
-                foreach (RelationshipType maxRel in model.relationships)
+                // Remove relationships to objects that are not included
+                foreach (RelationshipType maxRel in relationships.ToArray())
                 {
                     if (!objects.Any(t => t.id == maxRel.sourceId))
                     {
                         string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
-                        string destName = model.objects.Single(t => t.id == maxRel.destId).name;
+                        string destName = objects.Single(t => t.id == maxRel.destId).name;
                         _OutputListener.writeOutput("[WARN] Relationship from not included object removed (sourceId={0} destId={1} stereotype={2} destName={3})", sourceId, maxRel.destId, maxRel.stereotype, destName);
                         relationships.Remove(maxRel);
                     }
                     if (!objects.Any(t => t.id == maxRel.destId))
                     {
                         string sourceId = idOrg2idNew.Single(t => t.Value == maxRel.sourceId).Key;
-                        string sourceName = model.objects.Single(t => t.id == maxRel.sourceId).name;
+                        string sourceName = objects.Single(t => t.id == maxRel.sourceId).name;
                         _OutputListener.writeOutput("[WARN] Relationship to not included object removed (sourceId={0} destId={1} stereotype={2} sourceName={3})", sourceId, maxRel.destId, maxRel.stereotype, sourceName);
                         relationships.Remove(maxRel);
                     }
                 }
-                // update relationships
+                // Convert back to MAX model
+                ModelType model = new ModelType();
+                model.exportDate = Util.FormatLastModified(DateTime.Now);
+                model.objects = objects.ToArray();
                 model.relationships = relationships.ToArray();
 
                 // Save compiled profile as MAX XML
@@ -233,7 +245,7 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void displayNode(TreeNode node, int depth)
+        private void displayNode(FMTreeNode node, int depth)
         {
             List<String> tagsAsString = new List<string>();
             List<TagType> tags = new List<TagType>(node.baseModelObject.tag);
@@ -246,7 +258,7 @@ namespace HL7_FM_EA_Extension
             {
                 _OutputListener.writeOutput("[DEBUG] #{0} <profiled> {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
             }
-            foreach (TreeNode child in node.children)
+            foreach (FMTreeNode child in node.children)
             {
                 displayNode(child, depth+1);
             }
@@ -255,10 +267,10 @@ namespace HL7_FM_EA_Extension
         /**
          * This will remove excluded functions and also consequenceLinks when originating criterion is excluded
          */
-        private void exclude(TreeNode node)
+        private void exclude(FMTreeNode node)
         {
-            List<TreeNode> newChildren = new List<TreeNode>();
-            foreach (TreeNode childNode in node.children)
+            List<FMTreeNode> newChildren = new List<FMTreeNode>();
+            foreach (FMTreeNode childNode in node.children)
             {
                 if (R2Const.ST_CRITERION.Equals(childNode.baseModelObject.stereotype))
                 {
@@ -277,7 +289,7 @@ namespace HL7_FM_EA_Extension
                                 if (ref_idx > 0)
                                 {
                                     string ref_id = criterionText.Substring(ref_idx + 20, criterionText.IndexOf(' ', ref_idx + 20) - ref_idx - 20);
-                                    TreeNode referencedNode = treeNodes.Values.SingleOrDefault(t => ref_id.Equals(t.baseModelObject.alias));
+                                    FMTreeNode referencedNode = treeNodes.Values.SingleOrDefault(t => ref_id.Equals(t.baseModelObject.alias));
                                     if (referencedNode != null)
                                     {
                                         if (referencedNode.instructionObject == null)
@@ -315,7 +327,7 @@ namespace HL7_FM_EA_Extension
          * 
          * returns bool includeParent
          */
-        private bool autoInclude(TreeNode node, bool doFollowConsequenceLinks)
+        private bool autoInclude(FMTreeNode node, bool doFollowConsequenceLinks)
         {
             node.includeInProfile |= node.hasInstruction;
             if (node.includeInProfile)
@@ -324,8 +336,8 @@ namespace HL7_FM_EA_Extension
                 {
                     followConsequenceLinks(node);
                 }
-                List<TreeNode> newChildren = new List<TreeNode>();
-                foreach (TreeNode child in node.children)
+                List<FMTreeNode> newChildren = new List<FMTreeNode>();
+                foreach (FMTreeNode child in node.children)
                 {
                     if (R2Const.ST_CRITERION.Equals(child.baseModelObject.stereotype))
                     {
@@ -342,7 +354,7 @@ namespace HL7_FM_EA_Extension
             }
             else
             {
-                foreach (TreeNode child in node.children)
+                foreach (FMTreeNode child in node.children)
                 {
                     node.includeInProfile |= autoInclude(child, doFollowConsequenceLinks);
                 }
@@ -353,7 +365,7 @@ namespace HL7_FM_EA_Extension
         /**
          * Just follow consequenceLinks and detect circular references.
          */
-        private void followConsequenceLinks(TreeNode node)
+        private void followConsequenceLinks(FMTreeNode node)
         {
             if (node.hasConsequenceLinks)
             {
@@ -361,12 +373,12 @@ namespace HL7_FM_EA_Extension
                 {
                     if (treeNodes.ContainsKey(consequenceLink.destId))
                     {
-                        TreeNode linkedNode = treeNodes[consequenceLink.destId];
+                        FMTreeNode linkedNode = treeNodes[consequenceLink.destId];
                         if (!linkedNode.includeInProfile)
                         {
                             linkedNode.includeInProfile = true;
                             followConsequenceLinks(linkedNode);
-                            setDebugInclusionReason(linkedNode, string.Format("ConsequenceLink from function {0}", node.baseModelObject.name));
+                            setCompilerInclusionReason(linkedNode, string.Format("ConsequenceLink from function {0}", node.baseModelObject.name));
                         }
                         else
                         {
@@ -381,12 +393,12 @@ namespace HL7_FM_EA_Extension
             }
         }
 
-        private void setDebugInclusionReason(TreeNode node, string reason)
+        private void setCompilerInclusionReason(FMTreeNode node, string reason)
         {
-            node.addBaseModelTag("Debug.InclusionReason", reason);
+            node.addBaseModelTag(TV_INCLUSIONREASON, reason);
         }
 
-        private void executeInstructions(TreeNode node, string priority)
+        private void executeInstructions(FMTreeNode node, string priority)
         {
             List<TagType> tags = new List<TagType>();
             if (node.baseModelObject.tag != null)
@@ -557,8 +569,8 @@ namespace HL7_FM_EA_Extension
                 }
             }
 
-            List<TreeNode> newChildren = new List<TreeNode>();
-            foreach(TreeNode child in node.children)
+            List<FMTreeNode> newChildren = new List<FMTreeNode>();
+            foreach(FMTreeNode child in node.children)
             {
                 executeInstructions(child, priority);
                 if (child.includeInProfile)
