@@ -7,6 +7,7 @@ R2ProfileCompiler
 - Made the output a bit quieter. Added DEBUG level and leave out DEBUG in MSI.
 ProfilingForm
 - Made more robust. Give feedback if model is not the way we expect.
+- Added tooltips.
 
 [2014-nov-19]
 R2ProfileCompiler
