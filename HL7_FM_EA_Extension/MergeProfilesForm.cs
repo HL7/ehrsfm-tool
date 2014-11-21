@@ -399,7 +399,7 @@ namespace HL7_FM_EA_Extension
                         {
                             case COLUMN_BASE_MODEL:
                                 fileNameBaseModel = fileName;
-                                MessageBox.Show("Not yet implemented");
+                                MessageBox.Show("Not yet implemented", "NYI", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 break;
 /*                            case COLUMN_MERGED_PROFILE:
                                 fileNameMerged = fileName;
@@ -776,7 +776,7 @@ namespace HL7_FM_EA_Extension
             {
                 serializer.Serialize(writer, model);
             }
-            MessageBox.Show("Created Profile Definition MAX file.");
+            MessageBox.Show("Created Profile Definition MAX file.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void loadButton_Click(object sender, EventArgs e)

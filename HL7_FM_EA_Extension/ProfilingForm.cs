@@ -57,7 +57,7 @@ namespace HL7_FM_EA_Extension
                     }
                     else
                     {
-                        MessageBox.Show(Main.MESSAGE_PROFILE_DEFINITION);
+                        MessageBox.Show(Main.MESSAGE_PROFILE_DEFINITION, "Complete setup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
             }
@@ -85,12 +85,12 @@ namespace HL7_FM_EA_Extension
                 }
                 else
                 {
-                    MessageBox.Show(Main.MESSAGE_PROFILE_DEFINITION);
+                    MessageBox.Show(Main.MESSAGE_PROFILE_DEFINITION, "Complete setup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
             {
-                MessageBox.Show("Select a Base FM Section to Profile.");
+                MessageBox.Show("Select a Base FM Section to Profile.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -135,14 +135,14 @@ namespace HL7_FM_EA_Extension
         private ListViewItem createListViewItem(EA.Package package)
         {
             ListViewItem item = new ListViewItem(package.Name);
-            item.Tag = new DefinitionLink(repository, package.Element);
+            item.Tag = new R2ModelElementHolder(repository, package.Element);
             return item;
         }
 
         private ListViewItem createListViewItem(EA.Element element)
         {
             ListViewItem item = new ListViewItem(element.Name);
-            item.Tag = new DefinitionLink(repository, element);
+            item.Tag = new R2ModelElementHolder(repository, element);
             updateListViewItem(item);
             return item;
         }
@@ -150,10 +150,17 @@ namespace HL7_FM_EA_Extension
         private ListViewItem createCriteriaListViewItem(EA.Element element)
         {
             ListViewItem item = new ListViewItem();
-            DefinitionLink dl = new DefinitionLink(repository, element);
+            R2ModelElementHolder dl = new R2ModelElementHolder(repository, element);
             item.Tag = dl;
-            R2Criterion criterion = (R2Criterion)dl.modelElement;
-            item.Text = string.Format("{0} {1}", criterion.Name, criterion.Text);
+            if (dl.modelElement != null)
+            {
+                R2Criterion criterion = (R2Criterion)dl.modelElement;
+                item.Text = string.Format("{0} {1}", criterion.Name, criterion.Text);
+            }
+            else
+            {
+                item.Text = "Invalid Compiler Instruction";
+            }
             updateListViewItem(item);
             return item;
         }
@@ -167,7 +174,7 @@ namespace HL7_FM_EA_Extension
             if (mainListView.SelectedItems.Count > 0)
             {
                 ListViewItem selected = mainListView.SelectedItems[0];
-                EA.Element element = ((DefinitionLink) selected.Tag).baseModelElement;
+                EA.Element element = ((R2ModelElementHolder) selected.Tag).baseModelEAElement;
 
                 // Update checkbox states
                 ignoreEvent = true;
@@ -216,7 +223,7 @@ namespace HL7_FM_EA_Extension
 
         private void updateCompilerInstruction(ListViewItem item)
         {
-            DefinitionLink dl = (DefinitionLink)item.Tag;
+            R2ModelElementHolder dl = (R2ModelElementHolder)item.Tag;
             // Include
             if (includeRadioButton.Checked)
             {
@@ -243,10 +250,10 @@ namespace HL7_FM_EA_Extension
         {
             bool _ignoreEvent = ignoreEvent;
             ignoreEvent = true;
-            DefinitionLink dl = (DefinitionLink)item.Tag;
-            if (dl.compilerInstructionElement != null)
+            R2ModelElementHolder dl = (R2ModelElementHolder)item.Tag;
+            if (dl.compilerInstructionEAElement != null)
             {
-                switch (EAHelper.GetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, ""))
+                switch (EAHelper.GetTaggedValue(dl.compilerInstructionEAElement, R2Const.TV_QUALIFIER, ""))
                 {
                     case "DEP":
                         item.ForeColor = Color.White;
@@ -279,61 +286,61 @@ namespace HL7_FM_EA_Extension
             ignoreEvent = _ignoreEvent;
         }
 
-        private void setCompilerInstruction(DefinitionLink dl, R2Const.Qualifier qualifier, string change_note = null)
+        private void setCompilerInstruction(R2ModelElementHolder dl, R2Const.Qualifier qualifier, string change_note = null)
         {
             // If there is no Compiler Instruction, create one
-            if (dl.compilerInstructionElement == null)
+            if (dl.compilerInstructionEAElement == null)
             {
-                dl.compilerInstructionElement = (EA.Element)profileDefinitionPackage.Elements.AddNew(dl.baseModelElement.Name, "Class");
-                dl.compilerInstructionElement.Stereotype = R2Const.ST_COMPILERINSTRUCTION;
-                dl.compilerInstructionElement.Update();
-                EA.Connector con = (EA.Connector)dl.compilerInstructionElement.Connectors.AddNew("", "Generalization");
-                con.SupplierID = dl.baseModelElement.ElementID;
+                dl.compilerInstructionEAElement = (EA.Element)profileDefinitionPackage.Elements.AddNew(dl.baseModelEAElement.Name, "Class");
+                dl.compilerInstructionEAElement.Stereotype = R2Const.ST_COMPILERINSTRUCTION;
+                dl.compilerInstructionEAElement.Update();
+                EA.Connector con = (EA.Connector)dl.compilerInstructionEAElement.Connectors.AddNew("", "Generalization");
+                con.SupplierID = dl.baseModelEAElement.ElementID;
                 con.Update();
-                dl.compilerInstructionElement.Connectors.Refresh();
-                dl.modelElement = R2ModelV2.EA_API.Factory.Create(repository, dl.compilerInstructionElement);
+                dl.compilerInstructionEAElement.Connectors.Refresh();
+                dl.modelElement = R2ModelV2.EA_API.Factory.Create(repository, dl.compilerInstructionEAElement);
                 profileDefinitionPackage.Elements.Refresh();
             }
 
             switch (qualifier)
             {
                 case R2Const.Qualifier.Deprecate:
-                    EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "DEP");
+                    EAHelper.SetTaggedValue(dl.compilerInstructionEAElement, R2Const.TV_QUALIFIER, "DEP");
                     break;
                 case R2Const.Qualifier.Delete:
-                    EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "D");
+                    EAHelper.SetTaggedValue(dl.compilerInstructionEAElement, R2Const.TV_QUALIFIER, "D");
                     break;
                 case R2Const.Qualifier.Exclude:
-                    EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "EXCLUDE");
+                    EAHelper.SetTaggedValue(dl.compilerInstructionEAElement, R2Const.TV_QUALIFIER, "EXCLUDE");
                     break;
                 case R2Const.Qualifier.None:
                 default:
-                    EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_QUALIFIER, "");
+                    EAHelper.SetTaggedValue(dl.compilerInstructionEAElement, R2Const.TV_QUALIFIER, "");
                     break;
             }
 
             if (!string.IsNullOrEmpty(change_note))
             {
-                EAHelper.SetTaggedValue(dl.compilerInstructionElement, R2Const.TV_CHANGENOTE, "<memo>", change_note);
+                EAHelper.SetTaggedValue(dl.compilerInstructionEAElement, R2Const.TV_CHANGENOTE, "<memo>", change_note);
             }
             else
             {
-                EAHelper.DeleteTaggedValue(dl.compilerInstructionElement, R2Const.TV_CHANGENOTE);
+                EAHelper.DeleteTaggedValue(dl.compilerInstructionEAElement, R2Const.TV_CHANGENOTE);
             }
 
-            dl.compilerInstructionElement.TaggedValues.Refresh();
-            dl.compilerInstructionElement.Refresh();
+            dl.compilerInstructionEAElement.TaggedValues.Refresh();
+            dl.compilerInstructionEAElement.Refresh();
         }
 
-        private void deleteCompilerInstruction(DefinitionLink dl)
+        private void deleteCompilerInstruction(R2ModelElementHolder dl)
         {
             // Only delete if there is a Compiler Instruction
-            if (dl.compilerInstructionElement != null)
+            if (dl.compilerInstructionEAElement != null)
             {
                 Cursor = Cursors.WaitCursor;
-                deleteElementRecurse(profileDefinitionPackage.Elements, dl.compilerInstructionElement.ElementID);
-                dl.compilerInstructionElement = null;
-                dl.modelElement = R2ModelV2.EA_API.Factory.Create(repository, dl.baseModelElement);
+                deleteElementRecurse(profileDefinitionPackage.Elements, dl.compilerInstructionEAElement.ElementID);
+                dl.compilerInstructionEAElement = null;
+                dl.modelElement = R2ModelV2.EA_API.Factory.Create(repository, dl.baseModelEAElement);
                 Cursor = Cursors.Default;
             }
         }
@@ -378,7 +385,7 @@ namespace HL7_FM_EA_Extension
             if (criteriaListView.SelectedItems.Count > 0)
             {
                 ListViewItem selected = criteriaListView.SelectedItems[0];
-                EA.Element ciElement = ((DefinitionLink)selected.Tag).compilerInstructionElement;
+                EA.Element ciElement = ((R2ModelElementHolder)selected.Tag).compilerInstructionEAElement;
                 EA.TaggedValue tvChangeNote = null;
                 if (ciElement != null)
                 {
@@ -407,7 +414,7 @@ namespace HL7_FM_EA_Extension
             if (!ignoreEvent)
             {
                 ListViewItem selected = criteriaListView.SelectedItems[0];
-                DefinitionLink dl = (DefinitionLink) selected.Tag;
+                R2ModelElementHolder dl = (R2ModelElementHolder) selected.Tag;
                 setCompilerInstruction(dl, R2Const.Qualifier.None, textBox1.Text);
             }
         }
@@ -432,7 +439,7 @@ namespace HL7_FM_EA_Extension
         private void mainListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ListViewItem selected = mainListView.SelectedItems[0];
-            DefinitionLink dl = (DefinitionLink) selected.Tag;
+            R2ModelElementHolder dl = (R2ModelElementHolder) selected.Tag;
             if (dl.modelElement is R2Section)
             {
                 new SectionForm().Show((R2Section)dl.modelElement);
@@ -448,8 +455,8 @@ namespace HL7_FM_EA_Extension
             string id = findTextBox.Text.ToUpper();
             foreach (ListViewItem item in mainListView.Items)
             {
-                DefinitionLink dl = (DefinitionLink)item.Tag;
-                if (dl.baseModelElement.Name.ToUpper().StartsWith(id))
+                R2ModelElementHolder dl = (R2ModelElementHolder)item.Tag;
+                if (dl.baseModelEAElement.Name.ToUpper().StartsWith(id))
                 {
                     mainListView.SelectedItems.Clear();
                     item.Selected = true;
@@ -488,7 +495,7 @@ namespace HL7_FM_EA_Extension
             if (!ignoreEvent)
             {
                 ListViewItem selected = e.Item;
-                DefinitionLink dl = (DefinitionLink)selected.Tag;
+                R2ModelElementHolder dl = (R2ModelElementHolder)selected.Tag;
                 if (!selected.Checked)
                 {
                     setCompilerInstruction(dl, R2Const.Qualifier.Exclude);
@@ -496,7 +503,7 @@ namespace HL7_FM_EA_Extension
                 else
                 {
                     // Tri-state; back to normal
-                    if (dl.compilerInstructionElement != null)
+                    if (dl.compilerInstructionEAElement != null)
                     {
                         ignoreEvent = true;
                         selected.Checked = false;
@@ -516,10 +523,14 @@ namespace HL7_FM_EA_Extension
         {
             if (criteriaListView.SelectedItems.Count > 0)
             {
-                DefinitionLink dl = (DefinitionLink) criteriaListView.SelectedItems[0].Tag;
-                if (dl.compilerInstructionElement != null)
+                R2ModelElementHolder dl = (R2ModelElementHolder) criteriaListView.SelectedItems[0].Tag;
+                if (dl.compilerInstructionEAElement != null)
                 {
-                    repository.ShowInProjectView(dl.compilerInstructionElement);
+                    repository.ShowInProjectView(dl.compilerInstructionEAElement);
+                }
+                else if (dl.baseModelEAElement != null)
+                {
+                    repository.ShowInProjectView(dl.baseModelEAElement);
                 }
             }
         }
@@ -528,48 +539,56 @@ namespace HL7_FM_EA_Extension
         {
             if (mainListView.SelectedItems.Count > 0)
             {
-                DefinitionLink dl = (DefinitionLink) mainListView.SelectedItems[0].Tag;
-                if (dl.compilerInstructionElement != null)
+                R2ModelElementHolder dl = (R2ModelElementHolder) mainListView.SelectedItems[0].Tag;
+                if (dl.compilerInstructionEAElement != null)
                 {
-                    repository.ShowInProjectView(dl.compilerInstructionElement);
+                    repository.ShowInProjectView(dl.compilerInstructionEAElement);
                 }
             }
         }
     }
 
-    public class DefinitionLink
+    public class R2ModelElementHolder
     {
-        public DefinitionLink(EA.Repository repository, EA.Element element)
+        public R2ModelElementHolder(EA.Repository repository, EA.Element element)
         {
-            baseModelElement = element;
-            compilerInstructionElement = findCompilerInstruction(repository, element);
-            if (compilerInstructionElement == null)
+            baseModelEAElement = element;
+            compilerInstructionEAElement = findCompilerInstruction(repository, element);
+            if (compilerInstructionEAElement == null)
             {
                 modelElement = R2ModelV2.EA_API.Factory.Create(repository, element);
             }
             else
             {
-                modelElement = R2ModelV2.EA_API.Factory.Create(repository, compilerInstructionElement);
+                modelElement = R2ModelV2.EA_API.Factory.Create(repository, compilerInstructionEAElement);
             }
         }
 
         EA.Element findCompilerInstruction(EA.Repository repository, EA.Element element)
         {
             // Find compilerinstruction by looking for the generalization connector that points
-            // to an Element with stereotype Compiler Instruction
-            foreach (EA.Connector con in element.Connectors.Cast<EA.Connector>().Where(c => "Generalization".Equals(c.Type)))
+            // to an Element with stereotype "CI" (Compiler Instruction)
+            int genCount = element.Connectors.Cast<EA.Connector>().Count(c => "Generalization".Equals(c.Type)
+                && R2Const.ST_COMPILERINSTRUCTION.Equals(repository.GetElementByID(c.ClientID).Stereotype));
+            if (genCount > 1)
             {
-                EA.Element _element = repository.GetElementByID(con.ClientID);
-                if (R2Const.ST_COMPILERINSTRUCTION.Equals(_element.Stereotype))
-                {
-                    return _element;
-                }
+                MessageBox.Show(string.Format("{0} has {1} Compiler Instructions.\nExpected zero or one(0..1).\nFix this manually.", element.Name, genCount), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
-            return null;
+            else if (genCount == 0)
+            {
+                return null;
+            }
+            else
+            {
+                EA.Connector con = element.Connectors.Cast<EA.Connector>().SingleOrDefault(c => "Generalization".Equals(c.Type)
+                    && R2Const.ST_COMPILERINSTRUCTION.Equals(repository.GetElementByID(c.ClientID).Stereotype));
+                return repository.GetElementByID(con.ClientID);
+            }
         }
 
-        public EA.Element baseModelElement;
-        public EA.Element compilerInstructionElement;
+        public EA.Element baseModelEAElement;
+        public EA.Element compilerInstructionEAElement;
         public R2ModelElement modelElement;
     }
 }

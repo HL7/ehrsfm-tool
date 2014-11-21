@@ -77,6 +77,7 @@ namespace HL7_FM_EA_Extension
         }
         public bool includeInProfile = false;
         public bool isNew = false;
+        public bool isPlaceholder = false;
         public List<FMTreeNode> children = new List<FMTreeNode>();
 
         public void addBaseModelTag(string _name, string _value)

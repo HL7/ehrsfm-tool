@@ -3,6 +3,10 @@
 [2014-nov-21]
 R2ProfileCompiler
 - When new element has multiple Aggregation relationships it was included multiple times. Now compiler detects this and warns.
+- New Childs of new Elements were not added if they came before the new parent Element was in the MAX file. Fixed by creating placeholders.
+- Made the output a bit quieter. Added DEBUG level and leave out DEBUG in MSI.
+ProfilingForm
+- Made more robust. Give feedback if model is not the way we expect.
 
 [2014-nov-19]
 R2ProfileCompiler

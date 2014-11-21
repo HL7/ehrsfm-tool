@@ -190,7 +190,7 @@ namespace HL7_FM_EA_Extension
             catch (Exception e)
             {
                 EAHelper.LogMessage(e.ToString());
-                MessageBox.Show(e.ToString());
+                MessageBox.Show(e.ToString(), "FATAL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -386,7 +386,7 @@ namespace HL7_FM_EA_Extension
                 if (tvExportFile == null)
                 {
                     EAHelper.LogMessage(string.Format("MAX::ExportFile tag missing in Package \"{0}\"", package.Name));
-                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION, "Complete setup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 string profileDefinitionFileName = tvExportFile.Value;
@@ -399,7 +399,7 @@ namespace HL7_FM_EA_Extension
                 EA.Package baseModelPackage = EAHelper.getAssociatedBaseModel(repository, package);
                 if (baseModelPackage == null)
                 {
-                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION, "Complete setup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 EAHelper.LogMessage(string.Format("[INFO] Base Model Package name: {0}", baseModelPackage.Name));
@@ -407,7 +407,7 @@ namespace HL7_FM_EA_Extension
                 if (tvImportFile == null)
                 {
                     EAHelper.LogMessage(string.Format("MAX::ImportFile tag missing in Package \"{0}\"", baseModelPackage.Name));
-                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION, "Complete setup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 string baseModelFileName = tvImportFile.Value;
@@ -417,7 +417,7 @@ namespace HL7_FM_EA_Extension
                 EA.Package compiledProfilePackage = EAHelper.getAssociatedOutputProfile(repository, package);
                 if (compiledProfilePackage == null)
                 {
-                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION, "Complete setup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 EAHelper.LogMessage(string.Format("[INFO] Compiled Profile Package name: {0}", compiledProfilePackage.Name));
@@ -425,7 +425,7 @@ namespace HL7_FM_EA_Extension
                 if (tvExportFile2 == null)
                 {
                     EAHelper.LogMessage(string.Format("MAX::ExportFile tag missing in Package \"{0}\"", compiledProfilePackage.Name));
-                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION);
+                    MessageBox.Show(MESSAGE_PROFILE_DEFINITION, "Complete setup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 string profileFileName = tvExportFile2.Value;

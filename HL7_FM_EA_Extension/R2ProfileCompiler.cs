@@ -12,6 +12,8 @@ namespace HL7_FM_EA_Extension
 {
     public class R2ProfileCompiler
     {
+        private const bool DEBUG = false;
+
         // This contains the citation id of the Base Model where this Profile is based on
         private string baseName;
         // This will contain a lookup map
@@ -66,25 +68,60 @@ namespace HL7_FM_EA_Extension
                      */ 
                     foreach (RelationshipType rel in modelCI.relationships)
                     {
+                        /**
+                         * Check if destination is inside Profile Definition.
+                         * E.g. for internal relationships in Profile Definition or for new elements.
+                         * Then create empty PLACEHOLDER, cleaned up afterwards.
+                         */
+                        if (!treeNodes.ContainsKey(rel.destId) && objectsCI.ContainsKey(rel.destId))
+                        {
+                            FMTreeNode placeholder = new FMTreeNode();
+                            placeholder.baseModelObject = objectsCI[rel.destId];
+                            placeholder.isNew = true;
+                            placeholder.isPlaceholder = true;
+                            treeNodes[rel.destId] = placeholder;
+                            if (DEBUG) _OutputListener.writeOutput("[DEBUG] Created PLACEHOLDER for {0}", objectsCI[rel.destId].name);
+                        }
+
+
                         if (treeNodes.ContainsKey(rel.destId))
                         {
                             FMTreeNode node = treeNodes[rel.destId];
-                            // Changed element
+                            /**
+                             * Generalization relationship means this is a change to an existing base model element
+                             */
                             if (rel.type == RelationshipTypeEnum.Generalization)
                             {
                                 node.instructionObject = objectsCI[rel.sourceId];
                                 node.includeInProfile = true;
                             }
-                            // New child element
+                            /**
+                             * Aggregation relationship means this is a new child element
+                             */
                             else if (rel.type == RelationshipTypeEnum.Aggregation)
                             {
-                                if (objectsCI[rel.sourceId].tag.Any(t => TV_INCLUSIONREASON.Equals(t.name)))
+                                if (treeNodes.ContainsKey(rel.sourceId) && treeNodes[rel.sourceId].isPlaceholder)
+                                {
+                                    FMTreeNode placeholder = treeNodes[rel.sourceId];
+                                    placeholder.parent = node;
+                                    placeholder.isPlaceholder = false;
+                                    placeholder.includeInProfile = true;
+                                    setCompilerInclusionReason(placeholder, "New from ProfileDefinition; via PLACEHOLDER");
+
+                                    node.children.Add(placeholder);
+                                    if (!node.includeInProfile)
+                                    {
+                                        node.includeInProfile = true;
+                                        setCompilerInclusionReason(node, "Because of new child");
+                                    }
+                                }
+                                else if (objectsCI[rel.sourceId].tag.Any(t => TV_INCLUSIONREASON.Equals(t.name)))
                                 {
                                     _OutputListener.writeOutput("[WARN] Already new {0}. Check Aggregation relationships!", objectsCI[rel.sourceId].name);
                                 }
                                 else
                                 {
-                                    // Set new parentId for the new element
+                                    // Create the new node
                                     FMTreeNode newNode = new FMTreeNode();
                                     newNode.baseModelObject = objectsCI[rel.sourceId];
                                     newNode.baseModelObject.parentId = node.baseModelObject.id;
@@ -104,33 +141,36 @@ namespace HL7_FM_EA_Extension
                             }
                             else
                             {
-                                _OutputListener.writeOutput("[DEBUG] Ignored {0}", rel.type);
+                                if (DEBUG) _OutputListener.writeOutput("[DEBUG] Ignored {0}", rel.type);
                             }
                         }
                         else
                         {
-                            /**
-                             * Check if destination is inside Profile Definition.
-                             * E.g. for internal relationships in Profile Definition or for new elments.
-                             */
-                            if (objectsCI.ContainsKey(rel.destId))
+                            if (DEBUG)
                             {
-                                string srcName = rel.sourceId;
-                                if (objectsCI[rel.sourceId].name != null)
+                                /**
+                                 * Check if destination is inside Profile Definition.
+                                 * E.g. for internal relationships in Profile Definition or for new elements.
+                                 */
+                                if (objectsCI.ContainsKey(rel.destId))
                                 {
-                                    srcName = objectsCI[rel.sourceId].name.Split(new[] { ' ' })[0];
+                                    string srcName = rel.sourceId;
+                                    if (objectsCI[rel.sourceId].name != null)
+                                    {
+                                        srcName = objectsCI[rel.sourceId].name.Split(new[] { ' ' })[0];
+                                    }
+                                    string dstName = rel.sourceId;
+                                    if (objectsCI[rel.destId].name != null)
+                                    {
+                                        dstName = objectsCI[rel.destId].name.Split(new[] { ' ' })[0];
+                                    }
+                                    _OutputListener.writeOutput("[DEBUG] Ignored {0} from {1} to {2} inside ProfileDefinition", rel.type, srcName, dstName, parseIdForConsole(rel.sourceId));
                                 }
-                                string dstName = rel.sourceId;
-                                if (objectsCI[rel.destId].name != null)
+                                else
                                 {
-                                    dstName = objectsCI[rel.destId].name.Split(new[] { ' ' })[0];
+                                    // E.g. for ExternalReferences
+                                    _OutputListener.writeOutput("[DEBUG] Ignored {0} from {1} to id={2} outside BaseModel", rel.type, objectsCI[rel.sourceId].name, rel.destId, parseIdForConsole(rel.sourceId));
                                 }
-                                _OutputListener.writeOutput("[DEBUG] Ignored {0} from {1} to {2} inside ProfileDefinition", rel.type, srcName, dstName, parseIdForConsole(rel.sourceId));
-                            }
-                            else
-                            {
-                                // E.g. for ExternalReferences
-                                _OutputListener.writeOutput("[DEBUG] Ignored {0} from {1} to id={2} outside BaseModel", rel.type, objectsCI[rel.sourceId].name, rel.destId, parseIdForConsole(rel.sourceId));
                             }
                         }
                     }
@@ -191,7 +231,7 @@ namespace HL7_FM_EA_Extension
                         else
                         {
                             // object already has new id assigned, which is also not an integer!
-                            _OutputListener.writeOutput("[WARN] Already has new id: {0}", maxObj.name, -1);
+                            _OutputListener.writeOutput("[WARN] Already has new id: {0}", maxObj.name.Split(new[] { ' ' })[0], -1);
                         }
                     }
                 }
@@ -382,12 +422,12 @@ namespace HL7_FM_EA_Extension
                         }
                         else
                         {
-                            _OutputListener.writeOutput("[WARN] ConsequenceLink from {0} to {1} object already included", node.baseModelObject.alias, linkedNode.baseModelObject.alias);
+                            if (DEBUG) _OutputListener.writeOutput("[DEBUG] ConsequenceLink from {0} to {1} object already included", node.baseModelObject.alias, linkedNode.baseModelObject.alias);
                         }
                     }
                     else
                     {
-                        _OutputListener.writeOutput("[WARN] Already removed {0}, probably because of an EXCLUDE", consequenceLink.destId);
+                        if (DEBUG) _OutputListener.writeOutput("[DEBUG] Already removed {0}, probably because of an EXCLUDE", consequenceLink.destId);
                     }
                 }
             }
