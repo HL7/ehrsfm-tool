@@ -83,8 +83,10 @@ namespace HL7_FM_EA_Extension
                             if (DEBUG) _OutputListener.writeOutput("[DEBUG] Created PLACEHOLDER for {0}", objectsCI[rel.destId].name);
                         }
 
-
-                        if (treeNodes.ContainsKey(rel.destId))
+                        /**
+                         * Check if both source and destination objects are there, if not ignore this relationship.
+                         */
+                        if (treeNodes.ContainsKey(rel.destId) && objectsCI.ContainsKey(rel.sourceId))
                         {
                             FMTreeNode node = treeNodes[rel.destId];
                             /**
@@ -139,6 +141,9 @@ namespace HL7_FM_EA_Extension
                                     treeNodes[rel.sourceId] = newNode;
                                 }
                             }
+                            /**
+                             * Other relationship types not supported
+                             */ 
                             else
                             {
                                 if (DEBUG) _OutputListener.writeOutput("[DEBUG] Ignored {0}", rel.type);
@@ -394,9 +399,18 @@ namespace HL7_FM_EA_Extension
             }
             else
             {
+                bool _includeInProfile = node.includeInProfile;
                 foreach (FMTreeNode child in node.children)
                 {
                     node.includeInProfile |= autoInclude(child, doFollowConsequenceLinks);
+                }
+                /**
+                 * If node was not included, but it is now because of a child that is included,
+                 * we should follow the consequenceLinks of this node.
+                 */
+                if (doFollowConsequenceLinks && node.includeInProfile != _includeInProfile)
+                {
+                    followConsequenceLinks(node);
                 }
             }
             return node.includeInProfile;

@@ -79,6 +79,16 @@ namespace HL7_FM_EA_Extension.Tests
         }
 
         [TestMethod]
+        public void TestCompileTesting7()
+        {
+            string fileNameBase = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\EHRS_FM_R2 January 2014_Final.max.xml";
+            string fileNameDefinition = @"C:\Temp\Testing7_profile-definition.max.xml";
+            string fileNameOutput = @"c:\temp\Testing7 Compiled.max.xml";
+            new R2ProfileCompiler().Compile(fileNameBase, fileNameDefinition, fileNameOutput);
+        }
+
+
+        [TestMethod]
         public void TestPreCompileMAXFile()
         {
             string fileNameBase = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\EHRS_FM_R2_N2.max.xml";

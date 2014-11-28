@@ -75,11 +75,10 @@ namespace HL7_FM_EA_Extension
                         if (modelElement is R2Function)
                         {
                             R2Function function = (R2Function) modelElement;
-                            EA.Package ProfileDefinitionPackage =
-                                repository.GetPackageByID(((EA.Element) function.SourceObject).PackageID);
+                            EA.Package ProfileDefinitionPackage = repository.GetPackageByID(((EA.Element) function.SourceObject).PackageID);
                             if (R2Const.ST_FM_PROFILEDEFINITION.Equals(ProfileDefinitionPackage.StereotypeEx))
                             {
-                                function.ProfileType = EAHelper.GetTaggedValue(ProfileDefinitionPackage.Element, "Type");
+                                function.ProfileDefinition = (R2ProfileDefinition)Create(EAHelper.repository, ProfileDefinitionPackage.Element);
                             }
                         }
                         break;
@@ -146,6 +145,19 @@ namespace HL7_FM_EA_Extension
                 Scope = EAHelper.GetTaggedValueNotes(element, R2Const.TV_SCOPE);
                 PrioDef = EAHelper.GetTaggedValueNotes(element, R2Const.TV_PRIODEF);
                 ConfClause = EAHelper.GetTaggedValueNotes(element, R2Const.TV_CONFCLAUSE);
+
+                ExtraPriorities = new List<string>();
+                string[] lines = PrioDef.Split(new char[] { '\n' });
+                foreach (string line in lines)
+                {
+                    int dash = line.IndexOf(" - ");
+                    if (dash != -1)
+                    {
+                        string prio = line.Substring(0, dash).Trim();
+                        string priodef = line.Substring(dash + 1).Trim();
+                        ExtraPriorities.Add(prio);
+                    }
+                }
             }
 
             public override void SaveToSource()

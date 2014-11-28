@@ -23,5 +23,19 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
 -- + Make it use Element.Elements
 -- + Smart sort!
 - LOW: [ ] Use Controls instead of Forms
-- [ ] UML Profile. Fix values for Reference.ChangeIndicator to "NC,N,C,D,DEP"
+- LOW: [ ] Figure out how to link Output Console lines to related Element when they have GUID's instead of ID's (see FMTreeNode.instrID)
+-----
+ 28-nov-2014
+-----
 - [ ] Update Schematrons
+- [ ] UML Profile. Fix values for Reference.ChangeIndicator to "NC,N,C,D,DEP"
+- [ ] MergeProfilesForm; remove fixed paths
+- Layout issues
+-- [ ] ProfilingForm / Criteria List doesnot size
+
+------------------
+FM R2 Issues
+- CPS.2.1#09
+  <notes>The system SHOULD conform to TI.1.5 (Non-Repudiation) and TI.1.6 (Secure Data Exchange) when importing/receiving both structured and unstructured data.</notes>
+  This should result in 2 ConsequenceLinks, now the code and validator only expects 0..1 and never "... and ..."
+- TI.2.1 Links to self (see GraphViz)

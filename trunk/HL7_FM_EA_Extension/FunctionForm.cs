@@ -53,6 +53,9 @@ namespace HL7_FM_EA_Extension
                 priorityLabel.Visible = true;
                 priorityComboBox.Text = function.Priority;
                 priorityComboBox.Visible = true;
+                priorityComboBox.Items.Add("");
+                priorityComboBox.Items.AddRange(function.ProfileDefinition.ExtraPriorities.ToArray());
+                toolTip1.SetToolTip(priorityComboBox, function.ProfileDefinition.PrioDef);
             }
             else
             {
@@ -95,7 +98,7 @@ namespace HL7_FM_EA_Extension
                 {
                     idTextBox.Enabled = false;
                     // If this is a Realm Profile or this is a new Function you can edit all fields
-                    bool overrideEnableEdit = "Realm".Equals(function.ProfileType) || !function.HasBaseElement;
+                    bool overrideEnableEdit = "Realm".Equals(function.ProfileDefinition.Type) || !function.HasBaseElement;
                     nameTextBox.Enabled = overrideEnableEdit;
                     statementTextBox.Enabled = overrideEnableEdit;
                     descriptionTextBox.Enabled = true;

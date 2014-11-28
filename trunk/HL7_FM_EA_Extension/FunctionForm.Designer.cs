@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FunctionForm));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@
             this.descriptionLinkLabel = new System.Windows.Forms.LinkLabel();
             this.changeNoteTextBox = new System.Windows.Forms.TextBox();
             this.lockIcon = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -314,5 +316,6 @@
         private System.Windows.Forms.LinkLabel descriptionLinkLabel;
         private System.Windows.Forms.TextBox changeNoteTextBox;
         private System.Windows.Forms.PictureBox lockIcon;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
