@@ -5,6 +5,8 @@ R2ModelV2EA
 - Factory now sets ProfileDefinition property for all CompilerInstructions! Needed for Priority.
 MDG
 - Updated Learning Center URLs
+Schematron
+- Update Profile validation
 
 [2014-nov-28]
 ProfilingForm
