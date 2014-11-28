@@ -24,28 +24,39 @@
     <pattern id="prioritization">
         <rule context="object[stereotype/text()='Function' or stereotype/text()='Criteria']">
             <assert test="tag[@name='Priority']" diagnostics="FMPR01"/>
-            <assert test="tag[@name='Priority' and (text()='EN' or text()='EF' or text()='O')]" diagnostics="FMPR01"/>
+            <assert test="tag[@name='Priority' and (@value='EN' or @value='EF' or @value='O')]" diagnostics="FMPR01"/>
         </rule>
-        <rule context="object[stereotype/text()='Function'or stereotype/text()='Criteria']/tag[@name='Priority']">
-            <assert test="text()='EF' and ../tag[@name='Timeframe']" diagnostics="FMPR02"/>
+        <rule context="object[stereotype/text()='Function'or stereotype/text()='Criteria']/tag[@name='Priority' and @value='EF']">
+            <assert test="../tag[@name='Timeframe']" diagnostics="FMPR02"/>
         </rule>
     </pattern>
     
     <pattern id="function-content">
         <rule context="object[stereotype/text()='Function']">
-            <let name="id" value="../id"/>
+            <let name="id" value="id"/>
             <let name="statement" value="substring-before(substring-after(notes,'$ST$'), '$DE$')"/>
             <let name="stmt-lgth" value="string-length($statement)"/>
             <let name="description" value="substring-before(substring-after(notes,'$DE$'), '$EX$')"/>
             <let name="desc-lgth" value="string-length($description)"/>
-
+            <let name="has-criteria" value="count(../object[stereotype/text()='Criteria' and parentId=$id]) > 0"/>
+            
             <assert test="id" diagnostics="FMST17"/>
             <assert test="name" diagnostics="FMST26"/>
 
             <assert test="$stmt-lgth > 0" diagnostics="FMST27"/>
             <assert test="$desc-lgth > 0" diagnostics="FMST28"/>
             
-            <assert test="count(../object/alias[text()=$id])=1" diagnostics="FMST29"><value-of select="$id"/></assert>
+            <assert test="count(../object[parentId=$id]) > 0" diagnostics="FMST29"/>
+            
+            <report test="$has-criteria and count(../object[stereotype/text()='Criteria' and parentId=$id]/tag[@name='Optionality' and @value='SHALL']) = 0" diagnostics="FMST12"/>
+        </rule>
+    </pattern>
+    
+    <pattern id="criteria-content">
+        <rule context="object[stereotype/text()='Criteria']">
+            <assert test="tag[@name='Reference.ChangeIndicator']" diagnostics="FMTC06"/>
+            <report test="./tag[@name='Reference.ChangeIndicator' and (@value='C' or @value='NC' or @value='D' or @value='DEP')] and count(./tag[@name='Reference.CriterionID'])=0" diagnostics="FMTC06"/>
+            <assert test="tag[@name='Reference.ChangeIndicator' and (@value='N' or @value='C' or @value='NC' or @value='D' or @value='DEP' or @value='A')]" diagnostics="FMTC07"/>
         </rule>
     </pattern>
         
