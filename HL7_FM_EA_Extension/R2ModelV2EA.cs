@@ -70,26 +70,6 @@ namespace HL7_FM_EA_Extension
                         {
                             modelElement.BaseElement.Path = GetModelElementPath(repository, baseElement);
                         }
-
-                        // The ProfileType is needed for R2FunctionCI's in the FunctionForm
-                        if (modelElement is R2Function)
-                        {
-                            R2Function function = (R2Function) modelElement;
-                            EA.Package ProfileDefinitionPackage = repository.GetPackageByID(((EA.Element) function.SourceObject).PackageID);
-                            if (R2Const.ST_FM_PROFILEDEFINITION.Equals(ProfileDefinitionPackage.StereotypeEx))
-                            {
-                                function.ProfileDefinition = (R2ProfileDefinition)Create(EAHelper.repository, ProfileDefinitionPackage.Element);
-                            }
-                        }
-                        else if (modelElement is R2Criterion)
-                        {
-                            R2Criterion criterion = (R2Criterion)modelElement;
-                            EA.Package ProfileDefinitionPackage = repository.GetPackageByID(((EA.Element)criterion.SourceObject).PackageID);
-                            if (R2Const.ST_FM_PROFILEDEFINITION.Equals(ProfileDefinitionPackage.StereotypeEx))
-                            {
-                                criterion.ProfileDefinition = (R2ProfileDefinition)Create(EAHelper.repository, ProfileDefinitionPackage.Element);
-                            }
-                        }
                         break;
                 }
                 if (modelElement != null && repository != null)
@@ -101,6 +81,18 @@ namespace HL7_FM_EA_Extension
                     if (R2Const.ST_FM_PROFILEDEFINITION.Equals(ProfileDefinitionPackage.StereotypeEx))
                     {
                         modelElement.IsCompilerInstruction = true;
+
+                        // The ProfileType is needed for R2FunctionCI's in the FunctionForm
+                        if (modelElement is R2Function)
+                        {
+                            R2Function function = (R2Function)modelElement;
+                            function.ProfileDefinition = (R2ProfileDefinition)Create(EAHelper.repository, ProfileDefinitionPackage.Element);
+                        }
+                        else if (modelElement is R2Criterion)
+                        {
+                            R2Criterion criterion = (R2Criterion)modelElement;
+                            criterion.ProfileDefinition = (R2ProfileDefinition)Create(EAHelper.repository, ProfileDefinitionPackage.Element);
+                        }
                     }
                 }
                 return modelElement;
