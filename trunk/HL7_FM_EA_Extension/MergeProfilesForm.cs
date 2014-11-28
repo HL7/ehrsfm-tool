@@ -63,6 +63,14 @@ namespace HL7_FM_EA_Extension
             modelsDataGridView.Columns[2].DefaultCellStyle = emptyCellStyle;
             modelsDataGridView.Columns[3].DefaultCellStyle = emptyCellStyle;
             modelsDataGridView.Columns[4].DefaultCellStyle = emptyCellStyle;
+
+            // Initial empty form, no base model, disable not working buttons
+            modelsDataGridView.Columns[COLUMN_BASE_MODEL].HeaderText = "Double click here to load Base Model";
+            loadButton.Enabled = false;
+            saveButton.Enabled = false;
+            selectButton.Enabled = false;
+            clearButton.Enabled = false;
+
             ShowDialog();
         }
 
@@ -170,6 +178,12 @@ namespace HL7_FM_EA_Extension
             modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag = profileDef;
 
             PopulateBaseModelColumn(baseModel);
+
+            // Enable buttons now
+            loadButton.Enabled = true;
+            saveButton.Enabled = true;
+            selectButton.Enabled = true;
+            clearButton.Enabled = true;
         }
 
         private void LoadDummyProfile(int columnNumber, DataGridViewCellStyle cellStyle)
@@ -369,22 +383,43 @@ namespace HL7_FM_EA_Extension
                 switch (e.ColumnIndex)
                 {
                     case COLUMN_BASE_MODEL:
+                        // Ask confirmation is Base Model already loaded
+                        if (baseModel != null)
+                        {
+                            if (MessageBox.Show("This action will lose any changes to the Merged Profile that are not saved.\nAre you sure?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                                != DialogResult.Yes)
+                            {
+                                return;
+                            }
+                        }
                         defaultFileName = fileNameBaseModel;
                         break;
                     case COLUMN_MERGED_PROFILE:
                         ProfileMetadataForm form = new ProfileMetadataForm();
                         R2ProfileDefinition profDef = (R2ProfileDefinition)modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag;
-                        form.Show(profDef);
-                        modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].HeaderText = profDef.Name;
+                        if (profDef != null)
+                        {
+                            form.Show(profDef);
+                            modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].HeaderText = profDef.Name;
+                        }
                         return;
                     case 2:
-                        defaultFileName = fileNameProfile1;
+                        if (baseModel != null)
+                        {
+                            defaultFileName = fileNameProfile1;
+                        }
                         break;
                     case 3:
-                        defaultFileName = fileNameProfile2;
+                        if (baseModel != null)
+                        {
+                            defaultFileName = fileNameProfile2;
+                        }
                         break;
                     case 4:
-                        defaultFileName = fileNameProfile3;
+                        if (baseModel != null)
+                        {
+                            defaultFileName = fileNameProfile3;
+                        }
                         break;
                 }
                 if (defaultFileName != null)
@@ -400,17 +435,13 @@ namespace HL7_FM_EA_Extension
                         {
                             case COLUMN_BASE_MODEL:
                                 fileNameBaseModel = fileName;
-                                if (MessageBox.Show("This action will lose any changes to the Merged Profile that are not saved. Are you sure?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                                    == DialogResult.Yes)
-                                {
-                                    ClearColumn(0);
-                                    ClearColumn(1);
-                                    ClearColumn(2);
-                                    ClearColumn(3);
-                                    ClearColumn(4);
-                                    LoadBaseModelAndNewMergedProfile();
-                                    UpdateStatistics();
-                                }
+                                ClearColumn(0);
+                                ClearColumn(1);
+                                ClearColumn(2);
+                                ClearColumn(3);
+                                ClearColumn(4);
+                                LoadBaseModelAndNewMergedProfile();
+                                UpdateStatistics();
                                 break;
 /*                            case COLUMN_MERGED_PROFILE:
                                 fileNameMerged = fileName;
