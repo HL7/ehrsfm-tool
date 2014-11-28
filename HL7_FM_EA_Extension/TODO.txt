@@ -24,6 +24,7 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
 -- + Smart sort!
 - LOW: [ ] Use Controls instead of Forms
 - LOW: [ ] Figure out how to link Output Console lines to related Element when they have GUID's instead of ID's (see FMTreeNode.instrID)
+- LOW: [ ] ProfilingForm / Criteria List doesnot size
 -----
  28-nov-2014
 -----
@@ -35,9 +36,6 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
       <assert test="tag[@name='SourceVersion']" diagnostics="FMTC02"/>
       <assert test="tag[@name='SourceVersionDate']" diagnostics="FMTC03"/>
 	  Timeframe on Function if Criteria is "EF"???
-- [ ] UML Profile. Fix values for Reference.ChangeIndicator to "NC,N,C,D,DEP"
-- Layout issues
--- LOW: [ ] ProfilingForm / Criteria List doesnot size
 
 ------------------
 FM R2 Issues

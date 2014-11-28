@@ -91,12 +91,12 @@ namespace HL7_FM_EA_Extension
                     case "Import R2":
                     case "Update Style":
                     case "Validate":
-                    case "Merge Profiles":
                         IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage);
                         break;
                     case "Create Diagram":
                         IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage || Repository.GetTreeSelectedItemType() == EA.ObjectType.otElement);
                         break;
+                    case "Merge Profiles":
                     case "Quick Access Tab":
                     case "FM Browser Tab":
                     case "About":
