@@ -552,6 +552,10 @@ namespace HL7_FM_EA_Extension
                 {
                     repository.ShowInProjectView(dl.compilerInstructionEAElement);
                 }
+                else if (dl.baseModelEAElement != null)
+                {
+                    repository.ShowInProjectView(dl.baseModelEAElement);
+                }
             }
         }
     }
