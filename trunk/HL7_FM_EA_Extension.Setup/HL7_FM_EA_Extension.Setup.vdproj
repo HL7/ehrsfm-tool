@@ -289,7 +289,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HL7 FM EA Extension"
         "ProductCode" = "8:{CDC11C57-657D-41FC-9ACA-C7E815B66F41}"
-        "PackageCode" = "8:{785F7910-EBC6-4391-BABA-C9BAA6ED8128}"
+        "PackageCode" = "8:{A8ECFB90-23CA-423B-8956-F57A17AB6D96}"
         "UpgradeCode" = "8:{C34E59C2-750C-4865-857C-7CC8A3BF387C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
