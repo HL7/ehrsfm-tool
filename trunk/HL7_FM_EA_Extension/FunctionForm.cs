@@ -53,8 +53,11 @@ namespace HL7_FM_EA_Extension
                 priorityLabel.Visible = true;
                 priorityComboBox.Text = function.Priority;
                 priorityComboBox.Visible = true;
-                priorityComboBox.Items.Add("");
-                priorityComboBox.Items.AddRange(function.ProfileDefinition.ExtraPriorities.ToArray());
+                if (function.ProfileDefinition.ExtraPriorities.Any())
+                {
+                    priorityComboBox.Items.Add("");
+                    priorityComboBox.Items.AddRange(function.ProfileDefinition.ExtraPriorities.ToArray());
+                }
                 toolTip1.SetToolTip(priorityComboBox, function.ProfileDefinition.PrioDef);
             }
             else

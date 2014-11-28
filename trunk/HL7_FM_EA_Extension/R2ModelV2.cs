@@ -369,8 +369,6 @@ namespace HL7_FM_EA_Extension
             public string Name { get { return get(R2Const.AT_NAME); } set { set(R2Const.AT_NAME, value); } }
             public string Statement { get { return get(R2Const.AT_STATEMENT); } set { set(R2Const.AT_STATEMENT, value); } }
             public string Description { get { return get(R2Const.AT_DESCRIPTION); } set { set(R2Const.AT_DESCRIPTION, value); } }
-
-            // TODO: This has to go to R2Profile/R2ProfileDefinition
             public R2ProfileDefinition ProfileDefinition { get; set; }
         }
 
@@ -477,6 +475,7 @@ namespace HL7_FM_EA_Extension
                 }
             }
             public string Optionality { get { return get(R2Const.TV_OPTIONALITY); } set { set(R2Const.TV_OPTIONALITY, value); } }
+            public R2ProfileDefinition ProfileDefinition { get; set; }
         }
     }
 }

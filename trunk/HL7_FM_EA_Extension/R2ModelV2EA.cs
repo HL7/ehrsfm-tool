@@ -81,6 +81,15 @@ namespace HL7_FM_EA_Extension
                                 function.ProfileDefinition = (R2ProfileDefinition)Create(EAHelper.repository, ProfileDefinitionPackage.Element);
                             }
                         }
+                        else if (modelElement is R2Criterion)
+                        {
+                            R2Criterion criterion = (R2Criterion)modelElement;
+                            EA.Package ProfileDefinitionPackage = repository.GetPackageByID(((EA.Element)criterion.SourceObject).PackageID);
+                            if (R2Const.ST_FM_PROFILEDEFINITION.Equals(ProfileDefinitionPackage.StereotypeEx))
+                            {
+                                criterion.ProfileDefinition = (R2ProfileDefinition)Create(EAHelper.repository, ProfileDefinitionPackage.Element);
+                            }
+                        }
                         break;
                 }
                 if (modelElement != null && repository != null)

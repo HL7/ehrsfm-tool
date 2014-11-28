@@ -26,13 +26,13 @@ namespace HL7_FM_EA_Extension
                     sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-validation.sch");
                     break;
                 case R2Const.ST_FM_PROFILEDEFINITION:
-                    sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-FPDEF-validation.sch");
+                    sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2_FPDEF-validation.sch");
                     break;
                 case R2Const.ST_FM_PROFILE:
-                    sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-FP-validation.sch");
+                    sch_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2_FP-validation.sch");
                     break;
                 default:
-                    MessageBox.Show(string.Format("Select an <{0}> stereotyped package.\nValidation works on full FM only.", R2Const.ST_FM));
+                    MessageBox.Show(string.Format("Validation not available for {0}.\nChoose ", rootPackage.Name), "Choose other package", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
             }
 
@@ -54,14 +54,14 @@ namespace HL7_FM_EA_Extension
             string sch_xsl_filepath = Main.getAppDataFullPath(@"Schematron\EHRS_FM_R2-validation.sch.xsl");
             transform.Transform(sch_filepath, sch_xsl_filepath);
 
-            // export to temp max.xml file
-            string fm_max_file = Main.getAppDataFullPath(@"Schematron\temp.max.xml");
-            new MAX_EA.MAXExporter3().exportPackage(repository, rootPackage, fm_max_file);
+            // export to temp MAX file
+            string temp_max_file = Main.getAppDataFullPath(@"Schematron\__temp__.max");
+            new MAX_EA.MAXExporter3().exportPackage(repository, rootPackage, temp_max_file);
 
             // now execute the Schematron XSL
             transform.Load(sch_xsl_filepath, settings, resolver);
             string svrl_filepath = Main.getAppDataFullPath(@"Schematron\svrl_output.xml");
-            transform.Transform(fm_max_file, svrl_filepath);
+            transform.Transform(temp_max_file, svrl_filepath);
 
             // build element dictionary
             Dictionary<string, EA.Element> eaElementDict = new Dictionary<string, EA.Element>();
@@ -78,7 +78,7 @@ namespace HL7_FM_EA_Extension
                 appendSvrlMessagesToOutputTab(repository, svrl.XPathSelectElements("//svrl:successful-report", nsmgr), eaElementDict, nsmgr);
                 appendSvrlMessagesToOutputTab(repository, svrl.XPathSelectElements("//svrl:failed-assert", nsmgr), eaElementDict, nsmgr);
             }
-            MessageBox.Show("Validation done.\nCheck \"Project Status/issues\" or output tab for issues.");
+            MessageBox.Show("Validation done.\nCheck output tab for message and issues.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             repository.EnsureOutputVisible(Properties.Resources.OUTPUT_TAB_HL7_FM);
         }
@@ -88,12 +88,21 @@ namespace HL7_FM_EA_Extension
             foreach (XElement xSvrlMessage in xSvrlMessages)
             {
                 string idtxt = xSvrlMessage.XPathSelectElement("svrl:text", nsmgr).Value;
-                EA.Element element = eaElementDict[idtxt];
+                // Not all issues are associated to an element
                 XElement xSvrlDiag = xSvrlMessage.XPathSelectElement("svrl:diagnostic-reference", nsmgr);
                 string code = xSvrlDiag.Attribute("diagnostic").Value;
                 string message = xSvrlDiag.Value.Trim();
-                string issueName = string.Format("{0}:{1} - {2}", code, message, element.Name);
-                EAHelper.LogMessage(issueName, element.ElementID);
+                if (eaElementDict.ContainsKey(idtxt))
+                {
+                    EA.Element element = eaElementDict[idtxt];
+                    string issueName = string.Format("{0}:{1} - {2}", code, message, element.Name);
+                    EAHelper.LogMessage(issueName, element.ElementID);
+                }
+                else
+                {
+                    string issueName = string.Format("{0}:{1}", code, message);
+                    EAHelper.LogMessage(issueName);
+                }
 
                 //EA.ProjectIssues issue = (EA.ProjectIssues)Repository.Issues.AddNew(issueName, "ProjectIssues");
                 //issue.Update();
