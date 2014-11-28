@@ -3,6 +3,7 @@
 [2014-nov-28]
 ProfilingForm
 - Moved sync "<->" buttons.
+- Sync button did not do anything for non compiler instructions. Fixed.
 R2ProfileCompiler
 - Merged Profile generated GUID's as ID's for Compiler Instructions. The compiler did not expect that on some places.
 - Testing7: When a Criterion is in the profiledef and his Function is not, but his Function has ConsequenceLinks, 
