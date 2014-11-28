@@ -1,5 +1,5 @@
 <MDG.Technology version="1.0">
-  <Documentation id="1" name="HL7-FM" version="0.17" notes="The EHR-S FM Tool&#xA;Containing:&#xA;- Learning Center&#xA;- UML Profile&#xA;- RTF Templates&#xA;- Tagged Value Types&#xA;- Searches"/>
+  <Documentation id="1" name="HL7-FM" version="0.18" notes="The EHR-S FM Tool&#xA;Containing:&#xA;- Learning Center&#xA;- UML Profile&#xA;- RTF Templates&#xA;- Tagged Value Types&#xA;- Searches"/>
   <UMLProfiles>
     <UMLProfile profiletype="uml2">
       <Documentation id="F2D4FBFF-F" name="HL7-FM" version="1.0" notes="HL7-FM"/>
@@ -201,7 +201,7 @@
               <Apply type="ToolboxPage"/>
             </AppliesTo>
             <TaggedValues>
-              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Combine, Compare &amp; Merge/CombineCompareMerge.pdf)" type="" description="" unit="" values="" default="Combine, Compare and Merge Functional Profiles"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/CombineCompareMerge/CombineCompareMerge.pdf)" type="" description="" unit="" values="" default="Combine, Compare and Merge Functional Profiles"/>
             </TaggedValues>
           </Stereotype>
           <Stereotype name="Export (part) Base model or Functional Profile" notes="" cx="90" cy="70" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
@@ -246,7 +246,7 @@
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/4FunctionalProfiles.pdf)" type="" description="" unit="" values="" default="Functional Profiles"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/5EHRSFMComponents.pdf)" type="" description="" unit="" values="" default="Functional list components"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/6ConformanceClauseIntroduction.pdf)" type="" description="" unit="" values="" default="Conformance Clause, an Introduction"/>
-              <Tag name="EASystem::ShowURL(http://ehrsfmfpresults4care.eu/LearningCenter/Overview&amp;Definitions/7ConformanceClausConcepts.pdf)" type="" description="" unit="" values="" default="Conformance Claus, Concepts"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/7ConformanceClausConcepts.pdf)" type="" description="" unit="" values="" default="Conformance Claus, Concepts"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/8ConformanceClauseConformanceCriteria.pdf)" type="" description="" unit="" values="" default="Conformance criteria"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/9FMStructure&amp;Extensibility.pdf)" type="" description="" unit="" values="" default="Functional Model Structure and Extensibility"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Overview&amp;Definitions/10FPConformance.pdf)" type="" description="" unit="" values="" default="Functional Profile Conformance "/>
@@ -262,9 +262,9 @@
             </AppliesTo>
             <TaggedValues>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Edit_FM_FP/AddingEHR_S_FMFPcomponents.pdf)" type="" description="" unit="" values="" default="Adding EHR-S FM FP components"/>
-              <Tag name="EASystem::ShowURL((http://ehrsfmfp.results4care.eu/LearningCenter/CollaborationFunctionalProfile.pdf)" type="" description="" unit="" values="" default="Collaboration on a Functional Profile"/>
-              <Tag name="EASystem::ShowURL((http://ehrsfmfp.results4care.eu/LearningCenter/Edit_FM_FP/ProjectManagement.pdf)" type="" description="" unit="" values="" default="Project Management"/>
-              <Tag name="EASystem::ShowURL((http://ehrsfmfp.results4care.eu/LearningCenter/TrackingChanges.pdf)" type="" description="" unit="" values="" default="Tracking Changes"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Edit_FM_FP/CollaborationFunctionalProfile.pdf)" type="" description="" unit="" values="" default="Collaboration on a Functional Profile"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Edit_FM_FP/ProjectManagement.pdf)" type="" description="" unit="" values="" default="Project Management"/>
+              <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Edit_FM_FP/TrackingChanges.pdf)" type="" description="" unit="" values="" default="Tracking Changes"/>
               <Tag name="EASystem::ShowURL(http://ehrsfmfp.results4care.eu/LearningCenter/Edit_FM_FP/MovingEHR_S_FMFPcomponents.pdf)" type="" description="" unit="" values="" default="Moving EHR-S FM/FP components"/>
             </TaggedValues>
           </Stereotype>

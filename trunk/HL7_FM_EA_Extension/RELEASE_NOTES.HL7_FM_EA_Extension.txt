@@ -1,5 +1,11 @@
 ﻿CHANGELOG
 =========
+[2014-nov-28] Notes of Testing
+R2ModelV2EA
+- Factory now sets ProfileDefinition property for all CompilerInstructions! Needed for Priority.
+MDG
+- Updated Learning Center URLs
+
 [2014-nov-28]
 ProfilingForm
 - Moved sync "<->" buttons.
