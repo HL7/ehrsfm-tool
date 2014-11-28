@@ -14,10 +14,14 @@
             <assert test="tag[@name='Rationale']" diagnostics="FPID01"/>
             
             <assert test="tag[@name='Version']" diagnostics="FPID02"/>
+            <!--
+                The following items are not part of the current MAX file but are specified in requested validations
+                retained for a later implementation
             <assert test="tag[@name='IssuanceDate']" diagnostics="FPID03"/>
             <assert test="tag[@name='NormativeLanguage']" diagnostics="FPID04"/>
             <assert test="tag[@name='SourceVersion']" diagnostics="FMTC02"/>
             <assert test="tag[@name='SourceVersionDate']" diagnostics="FMTC03"/>
+            -->
         </rule>
     </pattern>
     
@@ -26,9 +30,12 @@
             <assert test="tag[@name='Priority']" diagnostics="FMPR01"/>
             <assert test="tag[@name='Priority' and (@value='EN' or @value='EF' or @value='O')]" diagnostics="FMPR01"/>
         </rule>
+        <!--
+            The TIMEFRAME tag has been removed from the MAX file, retained for a later implementation
         <rule context="object[stereotype/text()='Function'or stereotype/text()='Criteria']/tag[@name='Priority' and @value='EF']">
             <assert test="../tag[@name='Timeframe']" diagnostics="FMPR02"/>
         </rule>
+        -->
     </pattern>
     
     <pattern id="function-content">
