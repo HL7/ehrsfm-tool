@@ -36,7 +36,7 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
       <assert test="tag[@name='SourceVersion']" diagnostics="FMTC02"/>
       <assert test="tag[@name='SourceVersionDate']" diagnostics="FMTC03"/>
 	  Timeframe on Function if Criteria is "EF"???
-
+- [ ] Tagged values are duplicated when max file is imported and EA has UML Profile loaded.
 ------------------
 FM R2 Issues
 - CPS.2.1#09
