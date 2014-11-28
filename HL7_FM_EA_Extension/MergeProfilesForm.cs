@@ -63,32 +63,6 @@ namespace HL7_FM_EA_Extension
             modelsDataGridView.Columns[2].DefaultCellStyle = emptyCellStyle;
             modelsDataGridView.Columns[3].DefaultCellStyle = emptyCellStyle;
             modelsDataGridView.Columns[4].DefaultCellStyle = emptyCellStyle;
-
-            baseModel = R2ModelV2.MAX.Factory.LoadModel(fileNameBaseModel, true);
-            modelsDataGridView.Rows.Add(baseModel.children.Count);
-
-            // Create initial Profile Definition Object
-            R2ProfileDefinition profileDef = new R2ModelV2.MAX.R2ProfileDefinition
-            {
-                Name = "Merged Profile",
-                Type = "Merged",
-                Version = "1.0",
-                LanguageTag = "en-EN",
-                Rationale = "",
-                Scope = "",
-                PrioDef = "",
-                ConfClause = "",
-                LastModified = Util.FormatLastModified(DateTime.Now),
-                BaseModelName = baseModel.Name
-            };
-            profileDef.SaveToSource();
-            modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].HeaderText = profileDef.Name;
-            modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag = profileDef;
-
-            PopulateBaseModelColumn(baseModel);
-            LoadDummyProfile(4, cellStyle);
-            UpdateStatistics();
-
             ShowDialog();
         }
 
@@ -169,6 +143,33 @@ namespace HL7_FM_EA_Extension
                     cell.ToolTipText = section.Name;
                 }
             }
+        }
+
+        private void LoadBaseModelAndNewMergedProfile()
+        {
+            baseModel = R2ModelV2.MAX.Factory.LoadModel(fileNameBaseModel, true);
+            modelsDataGridView.Rows.Clear();
+            modelsDataGridView.Rows.Add(baseModel.children.Count);
+
+            // Create initial Profile Definition Object
+            R2ProfileDefinition profileDef = new R2ModelV2.MAX.R2ProfileDefinition
+            {
+                Name = "Merged Profile",
+                Type = "Merged",
+                Version = "1.0",
+                LanguageTag = "en-EN",
+                Rationale = "",
+                Scope = "",
+                PrioDef = "",
+                ConfClause = "",
+                LastModified = Util.FormatLastModified(DateTime.Now),
+                BaseModelName = baseModel.Name
+            };
+            profileDef.SaveToSource();
+            modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].HeaderText = profileDef.Name;
+            modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag = profileDef;
+
+            PopulateBaseModelColumn(baseModel);
         }
 
         private void LoadDummyProfile(int columnNumber, DataGridViewCellStyle cellStyle)
@@ -399,7 +400,17 @@ namespace HL7_FM_EA_Extension
                         {
                             case COLUMN_BASE_MODEL:
                                 fileNameBaseModel = fileName;
-                                MessageBox.Show("Not yet implemented", "NYI", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (MessageBox.Show("This action will lose any changes to the Merged Profile that are not saved. Are you sure?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                                    == DialogResult.Yes)
+                                {
+                                    ClearColumn(0);
+                                    ClearColumn(1);
+                                    ClearColumn(2);
+                                    ClearColumn(3);
+                                    ClearColumn(4);
+                                    LoadBaseModelAndNewMergedProfile();
+                                    UpdateStatistics();
+                                }
                                 break;
 /*                            case COLUMN_MERGED_PROFILE:
                                 fileNameMerged = fileName;

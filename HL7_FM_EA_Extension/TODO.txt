@@ -35,10 +35,7 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
       <assert test="tag[@name='SourceVersion']" diagnostics="FMTC02"/>
       <assert test="tag[@name='SourceVersionDate']" diagnostics="FMTC03"/>
 	  Timeframe on Function if Criteria is "EF"???
-
-
 - [ ] UML Profile. Fix values for Reference.ChangeIndicator to "NC,N,C,D,DEP"
-- [ ] MergeProfilesForm; remove fixed paths
 - Layout issues
 -- LOW: [ ] ProfilingForm / Criteria List doesnot size
 

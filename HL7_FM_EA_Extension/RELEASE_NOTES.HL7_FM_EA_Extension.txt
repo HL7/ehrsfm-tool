@@ -15,6 +15,9 @@ ProfileDefinition/FunctionForm/CriterionForm
 R2Validator
 - Schematron filenames were wrong.
 - Not all issues are associated to an Element that caused an Exception. Fixed.
+MergeProfilesForm
+- Removed load of dummy profile
+- Start empty
 
 [2014-nov-21]
 R2ProfileCompiler
