@@ -64,7 +64,18 @@ namespace HL7_FM_EA_Extension
         }
         public int instrID
         {
-            get { return hasInstruction?int.Parse(instructionObject.id):-1; }
+            get
+            {
+                try
+                {
+                    return hasInstruction ? int.Parse(instructionObject.id) : -1;
+                }
+                catch
+                {
+                    // This ID is probably an GUID
+                    return -1;
+                }
+            }
         }
         public List<RelationshipType> relationships = new List<RelationshipType>();
         public bool hasConsequenceLinks

@@ -116,7 +116,6 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.button2);
             this.splitContainer2.Panel1.Controls.Add(this.mainListView);
             // 
             // splitContainer2.Panel2
@@ -128,7 +127,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(299, 368);
+            this.button2.Location = new System.Drawing.Point(257, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(33, 23);
             this.button2.TabIndex = 14;
@@ -142,6 +141,7 @@
             this.flowLayoutPanel1.Controls.Add(this.includeRadioButton);
             this.flowLayoutPanel1.Controls.Add(this.deprecateRadioButton);
             this.flowLayoutPanel1.Controls.Add(this.deleteRadioButton);
+            this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -267,6 +267,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -297,7 +298,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.criteriaListView);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -310,7 +310,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(430, 324);
+            this.button1.Location = new System.Drawing.Point(9, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(33, 23);
             this.button1.TabIndex = 13;

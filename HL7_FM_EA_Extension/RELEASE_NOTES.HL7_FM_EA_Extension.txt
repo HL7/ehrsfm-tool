@@ -1,5 +1,14 @@
 ﻿CHANGELOG
 =========
+[2014-nov-28]
+ProfilingForm
+- Moved sync "<->" buttons.
+R2ProfileCompiler
+- Merged Profile generated GUID's as ID's for Compiler Instructions. The compiler did not expect that on some places.
+- Testing7: When a Criterion is in the profiledef and his Function is not, but his Function has ConsequenceLinks, 
+	  the ConsequenceLinks Functions were not included in the compiled profile. Fixed.
+	  WORKAROUND was: Include the Function.
+
 [2014-nov-21]
 R2ProfileCompiler
 - When new element has multiple Aggregation relationships it was included multiple times. Now compiler detects this and warns.
@@ -7,6 +16,8 @@ R2ProfileCompiler
 - Made the output a bit quieter. Added DEBUG level and leave out DEBUG in MSI.
 ProfilingForm
 - Made more robust. Give feedback if model is not the way we expect.
+-- 1 When there are multiple base elements associated to the compiler instruction or vise-verse.
+-- 2 when there is no base element associated with a compiler instruction.
 - Added tooltips.
 
 [2014-nov-19]

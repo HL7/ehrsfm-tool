@@ -321,6 +321,7 @@ namespace HL7_FM_EA_Extension
             public string PrioDef { get { return get(R2Const.TV_PRIODEF); } set { set(R2Const.TV_PRIODEF, value); } }
             public string ConfClause { get { return get(R2Const.TV_CONFCLAUSE); } set { set(R2Const.TV_CONFCLAUSE, value); } }
             public string BaseModelName { get; set; }
+            public List<string> ExtraPriorities { get; set; } 
         }
 
         public class R2Section : R2ModelElement
@@ -370,7 +371,7 @@ namespace HL7_FM_EA_Extension
             public string Description { get { return get(R2Const.AT_DESCRIPTION); } set { set(R2Const.AT_DESCRIPTION, value); } }
 
             // TODO: This has to go to R2Profile/R2ProfileDefinition
-            public string ProfileType { get; set; }
+            public R2ProfileDefinition ProfileDefinition { get; set; }
         }
 
         public class R2Criterion : R2ModelElement
