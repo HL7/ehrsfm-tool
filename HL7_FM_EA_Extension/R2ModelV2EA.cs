@@ -154,19 +154,6 @@ namespace HL7_FM_EA_Extension
                 Scope = EAHelper.GetTaggedValueNotes(element, R2Const.TV_SCOPE);
                 PrioDef = EAHelper.GetTaggedValueNotes(element, R2Const.TV_PRIODEF);
                 ConfClause = EAHelper.GetTaggedValueNotes(element, R2Const.TV_CONFCLAUSE);
-
-                ExtraPriorities = new List<string>();
-                string[] lines = PrioDef.Split(new char[] { '\n' });
-                foreach (string line in lines)
-                {
-                    int dash = line.IndexOf(" - ");
-                    if (dash != -1)
-                    {
-                        string prio = line.Substring(0, dash).Trim();
-                        string priodef = line.Substring(dash + 1).Trim();
-                        ExtraPriorities.Add(prio);
-                    }
-                }
             }
 
             public override void SaveToSource()

@@ -291,11 +291,13 @@ namespace HL7_FM_EA_Extension
                 if (element is R2Criterion)
                 {
                     R2Criterion criterion = (R2Criterion)element;
+                    criterion.ProfileDefinition = profDef;
                     cell.ToolTipText = criterion.Text;
                 }
                 else if (element is R2Function)
                 {
                     R2Function function = (R2Function)element;
+                    function.ProfileDefinition = profDef;
                     cell.ToolTipText = function.Name + "\n" + function.Description;
                 }
                 else if (element is R2Section)
@@ -736,11 +738,13 @@ namespace HL7_FM_EA_Extension
             if (compilerInstruction is R2Criterion)
             {
                 R2Criterion criterion = (R2Criterion)compilerInstruction;
+                criterion.ProfileDefinition = (R2ProfileDefinition)modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag;
                 cell.ToolTipText = criterion.Text;
             }
             else if (compilerInstruction is R2Function)
             {
                 R2Function function = (R2Function)compilerInstruction;
+                function.ProfileDefinition = (R2ProfileDefinition)modelsDataGridView.Columns[COLUMN_MERGED_PROFILE].Tag;
                 cell.ToolTipText = function.Name + "\n" + function.Description;
             }
             else if (compilerInstruction is R2Section)

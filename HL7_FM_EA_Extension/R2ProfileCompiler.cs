@@ -197,7 +197,7 @@ namespace HL7_FM_EA_Extension
                 bool doFollowConsequenceLinks = true;
                 if (root.baseModelObject.tag.Any(t => "Type".Equals(t.name)))
                 {
-                    TagType typeTag = root.baseModelObject.tag.Single(t => "Type".Equals(t.name));
+                    TagType typeTag = FirstOrDefaultNonEmptyValue(root.baseModelObject.tag, "Type");
                     doFollowConsequenceLinks = !"Companion".Equals(typeTag.value);
                 }
 
@@ -321,7 +321,7 @@ namespace HL7_FM_EA_Extension
                 {
                     if (childNode.instructionObject != null && childNode.instructionObject.tag != null)
                     {
-                        TagType tagQualifier = childNode.instructionObject.tag.FirstOrDefault(t => R2Const.TV_QUALIFIER.Equals(t.name));
+                        TagType tagQualifier = FirstOrDefaultNonEmptyValue(childNode.instructionObject.tag, R2Const.TV_QUALIFIER);
                         if (tagQualifier != null && QUALIFIER_EXCLUDE.Equals(tagQualifier.value))
                         {
                             // If this criterion results in a consequencelink, make sure to also remove that function
@@ -507,7 +507,7 @@ namespace HL7_FM_EA_Extension
                 {
                     _OutputListener.writeOutput("[WARN] {0} expected 0..1 ChangeNote tag but got {1}", node.baseModelObject.name, changeNoteCount, node.instrID);
                 }
-                TagType tagChangeNote = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_CHANGENOTE.Equals(t.name));
+                TagType tagChangeNote = FirstOrDefaultNonEmptyValue(node.instructionObject.tag, R2Const.TV_CHANGENOTE);
                 if (tagChangeNote != null)
                 {
                     tags.Add(tagChangeNote);
@@ -539,7 +539,7 @@ namespace HL7_FM_EA_Extension
                     {
                         _OutputListener.writeOutput("[WARN] {0} expected 0..1 Optionality tag but got {1}", node.baseModelObject.name, newOptionalityCount, node.instrID);
                     }
-                    TagType tagOptionalityNew = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_OPTIONALITY.Equals(t.name));
+                    TagType tagOptionalityNew = FirstOrDefaultNonEmptyValue(node.instructionObject.tag, R2Const.TV_OPTIONALITY);
                     if (tagOptionalityNew != null && !tagOptionalityNew.value.Equals(tagOptionality.value))
                     {
                         if (tagChangeIndicator.value != CHANGEINDICATOR_NEW) tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
@@ -577,7 +577,7 @@ namespace HL7_FM_EA_Extension
                 }
 
                 // is a new Priority in the instruction?
-                TagType tagPriorityNew = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_PRIORITY.Equals(t.name));
+                TagType tagPriorityNew = FirstOrDefaultNonEmptyValue(node.instructionObject.tag, R2Const.TV_PRIORITY);
                 if (tagPriorityNew != null)
                 {
                     int newPriorityCount = node.instructionObject.tag.Count(t => R2Const.TV_PRIORITY.Equals(t.name));
@@ -591,7 +591,7 @@ namespace HL7_FM_EA_Extension
                     }
                 }
                 // update priority in the compiled (base) profile
-                TagType tagPriority = node.baseModelObject.tag.FirstOrDefault(t => R2Const.TV_PRIORITY.Equals(t.name));
+                TagType tagPriority = FirstOrDefaultNonEmptyValue(node.baseModelObject.tag, R2Const.TV_PRIORITY);
                 if (tagPriority != null)
                 {
                     tagPriority.value = priority;
@@ -607,7 +607,7 @@ namespace HL7_FM_EA_Extension
                 {
                     _OutputListener.writeOutput("[WARN] {0} expected 0..1 Qualifier tag but got {1}", node.baseModelObject.name, newQualifierCount, node.instrID);
                 }
-                TagType tagQualifier = node.instructionObject.tag.FirstOrDefault(t => R2Const.TV_QUALIFIER.Equals(t.name));
+                TagType tagQualifier = FirstOrDefaultNonEmptyValue(node.instructionObject.tag, R2Const.TV_QUALIFIER);
                 if (tagQualifier != null)
                 {
                     if (QUALIFIER_DELETE.Equals(tagQualifier.value))
@@ -667,6 +667,11 @@ namespace HL7_FM_EA_Extension
                 sb.Append(part);
             }
             return sb.ToString();
+        }
+
+        private TagType FirstOrDefaultNonEmptyValue(TagType[] tag, string name)
+        {
+            return tag.FirstOrDefault(t => name.Equals(t.name) && !string.IsNullOrEmpty(t.value));
         }
 
         private int parseIdForConsole(string id)
