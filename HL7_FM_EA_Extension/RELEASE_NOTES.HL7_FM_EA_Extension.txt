@@ -8,6 +8,13 @@ R2ProfileCompiler
 - Testing7: When a Criterion is in the profiledef and his Function is not, but his Function has ConsequenceLinks, 
 	  the ConsequenceLinks Functions were not included in the compiled profile. Fixed.
 	  WORKAROUND was: Include the Function.
+ProfileDefinition/FunctionForm/CriterionForm
+- Priorities Definition accepts special format <PRIO>"<space>-<space>"<Prio Description> lines will add PRIO's to Priority Choice in Function and Criteria Forms.
+  e.g. "EF2015 - Essential Future in 2015" will add "EF2015" to the possible list of Priorities.
+- Also shows Priorities Definition in Tooltip
+R2Validator
+- Schematron filenames were wrong.
+- Not all issues are associated to an Element that caused an Exception. Fixed.
 
 [2014-nov-21]
 R2ProfileCompiler
