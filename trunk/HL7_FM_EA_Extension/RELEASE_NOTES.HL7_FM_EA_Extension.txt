@@ -18,6 +18,7 @@ R2Validator
 MergeProfilesForm
 - Removed load of dummy profile
 - Start empty, disable select,clear,load,save buttons and double click
+- Edit Priority in Merged Profile Elements threw Exception
 
 [2014-nov-21]
 R2ProfileCompiler

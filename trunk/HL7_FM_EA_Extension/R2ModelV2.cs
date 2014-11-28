@@ -321,7 +321,25 @@ namespace HL7_FM_EA_Extension
             public string PrioDef { get { return get(R2Const.TV_PRIODEF); } set { set(R2Const.TV_PRIODEF, value); } }
             public string ConfClause { get { return get(R2Const.TV_CONFCLAUSE); } set { set(R2Const.TV_CONFCLAUSE, value); } }
             public string BaseModelName { get; set; }
-            public List<string> ExtraPriorities { get; set; } 
+            public List<string> ExtraPriorities
+            {
+                get
+                {
+                    var extraPriorities = new List<string>();
+                    string[] lines = PrioDef.Split(new char[] {'\n'});
+                    foreach (string line in lines)
+                    {
+                        int dash = line.IndexOf(" - ");
+                        if (dash != -1)
+                        {
+                            string prio = line.Substring(0, dash).Trim();
+                            //string priodef = line.Substring(dash + 1).Trim();
+                            extraPriorities.Add(prio);
+                        }
+                    }
+                    return extraPriorities;
+                }
+            } 
         }
 
         public class R2Section : R2ModelElement
