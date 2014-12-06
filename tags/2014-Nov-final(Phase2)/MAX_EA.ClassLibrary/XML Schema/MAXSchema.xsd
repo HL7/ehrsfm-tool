@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!-- Generate C# with: xsd /f /n:MAX_EA.MAXSchema /c MAXSchema.xsd -->
+<xs:schema targetNamespace="http://www.umcg.nl/MAX" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.umcg.nl/MAX" xmlns:max="http://www.umcg.nl/MAX">
+	<xs:simpleType name="ObjectTypeEnum">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Interface" />
+			<xs:enumeration value="Class" />
+			<xs:enumeration value="Object" />
+      <xs:enumeration value="Feature" />
+			<xs:enumeration value="Requirement" />
+			<xs:enumeration value="Component" />
+			<xs:enumeration value="Package" />
+      <xs:enumeration value="Activity" />
+      <xs:enumeration value="Action" />
+      <xs:enumeration value="Issue" />
+      <xs:enumeration value="Change" />
+      <xs:enumeration value="Artifact" />
+      <xs:enumeration value="Note" /><!-- EA Diagram type -->
+			<xs:enumeration value="Text" /><!-- EA Diagram type -->
+      <!-- Constraint, UMLDiagram -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RelationshipTypeEnum">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Association" />
+			<xs:enumeration value="DirectedAssociation" />
+			<xs:enumeration value="Dependency" />
+			<xs:enumeration value="Aggregation" />
+			<xs:enumeration value="Composition" />
+			<xs:enumeration value="Generalization" />
+      <xs:enumeration value="Realisation" />
+      <xs:enumeration value="InformationFlow" />
+      <xs:enumeration value="Abstraction" />
+      <xs:enumeration value="Usage" />
+      <xs:enumeration value="Package" />
+      <xs:enumeration value="NoteLink" /><!-- EA Diagram type -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="model" type="ModelType"/>
+	<xs:complexType name="ModelType">
+		<xs:sequence>
+			<xs:element name="objects" type="ObjectsType" minOccurs="1" maxOccurs="1" />
+			<xs:element name="relationships" type="RelationshipsType" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="exportDate" type="xs:string" use="optional" />
+	</xs:complexType>
+	<xs:complexType name="MarkupType" mixed="true" />
+	<xs:complexType name="TagType" mixed="true">
+		<xs:attribute name="name" type="xs:token" use="required" />
+		<xs:attribute name="value" type="xs:string" use="required" />
+	</xs:complexType>
+	<xs:complexType name="AttributeType" mixed="true">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="tag" type="TagType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+		<xs:attribute name="name" type="xs:token" use="required" />
+		<xs:attribute name="alias" type="xs:string" use="optional" />
+		<xs:attribute name="minCard" type="xs:token" use="optional" />
+		<xs:attribute name="maxCard" type="xs:token" use="optional" />
+		<xs:attribute name="value" type="xs:string" use="optional" />
+		<xs:attribute name="type" type="xs:token" use="optional" />
+		<xs:attribute name="stereotype" type="xs:token" use="optional" />
+		<xs:attribute name="isReadOnly" type="xs:boolean" use="optional" />
+	</xs:complexType>
+	<xs:complexType name="ObjectsType">
+		<xs:sequence minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="object" type="ObjectType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+  <xs:complexType name="ObjectType">
+    <xs:sequence>
+      <xs:element name="id" type="xs:token" minOccurs="1" maxOccurs="1" />
+      <xs:element name="name" type="xs:token" minOccurs="1" maxOccurs="1" />
+      <xs:element name="alias" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="notes" type="MarkupType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="stereotype" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="type" type="ObjectTypeEnum" minOccurs="0" maxOccurs="1" />
+      <xs:element name="parentId" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="modified" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tag" type="TagType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="isAbstract" type="xs:boolean" use="optional" />
+  </xs:complexType>
+	<xs:complexType name="RelationshipsType">
+		<xs:sequence>
+			<xs:element name="relationship" type="RelationshipType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+  <xs:complexType name="RelationshipType">
+    <xs:sequence>
+      <xs:element name="id" type="xs:token" minOccurs="0" maxOccurs="1" />
+      <xs:element name="label" type="xs:token" minOccurs="0" maxOccurs="1" />
+      <xs:element name="sourceId" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="sourceLabel" type="xs:token" minOccurs="0" maxOccurs="1" />
+      <xs:element name="sourceCard" type="xs:token" minOccurs="0" maxOccurs="1" />
+      <xs:element name="destId" type="xs:token" minOccurs="1" maxOccurs="1" />
+      <xs:element name="destLabel" type="xs:token" minOccurs="0" maxOccurs="1" />
+      <xs:element name="destCard" type="xs:token" minOccurs="0" maxOccurs="1" />
+      <xs:element name="notes" type="MarkupType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="stereotype" type="xs:token" minOccurs="0" maxOccurs="1" />
+      <xs:element name="type" type="RelationshipTypeEnum" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tag" type="TagType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

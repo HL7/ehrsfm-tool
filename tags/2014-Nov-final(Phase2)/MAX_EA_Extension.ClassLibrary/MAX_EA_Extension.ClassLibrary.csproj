@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D77F05ED-DB84-4971-9113-55970AF9422A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MAX_EA_Extension</RootNamespace>
+    <AssemblyName>MAX_EA_Extension</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.EA">
+      <HintPath>C:\Program Files\Sparx Systems\EA\Interop.EA.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="saxon9he-api, Version=9.5.1.1, Culture=neutral, PublicKeyToken=e1fdd002d5083fe6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Saxonica\SaxonHE9.5N\bin\saxon9he-api.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ValidateParamsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ValidateParamsForm.Designer.cs">
+      <DependentUpon>ValidateParamsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs" />
+    <Compile Include="MAXValidator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QuickAccessControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuickAccessControl.Designer.cs">
+      <DependentUpon>QuickAccessControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransformParamsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransformParamsForm.Designer.cs">
+      <DependentUpon>TransformParamsForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MAX_EA.ClassLibrary\MAX_EA.ClassLibrary.csproj">
+      <Project>{93340E95-4098-4B8A-A9AD-5056B735F3C6}</Project>
+      <Name>MAX_EA.ClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MAX_EA_Extension.reg" />
+    <None Include="Schematron\iso-schematron-xslt2.zip" />
+    <None Include="Schematron\sch-messages-cs.xhtml" />
+    <None Include="Schematron\sch-messages-de.xhtml" />
+    <None Include="Schematron\sch-messages-en.xhtml" />
+    <None Include="Schematron\sch-messages-fr.xhtml" />
+    <None Include="Schematron\sch-messages-nl.xhtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValidateParamsForm.resx">
+      <DependentUpon>ValidateParamsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickAccessControl.resx">
+      <DependentUpon>QuickAccessControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransformParamsForm.resx">
+      <DependentUpon>TransformParamsForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hl7-favicon.ico" />
+    <Content Include="RELEASE_NOTES.MAX_EA_Extension.txt" />
+    <Content Include="Schematron\ExtractSchFromRNG-2.xsl" />
+    <Content Include="Schematron\ExtractSchFromXSD-2.xsl" />
+    <Content Include="Schematron\iso_abstract_expand.xsl" />
+    <Content Include="Schematron\iso_dsdl_include.xsl" />
+    <Content Include="Schematron\iso_schematron_message_xslt2.xsl" />
+    <Content Include="Schematron\iso_schematron_skeleton_for_saxon.xsl" />
+    <Content Include="Schematron\iso_svrl_for_xslt2.xsl" />
+    <Content Include="Schematron\readme.txt" />
+    <Content Include="Schematron\schematron-skeleton-api.htm" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

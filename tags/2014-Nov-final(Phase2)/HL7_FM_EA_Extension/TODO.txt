@@ -1,0 +1,39 @@
+﻿TODO
+====
+http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrowse&tracker_id=743
+
+- LOW: [ ] Sometimes style is not updated e.g. when Optionality changes
+- LOW: [ ] Sync Reference tagged value <-> Relationship
+- LOW: [ ] MergeProfiles: Add function to align elements that have no base, based on their id
+- LOW: [ ] MergeProfiles: Add function to connect merged element to base model based on id
+- LOW: [ ] Move R2ModelElement.Priority up one abstract class, now Priority is also in Model/Profile/ProfileDefinition
+- LOW: [ ] R2ModelMax update lastModified when any field is modified
+- LOW: [ ] Move EAHelper in R2ModelEA
+- LOW: [ ] Use ModelViewController SourceObject = R2Model for DataGrid e.d.
+- LOW: [ ] IsReadOnly should have effect on SaveObject
+- LOW: [ ] Make ProfilingForm work on Base.R2ModelElement so that we can test it without EA
+- [ ] MergeProfilesForm Implement Smart Sorting
+- LOW: [/] Finalize: OutputListener add ID of element so DoubleClick in EAOutputConsole brings you to associated element
+- LOW: [ ] On Compile check path and give proper message instead of Exception
+- LOW: [ ] Update the Quick Access Tab
+- LOW: [ ] Implement R2ModelV2EAXML <- work on SQL XML query
+- LOW: [ ] Update the FM Browser Tab
+-- + show ConsequenceLinks
+-- + Make it work on R2ModelV2EAXML
+-- + Make it use Element.Elements
+-- + Smart sort!
+- LOW: [ ] Use Controls instead of Forms
+- LOW: [ ] Figure out how to link Output Console lines to related Element when they have GUID's instead of ID's (see FMTreeNode.instrID)
+- LOW: [ ] ProfilingForm / Criteria List doesnot size
+-----
+ 28-nov-2014
+-----
+- [ ] Tagged values are duplicated when max file is imported and EA has UML Profile loaded.
+-- Workaround could be to remove the UML Profile.
+- [ ] MergeProfiles: New functions/criteria add using Aggregation to parent. Also don't forget to include the parent Aggregation in "<< Select"
+------------------
+FM R2 Issues
+- CPS.2.1#09
+  <notes>The system SHOULD conform to TI.1.5 (Non-Repudiation) and TI.1.6 (Secure Data Exchange) when importing/receiving both structured and unstructured data.</notes>
+  This should result in 2 ConsequenceLinks, now the code and validator only expects 0..1 and never "... and ..."
+- TI.2.1 Links to self (see GraphViz)

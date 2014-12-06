@@ -1,0 +1,640 @@
+﻿CHANGELOG
+=========
+[2014-nov-28] Notes of Testing
+R2ModelV2EA
+- Factory now sets ProfileDefinition property for all CompilerInstructions! Needed for Priority.
+MDG
+- Updated Learning Center URLs
+Schematron
+- Update Profile validation
+
+[2014-nov-28]
+ProfilingForm
+- Moved sync "<->" buttons.
+- Sync button did not do anything for non compiler instructions. Fixed.
+R2ProfileCompiler
+- Merged Profile generated GUID's as ID's for Compiler Instructions. The compiler did not expect that on some places.
+- Testing7: When a Criterion is in the profiledef and his Function is not, but his Function has ConsequenceLinks, 
+	  the ConsequenceLinks Functions were not included in the compiled profile. Fixed.
+	  WORKAROUND was: Include the Function.
+ProfileDefinition/FunctionForm/CriterionForm
+- Priorities Definition accepts special format <PRIO>"<space>-<space>"<Prio Description> lines will add PRIO's to Priority Choice in Function and Criteria Forms.
+  e.g. "EF2015 - Essential Future in 2015" will add "EF2015" to the possible list of Priorities.
+- Also shows Priorities Definition in Tooltip
+R2Validator
+- Schematron filenames were wrong.
+- Not all issues are associated to an Element that caused an Exception. Fixed.
+MergeProfilesForm
+- Removed load of dummy profile
+- Start empty, disable select,clear,load,save buttons and double click
+- Edit Priority in Merged Profile Elements threw Exception
+
+[2014-nov-21]
+R2ProfileCompiler
+- When new element has multiple Aggregation relationships it was included multiple times. Now compiler detects this and warns.
+- New Childs of new Elements were not added if they came before the new parent Element was in the MAX file. Fixed by creating placeholders.
+- Made the output a bit quieter. Added DEBUG level and leave out DEBUG in MSI.
+ProfilingForm
+- Made more robust. Give feedback if model is not the way we expect.
+-- 1 When there are multiple base elements associated to the compiler instruction or vise-verse.
+-- 2 when there is no base element associated with a compiler instruction.
+- Added tooltips.
+
+[2014-nov-19]
+R2ProfileCompiler
+- ChangeIndicator was set to Changed instead of New for new elements. Fixed.
+- Dangling Reference tags removed for Changed and New elements.
+- Alias now set to ID in name when name changed in instruction.
+
+[2014-nov-18]
+R2ProfileCompiler
+- Logger tried to parse an non int as int.
+
+[2014-nov-13]
+Function/CriterionForm
+- GForge #3732: Priority field is now toggled by the fact that an element is a compiler instruction (is in the profile definition package)
+- GForge #3666: Enable Edit all Fields for new Functions
+- Priority can now be something else than the predefined items
+R2ModelV2
+- IsCompilerInstruction now denotes that an element is in the profile definition package
+ProfilingForm
+- After selecting a Header/Function the Criteria were always included, not ignoreEvents.
+- Keep selection visible
+- Added "Sync/<->"-buttons to select the currently selected "Compiler Instruction" in the projectbrowser
+- SetCompilerInstruction/when new compiler instruction was created, a package.refresh was needed, otherwise delete did not work
+- CheckBox for Criteria is now Tri-State: [No Compiler Instruction]>[Include]>[Exclude]>[No Compiler Instruction]
+- Added WaitCursor on some slow events.
+- N.B. Double click in Criteria will not open CriteriaForm, but rather toggles CheckBox!
+MDG
+- Updated learningcenter profile 10-11-2014
+R2ProfileCompiler
+- Made Ignored Element WARNings better understandable
+- Sometimes there are more than 1 ChangeNote. WARN and only copy first in Compiled Profile.
+- GForge #3631 Priority now inherited from parent function/header's priority, can be overriden on Header/Function/Criteria levels.
+
+[2014-nov-11]
+R2ProfileCompiler
+- Include "ChangeNote" in compiled profile. Used by e.g. the Italy FP.
+
+[2014-nov-06]
+*Form
+- When element is Locked/ReadOnly disable Ok/Apply en edit of text field
+- GForge #3480 Enable ChangeNote always for Function/Criteria
+- Added Lock Icon to show ReadOnly
+- Priority is no longer fixed items
+SectionForm
+- ID was not set correctly
+- StartPosition now CenterParent for more consistent behaviour, just as Function and Criterion Forms
+Main
+- Tried to update style even when Element was Locked, fixed
+MergeProfileForm
+- Default Lock/ReadOnly BaseModel and Profiles to prevent accidental changes
+- Now relationship to baseModelElement is restored after loading of profile
+- Double click on Merged Profile opens ProfileDefinitionForm
+- Disable sorting on header for now, gives unconsistent results
+- Some cosmetic changes
+-- BackColor using the Section Colors
+-- Fix width of RowHeaderColumn
+ProfileMetadataForm
+- Forgot to copy UI values to R2ModelElement on "Ok"
+- Added "Apply" and "Cancel" buttons to be more consistent with *Forms
+R2ModelV2,R2ModelV2.EA
+- Added ReadOnly as property and set it in R2ModelV2.EA Load function
+FormsUnitTests
+- Added ProfileMetadataForm test
+
+[2014-nov-03]
+R2ModelV2
+- SetRefId not robust enough, caused bug in EditProfile where you cannot see the Criteria
+
+[2014-oct-31]
+MergeProfilesForm
+- Double Click on Column Heading opens file dialog for Loading Profile (Definition)
+- LoadProfile(Definition) on double click on Column Header
+- Removed fixed profile filenames
+- Fixed little bugs
+
+[2014-oct-25]
+SectionForm
+- Added FormUnitTest
+- Set BackColor when name changes
+FunctionForm
+- Added FormUnitTest
+- Set BackColor when name changes
+- Enable ChangeNote always
+
+[2014-oct-24]
+R2Model/EA
+- Added IsReadOnly so that Forms can be Disabled when an R2ModelElement SourceObject is locked, e.g. with EA.
+MergeProfilesForm
+- Added more buttons to filter rows
+- Also show new elements in Profiles that are not in the base
+- Cleanup, renaming and comments added
+R2Model
+- Renamed @Defaults to @BaseElement, since that is what it realy is. The BaseElement is used for Default values
+
+[2014-oct-22]
+MergeProfilesForm
+- SingleSelect for now
+- Compare Grid is updated after change in Form
+
+[2014-oct-19]
+- Further refactoring and completing of R2ModelV2.
+- Align elements by their Reference to their Base Id or if they don't have that to the External.Id
+
+[2014-oct-16]
+R2Model,ProfileMetadataForm
+- Start implementation of Profile/Definition Model Elements on MAX/EA
+
+[2014-oct-10]
+R2ProfileCompiler
+- Remove relationships to objects that are not in the profile
+MergeProfilesForm
+- Show difference compared to selected profile in compare view
+- Start of creating Merged Profile, Select and Clear
+CriterionForm
+- Label was wrong for Sequence# when using up/down
+MAXExtensionMethods
+- Added SetTagValue and RemoveTagValue
+R2ModelV2MAX
+- Implemented SaveToSource
+
+[2014-oct-03]
+R2ProfileCompiler
+- More robust missing or to many Priority and Optionality tag handling and reporting
+- GForge #3490: Implement sort functionality in compiler
+ProfilingForm,ProfileMetadataForm
+- Moved getAssociatedProfileDefinition to ProfileMetadataForm
+- Edit Profile also for Header and Function level
+  GForge #3553: Implement to open Edit Profile form at different levels
+Main
+- Check required tagged values in Compile and report if missing
+- Made enabling of menu extension items more context sensative
+
+[2014-oct-02]
+ProfileMetadataForm,Main
+- getAssociatedBaseModel was double implemented and getAssociatedOutputProfile was missing.
+
+[2014-sep-25]
+ProfilingForm
+- For CriteriaList use checkBox in front of criterion to include/exclude
+  GForge #3551: Implement the option 'Exclude criterion' in Edit Profile with every criterion...
+  GForge #3552: duplicate
+
+[2014-sep-22]
+ProfilingForm
+- Moved Section/Header/Function buttons left, made left/right parts more distinct. Left is for Section/Header/Function,
+  Right is for Criteria
+- Added Checkbox to switch from Tile to List mode (as requested by Diana)
+- Started work on Checkboxes for Criteria
+R2ProfileCompiler
+- Fixed EXCLUDE-issue. 
+  Functions that were auto included through a consequence link that was caused by a criterion that is EXCLUDED, 
+  are now removed from the result.
+
+[2014-sep-16]
+R2ProfileCompiler
+- Compiler now ignores not complete elements. E.g. Optionality tag is missing in new Criteria.
+- Warnings and Errors are now shown in EA Console
+*Form
+- PathLabel set to black for readability
+
+[2014-sep-15]
+Updated MDG
+
+[2014-sep-05]
+- Renamed CriterionId to CriterionSeqNo
+MergeProfilesForm
+- More implementation of the Compare Section
+
+[2014-aug-29]
+CriterionForm
+- GForge #3473: Renamed "ID" label to "Sequence#"
+AboutForm
+- GForge #3489: Added AssemblyVersion tot title
+R2ProfileCompiler
+- GForge #3491: new Criteria are now included
+- Don't remove row#
+- Add tagged value "Debug.InclusionReason" when included via ConsequenceLink
+
+[2014-aug-25]
+R2ProfileCompiler
+- set @exportDate on compiled profile
+
+[2014-aug-23]
+ProfilingForm
+- GForge #3465: Find functionality in Edit Profile doesn't give feedback if element cannot be found
+- Also "Enter-key" in Find TextBox starts Find.
+- GForge #3466: Double click on section in Edit Profile does not work
+- GForge #3474: Use single column vertical list instead of horizontal
+- GForge #3475: Don't auto select function in ProjectBrowser on selection in ProfilingForm
+
+[2014-jul-25]
+R2ProfileCompiler
+- Forgot to set notes when instruction (ProfileDefinition) changed it
+
+[2014-jul-24]
+R2ProfileCompiler
+- Reference.ChangeIndicator was not replaced correctly for New items
+
+[2014-jul-11]
+Function/CriterionForm/R2ModelV2Base+EA
+- Added ChangeNote
+R2ModelV2.MAX
+- Started work on this from the UnitTest, for now just LoadFromSource
+Main
+- On startup MDG is installed and message is shows when this fails (e.g. file not found)
+
+[2014-jul-05]
+R2ModelV2EA
+- Conditional/Dependent LoadFromSource not handled correctly
+
+[2014-jul-04]
+R2ModelV2*,FunctionForm
+- "Realm"-type profiles can edit Function name/statement
+FunctionForm,CriterionForm
+- Added '*' to field if the field is profiled (has different value than the base)
+
+[2014-jun-27]
+R2ModelV2*
+- Major refactor. Separate R2Model from implementation and implement in EA_API and MAX.
+
+[2014-jun-20]
+Setup
+- Product Version Property now reflects date.
+	1.0.0 was Phase 1
+	2.yy.mmdd is Phase 2 -> This version is 2.14.0620
+MergeForm
+- Initial work
+
+[2014-jun-05]
+FunctionForm
+- Reported by Giorgio Italy. 'Switch to baseelement' did not work. Fixed.
+
+[2014-jun-04]
+R2Model
+- Made name parsing into FunctionID/CriterionID more robust.
+
+[2014-may-21]
+R2Model,FunctionForm
+- GForge3285: Removed Example field. Was never supposed to be there.
+
+[2014-may-17]
+R2Model,FunctionForm
+- Enable editing of Description/Example always and Function/Statement only when type = Realm
+- Added switch to base for comparison
+R2Model,SectionForm,FunctionForm,CriterionForm
+- Added lastmodified timestamp in title
+
+[2014-may-07]
+EAHelper
+- Somehow double tagged values exist, for now first delete and then set Tagged Value on update. This will remove any doubles.
+
+[2014-may-01]
+Criterion
+- Defaults to 0, form now accepts 0.
+
+[2014-apr-29]
+MDG
+- Updated learning center profile; typo in URLs
+
+[2014-apr-25]
+MDG
+- Updated learning center profile and added RMES RTF Template
+R2ProfileCompiler
+- Sort Header/Function/Criteria based on the name (CP.1, CP.2, CP.1#10, CP.1#12, ...)
+
+[2014-apr-21]
+R2ProfileCompiler
+- Now also handles new functions/criteria
+- ChangeInfo values were wrong
+
+[2014-apr-18]
+ProfileMetadataForm
+- Now opens when no base model is defined. So also for <HL7-FM-Profile> and <Definition> as it should.
+ProfileForm
+- Show before recursing tree
+
+[2014-apr-12]
+Main
+- Only enable menu's when some relevant object is selected in the ProjectBrowserTree.
+
+[2014-apr-11]
+R2Validator
+- Select schematron per stereotype FM, FP, FPDEF.
+ProfileMetadataForm
+- Added LanguageTag Choice
+- Added Conformance Clause TextBox
+Main, R2Config
+- UpdateStyle ook CompilerInstruction
+SectionForm,FunctionForm
+- Overwrite ID (Alias) from first part of Name (e.g. "OV.1 Overarching" -> ID = "OV.1")
+R2ProfileCompiler
+- Don't set Priority and ChangeIndicator on root
+ProfileMetadataForm,ProfilingForm
+- Accept both <use> and Usage for relation to base model.
+MDG
+- HL7-FM add "MAX::ImportFile" tagged value
+- HL7-FM-Profile & ProfileDefinition add "MAX::ExportFile" tagged value
+FunctionForm,CriterionForm
+- Added Priority for CompilerInstruction versions
+
+[2014-apr-10]
+ProfileMetadataForm
+- Type accepts whatever is typed or selected.
+
+[2014-apr-08]
+MDG
+- Updated UML Profile
+CriterionForm
+- Handle new Criterion. Use 1 as default CriterionID.
+R2ProfileCompiler
+- Made code more robust. Also check for multiple Qualifier tagged values.
+
+[2014-apr-05]
+R2ProfileCompiler
+- Detect circular reference in consequenceLinks. Fixed.
+
+[2014-apr-04]
+MDG
+- Now include the UML Profile
+ProfilingForm
+- Criterion Text was empty initially for a Compiler Instruction, fixed
+R2ProfileCompiler
+- Made code more robust.
+  The compiler expects a correct Base Model and a correct Profile Definition.
+  e.g. Optionality shall be present in Base Model and in a Compiler Instruction 0 or 1 times.
+R2Validator
+- Call different schematron based on stereotype
+R2Model/Criterion(CI)
+- Empty Row (also ignore spaces) is now handled
+
+[2014-mrt-29]
+- Moved ST and TV string const to R2Const
+- Some more cleanip
+
+[2014-mrt-28]
+ProfileForm
+- Double click on item popsup associated Form
+- Titel update
+- Added checkbox to explicitely exclude a Criterion, also show excluded by graying them out in the Criterion list
+- Use CompilerInstruction Text in CriterionList and update list item when altered via the CriterionForm
+CriterionForm
+- Added link label to switch back and forth between Compiler Instruction and Base Element
+- Row# is sometimes '0', just allow that now, e.g. for new Criteria
+*Form
+- Added Apply and Help buttons. Help is disabled for now. Apply saves changes without closing.
+
+[2014-mrt-25]
+R2CriteriaCI
+- Notes were not updated.
+CriteriaForm
+- Still containt "Criteria" instead of "Criterion"
+R2ProfileCompiler
+- Required a tagged value for Profile Type. Now check if the tagged value is there first.
+
+[2014-mrt-21]
+*Form
+- Added HL7 icon!
+Main
+- Open the correct edit form when double clicking on a Compiler Instruction.
+R2Model
+- Major cleanup of code. Added R2Model as a Facade/Wrapper to the EA classes
+- Made note "$XY$" splitting robust and tolerant
+
+[2014-mrt-18]
+ProfileMetadataForm
+- initial implementation
+R2ProfileCompiler
+- dont process ConsequenceLinks when profile-type = companion
+
+[2014-feb-28]
+ProfilingForm:
+- Added "Change note" on CompilerInstruction
+Main:
+- Initial implementation of calling into CompileProfile (utilizing MAX::Import/Export tagged values!)
+
+[2014-feb-21]
+ProfilingForm:
+- Also use/create/update ProfileDefinitions
+
+[2014-feb-14]
+ProfilingForm:
+- Initial implementation
+
+[2014-feb-07]
+Main:
+- Install the MDG from the Extension file "MDG\HL7_FM_EA_mdg.xml"
+
+[2014-jan-22]
+Main,SectionForm,FunctionForm,CriteriaForm
+- Add path of element to Forms
+- Added scrollbars to textboxes, made textboxes larger
+- Escape now does Cancel
+- Update Criteria Optionality in the Text
+
+[2014-jan-21]
+CriteriaForm
+- CriterionID can now be between 1 and 99, RowNumber can now be between 1 and 1000.
+
+[2013-dec-29]
+R2ProfileCompiler
+- Implemented renaming
+- Implemented Delete and Deprecate (partly)
+- Also import children for Header and Function with Compiler Instructions
+- Moved TreeNode methods to MAXTreeNode
+- FIXED: An Header/Function can have multiple consequenceLinks
+- Added relationships back in
+MAXTreeNode(Tests)
+- from TreeNode methods and created unit tests for it
+
+[2013-dec-14]
+R2ProfileCompiler
+- Also include consequenceLinks of included elements
+
+[2013-dec-13]
+R2ProfileCompiler
+- Initial implementation, only include elements (and parents) and do tags Reference/Priority/ChangeIndicator
+
+[2013-sep-24]
+Main, SearchMethods
+- Added FindNonSHALL, returns all Header,Function,Criteria where Criteria != SHALL
+
+[2013-jul-24]
+- Enabled "RemovePreviousVersions" in Setup
+
+[2013-jul-13]
+Main
+- Added "Update Styles" menu item to reapply Section colors and SHALL borders.
+- Automatically update style when editing
+- "Create Diagram" now also works for Packages
+R2Config
+- Fixed the int colors. Had the red and blue components mixed up.
+EHRS_FM_R2-validation.sch
+- Renamed MZ01,MZ02,MZ03 to FMFLC22,FMUP01,FMUP02
+
+[2013-jul-12]
+R2Config,R2Importer,R2Const,Main
+- Moved LOCK_DIAGRAM to R2Const
+- Added ST_CRITERIA
+- Change style (BGCOLOR based on Section and BORDER based on Optionality and trim whitespaces from Name [FMFR007]) after changes to FM elements
+EHRS_FM_R2-validation.sch
+- Disabled FMDC003 as discussed with Helen 12-jul-2013, this is not a valid rule.
+- FMDC001 and FMDC002 were wrong, SHALL contain any combination of the 3 statements.
+- Added MZ01 to check for unique Criteria ID
+- Added MZ02, MZ03 to check for Alias in Name of Header / Function
+R2Validator
+- MAX::ID overrules ElementID to find elements in messages
+
+[2013-jul-04]
+Renamed Package, Folder, Registry to "HL7_FM_EA_Extension"
+
+[2013-jun-23]
+QuickAccessControl/R2Validator
+- Use MAXExporter3 now
+
+*** Phase 1 Deliverable ***
+
+[2013-may-27]
+Main,AboutBox
+- Initial
+R2Validator/EHRS_FM_R2-validation.sch
+- Updated; added "Check if function has at least 1 SHALL"
+Setup
+- Adjusted some properties
+
+[2013-may-07]
+CriteriaForm
+- Formatting of ID was wrong.
+
+[2013-may-06]
+Main
+- Process feedback from Helen
+- Select in Project Browser & Open Diagram after creating it
+- BgColor did not work for Header/Function/Criteria, fixed it
+
+[2013-apr-24]
+R2Validator
+- Report message without prepending SUCCESS or FAIL.
+- Only validate full FM.
+
+[2013-apr-18]
+{R2Validator} Updated to latest schematron. Also report SUCCESS reports and show message when done validating.
+
+[2013-mrt-30]
+{Main} Double click on Validation output brings you to the correct element in the project browser
+{R2Validator} Also works on sections
+
+[2013-mrt-29]
+{R2Importer} Work on ConsequenceLink, added SeeAlso, did some cleanup and added ProgressWindow.
+
+[2013-mrt-28]
+{R2Importer} Trim values.
+
+[2013-mrt-24]
+{R2Importer} Also set TPos for Functions and Headers to order in the import file
+{Validator} Updated Schematron and SVRL to EA Console
+
+[2013-mrt-21]
+{ModelBrowserControl} Added for colorized FM tree browser.
+{R2Importer/R2Config} Some cleanup.
+{R11Importer/R2Importer/Util/Main} Deleted Util class.
+{R2Importer} Rewritten to XElement! Sort Sections by ID was manual, now auto (through TreePos) after import.
+
+[2013-mrt-19]
+{Main/QuickAccessControl} Added Quick Access Tab View
+{Validator} Implemented call into MAX Class Library
+{R2Importer} Add missing Header/Function Row TaggedValue
+{R2Importer/QuickAccessControl} Use "VERSION_DATE" for name of Package and label3.
+
+[2013-mrt-10]
+{R2Importer/*Form} Notes separator $XY$. Fixed stereotype & alias issue. Package attributes are R/O, use Package.Element attributes which are R/W.
+
+[2013-mrt-04]
+{R2Importer} Renamed "Chapter" to "Section", form and stereotype
+
+[2013-feb-27]
+{R2Importer} Added stereotypes for root-package and Chapter
+
+[2013-feb-11]
+{EHRSFM*} Removed EHRSFM from names of classes and files.
+{Validator} Added generated max file and run schematron on that.
+
+[2013-feb-06]
+{EHRSFMCriteriaForm} Criteria ID parsing was not robust. Expected just "AS.1#01" without any trailing chars. Old format had chars.
+{EHRSFMChapterForm} Chapter Package also gets own Form.
+
+[2013-feb-04]
+{EHRSFMConfig} Added class for configuration, colors and titles. Later more.
+
+[2013-jan-27]
+{Main,EHRSFM*Forms} Added forms for editing Header/Function and Criteria.
+
+[2012-nov-23]
+{EHRSFMR2Importer}
+	Name of Element has a max length of 255. Criteria had long names. Now use ID for Criteria Name and put Criteria text in Notes.
+
+[2012-nov-09]
+{EHRSFMR2Importer}
+	Some cleanup and use the FileDialog to select an XML file.
+	Aligned the implementation of the mapping with the design of the mapping.
+	O.a. the root package name and attributes. Added Reference as TaggedValues for now.
+
+// Some descicions made:
+	- style stuff is not be in the XML but rather in the Template.
+	- use UTF-8 ipv UTF-16 for newly generated XML
+// Started work on EHR-S FM Tool with Andy
+
+[2012-may-16]
+{EHRSFMR2Importer}
+	Some errors in importer checks.
+	Composition to Chapter was reported but is not an error.
+	Detect: Functions without Criteria
+	(Detect: A.1 + criteria are expected to be Header)
+	Detect: Depth >= 2 expect Function (same as: A.1.1 + criteria are expected to be Function)
+	Warn: Function without SHALL
+
+[2012-may-15]
+{EHRSFMR2Importer}
+	Add ID as Alias for Function/Criteria
+
+[2012-may-04]
+{Main.CreateCriteriaDiagram}
+	Minor tweak on function size
+{EHRSFMR2Importer}
+	Now import EHRS_FM_R2_N1_C3_FunctionList_2012MAY.xml
+	Add a note to links, so you can see what criteria is the source of this link.
+
+[2012-mar-05]
+{EHRSFMR2Importer}
+	Make borders of SHALL criteria bold. As suggested by Steve Huffnagel from the FIM project.
+
+[2012-jan-23]
+{EHRS_FM_R2_C3_FunctionList_2011DEC;MZ.xml}
+	Repaired "header" issues from R2_ISSUES.txt
+{EHRSFMR2Importer}
+	Name criteria #01,#02 instead of just #1,#2. As suggested by Steve.
+
+[2011-dec-29]
+{Main}
+	Call R2 import.
+
+{EHRSFMR2Importer}
+	New.
+	ConsequenceLink > Link(R1.1)
+	Criteria > ConformanceCriteria(R1.1)
+	Criteria/Dependent & Criteria/Conditional > TaggedValues
+	Function/Example added to Notes
+
+[2011-nov-04] v3.1 NICTIZ
+	Add a Connector from Criteria to Function
+    This is a fix for NICTIZ, otherwise the Criteria are not visible under the Associations tabs in the HTML export.
+
+v3.0
+	Meta-model upgrade
+
+v2.0
+	First version
+
+v1.0
+	Alpha version

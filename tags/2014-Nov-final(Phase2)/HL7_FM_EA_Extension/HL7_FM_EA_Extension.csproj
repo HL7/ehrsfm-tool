@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD9712F8-EDAE-4836-96DE-A68F1E07A7A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HL7_FM_EA_Extension</RootNamespace>
+    <AssemblyName>HL7_FM_EA_Extension</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.EA">
+      <HintPath>..\..\..\Program Files\Sparx Systems\EA\Interop.EA.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EAHelper.cs" />
+    <Compile Include="FileUtil.cs" />
+    <Compile Include="MAXExtensionMethods.cs" />
+    <Compile Include="MAXTreeNode.cs" />
+    <Compile Include="MergeProfilesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MergeProfilesForm.Designer.cs">
+      <DependentUpon>MergeProfilesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelBrowserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelBrowserControl.Designer.cs">
+      <DependentUpon>ModelBrowserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileMetadataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfileMetadataForm.Designer.cs">
+      <DependentUpon>ProfileMetadataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProfilingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfilingForm.Designer.cs">
+      <DependentUpon>ProfilingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R2ModelV2.cs" />
+    <Compile Include="R2ModelV2EA.cs" />
+    <Compile Include="R2ModelV2MAX.cs" />
+    <Compile Include="R2ProfileCompiler.cs" />
+    <Compile Include="QuickAccessControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuickAccessControl.Designer.cs">
+      <DependentUpon>QuickAccessControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R2Config.cs" />
+    <Compile Include="SearchMethods.cs" />
+    <Compile Include="SectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SectionForm.Designer.cs">
+      <DependentUpon>SectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CriterionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CriterionForm.Designer.cs">
+      <DependentUpon>CriterionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionForm.Designer.cs">
+      <DependentUpon>FunctionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R11Importer.cs" />
+    <Compile Include="R2Importer.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="R2Validator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TODO.txt" />
+    <None Include="EHRSFM\EHRS_FM_R2_N1_C3_FunctionList_2012MAY.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EHRSFM\EHRS_FM_R2_N2_C3_FunctionList_2013MAY.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="hl7-favicon.ico" />
+    <Content Include="MAPPING R2.txt" />
+    <Content Include="MDG\HL7_FM_EA_mdg.xml" />
+    <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromRNG.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromXSD.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_abstract_expand.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_dsdl_include.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_schematron_message.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_schematron_skeleton_for_xslt1.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\iso_svrl_for_xslt1.xsl" />
+    <Content Include="Schematron\iso-schematron-xslt1\readme.txt" />
+    <Content Include="Schematron\iso-schematron-xslt1\schematron-skeleton-api.htm" />
+    <Content Include="Schematron\EHRS_FM_R2-validation.sch" />
+    <Content Include="Schematron\EHRS_FM_R2_FP-validation.sch" />
+    <Content Include="Schematron\EHRS_FM_R2_FPDEF-validation.sch" />
+    <None Include="Schematron\svrl_output.xml" />
+    <Content Include="MAPPING v3.1 EHR-S FM R11+ISSUES FOUND.txt" />
+    <None Include="EHRSFM\EHRS_FunctionalModel_Rel1.1.xml" />
+    <Content Include="R2_DEC2011_ISSUES.txt" />
+    <Content Include="R2_MAR2012_ISSUES.txt" />
+    <Content Include="RELEASE_NOTES.HL7_FM_EA_Extension.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MergeProfilesForm.resx">
+      <DependentUpon>MergeProfilesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelBrowserControl.resx">
+      <DependentUpon>ModelBrowserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfileMetadataForm.resx">
+      <DependentUpon>ProfileMetadataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfilingForm.resx">
+      <DependentUpon>ProfilingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickAccessControl.resx">
+      <DependentUpon>QuickAccessControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SectionForm.resx">
+      <DependentUpon>SectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CriterionForm.resx">
+      <DependentUpon>CriterionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionForm.resx">
+      <DependentUpon>FunctionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HL7_FM_EA_Extension.reg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MAX_EA.ClassLibrary\MAX_EA.ClassLibrary.csproj">
+      <Project>{93340E95-4098-4B8A-A9AD-5056B735F3C6}</Project>
+      <Name>MAX_EA.ClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,43 @@
+﻿CHANGELOG
+=========
+[2014-jul-12]
+Main
+- Added lock/unlock package elements to prevent accidental edits
+
+[2014-apr-12]
+Main
+- Only enable menu's when some relevant object is selected.
+
+[2014-apr-10]
+ValidateParamsForm,MAXValidator:
+- Initial implementation
+- Show results in EA Output Console
+- TODO: Make double click on item focus item
+*Form
+- Added the HL7 icon
+
+[2014-mrt-09]
+TransformParamsForm:
+- Show output console on errors
+
+[2014-mrt-06]
+TransformParamsForm:
+- Use standard tempfolder and store selected XSLT Filename as tagged value with the first view in the project
+- Added Open File Dialogs
+
+[2014-mrt-05]
+TransformParamsForm:
+- Moved transform here and added form
+
+[2014-mrt-04]
+Main.cs
+- Added merge diagrams utility
+- Initial work on calling into Saxon Transforms
+
+[2013-jun-30]
+References/Interop.EA.dll
+- set "Copy Local" to False. We expect EA to be installed.
+Main.cs
+- Only show console when there were any issues
+AboutBox.cs
+- Initial implementation
