@@ -562,6 +562,10 @@ namespace HL7_FM_EA_Extension
 
     public class R2ModelElementHolder
     {
+        public EA.Element baseModelEAElement;
+        public EA.Element compilerInstructionEAElement;
+        public R2ModelElement modelElement;
+
         public R2ModelElementHolder(EA.Repository repository, EA.Element element)
         {
             baseModelEAElement = element;
@@ -598,9 +602,5 @@ namespace HL7_FM_EA_Extension
                 return repository.GetElementByID(con.ClientID);
             }
         }
-
-        public EA.Element baseModelEAElement;
-        public EA.Element compilerInstructionEAElement;
-        public R2ModelElement modelElement;
     }
 }

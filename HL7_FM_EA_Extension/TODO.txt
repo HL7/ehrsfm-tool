@@ -29,6 +29,8 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
  28-nov-2014
 -----
 - [ ] Tagged values are duplicated when max file is imported and EA has UML Profile loaded.
+-- Workaround could be to remove the UML Profile.
+- [ ] MergeProfiles: New functions/criteria add using Aggregation to parent. Also don't forget to include the parent Aggregation in "<< Select"
 ------------------
 FM R2 Issues
 - CPS.2.1#09
