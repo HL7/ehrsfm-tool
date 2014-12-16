@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2014-dec-13]
+R2ProfileCompiler
+- New nodes could have no tags, e.g. for ExternalReferences. This broke the compiler. Checked.
+
 [2014-nov-28] Notes of Testing
 R2ModelV2EA
 - Factory now sets ProfileDefinition property for all CompilerInstructions! Needed for Priority.

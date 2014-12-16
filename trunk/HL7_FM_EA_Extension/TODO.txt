@@ -26,11 +26,16 @@ http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrows
 - LOW: [ ] Figure out how to link Output Console lines to related Element when they have GUID's instead of ID's (see FMTreeNode.instrID)
 - LOW: [ ] ProfilingForm / Criteria List doesnot size
 -----
- 28-nov-2014
------
+28-nov-2014
 - [ ] Tagged values are duplicated when max file is imported and EA has UML Profile loaded.
 -- Workaround could be to remove the UML Profile.
 - [ ] MergeProfiles: New functions/criteria add using Aggregation to parent. Also don't forget to include the parent Aggregation in "<< Select"
+
+Missing / Incomplete
+- [ ] External References functionality
+- [ ] Signing of MSI with HL7 cert (tamara @ HL7.org)
+- [ ] Consequence Links pre and postfixed with "[[" and "]]" in text for publication, not recognized in Extension
+- [ ] Integrate Profile Comparison XSLT in Extension? Or in Manual?
 ------------------
 FM R2 Issues
 - CPS.2.1#09
