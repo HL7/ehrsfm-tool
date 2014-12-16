@@ -117,7 +117,7 @@ namespace HL7_FM_EA_Extension
                                         setCompilerInclusionReason(node, "Because of new child");
                                     }
                                 }
-                                else if (objectsCI[rel.sourceId].tag.Any(t => TV_INCLUSIONREASON.Equals(t.name)))
+                                else if (objectsCI[rel.sourceId].tag != null && objectsCI[rel.sourceId].tag.Any(t => TV_INCLUSIONREASON.Equals(t.name)))
                                 {
                                     _OutputListener.writeOutput("[WARN] Already new {0}. Check Aggregation relationships!", objectsCI[rel.sourceId].name);
                                 }
