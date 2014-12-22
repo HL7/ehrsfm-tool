@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.umcg.nl/MAX">
   <objects xmlns="">
     <object>
@@ -129,18 +129,13 @@ MAY: Indicates an optional, permissible action. Synonymous with ‘is permitted�
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -473 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314a8cds_2014_tp_approvedv1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(4) Clinical information reconciliation$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -469 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b4cir_2014_tp_approved_v1.3.pdf"/>
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(4) Clinical information reconciliation$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -469 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b4cir_2014_tp_approved_v1.3.pdf"/>
-    </object>
+      </object>
     <object>
       <id>1ec9fa70-9318-469c-8ecb-4617165d436a</id>
       <name>CP.1.2#01</name>
-      <notes>The system SHALL provide the ability to manage allergy, intolerance, and adverse reaction to drug, food, medical products (e.g., vaccines, biologics, devices, chemicals) or environmental triggers as unique, discrete entries.</notes>
-      <stereotype>Criteria</stereotype>
+      <notes>The system SHALL provide the ability to manage allergy, intolerance, and adverse reaction to drug, food, medical products (e.g., vaccines, biologics, devices, chemicals) or environmental triggers as unique, discrete entries and when applicable, using coded values from  terminology standards (SNOMED-CT, RxNorm etc.)</notes> <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>4d012d3f-f5f4-4dad-9c32-347e8de896bc</parentId>
       <tag name="Optionality" value="SHALL" />
@@ -211,7 +206,7 @@ MAY: Indicates an optional, permissible action. Synonymous with ‘is permitted�
     <object>
       <id>15534894-d01e-463a-abc1-5b26caef77ee</id>
       <name>CP.1.2#92</name>
-      <notes>The system SHALL provide the ability to remove a medication allergy from the single reconciled medication allergy list.</notes>
+      <notes>The system SHALL provide the ability to resolve or refute a medication allergy from the single reconciled medication allergy list.</notes>
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>4d012d3f-f5f4-4dad-9c32-347e8de896bc</parentId>
@@ -667,15 +662,7 @@ MAY: Indicates an optional, permissible action. Synonymous with ‘is permitted�
     <object>
       <id>6f7f88b2-5f4d-4bd1-b3df-f76a119c7086</id>
       <name>CP.1.6#02</name>
-      <notes>The system SHALL provide the ability to maintain immunization details, as discrete data, including:
-- the immunization name/type, seqeunce number in the series &amp; series identifier, strength and dose;
-- the date and time of administration;
-- manufacturer, lot number, expiration date,
-- route and site of administration;
-- administering provider;
-- observations, reactions and complications;
-- reason immunization not given, and/or immunization related activity not performed;
-according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+      <notes>The system SHALL provide the ability to maintain immunization details, as discrete data, including: 1.  the immunization name/type, strength and dose, 2.  the date and time of administration, 3. manufacturer, lot number, expiration date, 4.  route and site of administration, 5. administering provider, 6. observations, reactions and complications, 7. reason immunization not given, and/or immunization related activity not performed, according to scope of practice, organizational policy, and/or jurisdictional law.</notes> 
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>897c2c1b-24c9-41d2-8deb-e1454b0d1756</parentId>
@@ -724,7 +711,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
       <id>b26dc2a0-1fdb-42f2-acb9-d63dfe284d5b</id>
       <name>CP.1.8 Manage Patient and Family Preferences</name>
       <alias>CP.1.8</alias>
-      <notes>$ST$Capture and maintain patient and family preferences.$DE$This function is focused on the capture and maintenance of facts on patient/family preferences. Patient and family preferences regarding issues such as language, religion, spiritual practices and culture may be important to the delivery of care. It is important to capture these so that they will be available to the provider at the point of care. Patient/Family preferences differ from social history and Advance Directives as follows: Social history refers primarily to elements of a patient's background that may impact on the patient's health (e.g., smoking, drinking, occupation, abuse, etc.). Advance Directives refers to requests regarding care when the patient is unable to competently make decisions about their own care (e.g., Do Not Resuscitate orders, living wills).$EX$</notes>
+      <notes>$ST$Capture and maintain patient and family preferences.$DE$This function is focused on the capture and maintenance of facts on patient/family preferences. Patient and family preferences regarding issues such as language, religion, spiritual practices and culture may be important to the delivery of care. It is important to capture these so that they will be available to the provider at the point of care. Patient/Family preferences differ from social history and Advance Directives as follows: social history refers primarily to elements of a patient's background that may impact on the patient's health (e.g., smoking, drinking, occupation, abuse, etc.). Advance Directives refers to requests regarding care when the patient is unable to competently make decisions about their own care (e.g., Do Not Resuscitate orders, living wills).$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>967215b0-008f-4944-b2c2-080511ff4257</parentId>
@@ -817,8 +804,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
     <object>
       <id>bb6e9163-5415-45ac-9aaf-48f8bbf186ff</id>
       <name>CP.3.2#01</name>
-      <notes>The system SHALL provide the ability to capture, maintain and render patient vital signs (e.g., blood pressure, temperature, heart rate, respiratory rate, height/length, weight and pain scale) as discrete elements of structured or unstructured data.</notes>
-      <stereotype>Criteria</stereotype>
+      <notes>The system SHALL provide the ability to capture, maintain and render patient vital signs (e.g., blood pressure, temperature, heart rate, respiratory rate) as discrete elements.</notes> <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>eea6b133-2928-4e4a-a7af-c2842e17619b</parentId>
       <tag name="Optionality" value="SHALL" />
@@ -833,8 +819,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
     <object>
       <id>77e88124-b4b9-489b-9224-de33949d8c19</id>
       <name>CP.3.2#02</name>
-      <notes>The system SHALL provide the ability to capture, maintain and render other clinical measures (e.g., peak expiratory flow rate, size of lesions, oxygen saturation, body mass index and severity of pain) as discrete elements of either structured or unstructured data.</notes>
-      <stereotype>Criteria</stereotype>
+      <notes>The system SHALL provide the ability to capture, maintain and render other clinical measures (e.g., peak expiratory flow rate, size of lesions, oxygen saturation, height, weight, length, body mass index and severity of pain) as discrete elements of either structured or unstructured data.</notes> <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>eea6b133-2928-4e4a-a7af-c2842e17619b</parentId>
       <tag name="Optionality" value="SHALL" />
@@ -905,8 +890,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
     <object>
       <id>cb251abe-f302-4944-af33-56628083ed88</id>
       <name>CP.3.2#98</name>
-      <notes>The system SHALL provide the ability to determine and render clinical decision support rules applicable to vital sign updates.</notes>
-      <stereotype>Criteria</stereotype>
+      <notes>The system SHALL provide the ability to determine and render clinical decision support outcomes based on clinical decision support rules applicable to vital sign updates.</notes> <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>eea6b133-2928-4e4a-a7af-c2842e17619b</parentId>
       <tag name="ExternalReference" value=",,">&lt;tagStructure&gt;&lt;property name="Title"/&gt;&lt;property name="URL"/&gt;&lt;property name="Note"/&gt;&lt;/tagStructure&gt;
@@ -1086,7 +1070,7 @@ In addition, the system should present the clinician with clinical decision supp
       <id>809b94a3-9253-4563-b163-723ae46adcb9</id>
       <name>CP.4.4 Manage Orders for Diagnostic/Screening Tests</name>
       <alias>CP.4.4</alias>
-      <notes>$ST$Enable the origination, documentation, transmission, tracking and maintenance of orders for diagnostic tests.$DE$Orders for diagnostic tests (e.g., diagnostic radiology, laboratory ) are captured and tracked including new, renewal and discontinue orders. Each order includes appropriate detail, such as order identification, instructions and clinical information necessary to perform the test. Orders and supporting detailed documentation shall be communicated to the service provider for completion of the diagnostic test(s).Some systems may contain instructions, but in some settings, instructions may be provided from external sources (e.g., handouts).$EX$</notes>
+      <notes>$ST$Enable the origination, documentation, transmission, tracking and maintenance of orders for diagnostic tests.$DE$Orders for diagnostic tests (e.g., diagnostic radiology, laboratory) are captured and tracked including new, renewal and discontinue orders. Each order includes appropriate detail, such as order identification, instructions and clinical information necessary to perform the test. Orders and supporting detailed documentation shall be communicated to the service provider for completion of the diagnostic test(s). Some systems may contain instructions, but in some settings, instructions may be provided from external sources (e.g., handouts).$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>7676d660-e139-4d7a-90b7-004d4d6f5e54</parentId>
@@ -1182,7 +1166,7 @@ In addition, the system should present the clinician with clinical decision supp
       <id>e4d761c2-a4a3-4612-87c7-fdc3fa13a0fd</id>
       <name>CP.5 Manage Results</name>
       <alias>CP.5</alias>
-      <notes>$ST$Present, annotate, and route current and historical test results to appropriate providers for review. Provide the ability to filter and compare results.$DE$Results of tests are presented in an easily accessible manner to the appropriate providers. For example, flow sheets, graphs, or other tools allow care providers to view or uncover trends in test data over time. The provider may desire to annotate, filter, and/or compare results. In addition to making results viewable, it is often necessary to send results to appropriate providers using electronic messaging systems, pagers, or other mechanisms. In addition, the system may have the ability to redirect or copy specific test results to a specified individual. Documentation of notification is accommodated. Results may also be routed to patients electronically or non-electronically (e.g., by hard copy). Note: “Results” are understood as applying to any type of test, whether biological or psychological. Management of the results may also require the provider's communication of the results to the patient (see function CPS.8.4 (Support for Communications between Provider and the Patient, and/or the Patient's Representative)). There may also be a need to notify public health agencies based on the result. See function POP.2 (Support Population-based Epidemiological Investigation).$EX$</notes>
+      <notes>$ST$Present, annotate, and route current and historical test results to appropriate providers for review. Provide the ability to filter and compare results.$DE$Results of tests are presented in an easily accessible manner to the appropriate providers. For example, flow sheets, graphs, or other tools allow care providers to view or uncover trends in test data over time. The provider may desire to annotate, filter, and/or compare results. In addition to making results viewable, it is often necessary to send results to appropriate providers using electronic messaging systems, pagers, or other mechanisms. In addition, the system may have the ability to redirect or copy specific test results to a specified individual. Documentation of notification is accommodated. Results may also be routed to patients electronically or non-electronically (e.g., by hard copy). Note: “Results” are understood as applying to any type of test, whether biological or psychological. Management of the results may also require the provider's communication of the results to the patient (see function CPS.8.4 (Support for Communications between Provider and the Patient, and/or the Patient's Representative)). There may also be a need to notify public health agencies based on the result. See function POP.2 (Support Population-based Epidemiological Investigation/Surveillance).$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>e0de4a4e-1c97-4ce4-8aa0-eb58da34acd3</parentId>
@@ -1196,18 +1180,18 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -490 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a14patientlist_2014_tp_approved_v1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(5)(A) Incorporate laboratory tests and values/results$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -820 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b5aincorporatelabtests_2014_tp_approved_v1.4_onc.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(5)(B) Incorporate laboratory tests and values/results$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -685 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b5bincorporatelabtests_2014_tp_approved_v1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(6) Inpatient setting only - transmission of electronic laboratory tests and values/results to ambulatory providers$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 828 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b6_transmissionlabtestsvalues_2014_tp_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(4) Inpatient setting only - transmission of reportable laboratory tests of values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 828 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f4transmissionreportablelabs_tp_2014_approved_v1.3.pdf"/>
     </object>
     <object>
       <id>8e744ef3-8ac5-4595-b950-a768f5d4915f</id>
       <name>CP.5#01</name>
-      <notes>The system SHALL provide the ability to manage test results in according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
-      <stereotype>Criteria</stereotype>
+      <notes>The system SHALL provide the ability to manage test results according to scope of practice, organizational policy, and/or jurisdictional law. </notes> 
+	  <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>e4d761c2-a4a3-4612-87c7-fdc3fa13a0fd</parentId>
       <tag name="Optionality" value="SHALL" />
@@ -1216,7 +1200,7 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="CP.5" />
       <tag name="Reference.CriterionID" value="1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
+      <tag name="Reference.ChangeIndicator" value="C" />
       <tag name="Priority" value="EN" />
     </object>
     <object>
@@ -1313,22 +1297,6 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="Reference.FunctionID" value="CP.5" />
       <tag name="Reference.CriterionID" value="27" />
       <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>ea0b4315-7fbd-48d2-a1e8-f2190702a94e</id>
-      <name>CP.5#90</name>
-      <notes>The system SHALL display the specimen source with test report information.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>e4d761c2-a4a3-4612-87c7-fdc3fa13a0fd</parentId>
-      <tag name="Conditional" value="N">Values: Y,N
-</tag>
-      <tag name="Dependent" value="N">Values: Y,N
-</tag>
-      <tag name="ExternalReference" value=",,">&lt;tagStructure&gt;&lt;property name="Title"/&gt;&lt;property name="URL"/&gt;&lt;property name="Note"/&gt;&lt;/tagStructure&gt;
-</tag>
-      <tag name="Reference.ChangeIndicator" value="N" />
       <tag name="Priority" value="EN" />
     </object>
     <object>
@@ -1447,6 +1415,9 @@ In addition, the system should present the clinician with clinical decision supp
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 828 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b6_transmissionlabtestsvalues_2014_tp_approved_v1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(f)(4) Inpatient setting only - transmission of reportable laboratory tests and values/results$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 1.05 MB]$$URL$$http://www.healthit.gov/sites/default/files/170.314f4transmissionreportablelabs_tp_2014_approved_v1.3.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(12) Image results$$URL$$"/>
+	  <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a12_imageresults_2014_tp_approved_v1.3_onc.pdf"/>
+      
     </object>
     <object>
       <id>6999d00c-28ae-466c-8e5c-0f35f5353d53</id>
@@ -1514,11 +1485,27 @@ The system should report medication administration, where appropriate, to public
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
     </object>
+	<object>
+		<id>27513dd1-3f8f-4fed-a5b9-a132082548c6</id>
+		<name>CP.6.1#05</name>
+ 		<notes>The system SHALL provide the ability to render the drug, dose, route, time and frequency of desired administration for all scheduled medications.</notes>
+ 		<stereotype>Criteria</stereotype>
+ 		<type>Requirement</type>
+ 		<parentId>f3ebf2c2-4888-4482-aa2a-1e260a516532</parentId>
+ 		<tag name="Row" value="487" />
+ 		<tag name="Optionality" value="SHALL" />
+ 		<tag name="Conditional" value="N" />
+ 		<tag name="Dependent" value="N" />
+ 		<tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
+ 		<tag name="Reference.FunctionID" value="CP.6.1" />
+ 		<tag name="Reference.CriterionID" value="5" />
+ 		<tag name="Reference.ChangeIndicator" value="NC" />
+ 		<tag name="Priority" value="EN" />
+	</object> 		
     <object>
       <id>a0c0b008-fd7a-4956-a09a-db37e810e2a7</id>
       <name>CP.6.1#11</name>
-      <notes>The system SHALL provide the ability to capture, maintain and render medication administration details as discrete data, including:(1) the medication name, strength and dose;(2) date and time of administration;(3) route and site;(4) administering provider(5) observations, reactions and complications(6) reason medication not given, and/or medication related activity not performed; according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
-      <stereotype>Criteria</stereotype>
+      <notes>11. The system SHALL provide the ability to capture, maintain and render medication administration details as discrete data, including: (1) the medication name, strength, dose and lot number; (2) date and time of administration; (3) route and site; (4) administering provider; (5) observations, reactions and complications; (6) reason medication not given, and/or medication related activity not performed; according to scope of practice, organizational policy, and/or jurisdictional law.</notes> <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>2dd994e5-ff72-40ed-8e6b-8bfb7a3c2f9b</parentId>
       <tag name="Optionality" value="SHALL" />
@@ -1527,7 +1514,7 @@ The system should report medication administration, where appropriate, to public
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="CP.6.1" />
       <tag name="Reference.CriterionID" value="11" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
+      <tag name="Reference.ChangeIndicator" value="C" />
       <tag name="Priority" value="EN" />
     </object>
     <object>
@@ -1576,7 +1563,7 @@ The system should report medication administration, where appropriate, to public
     <object>
       <id>1f8e872d-076a-4dd0-884b-033e72209835</id>
       <name>CP.6.2#01</name>
-      <notes>The system SHALL provide the ability to capture immunization administration details as discrete data, including:(1) the immunization name/type, series, strength and dose;(2) date and time of administration;(3) manufacturer, lot number, expiration date,(4) route and site of administration;(5) administering provider;(6) observations, reactions and complications;(7) reason immunization not given, and/or immunization related activity not performed;according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+      <notes>The system SHALL provide the ability to capture immunization administration details as discrete data, including: 1 The immunization name/type, series, strength and dose; 2 Date and time of administration; 3 Manufacturer, lot number, expiration date; 4 Route and site of administration; 5 Administering provider; 6 Observations, reactions and complications; 7 Reason immunization not given, and/or immunization related activity not performed; according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>d8f2dd7c-82a6-4065-af49-abbfaa527e2a</parentId>
@@ -1802,16 +1789,14 @@ The system should report medication administration, where appropriate, to public
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -551 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b7dataportability_2014_tp_approved_v1.4.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF -776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(2) Ambulatory setting only clinical summary$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 766 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e2clinicalsummary_2014_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>8a441da4-aa05-4e66-8896-44cc19b1fb26</id>
       <name>CP.9.1#01</name>
-      <notes>The system SHALL provide the ability to render summaries of the patient's comprehensive EHR that include at a minimum: problem list, medication list, allergy and adverse reaction list, and procedures.</notes>
-      <stereotype>Criteria</stereotype>
+      <notes>The system SHALL provide the ability to render summaries of the patient's comprehensive EHR that include at a minimum: problem list, medication list, allergy,  intolerance and adverse reaction list, and procedures. </notes>
+	  <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>427ffe3b-c127-43a4-ae12-a10d6863fa78</parentId>
       <tag name="Optionality" value="SHALL" />
@@ -1820,7 +1805,7 @@ The system should report medication administration, where appropriate, to public
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="CP.9.1" />
       <tag name="Reference.CriterionID" value="1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
+      <tag name="Reference.ChangeIndicator" value="C" />
       <tag name="Priority" value="EN" />
     </object>
     <object>
@@ -1839,34 +1824,34 @@ The system should report medication administration, where appropriate, to public
       <id>82aae164-9706-4d0e-8ec3-4805d7ea7a26</id>
       <name>CP.9.1#98</name>
       <notes>The system SHALL render patient summaries that include the following US Meaningful Use Common Data Set Elements:
-1) Patient name
-2) Sex
-3) Date of birth
-4) Race
-5) Ethnicity
-6) Preferred language
-7) Smoking status
-8) Problems
-9) Medications
-10) Medication Allergies
-11) Laboratory test(s)
-12) Laboratory value(s)/result(s)
-13) Vital signs – height, weight, blood pressure, BMI
-14) Care plan field(s), including goals and instructions
-15) Procedures
-16) Care team member(s)
-17) Provider's name
-18) Provider's office contact information
-19) Admission and discharge dates and locations
-20) Discharge Instructions
-21) Reason(s) for hospitalization
-22) Encounter diagnoses
-23) Immunizations
-24) Cognitive status
-25) Functional status
-26) Reason for referral
-27) Referring provider's name
-28) Referring provider's contact information) Care team member(s)</notes>
+1 Patient name;
+2 Sex;
+3 Date of birth;
+4 Race;
+5 Ethnicity;
+6 Preferred language;
+7 Smoking status;
+8 Problems;
+9 Medications;
+10 Medication Allergies;
+11 Laboratory test(s);
+12 Laboratory value(s)/result(s);
+13 Vital signs – height, weight, blood pressure, BMI;
+14 Care plan field(s), including goals and instructions;
+15 Procedures;
+16 Care team member(s);
+17 Provider's name;
+18 Provider's office contact information;
+19 Admission and discharge dates and locations;
+20 Discharge Instructions;
+21 Reason(s) for hospitalization;
+22 Encounter diagnoses;
+23 Immunizations;
+24 Cognitive status;
+25 Functional status;
+26 Reason for referral;
+27 Referring provider's name;
+28 Referring provider's contact information) Care team member(s).</notes>
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>427ffe3b-c127-43a4-ae12-a10d6863fa78</parentId>
@@ -2109,10 +2094,49 @@ All functions within the Care Provision Support Section have an identifier start
       <tag name="Reference.ChangeIndicator" value="C" />
       <tag name="Priority" value="EN" />
     </object>
+	<object>
+		<id>2a31136d-3cd0-4035-986e-35354c2b681c</id>
+ 		<name>CPS.1.2#94</name>
+ 		<notes>The system SHALL provide the ability to capture the fact that a patient declined to specify their ethnicity.</notes>
+ 		<stereotype>Criteria</stereotype>
+ 		<type>Requirement</type>
+ 		<parentId>07a380c6-d8f4-421a-b778-2d7680f63000</parentId>
+ 		<tag name="ExternalReference" value=",,">&lt;tagStructure&gt;&lt;property name="Title"/&gt;&lt;property name="URL"/&gt;&lt;property name="Note"/&gt;&lt;/tagStructure&gt;
+ 		</tag>
+ 		<tag name="CompilerInclusionReason" value="New from ProfileDefinition" />
+ 		<tag name="Reference.ChangeIndicator" value="N" />
+ 		<tag name="Priority" value="EN" />
+	</object> 		
+	<object>
+		<id>7d43c959-e244-4c53-8f77-aaebaba5a6f6</id>
+ 		<name>CPS.1.2#95</name>
+ 		<notes>The system SHALL provide the ability to capture the fact that a patient declined to specify their race.</notes>
+ 		<stereotype>Criteria</stereotype>
+ 		<type>Requirement</type>
+ 		<parentId>07a380c6-d8f4-421a-b778-2d7680f63000</parentId>
+ 		<tag name="ExternalReference" value=",,">&lt;tagStructure&gt;&lt;property name="Title"/&gt;&lt;property name="URL"/&gt;&lt;property name="Note"/&gt;&lt;/tagStructure&gt;
+ 		</tag>
+ 		<tag name="CompilerInclusionReason" value="New from ProfileDefinition" />
+ 		<tag name="Reference.ChangeIndicator" value="N" />
+		<tag name="Priority" value="EN" />
+ 	</object>
+	<object>
+ 		<id>bcd6a1d8-273e-4635-bd37-b9cb8986113c</id>
+ 		<name>CPS.1.2#96</name>
+ 		<notes>The system SHALL provide the ability to capture a preliminary cause of death.</notes>
+ 		<stereotype>Criteria</stereotype>
+ 		<type>Requirement</type>
+ 		<parentId>07a380c6-d8f4-421a-b778-2d7680f63000</parentId>
+ 		<tag name="ExternalReference" value=",,">&lt;tagStructure&gt;&lt;property name="Title"/&gt;&lt;property name="URL"/&gt;&lt;property name="Note"/&gt;&lt;/tagStructure&gt;
+ 		</tag>
+ 		<tag name="CompilerInclusionReason" value="New from ProfileDefinition" />
+ 		<tag name="Reference.ChangeIndicator" value="N" />
+		<tag name="Priority" value="EN" />
+	</object> 	
     <object>
       <id>dc80a615-c7ad-4ff0-8f06-34701352ae36</id>
       <name>CPS.1.2#97</name>
-      <notes>The system SHALL provide the ability to capture the fact that a patient declined to specify their preferred language, race and/or ethnicity.</notes>
+	  <notes>The system SHALL provide the ability to capture the fact that a patient declined to specify their preferred language.</notes> 
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>9387d6ef-01a1-46f1-a0af-4dc735aa9cd3</parentId>
@@ -2136,8 +2160,7 @@ All functions within the Care Provision Support Section have an identifier start
     <object>
       <id>a6bf108b-b4d3-4df4-94c8-67b603806e69</id>
       <name>CPS.1.2#99</name>
-      <notes>The system SHALL provide the ability to determine and render clinical decision support rules applicable to demographic updates.</notes>
-      <stereotype>Criteria</stereotype>
+      <notes>The system SHALL provide the ability to determine and render clinical decision support outcomes based on clinical decision support rules applicable to demographic updates.</notes> <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>9387d6ef-01a1-46f1-a0af-4dc735aa9cd3</parentId>
       <tag name="ExternalReference" value=",,">&lt;tagStructure&gt;&lt;property name="Title"/&gt;&lt;property name="URL"/&gt;&lt;property name="Note"/&gt;&lt;/tagStructure&gt;
@@ -2157,24 +2180,8 @@ All functions within the Care Provision Support Section have an identifier start
       <tag name="Reference.FunctionID" value="CPS.1.7" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>4c572be5-8902-4e06-a989-a13b9c706abe</id>
-      <name>CPS.1.7#01</name>
-      <notes>The system SHOULD conform to function CPS.1.7.1 (Support for Patient and Family Preferences).</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>477cd67f-0ca0-42fe-a8ba-0f8d8ccc7f1b</parentId>
-      <tag name="Optionality" value="SHOULD" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="CPS.1.7" />
-      <tag name="Reference.CriterionID" value="1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
+    </object>    
+	<object>
       <id>7593747d-764d-44af-894c-5010b54dbe4d</id>
       <name>CPS.1.7.1 Support for Patient and Family Preferences</name>
       <alias>CPS.1.7.1</alias>
@@ -2239,7 +2246,58 @@ Circumstances is used to indicate where, how and when an advanced directive was 
       <tag name="Reference.CriterionID" value="1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-    </object>
+    </object>	
+	<object>
+		<id>3f0a2152-651f-48a9-aab4-8b15b6b11f37</id>
+ 		<name>CPS.1.7.2#02</name>
+ 		<notes>The system SHALL render an indication that advance directive(s) have been captured.</notes>
+ 		<stereotype>Criteria</stereotype>
+ 		<type>Requirement</type>
+ 		<parentId>cbdc5cba-ba70-496c-b5ea-2427e1e4cbd7</parentId>
+ 		<tag name="Row" value="730" />
+ 		<tag name="Optionality" value="SHALL" />
+ 		<tag name="Conditional" value="N" />
+ 		<tag name="Dependent" value="N" />
+ 		<tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
+ 		<tag name="Reference.FunctionID" value="CPS.1.7.2" />
+ 		<tag name="Reference.CriterionID" value="2" />
+ 		<tag name="Reference.ChangeIndicator" value="NC" />
+ 		<tag name="Priority" value="EN" />
+	</object>
+ 	<object>
+		<id>07492879-cebc-4105-8652-ed6d7ad421aa</id>
+		<name>CPS.1.7.2#03</name>
+ 		<notes>The system SHALL provide the ability to render the type of advance directives captured for the patient (e.g., living will, durable power of attorney, preferred interventions for known conditions, or the existence of a "Do Not Resuscitate" order).</notes>
+ 		<stereotype>Criteria</stereotype>
+ 		<type>Requirement</type>
+ 		<parentId>cbdc5cba-ba70-496c-b5ea-2427e1e4cbd7</parentId>
+ 		<tag name="Row" value="731" />
+ 		<tag name="Optionality" value="SHALL" />
+ 		<tag name="Conditional" value="N" />
+ 		<tag name="Dependent" value="N" />
+ 		<tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
+ 		<tag name="Reference.FunctionID" value="CPS.1.7.2" />
+ 		<tag name="Reference.CriterionID" value="3" />
+ 		<tag name="Reference.ChangeIndicator" value="NC" />
+ 		<tag name="Priority" value="EN" />
+ 	</object>
+ 	<object>
+ 		<id>cbbea935-ca0c-4ad9-991a-92b9ea22b027</id>
+ 		<name>CPS.1.7.2#04</name>
+ 		<notes>The system SHALL provide the ability to manage "Do Not Resuscitate" orders.</notes>
+ 		<stereotype>Criteria</stereotype>
+ 		<type>Requirement</type>
+ 		<parentId>cbdc5cba-ba70-496c-b5ea-2427e1e4cbd7</parentId>
+ 		<tag name="Row" value="732" />
+ 		<tag name="Optionality" value="SHALL" />
+ 		<tag name="Conditional" value="N" />
+ 		<tag name="Dependent" value="N" />
+ 		<tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
+ 		<tag name="Reference.FunctionID" value="CPS.1.7.2" />
+ 		<tag name="Reference.CriterionID" value="4" />
+ 		<tag name="Reference.ChangeIndicator" value="NC" />
+ 		<tag name="Priority" value="EN" />
+	</object> 		
     <object>
       <id>68e5b762-23fd-4f80-aa97-1b61913a29a8</id>
       <name>CPS.2 Support externally-sourced Information</name>
@@ -2291,8 +2349,6 @@ Data incorporated through these mechanisms is presented alongside locally captur
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 671 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(1) View, download, and transmit to 3rd party$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(2) Ambulatory setting only clinical summary$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 766 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e2clinicalsummary_2014_tp_approved_v1.2.pdf"/>
     </object>
@@ -2315,9 +2371,7 @@ Data incorporated through these mechanisms is presented alongside locally captur
     <object>
       <id>fbee9127-955b-4663-a3a3-afe6f579f9bb</id>
       <name>CPS.2.1#03</name>
-      <notes>The system SHALL provide the ability to capture, store and render computable documents (e.g., CDA, C-CDA, HITSP/C32, ASTM CCR, ISO 13606, lab results or medication lists).
-
-</notes>
+      <notes>The system SHALL provide the ability to capture, store and render computable documents (e.g., CDA, C-CDA, HITSP/C32, ASTM CCR, ISO 13606, laboratory results or medication lists).</notes>
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>06422043-7091-4d49-988e-c77604862789</parentId>
@@ -2349,7 +2403,7 @@ Data incorporated through these mechanisms is presented alongside locally captur
     <object>
       <id>812cc843-3791-439a-860a-9142c07fa192</id>
       <name>CPS.2.1#06</name>
-      <notes>The system SHALL provide the ability to receive from an external source structured, text-based documents and reports (e.g., C-CDA, HITSP/C32, and ASTM CCR formats).</notes>
+      <notes>The system SHALL provide the ability to receive from an external source structured, text-based documents and reports (e.g., C-CDA, HITSP/C32, and ASTM formats).</notes>
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>06422043-7091-4d49-988e-c77604862789</parentId>
@@ -2386,7 +2440,6 @@ Data incorporated through these mechanisms is presented alongside locally captur
       <tag name="Reference.ChangeIndicator" value="N" />
       <tag name="Priority" value="EN" />
     </object>
-
     <object>
       <id>6a401967-1a01-4af3-8f21-36c0a98df365</id>
       <name>CPS.2.3 Support Emergency Medical System Originated Data</name>
@@ -2422,13 +2475,14 @@ Data incorporated through these mechanisms is presented alongside locally captur
       <id>c56856c1-5cfd-446e-b580-f2af3bba7c7f</id>
       <name>CPS.2.4 Support externally-sourced Clinical Images</name>
       <alias>CPS.2.4</alias>
-      <notes>$ST$Incorporate clinical images from external sources and support communication/presentation of images from medical and non-medical devices and entities.$DE$Mechanisms for incorporating external clinical images (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced images may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of images received by the provider that would typically be incorporated into a medical record. These image documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. Images may also be stored within the system or accessed by reference to an external system (e.g., a hospital's picture archiving and communication system). Examples of image formats include OCR, PDF, JPG or TIFF. Examples of externally-sourced images include: laboratory results report images 2. Radiographic images3. Images of power of attorney forms, living wills or birth certificates4. Graphs and charts5. Photographs or drawings of patient wounds6. Wave files of EKG tracings$EX$</notes>
-      <stereotype>Function</stereotype>
+      <notes>$ST$Incorporate clinical images from external sources and support communication/presentation of images from medical and non-medical devices and entities.$DE$Mechanisms for incorporating external clinical images (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced images may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of images received by the provider that would typically be incorporated into a medical record. These image documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. Images may also be stored within the system or accessed by reference to an external system (e.g., a hospital's picture archiving and communication system). 
+	  Examples of image formats include OCR, PDF, JPG or TIFF. Examples of externally-sourced images include: 1. Laboratory results report images, 2. Radiographic images, 3. Images of power of attorney forms, living wills or birth certificates, 4. Graphs and charts, 5. Photographs or drawings of patient wounds, 6. Wave files of EKG tracings.</notes> 
+		<stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>68e5b762-23fd-4f80-aa97-1b61913a29a8</parentId>
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="CPS.2.4" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
+      <tag name="Reference.ChangeIndicator" value="C" />
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(12) Image results$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 337 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a12_imageresults_2014_tp_approved_v1.3_onc.pdf"/>
@@ -2680,8 +2734,7 @@ A component of ordering medications and immunizations is the dispensing of those
       <alias>CPS.4.2.1</alias>
       <notes>$ST$Identify medication interaction warnings at the time of medication or immunization ordering, or prescribing, as well as at the time of dispensing.$DE$The clinician is alerted to medication-medication, medication-allergy, medication-food, medication-supplement (herbal or dietary) interactions at levels appropriate to the health care setting and with respect to the patient condition. These alerts may be customized to suit the user or group.
 
-Note, medication may be affected by food or diatary choices; whist this is not considered an interaction it is consequently not included in this function; however, the provision of drug-food effectiveness in information to be provided to the patient is included in the function CP.8.1 (Generate, Record and Distribute Patient-Specific Instructions).If the patient’s condition is one where, in order to view the necessary components of the health record, patient authorization or consent is required; then the system should show the
-        medication but mask the condition for which the medication is prescribed until the required consent or authorization is available. In an emergent situation, where all health information is required to provide the most effective treatment, and it is not possible to obtain an authorization or consent; the system should provide an override (e.g., "break the glass") function to allow access to the diagnosis or problem for which a medication was ordered, according to scope of practice, organizational policies, and/or jurisdictional law.$EX$</notes>
+Note, medication may be affected by food or diatary choices; whist this is not considered an interaction it is consequently not included in this function; however, the provision of drug-food effectiveness in information to be provided to the patient is included in the function CP.8.1 (Generate, Record and Distribute Patient-Specific Instructions).If the patient’s condition is one where, in order to view the necessary components of the health record, patient authorization or consent is required; then the system should show the medication but mask the condition for which the medication is prescribed until the required consent or authorization is available. In an emergent situation, where all health information is required to provide the most effective treatment, and it is not possible to obtain an authorization or consent; the system should provide an override (e.g., "break the glass") function to allow access to the diagnosis or problem for which a medication was ordered, according to scope of practice, organizational policies, and/or jurisdictional law.$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>029c3226-542e-4246-a3ca-5781fd94fa1d</parentId>
@@ -2775,8 +2828,7 @@ Note, medication may be affected by food or diatary choices; whist this is not c
       <alias>CPS.4.2.5</alias>
       <notes>$ST$Review a patient’s medication information (from more than one source) and reconcile conflicts.$DE$Medication reconciliation is the process of comparing a patient's medication information (from all sources) to the medications that the patient is actually has been taking. Medication reconciliation is done to avoid medication errors such as omissions, duplications, dosing errors, or drug interactions. Medication Reconciliation should be done at every episode or transition of care in which new medications are ordered or administered, existing orders are rewritten or where medications may influence the care given.
 
-Transitions in care include changes in setting, service, practitioner, or level of care. The Medication Reconciliation process comprises five includes several steps: (1) develop a list of current medication list of medications that the patient is taking, (2) develop a list of medications to be prescribed or recommended (3) compare the medication information from
-        all sources; (4) make shared and informed clinical decisions based on the comparison and provide the ability to document the interaction; and (5) communicate the updated medication information to the healthcare teams, the patient and appropriate caregivers. For example: If a patient’s pain, anticoagulation, hyperglycemia or other high risk therapy is being managed by a specialist, the healthcare team must be aware to avoid prescribing an additional equivalent of this medication.(6) Verify the patient’s/caregiver’s understanding and agreement to the patient’s medication treatment plan.(7) Standardization of shared medication information (name, dose, instructions, indications, prescriber, etc)$EX$</notes>
+Transitions in care include changes in setting, service, practitioner, or level of care. The Medication Reconciliation process comprises five includes several steps: 1 Develop a list of current medication list of medications that the patient is taking; 2 Develop a list of medications to be prescribed or recommended; 3 Compare the medication information from all sources; 4 Make shared and informed clinical decisions based on the comparison and provide the ability to document the interaction; and 5 communicate the updated medication information to the healthcare teams, the patient and appropriate caregivers. For example: If a patient’s pain, anticoagulation, hyperglycemia or other high risk therapy is being managed by a specialist, the healthcare team must be aware to avoid prescribing an additional equivalent of this medication; 6 Verify the patient’s/caregiver’s understanding and agreement to the patient’s medication treatment plan; 7 Standardization of shared medication information (name, dose, instructions, indications, prescriber, etc)$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>029c3226-542e-4246-a3ca-5781fd94fa1d</parentId>
@@ -3245,8 +3297,7 @@ The system should provide for both verbal and written communication. These excha
       <alias>CPS.9.4</alias>
       <notes>$ST$Provide report generation features using tools internal or external to the system, for the generation of standard reports.$DE$Providers and administrators need access to data in the EHR-S for clinical, administrative, financial decision-making, audit trail and metadata reporting, as well as to create reports for patients. Many systems may use internal or external reporting tools to accomplish this. Reports may be based on structured data, and/or unstructured text from the patient's health record.
 
-Users need to be able to sort, and/or filter reports. For example:
--the user may wish to view only the diabetic patients on a report listing patients and diagnoses-the user may wish to view only male patients over 35 with a complaint of chest pain.$EX$</notes>
+Users need to be able to sort, and/or filter reports. For example: the user may wish to view only the diabetic patients on a report listing patients and diagnoses-the user may wish to view only male patients over 35 with a complaint of chest pain.$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>c4550d2f-392e-464a-8c88-3b1cab6eef18</parentId>
@@ -3339,7 +3390,7 @@ Users need to be able to sort, and/or filter reports. For example:
       <id>cbb371ed-2d37-40aa-b553-becbe14a74bd</id>
       <name>CPS.9.5 Ad Hoc Query and Rendering</name>
       <alias>CPS.9.5</alias>
-      <notes>$ST$Provide support for ad hoc query and report generation using tools internal or external to the system. Present customized views and summarized information from a patient's comprehensive EHR subject to jurisdictional laws and organizational policies related to privacy and confidentiality. The view may be arranged chronologically, by problem, or other parameters, and may be filtered or sorted.$DE$Providers and administrators need to respond quickly to new requirements for data measurement and analysis. This may be as a result of new regulatory requirements or internal requirements. This requires that users be able to define their own query parameters and retain them. The data may be found in both structured and unstructured data. Providers and administrators also need to query for the absence of specific clinical or administrative data. For example, the Quality Control department may be reviewing whether or not the protocol for management of Diabetes Mellitus is being followed. If the protocol calls for fasting blood sugars every 3 months at minimum, the investigator might need to run an across-patient query locating patients with diabetes who do not show an FBS result within the last 3 months. Emergency Department benchmarking reports - Key point of time include arrival time; treatment area entrance time, MD contact time; decision to admit, discharge or transfer time; and departure (left ED) time. Important intervals include, but are not limited to the “door to doctor time”, “doctor to diction time”, “admission to bed availability or departure” as well as overall length of stayA key feature of an electronic health record is its ability to support the delivery of care by enabling prior information to be found and meaningfully displayed. EHR systems should facilitate search, filtering (e.g., filtering by key word, tagged data, or diagnosis), summarization, and presentation of available data needed for patient care. Systems should enable views to be customized, for example, specific data may be organized chronologically, by clinical category, by consultant, depending on need. The views may be arranged chronologically, by problem, or other parameters, and may be filtered or sorted. Jurisdictional laws and organizational policies that prohibit certain users from accessing certain patient information must be supported.$EX$</notes>
+      <notes>$ST$Provide support for ad hoc query and report generation using tools internal or external to the system. Present customized views and summarized information from a patient's comprehensive EHR subject to jurisdictional laws and organizational policies related to privacy and confidentiality. The view may be arranged chronologically, by problem, or other parameters, and may be filtered or sorted.$DE$Providers and administrators need to respond quickly to new requirements for data measurement and analysis. This may be as a result of new regulatory requirements or internal requirements. This requires that users be able to define their own query parameters and retain them. The data may be found in both structured and unstructured data. Providers and administrators also need to query for the absence of specific clinical or administrative data. For example, the Quality Control department may be reviewing whether or not the protocol for management of Diabetes Mellitus is being followed. If the protocol calls for fasting blood sugars every 3 months at minimum, the investigator might need to run an across-patient query locating patients with diabetes who do not show an FBS result within the last 3 months. Emergency Department benchmarking reports - Key point of time include arrival time; treatment area entrance time, MD contact time; decision to admit, discharge or transfer time; and departure (left ED) time. Important intervals include, but are not limited to the “door to doctor time”, “doctor to diction time”, “admission to bed availability or departure” as well as overall length of stay. A key feature of an electronic health record is its ability to support the delivery of care by enabling prior information to be found and meaningfully displayed. EHR systems should facilitate search, filtering (e.g., filtering by key word, tagged data, or diagnosis), summarization, and presentation of available data needed for patient care. Systems should enable views to be customized, for example, specific data may be organized chronologically, by clinical category, by consultant, depending on need. The views may be arranged chronologically, by problem, or other parameters, and may be filtered or sorted. Jurisdictional laws and organizational policies that prohibit certain users from accessing certain patient information must be supported.$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>c4550d2f-392e-464a-8c88-3b1cab6eef18</parentId>
@@ -3430,7 +3481,7 @@ Users need to be able to sort, and/or filter reports. For example:
     </object>
     <object>
       <id>05542633-def6-4ba7-bae1-d9b1eb5a161b</id>
-      <name>POP.2 Support Population-Based Epidemiological Investigation</name>
+      <name>POP.2 Support Population-Based Epidemiological Investigation/Surveillance</name>
       <alias>POP.2</alias>
       <notes>$ST$Support for population-based internal and external epidemiological investigations of clinical health of aggregate patient data for use in identifying health risks from the environment, and/or population in accordance with jurisdictional law.$DE$A care provider, public health expert, or organization may wish to analyze data from cohorts,(i.e., subpopulations defined by certain characteristics or conditions). For example, cohorts can be described in terms of demographics; education and social status; health status, diseases, or outcomes; industry and occupation; or injuries. Population health analysts, such as experts in public health departments, may compile individual, and/or population information reported or otherwise gathered from multiple EHRs within the jurisdictional area for surveillance and research. Populations of one or none also can be informative. By analyzing specified data for a cohort, public health experts and care providers can monitor disease prevalence and health-related trends; evaluate behavioral, socio-economical, occupational, and other impacts on health; and identify potential outbreaks and associated risk factors. Examples include:
 - examining a cohort of patients with measles for a common (implied) exposure, such as attending the same school - following a cohort of diabetics with out-of-range markers, or analyze them from various perspectives, such as by occupation, blood sugar range, drugs that are being used and not being used.
@@ -3446,7 +3497,7 @@ The investigator may hide or mask certain aspects of epidemiological investigati
       <parentId>78d01a84-a151-483f-acd3-192ec7d5afb9</parentId>
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="POP.2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
+      <tag name="Reference.ChangeIndicator" value="C" />
       <tag name="Priority" value="EN" />
     </object>
     <object>
@@ -3648,8 +3699,7 @@ A “dynamic cohort” query may identify new patients to be added periodically 
     <object>
       <id>c863ee14-d4a7-4f3c-9279-388578a1d82d</id>
       <name>POP.2.3#09</name>
-      <notes>The system SHALL provide the ability to transmit information related to individual case reports, including clinical information (e.g., test results) from a care provider to public health organizations (e.g., public health notifiable, and/or reportable condition programs) according to scope of practice, organizational policy, and/or jurisdictional law (e.g., a care provider notifies the local public health authority of an individual case of a sexually-transmitted disease that was identified during the analysis of a related query).</notes>
-      <stereotype>Criteria</stereotype>
+      <notes>The system SHALL provide the ability to transmit information related to individual case safety reports, including clinical information (e.g., test results) from a care provider to public health organizations (e.g., public health notifiable, and/or reportable condition programs) according to scope of practice, organizational policy, and/or jurisdictional law (e.g., a care provider notifies the local public health authority of an individual case of a sexually-transmitted disease that was identified during the analysis of a related query).</notes> <stereotype>Criteria</stereotype>
       <type>Requirement</type>
       <parentId>9a32dae1-70b2-4b96-9a55-b42d90c3a78b</parentId>
       <tag name="Optionality" value="SHALL" />
@@ -3658,7 +3708,7 @@ A “dynamic cohort” query may identify new patients to be added periodically 
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="POP.2.3" />
       <tag name="Reference.CriterionID" value="9" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
+      <tag name="Reference.ChangeIndicator" value="C" />
       <tag name="Priority" value="EN" />
     </object>
     <object>
@@ -4078,51 +4128,6 @@ The system should provide for both verbal and written communication. These excha
       <tag name="Priority" value="EN" />
     </object>
     <object>
-      <id>52f7cdeb-da60-49d1-8276-a2308f96b898</id>
-      <name>AS.4.2 Support for Communications Within an Organization</name>
-      <alias>AS.4.2</alias>
-      <notes>$ST$Facilitate communications regarding patient data and status within a health care organization.$DE$There needs to be an ability to communicate patient data and status (e.g., patient history, patient physical examination), discrete clinical data (e.g., blood pressure, pulse, temperature, pulse oximetry, laboratory data, microbiology data, radiology data), and orders between clinical systems in the facility (e.g., ambulatory, inpatient and ED).$EX$</notes>
-      <stereotype>Function</stereotype>
-      <type>Feature</type>
-      <parentId>f1ab97ca-9ec9-4b0b-93fe-dfc0013e58fb</parentId>
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="AS.4.2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>371edeac-466c-44a8-992e-5b8788797aaf</id>
-      <name>AS.4.2#01</name>
-      <notes>The system SHOULD provide the ability to render patient status tracking data on patient status devices or other patient tracking systems.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>52f7cdeb-da60-49d1-8276-a2308f96b898</parentId>
-      <tag name="Optionality" value="SHOULD" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="AS.4.2" />
-      <tag name="Reference.CriterionID" value="1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
-      <id>0637f772-8b59-4ae1-98cb-a5764bf5a40f</id>
-      <name>AS.4.2#02</name>
-      <notes>The system SHOULD determine and render patient information appropriate to the care setting, and/or the patient's condition, on status/patient/tracking displays.</notes>
-      <stereotype>Criteria</stereotype>
-      <type>Requirement</type>
-      <parentId>52f7cdeb-da60-49d1-8276-a2308f96b898</parentId>
-      <tag name="Optionality" value="SHOULD" />
-      <tag name="Conditional" value="N" />
-      <tag name="Dependent" value="N" />
-      <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
-      <tag name="Reference.FunctionID" value="AS.4.2" />
-      <tag name="Reference.CriterionID" value="2" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
-      <tag name="Priority" value="EN" />
-    </object>
-    <object>
       <id>b58afaeb-6e38-4aca-8d44-7f9b74f144ac</id>
       <name>AS.4.2#03</name>
       <notes>The system SHALL render patient information that can be used for status and patient tracking systems (e.g., tracking display, ED status board) that displays, as a minimum: patient identification, patient location, medical condition, care process status, study status, vital signs, and inter-staff communication notes as applicable.</notes>
@@ -4156,7 +4161,7 @@ The system should provide for both verbal and written communication. These excha
       <id>c0a50c30-f652-4f12-bfdc-53b5d2f0519c</id>
       <name>RI.1 Record Lifecycle and Lifespan</name>
       <alias>RI.1</alias>
-      <notes>$ST$Manage Record Lifecycle and Lifespan$DE$Actions are taken to support patient health. Actions are taken in provision of healthcare to individuals. Actions are taken as the result of rules-based EHR System algorithms. Actors (i.e., patients, providers, users, systems) take Actions. (Actions broadly encompass tasks, acts, procedures or services performed or provided.) The EHR System captures Actions taken and creates corresponding Record Entries. Record Entries provide persistent evidence of Action occurrence, context, disposition, facts, findings and observations. From the point of Record Entry origination to the end of its lifespan, the EHR System manages each Entry consistent with and according to scope of practice, organizational policy, and jurisdictional law. In support of individual health and in provision of healthcare to individuals, Actors perform Actions and Actions have corresponding Entries in the EHR Record, (i.e., Action instances are documented by Record Entry instances). Record Entries may be captured during the course of the Action or sometime thereafter. The Actor (author/source) of the Record Entry may be the same as an Actor performing the Action or not. The EHRS Functional Model does not specify a particular relationship of Actions and corresponding Record Entries. It may be one to one, many to one or even one to many. Actions have associated metadata (e.g., who, what, when, where, why, how, under what conditions, in what context). The corresponding Record Entry captures this metadata along with other Action and Record Entry related information. 
+      <notes>$ST$Manage Record Lifecycle and Lifespan. $DE$Actions are taken to support patient health. Actions are taken in provision of healthcare to individuals. Actions are taken as the result of rules-based EHR System algorithms. Actors (i.e., patients, providers, users, systems) take Actions. (Actions broadly encompass tasks, acts, procedures or services performed or provided.) The EHR System captures Actions taken and creates corresponding Record Entries. Record Entries provide persistent evidence of Action occurrence, context, disposition, facts, findings and observations. From the point of Record Entry origination to the end of its lifespan, the EHR System manages each Entry consistent with and according to scope of practice, organizational policy, and jurisdictional law. In support of individual health and in provision of healthcare to individuals, Actors perform Actions and Actions have corresponding Entries in the EHR Record, (i.e., Action instances are documented by Record Entry instances). Record Entries may be captured during the course of the Action or sometime thereafter. The Actor (author/source) of the Record Entry may be the same as an Actor performing the Action or not. The EHRS Functional Model does not specify a particular relationship of Actions and corresponding Record Entries. It may be one to one, many to one or even one to many. Actions have associated metadata (e.g., who, what, when, where, why, how, under what conditions, in what context). The corresponding Record Entry captures this metadata along with other Action and Record Entry related information. 
 
 Each Record Entry also includes its own provenance metadata such as who (authoring Actor) and when (documented). Record Entries may be encapsulated to bind Actor (individual, organization, and/or system) signatures to data and metadata content and data/time of occurrence. Actions and related Record Entries capture a chronology of patient health and healthcare and also a chronology of operations and services provided in/by a healthcare enterprise. Record Entries reflect changes in health information from the time it was created, to the time it was amended, sent, received, etc. In this manner, each Record Entry serves as persistent evidence of an Action taken, enabling providers to maintain comprehensive information that may be needed for legal, business, and disclosure purposes. To satisfy these purposes, Record Entries must also be retained and persisted without alteration. Record Entries have both a lifecycle and a lifespan. Lifecycle Events include originate, retain, amend, verify, attest, access/view, de-identify, transmit/receive, and more. Lifecycle Events occur at various points in a Record Entry lifespan, always starting with a point of origination and retention (i.e., when the Entry is first created and stored). A Record Entry may have a pre and post Event state if content is modified. In this case, the original Record Entry is preserved (with signature binding) and a new Entry is created (with new signature binding). A Record Entry contains data and metadata, in multiple formats, following various conventions and standards. Included data may be tagged, and/or delimited, structured (concise, encoded, computable), or unstructured (free form, non-computable). Data may be encoded as text, document, images, audio, waveforms, in ASCII, binary or other encoding. Structured data may be characterized as being concise, encoded, computable, and may be divided into discrete fields. 
 
@@ -4170,7 +4175,10 @@ Examples of structured health information include:
 Unstructured data may be characterized as being free form, and/or non-computable. Unstructured health record information is information that is not divided into discrete fields AND not represented as numeric, enumerated or codified data. 
 
 Examples of unstructured health record information include:
-- text (text message to physician) - word processing document (a letter from a family member) - image (photograph of a patient or a scanned image of insurance card) - multimedia (dictated report or a voice recording). 
+- text (text message to physician) 
+- word processing document (a letter from a family member) 
+- image (photograph of a patient or a scanned image of insurance card) 
+- multimedia (dictated report or a voice recording). 
 
 Context may determine whether data are structured or unstructured. For example, a progress note might be standardized and structured in some systems (e.g., Subjective/Objective/Assessment/Plan) but unstructured in other systems. The EHR System manages Record Lifecycle Events for each Record Entry, including pre and post Event record states, continuity, persistence and related Record Audit Logs. 
 $EX$Action examples include: 
@@ -4191,7 +4199,7 @@ Record Lifecycle Events (as per Section RI.1.1) are those required to manage Rec
       <id>02c459e6-81df-41e7-ac5a-e8c1f38f6b40</id>
       <name>RI.1.1 Record Lifecycle</name>
       <alias>RI.1.1</alias>
-      <notes>$ST$Manage Record Lifecycle$DE$As aboveReferences:
+      <notes>$ST$Manage Record Lifecycle. $DE$As aboveReferences:
 - ISO 21089: Health Informatics – Trusted End-to-End Information Flows- HL7 EHR Interoperability Model DSTU- HL7 Electronic Health Record Lifecycle Model DSTU$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
@@ -4205,7 +4213,7 @@ Record Lifecycle Events (as per Section RI.1.1) are those required to manage Rec
       <id>151300d2-cdb0-4fb3-a050-84dbd0dd7167</id>
       <name>RI.1.1.1 Originate and Retain Record Entry</name>
       <alias>RI.1.1.1</alias>
-      <notes>$ST$Originate and Retain a Record Entry (1 instance)$DE$Occurs when Record Entry is originated typically during the course of an Action itself, to document the Action and context.
+      <notes>$ST$Originate and Retain a Record Entry (1 instance). $DE$Occurs when Record Entry is originated typically during the course of an Action itself, to document the Action and context.
 Record Entry is persistent evidence of Action occurrence and includes an identified Author or Source is responsible for Record Entry content. Record Entry contains Metadata about the Action and its circumstances, e.g., who, what, when, where, facts, findings, observations, etc.  An Audit Trigger is initiated to track Record Entry origination and retention. Reference: ISO 21089, Section 12.2.2.$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
@@ -4253,7 +4261,7 @@ Record Entry is persistent evidence of Action occurrence and includes an identif
       <id>7503b708-d7c5-4a0a-a580-6bbb1aa105c1</id>
       <name>RI.1.1.1.1 Evidence of Record Entry Originate/Retain Event</name>
       <alias>RI.1.1.1.1</alias>
-      <notes>$ST$Maintain Evidence of Record Entry Originate/Retain Event$DE$Evidence of Record Entry Originate/Retain Event includes key metadata, ensures health record integrity (and trust) and enables record audit.$EX$</notes>
+      <notes>$ST$Maintain Evidence of Record Entry Originate/Retain Event. $DE$Evidence of Record Entry Originate/Retain Event includes key metadata, ensures health record integrity (and trust) and enables record audit.$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>151300d2-cdb0-4fb3-a050-84dbd0dd7167</parentId>
@@ -4334,11 +4342,10 @@ Record Entry is persistent evidence of Action occurrence and includes an identif
       <id>5c2a4ede-4f45-42d0-9a82-e6de6f353b86</id>
       <name>RI.1.1.13 Extract Record Entry Content</name>
       <alias>RI.1.1.13</alias>
-      <notes>$ST$Extract Record Entry content to produce subsets, derivations, summaries or aggregations (Multiple instances)$DE$Occurs when Record Entry content is extracted to render subsets, derivations, summaries or aggregations.
+      <notes>$ST$Extract Record Entry content to produce subsets, derivations, summaries or aggregations (Multiple instances). $DE$Occurs when Record Entry content is extracted to render subsets, derivations, summaries or aggregations.
 - Extraction of Record Entry content may be initiated by User command, and/or rules-based algorithm.
 - Extraction of Record Entry content is the responsibility of the System – which invokes relevant rules.
-- An Audit Trigger is initiated to track Record Entry content extraction. Reference: ISO 21089, Section 12.7. An EHR-S enables an authorized user, such as a clinician, to access and aggregate the distributed information, which corresponds to the health record or records that are needed for viewing, reporting, disclosure, etc. An EHR-S must support data extraction operations across the complete data set that constitutes the health record of an individual and provide an output that fully chronicles the healthcare process. Data extractions are used as input
-        to patient care coordination between facilities, organizations and settings. In addition, data extractions can be used for administrative, financial, research, quality analysis, public health purposes, and to enable re-creation of copies for importing into different EHR applications and enable the archiving of patients' data. Data may be extracted in order to meet analysis and reporting requirements. The extracted data may require use of more than one application and it may be pre-processed (for example, by being de-identified) before transmission. Data extractions may be used to exchange data and provide reports for primary and ancillary purposes. $EX$</notes>
+- An Audit Trigger is initiated to track Record Entry content extraction. Reference: ISO 21089, Section 12.7. An EHR-S enables an authorized user, such as a clinician, to access and aggregate the distributed information, which corresponds to the health record or records that are needed for viewing, reporting, disclosure, etc. An EHR-S must support data extraction operations across the complete data set that constitutes the health record of an individual and provide an output that fully chronicles the healthcare process. Data extractions are used as input to patient care coordination between facilities, organizations and settings. In addition, data extractions can be used for administrative, financial, research, quality analysis, public health purposes, and to enable re-creation of copies for importing into different EHR applications and enable the archiving of patients' data. Data may be extracted in order to meet analysis and reporting requirements. The extracted data may require use of more than one application and it may be pre-processed (for example, by being de-identified) before transmission. Data extractions may be used to exchange data and provide reports for primary and ancillary purposes. $EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>02c459e6-81df-41e7-ac5a-e8c1f38f6b40</parentId>
@@ -4389,7 +4396,7 @@ Record Entry is persistent evidence of Action occurrence and includes an identif
       <id>b8e2f28f-96c9-4933-b94b-1a384c2d2708</id>
       <name>RI.1.1.13.1 Evidence of Record Entry Extraction Event</name>
       <alias>RI.1.1.13.1</alias>
-      <notes>$ST$Maintain Evidence of Record Entry Extraction Event$DE$Evidence of Record Entry Extraction Events includes key metadata, ensures health record integrity (and trust) and enables record audit.$EX$</notes>
+      <notes>$ST$Maintain Evidence of Record Entry Extraction Event. $DE$Evidence of Record Entry Extraction Events includes key metadata, ensures health record integrity (and trust) and enables record audit.$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>5c2a4ede-4f45-42d0-9a82-e6de6f353b86</parentId>
@@ -4468,7 +4475,7 @@ Record Entry is persistent evidence of Action occurrence and includes an identif
       <id>f72c076e-f1a7-4f44-a393-434a71233700</id>
       <name>RI.1.1.16 Destroy or Identify Record Entries as Missing</name>
       <alias>RI.1.1.16</alias>
-      <notes>$ST$Destroy or Identify Record Entries as Missing (1 or more instances)$DE$Occurs when Record Entries are destroyed or identified as missing.
+      <notes>$ST$Destroy or Identify Record Entries as Missing (1 or more instances). $DE$Occurs when Record Entries are destroyed or identified as missing.
 - Destruction typically occurs after conclusion of the legal retention period.
 - Destruction of Record Entries may be initiated by User command.
 - Destruction of Record Entries is the responsibility of the System – which invokes relevant rules.
@@ -4600,7 +4607,7 @@ Reference: ISO 21089, Section 12.11.$EX$</notes>
       <id>80f7e455-5c68-48f1-b3d6-4f680514208b</id>
       <name>RI.1.1.2 Amend Record Entry Content</name>
       <alias>RI.1.1.2</alias>
-      <notes>$ST$Amend content of a Record Entry (1 instance)$DE$Occurs when Record Entry content is modified (from its original or previously retained state) – typically upon conclusion of an Action, to correct, update or complete content.
+      <notes>$ST$Amend content of a Record Entry (1 instance). $DE$Occurs when Record Entry content is modified (from its original or previously retained state) – typically upon conclusion of an Action, to correct, update or complete content.
 - Amended Record Entry content is the responsibility of authorized amendment Author(s).
 - The amendment becomes part of the Act Record revision history, where the original content and any previous amendments are retained without alteration.
 - After amendment, the System is responsible for retention of the Record Entry and its revision history.
@@ -4681,7 +4688,7 @@ Reference: ISO 21089, Section 12.3.2$EX$</notes>
       <id>3a0c5707-3d86-4a1f-95ab-3af92daab622</id>
       <name>RI.1.1.2.1 Evidence of Record Entry Amendment Event</name>
       <alias>RI.1.1.2.1</alias>
-      <notes>$ST$Maintain Evidence of Record Entry Amendment Event$DE$Evidence of Record Entry Amendment Event includes key metadata, ensures health record integrity (and trust) and enables record audit.$EX$</notes>
+      <notes>$ST$Maintain Evidence of Record Entry Amendment Event. $DE$Evidence of Record Entry Amendment Event includes key metadata, ensures health record integrity (and trust) and enables record audit.$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>80f7e455-5c68-48f1-b3d6-4f680514208b</parentId>
@@ -4844,13 +4851,14 @@ Reference: ISO 21089, Section 12.3.2$EX$</notes>
       <id>e35f43fa-503e-4b8e-b7eb-916d62dc74be</id>
       <name>RI.1.1.4 Attest Record Entry Content</name>
       <alias>RI.1.1.4</alias>
-      <notes>$ST$Attest to content of Record Entry (1 instance)$DE$Occurs when Record Entry content is attested for accuracy and completeness – typically during/after conclusion of an Action.
+      <notes>$ST$Attest to content of Record Entry (1 instance). $DE$Occurs when Record Entry content is attested for accuracy and completeness – typically during/after conclusion of an Action.
 - Attested Record Entry content is the responsibility of Attesting Author. The Attesting Author may be someone other than the originating Author, i.e., a supervisor, proctor, preceptor or other designated individual.
 - An Audit Trigger is initiated to track Record Entry attestation.
 
-The purpose of attestation is to show authorship and assign responsibility for an act, event, condition, opinion, or diagnosis. Every Record Entry must be identified with the author and should not be made or signed by someone other than the author unless they have authority to do so. For example, a resident may author Record Entry content but the person taking legal authority for the content is the “attester” – both individuals should be identified. (Note: A transcriptionist may transcribe an author's notes and a senior
-        clinician may attest to the accuracy of another's statement of events.)- Author: All users who create or contribute content and have a role in the development of a Record Entry. Some entries may be created by an author whose role is a student, transcriber or scribe.
-- Attester: A user who takes legal authority for Record Entry content. The attester is often the same as the author, but they may also be an individual with authority to take responsibility for Record Entry content created in whole or in part by another author(s) (e.g., student, scribe, transcriptionist).Reference: ISO 21089, Section 12.2.2.$EX$</notes>
+The purpose of attestation is to show authorship and assign responsibility for an act, event, condition, opinion, or diagnosis. Every Record Entry must be identified with the author and should not be made or signed by someone other than the author unless they have authority to do so. For example, a resident may author Record Entry content but the person taking legal authority for the content is the “attester” – both individuals should be identified. (Note: A transcriptionist may transcribe an author's notes and a senior clinician may attest to the accuracy of another's statement of events.)
+- Author: All users who create or contribute content and have a role in the development of a Record Entry. Some entries may be created by an author whose role is a student, transcriber or scribe.
+- Attester: A user who takes legal authority for Record Entry content. The attester is often the same as the author, but they may also be an individual with authority to take responsibility for Record Entry content created in whole or in part by another author(s) (e.g., student, scribe, transcriptionist).
+Reference: ISO 21089, Section 12.2.2.$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>02c459e6-81df-41e7-ac5a-e8c1f38f6b40</parentId>
@@ -4897,7 +4905,7 @@ The purpose of attestation is to show authorship and assign responsibility for a
       <id>2c3df102-368b-46b9-9c2f-d340e6ce667e</id>
       <name>RI.1.1.5 View/Access Record Entry Content</name>
       <alias>RI.1.1.5</alias>
-      <notes>$ST$View/Access content of Record Entries (1 or more instances)$DE$Occurs when Record Entry content is viewed or accessed.
+      <notes>$ST$View/Access content of Record Entries (1 or more instances). $DE$Occurs when Record Entry content is viewed or accessed.
 - Viewed Record Entry content is the responsibility of authorized User(s).
 - An Audit Trigger is initiated to track Record Entry views and access.
 
@@ -4917,8 +4925,6 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 522 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a16emar_2014_tp_approved_v1.2.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(4) Vital signs, body mass index, and growth charts$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 135 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf"/>
-      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(9) Electronic notes$$URL$$"/>
-      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(a)(9) Electronic notes$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 380 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(d)(4) Amendments$$URL$$"/>
@@ -4980,7 +4986,7 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <id>b629634d-7b86-4d4d-8205-97b61c12d1ad</id>
       <name>RI.1.1.5.1 Evidence of Record Entry View/Access Event</name>
       <alias>RI.1.1.5.1</alias>
-      <notes>$ST$Maintain Evidence of Record Entry View/Access Event$DE$Evidence of Record Entry View/Access Event includes key metadata, ensures health record integrity (and trust) and enables record audit.$EX$</notes>
+      <notes>$ST$Maintain Evidence of Record Entry View/Access Event. $DE$Evidence of Record Entry View/Access Event includes key metadata, ensures health record integrity (and trust) and enables record audit.$EX$</notes>
       <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>2c3df102-368b-46b9-9c2f-d340e6ce667e</parentId>
@@ -5045,7 +5051,7 @@ Reference: ISO 21089, Section 12.5.$EX$</notes>
       <id>ab618818-cd94-407d-9d61-13dce204812d</id>
       <name>RI.1.1.6 Output/Report Record Entry Content</name>
       <alias>RI.1.1.6</alias>
-      <notes>$ST$Output/Report content of Record Entries (1 or more instances)$DE$Occurs when Record Entry content is output or reported.
+      <notes>$ST$Output/Report content of Record Entries (1 or more instances). $DE$Occurs when Record Entry content is output or reported.
 - Output/reported Record Entry content is the responsibility of authorized User(s).
 - An Audit Trigger is initiated to track Record Entry content outputs and reports.
 Reference: ISO 21089, Section 12.5.$EX$</notes>
@@ -5412,6 +5418,10 @@ Reference: ISO 21089, Section 12.8.1.$EX$</notes>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf"/>
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(e)(3) Ambulatory setting only secure messaging$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 528 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf"/>
+	  <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(5)(A) Incorporate laboratory test and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b5aincorporatelabtests_2014_tp_approved_v1.4_onc.pdf"/>
+      <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(5)(b) Incorporate laboratory test and values/results$$URL$$"/>
+      <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 776 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b5bincorporatelabtests_2014_tp_approved_v1.2.pdf"/>
     </object>
     <object>
       <id>4a6c708d-df14-4383-8fae-5349305e4caa</id>
@@ -5670,7 +5680,7 @@ Examples of entity authentication, with varying levels of authentication rigor, 
     </object>
     <object>
       <id>0981553c-fa92-4d30-958d-ti1112-96</id>
-      <name>TI.1.12#96</name>
+      <name>TI.1.12#1</name>
       <notes>The system SHALL encrypt electronic health information locally stored on an end-user device after normal user stops.</notes>
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
@@ -5682,7 +5692,7 @@ Examples of entity authentication, with varying levels of authentication rigor, 
     </object>
     <object>
       <id>0981553c-fa92-4d30-958d-ti1112-97</id>
-      <name>TI.1.12#97</name>
+      <name>TI.1.12#2</name>
       <notes>The system SHALL encrypt electronic health information stored on end-user devices in conformance with the encryption algorithm(s) in Annex A of the Federal Information Processing Standards (FIPS) Publication 140-2.</notes>
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
@@ -5694,7 +5704,7 @@ Examples of entity authentication, with varying levels of authentication rigor, 
     </object>
     <object>
       <id>0981553c-fa92-4d30-958d-ti1112-98</id>
-      <name>TI.1.12#98</name>
+      <name>TI.1.12#3</name>
       <notes>The system SHALL manage end-user device settings ensuring encryption is enabled by default.</notes>
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
@@ -5706,7 +5716,7 @@ Examples of entity authentication, with varying levels of authentication rigor, 
     </object>
     <object>
       <id>0981553c-fa92-4d30-958d-ti1112-99</id>
-      <name>TI.1.12#99</name>
+      <name>TI.1.12#4</name>
       <notes>IF the encryption of electronic health information is a setting that can be disabled, THEN. the system SHALL control access to the encryption settings by a designated set of users.</notes>
       <stereotype>Criteria</stereotype>
       <type>Requirement</type>
@@ -6680,7 +6690,7 @@ Terminology standards pertain to concepts, representations, synonyms, relationsh
       <alias>TI.4.1</alias>
       <notes>$ST$Employ approved standard terminologies to ensure data correctness and to enable semantic interoperability (both within an enterprise and externally).Support a formal standard terminology model.$DE$Semantic interoperability requires standard terminologies combined with a formal standard information model. An example of an information model is the HL7 Reference Information Model. Another example is the ISO/EN 13606 Electronic Health Record Communication.
 
-A terminology provides semantic and computable identity to its concepts. Examples of terminologies that an EHR-S may support include: LOINC, SNOMED, ICD-9, ICD-10, and CPT-4.Terminologies are use-case dependent and may or may not be realm dependent. The key is that the standard be approved by all stakeholders. For example, terminologies for public health interoperability may differ from those for healthcare quality, administrative reporting, research, etc.
+A terminology provides semantic and computable identity to its concepts. Examples of terminologies that an EHR-S may support include: LOINC, SNOMED, ICD-9, ICD-10, and CPT-4. Terminologies are use-case dependent and may or may not be realm dependent. The key is that the standard be approved by all stakeholders. For example, terminologies for public health interoperability may differ from those for healthcare quality, administrative reporting, research, etc.
 
 Formal standard terminology models enable common semantic representations by describing relationships that exist between concepts within a terminology or in different terminologies, such as exemplified in the model descriptions contained in the HL7 Common Terminology Services specification.
 
@@ -6781,13 +6791,12 @@ Standard terminology is a fundamental part of interoperability and is described 
       <id>db17d289-3b69-4a13-a445-29e460e9b912</id>
       <name>TI.5.1.1 Application Interchange Standards</name>
       <alias>TI.5.1.1</alias>
-      <notes>$ST$Support the ability to operate seamlessly with other systems by using applications, and/or structured messages and documents that adhere to interchange standards.$DE$Placeholder - Not Defined at this time$EX$</notes>
-      <stereotype>Function</stereotype>
+      <notes>$ST$Support the ability to operate seamlessly with other systems by using applications, and/or structured messages and documents that adhere to interchange standards.$DE$For information exchange, the EHR system utilizes a variety of consensus-based industry standards, including those for containment (e.g., messages and documents) and expressions (e.g., vocabulary, code/valuesets).</notes> <stereotype>Function</stereotype>
       <type>Feature</type>
       <parentId>92072708-9a29-48e9-9213-2893d239510a</parentId>
       <tag name="Reference.Alias" value="EHRS_FM_R2 January 2014" />
       <tag name="Reference.FunctionID" value="TI.5.1.1" />
-      <tag name="Reference.ChangeIndicator" value="NC" />
+      <tag name="Reference.ChangeIndicator" value="C" />
       <tag name="Priority" value="EN" />
       <tag name="ExternalReference" value="TEXT$$&#xa7;170.314(b)(3) Electronic prescribing$$URL$$"/>
       <tag name="ExternalReference" value="TEXT$$Test Procedure_[PDF - 420 KB]$$URL$$http://www.healthit.gov/sites/default/files/170.314b3eprescribing_2014_tp_approved_v1.4.pdf"/>
@@ -6851,7 +6860,22 @@ Standard terminology is a fundamental part of interoperability and is described 
       <tag name="Reference.CriterionID" value="3" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-    </object>
+    </object>	
+	<object>
+		<id>9a01aa9d-c39f-43fd-b33e-8a350526419e</id>
+		<name>TI.5.1.1#96</name>
+		<notes>The system SHALL provide the ability to receive and transmit laboratory results according to the HL7 Version 2.5.1 Implementation Guide: S&amp;I Framework Laboratory Results Interface, Release 1 Errata and Guidance September 2012 document.</notes> 
+		<stereotype>Criteria</stereotype>
+		<type>Requirement</type>
+		<parentId>00713ce4-d2a4-4ba8-bf7c-7d9d1ce59fc8</parentId>
+		<tag name="Row" value="0" />
+		<tag name="Conditional" value="N" />
+		<tag name="Dependent" value="N" />
+		<tag name="ExternalReference" value=",&lt;tagStructure&gt;&lt;property name='Title'/&gt;&lt;property name='URL'/&gt;&lt;property name='Note'/&gt;&lt;/tagStructure&gt;," />
+		<tag name="CompilerInclusionReason" value="New from ProfileDefinition" />
+		<tag name="Reference.ChangeIndicator" value="N" />
+		<tag name="Priority" value="EN" />
+	</object>
     <object>
       <id>a721ddd7-06b2-42c1-95f2-ed9b2cda35b2</id>
       <name>TI.5.1.1#97</name>
@@ -6918,7 +6942,20 @@ Standard terminology is a fundamental part of interoperability and is described 
       <tag name="Reference.CriterionID" value="1" />
       <tag name="Reference.ChangeIndicator" value="NC" />
       <tag name="Priority" value="EN" />
-    </object>
+    </object>	
+	<object>	
+		<id>c26a9a38-9723-4820-a2b0-e24110db3f94</id>
+		<name>TI.5.1.3#99</name>
+		<notes>The system SHALL provide the ability to manage structured messages according to scope of practice, organizational policy, and/or jurisdictional law.</notes>
+		<stereotype>Criteria</stereotype>
+		<type>Requirement</type>
+		<parentId>6bcc5d2d-460d-4cc4-8762-f5e595f3817d</parentId>
+		<tag name="ExternalReference" value=",,">&lt;tagStructure&gt;&lt;property name="Title"/&gt;&lt;property name="URL"/&gt;&lt;property name="Note"/&gt;&lt;/tagStructure&gt;
+		</tag>
+		<tag name="CompilerInclusionReason" value="New from ProfileDefinition" />
+		<tag name="Reference.ChangeIndicator" value="N" />
+		<tag name="Priority" value="EN" />
+	</object> 	
   </objects>
   <relationships xmlns="">
     <relationship>

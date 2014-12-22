@@ -300,7 +300,6 @@
                         <xsl:call-template name="text-with-link">
                             <xsl:with-param name="the-text" select="$statement"/>
                         </xsl:call-template>
-                        <xsl:value-of select="$statement"/>
                     </fo:block>
                     <fo:block margin-bottom=".5em">
                         <xsl:call-template name="description-output">
