@@ -70,7 +70,7 @@
 <fo:bookmark internal-destination="POP">
 <fo:bookmark-title>Population Health Support (POP)</fo:bookmark-title>
 <fo:bookmark internal-destination="POP.2">
-<fo:bookmark-title>POP.2 Support Population-Based Epidemiological Investigation</fo:bookmark-title>
+<fo:bookmark-title>POP.2 Support Population-Based Epidemiological Investigation/Surveillance</fo:bookmark-title>
 </fo:bookmark>
 <fo:bookmark internal-destination="POP.6">
 <fo:bookmark-title>POP.6 Measurement, Analysis, Research and Reports</fo:bookmark-title>
@@ -291,7 +291,7 @@
 <fo:page-number-citation ref-id="POP"/>
 </fo:block>
 <fo:block text-align-last="justify" margin-left="3em" space-before="5pt" font-size="1em" font-weight="400">
-<fo:basic-link internal-destination="POP.2">POP.2 Support Population-Based Epidemiological Investigation</fo:basic-link>
+<fo:basic-link internal-destination="POP.2">POP.2 Support Population-Based Epidemiological Investigation/Surveillance</fo:basic-link>
 <fo:leader leader-pattern="dots"/>
 <fo:page-number-citation ref-id="POP.2"/>
 </fo:block>
@@ -766,14 +766,6 @@
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf')">Test Procedure_[PDF -671 KB]</fo:basic-link>
 </fo:block>
-<fo:block>§170.314(b)(1) Transitions of care receive, display and incorporate transition of care/referral summaries</fo:block>
-<fo:block>
-<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf')">Test Procedure_[PDF -671 KB]</fo:basic-link>
-</fo:block>
-<fo:block>§170.314(b)(4) Clinical information reconciliation</fo:block>
-<fo:block>
-<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b4cir_2014_tp_approved_v1.3.pdf')">Test Procedure_[PDF -469 KB]</fo:basic-link>
-</fo:block>
 <fo:block>§170.314(b)(4) Clinical information reconciliation</fo:block>
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b4cir_2014_tp_approved_v1.3.pdf')">Test Procedure_[PDF -469 KB]</fo:basic-link>
@@ -792,7 +784,7 @@
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to manage allergy, intolerance, and adverse reaction to drug, food, medical products (e.g., vaccines, biologics, devices, chemicals) or environmental triggers as unique, discrete entries.</fo:block>
+<fo:block>The system SHALL provide the ability to manage allergy, intolerance, and adverse reaction to drug, food, medical products (e.g., vaccines, biologics, devices, chemicals) or environmental triggers as unique, discrete entries and when applicable, using coded values from  terminology standards (SNOMED-CT, RxNorm etc.)</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -907,7 +899,7 @@
 <fo:block font-weight="bold" text-align="right">92.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to remove a medication allergy from the single reconciled medication allergy list.</fo:block>
+<fo:block>The system SHALL provide the ability to resolve or refute a medication allergy from the single reconciled medication allergy list.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -1744,15 +1736,7 @@
 <fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to maintain immunization details, as discrete data, including:
-- the immunization name/type, seqeunce number in the series &amp; series identifier, strength and dose;
-- the date and time of administration;
-- manufacturer, lot number, expiration date,
-- route and site of administration;
-- administering provider;
-- observations, reactions and complications;
-- reason immunization not given, and/or immunization related activity not performed;
-according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
+<fo:block>The system SHALL provide the ability to maintain immunization details, as discrete data, including: 1.  the immunization name/type, strength and dose, 2.  the date and time of administration, 3. manufacturer, lot number, expiration date, 4.  route and site of administration, 5. administering provider, 6. observations, reactions and complications, 7. reason immunization not given, and/or immunization related activity not performed, according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -1838,7 +1822,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:inline font-weight="bold">Statement: </fo:inline>Capture and maintain patient and family preferences.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>This function is focused on the capture and maintenance of facts on patient/family preferences. Patient and family preferences regarding issues such as language, religion, spiritual practices and culture may be important to the delivery of care. It is important to capture these so that they will be available to the provider at the point of care. Patient/Family preferences differ from social history and Advance Directives as follows: Social history refers primarily to elements of a patient's background that may impact on the patient's health (e.g., smoking, drinking, occupation, abuse, etc.). Advance Directives refers to requests regarding care when the patient is unable to competently make decisions about their own care (e.g., Do Not Resuscitate orders, living wills).</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>This function is focused on the capture and maintenance of facts on patient/family preferences. Patient and family preferences regarding issues such as language, religion, spiritual practices and culture may be important to the delivery of care. It is important to capture these so that they will be available to the provider at the point of care. Patient/Family preferences differ from social history and Advance Directives as follows: social history refers primarily to elements of a patient's background that may impact on the patient's health (e.g., smoking, drinking, occupation, abuse, etc.). Advance Directives refers to requests regarding care when the patient is unable to competently make decisions about their own care (e.g., Do Not Resuscitate orders, living wills).</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -2034,7 +2018,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to capture, maintain and render patient vital signs (e.g., blood pressure, temperature, heart rate, respiratory rate, height/length, weight and pain scale) as discrete elements of structured or unstructured data.</fo:block>
+<fo:block>The system SHALL provide the ability to capture, maintain and render patient vital signs (e.g., blood pressure, temperature, heart rate, respiratory rate) as discrete elements.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -2057,7 +2041,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to capture, maintain and render other clinical measures (e.g., peak expiratory flow rate, size of lesions, oxygen saturation, body mass index and severity of pain) as discrete elements of either structured or unstructured data.</fo:block>
+<fo:block>The system SHALL provide the ability to capture, maintain and render other clinical measures (e.g., peak expiratory flow rate, size of lesions, oxygen saturation, height, weight, length, body mass index and severity of pain) as discrete elements of either structured or unstructured data.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -2172,7 +2156,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">98.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to determine and render clinical decision support rules applicable to vital sign updates.</fo:block>
+<fo:block>The system SHALL provide the ability to determine and render clinical decision support outcomes based on clinical decision support rules applicable to vital sign updates.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -2550,7 +2534,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:inline font-weight="bold">Statement: </fo:inline>Enable the origination, documentation, transmission, tracking and maintenance of orders for diagnostic tests.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Orders for diagnostic tests (e.g., diagnostic radiology, laboratory ) are captured and tracked including new, renewal and discontinue orders. Each order includes appropriate detail, such as order identification, instructions and clinical information necessary to perform the test. Orders and supporting detailed documentation shall be communicated to the service provider for completion of the diagnostic test(s).Some systems may contain instructions, but in some settings, instructions may be provided from external sources (e.g., handouts).</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Orders for diagnostic tests (e.g., diagnostic radiology, laboratory) are captured and tracked including new, renewal and discontinue orders. Each order includes appropriate detail, such as order identification, instructions and clinical information necessary to perform the test. Orders and supporting detailed documentation shall be communicated to the service provider for completion of the diagnostic test(s). Some systems may contain instructions, but in some settings, instructions may be provided from external sources (e.g., handouts).</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -2732,7 +2716,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:inline font-weight="bold">Statement: </fo:inline>Present, annotate, and route current and historical test results to appropriate providers for review. Provide the ability to filter and compare results.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Results of tests are presented in an easily accessible manner to the appropriate providers. For example, flow sheets, graphs, or other tools allow care providers to view or uncover trends in test data over time. The provider may desire to annotate, filter, and/or compare results. In addition to making results viewable, it is often necessary to send results to appropriate providers using electronic messaging systems, pagers, or other mechanisms. In addition, the system may have the ability to redirect or copy specific test results to a specified individual. Documentation of notification is accommodated. Results may also be routed to patients electronically or non-electronically (e.g., by hard copy). Note: “Results” are understood as applying to any type of test, whether biological or psychological. Management of the results may also require the provider's communication of the results to the patient (see function CPS.8.4 (Support for Communications between Provider and the Patient, and/or the Patient's Representative)). There may also be a need to notify public health agencies based on the result. See function POP.2 (Support Population-based Epidemiological Investigation).</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Results of tests are presented in an easily accessible manner to the appropriate providers. For example, flow sheets, graphs, or other tools allow care providers to view or uncover trends in test data over time. The provider may desire to annotate, filter, and/or compare results. In addition to making results viewable, it is often necessary to send results to appropriate providers using electronic messaging systems, pagers, or other mechanisms. In addition, the system may have the ability to redirect or copy specific test results to a specified individual. Documentation of notification is accommodated. Results may also be routed to patients electronically or non-electronically (e.g., by hard copy). Note: “Results” are understood as applying to any type of test, whether biological or psychological. Management of the results may also require the provider's communication of the results to the patient (see function CPS.8.4 (Support for Communications between Provider and the Patient, and/or the Patient's Representative)). There may also be a need to notify public health agencies based on the result. See function POP.2 (Support Population-based Epidemiological Investigation/Surveillance).</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -2752,10 +2736,6 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b1receive_display_incorporate_2014_tp_approved_v1.5.pdf')">Test Procedure_[PDF -671 KB]</fo:basic-link>
 </fo:block>
-<fo:block>§170.314(b)(5)(A) Incorporate laboratory tests and values/results</fo:block>
-<fo:block>
-<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b5aincorporatelabtests_2014_tp_approved_v1.4_onc.pdf')">Test Procedure_[PDF -820 KB]</fo:basic-link>
-</fo:block>
 <fo:block>§170.314(b)(5)(B) Incorporate laboratory tests and values/results</fo:block>
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b5bincorporatelabtests_2014_tp_approved_v1.2.pdf')">Test Procedure_[PDF -685 KB]</fo:basic-link>
@@ -2763,6 +2743,10 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block>§170.314(b)(6) Inpatient setting only - transmission of electronic laboratory tests and values/results to ambulatory providers</fo:block>
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b6_transmissionlabtestsvalues_2014_tp_approved_v1.3.pdf')">Test Procedure_[PDF - 828 KB]</fo:basic-link>
+</fo:block>
+<fo:block>§170.314(f)(4) Inpatient setting only - transmission of reportable laboratory tests of values/results</fo:block>
+<fo:block>
+<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314f4transmissionreportablelabs_tp_2014_approved_v1.3.pdf')">Test Procedure_[PDF - 828 KB]</fo:basic-link>
 </fo:block>
 </fo:list-item-body>
 </fo:list-item>
@@ -2778,7 +2762,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to manage test results in according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
+<fo:block>The system SHALL provide the ability to manage test results according to scope of practice, organizational policy, and/or jurisdictional law. </fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -2787,7 +2771,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block text-align="center">CP.5</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
+<fo:block text-align="center">C</fo:block>
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
@@ -2926,29 +2910,6 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">90.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL display the specimen source with test report information.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center"> </fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">N</fo:block>
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
@@ -3160,6 +3121,10 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314f4transmissionreportablelabs_tp_2014_approved_v1.3.pdf')">Test Procedure_[PDF - 1.05 MB]</fo:basic-link>
 </fo:block>
+<fo:block>§170.314(a)(12) Image results</fo:block>
+<fo:block>
+<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314a12_imageresults_2014_tp_approved_v1.3_onc.pdf')">Test Procedure_[PDF -671 KB]</fo:basic-link>
+</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -3299,7 +3264,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">11.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to capture, maintain and render medication administration details as discrete data, including:(1) the medication name, strength and dose;(2) date and time of administration;(3) route and site;(4) administering provider(5) observations, reactions and complications(6) reason medication not given, and/or medication related activity not performed; according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
+<fo:block>11. The system SHALL provide the ability to capture, maintain and render medication administration details as discrete data, including: (1) the medication name, strength, dose and lot number; (2) date and time of administration; (3) route and site; (4) administering provider; (5) observations, reactions and complications; (6) reason medication not given, and/or medication related activity not performed; according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -3308,7 +3273,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block text-align="center">CP.6.1</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
+<fo:block text-align="center">C</fo:block>
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
@@ -3419,7 +3384,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to capture immunization administration details as discrete data, including:(1) the immunization name/type, series, strength and dose;(2) date and time of administration;(3) manufacturer, lot number, expiration date,(4) route and site of administration;(5) administering provider;(6) observations, reactions and complications;(7) reason immunization not given, and/or immunization related activity not performed;according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
+<fo:block>The system SHALL provide the ability to capture immunization administration details as discrete data, including: 1 The immunization name/type, series, strength and dose; 2 Date and time of administration; 3 Manufacturer, lot number, expiration date; 4 Route and site of administration; 5 Administering provider; 6 Observations, reactions and complications; 7 Reason immunization not given, and/or immunization related activity not performed; according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -3824,10 +3789,6 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf')">Test Procedure_[PDF -776 KB]</fo:basic-link>
 </fo:block>
-<fo:block>§170.314(e)(1) View, download, and transmit to 3rd party</fo:block>
-<fo:block>
-<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf')">Test Procedure_[PDF -776 KB]</fo:basic-link>
-</fo:block>
 <fo:block>§170.314(e)(2) Ambulatory setting only clinical summary</fo:block>
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314e2clinicalsummary_2014_tp_approved_v1.2.pdf')">Test Procedure_[PDF - 766 KB]</fo:basic-link>
@@ -3846,7 +3807,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to render summaries of the patient's comprehensive EHR that include at a minimum: problem list, medication list, allergy and adverse reaction list, and procedures.</fo:block>
+<fo:block>The system SHALL provide the ability to render summaries of the patient's comprehensive EHR that include at a minimum: problem list, medication list, allergy,  intolerance and adverse reaction list, and procedures. </fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -3855,7 +3816,7 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 <fo:block text-align="center">CP.9.1</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
+<fo:block text-align="center">C</fo:block>
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
@@ -3893,34 +3854,34 @@ according to scope of practice, organizational policy, and/or jurisdictional law
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
 <fo:block>The system SHALL render patient summaries that include the following US Meaningful Use Common Data Set Elements:
-1) Patient name
-2) Sex
-3) Date of birth
-4) Race
-5) Ethnicity
-6) Preferred language
-7) Smoking status
-8) Problems
-9) Medications
-10) Medication Allergies
-11) Laboratory test(s)
-12) Laboratory value(s)/result(s)
-13) Vital signs – height, weight, blood pressure, BMI
-14) Care plan field(s), including goals and instructions
-15) Procedures
-16) Care team member(s)
-17) Provider's name
-18) Provider's office contact information
-19) Admission and discharge dates and locations
-20) Discharge Instructions
-21) Reason(s) for hospitalization
-22) Encounter diagnoses
-23) Immunizations
-24) Cognitive status
-25) Functional status
-26) Reason for referral
-27) Referring provider's name
-28) Referring provider's contact information) Care team member(s)</fo:block>
+1 Patient name;
+2 Sex;
+3 Date of birth;
+4 Race;
+5 Ethnicity;
+6 Preferred language;
+7 Smoking status;
+8 Problems;
+9 Medications;
+10 Medication Allergies;
+11 Laboratory test(s);
+12 Laboratory value(s)/result(s);
+13 Vital signs – height, weight, blood pressure, BMI;
+14 Care plan field(s), including goals and instructions;
+15 Procedures;
+16 Care team member(s);
+17 Provider's name;
+18 Provider's office contact information;
+19 Admission and discharge dates and locations;
+20 Discharge Instructions;
+21 Reason(s) for hospitalization;
+22 Encounter diagnoses;
+23 Immunizations;
+24 Cognitive status;
+25 Functional status;
+26 Reason for referral;
+27 Referring provider's name;
+28 Referring provider's contact information) Care team member(s).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4382,7 +4343,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">97.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to capture the fact that a patient declined to specify their preferred language, race and/or ethnicity.</fo:block>
+<fo:block>The system SHALL provide the ability to capture the fact that a patient declined to specify their preferred language.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4428,7 +4389,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">99.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to determine and render clinical decision support rules applicable to demographic updates.</fo:block>
+<fo:block>The system SHALL provide the ability to determine and render clinical decision support outcomes based on clinical decision support rules applicable to demographic updates.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4471,31 +4432,6 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Description: </fo:inline>In the Preferences, Directives, Consents and Authorizations functions there are times when actions/activities related to “patients” are also applicable to the patient representative. Therefore, in this section, the term “patient” could refer to the patient, and/or the patient’s personal representative (i.e. guardian, surrogate, proxy, health care agent).</fo:block>
 </fo:block>
 </fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">1.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD conform to function <fo:basic-link internal-destination="CPS.1.7.1">
-<fo:inline text-decoration="underline" color="blue">CPS.1.7.1</fo:inline>
-</fo:basic-link> (Support for Patient and Family Preferences).</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">CPS.1.7</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
@@ -4729,10 +4665,6 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf')">Test Procedure_[PDF - 776 KB]</fo:basic-link>
 </fo:block>
-<fo:block>§170.314(e)(1) View, download, and transmit to 3rd party</fo:block>
-<fo:block>
-<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170_314e1vdt_2014_tp_approved_v1.6.pdf')">Test Procedure_[PDF - 776 KB]</fo:basic-link>
-</fo:block>
 <fo:block>§170.314(e)(2) Ambulatory setting only clinical summary</fo:block>
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314e2clinicalsummary_2014_tp_approved_v1.2.pdf')">Test Procedure_[PDF - 766 KB]</fo:basic-link>
@@ -4774,9 +4706,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">3.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to capture, store and render computable documents (e.g., CDA, C-CDA, HITSP/C32, ASTM CCR, ISO 13606, lab results or medication lists).
-
-</fo:block>
+<fo:block>The system SHALL provide the ability to capture, store and render computable documents (e.g., CDA, C-CDA, HITSP/C32, ASTM CCR, ISO 13606, laboratory results or medication lists).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4822,7 +4752,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">6.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to receive from an external source structured, text-based documents and reports (e.g., C-CDA, HITSP/C32, and ASTM CCR formats).</fo:block>
+<fo:block>The system SHALL provide the ability to receive from an external source structured, text-based documents and reports (e.g., C-CDA, HITSP/C32, and ASTM formats).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -4961,7 +4891,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block text-align="center">CPS.2.4</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
+<fo:block display-align="center" text-align="center">C</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block display-align="center" text-align="center">EN</fo:block>
@@ -4974,7 +4904,8 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Incorporate clinical images from external sources and support communication/presentation of images from medical and non-medical devices and entities.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Mechanisms for incorporating external clinical images (including identification of source) are available and communication with non-medical devices and entities is supported as appropriate to the care setting such as an office or a patient's home. Externally-sourced images may be presented with locally-sourced documentation and notes wherever appropriate. This covers all types of images received by the provider that would typically be incorporated into a medical record. These image documents are indexed and can be retrieved, e.g., based on the document type, date of the original document, and the date of scanning. Images may also be stored within the system or accessed by reference to an external system (e.g., a hospital's picture archiving and communication system). Examples of image formats include OCR, PDF, JPG or TIFF. Examples of externally-sourced images include: laboratory results report images 2. Radiographic images3. Images of power of attorney forms, living wills or birth certificates4. Graphs and charts5. Photographs or drawings of patient wounds6. Wave files of EKG tracings</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>
+</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -5490,8 +5421,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>The clinician is alerted to medication-medication, medication-allergy, medication-food, medication-supplement (herbal or dietary) interactions at levels appropriate to the health care setting and with respect to the patient condition. These alerts may be customized to suit the user or group.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Note, medication may be affected by food or diatary choices; whist this is not considered an interaction it is consequently not included in this function; however, the provision of drug-food effectiveness in information to be provided to the patient is included in the function CP.8.1 (Generate, Record and Distribute Patient-Specific Instructions).If the patient’s condition is one where, in order to view the necessary components of the health record, patient authorization or consent is required; then the system should show the</fo:block>
-<fo:block space-before=".4em">        medication but mask the condition for which the medication is prescribed until the required consent or authorization is available. In an emergent situation, where all health information is required to provide the most effective treatment, and it is not possible to obtain an authorization or consent; the system should provide an override (e.g., "break the glass") function to allow access to the diagnosis or problem for which a medication was ordered, according to scope of practice, organizational policies, and/or jurisdictional law.</fo:block>
+<fo:block space-before=".4em">Note, medication may be affected by food or diatary choices; whist this is not considered an interaction it is consequently not included in this function; however, the provision of drug-food effectiveness in information to be provided to the patient is included in the function CP.8.1 (Generate, Record and Distribute Patient-Specific Instructions).If the patient’s condition is one where, in order to view the necessary components of the health record, patient authorization or consent is required; then the system should show the medication but mask the condition for which the medication is prescribed until the required consent or authorization is available. In an emergent situation, where all health information is required to provide the most effective treatment, and it is not possible to obtain an authorization or consent; the system should provide an override (e.g., "break the glass") function to allow access to the diagnosis or problem for which a medication was ordered, according to scope of practice, organizational policies, and/or jurisdictional law.</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -5673,8 +5603,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Medication reconciliation is the process of comparing a patient's medication information (from all sources) to the medications that the patient is actually has been taking. Medication reconciliation is done to avoid medication errors such as omissions, duplications, dosing errors, or drug interactions. Medication Reconciliation should be done at every episode or transition of care in which new medications are ordered or administered, existing orders are rewritten or where medications may influence the care given.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Transitions in care include changes in setting, service, practitioner, or level of care. The Medication Reconciliation process comprises five includes several steps: (1) develop a list of current medication list of medications that the patient is taking, (2) develop a list of medications to be prescribed or recommended (3) compare the medication information from</fo:block>
-<fo:block space-before=".4em">        all sources; (4) make shared and informed clinical decisions based on the comparison and provide the ability to document the interaction; and (5) communicate the updated medication information to the healthcare teams, the patient and appropriate caregivers. For example: If a patient’s pain, anticoagulation, hyperglycemia or other high risk therapy is being managed by a specialist, the healthcare team must be aware to avoid prescribing an additional equivalent of this medication.(6) Verify the patient’s/caregiver’s understanding and agreement to the patient’s medication treatment plan.(7) Standardization of shared medication information (name, dose, instructions, indications, prescriber, etc)</fo:block>
+<fo:block space-before=".4em">Transitions in care include changes in setting, service, practitioner, or level of care. The Medication Reconciliation process comprises five includes several steps: 1 Develop a list of current medication list of medications that the patient is taking; 2 Develop a list of medications to be prescribed or recommended; 3 Compare the medication information from all sources; 4 Make shared and informed clinical decisions based on the comparison and provide the ability to document the interaction; and 5 communicate the updated medication information to the healthcare teams, the patient and appropriate caregivers. For example: If a patient’s pain, anticoagulation, hyperglycemia or other high risk therapy is being managed by a specialist, the healthcare team must be aware to avoid prescribing an additional equivalent of this medication; 6 Verify the patient’s/caregiver’s understanding and agreement to the patient’s medication treatment plan; 7 Standardization of shared medication information (name, dose, instructions, indications, prescriber, etc)</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -6559,8 +6488,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Providers and administrators need access to data in the EHR-S for clinical, administrative, financial decision-making, audit trail and metadata reporting, as well as to create reports for patients. Many systems may use internal or external reporting tools to accomplish this. Reports may be based on structured data, and/or unstructured text from the patient's health record.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">Users need to be able to sort, and/or filter reports. For example:</fo:block>
-<fo:block space-before=".4em">-the user may wish to view only the diabetic patients on a report listing patients and diagnoses-the user may wish to view only male patients over 35 with a complaint of chest pain.</fo:block>
+<fo:block space-before=".4em">Users need to be able to sort, and/or filter reports. For example: the user may wish to view only the diabetic patients on a report listing patients and diagnoses-the user may wish to view only male patients over 35 with a complaint of chest pain.</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -6722,7 +6650,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Provide support for ad hoc query and report generation using tools internal or external to the system. Present customized views and summarized information from a patient's comprehensive EHR subject to jurisdictional laws and organizational policies related to privacy and confidentiality. The view may be arranged chronologically, by problem, or other parameters, and may be filtered or sorted.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Providers and administrators need to respond quickly to new requirements for data measurement and analysis. This may be as a result of new regulatory requirements or internal requirements. This requires that users be able to define their own query parameters and retain them. The data may be found in both structured and unstructured data. Providers and administrators also need to query for the absence of specific clinical or administrative data. For example, the Quality Control department may be reviewing whether or not the protocol for management of Diabetes Mellitus is being followed. If the protocol calls for fasting blood sugars every 3 months at minimum, the investigator might need to run an across-patient query locating patients with diabetes who do not show an FBS result within the last 3 months. Emergency Department benchmarking reports - Key point of time include arrival time; treatment area entrance time, MD contact time; decision to admit, discharge or transfer time; and departure (left ED) time. Important intervals include, but are not limited to the “door to doctor time”, “doctor to diction time”, “admission to bed availability or departure” as well as overall length of stayA key feature of an electronic health record is its ability to support the delivery of care by enabling prior information to be found and meaningfully displayed. EHR systems should facilitate search, filtering (e.g., filtering by key word, tagged data, or diagnosis), summarization, and presentation of available data needed for patient care. Systems should enable views to be customized, for example, specific data may be organized chronologically, by clinical category, by consultant, depending on need. The views may be arranged chronologically, by problem, or other parameters, and may be filtered or sorted. Jurisdictional laws and organizational policies that prohibit certain users from accessing certain patient information must be supported.</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>Providers and administrators need to respond quickly to new requirements for data measurement and analysis. This may be as a result of new regulatory requirements or internal requirements. This requires that users be able to define their own query parameters and retain them. The data may be found in both structured and unstructured data. Providers and administrators also need to query for the absence of specific clinical or administrative data. For example, the Quality Control department may be reviewing whether or not the protocol for management of Diabetes Mellitus is being followed. If the protocol calls for fasting blood sugars every 3 months at minimum, the investigator might need to run an across-patient query locating patients with diabetes who do not show an FBS result within the last 3 months. Emergency Department benchmarking reports - Key point of time include arrival time; treatment area entrance time, MD contact time; decision to admit, discharge or transfer time; and departure (left ED) time. Important intervals include, but are not limited to the “door to doctor time”, “doctor to diction time”, “admission to bed availability or departure” as well as overall length of stay. A key feature of an electronic health record is its ability to support the delivery of care by enabling prior information to be found and meaningfully displayed. EHR systems should facilitate search, filtering (e.g., filtering by key word, tagged data, or diagnosis), summarization, and presentation of available data needed for patient care. Systems should enable views to be customized, for example, specific data may be organized chronologically, by clinical category, by consultant, depending on need. The views may be arranged chronologically, by problem, or other parameters, and may be filtered or sorted. Jurisdictional laws and organizational policies that prohibit certain users from accessing certain patient information must be supported.</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -6874,13 +6802,13 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block margin-left=".5em">Header</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support Population-Based Epidemiological Investigation</fo:block>
+<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support Population-Based Epidemiological Investigation/Surveillance</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block text-align="center">POP.2</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
+<fo:block display-align="center" text-align="center">C</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block display-align="center" text-align="center">EN</fo:block>
@@ -7215,9 +7143,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">6.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>IF standardized transmission of the results of a query are required to/from a registry or directory, THEN the system SHALL conform to function <fo:basic-link internal-destination="TI.3">
-<fo:inline text-decoration="underline" color="blue">TI.3</fo:inline>
-</fo:basic-link> (Registry and Directory Services).</fo:block>
+<fo:block>IF standardized transmission of the results of a query are required to/from a registry or directory, THEN the system SHALL conform to function TI.3 (Registry and Directory Services).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -7240,7 +7166,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">9.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL provide the ability to transmit information related to individual case reports, including clinical information (e.g., test results) from a care provider to public health organizations (e.g., public health notifiable, and/or reportable condition programs) according to scope of practice, organizational policy, and/or jurisdictional law (e.g., a care provider notifies the local public health authority of an individual case of a sexually-transmitted disease that was identified during the analysis of a related query).</fo:block>
+<fo:block>The system SHALL provide the ability to transmit information related to individual case safety reports, including clinical information (e.g., test results) from a care provider to public health organizations (e.g., public health notifiable, and/or reportable condition programs) according to scope of practice, organizational policy, and/or jurisdictional law (e.g., a care provider notifies the local public health authority of an individual case of a sexually-transmitted disease that was identified during the analysis of a related query).</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -7249,7 +7175,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block text-align="center">POP.2.3</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
+<fo:block text-align="center">C</fo:block>
 </fo:table-cell>
 <fo:table-cell display-align="center">
 <fo:block text-align="center">EN</fo:block>
@@ -8069,105 +7995,6 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block text-align="center">EN</fo:block>
 </fo:table-cell>
 </fo:table-row>
-<fo:table-row border="solid 0.5pt black" padding-left=".5em" keep-with-next.within-page="always" border-top="solid 1.25pt black">
-<fo:table-cell border-right="solid 0.5pt black" keep-together="always">
-<fo:block border-bottom="solid 0.2 black" space-before=".7em" margin-left=".5em" keep-with-next.within-page="always" id="AS.4.2">AS.4.2</fo:block>
-<fo:block margin-left=".5em">Function</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center" font-size="1.2em" font-weight="bolder"> Support for Communications Within an Organization</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">AS.4.2</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black">
-<fo:table-cell number-columns-spanned="5">
-<fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
-<fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Facilitate communications regarding patient data and status within a health care organization.</fo:block>
-<fo:block margin-bottom=".5em">
-<fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>There needs to be an ability to communicate patient data and status (e.g., patient history, patient physical examination), discrete clinical data (e.g., blood pressure, pulse, temperature, pulse oximetry, laboratory data, microbiology data, radiology data), and orders between clinical systems in the facility (e.g., ambulatory, inpatient and ED).</fo:block>
-</fo:block>
-</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">1.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD provide the ability to render patient status tracking data on patient status devices or other patient tracking systems.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">AS.4.2</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">2.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHOULD determine and render patient information appropriate to the care setting, and/or the patient's condition, on status/patient/tracking displays.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">AS.4.2</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">NC</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
-<fo:table-row border="solid 0.5pt black" margin-bottom=".4em">
-<fo:table-cell border-right="solid 0.5pt black" padding-left=".4em" padding-right=".4em" text-align="justify" number-columns-spanned="2">
-<fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
-<fo:list-item space-after=".7em" margin-top=".3em">
-<fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">3.</fo:block>
-</fo:list-item-label>
-<fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL render patient information that can be used for status and patient tracking systems (e.g., tracking display, ED status board) that displays, as a minimum: patient identification, patient location, medical condition, care process status, study status, vital signs, and inter-staff communication notes as applicable.</fo:block>
-</fo:list-item-body>
-</fo:list-item>
-</fo:list-block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">AS.4.2</fo:block>
-</fo:table-cell>
-<fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block text-align="center">C</fo:block>
-</fo:table-cell>
-<fo:table-cell display-align="center">
-<fo:block text-align="center">EN</fo:block>
-</fo:table-cell>
-</fo:table-row>
 </fo:table-body>
 </fo:table>
 </fo:block>
@@ -8226,7 +8053,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Manage Record Lifecycle and Lifespan</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Manage Record Lifecycle and Lifespan. </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Actions are taken to support patient health. Actions are taken in provision of healthcare to individuals. Actions are taken as the result of rules-based EHR System algorithms. Actors (i.e., patients, providers, users, systems) take Actions. (Actions broadly encompass tasks, acts, procedures or services performed or provided.) The EHR System captures Actions taken and creates corresponding Record Entries. Record Entries provide persistent evidence of Action occurrence, context, disposition, facts, findings and observations. From the point of Record Entry origination to the end of its lifespan, the EHR System manages each Entry consistent with and according to scope of practice, organizational policy, and jurisdictional law. In support of individual health and in provision of healthcare to individuals, Actors perform Actions and Actions have corresponding Entries in the EHR Record, (i.e., Action instances are documented by Record Entry instances). Record Entries may be captured during the course of the Action or sometime thereafter. The Actor (author/source) of the Record Entry may be the same as an Actor performing the Action or not. The EHRS Functional Model does not specify a particular relationship of Actions and corresponding Record Entries. It may be one to one, many to one or even one to many. Actions have associated metadata (e.g., who, what, when, where, why, how, under what conditions, in what context). The corresponding Record Entry captures this metadata along with other Action and Record Entry related information. </fo:block>
@@ -8243,7 +8070,10 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block space-before=".4em">Unstructured data may be characterized as being free form, and/or non-computable. Unstructured health record information is information that is not divided into discrete fields AND not represented as numeric, enumerated or codified data. </fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">Examples of unstructured health record information include:</fo:block>
-<fo:block space-before=".4em">- text (text message to physician) - word processing document (a letter from a family member) - image (photograph of a patient or a scanned image of insurance card) - multimedia (dictated report or a voice recording). </fo:block>
+<fo:block space-before=".4em">- text (text message to physician) </fo:block>
+<fo:block space-before=".4em">- word processing document (a letter from a family member) </fo:block>
+<fo:block space-before=".4em">- image (photograph of a patient or a scanned image of insurance card) </fo:block>
+<fo:block space-before=".4em">- multimedia (dictated report or a voice recording). </fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">Context may determine whether data are structured or unstructured. For example, a progress note might be standardized and structured in some systems (e.g., Subjective/Objective/Assessment/Plan) but unstructured in other systems. The EHR System manages Record Lifecycle Events for each Record Entry, including pre and post Event record states, continuity, persistence and related Record Audit Logs. </fo:block>
 </fo:block>
@@ -8272,7 +8102,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Manage Record Lifecycle</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Manage Record Lifecycle. </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>As aboveReferences:</fo:block>
@@ -8303,7 +8133,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Originate and Retain a Record Entry (1 instance)</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Originate and Retain a Record Entry (1 instance). </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entry is originated typically during the course of an Action itself, to document the Action and context.</fo:block>
@@ -8402,7 +8232,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Maintain Evidence of Record Entry Originate/Retain Event</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Maintain Evidence of Record Entry Originate/Retain Event. </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Evidence of Record Entry Originate/Retain Event includes key metadata, ensures health record integrity (and trust) and enables record audit.</fo:block>
@@ -8541,14 +8371,13 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Extract Record Entry content to produce subsets, derivations, summaries or aggregations (Multiple instances)</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Extract Record Entry content to produce subsets, derivations, summaries or aggregations (Multiple instances). </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entry content is extracted to render subsets, derivations, summaries or aggregations.</fo:block>
 <fo:block space-before=".4em">- Extraction of Record Entry content may be initiated by User command, and/or rules-based algorithm.</fo:block>
 <fo:block space-before=".4em">- Extraction of Record Entry content is the responsibility of the System – which invokes relevant rules.</fo:block>
-<fo:block space-before=".4em">- An Audit Trigger is initiated to track Record Entry content extraction. Reference: ISO 21089, Section 12.7. An EHR-S enables an authorized user, such as a clinician, to access and aggregate the distributed information, which corresponds to the health record or records that are needed for viewing, reporting, disclosure, etc. An EHR-S must support data extraction operations across the complete data set that constitutes the health record of an individual and provide an output that fully chronicles the healthcare process. Data extractions are used as input</fo:block>
-<fo:block space-before=".4em">        to patient care coordination between facilities, organizations and settings. In addition, data extractions can be used for administrative, financial, research, quality analysis, public health purposes, and to enable re-creation of copies for importing into different EHR applications and enable the archiving of patients' data. Data may be extracted in order to meet analysis and reporting requirements. The extracted data may require use of more than one application and it may be pre-processed (for example, by being de-identified) before transmission. Data extractions may be used to exchange data and provide reports for primary and ancillary purposes. </fo:block>
+<fo:block space-before=".4em">- An Audit Trigger is initiated to track Record Entry content extraction. Reference: ISO 21089, Section 12.7. An EHR-S enables an authorized user, such as a clinician, to access and aggregate the distributed information, which corresponds to the health record or records that are needed for viewing, reporting, disclosure, etc. An EHR-S must support data extraction operations across the complete data set that constitutes the health record of an individual and provide an output that fully chronicles the healthcare process. Data extractions are used as input to patient care coordination between facilities, organizations and settings. In addition, data extractions can be used for administrative, financial, research, quality analysis, public health purposes, and to enable re-creation of copies for importing into different EHR applications and enable the archiving of patients' data. Data may be extracted in order to meet analysis and reporting requirements. The extracted data may require use of more than one application and it may be pre-processed (for example, by being de-identified) before transmission. Data extractions may be used to exchange data and provide reports for primary and ancillary purposes. </fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -8642,7 +8471,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Maintain Evidence of Record Entry Extraction Event</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Maintain Evidence of Record Entry Extraction Event. </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Evidence of Record Entry Extraction Events includes key metadata, ensures health record integrity (and trust) and enables record audit.</fo:block>
@@ -8777,7 +8606,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Destroy or Identify Record Entries as Missing (1 or more instances)</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Destroy or Identify Record Entries as Missing (1 or more instances). </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entries are destroyed or identified as missing.</fo:block>
@@ -9007,7 +8836,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Amend content of a Record Entry (1 instance)</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Amend content of a Record Entry (1 instance). </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entry content is modified (from its original or previously retained state) – typically upon conclusion of an Action, to correct, update or complete content.</fo:block>
@@ -9149,7 +8978,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Maintain Evidence of Record Entry Amendment Event</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Maintain Evidence of Record Entry Amendment Event. </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Evidence of Record Entry Amendment Event includes key metadata, ensures health record integrity (and trust) and enables record audit.</fo:block>
@@ -9380,16 +9209,17 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Attest to content of Record Entry (1 instance)</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Attest to content of Record Entry (1 instance). </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entry content is attested for accuracy and completeness – typically during/after conclusion of an Action.</fo:block>
 <fo:block space-before=".4em">- Attested Record Entry content is the responsibility of Attesting Author. The Attesting Author may be someone other than the originating Author, i.e., a supervisor, proctor, preceptor or other designated individual.</fo:block>
 <fo:block space-before=".4em">- An Audit Trigger is initiated to track Record Entry attestation.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">The purpose of attestation is to show authorship and assign responsibility for an act, event, condition, opinion, or diagnosis. Every Record Entry must be identified with the author and should not be made or signed by someone other than the author unless they have authority to do so. For example, a resident may author Record Entry content but the person taking legal authority for the content is the “attester” – both individuals should be identified. (Note: A transcriptionist may transcribe an author's notes and a senior</fo:block>
-<fo:block space-before=".4em">        clinician may attest to the accuracy of another's statement of events.)- Author: All users who create or contribute content and have a role in the development of a Record Entry. Some entries may be created by an author whose role is a student, transcriber or scribe.</fo:block>
-<fo:block space-before=".4em">- Attester: A user who takes legal authority for Record Entry content. The attester is often the same as the author, but they may also be an individual with authority to take responsibility for Record Entry content created in whole or in part by another author(s) (e.g., student, scribe, transcriptionist).Reference: ISO 21089, Section 12.2.2.</fo:block>
+<fo:block space-before=".4em">The purpose of attestation is to show authorship and assign responsibility for an act, event, condition, opinion, or diagnosis. Every Record Entry must be identified with the author and should not be made or signed by someone other than the author unless they have authority to do so. For example, a resident may author Record Entry content but the person taking legal authority for the content is the “attester” – both individuals should be identified. (Note: A transcriptionist may transcribe an author's notes and a senior clinician may attest to the accuracy of another's statement of events.)</fo:block>
+<fo:block space-before=".4em">- Author: All users who create or contribute content and have a role in the development of a Record Entry. Some entries may be created by an author whose role is a student, transcriber or scribe.</fo:block>
+<fo:block space-before=".4em">- Attester: A user who takes legal authority for Record Entry content. The attester is often the same as the author, but they may also be an individual with authority to take responsibility for Record Entry content created in whole or in part by another author(s) (e.g., student, scribe, transcriptionist).</fo:block>
+<fo:block space-before=".4em">Reference: ISO 21089, Section 12.2.2.</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -9475,7 +9305,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>View/Access content of Record Entries (1 or more instances)</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>View/Access content of Record Entries (1 or more instances). </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entry content is viewed or accessed.</fo:block>
@@ -9505,10 +9335,6 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>§170.314(a)(4) Vital signs, body mass index, and growth charts</fo:block>
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314a4vitalsignsbmigrowthcharts_2014_tp_approvedv1.3.pdf')">Test Procedure_[PDF - 135 KB]</fo:basic-link>
-</fo:block>
-<fo:block>§170.314(a)(9) Electronic notes</fo:block>
-<fo:block>
-<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314a9electronic_notes_2014_tp_approved_v1.3.pdf')">Test Procedure_[PDF - 380 KB]</fo:basic-link>
 </fo:block>
 <fo:block>§170.314(a)(9) Electronic notes</fo:block>
 <fo:block>
@@ -9631,7 +9457,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Maintain Evidence of Record Entry View/Access Event</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Maintain Evidence of Record Entry View/Access Event. </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Evidence of Record Entry View/Access Event includes key metadata, ensures health record integrity (and trust) and enables record audit.</fo:block>
@@ -9747,7 +9573,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:table-cell number-columns-spanned="5">
 <fo:block padding-left=".5em" space-before=".7em" text-align="justify" margin-left="4em" margin-right="4em" keep-together.within-page="always">
 <fo:block space-after=".7em" margin-top=".5em">
-<fo:inline font-weight="bold">Statement: </fo:inline>Output/Report content of Record Entries (1 or more instances)</fo:block>
+<fo:inline font-weight="bold">Statement: </fo:inline>Output/Report content of Record Entries (1 or more instances). </fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Occurs when Record Entry content is output or reported.</fo:block>
@@ -10381,6 +10207,14 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>
 <fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314e3securemessaging_2014_tp_approvedv1.3.pdf')">Test Procedure_[PDF - 528 KB]</fo:basic-link>
 </fo:block>
+<fo:block>§170.314(b)(5)(A) Incorporate laboratory test and values/results</fo:block>
+<fo:block>
+<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b5aincorporatelabtests_2014_tp_approved_v1.4_onc.pdf')">Test Procedure_[PDF - 776 KB]</fo:basic-link>
+</fo:block>
+<fo:block>§170.314(b)(5)(b) Incorporate laboratory test and values/results</fo:block>
+<fo:block>
+<fo:basic-link color="blue" text-decoration="underline" external-destination="url('http://www.healthit.gov/sites/default/files/170.314b5bincorporatelabtests_2014_tp_approved_v1.2.pdf')">Test Procedure_[PDF - 776 KB]</fo:basic-link>
+</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -10894,7 +10728,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
 <fo:list-item space-after=".7em" margin-top=".3em">
 <fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">96.</fo:block>
+<fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
 <fo:block>The system SHALL encrypt electronic health information locally stored on an end-user device after normal user stops.</fo:block>
@@ -10917,7 +10751,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
 <fo:list-item space-after=".7em" margin-top=".3em">
 <fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">97.</fo:block>
+<fo:block font-weight="bold" text-align="right">2.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
 <fo:block>The system SHALL encrypt electronic health information stored on end-user devices in conformance with the encryption algorithm(s) in Annex A of the Federal Information Processing Standards (FIPS) Publication 140-2.</fo:block>
@@ -10940,7 +10774,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
 <fo:list-item space-after=".7em" margin-top=".3em">
 <fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">98.</fo:block>
+<fo:block font-weight="bold" text-align="right">3.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
 <fo:block>The system SHALL manage end-user device settings ensuring encryption is enabled by default.</fo:block>
@@ -10963,7 +10797,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:list-block provisional-label-separation=".7em" provisional-distance-between-starts="2.4em" margin-left="4em">
 <fo:list-item space-after=".7em" margin-top=".3em">
 <fo:list-item-label end-indent="label-end()">
-<fo:block font-weight="bold" text-align="right">99.</fo:block>
+<fo:block font-weight="bold" text-align="right">4.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
 <fo:block>IF the encryption of electronic health information is a setting that can be disabled, THEN. the system SHALL control access to the encryption settings by a designated set of users.</fo:block>
@@ -11989,9 +11823,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block font-weight="bold" text-align="right">1.</fo:block>
 </fo:list-item-label>
 <fo:list-item-body start-indent="body-start()">
-<fo:block>The system SHALL conform to function <fo:basic-link internal-destination="TI.1.3">
-<fo:inline text-decoration="underline" color="blue">TI.1.3</fo:inline>
-</fo:basic-link> (Entity Access Control) to limit access to, or modification of, audit record information to appropriate entities according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
+<fo:block>The system SHALL conform to function TI.1.3 (Entity Access Control) to limit access to, or modification of, audit record information to appropriate entities according to scope of practice, organizational policy, and/or jurisdictional law.</fo:block>
 </fo:list-item-body>
 </fo:list-item>
 </fo:list-block>
@@ -12821,7 +12653,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block>
 <fo:inline font-weight="bold">Description: </fo:inline>Semantic interoperability requires standard terminologies combined with a formal standard information model. An example of an information model is the HL7 Reference Information Model. Another example is the ISO/EN 13606 Electronic Health Record Communication.</fo:block>
 <fo:block space-before=".4em"/>
-<fo:block space-before=".4em">A terminology provides semantic and computable identity to its concepts. Examples of terminologies that an EHR-S may support include: LOINC, SNOMED, ICD-9, ICD-10, and CPT-4.Terminologies are use-case dependent and may or may not be realm dependent. The key is that the standard be approved by all stakeholders. For example, terminologies for public health interoperability may differ from those for healthcare quality, administrative reporting, research, etc.</fo:block>
+<fo:block space-before=".4em">A terminology provides semantic and computable identity to its concepts. Examples of terminologies that an EHR-S may support include: LOINC, SNOMED, ICD-9, ICD-10, and CPT-4. Terminologies are use-case dependent and may or may not be realm dependent. The key is that the standard be approved by all stakeholders. For example, terminologies for public health interoperability may differ from those for healthcare quality, administrative reporting, research, etc.</fo:block>
 <fo:block space-before=".4em"/>
 <fo:block space-before=".4em">Formal standard terminology models enable common semantic representations by describing relationships that exist between concepts within a terminology or in different terminologies, such as exemplified in the model descriptions contained in the HL7 Common Terminology Services specification.</fo:block>
 <fo:block space-before=".4em"/>
@@ -12991,7 +12823,7 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:block text-align="center">TI.5.1.1</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
-<fo:block display-align="center" text-align="center">NC</fo:block>
+<fo:block display-align="center" text-align="center">C</fo:block>
 </fo:table-cell>
 <fo:table-cell border-right="solid 0.5pt black" display-align="center">
 <fo:block display-align="center" text-align="center">EN</fo:block>
@@ -13004,7 +12836,8 @@ All functions within the Care Provision Support Section have an identifier start
 <fo:inline font-weight="bold">Statement: </fo:inline>Support the ability to operate seamlessly with other systems by using applications, and/or structured messages and documents that adhere to interchange standards.</fo:block>
 <fo:block margin-bottom=".5em">
 <fo:block>
-<fo:inline font-weight="bold">Description: </fo:inline>Placeholder - Not Defined at this time</fo:block>
+<fo:inline font-weight="bold">Description: </fo:inline>
+</fo:block>
 </fo:block>
 <fo:list-block provisional-label-separation="1em" provisional-distance-between-starts="10em">
 <fo:list-item space-after=".7em">
@@ -13352,6 +13185,7 @@ All functions within the Care Provision Support Section have an identifier start
     
     
     
+	 		
     
     
     
@@ -13389,11 +13223,20 @@ All functions within the Care Provision Support Section have an identifier start
     
     
     
+	 		
+	
+	 	
     
     
     
+        
+	
     
     
+    	
+	
+ 	
+ 	 		
     
     
     
@@ -13407,7 +13250,6 @@ All functions within the Care Provision Support Section have an identifier start
     
     
     
-
     
     
     
@@ -13679,20 +13521,14 @@ All functions within the Care Provision Support Section have an identifier start
     
     
     
+    	
+	
     
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    	
+	 	
   
   
     
