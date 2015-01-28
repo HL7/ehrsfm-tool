@@ -248,6 +248,7 @@ namespace HL7_FM_EA_Extension
                 switch (element.Stereotype)
                 {
                     case R2Const.ST_FM_PROFILE:
+                        return false;
                     case R2Const.ST_FM_PROFILEDEFINITION:
                         EA.Package profDefPackage = repository.GetPackageByGuid(GUID);
                         R2ProfileDefinition profDef = (R2ProfileDefinition)R2ModelV2.EA_API.Factory.Create(repository, profDefPackage.Element);

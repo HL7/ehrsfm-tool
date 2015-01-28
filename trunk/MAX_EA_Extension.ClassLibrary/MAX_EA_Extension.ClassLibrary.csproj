@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MAX_EA_Extension</RootNamespace>
     <AssemblyName>MAX_EA_Extension</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -58,6 +58,12 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="BatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BatchForm.Designer.cs">
+      <DependentUpon>BatchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ValidateParamsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BatchForm.resx">
+      <DependentUpon>BatchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ValidateParamsForm.resx">
       <DependentUpon>ValidateParamsForm.cs</DependentUpon>

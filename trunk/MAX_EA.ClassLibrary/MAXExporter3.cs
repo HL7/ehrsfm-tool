@@ -32,17 +32,7 @@ namespace MAX_EA
             if (type == EA.ObjectType.otPackage)
             {
                 EA.Package package = (EA.Package)Repository.GetContextObject();
-                string defaultFileName = Path.Combine(Path.GetTempPath(), string.Format(@"{0}.max.xml", package.Name));
-                EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
-                if (tvExportFile != null)
-                {
-                    defaultFileName = tvExportFile.Value;
-                }
-                string fileName = showFileDialog("Select output MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, false);
-                if (fileName != String.Empty)
-                {
-                    exportPackage(Repository, package, fileName);
-                }
+                exportPackage(Repository, package);
             }
             else if (type == EA.ObjectType.otDiagram)
             {
@@ -73,6 +63,22 @@ namespace MAX_EA
             {
                 EA.Diagram diagram = (EA.Diagram)Repository.GetTreeSelectedObject();
                 exportDiagram(Repository, diagram, fileName);
+            }
+            return issues;
+        }
+
+        public bool exportPackage(EA.Repository Repository, EA.Package package)
+        {
+            string defaultFileName = Path.Combine(Path.GetTempPath(), string.Format(@"{0}.max.xml", package.Name));
+            EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
+            if (tvExportFile != null)
+            {
+                defaultFileName = tvExportFile.Value;
+            }
+            string fileName = showFileDialog("Select output MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, false);
+            if (fileName != String.Empty)
+            {
+                exportPackage(Repository, package, fileName);
             }
             return issues;
         }
