@@ -140,7 +140,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v3.5"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.0"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
                 }
@@ -284,7 +284,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HL7 FM EA Extension"
         "ProductCode" = "8:{CDC11C57-657D-41FC-9ACA-C7E815B66F41}"
-        "PackageCode" = "8:{5DF86B78-47D9-422E-B0CF-93F9D96D3FFF}"
+        "PackageCode" = "8:{401A56B7-AD52-4BE0-AE36-36F5D4A9A0B1}"
         "UpgradeCode" = "8:{C34E59C2-750C-4865-857C-7CC8A3BF387C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

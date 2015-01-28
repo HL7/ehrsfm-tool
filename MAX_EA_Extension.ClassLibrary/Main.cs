@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace MAX_EA_Extension
 {
@@ -35,7 +37,7 @@ namespace MAX_EA_Extension
                     return "-&MAX";
                 case "-&MAX":
                     // 1) MAX "native" Functions, 2) EA Helper Functions
-                    string[] ar = { "Import/Update", "Export", "Transform", "Validate", "-", "Lock", "Unlock", "Merge Diagrams", "-", "About..." };
+                    string[] ar = { "Import/Update", "Export", "Transform", "Validate", "-", "Lock", "Unlock", "Merge Diagrams", "Batch", "-", "About..." };
                     return ar;
             }
             return "";
@@ -75,6 +77,7 @@ namespace MAX_EA_Extension
                     case "Validate":
                         IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage || Repository.GetTreeSelectedItemType() == EA.ObjectType.otDiagram);
                         break;
+                    case "Batch":
                     case "Quick Access Tab":
                     case "About...":
                         IsEnabled = true;
@@ -151,6 +154,9 @@ namespace MAX_EA_Extension
                         break;
                     case "Unlock":
                         setLocked(selectedPackage, false);
+                        break;
+                    case "Batch":
+                        batch(Repository);
                         break;
                     case "Quick Access Tab":
                         if (view_ctrl == null || !view_ctrl.Visible)
@@ -255,6 +261,40 @@ namespace MAX_EA_Extension
             foreach (EA.Element subElement in element.Elements)
             {
                 setLocked(subElement, locked);
+            }
+        }
+
+        private void batch(EA.Repository Repository)
+        {
+            Dictionary<string, EA.Package> content = new Dictionary<string, EA.Package>(); 
+            string xml = Repository.SQLQuery("SELECT Name, ea_guid FROM t_object WHERE Object_Type = 'Package' ORDER BY Name");
+            XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
+            IEnumerable<XElement> xRows = xEADATA.XPathSelectElements("//Data/Row");
+            foreach (XElement xRow in xRows)
+            {
+                string ea_guid = xRow.Element("ea_guid").Value;
+                string name = xRow.Element("Name").Value;
+                content[name] = Repository.GetPackageByGuid(ea_guid);
+            }
+            BatchForm form = new BatchForm();
+            form.setContent(content);
+            form.ShowDialog();
+
+            if (form.isExportButtonPressed())
+            {
+                Repository.CreateOutputTab(MAX_TABNAME);
+                Repository.ClearOutput(MAX_TABNAME);
+                bool issues = false;
+                foreach (string name in form.getSelectedItems())
+                {
+                    EA.Package package = content[name];
+                    issues |= new MAX_EA.MAXExporter3().exportPackage(Repository, package);
+                }
+                if (issues)
+                {
+                    // only popup when there were any issues
+                    Repository.EnsureOutputVisible(MAX_TABNAME);
+                }
             }
         }
 
