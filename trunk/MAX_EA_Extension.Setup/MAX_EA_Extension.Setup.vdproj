@@ -28,25 +28,7 @@
         "Entry"
         {
         "MsmKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
-        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
-        "OwnerKey" = "8:_6766A725ECE24596A072AE3495BC51ED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
-        "OwnerKey" = "8:_6A98993D5EA0C0C6EE04986FD38CBB69"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
-        "OwnerKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
+        "OwnerKey" = "8:_442870390E8529F9693E2993B3714B46"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,7 +40,25 @@
         "Entry"
         {
         "MsmKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
-        "OwnerKey" = "8:_442870390E8529F9693E2993B3714B46"
+        "OwnerKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
+        "OwnerKey" = "8:_6A98993D5EA0C0C6EE04986FD38CBB69"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
+        "OwnerKey" = "8:_6766A725ECE24596A072AE3495BC51ED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
+        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,7 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
-        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
+        "OwnerKey" = "8:_6766A725ECE24596A072AE3495BC51ED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,7 +88,7 @@
         "Entry"
         {
         "MsmKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
-        "OwnerKey" = "8:_6766A725ECE24596A072AE3495BC51ED"
+        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -100,7 +100,7 @@
         "Entry"
         {
         "MsmKey" = "8:_442870390E8529F9693E2993B3714B46"
-        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
+        "OwnerKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,7 +112,7 @@
         "Entry"
         {
         "MsmKey" = "8:_442870390E8529F9693E2993B3714B46"
-        "OwnerKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
+        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,13 +154,13 @@
         "Entry"
         {
         "MsmKey" = "8:_8DF1BB84BBBCAF3B280726C63E6DB714"
-        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
+        "OwnerKey" = "8:_6766A725ECE24596A072AE3495BC51ED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_8DF1BB84BBBCAF3B280726C63E6DB714"
-        "OwnerKey" = "8:_6766A725ECE24596A072AE3495BC51ED"
+        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -184,13 +184,7 @@
         "Entry"
         {
         "MsmKey" = "8:_DEFEB0E77745887D9D1DFF989D057631"
-        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DEFEB0E77745887D9D1DFF989D057631"
-        "OwnerKey" = "8:_03DDC9F21044BDBC01D2AFE63A0FC528"
+        "OwnerKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -202,7 +196,13 @@
         "Entry"
         {
         "MsmKey" = "8:_DEFEB0E77745887D9D1DFF989D057631"
-        "OwnerKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
+        "OwnerKey" = "8:_03DDC9F21044BDBC01D2AFE63A0FC528"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DEFEB0E77745887D9D1DFF989D057631"
+        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -226,49 +226,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_03DDC9F21044BDBC01D2AFE63A0FC528"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6A98993D5EA0C0C6EE04986FD38CBB69"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8DF1BB84BBBCAF3B280726C63E6DB714"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_442870390E8529F9693E2993B3714B46"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DEFEB0E77745887D9D1DFF989D057631"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
+        "OwnerKey" = "8:_45673C46DD63F9531C0668F39EE9F19B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -280,7 +238,49 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_45673C46DD63F9531C0668F39EE9F19B"
+        "OwnerKey" = "8:_244AFE4DD3841F3B1F1D6C5FBD89CF70"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DEFEB0E77745887D9D1DFF989D057631"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_442870390E8529F9693E2993B3714B46"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8DF1BB84BBBCAF3B280726C63E6DB714"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6A98993D5EA0C0C6EE04986FD38CBB69"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B79D634F241E3C4E571BD3C995854DB0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_03DDC9F21044BDBC01D2AFE63A0FC528"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -303,17 +303,17 @@
         "InstallerBootstrapper" = "3:2"
             "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
             {
-            "Enabled" = "11:TRUE"
+            "Enabled" = "11:FALSE"
             "PromptEnabled" = "11:TRUE"
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
                     {
-                    "Name" = "8:.NET Framework 3.5 SP1"
-                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
                     {
@@ -395,11 +395,6 @@
             "AssemblyAsmDisplayName" = "8:saxon9he-api, Version=9.5.1.1, Culture=neutral, PublicKeyToken=e1fdd002d5083fe6, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_03DDC9F21044BDBC01D2AFE63A0FC528"
-                    {
-                    "Name" = "8:saxon9he-api.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:saxon9he-api.dll"
             "TargetName" = "8:"
@@ -426,11 +421,6 @@
             "AssemblyAsmDisplayName" = "8:IKVM.Runtime, Version=0.46.0.2, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_244AFE4DD3841F3B1F1D6C5FBD89CF70"
-                    {
-                    "Name" = "8:IKVM.Runtime.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:IKVM.Runtime.dll"
             "TargetName" = "8:"
@@ -457,11 +447,6 @@
             "AssemblyAsmDisplayName" = "8:MAX_EA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_246F7E2DEDF6D118AB0FF85F0DCF6ED6"
-                    {
-                    "Name" = "8:MAX_EA.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MAX_EA.dll"
             "TargetName" = "8:"
@@ -488,11 +473,6 @@
             "AssemblyAsmDisplayName" = "8:IKVM.OpenJDK.Core, Version=0.46.0.2, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2FA0B0827F9AC9C7FF892C807A164F81"
-                    {
-                    "Name" = "8:IKVM.OpenJDK.Core.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:IKVM.OpenJDK.Core.dll"
             "TargetName" = "8:"
@@ -519,11 +499,6 @@
             "AssemblyAsmDisplayName" = "8:IKVM.OpenJDK.Util, Version=0.46.0.2, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_442870390E8529F9693E2993B3714B46"
-                    {
-                    "Name" = "8:IKVM.OpenJDK.Util.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:IKVM.OpenJDK.Util.dll"
             "TargetName" = "8:"
@@ -550,11 +525,6 @@
             "AssemblyAsmDisplayName" = "8:Interop.EA, Version=2.10.238.1, Culture=neutral, PublicKeyToken=d28e1c76302f6a17, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_45673C46DD63F9531C0668F39EE9F19B"
-                    {
-                    "Name" = "8:Interop.EA.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Interop.EA.dll"
             "TargetName" = "8:"
@@ -581,11 +551,6 @@
             "AssemblyAsmDisplayName" = "8:IKVM.OpenJDK.Charsets, Version=0.46.0.2, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6A98993D5EA0C0C6EE04986FD38CBB69"
-                    {
-                    "Name" = "8:IKVM.OpenJDK.Charsets.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:IKVM.OpenJDK.Charsets.dll"
             "TargetName" = "8:"
@@ -612,11 +577,6 @@
             "AssemblyAsmDisplayName" = "8:IKVM.OpenJDK.Text, Version=0.46.0.2, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8DF1BB84BBBCAF3B280726C63E6DB714"
-                    {
-                    "Name" = "8:IKVM.OpenJDK.Text.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:IKVM.OpenJDK.Text.dll"
             "TargetName" = "8:"
@@ -643,11 +603,6 @@
             "AssemblyAsmDisplayName" = "8:saxon9he, Version=9.5.1.1, Culture=neutral, PublicKeyToken=e1fdd002d5083fe6, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B79D634F241E3C4E571BD3C995854DB0"
-                    {
-                    "Name" = "8:saxon9he.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:saxon9he.dll"
             "TargetName" = "8:"
@@ -674,11 +629,6 @@
             "AssemblyAsmDisplayName" = "8:IKVM.OpenJDK.XML.API, Version=0.46.0.2, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_DEFEB0E77745887D9D1DFF989D057631"
-                    {
-                    "Name" = "8:IKVM.OpenJDK.XML.API.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:IKVM.OpenJDK.XML.API.dll"
             "TargetName" = "8:"
