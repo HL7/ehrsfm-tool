@@ -1,8 +1,8 @@
 ﻿CHANGELOG
 =========
-[2015-jan-22]
+[2015-jan-22/feb-03]
 Project
-- Updated .Net to v4.0
+- Updated .Net to v4.0 and removed "install prerequisites"
 Main
 - Double click on <HL7-FM-Profile> gave unwanted exception. Fixed.
 
