@@ -18,6 +18,8 @@
       <xs:enumeration value="Artifact" />
       <xs:enumeration value="Note" /><!-- EA Diagram type -->
 			<xs:enumeration value="Text" /><!-- EA Diagram type -->
+      <xs:enumeration value="Constraint" />
+      <!-- EA Diagram type -->
       <!-- Constraint, UMLDiagram -->
 		</xs:restriction>
 	</xs:simpleType>

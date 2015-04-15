@@ -18,78 +18,23 @@ namespace MAX_EA_Extension
 
         public void setContent(Dictionary<string, EA.Package> content)
         {
-            availableListBox.Items.Clear();
-            selectedListBox.Items.Clear();
+            Dictionary<int,TreeNode> nodes = new Dictionary<int, TreeNode>();
+
+            availableTreeView.Nodes.Clear();
             foreach (string name in content.Keys)
             {
-                availableListBox.Items.Add(name);
+                EA.Package package = content[name];
+                if (!nodes.ContainsKey(package.ParentID))
+                {
+                    nodes[package.PackageID] = availableTreeView.Nodes.Add(name);
+                }
+                else
+                {
+                    TreeNode parentNode = nodes[package.ParentID];
+                    nodes[package.PackageID] = parentNode.Nodes.Add(name);
+                }
             }
-            availableListBox.Refresh();
-            selectedListBox.Refresh();
-        }
-
-        private void selectButton_Click(object sender, EventArgs e)
-        {
-            List<string> toRemove = new List<String>();
-            foreach (string item in availableListBox.SelectedItems)
-            {
-                toRemove.Add(item);
-                selectedListBox.Items.Add(item);
-            }
-            foreach (string item in toRemove)
-            {
-                availableListBox.Items.Remove(item);
-            }
-            availableListBox.Refresh();
-            selectedListBox.Refresh();
-        }
-
-        private void deselectButton_Click(object sender, EventArgs e)
-        {
-            List<string> toRemove = new List<String>();
-            foreach (string item in selectedListBox.SelectedItems)
-            {
-                toRemove.Add(item);
-                availableListBox.Items.Add(item);
-            }
-            foreach (string item in toRemove)
-            {
-                selectedListBox.Items.Remove(item);
-            }
-            availableListBox.Refresh();
-            selectedListBox.Refresh();
-        }
-
-        private void selectAllButton_Click(object sender, EventArgs e)
-        {
-            List<string> toRemove = new List<String>();
-            foreach (string item in availableListBox.Items)
-            {
-                toRemove.Add(item);
-                selectedListBox.Items.Add(item);
-            }
-            foreach (string item in toRemove)
-            {
-                availableListBox.Items.Remove(item);
-            }
-            availableListBox.Refresh();
-            selectedListBox.Refresh();
-        }
-
-        private void deselectAllButton_Click(object sender, EventArgs e)
-        {
-            List<string> toRemove = new List<String>();
-            foreach (string item in selectedListBox.Items)
-            {
-                toRemove.Add(item);
-                availableListBox.Items.Add(item);
-            }
-            foreach (string item in toRemove)
-            {
-                selectedListBox.Items.Remove(item);
-            }
-            availableListBox.Refresh();
-            selectedListBox.Refresh();
+            availableTreeView.Refresh();
         }
 
         bool exportButtonPressed = false;
@@ -98,12 +43,15 @@ namespace MAX_EA_Extension
             return exportButtonPressed;
         }
 
-        public List<String> getSelectedItems()
+        public List<string> getSelectedItems()
         {
             List<string> selected = new List<string>();
-            foreach (string item in selectedListBox.Items)
+            foreach (TreeNode node in availableTreeView.Nodes)
             {
-                selected.Add(item);
+                if (node.Checked)
+                {
+                    selected.Add(node.Text);
+                }
             }
             return selected;
         }
@@ -112,6 +60,10 @@ namespace MAX_EA_Extension
         {
             exportButtonPressed = true;
             Close();
+        }
+
+        private void availableTreeView_AfterCheck(object sender, TreeViewEventArgs e)
+        {
         }
     }
 }

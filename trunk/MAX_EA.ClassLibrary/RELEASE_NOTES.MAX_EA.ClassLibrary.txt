@@ -31,8 +31,14 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 		Windows Language Dutch + Date Format: Dutch & English -> works
 		Windows Language English + Date Format: Dutch doesnot work, English -> works
 
+EA11 ISSUE. t_diagramlinks is empty if connectors are not touched. Workaround is to touch a connector.
+
 CHANGELOG
 =========
+[2015-apr-15]
+MAXSchema
+- added ObjectTypes Constraint and Artifact
+
 [2014-sep-02]
 MAXImporter3
 - Now accept file extensions .xml and .max

@@ -342,5 +342,8 @@ namespace MAX_EA.MAXSchema {
         
         /// <remarks/>
         Text,
+
+        /// <remarks/>
+        Constraint,
     }
 }

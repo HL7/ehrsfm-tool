@@ -266,8 +266,8 @@ namespace MAX_EA_Extension
 
         private void batch(EA.Repository Repository)
         {
-            Dictionary<string, EA.Package> content = new Dictionary<string, EA.Package>(); 
-            string xml = Repository.SQLQuery("SELECT Name, ea_guid FROM t_object WHERE Object_Type = 'Package' ORDER BY Name");
+            Dictionary<string, EA.Package> content = new Dictionary<string, EA.Package>();
+            string xml = Repository.SQLQuery("SELECT Name, ea_guid FROM t_object WHERE Object_Type = 'Package'"); // order by package_id
             XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
             IEnumerable<XElement> xRows = xEADATA.XPathSelectElements("//Data/Row");
             foreach (XElement xRow in xRows)
