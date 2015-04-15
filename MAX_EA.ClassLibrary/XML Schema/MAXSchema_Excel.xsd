@@ -2,33 +2,47 @@
 <!-- This version is compatible with Excel -->
 <xs:schema targetNamespace="http://www.umcg.nl/MAX" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://www.umcg.nl/MAX" xmlns:max="http://www.umcg.nl/MAX">
-	<xs:simpleType name="ObjectTypeEnum">
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="Interface" />
-			<xs:enumeration value="Class" />
-			<xs:enumeration value="Object" />
+  <xs:simpleType name="ObjectTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Interface" />
+      <xs:enumeration value="Class" />
+      <xs:enumeration value="Object" />
       <xs:enumeration value="Feature" />
-			<xs:enumeration value="Requirement" />
-			<xs:enumeration value="Component" />
-			<xs:enumeration value="Package" />
-			<xs:enumeration value="Note" /><!-- EA type -->
-			<xs:enumeration value="Text" /><!-- EA type -->
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="RelationshipTypeEnum">
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="Association" />
-			<xs:enumeration value="DirectedAssociation" />
-			<xs:enumeration value="Dependency" />
-			<xs:enumeration value="Aggregation" />
-			<xs:enumeration value="Composition" />
-			<xs:enumeration value="Generalization" />
-      <xs:enumeration value="Realization" />
-      <xs:enumeration value="Package" /><!-- EA type -->
-      <xs:enumeration value="NoteLink" /><!-- EA type -->
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="model" type="ModelType"/>
+      <xs:enumeration value="Requirement" />
+      <xs:enumeration value="Component" />
+      <xs:enumeration value="Package" />
+      <xs:enumeration value="Activity" />
+      <xs:enumeration value="Action" />
+      <xs:enumeration value="Issue" />
+      <xs:enumeration value="Change" />
+      <xs:enumeration value="Artifact" />
+      <xs:enumeration value="Note" />
+      <!-- EA Diagram type -->
+      <xs:enumeration value="Text" />
+      <!-- EA Diagram type -->
+      <xs:enumeration value="Constraint" />
+      <!-- EA Diagram type -->
+      <!-- Constraint, UMLDiagram -->
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RelationshipTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Association" />
+      <xs:enumeration value="DirectedAssociation" />
+      <xs:enumeration value="Dependency" />
+      <xs:enumeration value="Aggregation" />
+      <xs:enumeration value="Composition" />
+      <xs:enumeration value="Generalization" />
+      <xs:enumeration value="Realisation" />
+      <xs:enumeration value="InformationFlow" />
+      <xs:enumeration value="Abstraction" />
+      <xs:enumeration value="Usage" />
+      <xs:enumeration value="Package" />
+      <xs:enumeration value="NoteLink" />
+      <!-- EA Diagram type -->
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="model" type="ModelType"/>
 	<xs:complexType name="ModelType">
 		<xs:sequence>
 			<xs:element name="objects" type="ObjectsType" minOccurs="1" maxOccurs="1" />
