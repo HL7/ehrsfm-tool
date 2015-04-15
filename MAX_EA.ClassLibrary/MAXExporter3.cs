@@ -191,7 +191,7 @@ namespace MAX_EA
             string notes = xRow.ElementValue("Notes");
             if (!string.IsNullOrEmpty(notes))
             {
-                maxObj.notes = new MarkupType() { Text = new String[] { notes } };
+                maxObj.notes = new MarkupType() { Text = new[] { notes } };
             }
             maxObj.stereotype = xRow.ElementValue("Stereotype");
             maxObj.type = ObjectTypeEnum.Package;
@@ -212,7 +212,7 @@ namespace MAX_EA
                     {
                         name = tagName,
                         value = xTV.ElementValue("Value"),
-                        Text = new String[] { xTV.ElementValue("Notes") }
+                        Text = new[] { xTV.ElementValue("Notes") }
                     };
                     tags.Add(maxTag);
                 }
@@ -228,14 +228,10 @@ namespace MAX_EA
             int Package_Object_ID = packageToObjectIDDict[Package_ID];
 
             // select sub packages of selected package
-            string sql = string.Format("SELECT p.Package_ID, p.ea_guid, p.Name, o.Alias, p.ModifiedDate, o.Stereotype, p.Notes, o.Object_ID FROM t_package p, t_object o WHERE p.Parent_ID={0} AND o.Package_ID={1} AND p.ea_guid=o.ea_guid ORDER BY p.TPos", Package_ID, Package_ID);
-            string xml = Repository.SQLQuery(sql);
-            XElement xEADATA = XElement.Parse(xml, LoadOptions.None);
+            XElement xEADATA = executeQuery(string.Format("SELECT p.Package_ID, p.ea_guid, p.Name, o.Alias, p.ModifiedDate, o.Stereotype, p.Notes, o.Object_ID FROM t_package p, t_object o WHERE p.Parent_ID={0} AND o.Package_ID={1} AND p.ea_guid=o.ea_guid ORDER BY p.TPos", Package_ID, Package_ID));
 
             // get tagged values in packages in selected package
-            string sql_tv = string.Format("SELECT op.Object_ID, op.Property, op.Value, op.Notes FROM t_object o, t_objectproperties op WHERE Package_ID={0} AND o.Object_ID=op.Object_ID", Package_ID);
-            string xml_tv = Repository.SQLQuery(sql_tv);
-            XElement xEADATA_tv = XElement.Parse(xml_tv, LoadOptions.None);
+            XElement xEADATA_tv = executeQuery(string.Format("SELECT op.Object_ID, op.Property, op.Value, op.Notes FROM t_object o, t_objectproperties op WHERE Package_ID={0} AND o.Object_ID=op.Object_ID", Package_ID));
 
             // update map from internal id to MAX::ID
             foreach (XElement xTV in xEADATA_tv.XPathSelectElements(string.Format("//Data/Row[Property='{0}']", TV_MAX_ID)))
@@ -259,7 +255,7 @@ namespace MAX_EA
                 string notes = xRow.ElementValue("Notes");
                 if (!string.IsNullOrEmpty(notes))
                 {
-                    maxObj.notes = new MarkupType() { Text = new String[] { notes } };
+                    maxObj.notes = new MarkupType() { Text = new[] { notes } };
                 }
                 maxObj.stereotype = xRow.ElementValue("Stereotype");
                 maxObj.type = ObjectTypeEnum.Package;
@@ -277,7 +273,7 @@ namespace MAX_EA
                         {
                             name = tagName,
                             value = xTV.ElementValue("Value"),
-                            Text = new String[] {xTV.ElementValue("Notes")}
+                            Text = new[] {xTV.ElementValue("Notes")}
                         };
                         tags.Add(maxTag);
                     }
@@ -314,7 +310,7 @@ namespace MAX_EA
             // get ALL tagged values for relationships for objects in selected package
             XElement xEADATA_con_tv = executeQuery("SELECT ct.ElementID, ct.Property, ct.Value, ct.Notes FROM t_connectortag ct");
 
-            doit(xEADATA, xEADATA_tv, xEADATA_con, xEADATA_con_tv, Package_Object_ID);
+            visitObjects(xEADATA, xEADATA_tv, xEADATA_con, xEADATA_con_tv, Package_Object_ID);
         }
 
         private void visitDiagramObjects(int Diagram_ID)
@@ -331,16 +327,10 @@ namespace MAX_EA
             // get ALL tagged values for relationships for objects in selected package
             XElement xEADATA_con_tv = executeQuery("SELECT ct.ElementID, ct.Property, ct.Value, ct.Notes FROM t_connectortag ct");
 
-            doit(xEADATA, xEADATA_tv, xEADATA_con, xEADATA_con_tv, null);
+            visitObjects(xEADATA, xEADATA_tv, xEADATA_con, xEADATA_con_tv, null);
         }
 
-        private XElement executeQuery(string sql)
-        {
-            string xml = Repository.SQLQuery(sql);
-            return XElement.Parse(xml, LoadOptions.None);
-        }
-
-        private void doit(XElement xEADATA, XElement xEADATA_tv, XElement xEADATA_con, XElement xEADATA_con_tv, int? Package_Object_ID)
+        private void visitObjects(XElement xEADATA, XElement xEADATA_tv, XElement xEADATA_con, XElement xEADATA_con_tv, int? Package_Object_ID)
         {
             // update map from internal id to MAX::ID
             foreach (XElement xTV in xEADATA_tv.XPathSelectElements(string.Format("//Data/Row[Property='{0}']", TV_MAX_ID)))
@@ -379,11 +369,12 @@ namespace MAX_EA
                 string notes = xRow.ElementValue("Note");
                 if (!string.IsNullOrEmpty(notes))
                 {
-                    maxObj.notes = new MarkupType() { Text = new String[] { notes } };
+                    maxObj.notes = new MarkupType() { Text = new[] { notes } };
                 }
                 maxObj.stereotype = xRow.ElementValue("Stereotype");
                 maxObj.type = (ObjectTypeEnum)Enum.Parse(typeof(ObjectTypeEnum), Object_Type, false);
                 maxObj.typeSpecified = true;
+
                 int EA_ParentID = int.Parse(xRow.ElementValue("ParentID"));
                 // ParentID = 0 for direct childs of a Package, ParentID is only used within a Package
                 if (EA_ParentID != 0)
@@ -407,12 +398,19 @@ namespace MAX_EA
                         {
                             name = tagName,
                             value = xTV.ElementValue("Value"),
-                            Text = new String[] {xTV.ElementValue("Notes")}
+                            Text = new[] {xTV.ElementValue("Notes")}
                         };
                         tags.Add(maxTag);
                     }
                 }
                 maxObj.tag = tags.ToArray();
+
+                // If this is an Artifact of stereotype "document" get the Linked Document BinContent
+                if (maxObj.type == ObjectTypeEnum.Artifact && "document".Equals(maxObj.stereotype))
+                {
+                    XElement xData = executeQuery(string.Format("SELECT BinContent FROM t_document WHERE ElementID='{0}'", xRow.ElementValue("ea_guid")));
+                    maxObj.notes = new MarkupType() { Text = new[] { xData.XPathSelectElement("//Data/Row").ElementValue("BinContent") } };
+                }
 
                 // get attributes in objects in selected object
                 string sql_att = string.Format("SELECT * FROM t_attribute WHERE Object_ID={0}", Object_ID);
@@ -435,7 +433,7 @@ namespace MAX_EA
                         maxAtt.isReadOnly = true;
                         maxAtt.isReadOnlySpecified = true;
                     }
-                    maxAtt.Text = new String[] { xAtt.ElementValue("Notes") };
+                    maxAtt.Text = new[] { xAtt.ElementValue("Notes") };
 
                     // get attribute tagged values for selected object
                     string sql_att_tv = string.Format("SELECT * FROM t_attributetag WHERE ElementID={0}", Attribute_ID);
@@ -448,7 +446,7 @@ namespace MAX_EA
                         {
                             name = xTV.ElementValue("Property"),
                             value = xTV.ElementValue("VALUE"),
-                            Text = new String[] { xTV.ElementValue("NOTES") }
+                            Text = new[] { xTV.ElementValue("NOTES") }
                         };
                         attTags.Add(maxTag);
                     }
@@ -486,7 +484,7 @@ namespace MAX_EA
                 maxRel.destId = mapObjectID2MAXID(xRow.ElementValueInt("End_Object_ID"));
                 maxRel.destCard = xRow.ElementValue("DestCard");
                 maxRel.destLabel = xRow.ElementValue("DestRole");
-                maxRel.notes = new MarkupType() { Text = new String[] { xRow.ElementValue("Notes") } };
+                maxRel.notes = new MarkupType() { Text = new[] { xRow.ElementValue("Notes") } };
                 maxRel.stereotype = xRow.ElementValue("Stereotype");
 
                 List<TagType> tags = new List<TagType>();
@@ -499,7 +497,7 @@ namespace MAX_EA
                         {
                             name = tagName,
                             value = xTV.ElementValue("Value"),
-                            Text = new String[] { xTV.ElementValue("Notes") }
+                            Text = new[] { xTV.ElementValue("Notes") }
                         };
                         tags.Add(maxTag);
                     }
@@ -559,6 +557,12 @@ namespace MAX_EA
                 }
             }
             return maxId;
+        }
+
+        private XElement executeQuery(string sql)
+        {
+            string xml = Repository.SQLQuery(sql);
+            return XElement.Parse(xml, LoadOptions.None);
         }
     }
 }

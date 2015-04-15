@@ -46,7 +46,7 @@ namespace MAX_EA.MAXSchema {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.umcg.nl/MAX")]
     public partial class ObjectType {
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="token")]
         public string id;
@@ -345,5 +345,8 @@ namespace MAX_EA.MAXSchema {
 
         /// <remarks/>
         Constraint,
+
+        /// <remarks/>
+        Boundary,
     }
 }
