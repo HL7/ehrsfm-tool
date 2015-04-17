@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using MAX_EA;
 
 namespace MAX_EA_Extension
 {
@@ -18,6 +20,7 @@ namespace MAX_EA_Extension
             //No special processing required.
             /* return "MDG" to receive extra MDG Events
              */
+            Util.CurrentOutputPath = Path.GetTempPath();
             return "";
         }
 

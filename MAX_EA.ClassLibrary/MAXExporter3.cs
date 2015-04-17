@@ -37,7 +37,7 @@ namespace MAX_EA
             else if (type == EA.ObjectType.otDiagram)
             {
                 EA.Diagram diagram = (EA.Diagram)Repository.GetContextObject();
-                string defaultFileName = Path.Combine(Path.GetTempPath(), string.Format(@"{0}.max.xml", diagram.Name));
+                string defaultFileName = Path.Combine(CurrentOutputPath, string.Format(@"{0}.max.xml", diagram.Name));
                 string fileName = showFileDialog("Select output MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, false);
                 if (fileName != String.Empty)
                 {
@@ -69,7 +69,7 @@ namespace MAX_EA
 
         public bool exportPackage(EA.Repository Repository, EA.Package package)
         {
-            string defaultFileName = Path.Combine(Path.GetTempPath(), string.Format(@"{0}.max.xml", package.Name));
+            string defaultFileName = Path.Combine(CurrentOutputPath, string.Format(@"{0}.max.xml", package.Name));
             EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
             if (tvExportFile != null)
             {

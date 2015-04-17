@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MAX_EA;
 using Saxon.Api;
 
 namespace MAX_EA_Extension
@@ -18,7 +19,6 @@ namespace MAX_EA_Extension
             InitializeComponent();
         }
 
-        private string defaultFolder = Path.GetTempPath();
         // TODO: outputFormat = html or xml or txt, get from xslt
         private string outputFormat = "html";
         private string defaultXsltFile = @"C:\Eclipse Workspace\NieuwEPD\9.01\901-report.xslt";
@@ -28,6 +28,7 @@ namespace MAX_EA_Extension
         public bool Show(EA.Repository repository)
         {
             this.repository = repository;
+            string defaultFolder = Util.CurrentOutputPath;
             string maxFile = "";
             string xsltFile = GetXsltTaggedValue(repository).Value;
             string outputFile = "";

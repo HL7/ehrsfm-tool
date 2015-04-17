@@ -8,6 +8,8 @@ namespace MAX_EA
 {
     public abstract class Util
     {
+        public static string CurrentOutputPath { get; set; }
+
         public string showFileDialog(string title, string filter, string fileName, bool open)
         {
             FileDialog dialog;
@@ -26,6 +28,7 @@ namespace MAX_EA
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                CurrentOutputPath = Path.GetDirectoryName(dialog.FileName);
                 return dialog.FileName;
             }
             else

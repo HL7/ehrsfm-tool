@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MAX_EA;
 using Saxon.Api;
 
 namespace MAX_EA_Extension
@@ -18,7 +19,6 @@ namespace MAX_EA_Extension
             InitializeComponent();
         }
 
-        private string defaultFolder = Path.GetTempPath();
         private string defaultSchematronFile = @"C:\Eclipse Workspace\NieuwEPD\9.01 Schematron\901 Validation Rules.sch";
         private bool issues = false;
 
@@ -26,6 +26,7 @@ namespace MAX_EA_Extension
         public bool Show(EA.Repository repository)
         {
             this.repository = repository;
+            string defaultFolder = Util.CurrentOutputPath;
             string maxFile = "";
             string schFile = GetSchematronTaggedValue(repository).Value;
             string svrlFile = "";
