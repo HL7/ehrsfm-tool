@@ -1,5 +1,8 @@
 ﻿CHANGELOG
 =========
+[2015-apt-17]
+- Added set and use of Util.CurrentOutputPath; requested by NICTIZ
+
 [2014-jul-12]
 Main
 - Added lock/unlock package elements to prevent accidental edits

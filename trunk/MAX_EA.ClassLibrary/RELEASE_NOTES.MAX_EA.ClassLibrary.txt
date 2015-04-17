@@ -35,9 +35,13 @@ EA11 ISSUE. t_diagramlinks is empty if connectors are not touched. Workaround is
 
 CHANGELOG
 =========
+[2015-apr-17]
+Util
+- Added CurrentOutputPath and use it; requested by NICTIZ
+
 [2015-apr-15]
 MAXSchema
-- added ObjectTypes Boundary, Constraint and Artifact
+- Added ObjectTypes Boundary, Constraint and Artifact
 MAXExporter3
 - EXPORT ONLY: added Linked Document BASE64 encoded in notes element of object
 
