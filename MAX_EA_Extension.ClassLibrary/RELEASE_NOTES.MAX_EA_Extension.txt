@@ -3,6 +3,8 @@
 [2015-apr-24]
 TransformParamsForm
 - Changed checkbox to button for easier access.
+MAXSchema
+- Added 'Enumeration' ObjectType
 
 [2015-apt-17]
 - Added set and use of Util.CurrentOutputPath; requested by NICTIZ

@@ -19,6 +19,7 @@
       <xs:enumeration value="Note" /><!-- EA Diagram type -->
 			<xs:enumeration value="Text" /><!-- EA Diagram type -->
       <xs:enumeration value="Constraint" />
+      <xs:enumeration value="Enumeration" />
       <xs:enumeration value="Boundary" /><!-- EA Diagram type -->
       <!-- UMLDiagram -->
 		</xs:restriction>

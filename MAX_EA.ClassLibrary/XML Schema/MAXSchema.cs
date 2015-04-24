@@ -348,5 +348,8 @@ namespace MAX_EA.MAXSchema {
 
         /// <remarks/>
         Boundary,
+
+        /// <remarks/>
+        Enumeration,
     }
 }
