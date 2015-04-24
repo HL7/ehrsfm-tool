@@ -20,7 +20,7 @@ namespace MAX_EA_Extension
         }
 
         // TODO: outputFormat = html or xml or txt, get from xslt
-        private string outputFormat = "html";
+        private string outputFormat = "xml";
         private string defaultXsltFile = @"C:\Eclipse Workspace\NieuwEPD\9.01\901-report.xslt";
         private bool issues = false;
 
@@ -109,7 +109,7 @@ namespace MAX_EA_Extension
             return tvXsltFile;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void go(bool openOutput)
         {
             Enabled = false;
             Close();
@@ -141,7 +141,7 @@ namespace MAX_EA_Extension
             // TODO: Show feedback about the transform steps
             if (transform(repository, maxFile, xsltFile, outputFile))
             {
-                if (checkBox1.Checked)
+                if (openOutput)
                 {
                     string outputURL = new Uri(outputFile).ToString();
                     System.Diagnostics.Process.Start(outputURL);
@@ -151,6 +151,16 @@ namespace MAX_EA_Extension
             {
                 issues = true;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            go(false);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            go(true);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -175,6 +185,7 @@ namespace MAX_EA_Extension
             openFileDialog1.CheckFileExists = false;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                Util.CurrentOutputPath = Path.GetDirectoryName(openFileDialog1.FileName);
                 textBox1.Text = openFileDialog1.FileName;
             }
         }

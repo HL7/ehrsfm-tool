@@ -29,33 +29,47 @@ namespace MAX_EA_Extension
             this.SelectedPackage = SelectedPackage;
             if (SelectedPackage == null)
             {
-                linkLabel1.Text = "none";
-                linkLabel1.Enabled = false;
-                button1.Enabled = false;
-                button2.Enabled = false;
+                packageLinkLabel.Text = "none";
+                packageLinkLabel.Enabled = false;
+                importButton.Enabled = false;
+                exportButton.Enabled = false;
+                transformButton.Enabled = false;
+                validateButton.Enabled = false;
             }
             else
             {
-                linkLabel1.Text = SelectedPackage.Name;
-                linkLabel1.Enabled = true;
-                button1.Enabled = true;
-                button2.Enabled = true;
+                packageLinkLabel.Text = SelectedPackage.Name;
+                packageLinkLabel.Enabled = true;
+                importButton.Enabled = true;
+                exportButton.Enabled = true;
+                transformButton.Enabled = true;
+                validateButton.Enabled = true;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void importButton_Click(object sender, EventArgs e)
         {
             new MAX_EA.MAXImporter3().import(Repository, SelectedPackage);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void exportButton_Click(object sender, EventArgs e)
         {
             new MAX_EA.MAXExporter3().export(Repository);
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void packageLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Repository.ShowInProjectView(SelectedPackage);
+        }
+
+        private void validateButton_Click(object sender, EventArgs e)
+        {
+            new ValidateParamsForm().Show(Repository);
+        }
+
+        private void transformButton_Click(object sender, EventArgs e)
+        {
+            new TransformParamsForm().Show(Repository);
         }
     }
 }

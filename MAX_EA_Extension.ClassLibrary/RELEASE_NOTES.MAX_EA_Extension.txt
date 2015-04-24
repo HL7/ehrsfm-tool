@@ -1,7 +1,12 @@
 ﻿CHANGELOG
 =========
+[2015-apr-24]
+TransformParamsForm
+- Changed checkbox to button for easier access.
+
 [2015-apt-17]
 - Added set and use of Util.CurrentOutputPath; requested by NICTIZ
+- Enabled the "Quick Access Tab"
 
 [2014-jul-12]
 Main

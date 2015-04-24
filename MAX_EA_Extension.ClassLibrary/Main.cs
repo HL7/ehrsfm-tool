@@ -40,7 +40,7 @@ namespace MAX_EA_Extension
                     return "-&MAX";
                 case "-&MAX":
                     // 1) MAX "native" Functions, 2) EA Helper Functions
-                    string[] ar = { "Import/Update", "Export", "Transform", "Validate", "-", "Lock", "Unlock", "Merge Diagrams", "Batch", "-", "About..." };
+                    string[] ar = { "Import/Update", "Export", "Transform", "Validate", "-", "Lock", "Unlock", "Merge Diagrams", "Batch", "-", "Quick Access Tab", "About..." };
                     return ar;
             }
             return "";
