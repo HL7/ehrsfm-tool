@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0"
+<xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:max="http://www.umcg.nl/MAX">
 
 	<xsl:output indent="yes" method="xml" />
@@ -44,7 +44,8 @@
 	
 	<xsl:template match="tag|attribute">
 		<xsl:variable name="prefix"><xsl:value-of select="name()"/>.</xsl:variable>
-		<xsl:variable name="postfix">.<xsl:value-of select="replace(@name,':','_')"/></xsl:variable>
+		<!-- Remove space and translate illegal tag name chars to underscore -->
+		<xsl:variable name="postfix">.<xsl:value-of select="replace(translate(@name,':()','___'),' ','')"/></xsl:variable>
 		<xsl:for-each select="@*">
 			<xsl:choose>
 				<xsl:when test="name()='name'" />

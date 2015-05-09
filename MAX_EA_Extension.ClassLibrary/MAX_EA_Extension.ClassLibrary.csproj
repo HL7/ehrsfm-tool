@@ -130,6 +130,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="hl7-favicon.ico" />
+    <Content Include="MDG\max-mdg.xml" />
+    <Content Include="MDG\max.mts" />
     <Content Include="RELEASE_NOTES.MAX_EA_Extension.txt" />
     <Content Include="Schematron\ExtractSchFromRNG-2.xsl" />
     <Content Include="Schematron\ExtractSchFromXSD-2.xsl" />
