@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2015-may-09]
+Main,MDG
+- Started to add MDG. With Publish/Export of MAX.
+
 [2015-apr-24]
 TransformParamsForm
 - Changed checkbox to button for easier access.

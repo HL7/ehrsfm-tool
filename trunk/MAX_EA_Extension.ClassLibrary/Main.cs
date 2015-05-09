@@ -30,6 +30,26 @@ namespace MAX_EA_Extension
             GC.WaitForPendingFinalizers();
         }
 
+        // --------------
+        // Install MDG
+        // Specifically the Publish/MAX item!
+        // http://www.sparxsystems.com/enterprise_architect_user_guide/9.3/standard_uml_models/add_import_export_scripts.html
+        // --------------
+        public string EA_OnInitializeTechnologies(EA.Repository Repository)
+        {
+            string mdg_xml = @"C:\Eclipse Workspace\ehrsfm_profile\MAX_EA_Extension.ClassLibrary\MDG\max-mdg.xml";
+            if (!File.Exists(mdg_xml))
+            {
+                MessageBox.Show(string.Format("MDG File not found. Please report this message.\n{0}", mdg_xml));
+            }
+            else
+            {
+                StreamReader reader = new StreamReader(mdg_xml);
+                mdg_xml = reader.ReadToEnd();
+            }
+            return mdg_xml;
+        }
+
         //Called when user Click Add-Ins Menu item from within EA.
         //Populates the Menu with our desired selections.
         public object EA_GetMenuItems(EA.Repository Repository, string Location, string MenuName)
