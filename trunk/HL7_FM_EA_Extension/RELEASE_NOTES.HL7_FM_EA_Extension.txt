@@ -9,6 +9,7 @@ Main
 - Added open of Section Form for Section Compiler Instruction
 R2ModelV2EA,ProfilingForm
 - Added handling of Section Compiler Instruction
+- Added criteria count to name in views
 SectionForm
 - Added editing of Section Compiler Instruction
 R2ProfileCompiler

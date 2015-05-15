@@ -27,8 +27,8 @@ namespace HL7_FM_EA_Extension
 
         public static void LogMessage(string message, int id = -1)
         {
-            string timestamp = DateTime.Now.ToString();
-            repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, string.Format("@{0} {1}", timestamp, message), id);
+            //string timestamp = DateTime.Now.ToString();
+            repository.WriteOutput(Properties.Resources.OUTPUT_TAB_HL7_FM, string.Format("@{0} {1}", DateTime.Now, message), id);
         }
 
         public static void SetTaggedValue(EA.Element element, string name, string value, string notes=null)

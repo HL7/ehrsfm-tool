@@ -149,7 +149,8 @@ namespace HL7_FM_EA_Extension
 
         private ListViewItem createListViewItem(EA.Element element)
         {
-            ListViewItem item = new ListViewItem(element.Name);
+            int criteriaCount = element.Elements.Cast<EA.Element>().Count(t => t.Stereotype.Equals(R2Const.ST_CRITERION));
+            ListViewItem item = new ListViewItem(string.Format("{0} ({1})", element.Name, criteriaCount));
             item.Tag = new R2ModelElementHolder(repository, element);
             updateListViewItem(item);
             return item;
@@ -213,6 +214,7 @@ namespace HL7_FM_EA_Extension
                 {
                     criteriaListView.Items.Add(createCriteriaListViewItem(child));
                 }
+
                 groupBox2.Show();
                 ignoreEvent = false;
             }
