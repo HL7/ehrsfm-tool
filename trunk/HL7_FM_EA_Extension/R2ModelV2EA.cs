@@ -40,7 +40,7 @@ namespace HL7_FM_EA_Extension
                         if (genCount == 0)
                         {
                             // Try Dependency/Generalization in case this is a Section Compiler instruction 
-                            genCount = element.Connectors.Cast<EA.Connector>().Count(c => "Dependency".Equals(c.Type) && "Generalization".Equals(c.Name));
+                            genCount = element.Connectors.Cast<EA.Connector>().Count(c => "Dependency".Equals(c.Type) && "Generalization".Equals(c.Stereotype));
                             if (genCount == 0)
                             {
                                 MessageBox.Show(string.Format("{0} is a Compiler Instruction.\nExpected one(1) Generalization to a Base Element.\nFix this manually.", element.Name), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -56,7 +56,7 @@ namespace HL7_FM_EA_Extension
                         // Try Dependency/Generalization in case this is a Section Compiler instruction 
                         if (generalization == null)
                         {
-                            generalization = element.Connectors.Cast<EA.Connector>().SingleOrDefault(c => "Dependency".Equals(c.Type) && "Generalization".Equals(c.Name));
+                            generalization = element.Connectors.Cast<EA.Connector>().SingleOrDefault(c => "Dependency".Equals(c.Type) && "Generalization".Equals(c.Stereotype));
                         }
                         EA.Element baseElement = repository.GetElementByID(generalization.SupplierID);
                         switch (baseElement.Stereotype)

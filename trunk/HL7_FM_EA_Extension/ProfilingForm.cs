@@ -305,7 +305,7 @@ namespace HL7_FM_EA_Extension
                 if (dl.baseModelEAElement.Type == "Package")
                 {
                     EA.Connector con = (EA.Connector)dl.compilerInstructionEAElement.Connectors.AddNew("", "Dependency");
-                    con.Name = "Generalization";
+                    con.Stereotype = "Generalization";
                     con.SupplierID = dl.baseModelEAElement.ElementID;
                     con.Update();
                 }

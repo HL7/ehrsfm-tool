@@ -90,6 +90,14 @@ namespace HL7_FM_EA_Extension
                         {
                             FMTreeNode node = treeNodes[rel.destId];
                             /**
+                             * Work-around for Package Generalization
+                             */
+                            if (rel.type == RelationshipTypeEnum.Dependency && "Generalization".Equals(rel.stereotype))
+                            {
+                                rel.type = RelationshipTypeEnum.Generalization;
+                            }
+
+                            /**
                              * Generalization relationship means this is a change to an existing base model element
                              */
                             if (rel.type == RelationshipTypeEnum.Generalization)
