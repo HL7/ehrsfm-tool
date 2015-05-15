@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2015-may-15]
+R2Config
+- Added PHR categories and colors
+
 [2015-jan-22/feb-03]
 Project
 - Updated .Net to v4.0 and removed "install prerequisites"
