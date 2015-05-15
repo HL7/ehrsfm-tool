@@ -1,6 +1,8 @@
 ﻿CHANGELOG
 =========
 [2015-may-15]
+"Section Compiler Instruction is a Class, base element is a Package. 
+ Generalization is not possible between Package and Class. Workaround by using Dependency with Generalization Stereotype implemented."
 R2Config
 - Added PHR categories and colors
 Main
@@ -9,6 +11,8 @@ R2ModelV2EA,ProfilingForm
 - Added handling of Section Compiler Instruction
 SectionForm
 - Added editing of Section Compiler Instruction
+R2ProfileCompiler
+- Added Section Compiler Instruction
 
 [2015-jan-22/feb-03]
 Project

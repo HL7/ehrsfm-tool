@@ -88,6 +88,14 @@ namespace HL7_FM_EA_Extension.Tests
             new R2ProfileCompiler().Compile(fileNameBase, fileNameDefinition, fileNameOutput);
         }
 
+        [TestMethod]
+        public void TestCompileOV1WithSection()
+        {
+            string fileNameBase = @"C:\Eclipse Workspace\ehrsfm_profile\HL7_FM_EA_Extension.Tests\InputFiles\EHRS_FM_R2 January 2014_Final.max.xml";
+            string fileNameDefinition = @"C:\Temp\OV1WithSection Profile Definition.max.xml";
+            string fileNameOutput = @"C:\Temp\OV1WithSection Compiled.max.xml";
+            new R2ProfileCompiler().Compile(fileNameBase, fileNameDefinition, fileNameOutput);
+        }
 
         [TestMethod]
         public void TestPreCompileMAXFile()
