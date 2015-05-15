@@ -15,8 +15,8 @@ namespace HL7_FM_EA_Extension
         public class Factory
         {
             /**
-                * Factory method to create correct model class based on the EA.Element
-                */
+             * Factory method to create correct model class based on the EA.Element
+             */
             public static R2ModelElement Create(EA.Repository repository, EA.Element element)
             {
                 R2ModelElement modelElement = null;

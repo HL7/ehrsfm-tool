@@ -28,7 +28,7 @@ namespace HL7_FM_EA_Extension
 
         private R2Config()
         {
-            // Categories and colors
+            // EHR Categories and colors
             sectionColors = new Dictionary<string, Color>();
             sectionColors["OV"] = Color.FromArgb(0x99, 0xCC, 0xFF);
             sectionColors["CP"] = Color.FromArgb(0x99, 0xFF, 0x99);
@@ -38,7 +38,6 @@ namespace HL7_FM_EA_Extension
             sectionColors["RI"] = Color.FromArgb(0xE2, 0xC4, 0xA6);
             sectionColors["TI"] = Color.FromArgb(0xFF, 0xA3, 0xA3);
 
-            // Categories and colors
             sectionColorsInt = new Dictionary<string, int>();
             sectionColorsInt["OV"] = 0xFFCC99;
             sectionColorsInt["CP"] = 0x99FF99;
@@ -56,6 +55,19 @@ namespace HL7_FM_EA_Extension
             sectionTitles["AS"] = "Administration Support";
             sectionTitles["RI"] = "Record Infrastructure";
             sectionTitles["TI"] = "Trust Infrastructure";
+
+            // PHR Categories and colors
+            sectionColors["PH"] = Color.FromArgb(0x99, 0xCC, 0xFF); // 153,204,255
+            sectionColors["S"] = Color.FromArgb(0xCC, 0xFF, 0xCC); // 204,255,204
+            sectionColors["IN"] = Color.FromArgb(0xFF, 0xFF, 0x99); // 255,255,153
+
+            sectionColorsInt["PH"] = 0xFFCC99;
+            sectionColorsInt["S"] = 0xCCFFCC;
+            sectionColorsInt["IN"] = 0x99FFFF;
+
+            sectionTitles["PH"] = "Personal Health";
+            sectionTitles["S"] = "Supportive";
+            sectionTitles["IN"] = "Information Infrastructure";
         }
 
         public Color getSectionColor(string ID, Color defaultColor)
