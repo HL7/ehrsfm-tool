@@ -32,18 +32,19 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.actorsTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.actorsLabel = new System.Windows.Forms.Label();
             this.exampleTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.exampleLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.overviewTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.overviewLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
             this.helpButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
             this.lockIcon = new System.Windows.Forms.PictureBox();
+            this.switchLinkLabel = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,14 +77,14 @@
             this.actorsTextBox.Size = new System.Drawing.Size(495, 51);
             this.actorsTextBox.TabIndex = 36;
             // 
-            // label5
+            // actorsLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 313);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Actors";
+            this.actorsLabel.AutoSize = true;
+            this.actorsLabel.Location = new System.Drawing.Point(12, 313);
+            this.actorsLabel.Name = "actorsLabel";
+            this.actorsLabel.Size = new System.Drawing.Size(37, 13);
+            this.actorsLabel.TabIndex = 35;
+            this.actorsLabel.Text = "Actors";
             // 
             // exampleTextBox
             // 
@@ -94,14 +95,14 @@
             this.exampleTextBox.Size = new System.Drawing.Size(495, 71);
             this.exampleTextBox.TabIndex = 34;
             // 
-            // label4
+            // exampleLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 236);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
-            this.label4.TabIndex = 33;
-            this.label4.Text = "Example";
+            this.exampleLabel.AutoSize = true;
+            this.exampleLabel.Location = new System.Drawing.Point(12, 236);
+            this.exampleLabel.Name = "exampleLabel";
+            this.exampleLabel.Size = new System.Drawing.Size(47, 13);
+            this.exampleLabel.TabIndex = 33;
+            this.exampleLabel.Text = "Example";
             // 
             // idTextBox
             // 
@@ -130,14 +131,14 @@
             this.overviewTextBox.Size = new System.Drawing.Size(495, 166);
             this.overviewTextBox.TabIndex = 28;
             // 
-            // label2
+            // overviewLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 67);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Overview";
+            this.overviewLabel.AutoSize = true;
+            this.overviewLabel.Location = new System.Drawing.Point(12, 67);
+            this.overviewLabel.Name = "overviewLabel";
+            this.overviewLabel.Size = new System.Drawing.Size(52, 13);
+            this.overviewLabel.TabIndex = 27;
+            this.overviewLabel.Text = "Overview";
             // 
             // nameTextBox
             // 
@@ -146,14 +147,14 @@
             this.nameTextBox.Size = new System.Drawing.Size(495, 20);
             this.nameTextBox.TabIndex = 32;
             // 
-            // label3
+            // nameLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "Name";
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(12, 38);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(35, 13);
+            this.nameLabel.TabIndex = 31;
+            this.nameLabel.Text = "Name";
             // 
             // helpButton
             // 
@@ -186,26 +187,38 @@
             this.lockIcon.TabIndex = 41;
             this.lockIcon.TabStop = false;
             // 
+            // switchLinkLabel
+            // 
+            this.switchLinkLabel.AutoSize = true;
+            this.switchLinkLabel.Location = new System.Drawing.Point(12, 383);
+            this.switchLinkLabel.Name = "switchLinkLabel";
+            this.switchLinkLabel.Size = new System.Drawing.Size(80, 13);
+            this.switchLinkLabel.TabIndex = 42;
+            this.switchLinkLabel.TabStop = true;
+            this.switchLinkLabel.Text = "Switch Element";
+            this.switchLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.switchLinkLabel_LinkClicked);
+            // 
             // SectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 405);
+            this.Controls.Add(this.switchLinkLabel);
             this.Controls.Add(this.lockIcon);
             this.Controls.Add(this.helpButton);
             this.Controls.Add(this.applyButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.actorsTextBox);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.actorsLabel);
             this.Controls.Add(this.exampleTextBox);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.exampleLabel);
             this.Controls.Add(this.nameTextBox);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.overviewTextBox);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.overviewLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -225,17 +238,18 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox actorsTextBox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label actorsLabel;
         private System.Windows.Forms.TextBox exampleTextBox;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label exampleLabel;
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox overviewTextBox;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label overviewLabel;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Button helpButton;
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.PictureBox lockIcon;
+        private System.Windows.Forms.LinkLabel switchLinkLabel;
     }
 }

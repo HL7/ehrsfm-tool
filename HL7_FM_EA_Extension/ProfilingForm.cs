@@ -302,9 +302,19 @@ namespace HL7_FM_EA_Extension
                 dl.compilerInstructionEAElement = (EA.Element)profileDefinitionPackage.Elements.AddNew(dl.baseModelEAElement.Name, "Class");
                 dl.compilerInstructionEAElement.Stereotype = R2Const.ST_COMPILERINSTRUCTION;
                 dl.compilerInstructionEAElement.Update();
-                EA.Connector con = (EA.Connector)dl.compilerInstructionEAElement.Connectors.AddNew("", "Generalization");
-                con.SupplierID = dl.baseModelEAElement.ElementID;
-                con.Update();
+                if (dl.baseModelEAElement.Type == "Package")
+                {
+                    EA.Connector con = (EA.Connector)dl.compilerInstructionEAElement.Connectors.AddNew("", "Dependency");
+                    con.Name = "Generalization";
+                    con.SupplierID = dl.baseModelEAElement.ElementID;
+                    con.Update();
+                }
+                else
+                {
+                    EA.Connector con = (EA.Connector)dl.compilerInstructionEAElement.Connectors.AddNew("", "Generalization");
+                    con.SupplierID = dl.baseModelEAElement.ElementID;
+                    con.Update();
+                }
                 dl.compilerInstructionEAElement.Connectors.Refresh();
                 dl.modelElement = R2ModelV2.EA_API.Factory.Create(repository, dl.compilerInstructionEAElement);
                 profileDefinitionPackage.Elements.Refresh();

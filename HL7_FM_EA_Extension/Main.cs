@@ -232,6 +232,9 @@ namespace HL7_FM_EA_Extension
                 {
                     switch (modelElement.Stereotype)
                     {
+                        case R2Const.ST_SECTION: // For Section Compiler Instruction!
+                            new SectionForm().Show((R2Section)modelElement);
+                            return true;
                         case R2Const.ST_HEADER:
                         case R2Const.ST_FUNCTION:
                             new FunctionForm().Show((R2Function)modelElement);

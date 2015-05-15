@@ -39,8 +39,13 @@ namespace HL7_FM_EA_Extension
                         int genCount = element.Connectors.Cast<EA.Connector>().Count(c => "Generalization".Equals(c.Type));
                         if (genCount == 0)
                         {
-                            MessageBox.Show(string.Format("{0} is a Compiler Instruction.\nExpected one(1) Generalization to a Base Element.\nFix this manually.", element.Name), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return null;
+                            // Try Dependency/Generalization in case this is a Section Compiler instruction 
+                            genCount = element.Connectors.Cast<EA.Connector>().Count(c => "Dependency".Equals(c.Type) && "Generalization".Equals(c.Name));
+                            if (genCount == 0)
+                            {
+                                MessageBox.Show(string.Format("{0} is a Compiler Instruction.\nExpected one(1) Generalization to a Base Element.\nFix this manually.", element.Name), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return null;
+                            }
                         }
                         else if (genCount > 1)
                         {
@@ -48,6 +53,11 @@ namespace HL7_FM_EA_Extension
                             return null;
                         }
                         EA.Connector generalization = element.Connectors.Cast<EA.Connector>().SingleOrDefault(c => "Generalization".Equals(c.Type));
+                        // Try Dependency/Generalization in case this is a Section Compiler instruction 
+                        if (generalization == null)
+                        {
+                            generalization = element.Connectors.Cast<EA.Connector>().SingleOrDefault(c => "Dependency".Equals(c.Type) && "Generalization".Equals(c.Name));
+                        }
                         EA.Element baseElement = repository.GetElementByID(generalization.SupplierID);
                         switch (baseElement.Stereotype)
                         {
