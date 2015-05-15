@@ -3,6 +3,12 @@
 [2015-may-15]
 R2Config
 - Added PHR categories and colors
+Main
+- Added open of Section Form for Section Compiler Instruction
+R2ModelV2EA,ProfilingForm
+- Added handling of Section Compiler Instruction
+SectionForm
+- Added editing of Section Compiler Instruction
 
 [2015-jan-22/feb-03]
 Project

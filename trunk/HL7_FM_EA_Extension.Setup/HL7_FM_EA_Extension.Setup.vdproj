@@ -155,6 +155,11 @@
             "AssemblyAsmDisplayName" = "8:MAX_EA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_18B835DEF62AD40DC85D3A32D64FB67B"
+                    {
+                    "Name" = "8:MAX_EA.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MAX_EA.dll"
             "TargetName" = "8:"
@@ -284,7 +289,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HL7 FM EA Extension"
         "ProductCode" = "8:{CDC11C57-657D-41FC-9ACA-C7E815B66F41}"
-        "PackageCode" = "8:{F7797F33-577F-4F10-BDED-41A9E05119B0}"
+        "PackageCode" = "8:{865297C2-C992-45C9-AD81-3EDED268E6E6}"
         "UpgradeCode" = "8:{C34E59C2-750C-4865-857C-7CC8A3BF387C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
