@@ -257,7 +257,11 @@ namespace MAX_EA.MAXSchema {
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
         public string[] Text;
-        
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "token")]
+        public string id;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType="token")]
         public string name;

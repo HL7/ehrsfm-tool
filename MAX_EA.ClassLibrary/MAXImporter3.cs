@@ -308,7 +308,7 @@ namespace MAX_EA
                 foreach (AttributeType maxAtt in maxObj.attribute)
                 {
                     string attName = maxAtt.name.Trim();
-                    EA.Attribute att = (EA.Attribute)eaElement.Attributes.GetByName(attName);
+                    EA.Attribute att = getAttributeByName(eaElement, attName);// (EA.Attribute)eaElement.Attributes.GetByName(attName);
                     if (att == null)
                     {
                         att = (EA.Attribute)eaElement.Attributes.AddNew(attName, "");
@@ -600,6 +600,18 @@ namespace MAX_EA
             {
                 updateElementDict(eaChildElement);
             }
+        }
+
+        private EA.Attribute getAttributeByName(EA.Element eaElement, string attName)
+        {
+            foreach (EA.Attribute eaAttribute in eaElement.Attributes)
+            {
+                if (attName.Equals(eaAttribute.Name))
+                {
+                    return eaAttribute;
+                }
+            }
+            return null;
         }
     }
 }
