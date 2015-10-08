@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("UMCG")]
 [assembly: AssemblyProduct("MAX_EA.ClassLibrary")]
-[assembly: AssemblyCopyright("Copyright © UMCG 2013")]
+[assembly: AssemblyCopyright("Copyright © UMCG 2013-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

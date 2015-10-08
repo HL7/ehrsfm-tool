@@ -57,7 +57,8 @@
     <xs:sequence minOccurs="0" maxOccurs="unbounded">
       <xs:element name="tag" type="TagType" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-		<xs:attribute name="name" type="xs:token" use="required" />
+    <xs:attribute name="id" type="xs:token" use="optional" />
+    <xs:attribute name="name" type="xs:token" use="required" />
 		<xs:attribute name="alias" type="xs:string" use="optional" />
 		<xs:attribute name="minCard" type="xs:token" use="optional" />
 		<xs:attribute name="maxCard" type="xs:token" use="optional" />

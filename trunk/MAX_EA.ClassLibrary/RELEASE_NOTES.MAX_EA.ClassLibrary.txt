@@ -33,8 +33,15 @@ ISSUE!! EA uses system configured dateformat, DateFormat.Parse doesnot???
 
 EA11 ISSUE. t_diagramlinks is empty if connectors are not touched. Workaround is to touch a connector.
 
+EA BUG: EA.Element.Attributes.GetByName throws Exception when class has attributes
+
 CHANGELOG
 =========
+[2015-oct-08]
+MAXSchema,MAXExporter3
+- Added attribute.id (raw id, should also use MAX::ID tagged value method, not used on import now, update by name)
+- Implemented workaround for EA.Element.Attributes.GetByName EA Bug.
+
 [2015-apr-17]
 Util
 - Added CurrentOutputPath and use it; requested by NICTIZ

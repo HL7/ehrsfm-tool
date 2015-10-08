@@ -421,6 +421,7 @@ namespace MAX_EA
                 {
                     AttributeType maxAtt = new AttributeType();
                     int Attribute_ID = xAtt.ElementValueInt("ID");
+                    maxAtt.id = Attribute_ID.ToString();
                     maxAtt.name = xAtt.ElementValue("Name");
                     maxAtt.minCard = xAtt.ElementValue("LowerBound");
                     maxAtt.maxCard = xAtt.ElementValue("UpperBound");
