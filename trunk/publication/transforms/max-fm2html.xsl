@@ -365,7 +365,7 @@
                 <xsl:if test="$is-top = 'f'">
                     <xsl:call-template name="function-nav">
                         <xsl:with-param name="order" select="$order"/>
-                        <xsl:with-param name="nav-text" select="concat(alias, '  ', name)"/>
+                        <xsl:with-param name="nav-text" select="name"/>
                         <xsl:with-param name="background-qualifier" select="'-lev1-main'"/>
                     </xsl:call-template>
                 </xsl:if>
