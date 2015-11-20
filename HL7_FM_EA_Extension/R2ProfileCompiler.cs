@@ -90,11 +90,20 @@ namespace HL7_FM_EA_Extension
                         {
                             FMTreeNode node = treeNodes[rel.destId];
                             /**
-                             * Work-around for Package Generalization
+                             * Dependency with Generalization/Aggregation-stereotype is used as Work-around 
+                             * for Package Generalization/Aggregation (which is not possible / allowed in UML)
+                             * e.g. used for new Functions
                              */
-                            if (rel.type == RelationshipTypeEnum.Dependency && "Generalization".Equals(rel.stereotype))
+                            if (rel.type == RelationshipTypeEnum.Dependency)
                             {
-                                rel.type = RelationshipTypeEnum.Generalization;
+                                if ("Generalization".Equals(rel.stereotype))
+                                {
+                                    rel.type = RelationshipTypeEnum.Generalization;
+                                }
+                                if ("Aggregation".Equals(rel.stereotype))
+                                {
+                                    rel.type = RelationshipTypeEnum.Aggregation;
+                                }
                             }
 
                             /**

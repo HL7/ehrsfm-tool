@@ -1,5 +1,11 @@
 ﻿CHANGELOG
 =========
+[2015-nov-20]
+R2ProfileCompiler
+- Implemented workaround for new functions.
+	* Dependency with Generalization/Aggregation-stereotype is used as Work-around 
+	* for Package Generalization/Aggregation (which is not possible / allowed in UML).
+
 [2015-may-15]
 "Section Compiler Instruction is a Class, base element is a Package. 
  Generalization is not possible between Package and Class. Workaround by using Dependency with Generalization Stereotype implemented."

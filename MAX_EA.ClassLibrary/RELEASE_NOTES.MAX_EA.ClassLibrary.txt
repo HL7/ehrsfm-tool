@@ -41,6 +41,7 @@ CHANGELOG
 MAXSchema,MAXExporter3
 - Added attribute.id (raw id, should also use MAX::ID tagged value method, not used on import now, update by name)
 - Implemented workaround for EA.Element.Attributes.GetByName EA Bug.
+DataElement/XSD+XSLTS added
 
 [2015-apr-17]
 Util
