@@ -141,6 +141,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_850CC94B61777EEDE7E4469A93DAB735"
+        "OwnerKey" = "8:_45673C46DD63F9531C0668F39EE9F19B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8DF1BB84BBBCAF3B280726C63E6DB714"
         "OwnerKey" = "8:_2FA0B0827F9AC9C7FF892C807A164F81"
         "MsmSig" = "8:_UNDEFINED"
@@ -203,12 +209,6 @@
         {
         "MsmKey" = "8:_E2631313F8478F79C130C26D25F61C51"
         "OwnerKey" = "8:_6766A725ECE24596A072AE3495BC51ED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F3600B097190510D6D5E8ACD7FF06526"
-        "OwnerKey" = "8:_45673C46DD63F9531C0668F39EE9F19B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -599,6 +599,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_850CC94B61777EEDE7E4469A93DAB735"
+            {
+            "SourcePath" = "8:EA.TLB"
+            "TargetName" = "8:EA.TLB"
+            "Tag" = "8:"
+            "Folder" = "8:_7EDD7DFFC75D4056831978833B054AF0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:2"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8DF1BB84BBBCAF3B280726C63E6DB714"
             {
             "AssemblyRegister" = "3:1"
@@ -712,26 +732,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F3600B097190510D6D5E8ACD7FF06526"
-            {
-            "SourcePath" = "8:EA.tlb"
-            "TargetName" = "8:EA.TLB"
-            "Tag" = "8:"
-            "Folder" = "8:_7EDD7DFFC75D4056831978833B054AF0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:2"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
         }
         "FileType"
         {
@@ -789,14 +789,14 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MAX_EA_Extension"
         "ProductCode" = "8:{9D8C597B-21F4-474B-BB0C-3DB0AD656877}"
-        "PackageCode" = "8:{08F9FB1F-BB44-4C2C-89D9-04EB7F8B2141}"
+        "PackageCode" = "8:{F3FF7DA3-18AE-480B-BB8D-A6176203C8E1}"
         "UpgradeCode" = "8:{88D5AB14-7864-425E-BEA1-5D599036D021}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.15.1008"
+        "ProductVersion" = "8:1.16.0105"
         "Manufacturer" = "8:UMCG"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
