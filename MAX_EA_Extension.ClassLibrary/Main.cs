@@ -37,14 +37,15 @@ namespace MAX_EA_Extension
         // --------------
         public string EA_OnInitializeTechnologies(EA.Repository Repository)
         {
-            string mdg_xml = @"C:\Eclipse Workspace\ehrsfm_profile\MAX_EA_Extension.ClassLibrary\MDG\max-mdg.xml";
-            if (!File.Exists(mdg_xml))
+            string mdg_xml = "";
+            string path = @"C:\Eclipse Workspace\ehrsfm_profile\MAX_EA_Extension.ClassLibrary\MDG\max-mdg.xml";
+            if (!File.Exists(path))
             {
-                MessageBox.Show(string.Format("MDG File not found. Please report this message.\n{0}", mdg_xml));
+                //MessageBox.Show(string.Format("MDG File not found. Please report this message.\n{0}", path));
             }
             else
             {
-                StreamReader reader = new StreamReader(mdg_xml);
+                StreamReader reader = new StreamReader(path);
                 mdg_xml = reader.ReadToEnd();
             }
             return mdg_xml;

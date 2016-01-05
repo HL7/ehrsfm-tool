@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2016-jan-05]
+Main,MDG
+- Disabled MDG for normal installs for now, caused Exception.
+
 [2015-may-09]
 Main,MDG
 - Started to add MDG. With Publish/Export of MAX.
