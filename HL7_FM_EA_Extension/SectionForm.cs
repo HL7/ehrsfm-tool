@@ -60,7 +60,7 @@ namespace HL7_FM_EA_Extension
                 //textLinkLabel.Enabled = false;
                 //textTextBox.Visible = true;
 
-                Text = string.Format("EHR-S FM Section: {0} (Profile Definition) @{1}", section.Name, section.LastModified);
+                Text = string.Format("HL7 FM Section: {0} (Profile Definition) @{1}", section.Name, section.LastModified);
                 switchLinkLabel.Text = "Switch to base Element";
 
                 updateLabels();
@@ -70,7 +70,7 @@ namespace HL7_FM_EA_Extension
                 //textTextBox.Visible = true;
                 //textLinkLabel.Enabled = false;
 
-                Text = string.Format("EHR-S FM Section: {0} @{1}", section.Name, section.LastModified);
+                Text = string.Format("HL7 FM Section: {0} @{1}", section.Name, section.LastModified);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
 
                 updateLabels(false);

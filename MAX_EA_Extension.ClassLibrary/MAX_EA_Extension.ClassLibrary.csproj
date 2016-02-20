@@ -64,6 +64,7 @@
     <Compile Include="BatchForm.Designer.cs">
       <DependentUpon>BatchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Filters.cs" />
     <Compile Include="ValidateParamsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +145,14 @@
     <Content Include="Schematron\iso_svrl_for_xslt2.xsl" />
     <Content Include="Schematron\readme.txt" />
     <Content Include="Schematron\schematron-skeleton-api.htm" />
+    <Content Include="XML Transforms\excel-de-to-max.xslt" />
+    <Content Include="XML Transforms\excel-to-full-max.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XML Transforms\max-to-excel-de.xslt" />
+    <Content Include="XML Transforms\simplify-max-for-excel.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

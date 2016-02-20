@@ -72,7 +72,7 @@ namespace HL7_FM_EA_Extension
                 descriptionLinkLabel.Enabled = false;
                 descriptionTextBox.Visible = true;
 
-                Text = string.Format("EHR-S FM {0}: {1} (Profile Definition) @{2}", function.Stereotype, function.Name, function.LastModified);
+                Text = string.Format("HL7 FM {0}: {1} (Profile Definition) @{2}", function.Stereotype, function.Name, function.LastModified);
                 switchLinkLabel.Text = "Switch to base Element";
 
                 updateLabels();
@@ -82,7 +82,7 @@ namespace HL7_FM_EA_Extension
                 descriptionTextBox.Visible = true;
                 descriptionLinkLabel.Enabled = false;
 
-                Text = string.Format("EHR-S FM {0}: {1} @{2}", function.Stereotype, function.Name, function.LastModified);
+                Text = string.Format("HL7 FM {0}: {1} @{2}", function.Stereotype, function.Name, function.LastModified);
                 switchLinkLabel.Text = "Back to Profile Definition Element";
 
                 updateLabels(false);

@@ -1,5 +1,13 @@
 ﻿CHANGELOG
 =========
+[2016-feb-20]
+QuickAccessControl
+- Removed MAX buttons, just install the MAX Extension for this
+
+[2016-jan-21]
+*Form
+- Changed "EHR-S FM" in title to "HL7 FM". This is a generic tool for HL7 FMs!
+
 [2015-nov-20]
 R2ProfileCompiler
 - Implemented workaround for new functions.

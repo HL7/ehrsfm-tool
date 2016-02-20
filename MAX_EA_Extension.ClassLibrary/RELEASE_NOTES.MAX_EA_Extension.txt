@@ -1,5 +1,11 @@
 ﻿CHANGELOG
 =========
+[2016-feb-19]
+XML Transforms,Filters
+- Moved xslts in from the MAX_EA Library.
+- Added file type DataElement selection in import/export and call associated xslts
+  excel-de-to-max on import and ma-to-excel-de on export
+
 [2016-jan-05]
 Main,MDG
 - Disabled MDG for normal installs for now, caused Exception.

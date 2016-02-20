@@ -226,7 +226,7 @@
             this.Name = "SectionForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "EHR-S FM Section";
+            this.Text = "HL7 FM Section";
             ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -16,7 +16,7 @@ namespace MAX_EA_Extension
         public bool validate(EA.Repository Repository, string maxFile, string schFile, string svrlFile)
         {
             string iso_sch_xsl_file = Main.getAppDataFullPath(@"Schematron\iso_svrl_for_xslt2.xsl");
-            string sch_xsl_file = Path.Combine(Util.CurrentOutputPath, "max-tmp.sch.xsl");
+            string sch_xsl_file = Path.Combine(Filters.CurrentOutputPath, "max-tmp.sch.xsl");
 
             // Create a Processor instance.
             Processor processor = new Processor();
