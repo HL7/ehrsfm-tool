@@ -20,7 +20,7 @@ namespace MAX_EA_Extension
             //No special processing required.
             /* return "MDG" to receive extra MDG Events
              */
-            Util.CurrentOutputPath = Path.GetTempPath();
+            Filters.CurrentOutputPath = Path.GetTempPath();
             return "";
         }
 
@@ -38,7 +38,7 @@ namespace MAX_EA_Extension
         public string EA_OnInitializeTechnologies(EA.Repository Repository)
         {
             string mdg_xml = "";
-            string path = @"C:\Eclipse Workspace\ehrsfm_profile\MAX_EA_Extension.ClassLibrary\MDG\max-mdg.xml";
+            string path = getAppDataFullPath(@"MDG\max-mdg.xml");
             if (!File.Exists(path))
             {
                 //MessageBox.Show(string.Format("MDG File not found. Please report this message.\n{0}", path));
@@ -61,7 +61,7 @@ namespace MAX_EA_Extension
                     return "-&MAX";
                 case "-&MAX":
                     // 1) MAX "native" Functions, 2) EA Helper Functions
-                    string[] ar = { "Import/Update", "Export", "Transform", "Validate", "-", "Lock", "Unlock", "Merge Diagrams", "Batch", "-", "Quick Access Tab", "About..." };
+                    string[] ar = { "Import", "Export", "Transform", "Filters", "Validate", "-", "Lock", "Unlock", "Merge Diagrams", "Batch", "-", "Quick Access Tab", "About..." };
                     return ar;
             }
             return "";
@@ -90,19 +90,20 @@ namespace MAX_EA_Extension
                 {
                     case "Lock":
                     case "Unlock":
-                    case "Import/Update":
+                    case "Import":
                     case "Merge Diagrams":
                         IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage);
                         break;
+                    case "Transform":
                     case "Export":
                         IsEnabled = (Repository.GetContextItemType() == EA.ObjectType.otPackage || Repository.GetContextItemType() == EA.ObjectType.otDiagram);
                         break;
-                    case "Transform":
                     case "Validate":
                         IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage || Repository.GetTreeSelectedItemType() == EA.ObjectType.otDiagram);
                         break;
                     case "Batch":
                     case "Quick Access Tab":
+                    case "Filters":
                     case "About...":
                         IsEnabled = true;
                         break;
@@ -134,10 +135,10 @@ namespace MAX_EA_Extension
                 EA.Package selectedPackage = Repository.GetTreeSelectedPackage();
                 switch (ItemName)
                 {
-                    case "Import/Update":
+                    case "Import":
                         Repository.CreateOutputTab(MAX_TABNAME);
                         Repository.ClearOutput(MAX_TABNAME);
-                        if (new MAX_EA.MAXImporter3().import(Repository, selectedPackage))
+                        if (new Filters().import(Repository, selectedPackage))
                         {
                             // only popup when there were any issues
                             Repository.EnsureOutputVisible(MAX_TABNAME);
@@ -146,11 +147,14 @@ namespace MAX_EA_Extension
                     case "Export":
                         Repository.CreateOutputTab(MAX_TABNAME);
                         Repository.ClearOutput(MAX_TABNAME);
-                        if (new MAX_EA.MAXExporter3().export(Repository))
+                        if (new Filters().export(Repository))
                         {
                             // only popup when there were any issues
                             Repository.EnsureOutputVisible(MAX_TABNAME);
                         }
+                        break;
+                    case "Filters":
+                        // TODO: create Config Filters Dialogs
                         break;
                     case "Transform":
                         Repository.CreateOutputTab(MAX_TABNAME);
@@ -312,7 +316,7 @@ namespace MAX_EA_Extension
                 foreach (string name in form.getSelectedItems())
                 {
                     EA.Package package = content[name];
-                    issues |= new MAX_EA.MAXExporter3().exportPackage(Repository, package);
+                    issues |= new Filters().exportPackage(Repository, package);
                 }
                 if (issues)
                 {
@@ -344,13 +348,9 @@ namespace MAX_EA_Extension
         public static string getAppDataFullPath(string filename)
         {
             string filepath;
-            // Check if in developer mode
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                // Devel path
-                filepath = string.Format(@"C:\Eclipse Workspace\ehrsfm_profile\MAX_EA_Extension.ClassLibrary\{0}", filename);
-            }
-            else
+            // Devel path
+            filepath = string.Format(@"C:\Eclipse Workspace\ehrsfm_profile\MAX_EA_Extension.ClassLibrary\{0}", filename);
+            if (!File.Exists(filepath))
             {
                 filepath = string.Format(@"{0}\UMCG\MAX_EA_Extension\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
             }

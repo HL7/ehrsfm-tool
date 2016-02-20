@@ -49,12 +49,12 @@ namespace MAX_EA_Extension
 
         private void importButton_Click(object sender, EventArgs e)
         {
-            new MAX_EA.MAXImporter3().import(Repository, SelectedPackage);
+            new Filters().import(Repository, SelectedPackage);
         }
 
         private void exportButton_Click(object sender, EventArgs e)
         {
-            new MAX_EA.MAXExporter3().export(Repository);
+            new Filters().export(Repository);
         }
 
         private void packageLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -37,6 +37,10 @@ EA BUG: EA.Element.Attributes.GetByName throws Exception when class has attribut
 
 CHANGELOG
 =========
+[2016-feb-20]
+Util
+- Removed file dialog stuff to the Extension
+
 [2015-oct-08]
 MAXSchema,MAXExporter3
 - Added attribute.id (raw id, should also use MAX::ID tagged value method, not used on import now, update by name)

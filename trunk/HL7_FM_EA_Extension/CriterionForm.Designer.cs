@@ -322,7 +322,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "EHR-S FM Criterion";
+            this.Text = "HL7 FM Criterion";
             ((System.ComponentModel.ISupportInitialize)(this.seqNoNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).EndInit();

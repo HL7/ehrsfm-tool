@@ -35,10 +35,8 @@ namespace HL7_FM_EA_Extension
                 linkLabel1.Enabled = false;
                 buttonImportR11.Enabled = false;
                 buttonImportR2.Enabled = false;
-                buttonImportMAX.Enabled = false;
                 buttonValidate.Enabled = false;
                 buttonGenHTML.Enabled = false;
-                buttonExportMAX.Enabled = false;
             }
             else
             {
@@ -46,21 +44,9 @@ namespace HL7_FM_EA_Extension
                 linkLabel1.Enabled = true;
                 buttonImportR11.Enabled = true;
                 buttonImportR2.Enabled = true;
-                buttonImportMAX.Enabled = true;
                 buttonValidate.Enabled = true;
                 buttonGenHTML.Enabled = false;
-                buttonExportMAX.Enabled = true;
             }
-        }
-
-        private void buttonExportMAX_Click(object sender, EventArgs e)
-        {
-            new MAX_EA.MAXExporter3().export(Repository);
-        }
-
-        private void buttonImportMAX_Click(object sender, EventArgs e)
-        {
-            new MAX_EA.MAXImporter3().import(Repository, SelectedPackage);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -26,7 +26,7 @@ namespace MAX_EA_Extension
         public bool Show(EA.Repository repository)
         {
             this.repository = repository;
-            string defaultFolder = Util.CurrentOutputPath;
+            string defaultFolder = Filters.CurrentOutputPath;
             string maxFile = "";
             string schFile = GetSchematronTaggedValue(repository).Value;
             string svrlFile = "";
@@ -34,7 +34,7 @@ namespace MAX_EA_Extension
             if (type == EA.ObjectType.otPackage)
             {
                 EA.Package package = repository.GetTreeSelectedPackage();
-                maxFile = Path.Combine(defaultFolder, string.Format("{0}.max.xml", package.Name));
+                maxFile = Path.Combine(defaultFolder, string.Format("{0}.max", package.Name));
                 svrlFile = Path.Combine(defaultFolder, string.Format("{0}-svrl_output.xml", package.Name));
             }
             else if (type == EA.ObjectType.otDiagram)

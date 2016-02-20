@@ -287,7 +287,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "EHR-S FM Function";
+            this.Text = "HL7 FM Function";
             ((System.ComponentModel.ISupportInitialize)(this.lockIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -28,7 +28,7 @@ namespace MAX_EA_Extension
         public bool Show(EA.Repository repository)
         {
             this.repository = repository;
-            string defaultFolder = Util.CurrentOutputPath;
+            string defaultFolder = Filters.CurrentOutputPath;
             string maxFile = "";
             string xsltFile = GetXsltTaggedValue(repository).Value;
             string outputFile = "";
@@ -36,13 +36,13 @@ namespace MAX_EA_Extension
             if (type == EA.ObjectType.otPackage)
             {
                 EA.Package package = repository.GetTreeSelectedPackage();
-                maxFile = Path.Combine(defaultFolder, string.Format("{0}.max.xml", package.Name));
+                maxFile = Path.Combine(defaultFolder, string.Format("{0}.max", package.Name));
                 outputFile = Path.Combine(defaultFolder, string.Format("{0}.{1}", package.Name, outputFormat));
             }
             else if (type == EA.ObjectType.otDiagram)
             {
                 EA.Diagram diagram = (EA.Diagram)repository.GetTreeSelectedObject();
-                maxFile = Path.Combine(defaultFolder, string.Format("{0}.max.xml", diagram.Name));
+                maxFile = Path.Combine(defaultFolder, string.Format("{0}.max", diagram.Name));
                 outputFile = Path.Combine(defaultFolder, string.Format("{0}.{1}", diagram.Name, outputFormat));
             }
 
@@ -178,14 +178,14 @@ namespace MAX_EA_Extension
 
         private void button3_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "MAX files|*.max.xml";
+            openFileDialog1.Filter = "MAX files|*.max";
             openFileDialog1.Title = "Select Input file";
             openFileDialog1.InitialDirectory = Path.GetDirectoryName(textBox1.Text);
             openFileDialog1.FileName = Path.GetFileName(textBox1.Text);
             openFileDialog1.CheckFileExists = false;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                Util.CurrentOutputPath = Path.GetDirectoryName(openFileDialog1.FileName);
+                Filters.CurrentOutputPath = Path.GetDirectoryName(openFileDialog1.FileName);
                 textBox1.Text = openFileDialog1.FileName;
             }
         }

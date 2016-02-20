@@ -15,7 +15,7 @@ namespace MAX_EA
         public bool issues = false;
     }
 
-    public class MAXImporter3 : Util
+    public class MAXImporter3
     {
         // Tagged value used for externalized ID
         private const string TV_MAX_ID = "MAX::ID";
@@ -25,25 +25,6 @@ namespace MAX_EA
         private readonly Dictionary<string, EA.Element> eaElementDict = new Dictionary<string, EA.Element>();
         private readonly Dictionary<string, EA.Package> eaPackageDict = new Dictionary<string, EA.Package>();
         private readonly Dictionary<string, int> idMappings = new Dictionary<string, int>();
-
-        public bool import(EA.Repository Repository, EA.Package selectedPackage)
-        {
-            string defaultFileName = @"C:\Temp\max.xml";
-            EA.TaggedValue tvImportFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
-            if (tvImportFile != null)
-            {
-                defaultFileName = tvImportFile.Value;
-            }
-            string fileName = showFileDialog("Select input MAX XML file", "xml files (*.xml, *.max)|*.xml;*.max", defaultFileName, true);
-            if (fileName != String.Empty)
-            {
-                return import(Repository, selectedPackage, fileName);
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         public bool import(EA.Repository Repository, EA.Package selectedPackage, string fileName)
         {

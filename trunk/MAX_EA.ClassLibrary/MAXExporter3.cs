@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace MAX_EA
 {
-    public class MAXExporter3 : Util
+    public class MAXExporter3
     {
         // Temporary tagged value used for externalized ID
         private const string TV_MAX_ID = "MAX::ID";
@@ -25,31 +25,6 @@ namespace MAX_EA
         private EA.Repository Repository;
         private readonly Dictionary<int, int> packageToObjectIDDict = new Dictionary<int, int>();
         private readonly Dictionary<int, string> _objectID2MAXIDDict = new Dictionary<int, string>();
-
-        public bool export(EA.Repository Repository)
-        {
-            EA.ObjectType type = Repository.GetContextItemType();
-            if (type == EA.ObjectType.otPackage)
-            {
-                EA.Package package = (EA.Package)Repository.GetContextObject();
-                exportPackage(Repository, package);
-            }
-            else if (type == EA.ObjectType.otDiagram)
-            {
-                EA.Diagram diagram = (EA.Diagram)Repository.GetContextObject();
-                string defaultFileName = Path.Combine(CurrentOutputPath, string.Format(@"{0}.max.xml", diagram.Name));
-                string fileName = showFileDialog("Select output MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, false);
-                if (fileName != String.Empty)
-                {
-                    exportDiagram(Repository, diagram, fileName);
-                }
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("Select a Package or Diagram");
-            }
-            return issues;
-        }
 
         public bool export(EA.Repository Repository, string fileName)
         {
@@ -67,23 +42,7 @@ namespace MAX_EA
             return issues;
         }
 
-        public bool exportPackage(EA.Repository Repository, EA.Package package)
-        {
-            string defaultFileName = Path.Combine(CurrentOutputPath, string.Format(@"{0}.max.xml", package.Name));
-            EA.TaggedValue tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
-            if (tvExportFile != null)
-            {
-                defaultFileName = tvExportFile.Value;
-            }
-            string fileName = showFileDialog("Select output MAX XML file", "xml files (*.xml)|*.xml", defaultFileName, false);
-            if (fileName != String.Empty)
-            {
-                exportPackage(Repository, package, fileName);
-            }
-            return issues;
-        }
-
-        public void exportPackage(EA.Repository Repository, EA.Package package, string fileName)
+        public bool exportPackage(EA.Repository Repository, EA.Package package, string fileName)
         {
             this.Repository = Repository;
 
@@ -129,9 +88,10 @@ namespace MAX_EA
             }
             tvExportFile.Value = fileName;
             tvExportFile.Update();
+            return issues;
         }
 
-        public void exportDiagram(EA.Repository Repository, EA.Diagram diagram, string fileName)
+        public bool exportDiagram(EA.Repository Repository, EA.Diagram diagram, string fileName)
         {
             this.Repository = Repository;
             progress_max = 1;
@@ -160,6 +120,7 @@ namespace MAX_EA
             {
                 serializer.Serialize(writer, model);
             }
+            return issues;
         }
 
         private void visitSelectedPackage(int Package_ID)

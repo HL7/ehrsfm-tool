@@ -64,17 +64,8 @@
       <DependentUpon>ProgressWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="XML Transforms\excel-de-to-max.xslt" />
-    <Content Include="XML Transforms\excel-to-full-max.xslt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XML Transforms\max-to-excel-de.xslt" />
-    <Content Include="XML Transforms\simplify-max-for-excel.xslt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="XML Schema\MAX XML Schema.png" />
     <None Include="Examples\MAX-example.xml">
       <SubType>Designer</SubType>
