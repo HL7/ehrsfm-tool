@@ -126,6 +126,13 @@ namespace MAX_EA_Extension
                     string tmpFile = fileName + ".tmp";
                     if (!new MAXExporter3().exportPackage(Repository, package, tmpFile))
                     {
+                        tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.GetByName("MAX::ExportFile");
+                        if (tvExportFile == null)
+                        {
+                            tvExportFile = (EA.TaggedValue)package.Element.TaggedValues.AddNew("MAX::ExportFile", "");
+                        }
+                        tvExportFile.Value = fileName;
+                        tvExportFile.Update();
                         return filter(Repository, tmpFile, xsltFile, fileName);
                     }
                     else
