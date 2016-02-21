@@ -155,6 +155,7 @@ namespace MAX_EA_Extension
                         break;
                     case "Filters":
                         // TODO: create Config Filters Dialogs
+                        MessageBox.Show("NYI");
                         break;
                     case "Transform":
                         Repository.CreateOutputTab(MAX_TABNAME);
