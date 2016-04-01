@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -353,7 +352,7 @@ namespace MAX_EA_Extension
             filepath = string.Format(@"C:\Eclipse Workspace\ehrsfm_profile\MAX_EA_Extension.ClassLibrary\{0}", filename);
             if (!File.Exists(filepath))
             {
-                filepath = string.Format(@"{0}\UMCG\MAX_EA_Extension\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
+                filepath = string.Format(@"{0}\HL7\MAX_EA_Extension\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
             }
             return filepath;
         }

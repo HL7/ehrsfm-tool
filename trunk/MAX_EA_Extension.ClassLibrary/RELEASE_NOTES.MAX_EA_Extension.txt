@@ -1,5 +1,8 @@
 ﻿CHANGELOG
 =========
+[2016-apr-01]
+Updated to SaxonHE9-7-0-4N
+
 [2016-feb-19]
 XML Transforms,Filters
 - Moved xslts in from the MAX_EA Library.
