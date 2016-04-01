@@ -127,10 +127,29 @@ namespace MAX_EA
             }
             string id = maxObj.id.Trim().ToUpper();
 
-            // first check if element already in package
-            // if not create, otherwise use existing and update
             string name = maxObj.name;
             EA.Element eaElement;
+            // if this element is unwanted then delete it or ignore it when it is not anymore in the model
+            if ("#UNWANTED#".Equals(name))
+            {
+                if (eaElementDict.ContainsKey(id))
+                {
+                    eaElement = eaElementDict[id];
+                    short idx = 0;
+                    foreach (EA.Element pkgElement in wm.eaPackage.Elements)
+                    {
+                        if (pkgElement.ElementGUID == eaElement.ElementGUID)
+                        {
+                            wm.eaPackage.Elements.DeleteAt(idx, true);
+                            return;
+                        }
+                        idx++;
+                    }
+                }
+                return;
+            }
+            // check if element already in package
+            // if not create, otherwise use existing and update
             if (eaElementDict.ContainsKey(id))
             {
                 eaElement = eaElementDict[id];
@@ -289,12 +308,28 @@ namespace MAX_EA
                 foreach (AttributeType maxAtt in maxObj.attribute)
                 {
                     string attName = maxAtt.name.Trim();
-                    EA.Attribute att = getAttributeByName(eaElement, attName);// (EA.Attribute)eaElement.Attributes.GetByName(attName);
+                    if ("#UNWANTED#".Equals(attName))
+                    {
+                        short idx = 0;
+                        foreach (EA.Attribute eaAtt in eaElement.Attributes)
+                        {
+                            if (eaAtt.AttributeID.ToString().Equals(maxAtt.id))
+                            {
+                                eaElement.Attributes.DeleteAt(idx, true);
+                                continue;
+                            }
+                            idx++;
+                        }
+                        continue;
+                    }
+                    // Prefer att id, but that is not always known
+                    EA.Attribute att = getAttributeByIdOrName(eaElement, maxAtt.id, attName);// (EA.Attribute)eaElement.Attributes.GetByName(attName);
                     if (att == null)
                     {
                         att = (EA.Attribute)eaElement.Attributes.AddNew(attName, "");
                     }
                     att.Pos = attPos++;
+                    att.Name = attName;
                     if (maxAtt.alias != null)
                     {
                         att.Alias = maxAtt.alias;
@@ -587,6 +622,22 @@ namespace MAX_EA
         {
             foreach (EA.Attribute eaAttribute in eaElement.Attributes)
             {
+                if (attName.Equals(eaAttribute.Name))
+                {
+                    return eaAttribute;
+                }
+            }
+            return null;
+        }
+
+        private EA.Attribute getAttributeByIdOrName(EA.Element eaElement, string attId, string attName)
+        {
+            foreach (EA.Attribute eaAttribute in eaElement.Attributes)
+            {
+                if (eaAttribute.AttributeID.ToString().Equals(attId))
+                {
+                    return eaAttribute;
+                }
                 if (attName.Equals(eaAttribute.Name))
                 {
                     return eaAttribute;

@@ -2,6 +2,10 @@
 =========
 [2016-apr-01]
 Updated to SaxonHE9-7-0-4N
+MAXImporter3
+- Use "#UNWANTED#" as Element name to remove it
+- Use "#UNWANTED#" as Attribute name to remove it
+- Attributes are now found by id also, so you can change the name
 
 [2016-feb-19]
 XML Transforms,Filters
