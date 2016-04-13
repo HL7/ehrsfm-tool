@@ -310,8 +310,11 @@ namespace HL7_FM_EA_Extension
         private void displayNode(FMTreeNode node, int depth)
         {
             List<String> tagsAsString = new List<string>();
-            List<TagType> tags = new List<TagType>(node.baseModelObject.tag);
-            tags.ForEach(t => tagsAsString.Add(string.Format("{0}={1}", t.name, t.value)));
+            //if (node.baseModelObject.tag != null)
+            {
+                List<TagType> tags = new List<TagType>(node.baseModelObject.tag);
+                tags.ForEach(t => tagsAsString.Add(string.Format("{0}={1}", t.name, t.value)));
+            }
             if (node.instructionObject == null)
             {
                 _OutputListener.writeOutput("[DEBUG] #{0} {1} {2}", depth, node.baseModelObject.name, string.Join(", ", tagsAsString.ToArray()));
@@ -503,6 +506,7 @@ namespace HL7_FM_EA_Extension
                         break;
                 }
             }
+
             // set Priority & set ChangeIndicator to default "NC"; changed when executing instruction
             switch (node.baseModelObject.stereotype)
             {

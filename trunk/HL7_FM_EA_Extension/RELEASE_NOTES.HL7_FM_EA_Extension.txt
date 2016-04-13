@@ -1,5 +1,12 @@
 ﻿CHANGELOG
 =========
+
+
+R2ProfileCompiler (Child Health)
+- fails when ProfileDefinition not fully setup
+  e.g. no Type tag??
+
+
 [2016-feb-20]
 QuickAccessControl
 - Removed MAX buttons, just install the MAX Extension for this
