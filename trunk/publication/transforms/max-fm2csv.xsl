@@ -31,7 +31,7 @@
         <xsl:variable name="parent-id" select="parentId"/>
         <xsl:variable name="statement" select="translate(substring-before(substring-after(notes, '$ST$'), '$DE$'), $quote, $single-quote)"/>
         <xsl:variable name="description" select="translate(substring-before(substring-after(notes, '$DE$'), '$EX$'), $quote, $single-quote)"/>
-        <xsl:variable name="plain-name" select="concat($quote, translate(substring-after(name, alias), $quote, $single-quote), $quote)"/>
+        <xsl:variable name="plain-name" select="concat($quote, translate(normalize-space(substring-after(name, alias)), $quote, $single-quote), $quote)"/>
         <xsl:variable name="function-type">
             <xsl:choose>
                 <xsl:when test="stereotype/text()='Function'">F</xsl:when>
