@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2016-jun-22]
+XML Transforms/*de*.xslt
+- Values in valueset are now separate type, they can have definition also (extra tab in the spreadsheet)
+
 [2016-apr-13]
 - Updated the setup project to include the "XML Transforms" folder!
 - Also included the Saxon DLL's for now because installing Saxon on Windows 10 seperately did not work.

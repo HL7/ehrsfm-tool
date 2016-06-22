@@ -10,6 +10,7 @@
 			<xs:element name="classes" type="ClassesType" minOccurs="1" maxOccurs="1" />
 			<xs:element name="attributes" type="AttributesType" minOccurs="0" maxOccurs="1" />
 			<xs:element name="valuesets" type="ValuesetsType" minOccurs="0" maxOccurs="1" />
+			<xs:element name="values" type="ValuesType" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -48,15 +49,29 @@
 		<xs:sequence minOccurs="1" maxOccurs="unbounded">
 			<xs:element name="valueset" type="ValuesetType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
-	</xs:complexType>
-	
+	</xs:complexType>	
 	
   <xs:complexType name="ValuesetType">
     <xs:sequence>
       <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
       <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" />
       <xs:element name="definition" type="xs:string" minOccurs="0" maxOccurs="1" />
-      <xs:element name="delimitedValues" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <!-- <xs:element name="delimitedValues" type="xs:string" minOccurs="0" maxOccurs="1" /> -->
+    </xs:sequence>
+  </xs:complexType>
+  
+  	<xs:complexType name="ValuesType">
+		<xs:sequence minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="value" type="ValueType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+  
+  <xs:complexType name="ValueType">
+  	<xs:sequence>
+      <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="valueset_name" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="definition" type="xs:string" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
   </xs:complexType>
 	
