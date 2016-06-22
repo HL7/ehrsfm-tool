@@ -16,6 +16,9 @@
 			<valuesets>
 				<xsl:apply-templates mode="valuesets"/>
 			</valuesets>
+			<values>
+				<xsl:apply-templates mode="values"/>
+			</values>
 		</model>
 	</xsl:template>
 
@@ -50,8 +53,22 @@
 				<id><xsl:value-of select="id"/></id>
 				<name><xsl:value-of select="name"/></name>
 				<description><xsl:value-of select="text()"/></description>
-				<delimitedValues><xsl:value-of select="string-join(attribute/@name,';')"/></delimitedValues>
+				<!-- <delimitedValues><xsl:value-of select="string-join(attribute/@name,';')"/></delimitedValues> -->
 			</valueset>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="object" mode="values">
+		<xsl:if test="stereotype eq 'enumeration'">
+			<xsl:variable name="valueset_name" select="name"/>
+			<xsl:for-each select="attribute">
+				<value>
+					<id><xsl:value-of select="@id"/></id>
+					<name><xsl:value-of select="@name"/></name>
+					<valueset_name><xsl:value-of select="$valueset_name"/></valueset_name>
+					<definition><xsl:value-of select="text()"/></definition>
+				</value>
+			</xsl:for-each>
 		</xsl:if>
 	</xsl:template>
 	
@@ -60,5 +77,7 @@
 	<xsl:template match="relationship" mode="attributes"/>
 
 	<xsl:template match="relationship" mode="valuesets"/>
+
+	<xsl:template match="relationship" mode="values"/>
 
 </xsl:stylesheet>
