@@ -2,7 +2,7 @@
 =======
 MAXExporter1 - uses the EA API through COM
 MAXExporter2 - uses EA SQL XML calls (is somewhat faster)
-MAXExporter3 - used xsd.exe to create a Class from the xsd
+MAXExporter3 - used xsd.exe to create a Class from the xsd (xsd MAXSchema.xsd /c /namespace:MAX_EA.MAXSchema)
 
 TODO
 ====
@@ -37,6 +37,10 @@ EA BUG: EA.Element.Attributes.GetByName throws Exception when class has attribut
 
 CHANGELOG
 =========
+[2017-sep-22]
+MAXSchema
+- Added UseCase,Actor
+
 [2016-feb-20]
 Util
 - Removed file dialog stuff to the Extension
