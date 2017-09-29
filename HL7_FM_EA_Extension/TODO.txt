@@ -2,6 +2,8 @@
 ====
 http://gforge.hl7.org/gf/project/ehrsfm_profile/tracker/?action=TrackerItemBrowse&tracker_id=743
 
+- LOW: [ ] R2ModelV2.EA_API.Create missed default for COMPILERINSTRUCTION that causes Exception when CI points to a class with a wrong stereotype. E.g. when "criteria" instead of "Criteria".
+
 - LOW: [ ] Sometimes style is not updated e.g. when Optionality changes
 - LOW: [ ] Sync Reference tagged value <-> Relationship
 - LOW: [ ] MergeProfiles: Add function to align elements that have no base, based on their id

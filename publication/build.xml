@@ -62,6 +62,16 @@
         </antcall>
     </target>
 
+	<!-- ================================= 
+          target: DS_FP
+         ================================= -->
+    <target name="DS-FP" description="Build the output artifacts for the Developmental Screening Functional Profile (PDF, HTML)">
+        <antcall target="artefacts">
+        	<param name="file.base-name" value="DS_FP_Compiled_Profile"/>
+        	<param name="is-fm" value='false'/>
+        </antcall>
+    </target>
+
 	
     <!-- - - - - - - - - - - - - - - - - - 
           target: artefacts              

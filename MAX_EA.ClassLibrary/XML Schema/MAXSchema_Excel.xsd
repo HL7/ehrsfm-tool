@@ -21,6 +21,8 @@
       <xs:enumeration value="Constraint" />
       <xs:enumeration value="Enumeration" />
       <xs:enumeration value="Boundary" /><!-- EA Diagram type -->
+      <xs:enumeration value="UseCase" /><!-- Use Case type -->
+      <xs:enumeration value="Actor" /> <!-- Use Case type -->
       <!-- UMLDiagram -->
     </xs:restriction>
   </xs:simpleType>
@@ -37,8 +39,8 @@
       <xs:enumeration value="Abstraction" />
       <xs:enumeration value="Usage" />
       <xs:enumeration value="Package" />
-      <xs:enumeration value="NoteLink" />
-      <!-- EA Diagram type -->
+      <xs:enumeration value="NoteLink" /> <!-- EA Diagram type -->
+      <xs:enumeration value="UseCase" /><!-- Use Case type -->
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="model" type="ModelType"/>
