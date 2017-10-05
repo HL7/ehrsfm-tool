@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report>
+   <error>Missing relationship from CP.5 to CPS.8.4</error>
+   <error>Missing relationship from CP.2.5 to CPS.2.1</error>
+   <error>Missing relationship from CP.5 to CPS.9.2</error>
+   <error>Missing relationship from CP.6.1 to CPS.1.1</error>
+   <error>Missing relationship from CP.1.8 to CPS.1.7.1</error>
+   <error>Missing relationship from CPS.2.5 to RI.1.2.1</error>
+   <error>Missing relationship from CPS.4 to CPS.6</error>
+   <error>Missing relationship from CPS.4.2.1 to CP.8.1</error>
+   <error>Missing relationship from RI.1.1.20 to RI.1.1.16</error>
+   <error>Missing relationship from RI.1.1.22 to RI.1.1.18</error>
+   <error>Missing relationship from RI.1.1.24 to RI.1.1.20</error>
+   <error>Missing relationship from RI.1.2 to RI.1.1</error>
+   <error>Missing relationship from TI.1 to TI.2</error>
+   <error>Missing relationship from TI.5.1 to TI.4</error>
+</report>
