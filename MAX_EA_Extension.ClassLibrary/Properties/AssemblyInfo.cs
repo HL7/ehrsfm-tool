@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MAX_EA_Extension")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("UMCG")]
+[assembly: AssemblyCompany("HL7")]
 [assembly: AssemblyProduct("MAX_EA_Extension")]
 [assembly: AssemblyCopyright("Copyright © HL7, UMCG 2013-2017")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.17.0929")]
+[assembly: AssemblyVersion("1.17.1106")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

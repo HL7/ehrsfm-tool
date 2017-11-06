@@ -1,5 +1,8 @@
 ﻿CHANGELOG
 =========
+[2017-nov-06]
+Configuration adjustments
+
 [2016-jun-22]
 XML Transforms/*de*.xslt
 - Values in valueset are now separate type, they can have definition also (extra tab in the spreadsheet)

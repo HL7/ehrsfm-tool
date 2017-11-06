@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MAX_EA.ClassLibrary")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("UMCG")]
+[assembly: AssemblyCompany("HL7")]
 [assembly: AssemblyProduct("MAX_EA.ClassLibrary")]
 [assembly: AssemblyCopyright("Copyright © HL7, UMCG 2013-2017")]
 [assembly: AssemblyTrademark("")]
