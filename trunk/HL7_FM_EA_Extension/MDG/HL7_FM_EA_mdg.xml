@@ -21,11 +21,7 @@
               <Tag name="Reference.Alias" type="String" description="" unit="" values="" default=""/>
               <Tag name="Reference.FunctionID" type="String" description="" unit="" values="" default=""/>
               <Tag name="Reference.CriteriaID" type="String" description="" unit="" values="" default=""/>
-              <Tag name="ExternalReference" type="structured" description="" unit="" values="" default="">
-                <Property name="Title" type="String" description="" unit="" values="" default=""/>
-                <Property name="URL" type="URL" description="" unit="" values="" default=""/>
-                <Property name="Note" type="String" description="" unit="" values="" default=""/>
-              </Tag>
+              <Tag name="ExternalReference" type="String" description="TEXT$$[label]$$URL$$[href]" unit="" values="" default=""/>
             </TaggedValues>
           </Stereotype>
           <Stereotype name="CI" notes="" cx="100" cy="80" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0" generalizes="Base" baseStereotypes="Base">

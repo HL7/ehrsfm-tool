@@ -6,6 +6,9 @@ R2ProfileCompiler (Child Health)
 - fails when ProfileDefinition not fully setup
   e.g. no Type tag??
 
+[2017-nov-10]
+MDG/HL7_FM_EA_mdg.xml
+- ExternalReference tagged value format has changed to String with a format. See e.g. MU_FP.
 
 [2016-feb-20]
 QuickAccessControl
