@@ -47,6 +47,7 @@ namespace HL7_FM_EA_Extension
             public const string TV_CHANGENOTE = "ChangeNote";
             public const string TV_QUALIFIER = "Qualifier";
             public const string TV_ROW = "Row";
+            public const string TV_EXTERNALREFERENCE = "ExternalReference";
 
             public const string ST_CRITERION = "Criteria";
             public const string TV_OPTIONALITY = "Optionality";

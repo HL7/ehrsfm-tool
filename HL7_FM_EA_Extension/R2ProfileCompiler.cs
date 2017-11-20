@@ -540,6 +540,15 @@ namespace HL7_FM_EA_Extension
             {
                 TagType tagChangeIndicator = node.baseModelObject.tag.Single(t => "Reference.ChangeIndicator".Equals(t.name));
 
+                // copy ExternalReferences
+                List<TagType> tags2 = new List<TagType>();
+                if (node.baseModelObject.tag != null)
+                {
+                    tags2.AddRange(node.baseModelObject.tag);
+                }
+                tags2.AddRange(node.instructionObject.tag.Where(t => R2Const.TV_EXTERNALREFERENCE.Equals(t.name)));
+                node.baseModelObject.tag = tags2.ToArray();
+
                 // update Optionality for Criterion
                 if (R2Const.ST_CRITERION.Equals(node.baseModelObject.stereotype))
                 {

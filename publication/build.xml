@@ -63,6 +63,27 @@
     </target>
 
 	<!-- ================================= 
+          target: EHR-MU-FP 2016             
+         ================================= -->
+    <target name="mu2016" description="Build the output artifacts for the EHR System Functional Profile for Meaningful Use (PDF, HTML)">
+        <antcall target="artefacts">
+        	<param name="file.base-name" value="ehr-mu-fp-2016-compiled"/>
+        	<param name="is-fm" value='false'/>
+        </antcall>
+    </target>
+
+
+	<!-- ================================= 
+          target: Immunization FP
+         ================================= -->
+    <target name="ifp" description="Build the output artifacts for the IFP (PDF, HTML)">
+        <antcall target="artefacts">
+        	<param name="file.base-name" value="ifp"/>
+        	<param name="is-fm" value='false'/>
+        </antcall>
+    </target>
+
+	<!-- ================================= 
           target: DS_FP
          ================================= -->
     <target name="DS-FP" description="Build the output artifacts for the Developmental Screening Functional Profile (PDF, HTML)">

@@ -17,7 +17,7 @@ namespace MAX_EA_Extension
         private const int FILTER_EXCEL_DATASET = 2;
         private int SelectedFilter { get; set; }
 
-        public bool import(EA.Repository Repository, EA.Package selectedPackage)
+        public bool import(EA.Repository Repository, EA.Package selectedPackage, bool deleteRelationships=true)
         {
             string defaultFileName = @"C:\Temp\default.max";
             EA.TaggedValue tvImportFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
@@ -30,7 +30,7 @@ namespace MAX_EA_Extension
             {
                 if (SelectedFilter == FILTER_MAX)
                 {
-                    return new MAXImporter3().import(Repository, selectedPackage, fileName);
+                    return new MAXImporter3().import(Repository, selectedPackage, fileName, deleteRelationships);
                 }
                 else if (SelectedFilter == FILTER_EXCEL_DATASET)
                 {
@@ -38,7 +38,7 @@ namespace MAX_EA_Extension
                     string tmpFile = fileName + ".tmp";
                     if (!filter(Repository, fileName, xsltFile, tmpFile))
                     {
-                        return new MAXImporter3().import(Repository, selectedPackage, tmpFile);
+                        return new MAXImporter3().import(Repository, selectedPackage, tmpFile, deleteRelationships);
                     }
                     else
                     {

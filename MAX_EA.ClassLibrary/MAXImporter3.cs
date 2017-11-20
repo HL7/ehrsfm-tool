@@ -13,6 +13,7 @@ namespace MAX_EA
         public int objPos = 0;
         public int pkgPos = 0;
         public bool issues = false;
+        public bool NoDel = false;
     }
 
     public class MAXImporter3
@@ -26,68 +27,73 @@ namespace MAX_EA
         private readonly Dictionary<string, EA.Package> eaPackageDict = new Dictionary<string, EA.Package>();
         private readonly Dictionary<string, int> idMappings = new Dictionary<string, int>();
 
-        public bool import(EA.Repository Repository, EA.Package selectedPackage, string fileName)
+        public bool import(EA.Repository Repository, EA.Package selectedPackage, string fileName, bool deleteRelationships=true)
         {
-            this.Repository = Repository;
-            progress.Show();
-
             bool issues = false;
-            Repository.EnableUIUpdates = false;
-            Repository.BatchAppend = true;
-            Repository.EnableCache = true;
-
-            XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
-            StreamReader stream = new StreamReader(fileName);
-            // make sure file gets closed
-            using (stream)
+            try
             {
-                ModelType model = (ModelType)serializer.Deserialize(stream);
-                int max = 0;
-                if (model.objects != null) max += model.objects.Count();
-                if (model.relationships != null) max += model.relationships.Count();
-                progress.setup(max);
+                this.Repository = Repository;
+                progress.Show();
 
-                // Don't use Linq constructs those are reeeeaaalllyyyy slow, create a helper dictionary for quick lookup
-                // This construct also makes sure there will be unique elements based on the ID|MAX::ID
-                eaElementDict.Clear();
-                eaPackageDict.Clear();
-                updateDicts(selectedPackage);
+                Repository.EnableUIUpdates = false;
+                Repository.BatchAppend = true;
+                Repository.EnableCache = true;
 
-                // do objects
-                if (model.objects != null && model.objects.Any())
+                XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
+                StreamReader stream = new StreamReader(fileName);
+                // make sure file gets closed
+                using (stream)
                 {
-                    MAXImporterWorkingMemory wm = new MAXImporterWorkingMemory();
-                    wm.eaPackage = selectedPackage;
-                    issues |= importObjects(model.objects, wm);
-                }
+                    ModelType model = (ModelType)serializer.Deserialize(stream);
+                    int max = 0;
+                    if (model.objects != null) max += model.objects.Count();
+                    if (model.relationships != null) max += model.relationships.Count();
+                    progress.setup(max);
 
-                // now do relationships
-                if (model.relationships != null && model.relationships.Any())
-                {
-                    issues |= importRelationships(selectedPackage, model.relationships, true);
-                }
+                    // Don't use Linq constructs those are reeeeaaalllyyyy slow, create a helper dictionary for quick lookup
+                    // This construct also makes sure there will be unique elements based on the ID|MAX::ID
+                    eaElementDict.Clear();
+                    eaPackageDict.Clear();
+                    updateDicts(selectedPackage);
 
-                // Add/update import metadata to the package
-                EA.TaggedValue tvImportDate = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::ImportDate");
-                if (tvImportDate == null)
-                {
-                    tvImportDate = (EA.TaggedValue)selectedPackage.Element.TaggedValues.AddNew("MAX::ImportDate", "");
+                    // do objects
+                    if (model.objects != null && model.objects.Any())
+                    {
+                        MAXImporterWorkingMemory wm = new MAXImporterWorkingMemory();
+                        wm.eaPackage = selectedPackage;
+                        issues |= importObjects(model.objects, wm);
+                    }
+
+                    // now do relationships
+                    if (model.relationships != null && model.relationships.Any())
+                    {
+                        issues |= importRelationships(selectedPackage, model.relationships, deleteRelationships);
+                    }
+
+                    // Add/update import metadata to the package
+                    EA.TaggedValue tvImportDate = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::ImportDate");
+                    if (tvImportDate == null)
+                    {
+                        tvImportDate = (EA.TaggedValue)selectedPackage.Element.TaggedValues.AddNew("MAX::ImportDate", "");
+                    }
+                    tvImportDate.Value = DateTime.Now.ToString();
+                    tvImportDate.Update();
+                    EA.TaggedValue tvImportFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
+                    if (tvImportFile == null)
+                    {
+                        tvImportFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.AddNew("MAX::ImportFile", "");
+                    }
+                    tvImportFile.Value = fileName;
+                    tvImportFile.Update();
                 }
-                tvImportDate.Value = DateTime.Now.ToString();
-                tvImportDate.Update();
-                EA.TaggedValue tvImportFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.GetByName("MAX::ImportFile");
-                if (tvImportFile == null)
-                {
-                    tvImportFile = (EA.TaggedValue)selectedPackage.Element.TaggedValues.AddNew("MAX::ImportFile", "");
-                }
-                tvImportFile.Value = fileName;
-                tvImportFile.Update();
+                Repository.EnableUIUpdates = true;
+                Repository.BatchAppend = false;
+                Repository.RefreshModelView(selectedPackage.PackageID);
             }
-            Repository.EnableUIUpdates = true;
-            Repository.BatchAppend = false;
-            Repository.RefreshModelView(selectedPackage.PackageID);
-
-            progress.Close();
+            finally
+            {
+                progress.Close();
+            }
             return issues;
         }
 
@@ -282,14 +288,17 @@ namespace MAX_EA
             }
             if (maxObj.tag != null)
             {
+                // First delete existing TaggedValues
+                for(short i=(short)(eaElement.TaggedValues.Count-1); i>0; i--)
+                {
+                    eaElement.TaggedValues.DeleteAt(i, true);
+                }
+                eaElement.TaggedValues.Refresh();
+                // Now add TaggedValues in the import
                 foreach (TagType maxTag in maxObj.tag)
                 {
                     string tagName = maxTag.name.Trim();
-                    EA.TaggedValue tv = (EA.TaggedValue)eaElement.TaggedValues.GetByName(tagName);
-                    if (tv == null)
-                    {
-                        tv = (EA.TaggedValue)eaElement.TaggedValues.AddNew(tagName, "TaggedValue");
-                    }
+                    EA.TaggedValue tv = (EA.TaggedValue)eaElement.TaggedValues.AddNew(tagName, "");
                     if (maxTag.value != null)
                     {
                         tv.Value = maxTag.value;
@@ -385,7 +394,8 @@ namespace MAX_EA
         {
             bool issues = false;
 
-            // don't know how to update this, just clear connectors and recreate if the import file has relationships otherwise ignore relationships
+            // don't know how to update this, just clear connectors for imported objects
+            // and recreate if the import file has relationships otherwise ignore relationships
             if (deleteExisting)
             {
                 foreach (EA.Element eaElement in eaElementDict.Values)
