@@ -60,7 +60,7 @@ namespace MAX_EA_Extension
                     return "-&MAX";
                 case "-&MAX":
                     // 1) MAX "native" Functions, 2) EA Helper Functions
-                    string[] ar = { "Import", "Export", "Transform", "Filters", "Validate", "-", "Lock", "Unlock", "Merge Diagrams", "Batch", "-", "Quick Access Tab", "About..." };
+                    string[] ar = { "Import", "Import NoDelRel", "Export", "Transform", "Filters", "Validate", "-", "Lock", "Unlock", "Merge Diagrams", "Batch", "-", "Quick Access Tab", "About..." };
                     return ar;
             }
             return "";
@@ -90,6 +90,7 @@ namespace MAX_EA_Extension
                     case "Lock":
                     case "Unlock":
                     case "Import":
+                    case "Import NoDelRel":
                     case "Merge Diagrams":
                         IsEnabled = (Repository.GetTreeSelectedItemType() == EA.ObjectType.otPackage);
                         break;
@@ -138,6 +139,15 @@ namespace MAX_EA_Extension
                         Repository.CreateOutputTab(MAX_TABNAME);
                         Repository.ClearOutput(MAX_TABNAME);
                         if (new Filters().import(Repository, selectedPackage))
+                        {
+                            // only popup when there were any issues
+                            Repository.EnsureOutputVisible(MAX_TABNAME);
+                        }
+                        break;
+                    case "Import NoDelRel":
+                        Repository.CreateOutputTab(MAX_TABNAME);
+                        Repository.ClearOutput(MAX_TABNAME);
+                        if (new Filters().import(Repository, selectedPackage, false))
                         {
                             // only popup when there were any issues
                             Repository.EnsureOutputVisible(MAX_TABNAME);

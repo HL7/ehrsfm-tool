@@ -37,6 +37,16 @@ EA BUG: EA.Element.Attributes.GetByName throws Exception when class has attribut
 
 CHANGELOG
 =========
+[2017-nov-20]
+MAXImporter3
+- Added option to import without deleting relationships == adding relationships
+
+[2017-nov-10]
+MAXImporter3
+- All TaggedValues are deleted on import/update and replaced now. 
+  Needed for MU_FP ExternalReference tagged value multiple occurance.
+  Before this change a tagged value could only have 1 occurance.
+
 [2017-sep-22]
 MAXSchema
 - Added UseCase,Actor

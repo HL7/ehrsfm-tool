@@ -1,7 +1,11 @@
 ﻿CHANGELOG
 =========
+[2017-nov-20]
+Filters,Main
+- Added option to import without deleting relationships == adding relationships
+
 [2017-nov-06]
-Configuration adjustments
+- Configuration adjustments
 
 [2016-jun-22]
 XML Transforms/*de*.xslt

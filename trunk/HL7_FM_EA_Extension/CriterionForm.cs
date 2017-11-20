@@ -102,7 +102,7 @@ namespace HL7_FM_EA_Extension
             pathLabel.Text = criterion.Path;
 
             seqNoNumericUpDown.Minimum = 0;
-            seqNoNumericUpDown.Maximum = 99;
+            seqNoNumericUpDown.Maximum = 999;
             rowNumericUpDown.Minimum = 0;
             rowNumericUpDown.Maximum = 10000;
 
