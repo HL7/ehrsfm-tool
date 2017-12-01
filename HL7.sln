@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HL7_FM_EA_Extension", "HL7_FM_EA_Extension\HL7_FM_EA_Extension.csproj", "{CD9712F8-EDAE-4836-96DE-A68F1E07A7A6}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "HL7_FM_EA_Extension.Setup", "HL7_FM_EA_Extension.Setup\HL7_FM_EA_Extension.Setup.vdproj", "{33FFC14D-8C33-470A-B351-921F2BED565F}"
@@ -28,10 +30,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAX_EA.ClassLibrary.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HL7_FM_EA_Extension.Tests", "HL7_FM_EA_Extension.Tests\HL7_FM_EA_Extension.Tests.csproj", "{E46B28FF-6B4B-4BC0-99EC-5692A5324026}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAX_EA.ConsoleApp", "MAX_EA.ConsoleApp\MAX_EA.ConsoleApp.csproj", "{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}"
+EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = HL7.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -137,8 +138,26 @@ Global
 		{E46B28FF-6B4B-4BC0-99EC-5692A5324026}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E46B28FF-6B4B-4BC0-99EC-5692A5324026}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E46B28FF-6B4B-4BC0-99EC-5692A5324026}.Release|x86.ActiveCfg = Release|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Debug|x86.Build.0 = Debug|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Release|x86.ActiveCfg = Release|Any CPU
+		{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8447668-BFE3-438A-AB01-9A4F7C8A0174}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = HL7.vsmdi
 	EndGlobalSection
 EndGlobal
