@@ -11,6 +11,9 @@ namespace MAX_EA
     {
         public void diff(string fileName1, string fileName2)
         {
+            bool truncateNotes70 = true;
+            bool showFullName2 = true;
+            bool ignoreNotes = true;
             // Add parameter to ignore modified or order?
 
             XmlSerializer serializer = new XmlSerializer(typeof(ModelType));
@@ -28,23 +31,40 @@ namespace MAX_EA
                     foreach (ObjectType maxObj1 in model1.objects)
                     {
                         objects1[maxObj1.id] = maxObj1;
+                        if (model2.objects.SingleOrDefault(o => o.id == maxObj1.id) == null)
+                        {
+                            Console.WriteLine("[{0}] DELETED object name \"{1}\"", maxObj1.id, maxObj1.name);
+                        }
                     }
 
                     foreach (ObjectType maxObj2 in model2.objects)
                     {
                         string id = maxObj2.id;
-                        if (!objects1.ContainsKey(id))
+                        if (showFullName2)
                         {
-                            Console.WriteLine("[{0}] NEW object name \"{1}\"", id, maxObj2.name);
+                            string fullName = maxObj2.name;
+                            ObjectType currentObj = maxObj2;
+                            do
+                            {
+                                currentObj = model2.objects.SingleOrDefault(o => o.id == currentObj.parentId);
+                                fullName = currentObj != null ? currentObj.name + "/" + fullName : fullName;
+                            }
+                            while (currentObj != null);
+                            id = string.Format("{0}@{1}", fullName, maxObj2.id);
+                        }
+                        if (!objects1.ContainsKey(maxObj2.id))
+                        {
+                            if(showFullName2) Console.WriteLine("[{0}] NEW object", id);
+                            else Console.WriteLine("[{0}] NEW object name \"{1}\"", id, maxObj2.name);
                         }
                         else
                         {
                             ObjectType maxObj1 = objects1[maxObj2.id];
-                            if (maxObj1.name != maxObj2.name)
+                            if (!maxObj1.name.Equals(maxObj2.name))
                             {
                                 Console.WriteLine("[{0}] name changed \"{1}\" > \"{2}\"", id, maxObj1.name, maxObj2.name);
                             }
-                            if (maxObj1.alias != maxObj2.alias)
+                            if (!maxObj1.alias.Equals(maxObj2.alias))
                             {
                                 Console.WriteLine("[{0}] alias changed \"{1}\" > \"{2}\"", id, maxObj1.alias, maxObj2.alias);
                             }
@@ -52,21 +72,29 @@ namespace MAX_EA
                             {
                                 Console.WriteLine("[{0}] type changed {1} > {2}", id, maxObj1.type, maxObj2.type);
                             }
-                            if (maxObj1.stereotype != maxObj2.stereotype)
+                            if (!maxObj1.stereotype.Equals(maxObj2.stereotype))
                             {
                                 Console.WriteLine("[{0}] stereotype changed \"{1}\" > \"{2}\"", id, maxObj1.stereotype, maxObj2.stereotype);
                             }
-                            if (!notesIsEqual(maxObj1, maxObj2))
+                            if (!ignoreNotes && !notesIsEqual(maxObj1, maxObj2))
                             {
-                                string notes1 = maxObj1.notes.Text[0].Replace("\n", "\\n");
-                                string notes2 = maxObj2.notes.Text[0].Replace("\n", "\\n");
+                                string notes1 = maxObj1.notes != null ? maxObj1.notes.Text[0].Replace("\n", "\\n") : null;
+                                string notes2 = maxObj2.notes != null ? maxObj2.notes.Text[0].Replace("\n", "\\n") : null;
+                                if (truncateNotes70)
+                                {
+                                    if (notes1 != null && notes1.Length > 70) notes1 = notes1.Substring(0, 70) + "...";
+                                    if (notes2 != null && notes2.Length > 70) notes2 = notes2.Substring(0, 70) + "...";
+                                }
                                 Console.WriteLine("[{0}] notes changed\n\t< \"{1}\"\n\t> \"{2}\"", id, notes1, notes2);
                             }
-                            foreach(TagType tag in maxObj2.tag)
+                            if (maxObj2.tag != null)
                             {
-                                if (!tagIsEqual(tag.name, maxObj1, maxObj2))
+                                foreach (TagType tag in maxObj2.tag)
                                 {
-                                    Console.WriteLine("[{0}] tag {1} changed\n\t> \"{2}\"", id, tag.name, tag.value);
+                                    if (!tagIsEqual(tag.name, maxObj1, maxObj2))
+                                    {
+                                        Console.WriteLine("[{0}] tag {1} changed\n\t> \"{2}\"", id, tag.name, tag.value);
+                                    }
                                 }
                             }
                         }
@@ -75,10 +103,53 @@ namespace MAX_EA
             }
         }
 
+        public void diff_DCM_NLCM(string fileName1, string fileName2)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof (ModelType));
+            StreamReader stream1 = new StreamReader(fileName1);
+            StreamReader stream2 = new StreamReader(fileName2);
+            // make sure file gets closed
+            using (stream1)
+            {
+                using (stream2)
+                {
+                    ModelType model1 = (ModelType)serializer.Deserialize(stream1);
+                    ModelType model2 = (ModelType)serializer.Deserialize(stream2);
+
+                    var concepts1 = new Dictionary<string, ObjectType>();
+                    foreach (ObjectType conceptObj in model1.objects.Where(o => o.tag != null && o.tag.Count(t => t.name == "DCM::ConceptId" || (t.name == "DCM::DefinitionCode" && t.value.StartsWith("NL-CM:"))) == 1))
+                    {
+                        string conceptId = conceptObj.tag.Single(t => t.name == "DCM::ConceptId" || (t.name == "DCM::DefinitionCode" && t.value.StartsWith("NL-CM:"))).value;
+                        concepts1[conceptId] = conceptObj;
+                    }
+
+                    var concepts2 = new Dictionary<string, ObjectType>();
+                    foreach (ObjectType conceptObj in model2.objects.Where(o => o.tag != null && o.tag.Count(t => t.name == "DCM::ConceptId" || (t.name == "DCM::DefinitionCode" && t.value.StartsWith("NL-CM:"))) == 1))
+                    {
+                        string conceptId = conceptObj.tag.Single(t => t.name == "DCM::ConceptId" || (t.name == "DCM::DefinitionCode" && t.value.StartsWith("NL-CM:"))).value;
+                        concepts2[conceptId] = conceptObj;
+                    }
+
+                    foreach (string conceptId1 in concepts1.Keys)
+                    {
+                        if (!concepts2.ContainsKey(conceptId1))
+                        {
+                            Console.WriteLine("- {0} {1}", conceptId1, concepts1[conceptId1].name);
+                        }
+                    }
+                    foreach (string conceptId2 in concepts2.Keys)
+                    {
+                        if (!concepts1.ContainsKey(conceptId2))
+                        {
+                            Console.WriteLine("+ {0} {1}", conceptId2, concepts2[conceptId2].name);
+                        }
+                    }
+                }
+            }
+        }
+
         public void diff_FM(string fileName1, string fileName2)
         {
-            // Add parameter to ignore modified or order?
-
             XmlSerializer serializer = new XmlSerializer(typeof (ModelType));
             StreamReader stream1 = new StreamReader(fileName1);
             StreamReader stream2 = new StreamReader(fileName2);

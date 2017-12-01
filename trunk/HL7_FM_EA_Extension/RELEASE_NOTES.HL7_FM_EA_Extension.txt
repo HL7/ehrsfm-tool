@@ -3,6 +3,8 @@
 R2ProfileCompiler (Child Health)
 - fails when ProfileDefinition not fully setup
   e.g. no Type tag??
+- auto-include OV.1 when Type=domain?
+- TI.5.1 sub-functions don't get auto-included, should they?
 
 CHANGELOG
 =========
