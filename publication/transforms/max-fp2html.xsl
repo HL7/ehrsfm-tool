@@ -43,7 +43,7 @@
                     </div>
                     <xsl:if test="$ballot-info/mif:annotations/mif:documentation/mif:description">
                         <div id="">
-                            <h2>Notes to Balloters</h2>
+                            <h2>Notes to Readers</h2>
                             <xsl:for-each select="$ballot-info/mif:annotations/mif:documentation/mif:description/mif:text/mif:p">
                                 <p><xsl:value-of select="."/></p>
                             </xsl:for-each>

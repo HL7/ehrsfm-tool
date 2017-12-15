@@ -101,7 +101,7 @@
                             <xsl:if test="$ballot-info/mif:annotations/mif:documentation/mif:description">
                                 <fo:block text-align-last="justify" margin-left="0em" space-before="5pt" font-size="1em" font-weight="700">
                                     <fo:basic-link internal-destination="notes-to-balloters">
-                                        <fo:inline font-style="italic">Notes to Balloters</fo:inline>
+                                        <fo:inline font-style="italic">Notes to Readers</fo:inline>
                                     </fo:basic-link>
                                     <fo:leader leader-pattern="dots"/>
                                     <fo:inline font-style="italic">
@@ -129,7 +129,7 @@
                     </fo:block>
                     <xsl:if test="$ballot-info/mif:annotations/mif:documentation/mif:description">
                         <fo:block break-before="page">
-                            <fo:block font-size="1.1em" font-weight="bold" id="notes-to-balloters" space-after=".6em">Notes to Balloters</fo:block>
+                            <fo:block font-size="1.1em" font-weight="bold" id="notes-to-balloters" space-after=".6em">Notes to Readers</fo:block>
                             <xsl:for-each select="$ballot-info/mif:annotations/mif:documentation/mif:description/mif:text/mif:p">
                                 <fo:block><xsl:value-of select="."/></fo:block>
                             </xsl:for-each>
