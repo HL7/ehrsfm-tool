@@ -121,7 +121,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <xsl:for-each select="following-sibling::object[parentId/text()=$object-id]">
+<!-- MZ -->
+                    <xsl:for-each select="//object[parentId/text()=$object-id]">
                         <xsl:call-template name="function-output">
                             <xsl:with-param name="sect-no" select="$order"/>
                             <xsl:with-param name="level-no" select="1"/>
@@ -224,7 +225,8 @@
             </xsl:call-template>
         </xsl:for-each>
 
-        <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and stereotype/text()='Function']">
+<!-- MZ -->
+        <xsl:for-each select="//object[parentId/text()=$object-id and stereotype/text()='Function']">
             <xsl:call-template name="function-output">
                 <xsl:with-param name="sect-no" select="$sect-no"/>
                 <xsl:with-param name="level-no" select="$next-level-no"/>

@@ -233,7 +233,8 @@
                     </fo:table-row>
                 </fo:table-header>
                 <fo:table-body>
-                    <xsl:for-each select="following-sibling::object[parentId/text()=$object-id]">
+<!-- MZ -->
+                    <xsl:for-each select="//object[parentId/text()=$object-id]">
                         <xsl:call-template name="function-output">
                             <xsl:with-param name="sect-no" select="$order"/>
                             <xsl:with-param name="level-no" select="1"/>
@@ -313,8 +314,9 @@
         <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and stereotype/text()='Criteria']">
             <xsl:call-template name="criteria-output"/>
         </xsl:for-each>
-        
-        <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and not(stereotype/text()='Criteria')]">
+
+<!-- MZ --> 
+        <xsl:for-each select="//object[parentId/text()=$object-id and not(stereotype/text()='Criteria')]">
             <xsl:call-template name="function-output">
                 <xsl:with-param name="sect-no" select="$sect-no"/>
                 <xsl:with-param name="level-no" select="$level-no + 1"/>
@@ -545,7 +547,8 @@
             </fo:page-number-citation>
         </fo:block>
 
-        <xsl:for-each select="following-sibling::object[parentId/text()=$object-id]">
+<!-- MZ -->
+        <xsl:for-each select="//object[parentId/text()=$object-id]">
             <xsl:call-template name="function-toc"/>
         </xsl:for-each>
     </xsl:template>
