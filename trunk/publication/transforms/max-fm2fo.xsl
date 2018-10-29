@@ -311,7 +311,8 @@
             </fo:table-cell>
         </fo:table-row>
         
-        <xsl:for-each select="following-sibling::object[parentId/text()=$object-id and stereotype/text()='Criteria']">
+<!-- MZ --> 
+        <xsl:for-each select="//object[parentId/text()=$object-id and stereotype/text()='Criteria']">
             <xsl:call-template name="criteria-output"/>
         </xsl:for-each>
 
@@ -444,7 +445,7 @@
     <xsl:template name="get-functional-reference">
         <xsl:param name="func-ref">
             <xsl:choose>
-                <xsl:when test="tag/@name='Reference.FunctionID'">
+                <xsl:when test="tag[@name='Reference.FunctionID']/@value != ''">
                     <xsl:value-of select="tag[@name='Reference.FunctionID']/@value"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -453,7 +454,7 @@
             </xsl:choose>
         </xsl:param>
         <xsl:param name="crit-ref">
-            <xsl:if test="tag/@name='Reference.CriteriaID'">
+            <xsl:if test="tag[@name='Reference.CriteriaID']/@value != ''">
                 <xsl:value-of select="concat('#', tag[@name='Reference.CriteriaID']/@value)"/>
             </xsl:if>
         </xsl:param>
@@ -462,7 +463,7 @@
     </xsl:template>
     
     <xsl:template name="get-criteria-row">
-        <xsl:if test="tag/@name='Row'">
+        <xsl:if test="tag[@name='Row']/@value != '0'">
             <xsl:value-of select="tag[@name='Row']/@value"/>
         </xsl:if>
     </xsl:template>
