@@ -2,6 +2,7 @@
 
 Package name | Description
 ------------ | -------------
+HL7_FM_CLI.ConsoleApp|A .Net Core Console App version of the MAX/FM/FP validation and compiler
 HL7_FM_EA_Extension.Setup|Setup Visual Studio project for the EA Extension
 HL7_FM_EA_Extension.Tests|Unit tests Visual Studio project for the EA Extension
 HL7_FM_EA_Extension|The source code Visual Studio project for the EA Extension
