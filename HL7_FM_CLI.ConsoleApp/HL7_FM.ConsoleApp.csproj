@@ -1,0 +1,78 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <StartupObject>HL7_FM_CLI.Program</StartupObject>
+    <RootNamespace>HL7_FM_CLI</RootNamespace>
+    <AssemblyName>HL7_FM.ConsoleApp</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Schematron\EHRS_FM_R2-validation.sch">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\EHRS_FM_R2_FP-validation.sch">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\EHRS_FM_R2_FPDEF-validation.sch">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromRNG.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\iso-schematron-xslt1\ExtractSchFromXSD.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\iso-schematron-xslt1\iso_abstract_expand.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\iso-schematron-xslt1\iso_dsdl_include.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\iso-schematron-xslt1\iso_schematron_message.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\iso-schematron-xslt1\iso_schematron_skeleton_for_xslt1.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\iso-schematron-xslt1\iso_svrl_for_xslt1.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\iso-schematron-xslt1\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schematron\iso-schematron-xslt1\schematron-skeleton-api.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XML Schema\MAXSchema.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XML Schema\MAXSchema_Excel+PriRiSta.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XML Schema\MAXSchema_Excel.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="XML Schema\MAXSchema.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>MAXSchema.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Schematron\EHRS_FM_R2-validation.sch.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Schematron\EHRS_FM_R2_N1_C3_FunctionList_2012MAY.xsd">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Schematron\FunctionalModel_R2_HTML.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
