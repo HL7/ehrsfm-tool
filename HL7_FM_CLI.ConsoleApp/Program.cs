@@ -15,8 +15,8 @@ namespace HL7_FM_CLI
                 Console.WriteLine("These are the commands:");
                 Console.WriteLine();
                 Console.WriteLine("EHR-S FM / FP commands");
-                Console.WriteLine("    validate    validate a fm/fp/fpdef exported as max file");
-                Console.WriteLine("    compile     compile a Functional Model");
+                Console.WriteLine("    validate    validate a fm/fp/fpdef exported as max file [max file]");
+                Console.WriteLine("    compile     compile a Functional Model [base fm file, profile def file, output file]");
                 Console.WriteLine("MAX comamnds");
                 Console.WriteLine("    diff        a pure max diff");
                 Console.WriteLine("    diff-zib    diff zibs exported as max file");
@@ -38,6 +38,9 @@ namespace HL7_FM_CLI
                         break;
                     case "validate":
                         new R2Validator().validate(args[1]);
+                        break;
+                    case "compile":
+                        new R2ProfileCompiler().Compile(args[1], args[2], args[3]);
                         break;
                     default:
                         Console.WriteLine("Unknown command. Choose from diff, diff-zib, diff-fm, validate, compile");

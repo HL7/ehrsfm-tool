@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using HL7_MAX.MAXSchema;
 
-namespace HL7_MAX
+namespace HL7_FM_CLI
 {
     public class MAXTreeNodeUtils
     {
