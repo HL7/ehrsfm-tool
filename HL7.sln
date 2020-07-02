@@ -32,7 +32,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HL7_FM_EA_Extension.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAX_EA.ConsoleApp", "MAX_EA.ConsoleApp\MAX_EA.ConsoleApp.csproj", "{1C828ECD-19BA-45B0-8BB4-B455081BD4DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HL7_FM.ConsoleApp", "HL7_FM_CLI.ConsoleApp\HL7_FM.ConsoleApp.csproj", "{F8D3FF3A-80DC-4993-A3A3-AB0C0919F4E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HL7_FM_CLI.ConsoleApp", "HL7_FM_CLI.ConsoleApp\HL7_FM_CLI.ConsoleApp.csproj", "{F8D3FF3A-80DC-4993-A3A3-AB0C0919F4E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

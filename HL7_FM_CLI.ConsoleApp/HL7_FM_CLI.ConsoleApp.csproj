@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <StartupObject>HL7_FM_CLI.Program</StartupObject>
     <RootNamespace>HL7_FM_CLI</RootNamespace>
-    <AssemblyName>HL7_FM.ConsoleApp</AssemblyName>
+    <AssemblyName>HL7_FM_CLI.ConsoleApp</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
