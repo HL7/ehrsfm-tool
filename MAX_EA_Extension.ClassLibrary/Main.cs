@@ -359,7 +359,7 @@ namespace MAX_EA_Extension
         {
             string filepath;
             // Devel path
-            filepath = string.Format(@"E:\VisualStudio Projects\ehrsfm_profile\MAX_EA_Extension.ClassLibrary\{0}", filename);
+            filepath = string.Format(@"E:\VisualStudio Projects\ehrsfm-tool\MAX_EA_Extension.ClassLibrary\{0}", filename);
             if (!File.Exists(filepath))
             {
                 filepath = string.Format(@"{0}\HL7\MAX_EA_Extension\{1}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);

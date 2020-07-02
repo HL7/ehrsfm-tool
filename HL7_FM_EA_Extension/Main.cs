@@ -516,7 +516,7 @@ namespace HL7_FM_EA_Extension
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // Devel path
-                filepath = string.Format(@"E:\VisualStudio Projects\ehrsfm_profile\HL7_FM_EA_Extension\{0}", filename);
+                filepath = string.Format(@"E:\VisualStudio Projects\ehrsfm-tool\HL7_FM_EA_Extension\{0}", filename);
             }
             else
             {

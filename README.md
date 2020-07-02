@@ -20,3 +20,11 @@ MAX_EA_Extension.ClassLibrary|The source code Visual Studio project that exposes
 MAX_EA_Extension.Setup|Setup Visual Studio project for the MAX EA Extension
 
 N.B. The MAX_EA packages will be moved to its own git repository.
+
+----------------
+Dockerfile
+
+> docker build -t hl7-fm .
+
+> docker run -it -v "`pwd`":/app hl7-fm
+

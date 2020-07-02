@@ -58,29 +58,13 @@ You have not included a description of the Functional Profile.</svrl:diagnostic-
 
 		<!--ASSERT -->
 <xsl:choose><xsl:when test="tag[@name='Version']" /><xsl:otherwise><svrl:failed-assert test="tag[@name='Version']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FPID02"><xsl:attribute name="xml:lang">en</xsl:attribute>
-You have not included the version of the Functional Profile.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose>
-
-		<!--ASSERT -->
-<xsl:choose><xsl:when test="tag[@name='IssuanceDate']" /><xsl:otherwise><svrl:failed-assert test="tag[@name='IssuanceDate']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FPID03"><xsl:attribute name="xml:lang">en</xsl:attribute>
-You have not included the issuance date of the Functional Profile.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose>
-
-		<!--ASSERT -->
-<xsl:choose><xsl:when test="tag[@name='NormativeLanguage']" /><xsl:otherwise><svrl:failed-assert test="tag[@name='NormativeLanguage']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FPID04"><xsl:attribute name="xml:lang">en</xsl:attribute>
-IF you have made changes to the normative language you shall include a description of the changes or differences in that.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose>
-
-		<!--ASSERT -->
-<xsl:choose><xsl:when test="tag[@name='SourceVersion']" /><xsl:otherwise><svrl:failed-assert test="tag[@name='SourceVersion']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FMTC02"><xsl:attribute name="xml:lang">en</xsl:attribute>
-You have not included the version of the Functional Model from which the Functional Profile is derived.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose>
-
-		<!--ASSERT -->
-<xsl:choose><xsl:when test="tag[@name='SourceVersionDate']" /><xsl:otherwise><svrl:failed-assert test="tag[@name='SourceVersionDate']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FMTC03"><xsl:attribute name="xml:lang">en</xsl:attribute>
-You have not included the date of the Functional Model from which the Functional Profile is derived.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose><xsl:apply-templates select="@*|*" mode="M7" /></xsl:template><xsl:template match="text()" priority="-1" mode="M7" /><xsl:template match="@*|node()" priority="-2" mode="M7"><xsl:apply-templates select="@*|*" mode="M7" /></xsl:template>
+You have not included the version of the Functional Profile.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose><xsl:apply-templates select="*" mode="M7" /></xsl:template><xsl:template match="text()" priority="-1" mode="M7" /><xsl:template match="@*|node()" priority="-2" mode="M7"><xsl:apply-templates select="*" mode="M7" /></xsl:template>
 
 <!--PATTERN prioritization-->
 
 
 	<!--RULE -->
-<xsl:template match="object[stereotype/text()='Function' or stereotype/text()='Criteria']" priority="1001" mode="M8"><svrl:fired-rule context="object[stereotype/text()='Function' or stereotype/text()='Criteria']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron" />
+<xsl:template match="object[stereotype/text()='Function' or stereotype/text()='Criteria']" priority="1000" mode="M8"><svrl:fired-rule context="object[stereotype/text()='Function' or stereotype/text()='Criteria']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron" />
 
 		<!--ASSERT -->
 <xsl:choose><xsl:when test="tag[@name='Priority']" /><xsl:otherwise><svrl:failed-assert test="tag[@name='Priority']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FMPR01"><xsl:attribute name="xml:lang">en</xsl:attribute>
@@ -88,14 +72,7 @@ You have not included the prioritization of this function.</svrl:diagnostic-refe
 
 		<!--ASSERT -->
 <xsl:choose><xsl:when test="tag[@name='Priority' and (@value='EN' or @value='EF' or @value='O')]" /><xsl:otherwise><svrl:failed-assert test="tag[@name='Priority' and (@value='EN' or @value='EF' or @value='O')]" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FMPR01"><xsl:attribute name="xml:lang">en</xsl:attribute>
-You have not included the prioritization of this function.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose><xsl:apply-templates select="@*|*" mode="M8" /></xsl:template>
-
-	<!--RULE -->
-<xsl:template match="object[stereotype/text()='Function'or stereotype/text()='Criteria']/tag[@name='Priority' and @value='EF']" priority="1000" mode="M8"><svrl:fired-rule context="object[stereotype/text()='Function'or stereotype/text()='Criteria']/tag[@name='Priority' and @value='EF']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron" />
-
-		<!--ASSERT -->
-<xsl:choose><xsl:when test="../tag[@name='Timeframe']" /><xsl:otherwise><svrl:failed-assert test="../tag[@name='Timeframe']" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FMPR02"><xsl:attribute name="xml:lang">en</xsl:attribute>
-You did not inlcude a timeframe for when the function is required te be implemented.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose><xsl:apply-templates select="@*|*" mode="M8" /></xsl:template><xsl:template match="text()" priority="-1" mode="M8" /><xsl:template match="@*|node()" priority="-2" mode="M8"><xsl:apply-templates select="@*|*" mode="M8" /></xsl:template>
+You have not included the prioritization of this function.</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose><xsl:apply-templates select="*" mode="M8" /></xsl:template><xsl:template match="text()" priority="-1" mode="M8" /><xsl:template match="@*|node()" priority="-2" mode="M8"><xsl:apply-templates select="*" mode="M8" /></xsl:template>
 
 <!--PATTERN function-content-->
 
@@ -125,7 +102,7 @@ The function is missing conformance criteria</svrl:diagnostic-reference></svrl:f
 
 		<!--REPORT -->
 <xsl:if test="$has-criteria and count(../object[stereotype/text()='Criteria' and parentId=$id]/tag[@name='Optionality' and @value='SHALL']) = 0"><svrl:successful-report test="$has-criteria and count(../object[stereotype/text()='Criteria' and parentId=$id]/tag[@name='Optionality' and @value='SHALL']) = 0" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FMST12"><xsl:attribute name="xml:lang">en</xsl:attribute>
-For this function a mandatory criterion is missing.</svrl:diagnostic-reference></svrl:successful-report></xsl:if><xsl:apply-templates select="@*|*" mode="M9" /></xsl:template><xsl:template match="text()" priority="-1" mode="M9" /><xsl:template match="@*|node()" priority="-2" mode="M9"><xsl:apply-templates select="@*|*" mode="M9" /></xsl:template>
+For this function a mandatory criterion is missing.</svrl:diagnostic-reference></svrl:successful-report></xsl:if><xsl:apply-templates select="*" mode="M9" /></xsl:template><xsl:template match="text()" priority="-1" mode="M9" /><xsl:template match="@*|node()" priority="-2" mode="M9"><xsl:apply-templates select="*" mode="M9" /></xsl:template>
 
 <!--PATTERN criteria-content-->
 
@@ -143,4 +120,4 @@ The traceability to the original criterion is missing.</svrl:diagnostic-referenc
 
 		<!--ASSERT -->
 <xsl:choose><xsl:when test="tag[@name='Reference.ChangeIndicator' and (@value='N' or @value='C' or @value='NC' or @value='D' or @value='DEP' or @value='A')]" /><xsl:otherwise><svrl:failed-assert test="tag[@name='Reference.ChangeIndicator' and (@value='N' or @value='C' or @value='NC' or @value='D' or @value='DEP' or @value='A')]" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:schold="http://www.ascc.net/xml/schematron"><xsl:attribute name="location"><xsl:apply-templates select="." mode="schematron-get-full-path" /></xsl:attribute><svrl:text /> <svrl:diagnostic-reference diagnostic="FMTC07"><xsl:attribute name="xml:lang">en</xsl:attribute>
-The status of the criterion is not included (changes or unchanged).</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose><xsl:apply-templates select="@*|*" mode="M10" /></xsl:template><xsl:template match="text()" priority="-1" mode="M10" /><xsl:template match="@*|node()" priority="-2" mode="M10"><xsl:apply-templates select="@*|*" mode="M10" /></xsl:template></xsl:stylesheet>
+The status of the criterion is not included (changes or unchanged).</svrl:diagnostic-reference></svrl:failed-assert></xsl:otherwise></xsl:choose><xsl:apply-templates select="*" mode="M10" /></xsl:template><xsl:template match="text()" priority="-1" mode="M10" /><xsl:template match="@*|node()" priority="-2" mode="M10"><xsl:apply-templates select="*" mode="M10" /></xsl:template></xsl:stylesheet>
