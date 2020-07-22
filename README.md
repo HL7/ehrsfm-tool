@@ -25,7 +25,10 @@ N.B. The MAX_EA packages will be moved to its own git repository.
 ----------------
 Dockerfile
 
+```
 > docker build -t hl7-fm .
+```
 
+```
 > docker run -it -v "`pwd`":/app hl7-fm
-
+```
