@@ -108,7 +108,7 @@ namespace HL7_FM_CLI
                 {
                     // *[local-name()='model' and namespace-uri()='http://www.umcg.nl/MAX']/objects/object[357]
                     string location = xSvrlMessage.Attribute("location").Value;
-                    string xpath = location.Substring(location.IndexOf("/objects/"));
+                    string xpath = location.Substring(location.IndexOf("/objects"));
                     string name = max.XPathSelectElement("/" + xpath + "/name").Value;
 
                     string issueName = string.Format("{0}:{1} - {2}", code, message, name);

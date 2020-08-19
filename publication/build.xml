@@ -53,6 +53,28 @@
     </target>
 
 	<!-- ================================= 
+          target: PHR-S-FM R2
+         ================================= -->
+    <target name="PHR" description="Build the output artifacts for the PHR-S Functional Model R2 (PDF, HTML, EXCEL data)">
+
+    	<property name="file.base-name" value="phrs-fm-r2"/>
+    	<antcall target="artefacts">
+        	<param name="is-fm" value='true'/>
+        </antcall>
+
+    	<antcall target="pdf">
+    		<param name="file.fo-transform" value="${dir.xsl}/max-fm2fo.xsl"/>
+    		<param name="file.max-file" value="${dir.source}/${file.base-name}.max"/>
+    		<param name="file.ballot-file" value="../${dir.source}/${file.base-name}-ballot.mif"/>
+    		<param name="file.additional-text" value=""/>
+    		<param name="file.fo-file" value="${dir.fo}/${file.base-name}-iso.fo"/>
+    		<param name="file.out-file" value="${dir.pdf}/${file.base-name}-iso.pdf"/>
+    		<param name="format.generate-iso" value="true"/>
+    	</antcall>
+    </target>
+
+
+	<!-- ================================= 
           target: EHR-MU-FP              
          ================================= -->
     <target name="EHR-MU-FP" description="Build the output artifacts for the EHR System Functional Profile for Meaningful Use (PDF, HTML)">
@@ -61,6 +83,17 @@
         	<param name="is-fm" value='false'/>
         </antcall>
     </target>
+
+	<!-- ================================= 
+          target: UFP              
+         ================================= -->
+    <target name="UFP" description="Build the output artifacts for the EHR System Functional Profile for Meaningful Use (PDF, HTML)">
+        <antcall target="artefacts">
+        	<param name="file.base-name" value="ufp"/>
+        	<param name="is-fm" value='false'/>
+        </antcall>
+    </target>
+
 
 	<!-- ================================= 
           target: EHR-MU-FP 2016             
