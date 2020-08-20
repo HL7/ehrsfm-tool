@@ -7,7 +7,7 @@ var parser = new xml2js.Parser();
  It was decided to make the Usability FP a companion FP, so there is no compilation step required.
  This script will convert the definition to a HL7-FM-Profile.
  */
-var rawxmlfp = fs.readFileSync('EHRS_USEGUIDE_R1_I1_2019JAN_Usability_Functionlist_20190104_20200224b.xml');
+var rawxmlfp = fs.readFileSync('input/EHRS_USEGUIDE_R1_I1_2019JAN_Usability_Functionlist_20190104_20200224b.xml');
 parser.parseString(rawxmlfp, function (err, result) {
     var PID = "UFP";
     var obj = {

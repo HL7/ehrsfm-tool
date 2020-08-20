@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="Usability Companion Functional Profile, Release 1" xsi:schemaLocation="urn:hl7-org:v3/mif2" xmlns="urn:hl7-org:v3/mif2" schemaVersion="2.2.0" isComplete="">
+    <historyItem dateTime="2013-05-20T19:00:00"/>
+    <packageLocation root="BAL" realmNamespace="UV" name="uv"/>
+    <header>
+        <legalese>
+            <notation>
+                <text>ALL RIGHTS RESERVED. The reproduction of this material in any form is strictly forbidden without the written permission of the publisher.</text>
+                <text>HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc. Reg. U.S. Pat &amp; TM Off</text>
+            </notation>
+        </legalese>
+        <responsibleGroup groupName="EHR Work Group" organizationName="HL7"/>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Gary Dickinson FHL7"/>
+            <affiliation>CentriHealth/UnitedHealth Group</affiliation>
+            <email>mailto:gary.dickinson@ehr-standards.com</email>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Mark Janczewski MD MPH"/>
+            <affiliation>Medical Networks, LLC</affiliation>
+            <email>mailto:mark.janczewski@verizon.net</email>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Michael Brody DPM"/>
+            <affiliation></affiliation>
+            <email>mailto:mbrody@cmeonline.com</email>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="John Ritter"/>
+            <affiliation/>
+            <email>mailto:johnritter1@verizon.net</email>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Stephen Hufnager PhD"/>
+            <affiliation>Apprio, Inc.</affiliation>
+            <email>mailto:shufnagel@apprioinc.com</email>
+        </contributor>
+        <contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Feliciano Yu MD, MS"/>
+            <affiliation>University of Arkansas Medical Sciences</affiliation>
+            <email>mailto:Pele.Yu@archildrens.org</email>
+        </contributor>
+        <contributor>
+            <role>Publishing Facilitator</role>
+            <name name="Michael van der Zel BSc"/>
+            <affiliation>UMCG</affiliation>
+            <email>mailto:m.van.der.zel@umcg.nl</email>
+        </contributor>
+    </header>
+</package>

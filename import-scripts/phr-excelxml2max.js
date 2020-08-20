@@ -6,7 +6,7 @@ var parser = new xml2js.Parser();
 /*
  This script will convert the PHR-S-FM R2 spreadsheet definition to a HL7-FM.
  */
-var rawxmlfp = fs.readFileSync('EHRSFM_R2_PHRSFM_R2_N1_2019JAN_Functionlist_20181203_20190123.xml');
+var rawxmlfp = fs.readFileSync('input/EHRSFM_R2_PHRSFM_R2_N1_2019JAN_Functionlist_20181203_20190123.xml');
 parser.parseString(rawxmlfp, function (err, result) {
     var PID = "PHR_R2";
     var obj = {
