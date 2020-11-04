@@ -78,7 +78,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                         name: "Section Placeholder",
                         alias: parentSectionID,
                         stereotype: "Section", 
-                        type: _type,
+                        type: "Package",
                         parentId: PID,
                         tag: [ { $: { name: "ID", value: secno++ } } ]
                     });
@@ -111,6 +111,15 @@ parser.parseString(rawxmlfp, function (err, result) {
                 if (!destId) {
                     console.error(`parent not found for ${ID}`);
                 }
+                var _optionality = '';
+                if (CRITERIA.includes(" SHALL ")) _optionality = "SHALL";
+                else if (CRITERIA.includes(" SHOULD ")) _optionality = "SHOULD";
+                else if (CRITERIA.includes(" MAY ")) _optionality = "MAY";
+                var _dependent = "N";
+                if (CRITERIA.includes('according to scope of practice') ||
+                    CRITERIA.includes('organizational policy') ||
+                    CRITERIA.includes('jurisdictional law')
+                ) _dependent = "Y";
                 obj['model'].objects.object.push({ 
                     id: rowno, 
                     name: _name,
@@ -119,9 +128,9 @@ parser.parseString(rawxmlfp, function (err, result) {
                     type: _type,
                     parentId: destId,
                     tag: [ { $: { name: "Row", value: rowno } },
-                        { $: { name: "Optinality", value: '' } },
+                        { $: { name: "Optionality", value: _optionality } },
                         { $: { name: "Conditional", value: CRITERIA.startsWith("IF ")?"Y":"N" } },
-                        { $: { name: "Dependent", value: "N" } },
+                        { $: { name: "Dependent", value: _dependent } },
                         { $: { name: "Reference.Alias", value: REF_ALIAS } },
                         { $: { name: "Reference.FunctionID", value: REF_FUNCTION } },
                         { $: { name: "Reference.CriterionID", value: REF_CC } },

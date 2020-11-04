@@ -66,9 +66,10 @@
             <let name="non-printing-text2" value="translate($description, $printing-characters, '')"/>
             <assert test="string-length($non-printing-text2)=0" diagnostics="FMTSR09"><value-of select="$id"/></assert>
             
+<!-- MZ Causes Entry point was not found.
             <let name="local-alias" value="substring-after($thing-id, $parent-alias)"/>
             <assert test="starts-with($local-alias, '.')" diagnostics="FMFR002"><value-of select="$id"/></assert>
-            <assert test="string-length(translate(substring($local-alias, 2), $numbers, '')) = 0" diagnostics="FMFR002"><value-of select="$id"/></assert>
+            <assert test="string-length(translate(substring($local-alias, 2), $numbers, '')) = 0" diagnostics="FMFR002"><value-of select="$id"/></assert>-->
         </rule>
     </pattern>
     
@@ -101,8 +102,9 @@
             
             <assert test="count(../object[stereotype/text()='Criteria' and parentId=$id]) > 0" diagnostics="FMFLC13"><value-of select="$id"/></assert>
             
-            <let name="start-string" value="concat(substring($statement, 1, 25), '...')"/>
-            <assert test="contains($capital-letters, substring($statement,1,1))" diagnostics="FMTSR02"><value-of select="$id"/></assert>
+<!-- MZ Causes capacity Exception or 0x00 issue
+           <let name="start-string" value="concat(substring($statement, 1, 25), '...')"/>
+            <assert test="contains($capital-letters, substring($statement,1,1))" diagnostics="FMTSR02"><value-of select="$id"/></assert> 
             <let name="start-string2" value="concat(substring($description, 1, 25), '...')"/>
             <assert test="contains($capital-letters, substring($description,1,1))" diagnostics="FMTSR08"><value-of select="$id"/></assert>
             
@@ -110,7 +112,7 @@
             <assert test="string-length($non-printing-text1)=0" diagnostics="FMTSR04"><value-of select="$id"/></assert>
             <let name="non-printing-text2" value="translate($description, $printing-characters, '')"/>
             <assert test="string-length($non-printing-text2)=0" diagnostics="FMTSR09"><value-of select="$id"/></assert>
-
+-->
             <let name="local-alias" value="substring-after($thing-id, $parent-alias)"/>
             <assert test="starts-with($local-alias, '.')" diagnostics="FMFR003"><value-of select="$id"/></assert>
             <assert test="string-length(translate(substring($local-alias, 2), $numbers, '')) = 0" diagnostics="FMFR003"><value-of select="$id"/></assert>
