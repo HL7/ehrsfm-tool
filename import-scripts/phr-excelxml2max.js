@@ -72,10 +72,11 @@ parser.parseString(rawxmlfp, function (err, result) {
             case 'F':
                 var parentSectionID = ID.substring(0,ID.indexOf('.'));
                 if(fmidx[parentSectionID] == undefined) {
+                    // Create Section Placeolder
                     fmidx[parentSectionID] = parentSectionID;
                     obj['model'].objects.object.push({ 
                         id: parentSectionID, 
-                        name: "Section Placeholder",
+                        name: parentSectionID,
                         alias: parentSectionID,
                         stereotype: "Section", 
                         type: "Package",

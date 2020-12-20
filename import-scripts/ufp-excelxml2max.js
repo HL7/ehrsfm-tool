@@ -70,15 +70,16 @@ parser.parseString(rawxmlfp, function (err, result) {
         switch (TYPE) {
             case 'H':
             case 'F':
-                var parentID = ID.substring(0,ID.indexOf('.'));
-                if(fmidx[parentID] == undefined) {
-                    fmidx[parentID] = parentID;
+                var parentSectionID = ID.substring(0,ID.indexOf('.'));
+                if(fmidx[parentSectionID] == undefined) {
+                    // Create Section Placeolder
+                    fmidx[parentSectionID] = parentSectionID;
                     obj['model'].objects.object.push({ 
-                        id: parentID, 
-                        name: parentID,
-                        alias: parentID,
+                        id: parentSectionID, 
+                        name: parentSectionID,
+                        alias: parentSectionID,
                         stereotype: "Section", 
-                        type: _type,
+                        type: "Package",
                         parentId: PID,
                         tag: [ { $: { name: "ID", value: secno++ } } ]
                     });
@@ -93,7 +94,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                     notes: `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`,
                     stereotype: _stereotype, 
                     type: _type,
-                    parentId: parentID,
+                    parentId: parentSectionID,
                     tag: [ { $: { name: "Row", value: rowno } },
                         { $: { name: "Reference.ChangeInfo", value: "N" } } ]
                 });
@@ -112,6 +113,15 @@ parser.parseString(rawxmlfp, function (err, result) {
                 if (!destId) {
                     console.error(`parent not found for ${ID}`);
                 }
+                var _optionality = '';
+                if (CRITERIA.includes(" SHALL ")) _optionality = "SHALL";
+                else if (CRITERIA.includes(" SHOULD ")) _optionality = "SHOULD";
+                else if (CRITERIA.includes(" MAY ")) _optionality = "MAY";
+                var _dependent = "N";
+                if (CRITERIA.includes('according to scope of practice') ||
+                    CRITERIA.includes('organizational policy') ||
+                    CRITERIA.includes('jurisdictional law')
+                ) _dependent = "Y";
                 obj['model'].objects.object.push({ 
                     id: rowno, 
                     name: _name,
@@ -120,9 +130,9 @@ parser.parseString(rawxmlfp, function (err, result) {
                     type: _type,
                     parentId: destId,
                     tag: [ { $: { name: "Row", value: rowno } },
-                        { $: { name: "Optinality", value: '' } },
+                        { $: { name: "Optionality", value: _optionality } },
                         { $: { name: "Conditional", value: CRITERIA.startsWith("IF ")?"Y":"N" } },
-                        { $: { name: "Dependent", value: "N" } },
+                        { $: { name: "Dependent", value: _dependent } },
                         { $: { name: "Reference.ChangeInfo", value: "N" } }
                     ]
                 });
@@ -137,10 +147,10 @@ parser.parseString(rawxmlfp, function (err, result) {
         var aname = a.name;
         var bname = b.name;
         // Package should be first!
-        if (a.type == 'Package') {
+        if (a.stereotype == 'HL7-FM-Profile') {
             aname = "0" + aname;
         }
-        if (b.type == 'Package') {
+        if (b.stereotype == 'HL7-FM-Profile') {
             bname = "0" + bname;
         }
 
@@ -194,11 +204,6 @@ parser.parseString(rawxmlfp, function (err, result) {
         }
         return (aname > bname) ? 1 : -1 ;
     });
-
-    // sort by row# is in id; does not work for Section :-(
-    // obj['model'].objects.object.sort(function (a,b) {
-    //     return (a.id > b.id) ? 1 : -1;
-    // });
 
     var builder = new xml2js.Builder();
     console.log (builder.buildObject(obj))
