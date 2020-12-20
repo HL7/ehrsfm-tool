@@ -84,6 +84,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                         tag: [ { $: { name: "ID", value: secno++ } } ]
                     });
                 }
+                
                 var _stereotype = (TYPE=='F'?"Function":"Header");
                 var _type = "Feature";
                 obj['model'].objects.object.push({ 
