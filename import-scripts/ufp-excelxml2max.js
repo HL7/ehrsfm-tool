@@ -1,4 +1,5 @@
 var fs = require('fs');
+const { abort } = require('process');
 var xml2js = require('xml2js');
  
 var parser = new xml2js.Parser();
@@ -6,6 +7,9 @@ var parser = new xml2js.Parser();
 /*
  It was decided to make the Usability FP a companion FP, so there is no compilation step required.
  This script will convert the definition to a HL7-FM-Profile.
+
+ 2020-dec-20; sort Profile/Section(s)/Header/Function/Criteria by ID en seq#
+              TODO: order of Sections is now alfa, but should be xyz??!!
  */
 var rawxmlfp = fs.readFileSync('input/EHRS_USEGUIDE_R1_I1_2019JAN_Usability_Functionlist_20190104_20200224b.xml');
 parser.parseString(rawxmlfp, function (err, result) {
@@ -51,8 +55,9 @@ parser.parseString(rawxmlfp, function (err, result) {
         var TYPE = getCellValue(row, 7);
         var NAME = getCellValue(row, 8);
         var STATEMENT = getCellValue(row, 10);
-        if (!STATEMENTcp) STATEMENT = "";
+        if (!STATEMENT) STATEMENT = "";
         var DESCRIPTION = getCellValue(row, 12);
+        if (!DESCRIPTION) DESCRIPTION = "";
         var CRITERIA = getCellValue(row, 15);
         if (!ID) {
             ID = lastID;
@@ -70,7 +75,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                     fmidx[parentID] = parentID;
                     obj['model'].objects.object.push({ 
                         id: parentID, 
-                        name: "Section Placeholder",
+                        name: parentID,
                         alias: parentID,
                         stereotype: "Section", 
                         type: _type,
@@ -126,6 +131,74 @@ parser.parseString(rawxmlfp, function (err, result) {
                 break;
         }
     });
+
+    // sort by FM ID
+    obj['model'].objects.object.sort(function (a,b) {
+        var aname = a.name;
+        var bname = b.name;
+        // Package should be first!
+        if (a.type == 'Package') {
+            aname = "0" + aname;
+        }
+        if (b.type == 'Package') {
+            bname = "0" + bname;
+        }
+
+        if (a.stereotype == 'Section') {
+            aname = a.id;
+        }
+        else if (a.stereotype == 'Header' || a.stereotype == 'Function') {
+            var p = a.alias.split(/[\. ]/);
+            aname = p[0];
+            for(var i=1; i<p.length; i++){
+                aname += '.';
+                var num = Number(p[i]);
+                if (num<10) aname += '0';
+                aname += num;
+            }
+        }
+        else if (a.stereotype == 'Criteria') {
+            var p = a.name.split(/[\.#]/);
+            aname = p[0];
+            for(var i=1; i<p.length-1; i++){
+                aname += '.';
+                var num = Number(p[i]);
+                if (num<10) aname += '0';
+                aname += num;
+            }
+            aname += '#' + p[p.length-1];
+        }
+
+        if (b.stereotype == 'Section') {
+            bname = b.id;
+        }
+        else if (b.stereotype == 'Header' || b.stereotype == 'Function') {
+            var p = b.alias.split(/[\. ]/);
+            bname = p[0];
+            for(var i=1; i<p.length; i++){
+                bname += '.';
+                if (p[i]<10) bname += '0';
+                bname += p[i];
+            }
+        }
+        else if (b.stereotype == 'Criteria') {
+            var p = b.name.split(/[\.#]/);
+            bname = p[0];
+            for(var i=1; i<p.length-1; i++){
+                bname += '.';
+                var num = Number(p[i]);
+                if (num<10) bname += '0';
+                bname += num;
+            }
+            bname += '#' + p[p.length-1];
+        }
+        return (aname > bname) ? 1 : -1 ;
+    });
+
+    // sort by row# is in id; does not work for Section :-(
+    // obj['model'].objects.object.sort(function (a,b) {
+    //     return (a.id > b.id) ? 1 : -1;
+    // });
 
     var builder = new xml2js.Builder();
     console.log (builder.buildObject(obj))
