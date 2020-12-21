@@ -57,7 +57,7 @@
          ================================= -->
     <target name="PHR" description="Build the output artifacts for the PHR-S Functional Model R2 (PDF, HTML, EXCEL data)">
 
-    	<property name="file.base-name" value="phrs-fm"/>
+    	<property name="file.base-name" value="phrs-fm-r2"/>
     	<antcall target="artefacts">
         	<param name="is-fm" value='true'/>
         </antcall>
@@ -107,10 +107,10 @@
 	<!-- ================================= 
           target: 3PHRSFM              
          ================================= -->
-    <target name="3PHRSFM" description="Build the output artifacts for the PHRSFM">
-        <antcall target="artefacts">
-        	<param name="file.base-name" value="phrs-fm"/>
-        	<param name="is-fm" value='false'/>
+    <target name="3PHRSFM" description="Build the output artifacts for the PHRS-FM">
+    	<property name="file.base-name" value="phrs-fm"/>
+    	<antcall target="artefacts">
+        	<param name="is-fm" value='true'/>
         </antcall>
     </target>
 

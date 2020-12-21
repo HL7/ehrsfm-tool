@@ -10,17 +10,17 @@ namespace HL7_FM_CLI
             if (args.Length < 1)
             {
                 Console.WriteLine("HL7 EHR FM & MAX Diff CLI");
-                Console.WriteLine("usage: dotnet HL7_FM.ConsoleApp.dll <command> <args>");
+                Console.WriteLine("usage: dotnet run <command> <args>");
                 Console.WriteLine();
                 Console.WriteLine("These are the commands:");
                 Console.WriteLine();
                 Console.WriteLine("EHR-S FM / FP commands");
                 Console.WriteLine("    validate    validate a fm/fp/fpdef exported as max file [max file]");
-                Console.WriteLine("    compile     compile a Functional Model [base fm file, profile def file, output file]");
+                Console.WriteLine("    compile     compile a Functional Model [base fm file] [profile def file] [output file]");
                 Console.WriteLine("MAX comamnds");
-                Console.WriteLine("    diff        a pure max diff");
-                Console.WriteLine("    diff-zib    diff zibs exported as max file");
-                Console.WriteLine("    diff-fm     diff fm/fp/fpdef exported as max file");
+                Console.WriteLine("    diff        a pure max diff [max file 1] [max file 2]");
+                Console.WriteLine("    diff-zib    diff zibs exported as max file [max file 1] [max file 2]");
+                Console.WriteLine("    diff-fm     diff fm/fp/fpdef exported as max file [max file 1] [max file 2]");
                 Console.WriteLine();
             }
             else

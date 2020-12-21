@@ -84,7 +84,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                         tag: [ { $: { name: "ID", value: secno++ } } ]
                     });
                 }
-                
+
                 var _stereotype = (TYPE=='F'?"Function":"Header");
                 var _type = "Feature";
                 obj['model'].objects.object.push({ 
@@ -130,7 +130,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                     type: _type,
                     parentId: destId,
                     tag: [ { $: { name: "Row", value: rowno } },
-                        { $: { name: "Optionality", value: _optionality } },
+                        //{ $: { name: "Optionality", value: _optionality } },
                         { $: { name: "Conditional", value: CRITERIA.startsWith("IF ")?"Y":"N" } },
                         { $: { name: "Dependent", value: _dependent } },
                         { $: { name: "Reference.Alias", value: REF_ALIAS } },
@@ -143,6 +143,69 @@ parser.parseString(rawxmlfp, function (err, result) {
             default:
                 break;
         }
+    });
+
+    // sort by FM ID
+    obj['model'].objects.object.sort(function (a,b) {
+        var aname = a.name;
+        var bname = b.name;
+        // Package should be first!
+        if (a.stereotype == 'HL7-FM-Profile' || a.stereotype == 'HL7-FM') {
+            aname = "0" + aname;
+        }
+        if (b.stereotype == 'HL7-FM-Profile' || a.stereotype == 'HL7-FM') {
+            bname = "0" + bname;
+        }
+
+        if (a.stereotype == 'Section') {
+            aname = a.id;
+        }
+        else if (a.stereotype == 'Header' || a.stereotype == 'Function') {
+            var p = a.alias.split(/[\. ]/);
+            aname = p[0];
+            for(var i=1; i<p.length; i++){
+                aname += '.';
+                var num = Number(p[i]);
+                if (num<10) aname += '0';
+                aname += num;
+            }
+        }
+        else if (a.stereotype == 'Criteria') {
+            var p = a.name.split(/[\.#]/);
+            aname = p[0];
+            for(var i=1; i<p.length-1; i++){
+                aname += '.';
+                var num = Number(p[i]);
+                if (num<10) aname += '0';
+                aname += num;
+            }
+            aname += '#' + p[p.length-1];
+        }
+
+        if (b.stereotype == 'Section') {
+            bname = b.id;
+        }
+        else if (b.stereotype == 'Header' || b.stereotype == 'Function') {
+            var p = b.alias.split(/[\. ]/);
+            bname = p[0];
+            for(var i=1; i<p.length; i++){
+                bname += '.';
+                if (p[i]<10) bname += '0';
+                bname += p[i];
+            }
+        }
+        else if (b.stereotype == 'Criteria') {
+            var p = b.name.split(/[\.#]/);
+            bname = p[0];
+            for(var i=1; i<p.length-1; i++){
+                bname += '.';
+                var num = Number(p[i]);
+                if (num<10) bname += '0';
+                bname += num;
+            }
+            bname += '#' + p[p.length-1];
+        }
+        return (aname > bname) ? 1 : -1 ;
     });
 
     var builder = new xml2js.Builder();

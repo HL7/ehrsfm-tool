@@ -106,9 +106,9 @@ parser.parseString(rawxmlfp, function (err, result) {
                 }
                 if (!CC[`${ID}`]) { CC[`${ID}`] = 1; }
                 else { CC[`${ID}`]++; }
-                        var _name = formatID(ID, CC[`${ID}`]);
-                        var _stereotype = "Criteria";
-                        var _type = "Requirement";
+                var _name = formatID(ID, CC[`${ID}`]);
+                var _stereotype = "Criteria";
+                var _type = "Requirement";
                 destId = fmidx[`${ID}`];
                 if (!destId) {
                     console.error(`parent not found for ${ID}`);

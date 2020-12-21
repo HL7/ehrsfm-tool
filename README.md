@@ -32,3 +32,11 @@ Dockerfile
 ```
 > docker run -it -v "`pwd`":/app hl7-fm
 ```
+
+----------------
+Using the ehrsfm-tool command line tools
+
+```
+> cd HL7_FM_CLI.ConsoleApp
+> dotnet run
+```
