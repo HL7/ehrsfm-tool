@@ -5,6 +5,8 @@ var parser = new xml2js.Parser();
 
 /*
  This script will convert the PHR-S-FM R2 spreadsheet definition to a HL7-FM.
+ 2020-dec-18; added sorting
+ 2020-dec-22; order of Sections fixed
  */
 var rawxmlfp = fs.readFileSync('input/EHRSFM_R2_PHRSFM_R2_N1_2019JAN_Functionlist_20181203_20190123.xml');
 parser.parseString(rawxmlfp, function (err, result) {
@@ -66,6 +68,9 @@ parser.parseString(rawxmlfp, function (err, result) {
 
         // ignore rows marked as deleted
         if (FLAG == 'D') return;
+        else if (!FLAG) {
+            FLAG = 'NC';
+        }
 
         switch (TYPE) {
             case 'H':
@@ -98,7 +103,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                     tag: [ { $: { name: "Row", value: rowno } },
                     { $: { name: "Reference.Alias", value: REF_ALIAS } },
                     { $: { name: "Reference.FunctionID", value: REF_FUNCTION } },
-                    { $: { name: "Reference.ChangeInfo", value: "N" } } ]
+                    { $: { name: "Reference.ChangeIndicator", value: FLAG } } ]
                 });
                 fmidx[`${ID}`] = rowno;
                 break;
@@ -136,7 +141,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                         { $: { name: "Reference.Alias", value: REF_ALIAS } },
                         { $: { name: "Reference.FunctionID", value: REF_FUNCTION } },
                         { $: { name: "Reference.CriterionID", value: REF_CC } },
-                        { $: { name: "Reference.ChangeInfo", value: "N" } }
+                        { $: { name: "Reference.ChangeIndicator", value: FLAG } }
                     ]
                 });
                 break;
@@ -146,6 +151,12 @@ parser.parseString(rawxmlfp, function (err, result) {
     });
 
     // sort by FM ID
+    var section_sortkey = [];
+    section_sortkey['PH'] = '1PH';
+    section_sortkey['S'] = '2S';
+    section_sortkey['RI'] = '3RI';
+    section_sortkey['TI'] = '4TI';
+
     obj['model'].objects.object.sort(function (a,b) {
         var aname = a.name;
         var bname = b.name;
@@ -158,11 +169,11 @@ parser.parseString(rawxmlfp, function (err, result) {
         }
 
         if (a.stereotype == 'Section') {
-            aname = a.id;
+            aname = section_sortkey[a.id];
         }
         else if (a.stereotype == 'Header' || a.stereotype == 'Function') {
             var p = a.alias.split(/[\. ]/);
-            aname = p[0];
+            aname = section_sortkey[p[0]];
             for(var i=1; i<p.length; i++){
                 aname += '.';
                 var num = Number(p[i]);
@@ -172,7 +183,7 @@ parser.parseString(rawxmlfp, function (err, result) {
         }
         else if (a.stereotype == 'Criteria') {
             var p = a.name.split(/[\.#]/);
-            aname = p[0];
+            aname = section_sortkey[p[0]];
             for(var i=1; i<p.length-1; i++){
                 aname += '.';
                 var num = Number(p[i]);
@@ -183,11 +194,11 @@ parser.parseString(rawxmlfp, function (err, result) {
         }
 
         if (b.stereotype == 'Section') {
-            bname = b.id;
+            bname = section_sortkey[b.id];
         }
         else if (b.stereotype == 'Header' || b.stereotype == 'Function') {
             var p = b.alias.split(/[\. ]/);
-            bname = p[0];
+            bname = section_sortkey[p[0]];
             for(var i=1; i<p.length; i++){
                 bname += '.';
                 if (p[i]<10) bname += '0';
@@ -196,7 +207,7 @@ parser.parseString(rawxmlfp, function (err, result) {
         }
         else if (b.stereotype == 'Criteria') {
             var p = b.name.split(/[\.#]/);
-            bname = p[0];
+            bname = section_sortkey[p[0]];
             for(var i=1; i<p.length-1; i++){
                 bname += '.';
                 var num = Number(p[i]);

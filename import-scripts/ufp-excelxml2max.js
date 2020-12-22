@@ -9,7 +9,7 @@ var parser = new xml2js.Parser();
  This script will convert the definition to a HL7-FM-Profile.
 
  2020-dec-20; sort Profile/Section(s)/Header/Function/Criteria by ID en seq#
-              TODO: order of Sections is now alfa, but should be xyz??!!
+ 2020-dec-22; order of Sections fixed
  */
 var rawxmlfp = fs.readFileSync('input/EHRS_USEGUIDE_R1_I1_2019JAN_Usability_Functionlist_20190104_20200224b.xml');
 parser.parseString(rawxmlfp, function (err, result) {
@@ -143,23 +143,32 @@ parser.parseString(rawxmlfp, function (err, result) {
     });
 
     // sort by FM ID
+    var section_sortkey = [];
+    section_sortkey['OV'] = '1OV';
+    section_sortkey['CP'] = '2CP';
+    section_sortkey['CPS'] = '3CPS';
+    section_sortkey['AS'] = '4AS';
+    section_sortkey['POP'] = '5POP';
+    section_sortkey['RI'] = '6RI';
+    section_sortkey['TI'] = '7TI';
+
     obj['model'].objects.object.sort(function (a,b) {
         var aname = a.name;
         var bname = b.name;
         // Package should be first!
-        if (a.stereotype == 'HL7-FM-Profile') {
+        if (a.stereotype == 'HL7-FM-Profile' || a.stereotype == 'HL7-FM') {
             aname = "0" + aname;
         }
-        if (b.stereotype == 'HL7-FM-Profile') {
+        if (b.stereotype == 'HL7-FM-Profile' || a.stereotype == 'HL7-FM') {
             bname = "0" + bname;
         }
 
         if (a.stereotype == 'Section') {
-            aname = a.id;
+            aname = section_sortkey[a.id];
         }
         else if (a.stereotype == 'Header' || a.stereotype == 'Function') {
             var p = a.alias.split(/[\. ]/);
-            aname = p[0];
+            aname = section_sortkey[p[0]];
             for(var i=1; i<p.length; i++){
                 aname += '.';
                 var num = Number(p[i]);
@@ -169,7 +178,7 @@ parser.parseString(rawxmlfp, function (err, result) {
         }
         else if (a.stereotype == 'Criteria') {
             var p = a.name.split(/[\.#]/);
-            aname = p[0];
+            aname = section_sortkey[p[0]];
             for(var i=1; i<p.length-1; i++){
                 aname += '.';
                 var num = Number(p[i]);
@@ -180,11 +189,11 @@ parser.parseString(rawxmlfp, function (err, result) {
         }
 
         if (b.stereotype == 'Section') {
-            bname = b.id;
+            bname = section_sortkey[b.id];
         }
         else if (b.stereotype == 'Header' || b.stereotype == 'Function') {
             var p = b.alias.split(/[\. ]/);
-            bname = p[0];
+            bname = section_sortkey[p[0]];
             for(var i=1; i<p.length; i++){
                 bname += '.';
                 if (p[i]<10) bname += '0';
@@ -193,7 +202,7 @@ parser.parseString(rawxmlfp, function (err, result) {
         }
         else if (b.stereotype == 'Criteria') {
             var p = b.name.split(/[\.#]/);
-            bname = p[0];
+            bname = section_sortkey[p[0]];
             for(var i=1; i<p.length-1; i++){
                 bname += '.';
                 var num = Number(p[i]);
