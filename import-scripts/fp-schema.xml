@@ -1,0 +1,25 @@
+<!-- By defining 2 rows Excel "thinks" the rows repeat and the whole column is mapped and exported! -->
+<fp>
+    <row>
+        <rowno>1</rowno>
+        <id>1</id>
+        <type>C</type>
+        <name>Name</name>
+        <statement>Statement</statement>
+        <description>Description</description>
+        <cc>1</cc>
+        <criteria>Criteria</criteria>
+        <changeindicator>CI</changeindicator>
+    </row>
+    <row>
+        <rowno>1</rowno>
+        <id>1</id>
+        <type>C</type>
+        <name>Name</name>
+        <statement>Statement</statement>
+        <description>Description</description>
+        <cc>1</cc>
+        <criteria>Criteria</criteria>
+        <changeindicator>CI</changeindicator>
+    </row>
+</fp>

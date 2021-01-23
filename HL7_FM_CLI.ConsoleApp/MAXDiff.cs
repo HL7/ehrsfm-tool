@@ -265,7 +265,10 @@ namespace HL7_MAX
         private void displayObject(ObjectType maxObj, List<string> changes)
         {
             Console.WriteLine("<<{0}>> {1} ({2})", maxObj.stereotype, maxObj.name, string.Join(",", changes.ToArray()));
-            Console.WriteLine(maxObj.notes.Text[0]);
+            if (maxObj.notes != null)
+            {
+                Console.WriteLine(maxObj.notes.Text[0]);
+            }
             Console.WriteLine();
         }
     }

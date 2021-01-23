@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="Usability Companion Functional Profile, Release 1" xsi:schemaLocation="urn:hl7-org:v3/mif2" xmlns="urn:hl7-org:v3/mif2" schemaVersion="2.2.0" isComplete="">
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" title="Personal Health Record System Functional Model, Release 2" xsi:schemaLocation="urn:hl7-org:v3/mif2" xmlns="urn:hl7-org:v3/mif2" schemaVersion="2.2.0" isComplete="">
     <historyItem dateTime="2013-05-20T19:00:00"/>
     <packageLocation root="BAL" realmNamespace="UV" name="uv"/>
     <header>
@@ -11,7 +11,7 @@
         </legalese>
         <responsibleGroup groupName="EHR Work Group" organizationName="HL7"/>
         <contributor>
-            <role>Co-Chair, EHR Work Group</role>
+            <role>Co-Chair, EHR Work Group, Project Team Facilitator</role>
             <name name="Gary Dickinson, FHL7"/>
             <affiliation>EHR Standards Consulting</affiliation>
             <email>mailto:gary.dickinson@ehr-standards.com</email>
@@ -22,11 +22,17 @@
             <affiliation>Medical Networks, LLC</affiliation>
             <email>mailto:mark.janczewski@verizon.net</email>
         </contributor>
-        <contributor>
+	<contributor>
             <role>Co-Chair, EHR Work Group</role>
-            <name name="Michael Brody, DPM"/>
-            <affiliation>Registry Clearinghouse.</affiliation>
-            <email>mailto:mbrody@registryclearinghouse.com</email>
+            <name name="Stephen Hufnager, PhD"/>
+            <affiliation>Registry Clearinghouse</affiliation>
+            <email>mailto:shufnagel@registryclearinghouse.com</email>
+        </contributor>
+	<contributor>
+            <role>Co-Chair, EHR Work Group</role>
+            <name name="Feliciano 'Pele' Yu, MD, MSHI, MSPH, FAMIA"/>
+            <affiliation>University of Arkansas Medical Sciences</affiliation>
+            <email>mailto:Pele.Yu@archildrens.org</email>
         </contributor>
         <contributor>
             <role>Co-Chair, EHR Work Group</role>
@@ -36,19 +42,19 @@
         </contributor>
         <contributor>
             <role>Co-Chair, EHR Work Group</role>
-            <name name="Stephen Hufnager, PhD"/>
+            <name name="Michael Brody, DPM"/>
             <affiliation>Registry Clearinghouse</affiliation>
-            <email>mailto:shufnagel@registryclearinghouse.com</email>
-        </contributor>
-        <contributor>
-            <role>Co-Chair, EHR Work Group</role>
-            <name name="Feliciano Yu MD, MSHI, MSPH, FAMIA"/>
-            <affiliation>University of Arkansas Medical Sciences</affiliation>
-            <email>mailto:Pele.Yu@archildrens.org</email>
+            <email>mailto:mbrody@registryclearinghouse.com</email>
         </contributor>
         <contributor>
             <role>Publishing Facilitator</role>
-            <name name="Michael van der Zel, BSc"/>
+            <name name="Anneke Goossen, MScN"/>
+            <affiliation>Results4Care</affiliation>
+            <email>mailto:annekegoossen@results4care.nl</email>
+        </contributor>
+        <contributor>
+            <role>Publishing Facilitator</role>
+            <name name="Michael van der Zeli, BSc"/>
             <affiliation>UMCG</affiliation>
             <email>mailto:m.van.der.zel@umcg.nl</email>
         </contributor>

@@ -34,9 +34,23 @@ Dockerfile
 ```
 
 ----------------
-Using the ehrsfm-tool command line tools
+Using the ehrsfm-tool command line tools to validate and compile FM, ProfileDefinition and Profiles
 
 ```
-> cd HL7_FM_CLI.ConsoleApp
+> cd /app/HL7_FM_CLI.ConsoleApp
 > dotnet run
+```
+-----------------
+import-scripts
+
+!!! TODO !!!
+
+-----------------
+Publication tool
+
+!!! FIX ANT PATH !!!
+```
+> export PATH=usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/apache-ant-1.10.9/bin
+> cd /app/publication
+> ant 3DHFP|3UFP|3PHRSFM
 ```
