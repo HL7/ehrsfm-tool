@@ -48,7 +48,7 @@ import-scripts
 -----------------
 Publication tool
 
-!!! FIX ANT PATH !!!
+!!! FIX ANT PATH !!! ant version 1.10.8 -> 1.10.9
 ```
 > export PATH=usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/apache-ant-1.10.9/bin
 > cd /app/publication
