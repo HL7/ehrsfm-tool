@@ -8,6 +8,7 @@ var parser = new xml2js.Parser();
  It was decided to make the Usability FP a companion FP, so there is no compilation step required.
  This script will convert the definition to a HL7-FM-Profile.
 
+ 2021-jan-27; sort criteria > 100
  2020-dec-20; sort Profile/Section(s)/Header/Function/Criteria by ID en seq#
  2020-dec-22; order of Sections fixed
  */
@@ -151,6 +152,8 @@ parser.parseString(rawxmlfp, function (err, result) {
     section_sortkey['POP'] = '5POP';
     section_sortkey['RI'] = '6RI';
     section_sortkey['TI'] = '7TI';
+    section_sortkey['U'] = '8U';
+    section_sortkey['MZ'] = '9MZ';
 
     obj['model'].objects.object.sort(function (a,b) {
         var aname = a.name;
@@ -185,7 +188,11 @@ parser.parseString(rawxmlfp, function (err, result) {
                 if (num<10) aname += '0';
                 aname += num;
             }
-            aname += '#' + p[p.length-1];
+            aname += '#';
+            var cnum = Number(p[p.length-1]);
+            if (cnum<10) aname += '00';
+            else if (cnum<100) aname += '0';
+            aname += cnum;
         }
 
         if (b.stereotype == 'Section') {
@@ -209,7 +216,11 @@ parser.parseString(rawxmlfp, function (err, result) {
                 if (num<10) bname += '0';
                 bname += num;
             }
-            bname += '#' + p[p.length-1];
+            bname += '#';
+            var cnum = Number(p[p.length-1]);
+            if (cnum<10) bname += '00';
+            else if (cnum<100) bname += '0';
+            bname += cnum;
         }
         return (aname > bname) ? 1 : -1 ;
     });

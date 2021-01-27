@@ -5,6 +5,8 @@ var parser = new xml2js.Parser();
 
 /*
  This script will convert the PHR-S-FM R2 spreadsheet definition to a HL7-FM.
+
+ 2021-jan-27; sort criteria > 100
  2020-dec-18; added sorting
  2020-dec-22; order of Sections fixed
  */
@@ -190,7 +192,11 @@ parser.parseString(rawxmlfp, function (err, result) {
                 if (num<10) aname += '0';
                 aname += num;
             }
-            aname += '#' + p[p.length-1];
+            aname += '#';
+            var cnum = Number(p[p.length-1]);
+            if (cnum<10) aname += '00';
+            else if (cnum<100) aname += '0';
+            aname += cnum;
         }
 
         if (b.stereotype == 'Section') {
@@ -214,7 +220,11 @@ parser.parseString(rawxmlfp, function (err, result) {
                 if (num<10) bname += '0';
                 bname += num;
             }
-            bname += '#' + p[p.length-1];
+            bname += '#';
+            var cnum = Number(p[p.length-1]);
+            if (cnum<10) bname += '00';
+            else if (cnum<100) bname += '0';
+            bname += cnum;
         }
         return (aname > bname) ? 1 : -1 ;
     });

@@ -105,6 +105,16 @@
     </target>
 
 	<!-- ================================= 
+          target: 3DHFP Changes Only
+         ================================= -->
+		 <target name="3DHFPC" description="Build the output artifacts for the DHFP">
+			<antcall target="artefacts">
+				<param name="file.base-name" value="dhfpc"/>
+				<param name="is-fm" value='false'/>
+			</antcall>
+	</target>
+
+	<!-- ================================= 
           target: 3PHRSFM              
          ================================= -->
     <target name="3PHRSFM" description="Build the output artifacts for the PHRS-FM">
