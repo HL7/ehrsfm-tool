@@ -9,14 +9,27 @@ var parser = new xml2js.Parser();
  that can then be used to compile into a compiled profile that is then input for publication.
  The input is a xml export of an excel XML mapped to fp-schema.xml.
 
+ 2021-jan-27; added Generalization relationship to base for Header/Function
+              assume name of Header/Function cannot be changed so lookup in base
+ 2021-jan-12; added Generalization relationship to base for Criteria
  2020-dec-20; sort Profile/Section(s)/Header/Function/Criteria by ID en seq#
  2020-dec-22; order of Sections fixed
  */
 var rawxmlfm = fs.readFileSync('input/ehrs_fm_r2_1-2020APR.max');
 var lookupfm = [];
+var lookupfmname = [];
 parser.parseString(rawxmlfm, function (err, result) {
     result['model'].objects[0].object.forEach(object => {
-        lookupfm[object.name[0]] = object.id[0];
+        switch (object.stereotype[0]) {
+            case "Header":
+            case "Function":
+                lookupfm[object.alias[0]] = object.id[0];
+                lookupfmname[object.alias[0]] = object.name[0];
+                break;
+            case "Criteria":
+                lookupfm[object.name[0]] = object.id[0];
+                break;
+        }
     });
 });
 
@@ -58,7 +71,7 @@ parser.parseString(rawxmlfp, function (err, result) {
         rowno++;
         var ID = row.id[0];
         var TYPE = row.type[0];
-        var NAME = row.name?row.name[0]:undefined;
+        var NAME = row.name?row.name[0]:"";
         var STATEMENT = row.statement?row.statement[0]:undefined;
         if (!STATEMENT) STATEMENT = "";
         var DESCRIPTION = row.description?row.description[0]:undefined;
@@ -75,7 +88,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                 var _type = "Class";
                 obj['model'].objects.object.push({ 
                     id: rowno, 
-                    name: `${ID} ${NAME}`,
+                    name: lookupfmname[ID],
                     alias: ID,
                     notes: `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`,
                     stereotype: _stereotype, 
@@ -83,6 +96,18 @@ parser.parseString(rawxmlfp, function (err, result) {
                     parentId: PID,
                     tag: [ { $: { name: "Row", value: rowno } },
                         { $: { name: "Reference.ChangeInfo", value: FLAG } } ]
+                });
+                obj['model'].relationships.relationship.push({
+                    label: undefined,
+                    sourceId: rowno,
+                    sourceLabel: undefined,
+                    sourceCard: undefined,
+                    destId: lookupfm[ID], // lookup based on alias in base fm
+                    destLabel: undefined,
+                    destCard: undefined,
+                    notes: "",
+                    stereotype: undefined,
+                    type: "Generalization"
                 });
                 break;
             case 'C':

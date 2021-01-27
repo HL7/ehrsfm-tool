@@ -43,7 +43,7 @@ Using the ehrsfm-tool command line tools to validate and compile FM, ProfileDefi
 -----------------
 import-scripts
 
-!!! TODO !!!
+!!! TODO; see FMFP Import Script Steps.docx !!!
 
 -----------------
 Publication tool
