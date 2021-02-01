@@ -6,11 +6,12 @@ var parser = new xml2js.Parser();
 /*
  This script will convert the PHR-S-FM R2 spreadsheet definition to a HL7-FM.
 
+ 2021-feb-01; corrected nesting of functions; added Section type='T'
  2021-jan-27; sort criteria > 100
  2020-dec-18; added sorting
  2020-dec-22; order of Sections fixed
  */
-var rawxmlfp = fs.readFileSync('input/EHRSFM_R2_PHRSFM_R2_N1_2019JAN_Functionlist_20181203_20190123.xml');
+var rawxmlfp = fs.readFileSync('input/EHRSFM_R2_PHRSFM_R2_N1_2019JAN_Functionlist_20181203_20190123_20201027_MZ.xml');
 parser.parseString(rawxmlfp, function (err, result) {
     var PID = "PHR_R2";
     var obj = {
@@ -75,27 +76,27 @@ parser.parseString(rawxmlfp, function (err, result) {
         }
 
         switch (TYPE) {
+            case 'T':
+                fmidx[ID] = ID;
+                // DESCRIPTION contains $EX$ and $AC$
+                obj['model'].objects.object.push({ 
+                    id: ID, 
+                    name: NAME,
+                    alias: ID,
+                    notes: `$OV$${STATEMENT}${DESCRIPTION}`,
+                    stereotype: "Section", 
+                    type: "Package",
+                    parentId: PID,
+                    tag: [ { $: { name: "ID", value: secno++ } } ]
+                });
+                break;
             case 'H':
             case 'F':
-                var parentSectionID = ID.substring(0,ID.indexOf('.'));
-                if(fmidx[parentSectionID] == undefined) {
-                    // Create Section Placeolder
-                    fmidx[parentSectionID] = parentSectionID;
-                    obj['model'].objects.object.push({ 
-                        id: parentSectionID, 
-                        name: parentSectionID,
-                        alias: parentSectionID,
-                        stereotype: "Section", 
-                        type: "Package",
-                        parentId: PID,
-                        tag: [ { $: { name: "ID", value: secno++ } } ]
-                    });
-                }
-
+                var parentSectionID = ID.substring(0,ID.lastIndexOf('.'));
                 var _stereotype = (TYPE=='F'?"Function":"Header");
                 var _type = "Feature";
                 obj['model'].objects.object.push({ 
-                    id: rowno, 
+                    id: ID, 
                     name: `${ID} ${NAME}`,
                     alias: ID,
                     notes: `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`,
@@ -107,7 +108,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                     { $: { name: "Reference.FunctionID", value: REF_FUNCTION } },
                     { $: { name: "Reference.ChangeIndicator", value: FLAG } } ]
                 });
-                fmidx[`${ID}`] = rowno;
+                fmidx[`${ID}`] = ID;
                 break;
             case 'C':
                 if (!CRITERIA) {
@@ -130,7 +131,7 @@ parser.parseString(rawxmlfp, function (err, result) {
                     CRITERIA.includes('jurisdictional law')
                 ) _dependent = "Y";
                 obj['model'].objects.object.push({ 
-                    id: rowno, 
+                    id: _name, 
                     name: _name,
                     notes: CRITERIA,
                     stereotype: _stereotype, 

@@ -25,10 +25,12 @@ N.B. The MAX_EA packages will be moved to its own git repository.
 ----------------
 Dockerfile
 
+Create the Docker container. Do this once.
 ```
 > docker build -t hl7-fm .
 ```
 
+Start the Docker container
 ```
 > docker run -it -v "`pwd`":/app hl7-fm
 ```
@@ -48,9 +50,7 @@ import-scripts
 -----------------
 Publication tool
 
-!!! FIX ANT PATH !!! ant version 1.10.8 -> 1.10.9
 ```
-> export PATH=usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/apache-ant-1.10.9/bin
 > cd /app/publication
 > ant 3DHFP|3UFP|3PHRSFM
 ```
