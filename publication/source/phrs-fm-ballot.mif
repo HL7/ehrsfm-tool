@@ -11,7 +11,7 @@
         </legalese>
         <responsibleGroup groupName="EHR Work Group" organizationName="HL7"/>
         <contributor>
-            <role>Co-Chair, EHR Work Group, Project Team Facilitator</role>
+            <role>Co-Chair, EHR Work Group</role>
             <name name="Gary Dickinson, FHL7"/>
             <affiliation>EHR Standards Consulting</affiliation>
             <email>mailto:gary.dickinson@ehr-standards.com</email>
@@ -24,7 +24,7 @@
         </contributor>
 	<contributor>
             <role>Co-Chair, EHR Work Group</role>
-            <name name="Stephen Hufnager, PhD"/>
+            <name name="Stephen Hufnagel, PhD"/>
             <affiliation>Registry Clearinghouse</affiliation>
             <email>mailto:shufnagel@registryclearinghouse.com</email>
         </contributor>
@@ -35,8 +35,8 @@
             <email>mailto:Pele.Yu@archildrens.org</email>
         </contributor>
         <contributor>
-            <role>Co-Chair, EHR Work Group</role>
-            <name name="John Ritter"/>
+            <role>Co-Chair, EHR Work Group, Project Team Facilitator</role>
+            <name name="John Ritter, FHL7"/>
             <affiliation/>
             <email>mailto:johnritter1@verizon.net</email>
         </contributor>

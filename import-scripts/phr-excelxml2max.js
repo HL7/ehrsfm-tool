@@ -11,7 +11,7 @@ var parser = new xml2js.Parser();
  2020-dec-18; added sorting
  2020-dec-22; order of Sections fixed
  */
-var rawxmlfp = fs.readFileSync('input/EHRSFM_R2_PHRSFM_R2_N1_2019JAN_Functionlist_20181203_20190123_20201027_MZ.xml');
+var rawxmlfp = fs.readFileSync('input/PHRSFM_R2_N1_2019JAN_Functionlist_20181203_20190123_20201027_20210319.xml');
 parser.parseString(rawxmlfp, function (err, result) {
     var PID = "PHR_R2";
     var obj = {
