@@ -9,12 +9,43 @@ var parser = new xml2js.Parser();
  that can then be used to compile into a compiled profile that is then input for publication.
  The input is a xml export of an excel XML mapped to fp-schema.xml.
 
+ 2021-mar-26; decided by WG to make this a "full" "domain" FM FP <- this is not currently a official type of profile
  2021-jan-27; added Generalization relationship to base for Header/Function
               assume name of Header/Function cannot be changed so lookup in base
  2021-jan-12; added Generalization relationship to base for Criteria
  2020-dec-20; sort Profile/Section(s)/Header/Function/Criteria by ID en seq#
  2020-dec-22; order of Sections fixed
  */
+var PID = "DHFP";
+var obj = {
+    'model': {
+        $: { 'xmlns': 'http://www.umcg.nl/MAX' },
+        objects: {
+            $: { 'xmlns': '' },
+            object: [ {
+                id: PID, 
+                name: "DHFP",
+                alias: "",
+                stereotype: "HL7-FM-ProfileDefinition",
+                type: "Package",
+                tag: [ { $: { name: "PrioritiesDescription", value: "" } },
+                    { $: { name: "Type", value: "Domain" } },
+                    { $: { name: "Rationale", value: "<memo>" } },
+                    { $: { name: "Version", value: "1.0" } },
+                    { $: { name: "Scope", value: "<memo>" } },
+                    { $: { name: "LanguageTag", value: "" } },
+                    { $: { name: "PrioritiesDefinition", value: "<memo>" } },
+                    { $: { name: "ConformanceClause", value: "<memo>" } } 
+                ]
+            } ]
+        },
+        relationships: {
+            $: { 'xmlns': '' },
+            relationship: [ ]
+        }
+    }
+};
+
 var rawxmlfm = fs.readFileSync('input/ehrs_fm_r2_1-2020APR.max');
 var lookupfm = [];
 var lookupfmname = [];
@@ -23,8 +54,29 @@ parser.parseString(rawxmlfm, function (err, result) {
         switch (object.stereotype[0]) {
             case "Header":
             case "Function":
-                lookupfm[object.alias[0]] = object.id[0];
-                lookupfmname[object.alias[0]] = object.name[0];
+                var ALIAS = object.alias[0];
+                lookupfm[ALIAS] = object.id[0];
+                lookupfmname[ALIAS] = object.name[0];
+
+                if (ALIAS == '') {
+                    return;
+                }
+
+                obj['model'].objects.object.push({ 
+                    id: PID+ALIAS,
+                    name: lookupfmname[ALIAS],
+                    alias: ALIAS,
+                    stereotype: "CI", 
+                    type: "Class",
+                    parentId: PID,
+                    tag: [ { $: { name: "Reference.ChangeInfo", value: 'NC' } } ]                    
+                });
+                obj['model'].relationships.relationship.push({
+                    sourceId: PID+ALIAS,
+                    destId: lookupfm[ALIAS], // lookup based on alias in base fm
+                    notes: "",
+                    type: "Generalization"
+                });
                 break;
             case "Criteria":
                 lookupfm[object.name[0]] = object.id[0];
@@ -33,39 +85,8 @@ parser.parseString(rawxmlfm, function (err, result) {
     });
 });
 
-
-var rawxmlfp = fs.readFileSync('input/DHFP GZ 1-12-2021 MZ 1-22-2021 3-19-2021.xml');
+var rawxmlfp = fs.readFileSync('input/DHFP+GZ+1-12-2021+MZ+1-22-2021+3-19-2021+GZFINAL+3-25-2021.xml');
 parser.parseString(rawxmlfp, function (err, result) {
-    var PID = "DHFP";
-    var obj = {
-        'model': {
-            $: { 'xmlns': 'http://www.umcg.nl/MAX' },
-            objects: {
-                $: { 'xmlns': '' },
-                object: [ {
-                    id: PID, 
-                    name: "DHFP",
-                    alias: "",
-                    stereotype: "HL7-FM-ProfileDefinition",
-                    type: "Package",
-                    tag: [ { $: { name: "PrioritiesDescription", value: "" } },
-                        { $: { name: "Type", value: "Domain" } },
-                        { $: { name: "Rationale", value: "<memo>" } },
-                        { $: { name: "Version", value: "1.0" } },
-                        { $: { name: "Scope", value: "<memo>" } },
-                        { $: { name: "LanguageTag", value: "" } },
-                        { $: { name: "PrioritiesDefinition", value: "<memo>" } },
-                        { $: { name: "ConformanceClause", value: "<memo>" } } 
-                    ]
-                } ]
-            },
-            relationships: {
-                $: { 'xmlns': '' },
-                relationship: [ ]
-            }
-        }
-    };
-
     var rowno = 0
     result.fp.row.forEach(row => {
         rowno++;
@@ -84,36 +105,39 @@ parser.parseString(rawxmlfp, function (err, result) {
         switch (TYPE) {
             case 'H':
             case 'F':
-                var _stereotype = "CI";
-                var _type = "Class";
-                obj['model'].objects.object.push({ 
-                    id: rowno, 
-                    name: lookupfmname[ID],
-                    alias: ID,
-                    notes: `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`,
-                    stereotype: _stereotype, 
-                    type: _type,
-                    parentId: PID,
-                    tag: [ { $: { name: "Row", value: rowno } },
-                        { $: { name: "Reference.ChangeInfo", value: FLAG } } ]
-                });
-                obj['model'].relationships.relationship.push({
-                    label: undefined,
-                    sourceId: rowno,
-                    sourceLabel: undefined,
-                    sourceCard: undefined,
-                    destId: lookupfm[ID], // lookup based on alias in base fm
-                    destLabel: undefined,
-                    destCard: undefined,
-                    notes: "",
-                    stereotype: undefined,
-                    type: "Generalization"
-                });
+                // first lookup already created object
+                var object = obj['model'].objects.object.find(element => element.alias == ID);
+                if (object == undefined) {
+                    console.error("NOT EXISTING? " + ID);
+                    object = { 
+                        id: rowno, 
+                        name: lookupfmname[ID],
+                        alias: ID,
+                        stereotype: "CI", 
+                        type: "Class",
+                        parentId: PID,
+                    };
+                    obj['model'].objects.object.push(object);
+                    obj['model'].relationships.relationship.push({
+                        label: undefined,
+                        sourceId: rowno,
+                        sourceLabel: undefined,
+                        sourceCard: undefined,
+                        destId: lookupfm[ID], // lookup based on alias in base fm
+                        destLabel: undefined,
+                        destCard: undefined,
+                        notes: "",
+                        stereotype: undefined,
+                        type: "Generalization"
+                    });                   
+                }
+                // update
+                object.notes = `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`;
+                object.tag = [ { $: { name: "Row", value: rowno } },
+                        { $: { name: "Reference.ChangeInfo", value: FLAG } } ];
                 break;
             case 'C':
                 var _name = formatID(ID, CC);
-                var _stereotype = "CI";
-                var _type = "Class";
                 var _optionality = '';
                 if (CRITERIA.includes(" SHALL ")) _optionality = "SHALL";
                 else if (CRITERIA.includes(" SHOULD ")) _optionality = "SHOULD";
@@ -127,8 +151,8 @@ parser.parseString(rawxmlfp, function (err, result) {
                     id: rowno, 
                     name: _name,
                     notes: CRITERIA,
-                    stereotype: _stereotype, 
-                    type: _type,
+                    stereotype: "CI", 
+                    type: "Class",
                     parentId: PID,
                     tag: [ { $: { name: "Row", value: rowno } },
                         { $: { name: "Optionality", value: _optionality } },
@@ -138,15 +162,9 @@ parser.parseString(rawxmlfp, function (err, result) {
                     ]
                 });
                 obj['model'].relationships.relationship.push({
-                    label: undefined,
                     sourceId: rowno,
-                    sourceLabel: undefined,
-                    sourceCard: undefined,
                     destId: lookupfm[_name], // lookup based on _name in base fm
-                    destLabel: undefined,
-                    destCard: undefined,
                     notes: "",
-                    stereotype: undefined,
                     type: "Generalization"
                 });
                 break;
