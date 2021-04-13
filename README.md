@@ -32,7 +32,7 @@ Create the Docker container. Do this once.
 
 Start the Docker container
 ```
-> docker run -it -v "`pwd`":/app hl7-fm
+> docker run -it -v "$(pwd)":/app hl7-fm
 ```
 
 ----------------

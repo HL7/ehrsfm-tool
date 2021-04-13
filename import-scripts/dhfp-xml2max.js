@@ -85,7 +85,7 @@ parser.parseString(rawxmlfm, function (err, result) {
     });
 });
 
-var rawxmlfp = fs.readFileSync('input/DHFP+GZ+1-12-2021+MZ+1-22-2021+3-19-2021+GZFINAL+3-25-2021.xml');
+var rawxmlfp = fs.readFileSync('input/DHFP+01122021+01222021+03192021+03252021+04062021.xml');
 parser.parseString(rawxmlfp, function (err, result) {
     var rowno = 0
     result.fp.row.forEach(row => {
