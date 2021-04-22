@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "fs": "0.0.1-security",
+    "read-excel-file": "^5.1.0",
     "xml2js": "^0.4.23"
   }
 }
