@@ -1,57 +1,53 @@
-var fs = require('fs');
-var xml2js = require('xml2js');
- 
-var parser = new xml2js.Parser();
-
 /*
  This script will convert the PHR-S-FM R2 spreadsheet definition to a HL7-FM.
 
+ 2021-apr-22; read xlsx directly
  2021-feb-01; corrected nesting of functions; added Section type='T'
  2021-jan-27; sort criteria > 100
  2020-dec-18; added sorting
  2020-dec-22; order of Sections fixed
  */
-var rawxmlfp = fs.readFileSync('input/PHRSFM_R2_N1_2019JAN_Functionlist_20181203_20190123_20201027_20210319.xml');
-parser.parseString(rawxmlfp, function (err, result) {
-    var PID = "PHR_R2";
-    var obj = {
-        'model': {
-            $: { 'xmlns': 'http://www.umcg.nl/MAX' },
-            objects: {
-                $: { 'xmlns': '' },
-                object: [ {
-                    id: PID, 
-                    name: "PHR_R2",
-                    alias: "",
-                    stereotype: "HL7-FM",
-                    type: "Package"
-                } ]
-            },
-            relationships: {
-                $: { 'xmlns': '' },
-                relationship: [ ]
-            }
-        }
-    };
+var fs = require('fs');
+var xml2js = require('xml2js');
+const readXlsxFile = require('read-excel-file/node');
 
-    var sheet = result.Workbook.Worksheet.find(sheet => sheet.$['ss:Name'] === "Functions");
-    var lastID = undefined;
-    var fmidx = [];
-    var rowno = 0
-    var secno = 1;
-    sheet.Table[0].Row.forEach(row => {
+ var PID = "PHR_R2";
+ var obj = {
+     'model': {
+         $: { 'xmlns': 'http://www.umcg.nl/MAX' },
+         objects: {
+             $: { 'xmlns': '' },
+             object: [ ]
+         },
+         relationships: {
+             $: { 'xmlns': '' },
+             relationship: [ ]
+         }
+     }
+ };
+
+ var lastID = undefined;
+ var fmidx = [];
+ var rowno = 0
+ var secno = 1;
+ 
+ readXlsxFile(process.argv[2], { sheet: 5, transformData(data)
+    { data.shift(2); return data; }}).then((rows) => {
+    // `rows` is an array of rows
+    // each row being an array of cells.
+    rows.forEach(row => {
         rowno++;
-        var ID = getCellValue(row, 0);
-        var TYPE = getCellValue(row, 1);
-        var NAME = getCellValue(row, 2);
-        var STATEMENT = getCellValue(row, 5);
-        var DESCRIPTION = getCellValue(row, 8);
-        var CC = getCellValue(row, 12);
-        var CRITERIA = getCellValue(row, 13);
-        var FLAG = getCellValue(row, 19);
+        var ID = row[0];
+        var TYPE = row[1];
+        var NAME = row[2];
+        var STATEMENT = row[5];
+        var DESCRIPTION = row[8];
+        var CC = row[12];
+        var CRITERIA = row[13];
+        var FLAG = row[19];
 
-        var REF_ALIAS = getCellValue(row, 17);
-        var REF_FUNCTION = getCellValue(row, 18);
+        var REF_ALIAS = row[17];
+        var REF_FUNCTION = row[18];
         var REF_CC;
         if (REF_FUNCTION) {
             var sep_idx = REF_FUNCTION.indexOf(' ');
@@ -230,13 +226,19 @@ parser.parseString(rawxmlfp, function (err, result) {
         return (aname > bname) ? 1 : -1 ;
     });
 
+    // Make sure Package is first
+    // WORKAROUND: this used to work by the sort routine...?
+    obj['model'].objects.object.unshift({
+        id: PID, 
+        name: "PHR_R2",
+        alias: "",
+        stereotype: "HL7-FM",
+        type: "Package"
+    });
+
     var builder = new xml2js.Builder();
     console.log (builder.buildObject(obj))
 });
-
-function getCellValue(row, cellidx) {
-    return row.Cell[cellidx] && row.Cell[cellidx].Data?row.Cell[cellidx].Data[0]._:undefined;
-}
 
 function formatID(ID, CC) {
     var cc = `${CC}`;
