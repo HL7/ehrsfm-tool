@@ -12,10 +12,12 @@ const readXlsxFile = require('read-excel-file/node');
 var parser = new xml2js.Parser();
 
 if (process.argv.length <= 2) {
-    console.error("First argument should be the PCHIFP xlsx filename.")
+    console.error("First argument should be the FP xlsx filename.")
     return;
 }
 
+// TODO: Use https://www.npmjs.com/package/yargs for cmdline options
+// TODO: read PID from option or first line of xlsx: --pid=PCHIFP
 var PID = "PCHIFP";
 var obj = {
     'model': {
@@ -61,6 +63,23 @@ parser.parseString(rawxmlfm, function (err, result) {
                 if (ALIAS == '') {
                     return;
                 }
+
+// TODO: do this when option: --create-full-fp is passed for e.g. DHFP
+                // obj['model'].objects.object.push({ 
+                //     id: PID+ALIAS,
+                //     name: lookupfmname[ALIAS],
+                //     alias: ALIAS,
+                //     stereotype: "CI", 
+                //     type: "Class",
+                //     parentId: PID,
+                //     tag: [ { $: { name: "Reference.ChangeInfo", value: 'NC' } } ]                    
+                // });
+                // obj['model'].relationships.relationship.push({
+                //     sourceId: PID+ALIAS,
+                //     destId: lookupfm[ALIAS], // lookup based on alias in base fm
+                //     notes: "",
+                //     type: "Generalization"
+                // });                
                 break;
             case "Criteria":
                 lookupfm[object.name[0]] = object.id[0];
@@ -119,6 +138,7 @@ readXlsxFile(process.argv[2], { sheet: 2, map, transformData(data)
                 break;            
             case 'H':
             case 'F':
+// TODO: make sure lookupfm id exists!
                 // first lookup already created object
                 var object = obj['model'].objects.object.find(element => element.alias == ID);
                 if (object == undefined) {
