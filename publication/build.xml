@@ -95,33 +95,13 @@
     </target>
 
 	<!-- ================================= 
-          target: 3DHFP              
+          target: FP              
          ================================= -->
-    <target name="3DHFP" description="Build the output artifacts for the DHFP">
-        <antcall target="artefacts">
-        	<param name="file.base-name" value="dhfp"/>
-        	<param name="is-fm" value='false'/>
-        </antcall>
-    </target>
-
-	<!-- ================================= 
-          target: PCHIFP              
-         ================================= -->
-	<target name="PCHIFP" description="Build the output artifacts for the PCHIFP">
+	<target name="FP" description="Build the output artifacts for a FP">
 		<antcall target="artefacts">
-			<param name="file.base-name" value="pchifp"/>
+			<param name="file.base-name" value="${fpname}"/>
 			<param name="is-fm" value='false'/>
 		</antcall>
-	</target>
-
-	<!-- ================================= 
-          target: 3DHFP Changes Only
-         ================================= -->
-		 <target name="3DHFPC" description="Build the output artifacts for the DHFP">
-			<antcall target="artefacts">
-				<param name="file.base-name" value="dhfpc"/>
-				<param name="is-fm" value='false'/>
-			</antcall>
 	</target>
 
 	<!-- ================================= 
