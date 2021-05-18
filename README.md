@@ -34,6 +34,7 @@ Start the Docker container
 ```
 > docker run -it -v "$(pwd)":/app hl7-fm
 ```
+!!! see example scripts gen-**fp.sh
 
 ----------------
 Using the ehrsfm-tool command line tools to validate and compile FM, ProfileDefinition and Profiles
@@ -47,10 +48,15 @@ import-scripts
 
 !!! TODO; see FMFP Import Script Steps.docx !!!
 
+```
+> cd /app/import-scripts
+> ant xlsx2max.sh
+```
 -----------------
 Publication tool
 
 ```
 > cd /app/publication
-> ant 3DHFP|3UFP|3PHRSFM
+> # specials ant 3UFP|3PHRSFM
+> ant FP -Dname=<name>
 ```

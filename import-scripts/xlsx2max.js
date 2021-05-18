@@ -105,7 +105,6 @@ function convert(args) {
 
     // Map columns of the template 'Model' sheet to a js-struct
     const map = {
-        'row#': 'row',
         'ID#': 'id',
         'Type': 'type',
         'Name': 'name',
@@ -133,7 +132,7 @@ function convert(args) {
             var CC = row.cc?row.cc:undefined;
             var CRITERIA = row.criteria?row.criteria:"";
             var FLAG = row.changeindicator;
-            //console.log(`${ID} ${TYPE} ${NAME} ${CC} ${CRITERIA} ${FLAG}`);
+            //console.error(`${ID} ${TYPE} ${NAME} ${CC} ${CRITERIA} ${FLAG}`);
 
             switch (TYPE) {
                 case 'T':
@@ -153,31 +152,48 @@ function convert(args) {
                     break;            
                 case 'H':
                 case 'F':
-    // TODO: make sure lookupfm id exists!
                     // first lookup already created object
                     var object = obj['model'].objects.object.find(element => element.alias == ID);
                     if (object == undefined) {
-                        object = { 
-                            id: rowno, 
-                            name: lookupfmname[ID],
-                            alias: ID,
-                            stereotype: "CI", 
-                            type: "Class",
-                            parentId: PID,
-                        };
+                        // if this is a new header or function!
+                        if (lookupfm[ID] == undefined) {
+                            object = { 
+                                id: PID + rowno, 
+                                name: ID + " " + NAME,
+                                alias: ID,
+                                notes: "$ST$" + STATEMENT + "$DE$" + DESCRIPTION + "$EX$",
+                                stereotype: "Function", 
+                                type: "Feature",
+                                parentId: PID,
+                            };
+                            // for new Criteria on this Function
+                            lookupfm[ID] = PID + rowno;
+                            // Aggregation to parent
+                            var parentID = ID.substring(0, ID.lastIndexOf('.'));
+                            obj['model'].relationships.relationship.push({
+                                sourceId: PID + rowno,
+                                destId: lookupfm[parentID], // lookup based on alias in base fm
+                                notes: "",
+                                type: "Aggregation"
+                            });
+                        }
+                        else {
+                            object = { 
+                                id: PID + rowno, 
+                                name: lookupfmname[ID],
+                                alias: ID,
+                                stereotype: "CI", 
+                                type: "Class",
+                                parentId: PID,
+                            };
+                            obj['model'].relationships.relationship.push({
+                                sourceId: PID + rowno,
+                                destId: lookupfm[ID], // lookup based on alias in base fm
+                                notes: "",
+                                type: "Generalization"
+                            });
+                        }
                         obj['model'].objects.object.push(object);
-                        obj['model'].relationships.relationship.push({
-                            label: undefined,
-                            sourceId: rowno,
-                            sourceLabel: undefined,
-                            sourceCard: undefined,
-                            destId: lookupfm[ID], // lookup based on alias in base fm
-                            destLabel: undefined,
-                            destCard: undefined,
-                            notes: "",
-                            stereotype: undefined,
-                            type: "Generalization"
-                        });                   
                     }
                     // update
                     object.notes = `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`;
@@ -193,28 +209,54 @@ function convert(args) {
                     var _dependent = "N";
                     if (CRITERIA.includes('according to scope of practice') ||
                         CRITERIA.includes('organizational policy') ||
-                        CRITERIA.includes('jurisdictional law')
-                    ) _dependent = "Y";
-                    obj['model'].objects.object.push({ 
-                        id: rowno, 
-                        name: _name,
-                        notes: CRITERIA,
-                        stereotype: "CI", 
-                        type: "Class",
-                        parentId: PID,
-                        tag: [ { $: { name: "Row", value: rowno } },
-                            { $: { name: "Optionality", value: _optionality } },
-                            { $: { name: "Conditional", value: CRITERIA.startsWith("IF ")?"Y":"N" } },
-                            { $: { name: "Dependent", value: _dependent } },
-                            { $: { name: "Reference.ChangeInfo", value: FLAG } }
-                        ]
-                    });
-                    obj['model'].relationships.relationship.push({
-                        sourceId: rowno,
-                        destId: lookupfm[_name], // lookup based on _name in base fm
-                        notes: "",
-                        type: "Generalization"
-                    });
+                        CRITERIA.includes('jurisdictional law')) _dependent = "Y";
+
+                    if (lookupfm[_name] == undefined) {
+                        // this is a new Criteria
+                        obj['model'].objects.object.push({ 
+                            id: PID + rowno, 
+                            name: _name,
+                            notes: CRITERIA,
+                            stereotype: "Criteria", 
+                            type: "Requirement",
+                            parentId: PID,
+                            tag: [ { $: { name: "Row", value: rowno } },
+                                { $: { name: "Optionality", value: _optionality } },
+                                { $: { name: "Conditional", value: CRITERIA.startsWith("IF ")?"Y":"N" } },
+                                { $: { name: "Dependent", value: _dependent } },
+                                { $: { name: "Reference.ChangeInfo", value: FLAG } }
+                            ]
+                        });
+                        // Aggregation new Criteria to parent Function
+                        obj['model'].relationships.relationship.push({
+                            sourceId: PID + rowno,
+                            destId: lookupfm[ID],
+                            notes: "",
+                            type: "Aggregation"
+                        });
+                    }
+                    else {
+                        obj['model'].objects.object.push({ 
+                            id: PID + rowno, 
+                            name: _name,
+                            notes: CRITERIA,
+                            stereotype: "CI", 
+                            type: "Class",
+                            parentId: PID,
+                            tag: [ { $: { name: "Row", value: rowno } },
+                                { $: { name: "Optionality", value: _optionality } },
+                                { $: { name: "Conditional", value: CRITERIA.startsWith("IF ")?"Y":"N" } },
+                                { $: { name: "Dependent", value: _dependent } },
+                                { $: { name: "Reference.ChangeInfo", value: FLAG } }
+                            ]
+                        });
+                        obj['model'].relationships.relationship.push({
+                            sourceId: PID + rowno,
+                            destId: lookupfm[_name], // lookup based on _name in base fm
+                            notes: "",
+                            type: "Generalization"
+                        });
+                    }
                     break;
                 default:
                     break;
