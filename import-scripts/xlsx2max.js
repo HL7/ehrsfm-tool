@@ -22,6 +22,7 @@ var argv = require('yargs/yargs')(process.argv.slice(2))
 .option('name', { alias: 'n', default: 'TSTFP', nargs: 1, describe: 'The short name of the FM/FP' })
 .option('full', { alias: 'f', default: false, type: 'boolean', describe: 'Make this a full FP, include all from FM' })
 .option('base', { alias: 'b', default: 'input/ehrs_fm_r2_1-2020APR.max', describe: 'The base FM to profile' })
+.option('isfm', { alias: 'm', default: false, type: 'boolean', nargs: 1, describe: 'This is FP(false) or FM(true)' })
 .option('input', { alias: 'i', nargs: 1, describe: 'The FP xlsx file name' })
 .demandOption(['i'])
 .demandCommand(1, 'You need at least one command before moving on')
@@ -42,7 +43,7 @@ function convert(args) {
                     id: PID, 
                     name: PID,
                     alias: "",
-                    stereotype: "HL7-FM-ProfileDefinition",
+                    stereotype: args.isfm?"HL7-FM":"HL7-FM-ProfileDefinition",
                     type: "Package",
                     tag: [ { $: { name: "PrioritiesDescription", value: "" } },
                         { $: { name: "Type", value: "Domain" } },
@@ -122,6 +123,7 @@ function convert(args) {
         // each row being an array of cells.
         // console.log(errors);
         var rowno = 0
+        var secno = 1;
         rows.forEach(row => { 
             rowno++;
             var ID = row.id;
@@ -136,19 +138,27 @@ function convert(args) {
 
             switch (TYPE) {
                 case 'T':
-                    // TODO: Lookup section and add generalization? Do we need this?
-                    // fmidx[ID] = ID;
-                    // // DESCRIPTION contains $EX$ and $AC$
-                    // obj['model'].objects.object.push({ 
-                    //     id: ID, 
-                    //     name: NAME,
-                    //     alias: ID,
-                    //     notes: `$OV$${STATEMENT}${DESCRIPTION}`,
-                    //     stereotype: "Section", 
-                    //     type: "Package",
-                    //     parentId: PID,
-                    //     tag: [ { $: { name: "ID", value: secno++ } } ]
-                    // });
+                    var object = obj['model'].objects.object.find(element => element.alias == ID);
+                    if (object == undefined) {
+                        // if this is a new section!
+                        if (lookupfm[ID] == undefined) {
+                            // DESCRIPTION contains $EX$ and $AC$
+                            object = { 
+                                id: PID + rowno, 
+                                name: NAME,
+                                alias: ID,
+                                notes: `$OV$${STATEMENT}${DESCRIPTION}`,
+                                stereotype: "Section", 
+                                type: "Package",
+                                parentId: PID,
+                                tag: [ { $: { name: "ID", value: secno++ } } ]
+                            };
+                            // for new F/H on this Section
+                            lookupfm[ID] = PID + rowno;
+                            obj['model'].objects.object.push(object);
+                        }
+                        // else TODO: Lookup section and add generalization? Is it allowed to redefine a Section?
+                    }
                     break;            
                 case 'H':
                 case 'F':
@@ -156,7 +166,9 @@ function convert(args) {
                     var object = obj['model'].objects.object.find(element => element.alias == ID);
                     if (object == undefined) {
                         // if this is a new header or function!
-                        if (lookupfm[ID] == undefined) {
+                        if (args.isfm || lookupfm[ID] == undefined) {
+                            // Aggregation to parent
+                            var parentID = ID.substring(0, ID.lastIndexOf('.'));
                             object = { 
                                 id: PID + rowno, 
                                 name: ID + " " + NAME,
@@ -164,12 +176,10 @@ function convert(args) {
                                 notes: "$ST$" + STATEMENT + "$DE$" + DESCRIPTION + "$EX$",
                                 stereotype: "Function", 
                                 type: "Feature",
-                                parentId: PID,
+                                parentId: lookupfm[parentID], // lookup based on alias in base fm,
                             };
                             // for new Criteria on this Function
                             lookupfm[ID] = PID + rowno;
-                            // Aggregation to parent
-                            var parentID = ID.substring(0, ID.lastIndexOf('.'));
                             obj['model'].relationships.relationship.push({
                                 sourceId: PID + rowno,
                                 destId: lookupfm[parentID], // lookup based on alias in base fm
@@ -211,7 +221,7 @@ function convert(args) {
                         CRITERIA.includes('organizational policy') ||
                         CRITERIA.includes('jurisdictional law')) _dependent = "Y";
 
-                    if (lookupfm[_name] == undefined) {
+                    if (args.isfm || lookupfm[_name] == undefined) {
                         // this is a new Criteria
                         obj['model'].objects.object.push({ 
                             id: PID + rowno, 
@@ -219,7 +229,7 @@ function convert(args) {
                             notes: CRITERIA,
                             stereotype: "Criteria", 
                             type: "Requirement",
-                            parentId: PID,
+                            parentId: lookupfm[ID],
                             tag: [ { $: { name: "Row", value: rowno } },
                                 { $: { name: "Optionality", value: _optionality } },
                                 { $: { name: "Conditional", value: CRITERIA.startsWith("IF ")?"Y":"N" } },
