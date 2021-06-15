@@ -173,7 +173,6 @@ function convert(args) {
                                 id: PID + rowno, 
                                 name: ID + " " + NAME,
                                 alias: ID,
-                                notes: "$ST$" + STATEMENT + "$DE$" + DESCRIPTION + "$EX$",
                                 stereotype: "Function", 
                                 type: "Feature",
                                 parentId: lookupfm[parentID], // lookup based on alias in base fm,
@@ -205,8 +204,10 @@ function convert(args) {
                         }
                         obj['model'].objects.object.push(object);
                     }
-                    // update
-                    object.notes = `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`;
+                    // update only if not both empty, then it is just an include in the FP
+                    if (STATEMENT != "" && DESCRIPTION != "") {
+                        object.notes = `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`;
+                    }
                     object.tag = [ { $: { name: "Row", value: rowno } },
                             { $: { name: "Reference.ChangeInfo", value: FLAG } } ];
                     break;
