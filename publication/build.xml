@@ -151,6 +151,9 @@
           target: artefacts              
          - - - - - - - - - - - - - - - - - -->
     <target name="artefacts" description="Generates the output artefacts for a Functional Model or a Functional Profile">
+    	<condition property="file.csv-transform" value="${dir.xsl}/max-fm2csv.xsl" else="${dir.xsl}/max-fp2csv.xsl">
+    		<istrue value="${is-fm}"/>
+	</condition>
     	<condition property="file.html-transform" value="${dir.xsl}/max-fm2html.xsl" else="${dir.xsl}/max-fp2html.xsl">
     		<istrue value="${is-fm}"/>
     	</condition>
@@ -158,6 +161,10 @@
     		<istrue value="${is-fm}"/>
     	</condition>
 
+    	<antcall target="csv">
+        	<param name="file.max-file" value="${dir.source}/${file.base-name}.max"/>
+        	<param name="file.out-file" value="${dir.csv}/${file.base-name}.csv"/>
+    	</antcall>
     	<antcall target="html">
         	<param name="file.max-file" value="${dir.source}/${file.base-name}.max"/>
         	<param name="file.ballot-file" value="../${dir.source}/${file.base-name}-ballot.mif"/>
@@ -180,6 +187,14 @@
     <target name="html" description="description" depends="css">
     	<xslt style="${file.html-transform}" in="${file.max-file}" out="${file.out-file}">
     		<param name="ballot-info-file" expression="${file.ballot-file}"/>
+        </xslt>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: csv 
+         - - - - - - - - - - - - - - - - - -->
+    <target name="csv" description="description">
+    	<xslt style="${file.csv-transform}" in="${file.max-file}" out="${file.out-file}">
         </xslt>
     </target>
 	
