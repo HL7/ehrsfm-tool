@@ -105,10 +105,10 @@
 	</target>
 
 	<!-- ================================= 
-          target: 3PHRSFM              
+          target: FM              
          ================================= -->
-    <target name="3PHRSFM" description="Build the output artifacts for the PHRS-FM">
-    	<property name="file.base-name" value="phrs-fm"/>
+    <target name="FM" description="Build the output artifacts for a FM">
+    	<property name="file.base-name" value="${fmname}"/>
     	<antcall target="artefacts">
         	<param name="is-fm" value='true'/>
         </antcall>

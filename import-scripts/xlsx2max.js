@@ -142,7 +142,7 @@ function convert(args) {
                     if (object == undefined) {
                         // if this is a new section!
                         if (lookupfm[ID] == undefined) {
-                            // DESCRIPTION contains $EX$ and $AC$
+                            // TODO: DESCRIPTION should contain $EX$ and $AC$... should this be a column?
                             object = { 
                                 id: PID + rowno, 
                                 name: NAME,
@@ -169,10 +169,12 @@ function convert(args) {
                         if (args.isfm || lookupfm[ID] == undefined) {
                             // Aggregation to parent
                             var parentID = ID.substring(0, ID.lastIndexOf('.'));
+                            // TODO: .. should $EX$ be a column?
                             object = { 
                                 id: PID + rowno, 
                                 name: ID + " " + NAME,
                                 alias: ID,
+                                notes: `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`,
                                 stereotype: "Function", 
                                 type: "Feature",
                                 parentId: lookupfm[parentID], // lookup based on alias in base fm,
@@ -201,12 +203,12 @@ function convert(args) {
                                 notes: "",
                                 type: "Generalization"
                             });
+                            // update only if not both empty or this is a model, then it is just an include in the FP
+                            if (STATEMENT != "" && DESCRIPTION != "") {
+                                object.notes = `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`;
+                            }
                         }
                         obj['model'].objects.object.push(object);
-                    }
-                    // update only if not both empty, then it is just an include in the FP
-                    if (STATEMENT != "" && DESCRIPTION != "") {
-                        object.notes = `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`;
                     }
                     object.tag = [ { $: { name: "Row", value: rowno } },
                             { $: { name: "Reference.ChangeInfo", value: FLAG } } ];
