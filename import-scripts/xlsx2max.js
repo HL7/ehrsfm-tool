@@ -111,6 +111,7 @@ function convert(args) {
         'Name': 'name',
         'Overview / Statement': 'statement',
         'Description': 'description',
+        'Example(s)': 'example',
         'CC#': 'cc',
         'Conformance Criterium': 'criteria',
         'ChangeIndicator': 'changeindicator'
@@ -121,7 +122,7 @@ function convert(args) {
         { data.shift(); return data; } }).then(( {rows, errors}) => {
         // `rows` is an array of rows
         // each row being an array of cells.
-        // console.log(errors);
+        //console.error(JSON.stringify(errors, null, 2));
         var rowno = 0
         var secno = 1;
         rows.forEach(row => { 
@@ -131,6 +132,7 @@ function convert(args) {
             var NAME = row.name;
             var STATEMENT = row.statement?row.statement:"";
             var DESCRIPTION = row.description?row.description:"";
+            var EXAMPLE = row.example?row.example:"";
             var CC = row.cc?row.cc:undefined;
             var CRITERIA = row.criteria?row.criteria:"";
             var FLAG = row.changeindicator;
@@ -142,12 +144,11 @@ function convert(args) {
                     if (object == undefined) {
                         // if this is a new section!
                         if (lookupfm[ID] == undefined) {
-                            // TODO: DESCRIPTION should contain $EX$ and $AC$... should this be a column?
                             object = { 
                                 id: PID + rowno, 
                                 name: NAME,
                                 alias: ID,
-                                notes: `$OV$${STATEMENT}${DESCRIPTION}`,
+                                notes: `$OV$${STATEMENT}${DESCRIPTION}$EX$${EXAMPLE}$AC$`,
                                 stereotype: "Section", 
                                 type: "Package",
                                 parentId: PID,
@@ -169,12 +170,11 @@ function convert(args) {
                         if (args.isfm || lookupfm[ID] == undefined) {
                             // Aggregation to parent
                             var parentID = ID.substring(0, ID.lastIndexOf('.'));
-                            // TODO: .. should $EX$ be a column?
                             object = { 
                                 id: PID + rowno, 
                                 name: ID + " " + NAME,
                                 alias: ID,
-                                notes: `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`,
+                                notes: `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$${EXAMPLE}`,
                                 stereotype: "Function", 
                                 type: "Feature",
                                 parentId: lookupfm[parentID], // lookup based on alias in base fm,
@@ -205,7 +205,7 @@ function convert(args) {
                             });
                             // update only if not both empty or this is a model, then it is just an include in the FP
                             if (STATEMENT != "" && DESCRIPTION != "") {
-                                object.notes = `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$`;
+                                object.notes = `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$${EXAMPLE}`;
                             }
                         }
                         obj['model'].objects.object.push(object);
