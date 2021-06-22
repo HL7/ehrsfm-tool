@@ -66,6 +66,7 @@ function convert(args) {
     var rawxmlfm = fs.readFileSync(args.base);
     var lookupfm = [];
     var lookupfmname = [];
+    var lookupcriteria = [];
     parser.parseString(rawxmlfm, function (err, result) {
         result['model'].objects[0].object.forEach(object => {
             switch (object.stereotype[0]) {
@@ -87,7 +88,7 @@ function convert(args) {
                             stereotype: "CI", 
                             type: "Class",
                             parentId: PID,
-                            tag: [ { $: { name: "Reference.ChangeInfo", value: 'NC' } } ]                    
+                            tag: [ { $: { name: "Reference.ChangeIndicator", value: 'NC' } } ]                    
                         });
                         obj['model'].relationships.relationship.push({
                             sourceId: PID+ALIAS,
@@ -99,6 +100,9 @@ function convert(args) {
                     break;
                 case "Criteria":
                     lookupfm[object.name[0]] = object.id[0];
+                    if (object.notes) {
+                        lookupcriteria[object.name[0]] = object.notes[0].trim();
+                    }
                     break;
             }
         });
@@ -211,7 +215,7 @@ function convert(args) {
                         obj['model'].objects.object.push(object);
                     }
                     object.tag = [ { $: { name: "Row", value: rowno } },
-                            { $: { name: "Reference.ChangeInfo", value: FLAG } } ];
+                            { $: { name: "Reference.ChangeIndicator", value: FLAG } } ];
                     break;
                 case 'C':
                     var _name = formatID(ID, CC);
@@ -237,7 +241,7 @@ function convert(args) {
                                 { $: { name: "Optionality", value: _optionality } },
                                 { $: { name: "Conditional", value: CRITERIA.startsWith("IF ")?"Y":"N" } },
                                 { $: { name: "Dependent", value: _dependent } },
-                                { $: { name: "Reference.ChangeInfo", value: FLAG } }
+                                { $: { name: "Reference.ChangeIndicator", value: FLAG } }
                             ]
                         });
                         // Aggregation new Criteria to parent Function
@@ -249,10 +253,9 @@ function convert(args) {
                         });
                     }
                     else {
-                        obj['model'].objects.object.push({ 
+                        var object = { 
                             id: PID + rowno, 
                             name: _name,
-                            notes: CRITERIA,
                             stereotype: "CI", 
                             type: "Class",
                             parentId: PID,
@@ -260,9 +263,14 @@ function convert(args) {
                                 { $: { name: "Optionality", value: _optionality } },
                                 { $: { name: "Conditional", value: CRITERIA.startsWith("IF ")?"Y":"N" } },
                                 { $: { name: "Dependent", value: _dependent } },
-                                { $: { name: "Reference.ChangeInfo", value: FLAG } }
+                                { $: { name: "Reference.ChangeIndicator", value: FLAG } }
                             ]
-                        });
+                        };
+                        obj['model'].objects.object.push(object);
+                        if (lookupcriteria[_name] != CRITERIA) {
+                            object.notes = CRITERIA;
+                        }
+
                         obj['model'].relationships.relationship.push({
                             sourceId: PID + rowno,
                             destId: lookupfm[_name], // lookup based on _name in base fm
