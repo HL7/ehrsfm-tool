@@ -317,6 +317,7 @@ ul#toc-list li {
   margin-right: 5px; }
 
 .summary-text {
+  white-space: pre-line;
   padding-left: 20px;
   padding-right: 10px; }
 

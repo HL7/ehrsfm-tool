@@ -127,7 +127,7 @@ function convert(args) {
         // `rows` is an array of rows
         // each row being an array of cells.
         //console.error(JSON.stringify(errors, null, 2));
-        var rowno = 0
+        var rowno = 2
         var secno = 1;
         rows.forEach(row => { 
             rowno++;
