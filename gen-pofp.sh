@@ -6,3 +6,5 @@ dotnet run compile /app/import-scripts/input/ehrs_fm_r2_1-2020APR.max /app/impor
 dotnet run validate /app/publication/source/pofp.max
 cd /app/publication
 ant FP -Dfpname=pofp
+
+# pdfunite ../../import-scripts/input/2021_Informative_CoverPage_Template_POFPErrata.pdf pofp.pdf pofp+coverpage.pdf
