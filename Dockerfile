@@ -10,6 +10,7 @@ RUN tar -zxvf /tmp/apache-ant.tar.gz -C /opt
 ENV PATH=$PATH:/opt/apache-ant-1.10.9/bin
 RUN curl https://archive.apache.org/dist/xmlgraphics/fop/binaries/fop-2.6-bin.tar.gz -o /tmp/fop.tar.gz
 RUN tar -zxvf /tmp/fop.tar.gz -C /opt
+RUN apt install -y poppler-utils
 
 # dotnet runtime and HL7_FM_CLI ConcolsApp
 RUN apt install -y wget
