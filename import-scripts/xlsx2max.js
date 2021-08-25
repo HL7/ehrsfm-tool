@@ -140,7 +140,7 @@ function convert(args) {
             var CC = row.cc?row.cc:undefined;
             var CRITERIA = row.criteria?row.criteria:"";
             var FLAG = row.changeindicator;
-            //console.error(`${ID} ${TYPE} ${NAME} ${CC} ${CRITERIA} ${FLAG}`);
+            //console.error(`${ID} ${TYPE} ${NAME} ${STATEMENT} ${CC} ${CRITERIA} ${FLAG}`);
 
             switch (TYPE) {
                 case 'T':

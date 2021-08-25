@@ -7,4 +7,5 @@ dotnet run validate /app/publication/source/dhfp.max
 cd /app/publication
 ant FP -Dfpname=dhfp
 
-# pdfunite ../../import-scripts/input/2021_Informative_CoverPage_Template_DHFPErrata.pdf dhfp.pdf dhfp+coverpage.pdf
+cd /app/publication/pdf
+java -jar /opt/pdfbox-app-2.0.24.jar PDFMerger import-scripts/input/2021_Informative_CoverPage_Template_DHFPErrata.pdf dhfp.pdf dhfp+coverpage.pdf
