@@ -8,4 +8,4 @@ cd /app/publication
 ant FP -Dfpname=dhfp
 
 cd /app/publication/pdf
-java -jar /opt/pdfbox-app-2.0.24.jar PDFMerger import-scripts/input/2021_Informative_CoverPage_Template_DHFPErrata.pdf dhfp.pdf dhfp+coverpage.pdf
+java -jar /opt/pdfbox-app-2.0.24.jar PDFMerger /app/import-scripts/input/2021_Informative_CoverPage_Template_DHFPErrata.pdf dhfp.pdf dhfp+coverpage.pdf

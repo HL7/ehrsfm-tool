@@ -121,6 +121,14 @@ function convert(args) {
         'ChangeIndicator': 'changeindicator'
     }
 
+    var cntS = 0;
+    var cntH = 0;
+    var cntF = 0;
+    var cntC = 0;
+    var cntNH = 0;
+    var cntNF = 0;
+    var cntNC = 0;
+
     // Remove first row that is nonce
     readXlsxFile(args.input, { sheet: args.sheet, map, transformData(data)
         { data.shift(); return data; } }).then(( {rows, errors}) => {
@@ -161,6 +169,7 @@ function convert(args) {
                             // for new F/H on this Section
                             lookupfm[ID] = PID + rowno;
                             obj['model'].objects.object.push(object);
+                            cntS++;
                         }
                         // else TODO: Lookup section and add generalization? Is it allowed to redefine a Section?
                     }
@@ -179,7 +188,7 @@ function convert(args) {
                                 name: ID + " " + NAME,
                                 alias: ID,
                                 notes: `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$${EXAMPLE}`,
-                                stereotype: "Function", 
+                                stereotype: (TYPE=='H'?"Header":"Function"), 
                                 type: "Feature",
                                 parentId: lookupfm[parentID], // lookup based on alias in base fm,
                             };
@@ -191,6 +200,7 @@ function convert(args) {
                                 notes: "",
                                 type: "Aggregation"
                             });
+                            if (TYPE=='H') cntNH++; else cntNF++;
                         }
                         else {
                             object = { 
@@ -201,6 +211,9 @@ function convert(args) {
                                 type: "Class",
                                 parentId: PID,
                             };
+                            if (NAME) {
+                                object.name = `${ID} ${NAME}`;
+                            }
                             obj['model'].relationships.relationship.push({
                                 sourceId: PID + rowno,
                                 destId: lookupfm[ID], // lookup based on alias in base fm
@@ -211,6 +224,7 @@ function convert(args) {
                             if (STATEMENT != "" && DESCRIPTION != "") {
                                 object.notes = `$ST$${STATEMENT}$DE$${DESCRIPTION}$EX$${EXAMPLE}`;
                             }
+                            if (TYPE=='H') cntH++; else cntF++;
                         }
                         obj['model'].objects.object.push(object);
                     }
@@ -251,6 +265,7 @@ function convert(args) {
                             notes: "",
                             type: "Aggregation"
                         });
+                        cntNC++;
                     }
                     else {
                         var object = { 
@@ -277,6 +292,7 @@ function convert(args) {
                             notes: "",
                             type: "Generalization"
                         });
+                        cntC++;
                     }
                     break;
                 default:
@@ -288,6 +304,24 @@ function convert(args) {
         if(args.sort) {
             sort(obj);
         }
+
+        // Statistics
+        var cntO = obj['model'].objects.object.length;
+        // var cntS = obj['model'].objects.object.filter(obj => obj.stereotype == "Section").length;
+        // var cntH = obj['model'].objects.object.filter(obj => obj.stereotype == "Header").length;
+        // var cntF = obj['model'].objects.object.filter(obj => obj.stereotype == "Function").length;
+        // var cntC = obj['model'].objects.object.filter(obj => obj.stereotype == "Criteria").length;
+        var cntCI = obj['model'].objects.object.filter(obj => obj.stereotype == "CI").length;
+        console.error ('');
+        console.error ('STATISTICS - total (existing/new)');
+        console.error ('----------');
+        console.error (`Objects  : ${cntO}`);
+        console.error (`Sections : ${cntS}`);
+        console.error (`Headers  : ${cntH+cntNH} (${cntH}/${cntNH})`);
+        console.error (`Functions: ${cntF+cntNF} (${cntF}/${cntNF})`);
+        console.error (`Criteria : ${cntC+cntNC} (${cntC}/${cntNC})`);
+        console.error (`CI       : ${cntCI}`);
+        console.error ('');
 
         // Dump max xml 
         var builder = new xml2js.Builder();
