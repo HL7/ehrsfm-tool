@@ -602,8 +602,11 @@ namespace HL7_FM_CLI
                 // update notes if instruction has notes
                 if (node.instructionObject.notes != null && node.instructionObject.notes.Text.Length > 0)
                 {
-                    if (tagChangeIndicator.value != CHANGEINDICATOR_NEW) tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
-                    node.baseModelObject.notes = node.instructionObject.notes;
+                    if (!node.baseModelObject.notes.Text[0].Equals(node.instructionObject.notes.Text[0]))
+                    {
+                        if (tagChangeIndicator.value != CHANGEINDICATOR_NEW) tagChangeIndicator.value = CHANGEINDICATOR_CHANGED;
+                        node.baseModelObject.notes = node.instructionObject.notes;
+                    }
                 }
 
                 // is a new Priority in the instruction?
