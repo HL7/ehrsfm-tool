@@ -359,7 +359,7 @@ function sort(obj) {
         }
 
         if (a.stereotype == 'Section') {
-            aname = section_sortkey[a.id];
+            aname = section_sortkey[a.alias];
         }
         else if (a.stereotype == 'Header' || a.stereotype == 'Function') {
             var p = a.alias.split(/[\. ]/);
@@ -388,7 +388,7 @@ function sort(obj) {
         }
 
         if (b.stereotype == 'Section') {
-            bname = section_sortkey[b.id];
+            bname = section_sortkey[b.alias];
         }
         else if (b.stereotype == 'Header' || b.stereotype == 'Function') {
             var p = b.alias.split(/[\. ]/);
