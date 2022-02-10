@@ -329,24 +329,25 @@ function convert(args) {
     });
 }
 
+var section_sortkey = [];
+// EHR-S FM and UFP chapters
+section_sortkey['OV'] = '1OV';
+section_sortkey['CP'] = '2CP';
+section_sortkey['CPS'] = '3CPS';
+section_sortkey['AS'] = '4AS';
+section_sortkey['POP'] = '5POP';
+section_sortkey['RI'] = '6RI';
+section_sortkey['TI'] = '7TI';
+section_sortkey['U'] = '8U';    
+// PHR-S FM chapters
+var section_sortkey = [];
+section_sortkey['PH'] = '1PH';
+section_sortkey['S'] = '2S';
+section_sortkey['RI'] = '3RI';
+section_sortkey['TI'] = '4TI';
+
 function sort(obj) {
     // sort by FM ID
-    // EHR-S FM and UFP chapters
-    section_sortkey['OV'] = '1OV';
-    section_sortkey['CP'] = '2CP';
-    section_sortkey['CPS'] = '3CPS';
-    section_sortkey['AS'] = '4AS';
-    section_sortkey['POP'] = '5POP';
-    section_sortkey['RI'] = '6RI';
-    section_sortkey['TI'] = '7TI';
-    section_sortkey['U'] = '8U';    
-    // PHR-S FM chapters
-    var section_sortkey = [];
-    section_sortkey['PH'] = '1PH';
-    section_sortkey['S'] = '2S';
-    section_sortkey['RI'] = '3RI';
-    section_sortkey['TI'] = '4TI';
-
     obj['model'].objects.object.sort(function (a,b) {
         var aname = a.name;
         var bname = b.name;
