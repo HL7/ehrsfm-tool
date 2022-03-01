@@ -347,7 +347,7 @@ section_sortkey['RI'] = '3RI';
 section_sortkey['TI'] = '4TI';
 
 function sort(obj) {
-    // sort by FM ID
+    // sort by FM ID; use sortkey instead of "ID" tag here; compiler uses "ID" tag
     obj['model'].objects.object.sort(function (a,b) {
         var aname = a.name;
         var bname = b.name;
