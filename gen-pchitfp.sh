@@ -8,4 +8,4 @@ cd /app/publication
 ant FP -Dfpname=pchitfp
 
 cd /app/publication/pdf
-java -jar /opt/pdfbox-app-2.0.24.jar PDFMerger /app/import-scripts/input/PCHIT_R1_FP_CoverPage_v0.1\ YU.pdf pchitfp.pdf pchitfp+coverpage.pdf
+java -jar /opt/pdfbox-app-2.0.24.jar PDFMerger /app/import-scripts/input/pchitfp_coverpage_apr2022.pdf pchitfp.pdf pchitfp+coverpage.pdf

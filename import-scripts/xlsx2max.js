@@ -21,7 +21,7 @@ var argv = require('yargs/yargs')(process.argv.slice(2))
 .option('sort', { alias: 's', default: false, type: 'boolean', nargs: 1, describe: 'Sort based on FM chapters' })
 .option('name', { alias: 'n', default: 'TSTFP', nargs: 1, describe: 'The short name of the FM/FP' })
 .option('full', { alias: 'f', default: false, type: 'boolean', describe: 'Make this a full FP, include all from FM' })
-.option('base', { alias: 'b', default: 'input/ehrs_fm_r2_1-2020APR.max', describe: 'The base FM to profile' })
+.option('base', { alias: 'b', default: 'input/ehrs_fm_r2_1-2022APR.max', describe: 'The base FM to profile' })
 .option('isfm', { alias: 'm', default: false, type: 'boolean', nargs: 1, describe: 'This is FP(false) or FM(true)' })
 .option('input', { alias: 'i', nargs: 1, describe: 'The FP xlsx file name' })
 .demandOption(['i'])
@@ -338,13 +338,11 @@ section_sortkey['AS'] = '4AS';
 section_sortkey['POP'] = '5POP';
 section_sortkey['RI'] = '6RI';
 section_sortkey['TI'] = '7TI';
+// extre UFP chapter
 section_sortkey['U'] = '8U';    
-// PHR-S FM chapters
-var section_sortkey = [];
+// extra PHR-S FM chapters
 section_sortkey['PH'] = '1PH';
 section_sortkey['S'] = '2S';
-section_sortkey['RI'] = '3RI';
-section_sortkey['TI'] = '4TI';
 
 function sort(obj) {
     // sort by FM ID; use sortkey instead of "ID" tag here; compiler uses "ID" tag
