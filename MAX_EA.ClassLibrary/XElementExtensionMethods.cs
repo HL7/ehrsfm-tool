@@ -13,10 +13,13 @@ namespace MAX_EA
         public static string ElementValue(this XElement xElement, string name, string defaultValue = null)
         {
             string value = defaultValue;
-            XElement xChildElement = xElement.Element(name);
-            if (xChildElement != null)
+            if (xElement != null)
             {
-                value = xChildElement.Value;
+                XElement xChildElement = xElement.Element(name);
+                if (xChildElement != null)
+                {
+                    value = xChildElement.Value;
+                }
             }
             return value;
         }
