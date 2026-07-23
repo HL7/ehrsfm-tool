@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp8.0</TargetFramework>
     <StartupObject>HL7_FM_CLI.Program</StartupObject>
     <RootNamespace>HL7_FM_CLI</RootNamespace>
     <AssemblyName>HL7_FM_CLI.ConsoleApp</AssemblyName>

@@ -4,3 +4,6 @@ input-scripts/output
 publication/fo
 publication/pdf
 publication/html
+*/bin/
+*/obj/
+tmp

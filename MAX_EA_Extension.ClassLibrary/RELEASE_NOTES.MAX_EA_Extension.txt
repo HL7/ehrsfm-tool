@@ -1,5 +1,9 @@
 ﻿CHANGELOG
 =========
+[2024-aug-21]
+MexExporter3
+- Minor fix
+
 [2017-nov-20]
 Filters,Main
 - Added option to import without deleting relationships == adding relationships
